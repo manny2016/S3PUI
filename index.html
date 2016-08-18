@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Service Status & Sentiment Predictor</title>
-    <link rel="stylesheet" href="/public/semantic.min.css" />
+    <link rel="stylesheet" href="/public/semantic.css" />
+    <link rel="stylesheet" href="/public/custom.css" />
 
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
     <script type="text/javascript" src="/public/semantic.min.js"></script>
 </head>
 
@@ -24,7 +25,18 @@
         <a href="#" class="item">Twitter</a>
         <a href="#" class="item">Stackoverflow</a>
         <a href="#" class="item">MSDN</a>
-        <a href="javascript:$('#left-sidebar').sidebar('toggle')" class="item"><i class="content link icon"></i></a>
+        <a href="javascript:$('#left-sidebar').sidebar('toggle')" class="item"><i class="content link icon"></i>Subscriptions</a>
+        <div class="right item">
+            <div class="inline fields ">
+                <div class="ui violet horizontal label">Last 72 Hrs</div>
+                <div class="field ui mini input">
+                    <input type="text" placeholder="start time" value="2016-08-16">
+                </div>
+                <div class="field ui mini input">
+                    <input type="text" placeholder="end time" value="2016-08-18">
+                </div>
+            </div>
+        </div>
         <div class="right item ui label simple dropdown">
             <!--<a class="item ui dropdown">-->
             <img class="ui mini circular image avator right spaced" src="public/images/patrick.png">
@@ -68,8 +80,8 @@
     <!--********-->
     <!--contain body-->
     <!--********-->
-    <div class="ui container">
-        <div class="ui form">
+    <div class="ui container segments">
+        <!--<div class="ui form">
             <div class="inline fields">
                 <div class="three wide field">
                     <label>Last 72 Hours Status Update</label>
@@ -81,7 +93,147 @@
                     <input type="text" placeholder="end time" value="2016-08-18">
                 </div>
             </div>
+        </div>-->
+
+        <!--Statistic-->
+        <div class="ui mini six statistics">
+            <div class="blue statistic">
+                <div class="mini label">
+                    Twitter Messages Vol
+                </div>
+                <div class="value">
+                    21677
+                </div>
+                <div class="mini label">
+                    13 Vol Spikes Found
+                </div>
+            </div>
+            <div class="green statistic">
+                <div class="label">
+                    Twitter POSI vs. NEG
+                </div>
+                <div class="value">
+                    1502:489
+                </div>
+                <div class="label">
+                    5 Negative Vol Spikes
+                </div>
+            </div>
+            <div class="orange statistic">
+                <div class="label">
+                    Most NEG Mention
+                </div>
+                <div class="value">
+                    didn't work
+                </div>
+                <div class="label">
+                    45% of NEG Vol
+                </div>
+            </div>
+            <div class="statistic">
+                <div class="label">
+                    Most NEG From
+                </div>
+                <div class="value">
+                    Tokyo
+                </div>
+                <div class="label">
+                    25% of Total NEG
+                </div>
+            </div>
+            <div class="violet statistic">
+                <div class="label">
+                    Most NEG PostBy
+                </div>
+                <div class="value">
+                    damekinoko
+                </div>
+                <div class="label">
+                    An acitive user
+                </div>
+            </div>
+            <div class="red statistic">
+                <div class="label">
+                    Last 1 hour Vol
+                </div>
+                <div class="value">
+                    109
+                </div>
+                <div class="label">
+                    No Vol Spikes Found
+                </div>
+            </div>
         </div>
+        <div class="ui horizontal divider"></div>
+        <!--charts-->
+        <div class="ui grid container">
+            <div class="ui message sixteen wide column" style="height:300px;">
+                chart 1
+            </div>
+            <div class="ui message sixteen wide column" style="height:300px;">
+                chart 2
+            </div>
+            <div class="ui message sixteen wide column" style="height:300px;">
+                chart 3
+            </div>
+            <div class="ui message ten wide column" style="height:300px;">
+                chart 4
+            </div>
+            <div class="ui message six wide column" style="height:300px;">
+                chart 5
+            </div>
+        </div>
+
+
+        <div class="ui horizontal divider"></div>
+        <hi class="ui header">Subcriptions List</hi>
+        <div class="ui four cards">
+            <div class="card">
+                <div class="content">
+                    <div class="header">Azure</div>
+                    <div class="description">
+                        Azure is cloud platform provided by Microsoft.
+                    </div>
+                </div>
+                <div class="ui green bottom attached button">
+                    <i class="add icon"></i> Subcribe
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="header">UWP</div>
+                    <div class="description">
+                        UWP.
+                    </div>
+                </div>
+                <div class="ui red bottom attached button">
+                    <i class="minus icon"></i> Unsubscribe
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="header">PowerBI</div>
+                    <div class="description">
+                        PowerBI
+                    </div>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="military icon"></i> Coming Soon...
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                    <div class="header">PowerBI</div>
+                    <div class="description">
+                        PowerBI
+                    </div>
+                </div>
+                <div class="ui bottom attached button">
+                    <i class="military icon"></i> Coming Soon...
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

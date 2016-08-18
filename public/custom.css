@@ -1,0 +1,5 @@
+.ui.statistics .statistic > .label,
+.ui.statistic > .label {
+  font-size: 0.8em !important;
+  text-transform: initial !important;
+}
