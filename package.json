@@ -1,0 +1,27 @@
+{
+  "name": "s3p-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Walk4Muscle/S3PUI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Walk4Muscle/S3PUI/issues"
+  },
+  "homepage": "https://github.com/Walk4Muscle/S3PUI#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "semantic-ui": "^2.2.2"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1"
+  }
+}

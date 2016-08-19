@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Service Status & Sentiment Predictor</title>
+    <link rel="stylesheet" href="/public/semantic.css" />
+    <link rel="stylesheet" href="/public/custom.css" />
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
+    <script type="text/javascript" src="/public/semantic.min.js"></script>
+</head>
+
+<body>
+    <!--********-->
+    <!--Top Menu-->
+    <!--********-->
+    <div class="ui top menu">
+        <div class="ui container">
+            <div class="header item">
+                <!--<img class="logo" src="assets/images/logo.png">-->
+                S3P - This is a cool project ...
+            </div>
+            <div class="menu right">
+                <a href="#" class="item">Who am I</a>
+                <a href="#" class="item">Social Community</a>
+                <a href="#" class="item">StackExchange</a>
+                <a href="#" class="item">MSDN/TN Fourms</a>
+
+                <div class="right item ui label simple dropdown">
+                    <!--<a class="item ui dropdown">-->
+                    <img class="ui mini circular image avator right spaced" src="public/images/patrick.png">
+                    <div class="content">
+                        <div class="ui sub header">Fawad</div>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item">Profile</a>
+                        <a class="item">Subscription</a>
+                        <a class="item">Sign out</a>
+                    </div>
+                    <!--</a>-->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--********-->
+    <!--contain body-->
+    <!--********-->
+    <div class="ui container">
+        <div class="ui breadcrumb">
+            <a class="section">S3P</a>
+            <div class="divider"> / </div>
+            <a class="section">Who am I</a>
+        </div>
+        <!--<div class="ui horizontal divider"></div>-->
+        <!--do you know content-->
+        <div class="ui segment">
+            <h4 class="ui top attached label">
+            Do you know how our products look like from an eye of  your experienced customers?
+        </h4>
+            <div class="">
+                <h3 class="ui header">Do you know...?</h3>
+                <div class="ui list">
+                    <div class="item">
+                        How many people are talking about our products via online community channels?
+                    </div>
+                    <div class="item">
+                        How many UGC or VoC are generated to discuss about our products?
+                    </div>
+                    <div class="item">
+                        How many users are saying 'Great' for our products? While how many customers are saying 'Just so so'? Are their perspective is changing recently?
+                    </div>
+                    <div class="item">
+                        What exactly customers are saying mostly for 'Great' or 'Just so so' on your products? How many audience being influenced recently that case of what they said?
+                    </div>
+                    <div class="item">
+                        Where are the original posters? What we can do for better supporting our customers? Is there any action plan / results we can foresee?
+                    </div>
+                    <h2 class="ui center aligned header">
+                        The way for figuring outanswers of those questions is the idea behind S3P project.
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <h4 class="ui top attached label">
+                Do you know what would be happend within a week?
+            </h4>
+            <div class="">
+                <h3 class="ui header">
+                    A week could let us fully understand our users' needs ...
+                </h3>
+                <div class="ui list">
+                    <div class="item">
+                        A week could make you ...
+                    </div>
+                    <div class="item">
+                        A week could make you ...
+                    </div>
+                    <div class="item">
+                        A week could make you ...
+                    </div>
+                    <div class="item">
+                        A week could make us host a successful hackathon event ...
+                    </div>
+                    <div class="item">
+                        A week could make us host a successful hackathon event ...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--charts-->
+        <div class="ui segment">
+            <h3 class="ui top attached label">
+                <div class="inline fields ">
+                    <div class="ui red horizontal label">UTC</div>
+                    <div class="field ui mini input">
+                        <input type="text" placeholder="start time" value="2016-08-16">
+                    </div>
+                    <div class="field ui mini input">
+                        <input type="text" placeholder="end time" value="2016-08-18">
+                    </div>
+                </div>
+            </h3>
+            <div id="users_card" class="ui six column grid">
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="/src/semantic-init.js"></script>
+    <script>
+        $.get("users_card.html",function(data){
+            $("#users_card").html(data+data+data+data+data+data);
+        })
+    </script>
+</body>
+
+</html>
