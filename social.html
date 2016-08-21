@@ -25,8 +25,8 @@
                 S3P - This is a cool project ...
             </div>
             <div class="menu right">
-                <a href="/" class="item active">Who am I</a>
-                <a href="/social.html" class="item">Social Community</a>
+                <a href="/" class="item">Who am I</a>
+                <a href="social.html" class="item active">Social Community</a>
                 <a href="#" class="item">StackExchange</a>
                 <a href="#" class="item">MSDN/TN Fourms</a>
 
@@ -49,209 +49,221 @@
 
 
     </div>
+
+
+
+    <!--********-->
+    <!--contain body-->
+    <!--********-->
     <div class="ui container">
         <div class="ui breadcrumb">
             <a class="section">S3P</a>
             <div class="divider"> / </div>
-            <a class="section">Who am I</a>
+            <a class="section">Social Community</a>
+        </div>
+        <div class="ui segment">
+            <div class="ui fields" style="display: inline;">
+                <div class="ui red horizontal label">UTC</div>
+                <div class="field ui mini input">
+                    <input type="text" placeholder="start time" value="2016-08-16">
+                </div>
+                <div class="field ui mini input">
+                    <input type="text" placeholder="end time" value="2016-08-18">
+                </div>
+            </div>
+            <select class="ui small dropdown " style="">
+                <option value="azure">Azure</option>
+                <option value="powerbi">Power BI</option>
+                <option value="azure-linux">Azure Linux</option>
+            </select>
         </div>
     </div>
-    <!--********-->
-    <!--contain body-->
-    <!--********-->
-    <div id="main" class="ui container segment">
-
-        <!--<div class="ui horizontal divider"></div>-->
-        <!--do you know content-->
-        <div class="ui segment">
-            <h4 class="ui top attached label">
-                Do you know how our products look like from an eye of  your experienced customers?
+    <div class="ui hidden divider"></div>
+    <div class="ui container">
+        <div id="main" class="ui segment">
+            <!--<div class="ui horizontal divider"></div>-->
+            <!--do you know content-->
+            <h4 class="ui center aligned header">
+                Impact Summary from S3P
             </h4>
-            <div class="">
-                <h3 class="ui header">Do you know...?</h3>
-                <div class="ui list">
-                    <div class="item">
-                        How many people are talking about our products via online community channels?
-                    </div>
-                    <div class="item">
-                        How many UGC or VoC are generated to discuss about our products?
-                    </div>
-                    <div class="item">
-                        How many users are saying 'Great' for our products? While how many customers are saying 'Just so so'? Are their perspective is changing recently?
-                    </div>
-                    <div class="item">
-                        What exactly customers are saying mostly for 'Great' or 'Just so so' on your products? How many audience being influenced recently that case of what they said?
-                    </div>
-                    <div class="item">
-                        Where are the original posters? What we can do for better supporting our customers? Is there any action plan / results we can foresee?
-                    </div>
-                    <h2 class="ui center aligned header">
-                        The way for figuring outanswers of those questions is the idea behind S3P project.
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="ui segment">
-            <h4 class="ui top attached label">
-                Do you know what would be happend within a week?
-            </h4>
-            <div class="">
-                <h3 class="ui header">
-                    A week could let us fully understand our users' needs ...
-                </h3>
-                <div class="ui list">
-                    <div class="item">
-                        A week could make you ...
-                    </div>
-                    <div class="item">
-                        A week could make you ...
-                    </div>
-                    <div class="item">
-                        A week could make you ...
-                    </div>
-                    <div class="item">
-                        A week could make us host a successful hackathon event ...
-                    </div>
-                    <div class="item">
-                        A week could make us host a successful hackathon event ...
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--charts-->
-        <div class="ui segment">
-            <h3 class="ui top attached label">
-                <div class="ui fields" style="float:left">
-                    <div class="ui red horizontal label">UTC</div>
-                    <div class="field ui mini input">
-                        <input type="text" placeholder="start time" value="2016-08-16">
-                    </div>
-                    <div class="field ui mini input">
-                        <input type="text" placeholder="end time" value="2016-08-18">
-                    </div>
-                    
-                </div>
-                <select class="ui large input" style="float:right">
-                        <option value="azure">Azure</option>
-                        <option value="powerbi">Power BI</option>
-                        <option value="azure-linux">Azure Linux</option>
-                    </select>
-            </h3>
-            <div id="users_card" class="ui three column grid">
-            </div>
+            <!--charts-->
+            <!--<div class="ui segment">-->
             <div class="ui three column grid">
                 <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">POSI mentioned most</div>
-                        <div class="column cloudword" style="width:100%;height:300px;"></div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">Daily Total Influence</div>
-                        <div id="shape1" class="ui shape">
-                            <div class="sides">
-                                <div class="active side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                    <div class="ui segment center aligned">
+                        <div class="ui top attached label">Community Users</div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Users Joined Discussion
                                 </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                <div class="value">
+                                    3543
                                 </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                <div class="mini label">
+                                    <i class="long arrow up icon green" style="margin-right:20px">12%</i>Compared with Last Week
+                                    <br />
+                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
                                 </div>
                             </div>
                         </div>
-                        <div class="ui ignored icon direction buttons">
-                            <a class="ui button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape1').shape('flip left');chartResize('shape1')"><i class="left long arrow icon"></i></a>
-                            <a class="ui icon button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape1').shape('flip right');chartResize('shape1')"><i class="right long arrow icon"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">Platforms' influence distribution</div>
-                        <div class="column bar2" style="width:100%;height:300px;"></div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">Negative mentioned most</div>
-                        <div class="column cloudword" style="width:100%;height:300px;"></div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">Daily Total Influence</div>
-                        <div id="shape2" class="ui shape">
-                            <div class="sides">
-                                <div class="active side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Regions of Users
                                 </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                <div class="value">
+                                    43
                                 </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
-                                </div>
-                                <div class="side">
-                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                <div class="mini label">
+                                    <i class="long arrow up icon red" style="margin-right:20px">1.2%</i>Compared with Last Week
+                                    <br />
+                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
                                 </div>
                             </div>
                         </div>
-                        <div class="ui ignored icon direction buttons">
-                            <a class="ui button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>
-                            <a class="ui icon button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Influence of Users(page Views)
+                                </div>
+                                <div class="value">
+                                    45476
+                                </div>
+                                <div class="mini label">
+                                    <i class="long arrow up icon green" style="margin-right:20px">32%</i>Compared with Last Week
+                                    <br />
+                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <div class="ui fluid card">
-                        <div class="ui top attached label">Platforms' influence distribution</div>
-                        <div class="column bar2" style="width:100%;height:300px;"></div>
+                    <div class="ui segment center aligned">
+                        <div class="ui top attached label">Product Status</div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Services be Discussed
+                                </div>
+                                <div class="value">
+                                    18
+                                </div>
+                                <div class="mini label">
+                                    <i class="long arrow up icon green"></i>4 Compared with Last Week
+                                    <br />
+                                    <label>&nbsp;</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Mentioned Most Service
+                                </div>
+                                <div class="value">
+                                    AzureAD
+                                </div>
+                                <div class="mini label">
+                                    <label class="ui green" style="margin-right:20px">AAD(10%), Azure Web App(9%), VM(8%)</label>
+                                    <br />
+                                    <label>&nbsp;</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Loved Most Service <i class="popup small link help icon" data-content="Receievd hightest Ratio of positive posts" data-variation="mini inverted"></i>
+                                </div>
+                                <div class="value">
+                                    Web App
+                                </div>
+                                <div class="mini label">
+                                    <label class="green" style="margin-right:20px">Azure Web App (69%), VM(58%) ,AAD</label>
+                                    <br />
+                                    <label>&nbsp;</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui segment center aligned">
+                        <div class="ui top attached label">Voc Insights</div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Message Posts
+                                </div>
+                                <div class="value">
+                                    98736
+                                </div>
+                                <div class="mini label">
+                                    <i class="long arrow up icon green"></i>12% Compared with Last Week
+                                    <br />
+                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Sentiment of Messages (POSI:NEG)
+                                </div>
+                                <div class="value">
+                                    1390:323
+                                </div>
+                                <div class="mini label">
+                                    <i class="icon green">21</i> POSI Vol Spike Detected (hourly)
+                                    <br />
+                                    <i class="icon red">9</i> NEG Vol Spike Detected (hourly)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui fitted divider"></div>
+                        <div class="row">
+                            <div class="ui statistic">
+                                <div class="label">
+                                    Influence of Sentiment <i class="popup small link help icon" data-content="Page Views - POST : NEG" data-variation="mini inverted"></i>
+                                </div>
+                                <div class="value">
+                                    20121:32101
+                                </div>
+                                <div class="mini label">
+                                    Most POSI From <label class="green">USA</label>
+                                    <br />
+                                    Most NEG From <label class="red">Tokyo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+            <div id="menu" class="left attached ui rail" style="padding-right:0 !important;">
+                <div class="ui sticky" style="position:relative;right: -200px; z-index: -1;">
+                    <div class="ui vertical mini menu">
+                        <a class="active item">Twitter</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="advance_search" class="right very close ui rail" style="min-height: 262.531px;">
-            <div class="ui sticky">
-                <div class="ui segment">
-                    <h3 class="ui header">What do you wanna know today?</h3>
-                    <div class="ui icon small input">
-                        <input type="text" placeholder="Search...">
-                        <i class="search icon"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="right ui rail" style="min-height: 262.531px;">
-            <div class="ui sticky" style="width: 272px !important; height: 262.531px !important; left: 1356.5px;">
-                <h3 class="ui header">Stuck Content</h3>
-                <img>
-            </div>
-        </div>-->
     </div>
-
-    </div>
-
 
     <script type="text/javascript" src="/src/semantic-init.js"></script>
     <script>
+        $('#menu')
+            .sticky({
+                context: '#main'
+            });
+        $('.popup').popup();
         $.get("users_card.html", function(data) {
             $("#users_card").html(data + data + data + data + data + data);
             initBarCharts('.UGCSpicks');
@@ -259,13 +271,8 @@
             $('.shape').shape({
                 duration: '100ms'
             });
+
             initPieCharts();
-            $('.ui.sticky')
-                .sticky({
-                    offset: 50,
-                    bottomOffset: 50,
-                    context: '#main'
-                });
         })
         initCloudWordChart();
         initHoriBarChart();
