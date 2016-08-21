@@ -258,15 +258,16 @@
                 duration: '100ms'
             });
             initPieCharts();
-        })
-        initCloudWordChart();
-        initHoriBarChart();
-        $('.ui.sticky')
+            $('.ui.sticky')
             .sticky({
                 offset: 50,
                 bottomOffset: 50,
                 context: '#main'
             });
+        })
+        initCloudWordChart();
+        initHoriBarChart();
+        
 
         function chartResize(shapeId) {
             // console.log($("#"+shapeId+" div.active").next().find('.bar1>div'))
