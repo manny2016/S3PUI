@@ -6,10 +6,12 @@
     <title>Service Status & Sentiment Predictor</title>
     <link rel="stylesheet" href="/public/semantic.css" />
     <link rel="stylesheet" href="/public/custom.css" />
+    <link rel="stylesheet/less" type="text/css" href="/src/css/style.less" />
 
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
     <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
     <script type="text/javascript" src="/public/semantic.min.js"></script>
+    <script type="text/javascript" src="/public/less.min.js"></script>
     <script type="text/javascript" src="/public/echarts.min.js"></script>
     <script type="text/javascript" src="/public/echarts-wordcloud.min.js"></script>
 </head>
@@ -76,172 +78,187 @@
     <div class="ui hidden divider"></div>
     <div class="ui container">
         <div id="main" class="ui segment">
-            <!--<div class="ui horizontal divider"></div>-->
-            <!--do you know content-->
-            <h4 class="ui center aligned header">
+            <!--statistic-->
+            <h3 class="ui center aligned header">
                 Impact Summary from S3P
-            </h4>
+            </h3>
             <!--charts-->
             <!--<div class="ui segment">-->
-            <div class="ui three column grid">
-                <div class="column">
-                    <div class="ui segment center aligned">
-                        <div class="ui top attached label">Community Users</div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Users Joined Discussion
-                                </div>
-                                <div class="value">
-                                    3543
-                                </div>
-                                <div class="mini label">
-                                    <i class="long arrow up icon green"></i>12% Compared with Last Week
-                                    <br />
-                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Regions of Users
-                                </div>
-                                <div class="value">
-                                    43
-                                </div>
-                                <div class="mini label">
-                                    <i class="long arrow up icon red" ></i>1.2% Compared with Last Week
-                                    <br />
-                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
+            <div class="ui three column divided grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui basic segment statistic center aligned">
+                            <div class="ui horizontal top divider">Community Users</div>
+                            <div class="row">
+                                <div class="ui small blue statistic">
+                                    <div class="label">
+                                        Users Joined Discussion
+                                    </div>
+                                    <div class="value">
+                                        3543
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="long arrow up icon green"></i>12% Compared with Last Week
+                                        <br />
+                                        <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Influence of Users(page Views)
-                                </div>
-                                <div class="value">
-                                    45476
-                                </div>
-                                <div class="mini label">
-                                    <i class="long arrow up icon green" ></i>32% Compared with Last Week
-                                    <br />
-                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui segment center aligned">
-                        <div class="ui top attached label">Product Status</div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Services be Discussed
-                                </div>
-                                <div class="value">
-                                    18
-                                </div>
-                                <div class="mini label">
-                                    <i class="long arrow up icon green"></i>4 Compared with Last Week
-                                    <br />
-                                    <label>&nbsp;</label>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui red small statistic">
+                                    <div class="label">
+                                        Regions of Users
+                                    </div>
+                                    <div class="value">
+                                        43
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="long arrow up icon red"></i>1.2% Compared with Last Week
+                                        <br />
+                                        <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Mentioned Most Service
-                                </div>
-                                <div class="value">
-                                    AzureAD
-                                </div>
-                                <div class="mini label">
-                                    <label class="ui green" style="margin-right:20px">AAD(10%), Azure Web App(9%), VM(8%)</label>
-                                    <br />
-                                    <label>&nbsp;</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Loved Most Service <i class="popup small link help icon" data-content="Receievd hightest Ratio of positive posts" data-variation="mini inverted"></i>
-                                </div>
-                                <div class="value">
-                                    Web App
-                                </div>
-                                <div class="mini label">
-                                    <label class="green" style="margin-right:20px">Azure Web App (69%), VM(58%) ,AAD</label>
-                                    <br />
-                                    <label>&nbsp;</label>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui yellow small statistic">
+                                    <div class="label">
+                                        Influence of Users(page Views)
+                                    </div>
+                                    <div class="value">
+                                        45476
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="long arrow up icon green"></i>32% Compared with Last Week
+                                        <br />
+                                        <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="ui segment center aligned">
-                        <div class="ui top attached label">Voc Insights</div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Message Posts
+                    <div class="column">
+                        <div class="ui basic statistic segment center aligned">
+                            <div class="ui horizontal top divider">Product Status</div>
+                            <div class="row">
+                                <div class="ui orange small statistic">
+                                    <div class="label">
+                                        Services be Discussed
+                                    </div>
+                                    <div class="value">
+                                        18
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="long arrow up icon green"></i>4 Compared with Last Week
+                                        <br />
+                                        <label>&nbsp;</label>
+                                    </div>
                                 </div>
-                                <div class="value">
-                                    98736
+                            </div>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui olive small statistic">
+                                    <div class="label">
+                                        Mentioned Most Service
+                                    </div>
+                                    <div class="value">
+                                        AzureAD
+                                    </div>
+                                    <div class="mini label">
+                                        <label class="ui green" style="margin-right:20px">AAD(10%), Azure Web App(9%), VM(8%)</label>
+                                        <br />
+                                        <label>&nbsp;</label>
+                                    </div>
                                 </div>
-                                <div class="mini label">
-                                    <i class="long arrow up icon green"></i>12% Compared with Last Week
-                                    <br />
-                                    <i class="icon red">9</i> Vol Spike Detected (hourly)
+                            </div>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui grey small statistic">
+                                    <div class="label">
+                                        Loved Most Service <i class="popup small link help icon" data-content="Receievd hightest Ratio of positive posts" data-variation="mini inverted"></i>
+                                    </div>
+                                    <div class="value">
+                                        Web App
+                                    </div>
+                                    <div class="mini label">
+                                        <label class="green" style="margin-right:20px">Azure Web App (69%), VM(58%) ,AAD</label>
+                                        <br />
+                                        <label>&nbsp;</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Sentiment of Messages (POSI:NEG)
-                                </div>
-                                <div class="value">
-                                    1390:323
-                                </div>
-                                <div class="mini label">
-                                    <i class="icon green">21</i> POSI Vol Spike Detected (hourly)
-                                    <br />
-                                    <i class="icon red">9</i> NEG Vol Spike Detected (hourly)
+                    </div>
+                    <div class="column">
+                        <div class="ui  basic statistic  segment center aligned">
+                            <div class="ui horizontal top divider">Voc Insights</div>
+                            <div class="row">
+                                <div class="ui green small statistic">
+                                    <div class="label">
+                                        Message Posts
+                                    </div>
+                                    <div class="value">
+                                        98736
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="long arrow up icon green"></i>12% Compared with Last Week
+                                        <br />
+                                        <i class="icon red">9</i> Vol Spike Detected (hourly)
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ui fitted divider"></div>
-                        <div class="row">
-                            <div class="ui statistic">
-                                <div class="label">
-                                    Influence of Sentiment <i class="popup small link help icon" data-content="Page Views - POST : NEG" data-variation="mini inverted"></i>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui violet small statistic">
+                                    <div class="label">
+                                        Sentiment of Messages (POSI:NEG)
+                                    </div>
+                                    <div class="value">
+                                        1390:323
+                                    </div>
+                                    <div class="mini label">
+                                        <i class="icon green">21</i> POSI Vol Spike Detected (hourly)
+                                        <br />
+                                        <i class="icon red">9</i> NEG Vol Spike Detected (hourly)
+                                    </div>
                                 </div>
-                                <div class="value">
-                                    20121:32101
-                                </div>
-                                <div class="mini label">
-                                    Most POSI From <label class="green">USA</label>
-                                    <br />
-                                    Most NEG From <label class="red">Tokyo</label>
+                            </div>
+                            <div class="ui fitted divider"></div>
+                            <div class="row">
+                                <div class="ui pupple small statistic">
+                                    <div class="label">
+                                        Influence of Sentiment <i class="popup small link help icon" data-content="Page Views - POST : NEG" data-variation="mini inverted"></i>
+                                    </div>
+                                    <div class="value">
+                                        20121:32101
+                                    </div>
+                                    <div class="mini label">
+                                        Most POSI From <label class="green">USA</label>
+                                        <br /> Most NEG From <label class="red">Tokyo</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--</div>-->
+
+            <h3 class="ui center aligned header">
+                Volume Spikes Detection
+            </h3>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+
+            <h3 class="ui center aligned header">
+                Insights of Detailed Distribution
+            </h3>
+
+
             <div id="menu" class="left attached ui rail" style="padding-right:0 !important;">
                 <div class="ui sticky" style="position:relative;right: -200px; z-index: -1;">
                     <div class="ui vertical mini menu">
@@ -259,16 +276,9 @@
                 context: '#main'
             });
         $('.popup').popup();
-        $.get("users_card.html", function(data) {
-            $("#users_card").html(data + data + data + data + data + data);
-            initBarCharts('.UGCSpicks');
-            initBarCharts('.bar1');
-            $('.shape').shape({
-                duration: '100ms'
-            });
-
-            initPieCharts();
-        })
+        initLineCharts('.hourly-charts');
+        var charts_array=[];
+        echarts.connect('hourlyCharts');
         initCloudWordChart();
         initHoriBarChart();
 
@@ -281,10 +291,9 @@
             echarts.getInstanceByDom(doms.get(0)).resize();
         }
 
-        function initBarCharts(className) {
+        function initLineCharts(className) {
             var doms = $(className);
-            var title = 'Last Week Twitter UGC Spikes Detected';
-            if (className == '.bar1') title = 'Customer Reach (PV) in twiiter';
+            var title = 'Hourly trend';
             for (var i = 0; i < doms.length; i++) {
                 var myChart = echarts.init(doms.get(i));
                 // 绘制图表
@@ -302,17 +311,39 @@
                             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
                         }
                     },
+                    dataZoom: [{
+                        show: true,
+                        realtime: true,
+                        start: 55,
+                        end: 100
+                    }, {
+                        type: 'inside',
+                        realtime: true,
+                        start: 55,
+                        end: 100
+                    }],
                     xAxis: {
                         type: 'category',
-                        data: ["08-16", "08-17", "08-18", "08-19", "08-20", "08-21", "08-22"]
+                        boundaryGap: false,
+                        axisLine: {
+                            onZero: false
+                        },
+                        data: ['2009/7/1 0:00', '2009/7/1 1:00', '2009/7/1 2:00', '2009/7/1 3:00', '2009/7/1 4:00', '2009/7/1 5:00', '2009/7/1 6:00', '2009/7/1 7:00', '2009/7/1 8:00', '2009/7/1 9:00', '2009/7/1 10:00', '2009/7/1 11:00', '2009/7/1 12:00', '2009/7/1 13:00', '2009/7/1 14:00', '2009/7/1 15:00', '2009/7/1 16:00', '2009/7/1 17:00', '2009/7/1 18:00', '2009/7/1 19:00', '2009/7/1 20:00', '2009/7/1 21:00', '2009/7/1 22:00', '2009/7/1 23:00',
+                            '2009/7/2 0:00', '2009/7/2 1:00', '2009/7/2 2:00', '2009/7/2 3:00', '2009/7/2 4:00', '2009/7/2 5:00', '2009/7/2 6:00', '2009/7/2 7:00', '2009/7/2 8:00', '2009/7/2 9:00', '2009/7/2 10:00', '2009/7/2 11:00', '2009/7/2 12:00', '2009/7/2 13:00', '2009/7/2 14:00', '2009/7/2 15:00', '2009/7/2 16:00', '2009/7/2 17:00', '2009/7/2 18:00', '2009/7/2 19:00', '2009/7/2 20:00', '2009/7/2 21:00', '2009/7/2 22:00', '2009/7/2 23:00',
+                            '2009/7/3 0:00', '2009/7/3 1:00', '2009/7/3 2:00', '2009/7/3 3:00', '2009/7/3 4:00', '2009/7/3 5:00', '2009/7/3 6:00', '2009/7/3 7:00', '2009/7/3 8:00', '2009/7/3 9:00', '2009/7/3 10:00', '2009/7/3 11:00', '2009/7/3 12:00', '2009/7/3 13:00', '2009/7/3 14:00', '2009/7/3 15:00', '2009/7/3 16:00', '2009/7/3 17:00', '2009/7/3 18:00', '2009/7/3 19:00', '2009/7/3 20:00', '2009/7/3 21:00', '2009/7/3 22:00', '2009/7/3 23:00',
+                            '2009/7/4 0:00', '2009/7/4 1:00', '2009/7/4 2:00', '2009/7/4 3:00', '2009/7/4 4:00', '2009/7/4 5:00', '2009/7/4 6:00', '2009/7/4 7:00', '2009/7/4 8:00', '2009/7/4 9:00', '2009/7/4 10:00', '2009/7/4 11:00', '2009/7/4 12:00', '2009/7/4 13:00', '2009/7/4 14:00', '2009/7/4 15:00', '2009/7/4 16:00', '2009/7/4 17:00', '2009/7/4 18:00', '2009/7/4 19:00', '2009/7/4 20:00', '2009/7/4 21:00', '2009/7/4 22:00', '2009/7/4 23:00',
+                            '2009/7/5 0:00', '2009/7/5 1:00', '2009/7/5 2:00', '2009/7/5 3:00', '2009/7/5 4:00', '2009/7/5 5:00', '2009/7/5 6:00', '2009/7/5 7:00', '2009/7/5 8:00', '2009/7/5 9:00', '2009/7/5 10:00', '2009/7/5 11:00', '2009/7/5 12:00', '2009/7/5 13:00', '2009/7/5 14:00', '2009/7/5 15:00', '2009/7/5 16:00', '2009/7/5 17:00', '2009/7/5 18:00', '2009/7/5 19:00', '2009/7/5 20:00', '2009/7/5 21:00', '2009/7/5 22:00', '2009/7/5 23:00',
+                            '2009/7/6 0:00', '2009/7/6 1:00', '2009/7/6 2:00', '2009/7/6 3:00', '2009/7/6 4:00', '2009/7/6 5:00', '2009/7/6 6:00', '2009/7/6 7:00', '2009/7/6 8:00', '2009/7/6 9:00', '2009/7/6 10:00', '2009/7/6 11:00', '2009/7/6 12:00', '2009/7/6 13:00', '2009/7/6 14:00', '2009/7/6 15:00', '2009/7/6 16:00', '2009/7/6 17:00', '2009/7/6 18:00', '2009/7/6 19:00', '2009/7/6 20:00', '2009/7/6 21:00', '2009/7/6 22:00', '2009/7/6 23:00', '2009/7/7 0:00', '2009/7/7 1:00', '2009/7/7 2:00', '2009/7/7 3:00', '2009/7/7 4:00', '2009/7/7 5:00', '2009/7/7 6:00', '2009/7/7 7:00', '2009/7/7 8:00', '2009/7/7 9:00', '2009/7/7 10:00', '2009/7/7 11:00', '2009/7/7 12:00', '2009/7/7 13:00', '2009/7/7 14:00', '2009/7/7 15:00', '2009/7/7 16:00', '2009/7/7 17:00', '2009/7/7 18:00', '2009/7/7 19:00', '2009/7/7 20:00', '2009/7/7 21:00', '2009/7/7 22:00', '2009/7/7 23:00',
+                        ]
                     },
                     yAxis: {},
                     series: [{
                         name: 'Vol',
-                        type: 'bar',
-                        data: rangeData(7, 10)
+                        type: 'line',
+                        data: rangeData(168, 10)
                     }]
                 });
+                myChart.group='hourlyCharts';
             }
         }
 

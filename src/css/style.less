@@ -1,0 +1,96 @@
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+@emSize   : 14px;
+
+/* The size of page text  */
+@fontSize : 14px;
+
+@miniSize        : (11 / 14);
+@tinySize        : (12 / 14);
+@smallSize       : (13 / 14);
+@mediumSize      : (14 / 14);
+@largeSize       : (16 / 14);
+@bigSize         : (18 / 14);
+@hugeSize        : (20 / 14);
+@massiveSize     : (24 / 14);
+
+@mini            : unit( round(@miniSize * @emSize) / @emSize, rem);
+@tiny            : unit( round(@tinySize * @emSize) / @emSize, rem);
+@small           : unit( round(@smallSize * @emSize) / @emSize, rem);
+@medium          : unit( round(@mediumSize * @emSize) / @emSize, rem);
+@large           : unit( round(@largeSize * @emSize) / @emSize, rem);
+@big             : unit( round(@bigSize * @emSize) / @emSize, rem);
+@huge            : unit( round(@hugeSize * @emSize) / @emSize, rem);
+@massive         : unit( round(@massiveSize * @emSize) / @emSize, rem);
+
+/* em */
+@relativeMini    : unit( round(@miniSize * @emSize) / @emSize, em);
+@relativeTiny    : unit( round(@tinySize * @emSize) / @emSize, em);
+@relativeSmall   : unit( round(@smallSize * @emSize) / @emSize, em);
+@relativeMedium  : unit( round(@mediumSize * @emSize) / @emSize, em);
+@relativeLarge   : unit( round(@largeSize * @emSize) / @emSize, em);
+@relativeBig     : unit( round(@bigSize * @emSize) / @emSize, em);
+@relativeHuge    : unit( round(@hugeSize * @emSize) / @emSize, em);
+@relativeMassive : unit( round(@massiveSize * @emSize) / @emSize, em);
+
+/* rem */
+@absoluteMini    : unit( round(@miniSize * @emSize) / @emSize, rem);
+@absoluteTiny    : unit( round(@tinySize * @emSize) / @emSize, rem);
+@absoluteSmall   : unit( round(@smallSize * @emSize) / @emSize, rem);
+@absoluteMedium  : unit( round(@mediumSize * @emSize) / @emSize, rem);
+@absoluteLarge   : unit( round(@largeSize * @emSize) / @emSize, rem);
+@absoluteBig     : unit( round(@bigSize * @emSize) / @emSize, rem);
+@absoluteHuge    : unit( round(@hugeSize * @emSize) / @emSize, rem);
+@absoluteMassive : unit( round(@massiveSize * @emSize) / @emSize, rem);
+
+// @import "../../semantic/src/semantic.less";
+// @import "../../semantic/src/theme.config";
+// @import "../../semantic/src/theme.less";
+.text.mini{
+    font-size: @mini;
+}
+.text.tiny{
+    font-size: @tiny;
+}
+.text.small{
+    font-size: @small;
+}
+.text.medium{
+    font-size: @medium;
+}
+.text.large{
+    font-size: @large;
+}
+.text.big{
+    font-size: @big;
+}
+.text.huge{
+    font-size: @huge;
+}
+.text.massive{
+    font-size: @massive;
+}
+
+.ui.segment> .ui.segment.piled{
+    z-index: 1;
+}
+
+.text.center{
+    text-align: center;
+}
+
+.ui.segment.yellow > .ui.yellow.header {
+    color: #b58105 !important;
+}
+.ui.basic.statistic.segment{
+    padding-top: 0 !important;
+}
+.ui.horizontal.top.divider{
+    margin-top: 0 !important;
+}
+.ui.statistic > .label {
+    text-transform: initial !important;
+}
