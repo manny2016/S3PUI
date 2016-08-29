@@ -88,9 +88,53 @@
 .ui.basic.statistic.segment{
     padding-top: 0 !important;
 }
+.ui.segment.voc{
+    min-height: 290px;
+}
 .ui.horizontal.top.divider{
     margin-top: 0 !important;
 }
 .ui.statistic > .label {
     text-transform: initial !important;
+}
+
+.tab-rail{
+    padding-right:0 !important;
+    width: 100px !important;
+    z-index: -1;
+    margin-top:10px !important;
+}
+.list{
+    background:#fff;
+}
+
+.left{
+    float:left !important;
+}
+.right{
+    float:right !important;
+}
+
+.static.label.right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 0;
+}
+
+#scrollspy{
+    position: fixed;
+    top: 50%;
+    right: 5px;
+}
+
+#scrollspy>.list>.item>.ui.label>.icon {
+    margin:0 !important;
+}
+#scrollspy>.list>.item>{
+    margin:5px auto;
+    padding: 0 !important;
+}
+#scrollspy>.list>.item>.ui.label>span {
+    display: none;
 }

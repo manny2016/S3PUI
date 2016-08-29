@@ -26,7 +26,7 @@
                 <!--<img class="logo" src="assets/images/logo.png">-->
                 S3P
 
-                <div class="text tiny">
+                <div class="text tiny" style="margin-left:10px;">
                     This is a cool project ...
                 </div>
             </div>
@@ -117,8 +117,8 @@
         <div class="ui red segment clearing">
             <h3 class="ui header red">
                 Top Queried Categories
-                <div class="sub header">
-                    <div class="ui orange horizontal label">UTC</div>
+                <div class="sub right header">
+                    <div class="ui red horizontal label">UTC</div>
                     2016-08-23 ~ 2016-08-29
                 </div>
             </h3>
@@ -286,6 +286,7 @@
                         <input type="text" placeholder="Search...">
                         <i class="search icon"></i>
                     </div>
+                    <button type="button" onclick="showModal()">showModal</button>
                 </div>
             </div>
         </div>
@@ -296,7 +297,13 @@
             </div>
         </div>-->
     </div>
-
+    <div class="ui fullscreen modal">
+        <i class="close icon"></i>
+        <div class="header">Header</div>
+        <div id="sub_window" class="content">
+            
+        </div>
+    </div>
     </div>
 
 
@@ -305,14 +312,17 @@
         $.get("users_card.html", function(data) {
             // var UGCSpicks = '<div class="UGCSpicks" style="width:100%;height:300px;"></div>';
             $("#users_card").html(data + data + data + data + data + data)
-            $.get("users_card.1.html",function(data){
-            $("#users_card").append(data + data + data + data + data + data);
-            initBarCharts('.UGCSpicks');
-        })
-        $.get("users_card.2.html",function(data){
-            $("#users_card").append(data + data + data + data + data + data);
-            initPieCharts()
-        })
+            $.get("users_card.1.html", function(data) {
+                $("#users_card").append(data + data + data + data + data + data);
+                initBarCharts('.UGCSpicks');
+            })
+            $.get("sub_window.html", function(data) {
+                $("#sub_window").html(data);
+            })
+            $.get("users_card.2.html", function(data) {
+                $("#users_card").append(data + data + data + data + data + data);
+                initPieCharts()
+            })
             initBarCharts('.bar1');
             $('.shape').shape({
                 // duration: '100ms'
@@ -323,10 +333,17 @@
                     context: '#main'
                 });
         })
-        
+
         initCloudWordChart();
         initHoriBarChart();
 
+        function showModal() {
+            $('.fullscreen.modal').modal('show');
+            var doms = $(".chart");
+            for (var i = 0; i < doms.length; i++) {
+                echarts.getInstanceByDom(doms.get(i)).resize();
+            }
+        }
 
         function chartResize(shapeId) {
             // console.log($("#"+shapeId+" div.active").next().find('.bar1>div'))

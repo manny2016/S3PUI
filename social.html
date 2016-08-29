@@ -24,7 +24,10 @@
         <div class="ui container">
             <div class="header item">
                 <!--<img class="logo" src="assets/images/logo.png">-->
-                S3P - This is a cool project ...
+                S3P 
+                <div class="text tiny" style="margin-left:10px;">
+                    This is a cool project ...
+                </div>
             </div>
             <div class="menu right">
                 <a href="/" class="item">Who am I</a>
@@ -52,36 +55,32 @@
 
     </div>
 
-
-
     <!--********-->
     <!--contain body-->
     <!--********-->
-    <div class="ui container">
-        <div class="ui segment">
-            <div class="ui fields" style="display: inline;">
-                <div class="ui red horizontal label">UTC</div>
-                <div class="field ui mini input">
-                    <input type="text" placeholder="start time" value="2016-08-16">
-                </div>
-                <div class="field ui mini input">
-                    <input type="text" placeholder="end time" value="2016-08-18">
-                </div>
-            </div>
-            <select class="ui small dropdown " style="">
-                <option value="azure">Azure</option>
-                <option value="powerbi">Power BI</option>
-                <option value="azure-linux">Azure Linux</option>
-            </select>
+    <!--<div class="ui ">-->
+    <div class="ui segment clearing container">
+        <a id="server_status" class="ui red right label static">Status</a>
+        <div class="left" style="height:38px;line-height:38px;margin-right:20px;">
+            <div class="ui red horizontal label">UTC</div>
+            2016-08-23 ~ 2016-08-29
         </div>
+        <select class="ui left selection dropdown " style="">
+            <option value="azure">Azure</option>
+            <option value="powerbi">Power BI</option>
+            <option value="azure-linux">Azure Linux</option>
+        </select>
     </div>
+    <!--</div>-->
     <div class="ui hidden divider"></div>
-    <div class="ui container">
-        <div id="main" class="ui segment">
-            <!--statistic-->
+    <!--<div class="ui ">-->
+    <!--main container-->
+    <div id="main" class="ui segment container">
+        <!--statistic-->
+        <div id="community">
             <h3 class="ui center aligned header">
-                Impact Summary from S3P
-            </h3>
+                    Impact Summary from S3P
+                </h3>
             <!--charts-->
             <!--<div class="ui segment">-->
             <div class="ui three column divided grid">
@@ -243,44 +242,332 @@
                     </div>
                 </div>
             </div>
-
-            <h3 class="ui center aligned header">
+        </div>
+        <div class="ui divider"></div>
+        <h3 class="ui center aligned header">
                 Volume Spikes Detection
             </h3>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="hourly-charts" style="width:100%;height:300px;"></div>
+        <div class="ui divider"></div>
 
+        <div id="product">
             <h3 class="ui center aligned header">
-                Insights of Detailed Distribution
-            </h3>
+                    Insights of Detailed Distribution
+                </h3>
 
-
-            <div id="menu" class="left attached ui rail" style="padding-right:0 !important;">
-                <div class="ui sticky" style="position:relative;right: -200px; z-index: -1;">
-                    <div class="ui vertical mini menu">
-                        <a class="active item">Twitter</a>
-                    </div>
+            <div class="ui grid">
+                <div class="four wide column">
+                    <div class="PNDPie" style="width:100%;height:300px;"></div>
+                    <div class="PNDPie" style="width:100%;height:300px;"></div>
+                </div>
+                <div class="twelve wide column">
+                    <table id="spikes-table" class="ui blue striped celled table">
+                        <thead>
+                            <tr>
+                                <th>Service Name</th>
+                                <th>Post Vol</th>
+                                <th>POSI Ratio</th>
+                                <th>NEG Ratio</th>
+                                <th>Unique Users Vol</th>
+                                <th>Total Page View</th>
+                                <th>Detected Spikes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Azure Web Apps</td>
+                                <td>150</td>
+                                <td>98%</td>
+                                <td>2%</td>
+                                <td>34</td>
+                                <td>1582</td>
+                                <td>34</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Cloud Service</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure VM</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Mobile Apps</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Storage</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Web Apps</td>
+                                <td>150</td>
+                                <td>98%</td>
+                                <td>2%</td>
+                                <td>34</td>
+                                <td>1582</td>
+                                <td>34</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Cloud Service</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure VM</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Mobile Apps</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Storage</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+        <div class="ui divider"></div>
+
+        <div id="sentiment">
+            <h3 class="ui center aligned header">
+                    Voc Sentiment Analysis
+                </h3>
+            <div class="ui three column grid">
+                <div class="column">
+                    <div class="ui blue inverted segment center aligned voc">
+                        <h3 class="ui header">Most Voc Post By</h3>
+                        <div class="ui aligned selection celled list">
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui green inverted segment center aligned voc">
+                        <h3 class="ui header">Most POSI Voc Post By</h3>
+                        <div class="ui aligned selection celled list">
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui red inverted segment center aligned voc">
+                        <h3 class="ui header">Most NEG Voc Post By</h3>
+                        <div class="ui aligned selection celled list">
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="ui avatar image" src="public/images/patrick.png">
+                                <div class="content">
+                                    <div class="header">Will Shao</div>
+                                    Vol: 233, Influence: 23
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui two column grid">
+                <div class="column">
+                    <div class="cloudword" style="width:100%;height:250px;"></div>
+                </div>
+                <div class="column">
+                    <div class="cloudword" style="width:100%;height:250px;"></div>
+                </div>
+            </div>
+
+            <div class="ui two column grid">
+                <div class="column">
+                    <div class="bar2" style="width:100%;height:300px;"></div>
+                </div>
+                <div class="column">
+                    <div class="bar2" style="width:100%;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div id="menu" class="left attached ui rail tab-rail">
+            <div class="ui fixed sticky">
+                <div class="ui vertical mini menu">
+                    <a class="active item">Twitter</a>
+                    <a class="item">Reddit</a>
+                </div>
+            </div>
+        </div>
+        <div id="scrollspy" class="ui segment">
+            <div class="ui middle aligned selection list">
+                <div class="active item">
+                    <div class="ui label blue">
+                        <i class="icon users"></i> <span>Community Members</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui label green">
+                        <i class="icon heartbeat"></i> <span>Product Status</span></div>
+                </div>
+                <div class="item">
+                    <div class="ui label purple">
+                        <i class="icon comments"></i> <span>Voc Sentiment</span></div>
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
     </div>
 
     <script type="text/javascript" src="/src/semantic-init.js"></script>
     <script>
-        $('#menu')
+        $('.ui.sticky')
             .sticky({
                 context: '#main'
             });
         $('.popup').popup();
         initLineCharts('.hourly-charts');
-        var charts_array=[];
+        var charts_array = [];
         echarts.connect('hourlyCharts');
         initCloudWordChart();
         initHoriBarChart();
+        initPieCharts();
 
 
         function chartResize(shapeId) {
@@ -343,7 +630,7 @@
                         data: rangeData(168, 10)
                     }]
                 });
-                myChart.group='hourlyCharts';
+                myChart.group = 'hourlyCharts';
             }
         }
 
@@ -441,20 +728,21 @@
                 var myChart = echarts.init(doms.get(i));
                 // 绘制图表
                 myChart.setOption({
-                    // title: {
-                    //     text: 'POSI mentioned most',
-                    //     textStyle: {},
-                    //     backgroundColor: "#ccc",
-                    //     x: 'center'
-                    // },
+                    title: {
+                        text: 'POSI/NEG mentioned most',
+                        textStyle: {},
+                        x: 'center'
+                    },
                     series: [{
                         type: 'wordCloud',
                         gridSize: 2,
                         sizeRange: [12, 50],
                         rotationRange: [-90, 90],
                         shape: 'pentagon',
-                        width: 600,
-                        height: 400,
+                        left: 'center',
+                        top: 'bottom',
+                        width: '100%',
+                        height: '90%',
                         textStyle: {
                             normal: {
                                 color: function() {
@@ -543,6 +831,11 @@
                 })
             }
         }
+        setInterval(function() {
+            var color = ['red', 'yellow', 'green'];
+            var current = color[Math.round(Math.random(1) * 2)]
+            $('#server_status').attr('class', 'ui right label static ' + current)
+        }, 1000)
     </script>
 </body>
 
