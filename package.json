@@ -23,6 +23,7 @@
   "devDependencies": {
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
-    "gulp": "^3.9.1"
+    "gulp": "4.0.0-alpha.2",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
