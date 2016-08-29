@@ -5,17 +5,17 @@ var source = require('vinyl-source-stream');
 
 gulp.task('browserify', function () {
     // Grabs the app.js file
-    return browserify('src/js/app.js', { debug: true })
+    return browserify('./src/js/app.js', { debug: true })
         //.transform(babel, { presets: ['es2015'] })
         // bundles it and creates a file called main.js
         .bundle()
-        .pipe(source('main.js'))
+        .pipe(source('main.min.js'))
         // saves it the public/js/ directory
-        .pipe(gulp.dest('public/'));
+        .pipe(gulp.dest('public'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('js/src/**/*.js', ['browserify'])
+    gulp.watch('./src/js/**/*.js', ['browserify'])
 });
 
 gulp.task('default', ['watch']);

@@ -16,7 +16,7 @@
     <script type="text/javascript" src="/public/echarts-wordcloud.min.js"></script>
 </head>
 
-<body>
+<body ng-app="S3PApp">
     <!--********-->
     <!--Top Menu-->
     <!--********-->
@@ -58,7 +58,7 @@
     <!--********-->
     <!--contain body-->
     <!--********-->
-    <div id="main" class="ui segment basic container">
+    <div id="main" class="ui segment basic container" ng-controller="homeCtrl">
 
         <!--<div class="ui horizontal divider"></div>-->
         <!--do you know content-->
@@ -316,7 +316,7 @@
     </div>
 
 
-    <script type="text/javascript" src="/src/semantic-init.js"></script>
+    <script type="text/javascript" src="/public/main.min.js"></script>
     <script>
         $.get("users_card.html", function(data) {
             // var UGCSpicks = '<div class="UGCSpicks" style="width:100%;height:300px;"></div>';

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   "devDependencies": {
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
-    "gulp": "4.0.0-alpha.2",
+    "gulp": "^3.9.1",
     "vinyl-source-stream": "^1.1.0"
   }
 }
