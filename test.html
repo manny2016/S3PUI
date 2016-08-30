@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/public/semantic.css" />
+    <link rel="stylesheet" href="/public/custom.css" />
+    <link rel="stylesheet/less" type="text/css" href="/src/css/style.less" />
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="/public/semantic.min.js"></script>
+    <script type="text/javascript" src="/public/less.min.js"></script>
+
+    <script type="text/javascript" src="/public/echarts.min.js"></script>
+    <script type="text/javascript" src="/public/echarts-wordcloud.min.js"></script>
+</head>
+
+<body ng-app="app">
+    
+    <div ng-controller="testCtrl">
+        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
+        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
+        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
+        
+        <h2>Statistic Div </h2>
+        <ng-statistic data="statistic"></ng-statistic>
+    </div>
+    <script type="text/javascript" src="/public/main.min.js"></script>
+</body>
+
+</html>
