@@ -3,4 +3,5 @@
 var app = angular.module('app.Ctrl', []);
 
 app.controller('testCtrl',require('./testCtrl'));
-module.exports = 'app.Ctrl';
+app.controller('scrollCtrl',require('./scrollCtrl'));
+module.exports = 'app.Ctrl'; 

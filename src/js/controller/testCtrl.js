@@ -64,7 +64,7 @@ module.exports = function ($scope) {
             text:13
         }]
     }
-    $(window).resize(function(){
-        console.log(window.innerWidth);
-    })
+    // $(window).resize(function(){
+    //     console.log(window.innerWidth);
+    // })
 }
