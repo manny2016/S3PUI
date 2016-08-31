@@ -17,7 +17,6 @@ app.
       var hash = $element.prop('hash');
       if (hash) {
         history.replaceState(null, null, hash);
-      } 
     });
   });
 app.controller("homeCtrl",function($scope){
