@@ -14,16 +14,55 @@
 </head>
 
 <body ng-app="app">
-    
+
     <div ng-controller="testCtrl">
-        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
-        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
-        <ng-echart config="config" style="width:500px;height:200px" ></ng-echart>
-        
-        <h2>Statistic Div </h2>
-        <ng-statistic data="statistic"></ng-statistic>
+        <!--<div id="container" du-scroll-container>-->
+        <div id="section-1" style="float:">
+            <h2>connect echarts</h2>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+        </div>
+        <div id="section-2" style="float:">
+
+            <h2>Statistic Div </h2>
+            <ng-statistic data="statistic"></ng-statistic>
+        </div>
+         <div id="section-3" style="float:">
+            <h2>connect echarts</h2>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+            <ng-echart config="config" style="width:500px;height:200px"></ng-echart>
+        </div>
+        <!--</div>-->
+        <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+            <div class="ui middle aligned selection list">
+                <div class="item">
+                    <div class="ui label" set-color="blue" data-content="Community Members">
+                        <a href="#section-1" du-smooth-scroll du-scrollspy><i class="icon users"></i> <span ng-hide="!isSmall">Community Members</span></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui label" set-color="green" data-content="Product Status">
+                        <a href="#section-2" du-smooth-scroll du-scrollspy><i class="icon heartbeat"></i> <span ng-hide="!isSmall">Product Status</span></div></a>
+                </div>
+                <div class="item">
+                    <div class="ui label" set-color="purple" data-content="Voc Sentiment">
+                        <a href="#section-3" du-smooth-scroll du-scrollspy><i class="icon comments"></i> <span ng-hide="!isSmall">Voc Sentiment</span></div></a>
+                </div>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="/public/main.min.js"></script>
+    <script>
+        $('#scrollspy .list .item .label').popup()
+    </script>
 </body>
 
 </html>
