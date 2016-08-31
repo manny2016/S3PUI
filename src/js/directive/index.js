@@ -6,6 +6,7 @@ app.directive('ngEchart',require('./chartDirective'));
 app.directive('ngStatistic',require('./statisticDirective'));
 app.directive('ngStatisticLabel',require('./statisticLabelDirective'));
 app.directive('ngScrollSpy',require('./scrollspyDirective'));
+app.directive('userList',require('./userListDirective'));
 app.directive('testDire', function(){
     return{
         restrict:'AE',
