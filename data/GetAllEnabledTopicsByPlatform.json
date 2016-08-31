@@ -1,0 +1,89 @@
+[
+    {
+        "Platforms": [
+            {
+                "PlatformName": "MSDN",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "TN",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "Twitter",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "SU",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "SF",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "SO",
+                "isEnabled": true
+            }
+        ],
+        "TechCategoryName": "Azure"
+    },
+    {
+        "Platforms": [
+            {
+                "PlatformName": "MSDN",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "TN",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "Twitter",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "SU",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SF",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SO",
+                "isEnabled": false
+            }
+        ],
+        "TechCategoryName": "Office 365"
+    },
+    {
+        "Platforms": [
+            {
+                "PlatformName": "MSDN",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "TN",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "Twitter",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SU",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SF",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SO",
+                "isEnabled": true
+            }
+        ],
+        "TechCategoryName": "UWP"
+    }
+]

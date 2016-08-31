@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Service Status & Sentiment Predictor</title>
+    <link rel="stylesheet" href="/public/semantic.css" />
+    <link rel="stylesheet" href="/public/custom.css" />
+    <link rel="stylesheet/less" type="text/css" href="/src/css/style.less" />
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>-->
+    <script type="text/javascript" src="/public/semantic.min.js"></script>
+    <script type="text/javascript" src="/public/less.min.js"></script>
+    <script type="text/javascript" src="/public/echarts.min.js"></script>
+    <script type="text/javascript" src="/public/echarts-wordcloud.min.js"></script>
+</head>
+
+<body ng-app="app">
+    <!--********-->
+    <!--Top Menu-->
+    <!--********-->
+    <div class="ui top menu">
+        <div class="ui container">
+            <div class="ui header item">
+                <!--<img class="logo" src="assets/images/logo.png">-->
+                S3P
+
+                <div class="text tiny" style="margin-left:10px;">
+                    This is a cool project ...
+                </div>
+            </div>
+            <div class="menu right">
+                <a href="/" class="item active">Who am I</a>
+                <a href="/social.html" class="item">Social Community</a>
+                <a href="#" class="item">StackExchange</a>
+                <a href="#" class="item">MSDN/TN Fourms</a>
+
+                <div class="right item ui label simple dropdown">
+                    <!--<a class="item ui dropdown">-->
+                    <img class="ui mini circular image avator right spaced" src="public/images/patrick.png">
+                    <div class="content">
+                        <div class="ui sub header">Fawad</div>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item">Profile</a>
+                        <a class="item">Subscription</a>
+                        <a class="item">Sign out</a>
+                    </div>
+                    <!--</a>-->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--********-->
+    <!--contain body-->
+    <!--********-->
+    <div id="main" class="ui segment basic container" ng-controller="homeCtrl">
+
+        <!--<div class="ui horizontal divider"></div>-->
+        <!--do you know content-->
+        <div class="ui blue segment">
+            <h3 class="ui header blue">
+                Do you know how our products look like from an eye of  your experienced customers?
+            </h3>
+            <div class="ui relaxed middle aligned divided list">
+                <div class="item">
+                    <i class="help blue icon"></i>How many people are talking about our products via online community channels?
+                </div>
+                <div class="item">
+                    <i class="help blue icon"></i>How many UGC or VoC are generated to discuss about our products?
+                </div>
+                <div class="item">
+                    <i class="help blue icon"></i>How many users are saying 'Great' for our products? While how many customers are saying 'Just so so'? Are their perspective is changing recently?
+                </div>
+                <div class="item">
+                    <i class="help blue icon"></i>What exactly customers are saying mostly for 'Great' or 'Just so so' on your products? How many audience being influenced recently that case of what they said?
+                </div>
+                <div class="item">
+                    <i class="help blue icon"></i>Where are the original posters? What we can do for better supporting our customers? Is there any action plan / results we can foresee?
+                </div>
+                <h3 class="ui blue message text center">
+                    The way for figuring outanswers of those questions is the idea behind S3P project.
+                </h3>
+            </div>
+        </div>
+        <div class="ui green segment">
+            <h3 class="ui header green">
+                Do you know what would be happend within a week?
+            </h3>
+            <h3 class="ui green message text center">
+                    A week could let us fully understand our users' needs ...
+                </h3>
+            <div class="ui relaxed middle aligned divided list">
+                <div class="item">
+                    <i class="info green icon"></i>A week could make you ...
+                </div>
+                <div class="item">
+                    <i class="info green icon"></i>A week could make you ...
+                </div>
+                <div class="item">
+                    <i class="info green icon"></i>A week could make you ...
+                </div>
+                <div class="item">
+                    <i class="info green icon"></i>A week could make us host a successful hackathon event ...
+                </div>
+                <div class="item">
+                    <i class="info green icon"></i>A week could make us host a successful hackathon event ...
+                </div>
+            </div>
+        </div>
+        <!--charts-->
+        <!--query category-->
+        <div class="ui red segment clearing">
+            <h3 class="ui header red">
+                Top Queried Categories
+                <div class="sub right header">
+                    <div class="ui red horizontal label">UTC</div>
+                    2016-08-23 ~ 2016-08-29
+                </div>
+            </h3>
+            <div class="ui four cards">
+                <div class="card fluid">
+                    <div class="content">
+                        <div class="header">Azure</div>
+                        <div class="description">
+                            Azure is cloud platform provided by Microsoft.
+                        </div>
+                    </div>
+                    <div class="ui green bottom attached button">
+                        <i class="search icon"></i> Query
+                    </div>
+                </div>
+                <div class="card fluid">
+                    <div class="content">
+                        <div class="header">UWP</div>
+                        <div class="description">
+                            UWP.
+                        </div>
+                    </div>
+                    <div class="ui green bottom attached button">
+                        <i class="search icon"></i> Query
+                    </div>
+                </div>
+                <div class="card fluid">
+                    <div class="content">
+                        <div class="header">PowerBI</div>
+                        <div class="description">
+                            PowerBI
+                        </div>
+                    </div>
+                    <div class="ui bottom attached button">
+                        <i class="military icon"></i> Coming Soon...
+                    </div>
+                </div>
+                <div class="card fluid">
+                    <div class="content">
+                        <div class="header">PowerBI</div>
+                        <div class="description">
+                            PowerBI
+                        </div>
+                    </div>
+                    <div class="ui bottom attached button">
+                        <i class="military icon"></i> Coming Soon...
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui ">
+            <!--<h3 class="ui top attached label">
+                <div class="ui fields" style="float:left">
+                    <div class="ui red horizontal label">UTC</div>
+                    <div class="field ui mini input">
+                        <input type="text" placeholder="start time" value="2016-08-16">
+                    </div>
+                    <div class="field ui mini input">
+                        <input type="text" placeholder="end time" value="2016-08-18">
+                    </div>
+                    
+                </div>
+                <select class="ui large input" style="float:right">
+                        <option value="azure">Azure</option>
+                        <option value="powerbi">Power BI</option>
+                        <option value="azure-linux">Azure Linux</option>
+                    </select>
+            </h3>-->
+            <div id="users_card" class="ui three column grid">
+            </div>
+            <div class="ui three column grid">
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">POSI mentioned most</div>
+                        <div class="column cloudword" style="width:100%;height:300px;"></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">Daily Total Influence</div>
+                        <div id="shape1" class="ui shape">
+                            <div class="sides">
+                                <div class="active side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui ignored icon direction buttons">
+                            <a class="ui button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape1').shape('flip left');chartResize('shape1')"><i class="left long arrow icon"></i></a>
+                            <a class="ui icon button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape1').shape('flip right');chartResize('shape1')"><i class="right long arrow icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">Platforms' influence distribution</div>
+                        <div class="column bar2" style="width:100%;height:300px;"></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">Negative mentioned most</div>
+                        <div class="column cloudword" style="width:100%;height:300px;"></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">Daily Total Influence</div>
+                        <div id="shape2" class="ui shape">
+                            <div class="sides">
+                                <div class="active side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                                <div class="side">
+                                    <div class="column bar1" style="width:100%;height:264px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui ignored icon direction buttons">
+                            <a class="ui button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>
+                            <a class="ui icon button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui fluid card">
+                        <div class="ui top attached label">Platforms' influence distribution</div>
+                        <div class="column bar2" style="width:100%;height:300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="advance_search" class="right very close ui rail" style="min-height: 262.531px;">
+            <div class="ui sticky">
+                <div class="ui segment">
+                    <h3 class="ui header">What do you wanna know today?</h3>
+                    <div class="ui icon small input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                    <button type="button" onclick="showModal()">showModal</button>
+                </div>
+            </div>
+        </div>
+        <!--<div class="right ui rail" style="min-height: 262.531px;">
+            <div class="ui sticky" style="width: 272px !important; height: 262.531px !important; left: 1356.5px;">
+                <h3 class="ui header">Stuck Content</h3>
+                <img>
+            </div>
+        </div>-->
+    </div>
+    <div class="ui fullscreen modal">
+        <i class="close icon"></i>
+        <div class="header">Header</div>
+        <div id="sub_window" class="content">
+
+        </div>
+        <div class="actions">
+            <div class="ui blue deny button">
+                I know, thanks
+            </div>
+            <div class="ui positive right labeled icon button">
+                Share the view
+                <i class="share icon"></i>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script type="text/javascript" src="/public/main.min.js"></script>
+    <script>
+        $.get("users_card.html", function(data) {
+            // var UGCSpicks = '<div class="UGCSpicks" style="width:100%;height:300px;"></div>';
+            $("#users_card").html(data + data + data + data + data + data)
+            $.get("users_card.1.html", function(data) {
+                $("#users_card").append(data + data + data + data + data + data);
+                initBarCharts('.UGCSpicks');
+            })
+            $.get("sub_window.html", function(data) {
+                $("#sub_window").html(data);
+            })
+            $.get("users_card.2.html", function(data) {
+                $("#users_card").append(data + data + data + data + data + data);
+                initPieCharts()
+            })
+            initBarCharts('.bar1');
+            $('.shape').shape({
+                // duration: '100ms'
+            });
+            // initPieCharts();
+            $('.ui.sticky')
+                .sticky({
+                    context: '#main'
+                });
+        })
+
+        initCloudWordChart();
+        initHoriBarChart();
+
+        function showModal() {
+            $('.fullscreen.modal').modal('show');
+            var doms = $(".chart");
+            for (var i = 0; i < doms.length; i++) {
+                echarts.getInstanceByDom(doms.get(i)).resize();
+            }
+        }
+
+        function chartResize(shapeId) {
+            // console.log($("#"+shapeId+" div.active").next().find('.bar1>div'))
+            // $($("#"+shapeId+" div.active").next().find('.bar1>div').get(0)).width('100%')
+            // console.log($("#"+shapeId+" div.active").next().find('.bar1>div').get(0))
+            var doms = $($("#" + shapeId + " div.active").next().find('.bar1'));
+            echarts.getInstanceByDom(doms.get(0)).resize();
+        }
+
+        function initBarCharts(className) {
+            var doms = $(className);
+            var title = 'Last Week Twitter UGC Spikes Detected';
+            if (className == '.bar1') title = 'Customer Reach (PV) in twiiter';
+            for (var i = 0; i < doms.length; i++) {
+                var myChart = echarts.init(doms.get(i));
+                // 绘制图表
+                myChart.setOption({
+                    title: {
+                        text: title,
+                        textStyle: {
+                            fontSize: 12
+                        },
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ["08-16", "08-17", "08-18", "08-19", "08-20", "08-21", "08-22"]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: 'Vol',
+                        type: 'bar',
+                        data: rangeData(7, 10)
+                    }]
+                });
+            }
+        }
+
+        function initHoriBarChart() {
+            var doms = $('.bar2');
+            for (var i = 0; i < doms.length; i++) {
+                var myChart = echarts.init(doms.get(i));
+                // 绘制图表
+                myChart.setOption({
+                    title: {
+                        text: 'Customer Reach (PV)',
+                        textStyle: {
+                            fontSize: 12
+                        },
+                        x: 'center'
+                    },
+                    grid: {
+                        containLabel: true
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    yAxis: {
+                        type: 'category',
+                        data: ['twitter', 'StackOver Flow', 'Super User', 'Server Fault', 'Power BI', 'MSND', 'TN']
+                    },
+                    xAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        name: 'Vol',
+                        type: 'bar',
+                        data: rangeData(6, 100)
+                    }]
+                });
+            }
+        }
+
+        function rangeData(num, radix) {
+            var radix = radix || 10;
+            if (parseInt(num) == 1) {
+                return parseInt(Math.random() * radix)
+            } else {
+                var tmp = [];
+                for (var i = 0; i < num; i++) {
+                    tmp.push(parseInt(Math.random() * radix))
+                }
+                return tmp;
+            }
+        }
+
+        function initPieCharts() {
+            var doms = $('.PNDPie');
+            for (var i = 0; i < doms.length; i++) {
+                var myChart = echarts.init(doms.get(i));
+                // 绘制图表
+                myChart.setOption({
+                    title: {
+                        text: 'Last Week POSI / NEG Distributions',
+                        textStyle: {
+                            fontSize: 12
+                        },
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{b} : {c} ({d}%)"
+                    },
+                    series: [{
+                        name: '',
+                        type: 'pie',
+                        data: [{
+                            value: 1024,
+                            name: 'POSI',
+                            itemStyle: {
+                                normal: {
+                                    color: '#91c7ae'
+                                }
+                            }
+                        }, {
+                            value: 233,
+                            name: 'NEG'
+                        }]
+                    }]
+                });
+            }
+        }
+
+        function initCloudWordChart() {
+            var doms = $('.cloudword');
+            for (var i = 0; i < doms.length; i++) {
+                var myChart = echarts.init(doms.get(i));
+                // 绘制图表
+                myChart.setOption({
+                    // title: {
+                    //     text: 'POSI mentioned most',
+                    //     textStyle: {},
+                    //     backgroundColor: "#ccc",
+                    //     x: 'center'
+                    // },
+                    series: [{
+                        type: 'wordCloud',
+                        gridSize: 2,
+                        sizeRange: [12, 50],
+                        rotationRange: [-90, 90],
+                        shape: 'pentagon',
+                        width: 600,
+                        height: 400,
+                        textStyle: {
+                            normal: {
+                                color: function() {
+                                    return 'rgb(' + [
+                                        Math.round(Math.random() * 160),
+                                        Math.round(Math.random() * 160),
+                                        Math.round(Math.random() * 160)
+                                    ].join(',') + ')';
+                                }
+                            },
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowColor: '#333'
+                            }
+                        },
+                        data: [{
+                            name: 'Sam S Club',
+                            value: 10000,
+                            textStyle: {
+                                normal: {
+                                    color: 'black'
+                                },
+                                emphasis: {
+                                    color: 'red'
+                                }
+                            }
+                        }, {
+                            name: 'Macys',
+                            value: 6181
+                        }, {
+                            name: 'Amy Schumer',
+                            value: 4386
+                        }, {
+                            name: 'Jurassic World',
+                            value: 4055
+                        }, {
+                            name: 'Charter Communications',
+                            value: 2467
+                        }, {
+                            name: 'Chick Fil A',
+                            value: 2244
+                        }, {
+                            name: 'Planet Fitness',
+                            value: 1898
+                        }, {
+                            name: 'Pitch Perfect',
+                            value: 1484
+                        }, {
+                            name: 'Express',
+                            value: 1112
+                        }, {
+                            name: 'Home',
+                            value: 965
+                        }, {
+                            name: 'Johnny Depp',
+                            value: 847
+                        }, {
+                            name: 'Lena Dunham',
+                            value: 582
+                        }, {
+                            name: 'Lewis Hamilton',
+                            value: 555
+                        }, {
+                            name: 'KXAN',
+                            value: 550
+                        }, {
+                            name: 'Mary Ellen Mark',
+                            value: 462
+                        }, {
+                            name: 'Farrah Abraham',
+                            value: 366
+                        }, {
+                            name: 'Rita Ora',
+                            value: 360
+                        }, {
+                            name: 'Serena Williams',
+                            value: 282
+                        }, {
+                            name: 'NCAA baseball tournament',
+                            value: 273
+                        }, {
+                            name: 'Point Break',
+                            value: 265
+                        }]
+                    }]
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

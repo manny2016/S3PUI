@@ -1,4 +1,9 @@
-module.exports = function ($scope) {
+module.exports = function ($scope,$http,testSrv) {
+    testSrv.test().then(function(data){
+        console.log(data);
+    },function(err){
+        console.log(err)
+    })
     function rangeData(num, radix) {
         var radix = radix || 10;
         if (parseInt(num) == 1) {
@@ -52,6 +57,7 @@ module.exports = function ($scope) {
     $scope.statistic = {
         title:'Users Joined Discussion',
         volume:3424,
+        comment:'Page Views - POST : NEG',
         labels:[{
             append:1,
             color:'red',

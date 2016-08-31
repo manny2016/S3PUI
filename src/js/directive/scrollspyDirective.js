@@ -1,24 +1,19 @@
 module.exports = function () {
     return {
         restrict: 'A',
-        scope: {},
+        // scope: {},
         link: function (scope, e, a) {
-                console.log(window.innerWidth);
-            // scope.isSmall=true;
-            // $(window).resize(function(){
-            //     // debugger;
-            //     console.log(window.innerWidth);
-            //     if(window.innerWidth<1200){
-            //         scope.$apply(function(){
-            //             scope.isSmall = false;
-            //         });
-            //     }else{
-            //         scope.$apply(function(){
-            //             scope.isSmall = true;
-            //         });
-            //     }
-            // })
+            scope.isSmall = (window.innerWidth < 1200)?1:0;
+            $(window).resize(function () {
+                scope.$apply(function () {
+                    if (window.innerWidth < 1200) {
+                        scope.isSmall = 1;
+                    } else {
+                        scope.isSmall = 0;
+                    }
+                });
+            });
         },
-        controller:'scrollCtrl'
+        // controller:'scrollCtrl'
     }
 }

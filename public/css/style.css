@@ -1,0 +1,147 @@
+/*-------------------
+      Base Sizes
+--------------------*/
+/*---  Colors  ---*/
+/*---  Light Colors  ---*/
+/*---   Neutrals  ---*/
+/*--- Colored Backgrounds ---*/
+/* This is the single variable that controls them all */
+/* The size of page text  */
+/* em */
+/* rem */
+.text.mini {
+  font-size: 0.78571429rem;
+}
+.text.tiny {
+  font-size: 0.85714286rem;
+}
+.text.small {
+  font-size: 0.92857143rem;
+}
+.text.medium {
+  font-size: 1rem;
+}
+.text.large {
+  font-size: 1.14285714rem;
+}
+.text.big {
+  font-size: 1.28571429rem;
+}
+.text.huge {
+  font-size: 1.42857143rem;
+}
+.text.massive {
+  font-size: 1.71428571rem;
+}
+.ui.segment > .ui.segment.piled {
+  z-index: 1;
+}
+.text.center {
+  text-align: center;
+}
+.ui.statistics .statistic > .mini.label,
+.ui.statistic > .mini.label {
+  font-size: 0.8em !important;
+  text-transform: initial !important;
+}
+.ui.mini.menu {
+  font-size: 12px;
+}
+.no-border {
+  border: none !important;
+  box-shadow: none !important;
+}
+.ui.segment.yellow > .ui.yellow.header {
+  color: #b58105 !important;
+}
+.ui.basic.statistic.segment {
+  padding-top: 0 !important;
+}
+.ui.segment.voc {
+  min-height: 290px;
+}
+.ui.horizontal.top.divider {
+  margin-top: 0 !important;
+}
+.ui.statistic > .label {
+  text-transform: initial !important;
+}
+.tab-rail {
+  padding-right: 0 !important;
+  width: 100px !important;
+  z-index: -1;
+  margin-top: 10px !important;
+}
+.list {
+  background: #fff;
+}
+.left {
+  float: left !important;
+}
+.right {
+  float: right !important;
+}
+.static.label.right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 0;
+}
+#scrollspy {
+  position: fixed;
+  top: 50%;
+  right: 5px;
+}
+#scrollspy > .list > .item > .ui.label > .icon {
+  margin: 0 !important;
+}
+#scrollspy > .list > .item {
+  margin: 5px auto;
+  padding: 0 !important;
+}
+#scrollspy > .list > .item .ui.label > span {
+  margin-left: 1em;
+  display: inline-block;
+}
+#scrollspy i.icon {
+  margin: 0 !important;
+}
+.text.red {
+  color: #DB2828;
+}
+.text.orange {
+  color: #F2711C;
+}
+.text.yellow {
+  color: #FBBD08;
+}
+.text.olive {
+  color: #B5CC18;
+}
+.text.green {
+  color: #21BA45;
+}
+.text.teal {
+  color: #00B5AD;
+}
+.text.blue {
+  color: #2185D0;
+}
+.text.violet {
+  color: #6435C9;
+}
+.text.purple {
+  color: #A333C8;
+}
+.text.pink {
+  color: #E03997;
+}
+.text.brown {
+  color: #A5673F;
+}
+.text.grey {
+  color: #767676;
+}
+.text.black {
+  color: #1B1C1D;
+}

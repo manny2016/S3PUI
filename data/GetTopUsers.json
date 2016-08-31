@@ -1,0 +1,252 @@
+[
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test0",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test1",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test2",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test3",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test4",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test5",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test6",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test7",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test8",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    },
+    {
+        "__type": "VoCInfluenceWithScopeOfTwitterUserLmcAkBfM:#ModelEntities.Reporting",
+        "attachedobject": {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 0,
+            "id_str": null,
+            "location": null,
+            "name": "Test9",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        },
+        "vocinfluence": {
+            "negativeinfluencedvol": 210000,
+            "negativetotalvol": 7001,
+            "positiveinfluencedvol": 550,
+            "positivetotalvol": 300,
+            "vocinfluencedvol": 210550,
+            "voctotalvol": 1001
+        }
+    }
+]

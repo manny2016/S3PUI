@@ -1,0 +1,222 @@
+[
+    {
+        "attachedobject": "Azure Security",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Key Vault",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Log Analytics",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Automation",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Operations Management Suite",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Scheduler",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Portal",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "HockeyApp",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Application Insights",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Visual Studio Team Services",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Active Direcotry",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Site Recovery",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Service Bus",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "CDN",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Media Services",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "VPN Gateway",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Load Balancer",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Traffic Manager",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "ExpressRoute",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    },
+    {
+        "attachedobject": "Azure Virtual Network",
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5962,
+            "NegativeTotalVol": 375,
+            "PositiveInfluencedVol": 5962,
+            "PositiveTotalVol": 775,
+            "VoCInfluencedVol": 59622,
+            "VoCtotalVol": 5962
+        }
+    }
+]

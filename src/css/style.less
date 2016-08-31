@@ -130,6 +130,18 @@
 .text.center{
     text-align: center;
 }
+.ui.statistics .statistic > .mini.label,
+.ui.statistic > .mini.label {
+  font-size: 0.8em !important;
+  text-transform: initial !important;
+}
+.ui.mini.menu {
+    font-size: 12px;
+}
+.no-border{
+  border: none !important;
+  box-shadow:none !important;
+}
 
 .ui.segment.yellow > .ui.yellow.header {
     color: #b58105 !important;
@@ -184,8 +196,12 @@
     margin:5px auto;
     padding: 0 !important;
 }
-#scrollspy>.list>.item>.ui.label>span {
+#scrollspy>.list>.item .ui.label>span {
+    margin-left: 1em;
     display: inline-block;
+}
+#scrollspy i.icon{
+    margin:0 !important;
 }
 
 .text{

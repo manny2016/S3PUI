@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var path = require('path');
+var less = require('gulp-less');
+var minifyCSS = require('gulp-clean-css');
 //var babel = require('babelify');
 
 gulp.task('browserify', function () {
@@ -16,6 +19,15 @@ gulp.task('browserify', function () {
 
 gulp.task('watch', function () {
     gulp.watch('./src/js/**/*.js', ['browserify'])
+});
+
+gulp.task('css', function () {
+    return gulp.src('./src/css/*.less')
+    .pipe(less({
+      paths: [ path.join(__dirname, 'src/css', 'includes') ]
+    }))
+    // .pipe(source('custom.css'))
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('default', ['watch']);

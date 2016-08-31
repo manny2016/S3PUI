@@ -1,0 +1,79 @@
+[
+    {
+        "attachedobject": 1472175680,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 1514,
+            "NegativeTotalVol": 128,
+            "PositiveInfluencedVol": 1514,
+            "PositiveTotalVol": 528,
+            "VoCInfluencedVol": 15141,
+            "VoCtotalVol": 1514
+        }
+    },
+    {
+        "attachedobject": 1472175681,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 3428,
+            "NegativeTotalVol": 234,
+            "PositiveInfluencedVol": 3428,
+            "PositiveTotalVol": 634,
+            "VoCInfluencedVol": 34280,
+            "VoCtotalVol": 3428
+        }
+    },
+    {
+        "attachedobject": 1472175681,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 5341,
+            "NegativeTotalVol": 341,
+            "PositiveInfluencedVol": 5341,
+            "PositiveTotalVol": 741,
+            "VoCInfluencedVol": 53419,
+            "VoCtotalVol": 5341
+        }
+    },
+    {
+        "attachedobject": 1472175682,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 7255,
+            "NegativeTotalVol": 447,
+            "PositiveInfluencedVol": 7255,
+            "PositiveTotalVol": 847,
+            "VoCInfluencedVol": 72558,
+            "VoCtotalVol": 7255
+        }
+    },
+    {
+        "attachedobject": 1472175682,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 9169,
+            "NegativeTotalVol": 553,
+            "PositiveInfluencedVol": 9169,
+            "PositiveTotalVol": 953,
+            "VoCInfluencedVol": 91697,
+            "VoCtotalVol": 9169
+        }
+    },
+    {
+        "attachedobject": 1472175683,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 2083,
+            "NegativeTotalVol": 160,
+            "PositiveInfluencedVol": 2083,
+            "PositiveTotalVol": 560,
+            "VoCInfluencedVol": 20837,
+            "VoCtotalVol": 2083
+        }
+    },
+    {
+        "attachedobject": 1472175683,
+        "vocinfluence": {
+            "NegativeInfluencedVol": 3997,
+            "NegativeTotalVol": 266,
+            "PositiveInfluencedVol": 3997,
+            "PositiveTotalVol": 666,
+            "VoCInfluencedVol": 39976,
+            "VoCtotalVol": 3997
+        }
+    }
+]

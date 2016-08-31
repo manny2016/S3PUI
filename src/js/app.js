@@ -1,24 +1,30 @@
-var app = require('angular').module("app",[require('./controller'), require('./service'), require('./directive'),require('../../node_modules/angular-scroll')]);
+var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'), require('../../node_modules/angular-scroll'), require('../../node_modules/angular-route')]);
 app.
-  run(function($rootScope) {
-    if(!window.history || !history.replaceState) {
+  run(function ($rootScope) {
+    if (!window.history || !history.replaceState) {
       return;
     }
-    $rootScope.$on('duScrollspy:becameActive', function($event, $element, $target){
+    $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
       //Automaticly update location
-      var color = $element.parent().attr('set-color');
-      $($element.parent()).addClass(color);
-      var siblings = $element.parent().parent().siblings();
+      var color = $element.find("div").attr('set-color');
+      $($element.find("div")).addClass(color);
+      var siblings = $element.parent().siblings();
       var labels = $(siblings).find("div.ui.label");
-      for(var i=0;i<labels.length;i++){
-          var e = $(labels.get(i));
-          e.removeClass(e.attr('set-color'))
+      for (var i = 0; i < labels.length; i++) {
+        var e = $(labels.get(i));
+        e.removeClass(e.attr('set-color'))
       }
       var hash = $element.prop('hash');
       if (hash) {
         history.replaceState(null, null, hash);
+      }
     });
+
+    // $(window).resize(function () {
+    //   console.log(window.innerWidth);
+    // })
+    
   });
-app.controller("homeCtrl",function($scope){
+app.controller("homeCtrl", function ($scope) {
 
 })
