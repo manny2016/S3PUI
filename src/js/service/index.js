@@ -5,6 +5,7 @@ app.constant('config', {
     'service': '/DataService/S3PDataService.svc/',
     'dev_service': '/data/'
 })
+app.factory('utilitySrv',require('./utility'));
 app.factory('baseSrv', function ($http, $q, config) {
     return {
         get: function (url, dev = false) {
@@ -31,8 +32,19 @@ app.factory('baseSrv', function ($http, $q, config) {
 app.factory('testSrv', function (baseSrv) {
     return {
         test: function () {
-            // var deferred = $q.defer();
             return baseSrv.get('GetMentionedServiceList', true)
+        },
+        getCate:function(){
+            return baseSrv.get('GetAllEnabledTopicsByPlatform',true);
+        },
+        getUser:function(){
+            return baseSrv.get('GetTopUsers',true);
+        },
+        getSpikes:function(){
+            return baseSrv.get('GetDailyVolSpikes',true);
+        },
+        getDistribution:function(){
+            return baseSrv.get('GetPNDistribution',true);
         }
     }
 })

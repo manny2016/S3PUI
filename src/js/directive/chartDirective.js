@@ -51,30 +51,33 @@ $scope.config={
 module.exports = function () {
     return {
         restrict: 'E',
-        template: '<div><div>',
+        templateUrl: 'public/template/chart.html',
         replace: true,
         scope: {
-            config: "=",
+            // config: "=",
+            type:"@"
         },
         link: function (scope, element, attrs) {
-            scope.config = scope.config || {};
+            // scope.config = scope.config || {};
             scope.initChartOpt = function () {
-                if (scope.config.type == 'pie') {
+                debugger;
+                if (scope.type == 'pie') {
                     scope.chartOpt = initPieChartOpt(scope);
                 } else {
                     scope.chartOpt = initChartOpt(scope);
                 }
             } ()
-            scope.chartOpt = angular.merge(scope.chartOpt, scope.config);
-            scope.chartObj = echarts.init(element[0]);
+            var echartDom = $(element).find("div.echart");
+            // scope.chartOpt = angular.merge(scope.chartOpt, scope.config);
+            scope.chartObj = echarts.init(echartDom[0]);
             // console.log(scope.chartOpt)
-            scope.chartObj.setOption(scope.chartOpt)
-            if (scope.config.group) {
-                scope.chartObj.group = scope.config.group
-            }
+            // scope.chartObj.setOption(scope.chartOpt)
+            // if (scope.config.group) {
+            //     scope.chartObj.group = scope.config.group
+            // }
         },
-        // controller: "@",
-        // name: "controller"
+        controller: "@",
+        name: "controller"
     }
 }
 
@@ -128,7 +131,7 @@ function initPieChartOpt(scope) {
             data: []
         },
         toolbox: {
-            show: true,
+            show: false,
             feature: {
                 saveAsImage: {
                     show: true,

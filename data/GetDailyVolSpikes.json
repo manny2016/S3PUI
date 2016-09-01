@@ -103,20 +103,5 @@
         "dailytimeslot": 1472175861,
         "dailytotalinfluencevol": 98,
         "dailytotalvol": 98799
-    },
-    {
-        "dailyinfluencespikevol": 19,
-        "dailyneginfluencespike": 19,
-        "dailyneginfluencevol": 19,
-        "dailynegspike": 19,
-        "dailynegvol": 19,
-        "dailyposiinfluencespike": 19,
-        "dailyposiinfluencevol": 19,
-        "dailyposispike": 19,
-        "dailyposivol": 19,
-        "dailyspikevol": 19,
-        "dailytimeslot": 1472175862,
-        "dailytotalinfluencevol": 19,
-        "dailytotalvol": 27938
     }
 ]

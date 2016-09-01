@@ -1,0 +1,31 @@
+<div class="column">
+    <div class="ui fluid card">
+        <div class="ui top attached label">{{title}}
+            <i class="ui red right mini corner label">
+                Top 5
+            </i>
+        </div>
+        <div class="ui aligned selection celled list user-list">
+            <!--TOP 1-->
+            <div class="item" ng-repeat="u in users">
+                <!--<div class="image">-->
+                    <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = u.attachedobject.profile_image_url? u.attachedobject.profile_image_url : 'public/images/image.png'" ng-src="{{avator}}">
+                <!--</div>-->
+                <div class="content">
+                    <div class="header">{{u.attachedobject.name}}</div>
+                    <div class="mete">
+                        Posted Vol: {{u.vocinfluence.voctotalvol}}
+                    </div>
+                </div>
+            </div>
+            <!--<div class="item">
+                <img class="ui avatar image" src="public/images/patrick.png">
+                <div class="content">
+                    <div class="header">Will Shao</div>
+                    2
+                </div>
+            </div>-->
+        </div>
+        
+    </div>
+</div>

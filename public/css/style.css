@@ -145,3 +145,6 @@
 .text.black {
   color: #1B1C1D;
 }
+.user-list > .item:first-child img.image {
+  width: 91px;
+}

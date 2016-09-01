@@ -1,8 +1,13 @@
 module.exports = function ($scope,$http,testSrv) {
     testSrv.test().then(function(data){
-        console.log(data);
+        // console.log(data);
     },function(err){
         console.log(err)
+    })
+
+    testSrv.getUser().then(function(data){
+        // console.log(data);
+        $scope.topUsers = data.slice(0,5);
     })
     function rangeData(num, radix) {
         var radix = radix || 10;

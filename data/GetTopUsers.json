@@ -10,7 +10,7 @@
             "id_str": null,
             "location": null,
             "name": "Test0",
-            "profile_image_url": null,
+            "profile_image_url": "http://semantic-ui.com/images/avatar/large/elliot.jpg",
             "screen_name": null,
             "statuses_count": 0,
             "time_zone": null
