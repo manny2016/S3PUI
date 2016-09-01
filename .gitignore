@@ -1,5 +1,5 @@
 .vscode
 node_modules
 semantic
-main.min.js
+public/main.min.js
 main.js
