@@ -163,36 +163,42 @@
             <div class="ui three column grid">
                 <!--user list-->
                 <div class="row">
-                    <user-list title='XXXX Users in Twitter' users=topUsers></user-list>
-                    <user-list title='XXXX Users in SO' users=topUsers></user-list>
-                    <user-list title='XXXX Users in SF' users=topUsers></user-list>
+                    <user-list title='XXXX Users in Twitter' users=topUsers platform='twitter'></user-list>
+                    <user-list title='XXXX Users in SO' users=topUsers platform='so'></user-list>
+                    <user-list title='XXXX Users in SF' users=topUsers platform='sf'></user-list>
                 </div>
                 <div class="row">
-                    <user-list title='XXXX Users in SU' users=topUsers></user-list>
-                    <user-list title='XXXX Users in MSDN' users=topUsers></user-list>
-                    <user-list title='XXXX Users in TN' users=topUsers></user-list>
+                    <user-list title='XXXX Users in SU' users=topUsers platform='su'></user-list>
+                    <user-list title='XXXX Users in MSDN' users=topUsers platform='msdn'></user-list>
+                    <user-list title='XXXX Users in TN' users=topUsers platform='tn'></user-list>
                 </div>
 
                 <!--spikes charts-->
                 <div class="row">
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
+                    <ng-echart title='Daily Spikes in Twitter' type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+                    <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+                    <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
                 </div>
                 <div class="row">
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
-                    <ng-echart controller="testChartCtrl" type="axis"></ng-echart>
+                    <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+                    <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+                    <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
                 </div>
                 <div class="row">
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in SO" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in SU" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
                 </div>
                 <div class="row">
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
-                    <ng-echart controller="testPieChartCtrl" type="pie"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in SF" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in MSDN" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in TN" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                </div>
+                <div class="row">
+                    <ng-echart title="POSI mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList"></ng-echart>
+                </div>
+                <div class="row">
+                    <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList"></ng-echart>
                 </div>
             </div>
         </div>

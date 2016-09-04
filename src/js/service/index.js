@@ -40,11 +40,16 @@ app.factory('testSrv', function (baseSrv) {
         getUser:function(){
             return baseSrv.get('GetTopUsers',true);
         },
-        getSpikes:function(){
+        getSpikes:function(platform){
+            platform = platform || 'all';
+            console.log(platform)
             return baseSrv.get('GetDailyVolSpikes',true);
         },
         getDistribution:function(){
             return baseSrv.get('GetPNDistribution',true);
+        },
+        getMentionedMostServiceList:function(){
+            return baseSrv.get('GetMentionedMostServiceList',true);
         }
     }
 })

@@ -31,10 +31,7 @@ app.
 
   });
 app.controller("homeCtrl", function ($scope, testSrv, utilitySrv) {
-  testSrv.getUser().then(function (data) {
-    // console.log(data);
-    $scope.topUsers = data.slice(0, 5);
-  })
+  
 });
 
 app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
@@ -43,7 +40,7 @@ app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) 
     var seriesData = data.map(function (item) {
       return item.dailyspikevol
     })
-    console.log(seriesData)
+    // console.log(seriesData)
     $scope.config = {
       xAxis: { data: $rootScope.dateList },
       series: [{
@@ -63,7 +60,7 @@ app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) 
     }
   })
 })
-
+ 
 app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
   // console.log($rootScope.dateList);
   testSrv.getDistribution().then(function (data) {
