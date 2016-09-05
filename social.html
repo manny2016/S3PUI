@@ -65,11 +65,21 @@
             <div class="ui red horizontal label">UTC</div>
             2016-08-23 ~ 2016-08-29
         </div>
-        <select class="ui left selection dropdown " style="">
+        <!--<select class="ui left selection dropdown">
             <option value="azure">Azure</option>
             <option value="powerbi">Power BI</option>
             <option value="azure-linux">Azure Linux</option>
-        </select>
+        </select>-->
+        <div class="ui left selection dropdown">
+        <input name="category" type="hidden" value="">
+        <i class="dropdown icon"></i>
+        <div class="default text">category</div>
+        <div class="menu">
+            <div class="item" data-value="azure">Azure</div>
+            <div class="item" data-value="powerbi">PowerBi</div>
+            <div class="item" data-value="azure-linux">Azure Linux</div>
+        </div>
+        </div>
     </div>
     <!--</div>-->
     <div class="ui hidden divider"></div>
@@ -557,10 +567,11 @@
 
     <!--<script type="text/javascript" src="/src/semantic-init.js"></script>-->
     <script>
-        $('.ui.sticky')
-            .sticky({
-                context: '#main'
-            });
+        $('.ui.dropdown').dropdown();
+        // $('.ui.sticky')
+        //     .sticky({
+        //         context: '#main'
+        //     });
         $('.popup').popup();
         initLineCharts('.hourly-charts');
         var charts_array = [];

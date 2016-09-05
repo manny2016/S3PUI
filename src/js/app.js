@@ -1,14 +1,14 @@
-var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'), require('../../node_modules/angular-scroll'), require('../../node_modules/angular-route')]);
+var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'),require('./app.route.js'), require('../../node_modules/angular-scroll')]);
 app.
   run(function ($rootScope, utilitySrv) {
     $rootScope.timeRange = {
-      'start': (function (d) { d.setDate(d.getDate() - 1 - 7); return d.setHours(0, 0, 0, 0) })(new Date),
+      'start': (function (d) { d.setDate(d.getDate() - 7); return d.setHours(0, 0, 0, 0) })(new Date),
       'end': (function (d) { d.setDate(d.getDate() - 1); return d.setHours(0, 0, 0, 0) })(new Date)
-    }
+    };
     $rootScope.dateList = utilitySrv.getTimeRange($rootScope.timeRange.start, $rootScope.timeRange.end)
     if (!window.history || !history.replaceState) {
       return;
-    }
+    };
     $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
       //Automaticly update location
       var color = $element.find("div").attr('set-color');
@@ -22,7 +22,7 @@ app.
       var hash = $element.prop('hash');
       if (hash) {
         history.replaceState(null, null, hash);
-      }
+      } 
     });
 
     // $(window).resize(function () {
@@ -30,9 +30,6 @@ app.
     // })
 
   });
-app.controller("homeCtrl", function ($scope, testSrv, utilitySrv) {
-  
-});
 
 app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
   // console.log($rootScope.dateList);
@@ -59,7 +56,7 @@ app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) 
       $scope.chartObj.group = $scope.config.group
     }
   })
-})
+});
  
 app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
   // console.log($rootScope.dateList);
@@ -89,5 +86,5 @@ app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSr
     if ($scope.config.group) {
       $scope.chartObj.group = $scope.config.group
     }
-  })
-})
+  });
+});

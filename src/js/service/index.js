@@ -4,12 +4,13 @@ var app = angular.module('app.Srv', []);
 app.constant('config', {
     'service': '/DataService/S3PDataService.svc/',
     'dev_service': '/data/'
-})
+});
 app.factory('utilitySrv',require('./utility'));
 app.factory('baseSrv', function ($http, $q, config) {
     return {
-        get: function (url, dev = false) {
-            var path = '';
+        get: function (url, dev) {
+            var path = '',
+                dev = dev || false;
             if (dev) {
                 path = config.dev_service + url + '.json'
             } else {
@@ -49,6 +50,9 @@ app.factory('testSrv', function (baseSrv) {
             return baseSrv.get('GetPNDistribution',true);
         },
         getMentionedMostServiceList:function(){
+            return baseSrv.get('GetMentionedMostServiceList',true);
+        },
+        getMentionedMostServiceDistribution:function(){
             return baseSrv.get('GetMentionedMostServiceList',true);
         }
     }

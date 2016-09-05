@@ -76,6 +76,7 @@ module.exports = function ($rootScope, testSrv) {
             platform: "@",
             topic: "@",
             pnscope: "@",
+            propertySelect:"@",
             days: "@",
             apiFn: "@",
             group: "@"
@@ -97,6 +98,7 @@ module.exports = function ($rootScope, testSrv) {
             } ();
 
             var echartDom = $(element).find("div.echart");
+            _.chartObj = echarts.init(echartDom[0], 'macarons');
 
             var apiFn = testSrv[_.apiFn];
             switch (_.apiFn) {
@@ -104,7 +106,6 @@ module.exports = function ($rootScope, testSrv) {
                     var fnPromise = apiFn(_.platform, _.topic, _.days);
                     customSpikesData(fnPromise, _).then(function (config) {
                         _.chartOpt = angular.merge(_.chartOpt, config);
-                        _.chartObj = echarts.init(echartDom[0]);
                         initChart(_.chartObj, _.chartOpt, _.group);
                     })
                     break;
@@ -112,19 +113,37 @@ module.exports = function ($rootScope, testSrv) {
                     var fnPromise = apiFn(_.platform, _.toppic);
                     customDistributionData(fnPromise, _).then(function (config) {
                         _.chartOpt = angular.merge(_.chartOpt, config);
-                        _.chartObj = echarts.init(echartDom[0]);
                         initChart(_.chartObj, _.chartOpt);
                     })
                     break;
                 case 'getMentionedMostServiceList':
-                    var fnPromise = apiFn(_.platform, _.toppic);
+                    var fnPromise = apiFn(_.platform, _.toppic, _.pnscope);
                     customWordCloudData(fnPromise, _).then(function (config) {
                         _.chartOpt = angular.merge(_.chartOpt, config);
-                        _.chartObj = echarts.init(echartDom[0]);
+                        initChart(_.chartObj, _.chartOpt);
+                    })
+                    break;
+                case 'getMentionedMostServiceDistribution':
+                    var fnPromise = apiFn(_.platform, _.toppic, _.pnscope);
+                    customServicesDistributionData(fnPromise, _).then(function (config) {
+                        _.chartOpt = angular.merge(_.chartOpt, config);
                         initChart(_.chartObj, _.chartOpt);
                     })
                     break;
             }
+
+            // watch window resize
+            _.clientWidth = element[0].clientWidth;
+            _.$watch("clientWidth", function (newV, oldV) {
+                if (newV !== oldV) {
+                    echarts.getInstanceByDom(echartDom.get(0)).resize();
+                }
+            })
+            $(window).resize(function () {
+                scope.$apply(function () {
+                    _.clientWidth = element[0].clientWidth;
+                });
+            });
         },
         // controller: "@",
         // name: "controller"
@@ -168,11 +187,11 @@ function customDistributionData(fnPromise, scope) {
                 data: [{
                     value: data.positivetotalvol,
                     name: 'POSI',
-                    itemStyle: {
-                        normal: {
-                            color: '#91c7ae'
-                        }
-                    }
+                    // itemStyle: {
+                    //     normal: {
+                    //         color: '#91c7ae'
+                    //     }
+                    // }
                 }, {
                         value: data.negativetotalvol,
                         name: 'NEG'
@@ -214,6 +233,38 @@ function customWordCloudData(fnPromise, scope) {
         }
     })
 }
+
+function customServicesDistributionData(fnPromise, scope) {
+    var propertySelect = scope.propertySelect;
+    return fnPromise.then(function (data) {
+        var seriesData = data.map(function (item) {
+            var tmp = { name: item.attachedobject };
+            switch (propertySelect) {
+                case 'messages':
+                    var value = item.vocinfluence.voctotalvol
+                    break;
+                case 'users':
+                    var value = item.vocinfluence.uniqueusers
+                    break;
+                default:
+                    var value = item.vocinfluence.voctotalvol
+                    break;
+            }
+            tmp.value = value;
+            return tmp;
+        })
+        console.log(seriesData)
+        return {
+            series: [{
+                data: seriesData
+            }],
+            title: {
+                text: scope.title || ''
+            }
+        }
+    })
+}
+
 function initAxisChartOpt(scope) {
     var opt = {
         tooltip: {
@@ -312,7 +363,9 @@ function initPieChartOpt(scope) {
 function initCloudWordChartOpt(scope) {
     return {
         title: {
-            textStyle: {},
+            textStyle: {
+                fontSize: 20
+            },
             x: 'center'
         },
         series: {
@@ -322,6 +375,7 @@ function initCloudWordChartOpt(scope) {
             rotationRange: [-90, 90],
             shape: 'pentagon',
             left: 'center',
+            top: 'bottom',
             width: '90%',
             height: '90%',
             textStyle: {
@@ -343,3 +397,4 @@ function initCloudWordChartOpt(scope) {
         }
     }
 }
+

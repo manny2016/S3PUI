@@ -1,0 +1,370 @@
+<div class="ui segment clearing container">
+    <a id="server_status" class="ui red right label static">Status</a>
+    <div class="left" style="height:38px;line-height:38px;margin-right:20px;">
+        <div class="ui red horizontal label">UTC</div>
+        {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
+    </div>
+    <div class="ui left selection dropdown">
+        <input name="category" type="hidden" value="">
+        <i class="dropdown icon"></i>
+        <div class="default text">category</div>
+        <div class="menu">
+            <div class="item" data-value="azure">Azure</div>
+            <div class="item" data-value="powerbi">PowerBi</div>
+            <div class="item" data-value="azure-linux">Azure Linux</div>
+        </div>
+    </div>
+</div>
+
+<div class="ui hidden divider"></div>
+<div class="ui segment container">
+    <!--statistic-->
+    <div id="community">
+        <h3 class="ui center aligned header">Impact Summary from S3P</h3>
+        <!--charts-->
+        <!--<div class="ui segment">-->
+        <div class="ui three column divided grid center aligned">
+            <div class="column">
+                <div class="ui horizontal top divider">Community Users</div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+            </div>
+            <div class="column">
+                <div class="ui horizontal top divider">Product Status</div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+            </div>
+            <div class="column">
+                <div class="ui horizontal top divider">Voc Insights</div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+                <div class="ui inverted divider"></div>
+                <ng-statistic data="statistic"></ng-statistic>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <h3 class="ui center aligned header">Volume Spikes Detection</h3>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="hourly-charts" style="width:100%;height:300px;"></div>
+    <div class="ui divider"></div>
+
+    <div id="product">
+        <h3 class="ui center aligned header">
+                    Insights of Detailed Distribution
+                </h3>
+
+        <div class="ui grid">
+            <div class="five wide column">
+                <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='twitter' api-fn="getMentionedMostServiceDistribution" property-select="messages"></ng-echart>
+                <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='twitter' api-fn="getMentionedMostServiceDistribution" property-select="users"></ng-echart>
+            </div>
+            <div class="eleven wide column">
+                <table id="spikes-table" class="ui blue striped celled table">
+                    <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Post Vol</th>
+                            <th>POSI Ratio</th>
+                            <th>NEG Ratio</th>
+                            <th>Unique Users Vol</th>
+                            <th>Total Page View</th>
+                            <th>Detected Spikes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Azure Web Apps</td>
+                            <td>150</td>
+                            <td>98%</td>
+                            <td>2%</td>
+                            <td>34</td>
+                            <td>1582</td>
+                            <td>34</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Cloud Service</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure VM</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Mobile Apps</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Storage</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Web Apps</td>
+                            <td>150</td>
+                            <td>98%</td>
+                            <td>2%</td>
+                            <td>34</td>
+                            <td>1582</td>
+                            <td>34</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Cloud Service</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure VM</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Mobile Apps</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Azure Storage</td>
+                            <td>110</td>
+                            <td>95%</td>
+                            <td>5%</td>
+                            <td>24</td>
+                            <td>882</td>
+                            <td>12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+
+    <div id="sentiment">
+        <h3 class="ui center aligned header">
+                    Voc Sentiment Analysis
+                </h3>
+        <div class="ui three column grid">
+            <div class="column">
+                <div class="ui blue inverted segment center aligned voc">
+                    <h3 class="ui header">Most Voc Post By</h3>
+                    <div class="ui aligned selection celled list">
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui green inverted segment center aligned voc">
+                    <h3 class="ui header">Most POSI Voc Post By</h3>
+                    <div class="ui aligned selection celled list">
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui red inverted segment center aligned voc">
+                    <h3 class="ui header">Most NEG Voc Post By</h3>
+                    <div class="ui aligned selection celled list">
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="public/images/patrick.png">
+                            <div class="content">
+                                <div class="header">Will Shao</div>
+                                Vol: 233, Influence: 23
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui two column grid">
+            <div class="column">
+                <ng-echart style="width:100%;height:250px;" title="Most POSITIVE Feedback Mentioned" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi" ></ng-echart>
+
+            </div>
+            <div class="column">
+                <ng-echart style="width:100%;height:250px;" title="Most NEGATIVE Feedback Mentioned" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="neg"></ng-echart>
+            </div>
+        </div>
+
+        <div class="ui two column grid">
+            <div class="column">
+                <div class="bar2" style="width:100%;height:300px;"></div>
+            </div>
+            <div class="column">
+                <div class="bar2" style="width:100%;height:300px;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="menu" class="left attached ui rail tab-rail">
+        <div class="ui fixed sticky">
+            <div class="ui vertical mini menu">
+                <a class="active item">Twitter</a>
+                <a class="item">Reddit</a>
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+    <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+        <div class="ui middle aligned selection list">
+            <div class="item">
+                <a du-smooth-scroll="community" du-scrollspy>
+                    <div class="ui label" set-color="blue" data-content="Community Members" data-variation="mini inverted">
+                        <i class="icon users"></i><span ng-hide="isSmall">Community Members</span>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="product" du-scrollspy>
+                    <div class="ui label" set-color="green" data-content="Product Status" data-variation="mini inverted">
+                        <i class="icon heartbeat"></i> <span ng-hide="isSmall">Product Status</span></div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="sentiment" du-scrollspy>
+                    <div class="ui label" set-color="purple" data-content="Voc Sentiment" data-variation="mini inverted">
+                        <i class="icon comments"></i> <span ng-hide="isSmall">Voc Sentiment</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui hidden divider"></div>
+<div class="ui hidden divider"></div>
