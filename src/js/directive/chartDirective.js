@@ -253,7 +253,7 @@ function customServicesDistributionData(fnPromise, scope) {
             tmp.value = value;
             return tmp;
         })
-        console.log(seriesData)
+        // console.log(seriesData)
         return {
             series: [{
                 data: seriesData
