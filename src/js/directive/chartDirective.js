@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, testSrv) {
+module.exports = function ($rootScope, $q, testSrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -113,11 +113,38 @@ module.exports = function ($rootScope, testSrv) {
                             _.chartOpt = angular.merge(_.chartOpt, config);
                             initChart(_.chartObj, _.chartOpt, _.group);
                         })
-                    }else{
-                        var fnPromises = _.platforms.map(function(item){
-                            return apiFn(item, _.topic, _.days);
+                    } else {
+                        _.raw = [];
+                        var fnPromises = _.platforms.map(function (item) {
+                            return apiFn(item, _.topic, _.days).then(function (data) {
+                                var seriesData = data.map(function (raw) {
+                                    // var tmp = { name: item };
+                                    switch (_.pnscope) {
+                                        case 'posi':
+                                            var value = raw.dailyposiinfluencevol
+                                            break;
+                                        case 'neg':
+                                            var value = raw.dailyneginfluencevol
+                                            break;
+                                        default:
+                                            var value = raw.dailytotalinfluencevol
+                                            break;
+                                    }
+                                    // tmp.value = value;
+                                    // return tmp;
+                                    return value;
+                                })
+                                _.raw.push(seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                    return previousValue + currentValue;
+                                }))
+                            })
                         })
-                        console.log(fnPromises);
+                        // console.log(fnPromises);
+                        $q.all(fnPromises).then(function () {
+                            var config = customHoriBarData(_);
+                            _.chartOpt = angular.merge(_.chartOpt, config);
+                            initChart(_.chartObj, _.chartOpt);
+                        })
                     }
 
                     break;
@@ -238,7 +265,7 @@ function customSpikesData(fnPromise, scope) {
             fn = barLineSeries;
             break;
         default:
-            break
+            break;
     }
     // console.log(scope.$root.dateList);
     return fnPromise.then(function (data) {
@@ -332,8 +359,20 @@ function customServicesDistributionData(fnPromise, scope) {
     })
 }
 
-function customHoriBarData(fnPromise, scope) {
-
+function customHoriBarData(scope) {
+    return {
+        yAxis: {
+            data: scope.platforms
+        },
+        series: [{
+            name: scope.pnscope + ' Vol',
+            type: 'bar',
+            data: scope.raw
+        }],
+        title: {
+            text: scope.title || ''
+        }
+    };
 }
 
 function initAxisChartOpt(scope) {
@@ -369,6 +408,11 @@ function initHoriChartOpt(scope) {
         tooltip: {
             trigger: 'axis'
         },
+        grid: {
+            // width:'85%'
+            left: '15%',
+            right: '3%'
+        },
         toolbox: {
             show: false,
             trigger: 'axis',
@@ -377,15 +421,12 @@ function initHoriChartOpt(scope) {
             }
         },
         xAxis: {
-            type: 'value',
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
             data: []
         },
-        yAxis: [
-            {
-                type: 'category',
-                data: []
-            }
-        ],
         series: []
     };
     return opt;

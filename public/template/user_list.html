@@ -7,14 +7,22 @@
         </div>
         <div class="ui aligned selection celled list user-list">
             <!--TOP 1-->
-            <div class="item" ng-repeat="u in users">
+            <div class="item" ng-repeat="u in users" ng-click="onClick()">
                 <!--<div class="image">-->
                     <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = u.attachedobject.profile_image_url? u.attachedobject.profile_image_url : 'public/images/image.png'" ng-src="{{avator}}">
                 <!--</div>-->
                 <div class="content">
                     <div class="header">{{u.attachedobject.name}}</div>
                     <div class="mete">
-                        Posted Vol: {{u.vocinfluence.voctotalvol}}
+                        <b>Posted Vol</b>: {{u.vocinfluence.voctotalvol}}
+                    </div>
+                    <div ng-if="($first)" class="mete">
+                        <b>Influenced Vol</b>: {{u.vocinfluence.vocinfluencedvol}}
+                        <br/>
+                        <b>Positive Posted Vol</b>: {{u.vocinfluence.positivetotalvol}}
+                        <br/>
+                        <b>Negative Posted Vol</b>: {{u.vocinfluence.negativetotalvol}}
+                        <br/>
                     </div>
                 </div>
             </div>

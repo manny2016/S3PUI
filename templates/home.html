@@ -1,4 +1,4 @@
-<div class="ui segment basic container" ng-controller="homeCtrl">
+<div class="ui segment basic container">
     <!--<div class="ui horizontal divider"></div>-->
     <!--do you know content-->
     <div class="ui blue segment">
@@ -26,7 +26,7 @@
                 </h3>
         </div>
     </div>
-    <div class="ui green segment">
+    <div class="ui green segment" ng-show="flags.g">
         <h3 class="ui header green">
                     Do you know what would be happend within a week?
                 </h3>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <!--query category-->
-    <div class="ui red segment clearing">
+    <div class="ui red segment clearing" ng-show="flags.r">
         <h3 class="ui header red">
                     Top Queried Categories
                     <div class="sub right header">
@@ -261,6 +261,7 @@
                         <!--</div>-->
                     </div>
                 </div>
+                <ng-echart title="NEG mentioned most" platform="twitter,so,sf,su,msdn,tn" type="hori" api-fn="getSpikes" pnscope="neg"></ng-echart>
             </div>
         </div>
     </div>
