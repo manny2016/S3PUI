@@ -3,4 +3,12 @@ node_modules
 semantic
 public/main.min.js
 main.js
-public/main.min.js
+bin
+DataService
+obj
+Properties
+scripts
+*.asax
+*.cs
+S3PWebUI.*
+*.config
