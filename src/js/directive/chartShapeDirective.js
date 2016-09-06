@@ -25,10 +25,14 @@ module.exports = function (testSrv) {
                 cateInput = angular.element(e.find("input:hidden"));
             var flipLeft = function () {
                 e.find("div.shape").shape('flip left');
+                var cate = e.find("div.side.active").next().attr("page");
+                $('#'+id+' .ui.dropdown').dropdown("set text",cate)
                 resizeChart();
             }
             var flipRight = function () {
                 e.find("div.shape").shape('flip right');
+                var cate = e.find("div.side.active").next().attr("page");
+                $('#'+id+' .ui.dropdown').dropdown("set text",cate)
                 resizeChart();
             }
             leftButton.bind("click", flipLeft);

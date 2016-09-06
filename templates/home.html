@@ -124,14 +124,14 @@
 
         <!--spikes charts-->
         <div class="row">
-            <ng-echart title='Daily Spikes in Twitter' type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
-            <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
-            <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart title='Daily Spikes in Twitter' type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
         </div>
         <div class="row">
-            <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
-            <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
-            <ng-echart type="axis" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
+            <ng-echart type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
         </div>
         <div class="row">
             <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
@@ -143,107 +143,123 @@
             <ng-echart title="Positive & Negative Vol Distribution in MSDN" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
             <ng-echart title="Positive & Negative Vol Distribution in TN" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
         </div>
-        <div class="row">
-            <ng-echart title="POSI mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi"></ng-echart>
-            <div class="column">
-                <div id="shape1" class="ui fluid card" ng-chart-shape>
-                    <!--<div class="ui top attached label">Daily Total Influence</div>-->
-                    <div class="ui shape">
-                        <div class="sides">
-                            <div class="active side" page="twitter">
-                                <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SO">
-                                <ng-echart title="Daily Total Influence in SO" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SF">
-                                <ng-echart title="Daily Total Influence in SF" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SU">
-                                <ng-echart title="Daily Total Influence in SU" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="MSDN">
-                                <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="TN">
-                                <ng-echart title="Daily Total Influence in TN" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+    </div>
+    <div class="ui green segment">
+        <h3 class="ui header green center aligned">
+                    POSITIVE Influence
+                </h3>
+        <div class="ui three column grid">
+            <div class="row">
+                <ng-echart title="POSI mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi"></ng-echart>
+                <div class="column">
+                    <div id="shape1" class="ui fluid card" ng-chart-shape>
+                        <!--<div class="ui top attached label">Daily Total Influence</div>-->
+                        <div class="ui shape">
+                            <div class="sides">
+                                <div class="active side" page="twitter">
+                                    <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SO">
+                                    <ng-echart title="Daily Total Influence in SO" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SF">
+                                    <ng-echart title="Daily Total Influence in SF" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SU">
+                                    <ng-echart title="Daily Total Influence in SU" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="MSDN">
+                                    <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="TN">
+                                    <ng-echart title="Daily Total Influence in TN" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--<div class="ui fluid card">-->
-                    <div class="ui three ignored icon direction buttons fluid card">
-                        <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-                        <!--<a class="ui icon pointing button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>-->
+                        <!--<div class="ui fluid card">-->
+                        <div class="ui three ignored icon direction buttons fluid card">
+                            <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                            <!--<a class="ui icon pointing button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>-->
 
-                        <div class="ui left label icon dropdown button">
-                            <i class="dropdown icon"></i>
-                            <input type="hidden" name="category" value="twitter">
-                            <span class="text">Cate</span>
-                            <div class="menu">
-                                <div class="item" data-value="twitter">twitter</div>
-                                <div class="item" data-value="SO">SO</div>
-                                <div class="item" data-value="SF">SF</div>
-                                <div class="item" data-value="SU">SU</div>
-                                <div class="item" data-value="MSDN">MSDN</div>
-                                <div class="item" data-value="TN">TN</div>
+                            <div class="ui left label icon dropdown button">
+                                <i class="dropdown icon"></i>
+                                <input type="hidden" name="category" value="twitter">
+                                <span class="text">Cate</span>
+                                <div class="menu">
+                                    <div class="item" data-value="twitter">twitter</div>
+                                    <div class="item" data-value="SO">SO</div>
+                                    <div class="item" data-value="SF">SF</div>
+                                    <div class="item" data-value="SU">SU</div>
+                                    <div class="item" data-value="MSDN">MSDN</div>
+                                    <div class="item" data-value="TN">TN</div>
+                                </div>
                             </div>
+                            <!--<a class="ui icon pointing button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>-->
+                            <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
                         </div>
-                        <!--<a class="ui icon pointing button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>-->
-                        <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                        <!--</div>-->
                     </div>
-                    <!--</div>-->
                 </div>
+                <ng-echart title="POSI mentioned most" platform="twitter,so,sf,su,msdn,tn" type="hori" api-fn="getSpikes" pnscope="posi"></ng-echart>
+                
             </div>
         </div>
-        <div class="row">
-            <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="neg"></ng-echart>
-            <div class="column">
-                <div id="shape2" class="ui fluid card" ng-chart-shape>
-                    <!--<div class="ui top attached label">Daily Total Influence</div>-->
-                    <div class="ui shape">
-                        <div class="sides">
-                            <div class="active side" page="twitter">
-                                <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SO">
-                                <ng-echart title="Daily Total Influence in SO" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SF">
-                                <ng-echart title="Daily Total Influence in SF" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="SU">
-                                <ng-echart title="Daily Total Influence in SU" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="MSDN">
-                                <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
-                            </div>
-                            <div class="side" page="TN">
-                                <ng-echart title="Daily Total Influence in TN" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+    </div>
+    <div class="ui red segment">
+        <h3 class="ui header red center aligned">
+                    NEGATIVE Influence
+                </h3>
+        <div class="ui three column grid">
+            <div class="row">
+                <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="neg"></ng-echart>
+                <div class="column">
+                    <div id="shape2" class="ui fluid card" ng-chart-shape>
+                        <!--<div class="ui top attached label">Daily Total Influence</div>-->
+                        <div class="ui shape">
+                            <div class="sides">
+                                <div class="active side" page="twitter">
+                                    <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SO">
+                                    <ng-echart title="Daily Total Influence in SO" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SF">
+                                    <ng-echart title="Daily Total Influence in SF" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="SU">
+                                    <ng-echart title="Daily Total Influence in SU" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="MSDN">
+                                    <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
+                                <div class="side" page="TN">
+                                    <ng-echart title="Daily Total Influence in TN" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--<div class="ui fluid card">-->
-                    <div class="ui three ignored icon direction buttons fluid card">
-                        <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-                        <!--<a class="ui icon pointing button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>-->
+                        <!--<div class="ui fluid card">-->
+                        <div class="ui three ignored icon direction buttons fluid card">
+                            <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                            <!--<a class="ui icon pointing button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>-->
 
-                        <div class="ui left label icon dropdown button">
-                            <i class="dropdown icon"></i>
-                            <input type="hidden" name="category" value="twitter">
-                            <span class="text">Cate</span>
-                            <div class="menu">
-                                <div class="item" data-value="twitter">twitter</div>
-                                <div class="item" data-value="SO">SO</div>
-                                <div class="item" data-value="SF">SF</div>
-                                <div class="item" data-value="SU">SU</div>
-                                <div class="item" data-value="MSDN">MSDN</div>
-                                <div class="item" data-value="TN">TN</div>
+                            <div class="ui left label icon dropdown button">
+                                <i class="dropdown icon"></i>
+                                <input type="hidden" name="category" value="twitter">
+                                <span class="text">Cate</span>
+                                <div class="menu">
+                                    <div class="item" data-value="twitter">twitter</div>
+                                    <div class="item" data-value="SO">SO</div>
+                                    <div class="item" data-value="SF">SF</div>
+                                    <div class="item" data-value="SU">SU</div>
+                                    <div class="item" data-value="MSDN">MSDN</div>
+                                    <div class="item" data-value="TN">TN</div>
+                                </div>
                             </div>
+                            <!--<a class="ui icon pointing button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>-->
+                            <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
                         </div>
-                        <!--<a class="ui icon pointing button" data-animation="flip" data-direction="right" title="Flip Right" onclick="javascript:$('#shape2').shape('flip right');chartResize('shape2')"><i class="right long arrow icon"></i></a>-->
-                        <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                        <!--</div>-->
                     </div>
-                    <!--</div>-->
                 </div>
             </div>
         </div>
