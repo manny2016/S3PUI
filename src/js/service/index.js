@@ -43,7 +43,7 @@ app.factory('testSrv', function (baseSrv) {
         },
         getSpikes:function(platform){
             platform = platform || 'all';
-            console.log(platform)
+            // console.log(platform)
             return baseSrv.get('GetDailyVolSpikes',true);
         },
         getDistribution:function(){
