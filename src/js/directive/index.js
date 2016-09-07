@@ -8,6 +8,7 @@ app.directive('ngStatisticLabel',require('./statisticLabelDirective'));
 app.directive('ngScrollSpy',require('./scrollspyDirective'));
 app.directive('ngChartShape',require('./chartShapeDirective'));
 app.directive('userList',require('./userListDirective'));
+app.directive('subWindow',require('./subWindowDirective'));
 app.directive('testDire', function(){
     return{
         restrict:'AE',

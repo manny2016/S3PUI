@@ -8,7 +8,6 @@ module.exports = function (testSrv) {
         scope: false,
         link: function (scope, e, a) {
             var id = a.id;
-            console.log(id)
             scope.category = 'twitter'; 
             $('#'+id+' .ui.dropdown').dropdown({
                 onChange: function (value, text, $selectedItem) {

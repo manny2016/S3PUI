@@ -25,8 +25,13 @@ app.
       } 
     });
     $rootScope.test = function(){
-      console.log(1)
-      alert('123');
+      $('.fullscreen.modal').modal({
+        onVisible:function(e){
+          $(this).find('.echart').map(function(i){
+            echarts.getInstanceByDom(this).resize();
+          })
+        }
+      }).modal('show');
     }
     // $(window).resize(function () {
     //   console.log(window.innerWidth);
