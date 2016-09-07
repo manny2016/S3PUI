@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = function (testSrv) {
+module.exports = function ($rootScope,testSrv) {
     return{
         restrict: 'E',
         templateUrl: ('public/template/user_list.html'),
@@ -13,7 +13,9 @@ module.exports = function (testSrv) {
             platform:"@"
         },
         link:function(scope,e,a){
-            console.log(scope.platform);
+            scope.onClick=function(){
+                $rootScope.test();
+            }
             testSrv.getUser().then(function (data) {
                 // console.log(data);
                 scope.users = data.slice(0, 5);
