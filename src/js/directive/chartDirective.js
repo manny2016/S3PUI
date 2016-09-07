@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, testSrv) {
+module.exports = function ($rootScope, $q, testSrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -76,7 +76,7 @@ module.exports = function ($rootScope, testSrv) {
             platform: "@",
             topic: "@",
             pnscope: "@",
-            propertySelect:"@",
+            propertySelect: "@",
             days: "@",
             apiFn: "@",
             group: "@"
@@ -87,6 +87,9 @@ module.exports = function ($rootScope, testSrv) {
                 switch (_.type) {
                     case 'pie':
                         _.chartOpt = initPieChartOpt(_);
+                        break;
+                    case 'hori':
+                        _.chartOpt = initHoriChartOpt(_);
                         break;
                     case 'wordcloud':
                         _.chartOpt = initCloudWordChartOpt(_);
@@ -103,11 +106,47 @@ module.exports = function ($rootScope, testSrv) {
             var apiFn = testSrv[_.apiFn];
             switch (_.apiFn) {
                 case 'getSpikes':
-                    var fnPromise = apiFn(_.platform, _.topic, _.days);
-                    customSpikesData(fnPromise, _).then(function (config) {
-                        _.chartOpt = angular.merge(_.chartOpt, config);
-                        initChart(_.chartObj, _.chartOpt, _.group);
-                    })
+                    _.platforms = _.platform.split(",");
+                    if (_.platforms.length == 1) {
+                        var fnPromise = apiFn(_.platform, _.topic, _.days);
+                        customSpikesData(fnPromise, _).then(function (config) {
+                            _.chartOpt = angular.merge(_.chartOpt, config);
+                            initChart(_.chartObj, _.chartOpt, _.group);
+                        })
+                    } else {
+                        _.raw = [];
+                        var fnPromises = _.platforms.map(function (item) {
+                            return apiFn(item, _.topic, _.days).then(function (data) {
+                                var seriesData = data.map(function (raw) {
+                                    // var tmp = { name: item };
+                                    switch (_.pnscope) {
+                                        case 'posi':
+                                            var value = raw.dailyposiinfluencevol
+                                            break;
+                                        case 'neg':
+                                            var value = raw.dailyneginfluencevol
+                                            break;
+                                        default:
+                                            var value = raw.dailytotalinfluencevol
+                                            break;
+                                    }
+                                    // tmp.value = value;
+                                    // return tmp;
+                                    return value;
+                                })
+                                _.raw.push(seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                    return previousValue + currentValue;
+                                }))
+                            })
+                        })
+                        // console.log(fnPromises);
+                        $q.all(fnPromises).then(function () {
+                            var config = customHoriBarData(_);
+                            _.chartOpt = angular.merge(_.chartOpt, config);
+                            initChart(_.chartObj, _.chartOpt);
+                        })
+                    }
+
                     break;
                 case 'getDistribution':
                     var fnPromise = apiFn(_.platform, _.toppic);
@@ -118,7 +157,15 @@ module.exports = function ($rootScope, testSrv) {
                     break;
                 case 'getMentionedMostServiceList':
                     var fnPromise = apiFn(_.platform, _.toppic, _.pnscope);
-                    customWordCloudData(fnPromise, _).then(function (config) {
+                    var fn = customWordCloudData;
+                    // switch (scope.type) {
+                    //     case 'hori':
+                    //         fn = customHoriBarData;
+                    //         break;
+                    //     default:
+                    //         break
+                    // }
+                    fn(fnPromise, _).then(function (config) {
                         _.chartOpt = angular.merge(_.chartOpt, config);
                         initChart(_.chartObj, _.chartOpt);
                     })
@@ -160,9 +207,8 @@ function initChart(echartObj, chartOpt, groupName) {
 }
 
 function customSpikesData(fnPromise, scope) {
-    // console.log(scope.$root.dateList);
-    return fnPromise.then(function (data) {
-        var seriesData = data.map(function (item) {
+    var simpleSeries = function (raw) {
+        var seriesData = raw.map(function (item) {
             return item.dailyspikevol
         })
         return {
@@ -176,6 +222,54 @@ function customSpikesData(fnPromise, scope) {
                 text: scope.title || ''
             }
         }
+    }
+    var barLineSeries = function (raw) {
+        var barData = raw.map(function (item) {
+            return item.dailyspikevol
+        })
+        var lineData = raw.map(function (item) {
+            return item.dailytotalvol
+        })
+        return {
+            xAxis: { data: scope.$root.dateList },
+            grid: {
+                width: '75%'
+            },
+            yAxis: [
+                {
+                    type: 'value',
+                    name: 'Spike'
+                }, {
+                    type: 'value',
+                    name: 'VoC'
+                }
+            ],
+            series: [{
+                name: 'Spikes',
+                type: 'bar',
+                data: barData
+            }, {
+                    name: 'VoC',
+                    yAxisIndex: 1,
+                    type: 'line',
+                    data: lineData
+                }],
+            title: {
+                text: scope.title || ''
+            }
+        }
+    }
+    var fn = simpleSeries;
+    switch (scope.type) {
+        case 'barLine':
+            fn = barLineSeries;
+            break;
+        default:
+            break;
+    }
+    // console.log(scope.$root.dateList);
+    return fnPromise.then(function (data) {
+        return fn(data);
     })
 
 }
@@ -265,6 +359,22 @@ function customServicesDistributionData(fnPromise, scope) {
     })
 }
 
+function customHoriBarData(scope) {
+    return {
+        yAxis: {
+            data: scope.platforms
+        },
+        series: [{
+            name: scope.pnscope + ' Vol',
+            type: 'bar',
+            data: scope.raw
+        }],
+        title: {
+            text: scope.title || ''
+        }
+    };
+}
+
 function initAxisChartOpt(scope) {
     var opt = {
         tooltip: {
@@ -291,13 +401,62 @@ function initAxisChartOpt(scope) {
         ],
         series: []
     };
-    // if (scope.title) {
-    //     opt.title = {
-    //         text: scope.title,
-    //     }
-    //     if (scope.subtitle) opt.title.subtext = scope.subtitle;
-    // }
     return opt;
+}
+function initHoriChartOpt(scope) {
+    var opt = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        grid: {
+            // width:'85%'
+            left: '15%',
+            right: '3%'
+        },
+        toolbox: {
+            show: false,
+            trigger: 'axis',
+            feature: {
+                saveAsImage: { show: true, title: "Save as Image" }
+            }
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: []
+        },
+        series: []
+    };
+    return opt;
+}
+function initBarLineChartOpt(scope) {
+    var opt = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        toolbox: {
+            show: false,
+            trigger: 'axis',
+            feature: {
+                saveAsImage: { show: true, title: "Save as Image" }
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: []
+        },
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            }
+        ],
+        series: []
+    };
 }
 
 function initPieChartOpt(scope) {
