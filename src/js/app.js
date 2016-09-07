@@ -24,7 +24,10 @@ app.
         history.replaceState(null, null, hash);
       } 
     });
-
+    $rootScope.test = function(){
+      console.log(1)
+      alert('123');
+    }
     // $(window).resize(function () {
     //   console.log(window.innerWidth);
     // })

@@ -66,116 +66,118 @@
                 </h3>
 
         <div class="ui grid">
-            <div class="five wide column">
+            <div class="two column row">
                 <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='twitter' api-fn="getMentionedMostServiceDistribution" property-select="messages"></ng-echart>
                 <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='twitter' api-fn="getMentionedMostServiceDistribution" property-select="users"></ng-echart>
             </div>
-            <div class="eleven wide column">
-                <table id="spikes-table" class="ui blue striped celled table">
-                    <thead>
-                        <tr>
-                            <th>Service Name</th>
-                            <th>Post Vol</th>
-                            <th>POSI Ratio</th>
-                            <th>NEG Ratio</th>
-                            <th>Unique Users Vol</th>
-                            <th>Total Page View</th>
-                            <th>Detected Spikes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Azure Web Apps</td>
-                            <td>150</td>
-                            <td>98%</td>
-                            <td>2%</td>
-                            <td>34</td>
-                            <td>1582</td>
-                            <td>34</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Cloud Service</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure VM</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Mobile Apps</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Storage</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Web Apps</td>
-                            <td>150</td>
-                            <td>98%</td>
-                            <td>2%</td>
-                            <td>34</td>
-                            <td>1582</td>
-                            <td>34</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Cloud Service</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure VM</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Mobile Apps</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>Azure Storage</td>
-                            <td>110</td>
-                            <td>95%</td>
-                            <td>5%</td>
-                            <td>24</td>
-                            <td>882</td>
-                            <td>12</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="column">
+                    <table id="spikes-table" class="ui blue striped celled table">
+                        <thead>
+                            <tr>
+                                <th>Service Name</th>
+                                <th>Post Vol</th>
+                                <th>POSI Ratio</th>
+                                <th>NEG Ratio</th>
+                                <th>Unique Users Vol</th>
+                                <th>Total Page View</th>
+                                <th>Detected Spikes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Azure Web Apps</td>
+                                <td>150</td>
+                                <td>98%</td>
+                                <td>2%</td>
+                                <td>34</td>
+                                <td>1582</td>
+                                <td>34</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Cloud Service</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure VM</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Mobile Apps</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Storage</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Web Apps</td>
+                                <td>150</td>
+                                <td>98%</td>
+                                <td>2%</td>
+                                <td>34</td>
+                                <td>1582</td>
+                                <td>34</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Cloud Service</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure VM</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Mobile Apps</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>Azure Storage</td>
+                                <td>110</td>
+                                <td>95%</td>
+                                <td>5%</td>
+                                <td>24</td>
+                                <td>882</td>
+                                <td>12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -316,7 +318,7 @@
 
         <div class="ui two column grid">
             <div class="column">
-                <ng-echart style="width:100%;height:250px;" title="Most POSITIVE Feedback Mentioned" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi" ></ng-echart>
+                <ng-echart style="width:100%;height:250px;" title="Most POSITIVE Feedback Mentioned" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi"></ng-echart>
 
             </div>
             <div class="column">
@@ -345,20 +347,20 @@
     <div id="scrollspy" ng-scroll-spy class="ui basic segment">
         <div class="ui middle aligned selection list">
             <div class="item">
-                <a du-smooth-scroll="community" du-scrollspy>
+                <a du-smooth-scroll="community" du-scrollspy offset="30">
                     <div class="ui label" set-color="blue" data-content="Community Members" data-variation="mini inverted">
                         <i class="icon users"></i><span ng-hide="isSmall">Community Members</span>
                     </div>
                 </a>
             </div>
             <div class="item">
-                <a du-smooth-scroll="product" du-scrollspy>
+                <a du-smooth-scroll="product" du-scrollspy offset="30">
                     <div class="ui label" set-color="green" data-content="Product Status" data-variation="mini inverted">
                         <i class="icon heartbeat"></i> <span ng-hide="isSmall">Product Status</span></div>
                 </a>
             </div>
             <div class="item">
-                <a du-smooth-scroll="sentiment" du-scrollspy>
+                <a du-smooth-scroll="sentiment" du-scrollspy offset="30">
                     <div class="ui label" set-color="purple" data-content="Voc Sentiment" data-variation="mini inverted">
                         <i class="icon comments"></i> <span ng-hide="isSmall">Voc Sentiment</span></div>
                 </a>
