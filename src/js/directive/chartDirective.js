@@ -102,7 +102,9 @@ module.exports = function ($rootScope, $q, testSrv) {
 
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
-
+            _.chartObj.on('click',function(params){
+                console.log(params)
+            });
             var apiFn = testSrv[_.apiFn];
             switch (_.apiFn) {
                 case 'getSpikes':

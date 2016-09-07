@@ -9,7 +9,6 @@ app.factory('utilitySrv', require('./utility'));
 app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
     return {
         get: function (api, params) {
-            debugger;
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = config.service + api + qs;
