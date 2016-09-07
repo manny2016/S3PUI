@@ -1,4 +1,4 @@
-module.exports = function ($scope, $timeout, $q) {
+module.exports = function ($scope, $timeout, $q,rawdataSrv) {
     $scope.flags = {
         b: false,
         g: false,
@@ -13,6 +13,9 @@ module.exports = function ($scope, $timeout, $q) {
         }, 2000)
     })
 
+    rawdataSrv.getCate().then(function(data){
+        console.log(data)
+    })
 
     // showFlags()
 

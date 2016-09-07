@@ -1,0 +1,3312 @@
+{
+    "messagesorthreads": [
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "0",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 0",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "1",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 1",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "2",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 2",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "3",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 3",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "4",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 4",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "5",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 5",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "6",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 6",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "7",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 7",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "8",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 8",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "9",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 9",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "10",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 10",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "11",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 11",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "12",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 12",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "13",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 13",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "14",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 14",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "15",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 15",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "16",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 16",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "17",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 17",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "18",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 18",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "19",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 19",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "20",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 20",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "21",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 21",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "22",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 22",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "23",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 23",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "24",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 24",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "25",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 25",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "26",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 26",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "27",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 27",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "28",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 28",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "29",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 29",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "30",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 30",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "31",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 31",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "32",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 32",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "33",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 33",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "34",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 34",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "35",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 35",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "36",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 36",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "37",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 37",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "38",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 38",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "39",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 39",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "40",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 40",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "41",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 41",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "42",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 42",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "43",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 43",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "44",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 44",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "45",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 45",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "46",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 46",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "47",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 47",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "48",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 48",
+            "twitterurl": null,
+            "user": null
+        },
+        {
+            "Topic": null,
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "49",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 49",
+            "twitterurl": null,
+            "user": null
+        }
+    ],
+    "topusers": [
+        {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 1,
+            "id_str": null,
+            "location": null,
+            "name": "Test Top User User",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        }
+    ],
+    "vocinfluencecount": 9296392,
+    "vocnegativecount": 59028,
+    "vocneginfluencecount": 929562,
+    "vocposiinfluencecount": 929562,
+    "vocpositivecount": 126228,
+    "vocvolcount": 931035,
+    "volhourlylist": [
+        {
+            "attachedobject": 1473854017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4523,
+                "negativetotalvol": 295,
+                "positiveinfluencedvol": 4523,
+                "positivetotalvol": 695,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 45237,
+                "voctotalvol": 4523
+            }
+        },
+        {
+            "attachedobject": 1473857617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7753,
+                "negativetotalvol": 475,
+                "positiveinfluencedvol": 7753,
+                "positivetotalvol": 875,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 77530,
+                "voctotalvol": 7753
+            }
+        },
+        {
+            "attachedobject": 1473861217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9509,
+                "negativetotalvol": 572,
+                "positiveinfluencedvol": 9509,
+                "positivetotalvol": 972,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 95096,
+                "voctotalvol": 9509
+            }
+        },
+        {
+            "attachedobject": 1473864817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3738,
+                "negativetotalvol": 252,
+                "positiveinfluencedvol": 3738,
+                "positivetotalvol": 652,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 37389,
+                "voctotalvol": 3738
+            }
+        },
+        {
+            "attachedobject": 1473868417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2266,
+                "negativetotalvol": 170,
+                "positiveinfluencedvol": 2266,
+                "positivetotalvol": 570,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 22663,
+                "voctotalvol": 2266
+            }
+        },
+        {
+            "attachedobject": 1473872017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5495,
+                "negativetotalvol": 349,
+                "positiveinfluencedvol": 5495,
+                "positivetotalvol": 749,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54956,
+                "voctotalvol": 5495
+            }
+        },
+        {
+            "attachedobject": 1473875617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4023,
+                "negativetotalvol": 267,
+                "positiveinfluencedvol": 4023,
+                "positivetotalvol": 667,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 40230,
+                "voctotalvol": 4023
+            }
+        },
+        {
+            "attachedobject": 1473879217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7252,
+                "negativetotalvol": 447,
+                "positiveinfluencedvol": 7252,
+                "positivetotalvol": 847,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 72522,
+                "voctotalvol": 7252
+            }
+        },
+        {
+            "attachedobject": 1473882817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1481,
+                "negativetotalvol": 126,
+                "positiveinfluencedvol": 1481,
+                "positivetotalvol": 526,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 14815,
+                "voctotalvol": 1481
+            }
+        },
+        {
+            "attachedobject": 1473886417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9008,
+                "negativetotalvol": 544,
+                "positiveinfluencedvol": 9008,
+                "positivetotalvol": 944,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 90089,
+                "voctotalvol": 9008
+            }
+        },
+        {
+            "attachedobject": 1473890017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3238,
+                "negativetotalvol": 224,
+                "positiveinfluencedvol": 3238,
+                "positivetotalvol": 624,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 32381,
+                "voctotalvol": 3238
+            }
+        },
+        {
+            "attachedobject": 1473893617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6467,
+                "negativetotalvol": 403,
+                "positiveinfluencedvol": 6467,
+                "positivetotalvol": 803,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 64674,
+                "voctotalvol": 6467
+            }
+        },
+        {
+            "attachedobject": 1473897217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4994,
+                "negativetotalvol": 321,
+                "positiveinfluencedvol": 4994,
+                "positivetotalvol": 721,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49948,
+                "voctotalvol": 4994
+            }
+        },
+        {
+            "attachedobject": 1473900817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8224,
+                "negativetotalvol": 501,
+                "positiveinfluencedvol": 8224,
+                "positivetotalvol": 901,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 82240,
+                "voctotalvol": 8224
+            }
+        },
+        {
+            "attachedobject": 1473904417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6751,
+                "negativetotalvol": 419,
+                "positiveinfluencedvol": 6751,
+                "positivetotalvol": 819,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 67514,
+                "voctotalvol": 6751
+            }
+        },
+        {
+            "attachedobject": 1473908017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9980,
+                "negativetotalvol": 598,
+                "positiveinfluencedvol": 9980,
+                "positivetotalvol": 998,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99807,
+                "voctotalvol": 9980
+            }
+        },
+        {
+            "attachedobject": 1473911617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4209,
+                "negativetotalvol": 278,
+                "positiveinfluencedvol": 4209,
+                "positivetotalvol": 678,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 42099,
+                "voctotalvol": 4209
+            }
+        },
+        {
+            "attachedobject": 1473915217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2737,
+                "negativetotalvol": 196,
+                "positiveinfluencedvol": 2737,
+                "positivetotalvol": 596,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 27374,
+                "voctotalvol": 2737
+            }
+        },
+        {
+            "attachedobject": 1473918817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5966,
+                "negativetotalvol": 375,
+                "positiveinfluencedvol": 5966,
+                "positivetotalvol": 775,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 59666,
+                "voctotalvol": 5966
+            }
+        },
+        {
+            "attachedobject": 1473922417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9195,
+                "negativetotalvol": 555,
+                "positiveinfluencedvol": 9195,
+                "positivetotalvol": 955,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91958,
+                "voctotalvol": 9195
+            }
+        },
+        {
+            "attachedobject": 1473926017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7723,
+                "negativetotalvol": 473,
+                "positiveinfluencedvol": 7723,
+                "positivetotalvol": 873,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 77233,
+                "voctotalvol": 7723
+            }
+        },
+        {
+            "attachedobject": 1473929617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1952,
+                "negativetotalvol": 152,
+                "positiveinfluencedvol": 1952,
+                "positivetotalvol": 552,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 19525,
+                "voctotalvol": 1952
+            }
+        },
+        {
+            "attachedobject": 1473933217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9479,
+                "negativetotalvol": 571,
+                "positiveinfluencedvol": 9479,
+                "positivetotalvol": 971,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94799,
+                "voctotalvol": 9479
+            }
+        },
+        {
+            "attachedobject": 1473936817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3709,
+                "negativetotalvol": 250,
+                "positiveinfluencedvol": 3709,
+                "positivetotalvol": 650,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 37092,
+                "voctotalvol": 3709
+            }
+        },
+        {
+            "attachedobject": 1473940417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6938,
+                "negativetotalvol": 429,
+                "positiveinfluencedvol": 6938,
+                "positivetotalvol": 829,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 69384,
+                "voctotalvol": 6938
+            }
+        },
+        {
+            "attachedobject": 1473944017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5465,
+                "negativetotalvol": 348,
+                "positiveinfluencedvol": 5465,
+                "positivetotalvol": 748,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54658,
+                "voctotalvol": 5465
+            }
+        },
+        {
+            "attachedobject": 1473947617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8695,
+                "negativetotalvol": 527,
+                "positiveinfluencedvol": 8695,
+                "positivetotalvol": 927,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86951,
+                "voctotalvol": 8695
+            }
+        },
+        {
+            "attachedobject": 1473951217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2924,
+                "negativetotalvol": 206,
+                "positiveinfluencedvol": 2924,
+                "positivetotalvol": 606,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 29243,
+                "voctotalvol": 2924
+            }
+        },
+        {
+            "attachedobject": 1473954817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1451,
+                "negativetotalvol": 125,
+                "positiveinfluencedvol": 1451,
+                "positivetotalvol": 525,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 14517,
+                "voctotalvol": 1451
+            }
+        },
+        {
+            "attachedobject": 1473958417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4681,
+                "negativetotalvol": 304,
+                "positiveinfluencedvol": 4681,
+                "positivetotalvol": 704,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 46810,
+                "voctotalvol": 4681
+            }
+        },
+        {
+            "attachedobject": 1473962017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3208,
+                "negativetotalvol": 222,
+                "positiveinfluencedvol": 3208,
+                "positivetotalvol": 622,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 32084,
+                "voctotalvol": 3208
+            }
+        },
+        {
+            "attachedobject": 1473965617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6437,
+                "negativetotalvol": 402,
+                "positiveinfluencedvol": 6437,
+                "positivetotalvol": 802,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 64376,
+                "voctotalvol": 6437
+            }
+        },
+        {
+            "attachedobject": 1473969217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9666,
+                "negativetotalvol": 581,
+                "positiveinfluencedvol": 9666,
+                "positivetotalvol": 981,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 96669,
+                "voctotalvol": 9666
+            }
+        },
+        {
+            "attachedobject": 1473972817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8194,
+                "negativetotalvol": 499,
+                "positiveinfluencedvol": 8194,
+                "positivetotalvol": 899,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81943,
+                "voctotalvol": 8194
+            }
+        },
+        {
+            "attachedobject": 1473976417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2423,
+                "negativetotalvol": 179,
+                "positiveinfluencedvol": 2423,
+                "positivetotalvol": 579,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 24236,
+                "voctotalvol": 2423
+            }
+        },
+        {
+            "attachedobject": 1473980017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5652,
+                "negativetotalvol": 358,
+                "positiveinfluencedvol": 5652,
+                "positivetotalvol": 758,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 56528,
+                "voctotalvol": 5652
+            }
+        },
+        {
+            "attachedobject": 1473983617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4180,
+                "negativetotalvol": 276,
+                "positiveinfluencedvol": 4180,
+                "positivetotalvol": 676,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41802,
+                "voctotalvol": 4180
+            }
+        },
+        {
+            "attachedobject": 1473987217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7409,
+                "negativetotalvol": 456,
+                "positiveinfluencedvol": 7409,
+                "positivetotalvol": 856,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 74095,
+                "voctotalvol": 7409
+            }
+        },
+        {
+            "attachedobject": 1473990817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5936,
+                "negativetotalvol": 374,
+                "positiveinfluencedvol": 5936,
+                "positivetotalvol": 774,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 59369,
+                "voctotalvol": 5936
+            }
+        },
+        {
+            "attachedobject": 1473994417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9166,
+                "negativetotalvol": 553,
+                "positiveinfluencedvol": 9166,
+                "positivetotalvol": 953,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91661,
+                "voctotalvol": 9166
+            }
+        },
+        {
+            "attachedobject": 1473998017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3395,
+                "negativetotalvol": 233,
+                "positiveinfluencedvol": 3395,
+                "positivetotalvol": 633,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 33954,
+                "voctotalvol": 3395
+            }
+        },
+        {
+            "attachedobject": 1474001617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1922,
+                "negativetotalvol": 151,
+                "positiveinfluencedvol": 1922,
+                "positivetotalvol": 551,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 19228,
+                "voctotalvol": 1922
+            }
+        },
+        {
+            "attachedobject": 1474005217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5152,
+                "negativetotalvol": 330,
+                "positiveinfluencedvol": 5152,
+                "positivetotalvol": 730,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 51520,
+                "voctotalvol": 5152
+            }
+        },
+        {
+            "attachedobject": 1474008817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8381,
+                "negativetotalvol": 510,
+                "positiveinfluencedvol": 8381,
+                "positivetotalvol": 910,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 83813,
+                "voctotalvol": 8381
+            }
+        },
+        {
+            "attachedobject": 1474012417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6908,
+                "negativetotalvol": 428,
+                "positiveinfluencedvol": 6908,
+                "positivetotalvol": 828,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 69087,
+                "voctotalvol": 6908
+            }
+        },
+        {
+            "attachedobject": 1474016017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1137,
+                "negativetotalvol": 107,
+                "positiveinfluencedvol": 1137,
+                "positivetotalvol": 507,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 11379,
+                "voctotalvol": 1137
+            }
+        },
+        {
+            "attachedobject": 1474019617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8665,
+                "negativetotalvol": 525,
+                "positiveinfluencedvol": 8665,
+                "positivetotalvol": 925,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86654,
+                "voctotalvol": 8665
+            }
+        },
+        {
+            "attachedobject": 1474023217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2894,
+                "negativetotalvol": 205,
+                "positiveinfluencedvol": 2894,
+                "positivetotalvol": 605,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 28946,
+                "voctotalvol": 2894
+            }
+        },
+        {
+            "attachedobject": 1474026817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6123,
+                "negativetotalvol": 384,
+                "positiveinfluencedvol": 6123,
+                "positivetotalvol": 784,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 61239,
+                "voctotalvol": 6123
+            }
+        },
+        {
+            "attachedobject": 1474030417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4651,
+                "negativetotalvol": 302,
+                "positiveinfluencedvol": 4651,
+                "positivetotalvol": 702,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 46513,
+                "voctotalvol": 4651
+            }
+        },
+        {
+            "attachedobject": 1474034017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7880,
+                "negativetotalvol": 482,
+                "positiveinfluencedvol": 7880,
+                "positivetotalvol": 882,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 78805,
+                "voctotalvol": 7880
+            }
+        },
+        {
+            "attachedobject": 1474037617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2109,
+                "negativetotalvol": 161,
+                "positiveinfluencedvol": 2109,
+                "positivetotalvol": 561,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 21098,
+                "voctotalvol": 2109
+            }
+        },
+        {
+            "attachedobject": 1474041217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9637,
+                "negativetotalvol": 579,
+                "positiveinfluencedvol": 9637,
+                "positivetotalvol": 979,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 96372,
+                "voctotalvol": 9637
+            }
+        },
+        {
+            "attachedobject": 1474044817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3866,
+                "negativetotalvol": 259,
+                "positiveinfluencedvol": 3866,
+                "positivetotalvol": 659,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 38664,
+                "voctotalvol": 3866
+            }
+        },
+        {
+            "attachedobject": 1474048417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2393,
+                "negativetotalvol": 177,
+                "positiveinfluencedvol": 2393,
+                "positivetotalvol": 577,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23938,
+                "voctotalvol": 2393
+            }
+        },
+        {
+            "attachedobject": 1474052017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5623,
+                "negativetotalvol": 356,
+                "positiveinfluencedvol": 5623,
+                "positivetotalvol": 756,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 56231,
+                "voctotalvol": 5623
+            }
+        },
+        {
+            "attachedobject": 1474055617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8852,
+                "negativetotalvol": 536,
+                "positiveinfluencedvol": 8852,
+                "positivetotalvol": 936,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 88523,
+                "voctotalvol": 8852
+            }
+        },
+        {
+            "attachedobject": 1474059217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7379,
+                "negativetotalvol": 454,
+                "positiveinfluencedvol": 7379,
+                "positivetotalvol": 854,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 73797,
+                "voctotalvol": 7379
+            }
+        },
+        {
+            "attachedobject": 1474062817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1609,
+                "negativetotalvol": 133,
+                "positiveinfluencedvol": 1609,
+                "positivetotalvol": 533,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 16090,
+                "voctotalvol": 1609
+            }
+        },
+        {
+            "attachedobject": 1474066417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4838,
+                "negativetotalvol": 313,
+                "positiveinfluencedvol": 4838,
+                "positivetotalvol": 713,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 48382,
+                "voctotalvol": 4838
+            }
+        },
+        {
+            "attachedobject": 1474070017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3365,
+                "negativetotalvol": 231,
+                "positiveinfluencedvol": 3365,
+                "positivetotalvol": 631,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 33657,
+                "voctotalvol": 3365
+            }
+        },
+        {
+            "attachedobject": 1474073617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6594,
+                "negativetotalvol": 410,
+                "positiveinfluencedvol": 6594,
+                "positivetotalvol": 810,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 65949,
+                "voctotalvol": 6594
+            }
+        },
+        {
+            "attachedobject": 1474077217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5122,
+                "negativetotalvol": 329,
+                "positiveinfluencedvol": 5122,
+                "positivetotalvol": 729,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 51223,
+                "voctotalvol": 5122
+            }
+        },
+        {
+            "attachedobject": 1474080817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8351,
+                "negativetotalvol": 508,
+                "positiveinfluencedvol": 8351,
+                "positivetotalvol": 908,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 83516,
+                "voctotalvol": 8351
+            }
+        },
+        {
+            "attachedobject": 1474084417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2580,
+                "negativetotalvol": 187,
+                "positiveinfluencedvol": 2580,
+                "positivetotalvol": 587,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 25808,
+                "voctotalvol": 2580
+            }
+        },
+        {
+            "attachedobject": 1474088017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1108,
+                "negativetotalvol": 106,
+                "positiveinfluencedvol": 1108,
+                "positivetotalvol": 506,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 11082,
+                "voctotalvol": 1108
+            }
+        },
+        {
+            "attachedobject": 1474091617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4337,
+                "negativetotalvol": 285,
+                "positiveinfluencedvol": 4337,
+                "positivetotalvol": 685,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 43375,
+                "voctotalvol": 4337
+            }
+        },
+        {
+            "attachedobject": 1474095217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7566,
+                "negativetotalvol": 464,
+                "positiveinfluencedvol": 7566,
+                "positivetotalvol": 864,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 75667,
+                "voctotalvol": 7566
+            }
+        },
+        {
+            "attachedobject": 1474098817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6094,
+                "negativetotalvol": 383,
+                "positiveinfluencedvol": 6094,
+                "positivetotalvol": 783,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 60941,
+                "voctotalvol": 6094
+            }
+        },
+        {
+            "attachedobject": 1474102417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7850,
+                "negativetotalvol": 480,
+                "positiveinfluencedvol": 7850,
+                "positivetotalvol": 880,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 78508,
+                "voctotalvol": 9323
+            }
+        },
+        {
+            "attachedobject": 1474106017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2080,
+                "negativetotalvol": 160,
+                "positiveinfluencedvol": 2080,
+                "positivetotalvol": 560,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 20800,
+                "voctotalvol": 2080
+            }
+        },
+        {
+            "attachedobject": 1474109617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3836,
+                "negativetotalvol": 257,
+                "positiveinfluencedvol": 3836,
+                "positivetotalvol": 657,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 38367,
+                "voctotalvol": 3836
+            }
+        },
+        {
+            "attachedobject": 1474113217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7065,
+                "negativetotalvol": 436,
+                "positiveinfluencedvol": 7065,
+                "positivetotalvol": 836,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 70659,
+                "voctotalvol": 7065
+            }
+        },
+        {
+            "attachedobject": 1474116817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1295,
+                "negativetotalvol": 116,
+                "positiveinfluencedvol": 1295,
+                "positivetotalvol": 516,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 12952,
+                "voctotalvol": 1295
+            }
+        },
+        {
+            "attachedobject": 1474120417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8822,
+                "negativetotalvol": 534,
+                "positiveinfluencedvol": 8822,
+                "positivetotalvol": 934,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 88226,
+                "voctotalvol": 8822
+            }
+        },
+        {
+            "attachedobject": 1474124017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3051,
+                "negativetotalvol": 213,
+                "positiveinfluencedvol": 3051,
+                "positivetotalvol": 613,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 30519,
+                "voctotalvol": 3051
+            }
+        },
+        {
+            "attachedobject": 1474127617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1579,
+                "negativetotalvol": 132,
+                "positiveinfluencedvol": 1579,
+                "positivetotalvol": 532,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 15793,
+                "voctotalvol": 1579
+            }
+        },
+        {
+            "attachedobject": 1474131217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4808,
+                "negativetotalvol": 311,
+                "positiveinfluencedvol": 4808,
+                "positivetotalvol": 711,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 48085,
+                "voctotalvol": 4808
+            }
+        },
+        {
+            "attachedobject": 1474134817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8037,
+                "negativetotalvol": 490,
+                "positiveinfluencedvol": 8037,
+                "positivetotalvol": 890,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 80378,
+                "voctotalvol": 8037
+            }
+        },
+        {
+            "attachedobject": 1474138417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6565,
+                "negativetotalvol": 409,
+                "positiveinfluencedvol": 6565,
+                "positivetotalvol": 809,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 65652,
+                "voctotalvol": 6565
+            }
+        },
+        {
+            "attachedobject": 1474142017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9794,
+                "negativetotalvol": 588,
+                "positiveinfluencedvol": 9794,
+                "positivetotalvol": 988,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 97944,
+                "voctotalvol": 9794
+            }
+        },
+        {
+            "attachedobject": 1474145617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4023,
+                "negativetotalvol": 267,
+                "positiveinfluencedvol": 4023,
+                "positivetotalvol": 667,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 40237,
+                "voctotalvol": 4023
+            }
+        },
+        {
+            "attachedobject": 1474149217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2551,
+                "negativetotalvol": 186,
+                "positiveinfluencedvol": 2551,
+                "positivetotalvol": 586,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 25511,
+                "voctotalvol": 2551
+            }
+        },
+        {
+            "attachedobject": 1474152817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5780,
+                "negativetotalvol": 365,
+                "positiveinfluencedvol": 5780,
+                "positivetotalvol": 765,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 57803,
+                "voctotalvol": 5780
+            }
+        },
+        {
+            "attachedobject": 1474156417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4307,
+                "negativetotalvol": 283,
+                "positiveinfluencedvol": 4307,
+                "positivetotalvol": 683,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 43078,
+                "voctotalvol": 4307
+            }
+        },
+        {
+            "attachedobject": 1474160017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7537,
+                "negativetotalvol": 463,
+                "positiveinfluencedvol": 7537,
+                "positivetotalvol": 863,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 75370,
+                "voctotalvol": 7537
+            }
+        },
+        {
+            "attachedobject": 1474163617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1766,
+                "negativetotalvol": 142,
+                "positiveinfluencedvol": 1766,
+                "positivetotalvol": 542,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17662,
+                "voctotalvol": 1766
+            }
+        },
+        {
+            "attachedobject": 1474167217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9293,
+                "negativetotalvol": 560,
+                "positiveinfluencedvol": 9293,
+                "positivetotalvol": 960,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 92937,
+                "voctotalvol": 9293
+            }
+        },
+        {
+            "attachedobject": 1474170817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3522,
+                "negativetotalvol": 240,
+                "positiveinfluencedvol": 3522,
+                "positivetotalvol": 640,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 35229,
+                "voctotalvol": 3522
+            }
+        },
+        {
+            "attachedobject": 1474174417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6752,
+                "negativetotalvol": 419,
+                "positiveinfluencedvol": 6752,
+                "positivetotalvol": 819,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 67522,
+                "voctotalvol": 6752
+            }
+        },
+        {
+            "attachedobject": 1474178017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5279,
+                "negativetotalvol": 337,
+                "positiveinfluencedvol": 5279,
+                "positivetotalvol": 737,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 52796,
+                "voctotalvol": 5279
+            }
+        },
+        {
+            "attachedobject": 1474181617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8508,
+                "negativetotalvol": 517,
+                "positiveinfluencedvol": 8508,
+                "positivetotalvol": 917,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 85088,
+                "voctotalvol": 8508
+            }
+        },
+        {
+            "attachedobject": 1474185217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7036,
+                "negativetotalvol": 435,
+                "positiveinfluencedvol": 7036,
+                "positivetotalvol": 835,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 70362,
+                "voctotalvol": 7036
+            }
+        },
+        {
+            "attachedobject": 1474188817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1265,
+                "negativetotalvol": 114,
+                "positiveinfluencedvol": 1265,
+                "positivetotalvol": 514,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 12655,
+                "voctotalvol": 1265
+            }
+        },
+        {
+            "attachedobject": 1474192417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4494,
+                "negativetotalvol": 294,
+                "positiveinfluencedvol": 4494,
+                "positivetotalvol": 694,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44947,
+                "voctotalvol": 4494
+            }
+        },
+        {
+            "attachedobject": 1474196017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3022,
+                "negativetotalvol": 212,
+                "positiveinfluencedvol": 3022,
+                "positivetotalvol": 612,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 30221,
+                "voctotalvol": 3022
+            }
+        },
+        {
+            "attachedobject": 1474199617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6251,
+                "negativetotalvol": 391,
+                "positiveinfluencedvol": 6251,
+                "positivetotalvol": 791,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 62514,
+                "voctotalvol": 6251
+            }
+        },
+        {
+            "attachedobject": 1474203217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9480,
+                "negativetotalvol": 571,
+                "positiveinfluencedvol": 9480,
+                "positivetotalvol": 971,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94806,
+                "voctotalvol": 9480
+            }
+        },
+        {
+            "attachedobject": 1474206817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8008,
+                "negativetotalvol": 489,
+                "positiveinfluencedvol": 8008,
+                "positivetotalvol": 889,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 80080,
+                "voctotalvol": 8008
+            }
+        },
+        {
+            "attachedobject": 1474210417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2237,
+                "negativetotalvol": 168,
+                "positiveinfluencedvol": 2237,
+                "positivetotalvol": 568,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 22373,
+                "voctotalvol": 2237
+            }
+        },
+        {
+            "attachedobject": 1474214017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9764,
+                "negativetotalvol": 586,
+                "positiveinfluencedvol": 9764,
+                "positivetotalvol": 986,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 97647,
+                "voctotalvol": 9764
+            }
+        },
+        {
+            "attachedobject": 1474217617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3994,
+                "negativetotalvol": 266,
+                "positiveinfluencedvol": 3994,
+                "positivetotalvol": 666,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 39940,
+                "voctotalvol": 3994
+            }
+        },
+        {
+            "attachedobject": 1474221217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7223,
+                "negativetotalvol": 445,
+                "positiveinfluencedvol": 7223,
+                "positivetotalvol": 845,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 72232,
+                "voctotalvol": 7223
+            }
+        },
+        {
+            "attachedobject": 1474224817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5750,
+                "negativetotalvol": 363,
+                "positiveinfluencedvol": 5750,
+                "positivetotalvol": 763,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 57506,
+                "voctotalvol": 5750
+            }
+        },
+        {
+            "attachedobject": 1474228417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8979,
+                "negativetotalvol": 543,
+                "positiveinfluencedvol": 8979,
+                "positivetotalvol": 943,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 89799,
+                "voctotalvol": 8979
+            }
+        },
+        {
+            "attachedobject": 1474232017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3209,
+                "negativetotalvol": 222,
+                "positiveinfluencedvol": 3209,
+                "positivetotalvol": 622,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 32091,
+                "voctotalvol": 3209
+            }
+        },
+        {
+            "attachedobject": 1474235617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1736,
+                "negativetotalvol": 140,
+                "positiveinfluencedvol": 1736,
+                "positivetotalvol": 540,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17365,
+                "voctotalvol": 1736
+            }
+        },
+        {
+            "attachedobject": 1474239217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4965,
+                "negativetotalvol": 320,
+                "positiveinfluencedvol": 4965,
+                "positivetotalvol": 720,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49658,
+                "voctotalvol": 4965
+            }
+        },
+        {
+            "attachedobject": 1474242817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3493,
+                "negativetotalvol": 238,
+                "positiveinfluencedvol": 3493,
+                "positivetotalvol": 638,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 34932,
+                "voctotalvol": 3493
+            }
+        },
+        {
+            "attachedobject": 1474246417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6722,
+                "negativetotalvol": 417,
+                "positiveinfluencedvol": 6722,
+                "positivetotalvol": 817,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 67224,
+                "voctotalvol": 6722
+            }
+        },
+        {
+            "attachedobject": 1474250017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9951,
+                "negativetotalvol": 597,
+                "positiveinfluencedvol": 9951,
+                "positivetotalvol": 997,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99517,
+                "voctotalvol": 9951
+            }
+        },
+        {
+            "attachedobject": 1474253617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8479,
+                "negativetotalvol": 515,
+                "positiveinfluencedvol": 8479,
+                "positivetotalvol": 915,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 84791,
+                "voctotalvol": 8479
+            }
+        },
+        {
+            "attachedobject": 1474257217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2708,
+                "negativetotalvol": 194,
+                "positiveinfluencedvol": 2708,
+                "positivetotalvol": 594,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 27083,
+                "voctotalvol": 2708
+            }
+        },
+        {
+            "attachedobject": 1474260817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5937,
+                "negativetotalvol": 374,
+                "positiveinfluencedvol": 5937,
+                "positivetotalvol": 774,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 59376,
+                "voctotalvol": 5937
+            }
+        },
+        {
+            "attachedobject": 1474264417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4465,
+                "negativetotalvol": 292,
+                "positiveinfluencedvol": 4465,
+                "positivetotalvol": 692,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44650,
+                "voctotalvol": 4465
+            }
+        },
+        {
+            "attachedobject": 1474268017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7694,
+                "negativetotalvol": 471,
+                "positiveinfluencedvol": 7694,
+                "positivetotalvol": 871,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 76942,
+                "voctotalvol": 7694
+            }
+        },
+        {
+            "attachedobject": 1474271617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6221,
+                "negativetotalvol": 390,
+                "positiveinfluencedvol": 6221,
+                "positivetotalvol": 790,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 62217,
+                "voctotalvol": 6221
+            }
+        },
+        {
+            "attachedobject": 1474275217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9450,
+                "negativetotalvol": 569,
+                "positiveinfluencedvol": 9450,
+                "positivetotalvol": 969,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94509,
+                "voctotalvol": 9450
+            }
+        },
+        {
+            "attachedobject": 1474278817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3680,
+                "negativetotalvol": 248,
+                "positiveinfluencedvol": 3680,
+                "positivetotalvol": 648,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 36802,
+                "voctotalvol": 3680
+            }
+        },
+        {
+            "attachedobject": 1474282417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2207,
+                "negativetotalvol": 167,
+                "positiveinfluencedvol": 2207,
+                "positivetotalvol": 567,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 22076,
+                "voctotalvol": 2207
+            }
+        },
+        {
+            "attachedobject": 1474286017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5436,
+                "negativetotalvol": 346,
+                "positiveinfluencedvol": 5436,
+                "positivetotalvol": 746,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54368,
+                "voctotalvol": 5436
+            }
+        },
+        {
+            "attachedobject": 1474289617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8666,
+                "negativetotalvol": 525,
+                "positiveinfluencedvol": 8666,
+                "positivetotalvol": 925,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86661,
+                "voctotalvol": 8666
+            }
+        },
+        {
+            "attachedobject": 1474293217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7193,
+                "negativetotalvol": 444,
+                "positiveinfluencedvol": 7193,
+                "positivetotalvol": 844,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 71935,
+                "voctotalvol": 7193
+            }
+        },
+        {
+            "attachedobject": 1474296817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1422,
+                "negativetotalvol": 123,
+                "positiveinfluencedvol": 1422,
+                "positivetotalvol": 523,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 14227,
+                "voctotalvol": 1422
+            }
+        },
+        {
+            "attachedobject": 1474300417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8950,
+                "negativetotalvol": 541,
+                "positiveinfluencedvol": 8950,
+                "positivetotalvol": 941,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 89501,
+                "voctotalvol": 8950
+            }
+        },
+        {
+            "attachedobject": 1474304017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3179,
+                "negativetotalvol": 221,
+                "positiveinfluencedvol": 3179,
+                "positivetotalvol": 621,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 31794,
+                "voctotalvol": 3179
+            }
+        },
+        {
+            "attachedobject": 1474307617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6408,
+                "negativetotalvol": 400,
+                "positiveinfluencedvol": 6408,
+                "positivetotalvol": 800,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 64086,
+                "voctotalvol": 6408
+            }
+        },
+        {
+            "attachedobject": 1474311217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4936,
+                "negativetotalvol": 318,
+                "positiveinfluencedvol": 4936,
+                "positivetotalvol": 718,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49361,
+                "voctotalvol": 4936
+            }
+        },
+        {
+            "attachedobject": 1474314817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8165,
+                "negativetotalvol": 498,
+                "positiveinfluencedvol": 8165,
+                "positivetotalvol": 898,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81653,
+                "voctotalvol": 8165
+            }
+        },
+        {
+            "attachedobject": 1474318417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2394,
+                "negativetotalvol": 177,
+                "positiveinfluencedvol": 2394,
+                "positivetotalvol": 577,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23945,
+                "voctotalvol": 2394
+            }
+        },
+        {
+            "attachedobject": 1474322017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9922,
+                "negativetotalvol": 595,
+                "positiveinfluencedvol": 9922,
+                "positivetotalvol": 995,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99220,
+                "voctotalvol": 9922
+            }
+        },
+        {
+            "attachedobject": 1474325617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4151,
+                "negativetotalvol": 275,
+                "positiveinfluencedvol": 4151,
+                "positivetotalvol": 675,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41512,
+                "voctotalvol": 4151
+            }
+        },
+        {
+            "attachedobject": 1474329217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2678,
+                "negativetotalvol": 193,
+                "positiveinfluencedvol": 2678,
+                "positivetotalvol": 593,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 26786,
+                "voctotalvol": 2678
+            }
+        },
+        {
+            "attachedobject": 1474332817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5907,
+                "negativetotalvol": 372,
+                "positiveinfluencedvol": 5907,
+                "positivetotalvol": 772,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 59079,
+                "voctotalvol": 5907
+            }
+        },
+        {
+            "attachedobject": 1474336417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9137,
+                "negativetotalvol": 552,
+                "positiveinfluencedvol": 9137,
+                "positivetotalvol": 952,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91371,
+                "voctotalvol": 9137
+            }
+        },
+        {
+            "attachedobject": 1474340017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7664,
+                "negativetotalvol": 470,
+                "positiveinfluencedvol": 7664,
+                "positivetotalvol": 870,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 76645,
+                "voctotalvol": 7664
+            }
+        },
+        {
+            "attachedobject": 1474343617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1893,
+                "negativetotalvol": 149,
+                "positiveinfluencedvol": 1893,
+                "positivetotalvol": 549,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 18938,
+                "voctotalvol": 1893
+            }
+        },
+        {
+            "attachedobject": 1474347217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5123,
+                "negativetotalvol": 329,
+                "positiveinfluencedvol": 5123,
+                "positivetotalvol": 729,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 51230,
+                "voctotalvol": 5123
+            }
+        },
+        {
+            "attachedobject": 1474350817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3650,
+                "negativetotalvol": 247,
+                "positiveinfluencedvol": 3650,
+                "positivetotalvol": 647,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 36504,
+                "voctotalvol": 3650
+            }
+        },
+        {
+            "attachedobject": 1474354417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6879,
+                "negativetotalvol": 426,
+                "positiveinfluencedvol": 6879,
+                "positivetotalvol": 826,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 68797,
+                "voctotalvol": 6879
+            }
+        },
+        {
+            "attachedobject": 1474358017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5407,
+                "negativetotalvol": 344,
+                "positiveinfluencedvol": 5407,
+                "positivetotalvol": 744,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54071,
+                "voctotalvol": 5407
+            }
+        },
+        {
+            "attachedobject": 1474361617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8636,
+                "negativetotalvol": 524,
+                "positiveinfluencedvol": 8636,
+                "positivetotalvol": 924,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86363,
+                "voctotalvol": 8636
+            }
+        },
+        {
+            "attachedobject": 1474365217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2865,
+                "negativetotalvol": 203,
+                "positiveinfluencedvol": 2865,
+                "positivetotalvol": 603,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 28656,
+                "voctotalvol": 2865
+            }
+        },
+        {
+            "attachedobject": 1474368817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4622,
+                "negativetotalvol": 301,
+                "positiveinfluencedvol": 4622,
+                "positivetotalvol": 701,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 46223,
+                "voctotalvol": 4622
+            }
+        },
+        {
+            "attachedobject": 1474372417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7851,
+                "negativetotalvol": 480,
+                "positiveinfluencedvol": 7851,
+                "positivetotalvol": 880,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 78515,
+                "voctotalvol": 7851
+            }
+        },
+        {
+            "attachedobject": 1474376017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6378,
+                "negativetotalvol": 398,
+                "positiveinfluencedvol": 6378,
+                "positivetotalvol": 798,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 63789,
+                "voctotalvol": 6378
+            }
+        },
+        {
+            "attachedobject": 1474379617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9608,
+                "negativetotalvol": 578,
+                "positiveinfluencedvol": 9608,
+                "positivetotalvol": 978,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 96082,
+                "voctotalvol": 9608
+            }
+        },
+        {
+            "attachedobject": 1474383217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8135,
+                "negativetotalvol": 496,
+                "positiveinfluencedvol": 8135,
+                "positivetotalvol": 896,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81356,
+                "voctotalvol": 8135
+            }
+        },
+        {
+            "attachedobject": 1474386817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2364,
+                "negativetotalvol": 175,
+                "positiveinfluencedvol": 2364,
+                "positivetotalvol": 575,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23648,
+                "voctotalvol": 2364
+            }
+        },
+        {
+            "attachedobject": 1474390417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4121,
+                "negativetotalvol": 273,
+                "positiveinfluencedvol": 4121,
+                "positivetotalvol": 673,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41215,
+                "voctotalvol": 4121
+            }
+        },
+        {
+            "attachedobject": 1474394017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7350,
+                "negativetotalvol": 452,
+                "positiveinfluencedvol": 7350,
+                "positivetotalvol": 852,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 73507,
+                "voctotalvol": 7350
+            }
+        },
+        {
+            "attachedobject": 1474397617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1580,
+                "negativetotalvol": 132,
+                "positiveinfluencedvol": 1580,
+                "positivetotalvol": 532,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 15800,
+                "voctotalvol": 1580
+            }
+        },
+        {
+            "attachedobject": 1474401217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9107,
+                "negativetotalvol": 550,
+                "positiveinfluencedvol": 9107,
+                "positivetotalvol": 950,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91074,
+                "voctotalvol": 9107
+            }
+        },
+        {
+            "attachedobject": 1474404817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3336,
+                "negativetotalvol": 229,
+                "positiveinfluencedvol": 3336,
+                "positivetotalvol": 629,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 33366,
+                "voctotalvol": 3336
+            }
+        },
+        {
+            "attachedobject": 1474408417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1864,
+                "negativetotalvol": 148,
+                "positiveinfluencedvol": 1864,
+                "positivetotalvol": 548,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 18641,
+                "voctotalvol": 1864
+            }
+        },
+        {
+            "attachedobject": 1474412017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5093,
+                "negativetotalvol": 327,
+                "positiveinfluencedvol": 5093,
+                "positivetotalvol": 727,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 50933,
+                "voctotalvol": 5093
+            }
+        },
+        {
+            "attachedobject": 1474415617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8322,
+                "negativetotalvol": 506,
+                "positiveinfluencedvol": 8322,
+                "positivetotalvol": 906,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 83225,
+                "voctotalvol": 8322
+            }
+        },
+        {
+            "attachedobject": 1474419217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6850,
+                "negativetotalvol": 425,
+                "positiveinfluencedvol": 6850,
+                "positivetotalvol": 825,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 68500,
+                "voctotalvol": 6850
+            }
+        },
+        {
+            "attachedobject": 1474422817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1079,
+                "negativetotalvol": 104,
+                "positiveinfluencedvol": 1079,
+                "positivetotalvol": 504,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 10792,
+                "voctotalvol": 1079
+            }
+        },
+        {
+            "attachedobject": 1474426417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4308,
+                "negativetotalvol": 283,
+                "positiveinfluencedvol": 4308,
+                "positivetotalvol": 683,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 43085,
+                "voctotalvol": 4308
+            }
+        },
+        {
+            "attachedobject": 1474430017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2835,
+                "negativetotalvol": 201,
+                "positiveinfluencedvol": 2835,
+                "positivetotalvol": 601,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 28359,
+                "voctotalvol": 2835
+            }
+        },
+        {
+            "attachedobject": 1474433617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6065,
+                "negativetotalvol": 381,
+                "positiveinfluencedvol": 6065,
+                "positivetotalvol": 781,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 60651,
+                "voctotalvol": 6065
+            }
+        },
+        {
+            "attachedobject": 1474437217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4592,
+                "negativetotalvol": 299,
+                "positiveinfluencedvol": 4592,
+                "positivetotalvol": 699,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 45925,
+                "voctotalvol": 4592
+            }
+        },
+        {
+            "attachedobject": 1474440817,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7821,
+                "negativetotalvol": 478,
+                "positiveinfluencedvol": 7821,
+                "positivetotalvol": 878,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 78218,
+                "voctotalvol": 7821
+            }
+        },
+        {
+            "attachedobject": 1474444417,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2051,
+                "negativetotalvol": 158,
+                "positiveinfluencedvol": 2051,
+                "positivetotalvol": 558,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 20510,
+                "voctotalvol": 2051
+            }
+        },
+        {
+            "attachedobject": 1474448017,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9578,
+                "negativetotalvol": 576,
+                "positiveinfluencedvol": 9578,
+                "positivetotalvol": 976,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 95784,
+                "voctotalvol": 9578
+            }
+        },
+        {
+            "attachedobject": 1474451617,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3807,
+                "negativetotalvol": 255,
+                "positiveinfluencedvol": 3807,
+                "positivetotalvol": 655,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 38077,
+                "voctotalvol": 3807
+            }
+        },
+        {
+            "attachedobject": 1474455217,
+            "vocinfluence": {
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7036,
+                "negativetotalvol": 435,
+                "positiveinfluencedvol": 7036,
+                "positivetotalvol": 835,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 70369,
+                "voctotalvol": 7036
+            }
+        }
+    ]
+}
