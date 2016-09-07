@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
+    <title>Service Status and Sentiment Predictor (S3P)</title>
     <base href="/" />
     <link rel="stylesheet" href="/public/semantic.css" />
     <link rel="stylesheet" href="/public/css/style.css" />
@@ -15,8 +16,8 @@
 </head>
 
 <body ng-app="app">
-
-    <div>
+     <form id="form1" runat="server">
+    <div ng-controller="navCtrl">
         <!--********-->
         <!--Top Menu-->
         <!--********-->
@@ -26,25 +27,25 @@
                     <!--<img class="logo" src="assets/images/logo.png">-->
                     S3P
                     <div class="text tiny" style="margin-left:10px;">
-                        This is a cool project ...
+                        Service Status and Sentiment Predictor
                     </div>
                 </div>
                 <div class="menu right">
-                    <a href="/" class="item active">Who am I</a>
-                    <a href="/social" class="item">Social Community</a>
-                    <a href="#" class="item">StackExchange</a>
-                    <a href="#" class="item">MSDN/TN Fourms</a>
+                    <a href="/" ng-class="{ active: isActive('/')}" class="item">What's S3P</a>
+                    <a href="/#social" ng-class="{ active: isActive('/#social')}"class="item">Social Community</a>
+                    <a href="/" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
+                    <a href="/" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>
 
                     <div class="right item ui label simple dropdown">
                         <img class="ui mini circular image avator right spaced" src="public/images/patrick.png">
                         <div class="content">
-                            <div class="ui sub header">Fawad</div>
+                            <div class="ui sub header"><%=UserAlias %></div>
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
                             <a class="item">Profile</a>
-                            <a class="item">Subscription</a>
-                            <a class="item">Sign out</a>
+                            <!--<a class="item">Subscription</a>-->
+                            <a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>
                         </div>
                     </div>
                 </div>
@@ -56,6 +57,7 @@
             <!--contain body-->
         </div>
     </div>
+   </form>
     <script type="text/javascript" src="/public/main.min.js"></script>
 </body>
 </html>

@@ -26,12 +26,20 @@ module.exports = function (testSrv) {
             var flipLeft = function () {
                 e.find("div.shape").shape('flip left');
                 var cate = e.find("div.side.active").next().attr("page");
+                if(! cate){
+                    var dom = e.find(".side.active").siblings();
+                    cate = $(dom[0]).attr("page");
+                }
                 $('#'+id+' .ui.dropdown').dropdown("set text",cate)
                 resizeChart();
             }
             var flipRight = function () {
                 e.find("div.shape").shape('flip right');
                 var cate = e.find("div.side.active").next().attr("page");
+                if(! cate){
+                    var dom = e.find(".side.active").siblings();
+                    cate = $(dom[0]).attr("page");
+                }
                 $('#'+id+' .ui.dropdown').dropdown("set text",cate)
                 resizeChart();
             }
@@ -39,6 +47,10 @@ module.exports = function (testSrv) {
             rightButton.bind("click", flipRight);
             function resizeChart() {
                 var dom = e.find(".side.active").next().find(".echart");
+                if(!dom.get(0)){
+                    dom = e.find(".side.active").siblings();
+                    dom = $(dom[0]).find('.echart');
+                }
                 echarts.getInstanceByDom(dom.get(0)).resize();
             }
 

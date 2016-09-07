@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="S3PWebUI.Error" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginRequird.aspx.cs" Inherits="S3PWebUI.Error" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+     Please sign in...
     </div>
     </form>
 </body>
