@@ -1,4 +1,4 @@
-var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'),require('./app.route.js'), require('../../node_modules/angular-scroll')]);
+var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'),require('./filter'),require('./app.route.js'), require('../../node_modules/angular-scroll')]);
 app.
   run(function ($rootScope, utilitySrv) {
     $rootScope.timeRange = {
@@ -26,6 +26,9 @@ app.
     });
     $rootScope.test = function () {
       $rootScope.$broadcast('start-get-data', 'sub');
+      $('.fullscreen.modal').find('div.echart').map(function(){
+            echarts.getInstanceByDom(this).clear();
+        })
       $('.fullscreen.modal').modal({
         onVisible:function(e){
           $(this).find('.echart').map(function(i){

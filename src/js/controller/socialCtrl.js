@@ -1,6 +1,7 @@
-module.exports = function ($scope) {
+module.exports = function ($scope,$document) {
     $('.ui.dropdown').dropdown();
-    $('#scrollspy .list .item .label').popup()
+    $('#scrollspy .list .item .label').popup();
+    $document.scrollTopAnimated(10);
     $scope.statistic = {
         title: 'Users Joined Discussion',
         volume: 3424,
