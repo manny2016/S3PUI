@@ -197,7 +197,6 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
             _.$on('start-get-data', function (event, arg) {
                 _.getData(arg);
             });
-            
             // watch window resize
             _.clientWidth = element[0].clientWidth;
             _.$watch("clientWidth", function (newV, oldV) {
@@ -226,6 +225,7 @@ function initChart(echartObj, chartOpt, groupName) {
     //    echartObj.resize()
     //}
     echartObj.setOption(chartOpt);
+    echartObj.hideLoading();
     if (groupName) {
         echartObj.group = groupName
     }

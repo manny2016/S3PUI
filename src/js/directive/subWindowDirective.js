@@ -10,6 +10,7 @@ module.exports = function ($rootScope,testSrv) {
         scope: {
             // users: "=",
             title : "@",
+<<<<<<< HEAD
             platform: "@",
             query:"="
         },
@@ -24,4 +25,14 @@ module.exports = function ($rootScope,testSrv) {
 
 function initHourlyChartData(raw) {
 
+=======
+            platform:"@"
+        },
+        link:function(scope,e,a){
+            testSrv.getSubWindow().then(function(data){
+                console.log(data)
+            })
+        }
+    }
+>>>>>>> c5d05752acb205d953c25bb6d2c951497b0229c9
 }
