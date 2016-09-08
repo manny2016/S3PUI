@@ -77,6 +77,7 @@
                     </div>
                 </div>
                 <div class="ui green bottom attached button" ng-click="startGetData('azure')">
+
                     <i class="search icon"></i> Query
                 </div>
             </div>
@@ -119,7 +120,9 @@
 
     <!--query metrics-->
     <div ng-show="flags.m">
-        
+        <div class="ui indicating progress" id="progress">
+            <div class="bar"></div>
+        </div>
         <!--user list-->
         <div class="ui segment violet">
             <h3 class="ui header violet">
@@ -201,6 +204,7 @@
                                     </div>
                                     <div class="side" page="SU">
                                         <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
+
                                     </div>
                                 </div>
                             </div>
@@ -262,6 +266,7 @@
                                     </div>
                                     <div class="side" page="SU">
                                         <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
+
                                     </div>
                                 </div>
                             </div>
