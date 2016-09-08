@@ -16,7 +16,7 @@ module.exports = function (testSrv) {
                     // var shapSelector = $selectedItem.parent().parent().parent().siblings().find(selector);
                     e.find("div.shape").shape('set next side', selector).shape('flip up')
                     var dom = e.find(selector).find(".echart");
-                    echarts.getInstanceByDom(dom.get(0)).resize();
+                    //echarts.getInstanceByDom(dom.get(0)).resize();
                 }
             });
             var leftButton = angular.element(e.find(".ui.left.icon.button")[0]),

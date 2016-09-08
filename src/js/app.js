@@ -24,7 +24,8 @@ app.
         history.replaceState(null, null, hash);
       } 
     });
-    $rootScope.test = function(){
+    $rootScope.test = function () {
+      $rootScope.$broadcast('start-get-data', 'sub');
       $('.fullscreen.modal').modal({
         onVisible:function(e){
           $(this).find('.echart').map(function(i){

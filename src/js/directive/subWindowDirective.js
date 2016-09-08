@@ -10,12 +10,18 @@ module.exports = function ($rootScope,testSrv) {
         scope: {
             // users: "=",
             title : "@",
-            platform:"@"
+            platform: "@",
+            query:"="
         },
         link:function(scope,e,a){
             testSrv.getSubWindow().then(function(data){
-                console.log(data)
+                scope.raw = data;
+                scope.topUsers = data.topusers
             })
         }
     }
+}
+
+function initHourlyChartData(raw) {
+
 }

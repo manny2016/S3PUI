@@ -1,35 +1,35 @@
 <div class="ui segment basic container">
     <!--<div class="ui horizontal divider"></div>-->
     <!--do you know content-->
-    <div class="ui blue segment">
-        <h3 class="ui header blue">
-                    Do you know how our products look like from an eye of  your experienced customers?
-                </h3>
+    <div class="ui blue segment animated slideInUp">
+        <h2 class="ui header blue">
+            Do you know how our products look like from an eye of  your experienced customers?
+        </h2>
         <div class="ui relaxed middle aligned divided list">
-            <div class="item">
+            <div class="item animated flash">
                 <i class="help blue icon"></i>How many people are talking about our products via online community channels?
             </div>
-            <div class="item">
+            <div class="item animated flash">
                 <i class="help blue icon"></i>How many UGC or VoC are generated to discuss about our products?
             </div>
-            <div class="item">
+            <div class="item animated flash">
                 <i class="help blue icon"></i>How many users are saying 'Great' for our products? While how many customers are mentioning 'Just so so'? Are their perspectives changing recently?
             </div>
-            <div class="item">
-                <i class="help blue icon"></i>What exactly customers are saying mostly for 'Great' or 'Just so so' on our products? How many audience being influenced recently that cause of what they have said?
+            <div class="item animated flash">
+                <i class="help blue icon"></i>What exactly customers are saying mostly for 'Great' or 'Just so so' on our products? How many audience being influenced that cause of what they have said?
             </div>
-            <div class="item">
+            <div class="item animated flash">
                 <i class="help blue icon"></i>Where are the original posters? What can we do for better supporting our customers? Is there any action plan / result we can foresee?
             </div>
 
         </div>
     </div>
-    <div class="ui green segment" ng-show="flags.g">
+    <div class="ui green segment animated slideInUp">
         <h2 class="ui header green">
             S3P project would provide you a real time view for what's happening during last 7 days
         </h2>
         <div class="ui two column grid">
-            <div class="card column fluid">
+            <div class="card column fluid animated bounceInRight">
                 <div class="content">
                     <div class="header">
                         <h3 class="ui yellow message text center">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card column fluid">
+            <div class="card column fluid animated bounceInLeft ">
                 <div class="content">
                     <div class="header">
                         <h3 class="ui green message text center">
@@ -57,7 +57,10 @@
         </div>
     </div>
     <!--query category-->
-    <div class="ui orange segment clearing" ng-show="flags.r">
+    <div class="ui indicating progress" ng-show="flags.m" id="progress">
+        <div class="bar"></div>
+    </div>
+    <div class="ui orange segment clearing animated slideInUp">
         <h3 class="ui header orange">
             Tech Topic & Product Filters
             <div class="sub right header">
@@ -73,7 +76,7 @@
                         Tracked top community platforms, i.e. Twitter / StackExchange / MSDN & TN Forums Data
                     </div>
                 </div>
-                <div class="ui green bottom attached button" ng-click="startGetData()">
+                <div class="ui green bottom attached button" ng-click="startGetData('azure')">
                     <i class="search icon"></i> Query
                 </div>
             </div>
@@ -116,9 +119,7 @@
 
     <!--query metrics-->
     <div ng-show="flags.m">
-        <div class="ui indicating progress" id="progress">
-            <div class="bar"></div>
-        </div>
+        
         <!--user list-->
         <div class="ui segment violet">
             <h3 class="ui header violet">
@@ -126,14 +127,14 @@
                 </h3>
             <div class="ui three column grid">
                 <div class="row">
-                    <user-list title='Top Users in Twitter' users=topUsers platform='twitter'></user-list>
-                    <user-list title='Top Users in MSDN Forums' users=topUsers platform='msdn'></user-list>
-                    <user-list title='Top Users in Technet Forums' users=topUsers platform='tn'></user-list>
+                    <user-list title='Top Users in Twitter' users=topUsers platform='twitter' query=query location='home'></user-list>
+                    <user-list title='Top Users in MSDN Forums' users=topUsers platform='msdn' query=query location='home'></user-list>
+                    <user-list title='Top Users in Technet Forums' users=topUsers platform='tn' query=query location='home'></user-list>
                 </div>
                 <div class="row">
-                    <user-list title='Top Users in Stackoverflow' users=topUsers platform='so'></user-list>
-                    <user-list title='Top Users in Serverfault' users=topUsers platform='sf'></user-list>
-                    <user-list title='Top Users in Superuser' users=topUsers platform='su'></user-list>
+                    <user-list title='Top Users in Stackoverflow' users=topUsers platform='so' query=query location='home'></user-list>
+                    <user-list title='Top Users in Serverfault' users=topUsers platform='sf' query=query location='home'></user-list>
+                    <user-list title='Top Users in Superuser' users=topUsers platform='su' query=query location='home'></user-list>
                 </div>
             </div>
         </div>
@@ -144,14 +145,14 @@
                 </h3>
             <div class="ui three column grid">
                 <div class="row">
-                    <ng-echart title='Daily Vol & Spikes in Twitter' type="barLine" platform='twitter' api-fn="getSpikes"></ng-echart>
-                    <ng-echart title='Daily Vol & Spikes in MSDN Forums' type="barLine" platform='msdn' api-fn="getSpikes"></ng-echart>
-                    <ng-echart title='Daily Vol & Spikes in Technet Forums' type="barLine" platform='tn' api-fn="getSpikes"></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in Twitter' type="barLine" platform='twitter' query=query api-fn="getSpikes" location='home'></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in MSDN Forums' type="barLine" platform='msdn' query=query api-fn="getSpikes" location='home'></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in Technet Forums' type="barLine" platform='tn' query=query api-fn="getSpikes" location='home'></ng-echart>
                 </div>
                 <div class="row">
-                    <ng-echart title='Daily Vol & Spikes in Stackoverflow' type="barLine" platform='so' api-fn="getSpikes"></ng-echart>
-                    <ng-echart title='Daily Vol & Spikes in Serverfault' type="barLine" platform='sf' api-fn="getSpikes"></ng-echart>
-                    <ng-echart title='Daily Vol & Spikes in Superuser' type="barLine" platform=' su' api-fn="getSpikes"></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in Stackoverflow' type="barLine" platform='so' query=query api-fn="getSpikes" location='home'></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in Serverfault' type="barLine" platform='sf' query=query api-fn="getSpikes" location='home'></ng-echart>
+                    <ng-echart title='Daily Vol & Spikes in Superuser' type="barLine" platform='su' query=query api-fn="getSpikes" location='home'></ng-echart>
                 </div>
             </div>
         </div>
@@ -161,15 +162,15 @@
                 </h3>
             <div class="ui three column grid">
                 <div class="row">
-                    <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in MSDN Forums" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Technet Forums" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' query=query api-fn="getDistribution" location='home'></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in MSDN Forums" type="pie" platform='msdn' query=query api-fn="getDistribution" location='home'></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Technet Forums" type="pie" platform='tn' query=query api-fn="getDistribution" location='home'></ng-echart>
 
                 </div>
                 <div class="row">
-                    <ng-echart title="Positive & Negative Vol Distribution in Serverfault" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Stackoverflow" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Superuser" type="pie" platform='twitter' api-fn="getDistribution"></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Serverfault" type="pie" platform='sf' query=query api-fn="getDistribution" location='home'></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Stackoverflow" type="pie" platform='so' query=query api-fn="getDistribution" location='home'></ng-echart>
+                    <ng-echart title="Positive & Negative Vol Distribution in Superuser" type="pie" platform='su' query=query api-fn="getDistribution" location='home'></ng-echart>
                 </div>
             </div>
         </div>
@@ -177,29 +178,29 @@
             <h3 class="ui header green">POSITIVE Influence</h3>
             <div class="ui three column grid">
                 <div class="row">
-                    <ng-echart title="POSI mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="posi"></ng-echart>
+                    <ng-echart title="Positive Mentioned Most" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home'></ng-echart>
                     <div class="column">
                         <div id="shape1" class="ui fluid card" ng-chart-shape>
                             <!--<div class="ui top attached label">Daily Total Influence</div>-->
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="active side" page="twitter">
-                                        <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="MSDN">
-                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="TN">
-                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='yn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='yn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SO">
-                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SF">
-                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SU">
-                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +228,7 @@
                             <!--</div>-->
                         </div>
                     </div>
-                    <ng-echart title="POSI mentioned most" platform="twitter,so,sf,su,msdn,tn" type="hori" api-fn="getSpikes" pnscope="posi"></ng-echart>
+                    <ng-echart title="Positive Mentioned Most" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="posi" location='home'></ng-echart>
                 </div>
 
             </div>
@@ -238,29 +239,29 @@
                 </h3>
             <div class="ui three column grid">
                 <div class="row">
-                    <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="neg"></ng-echart>
+                    <ng-echart title="Negative Mentioned Most" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location='home'></ng-echart>
                     <div class="column">
                         <div id="shape2" class="ui fluid card" ng-chart-shape>
                             <!--<div class="ui top attached label">Daily Total Influence</div>-->
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="active side" page="twitter">
-                                        <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="MSDN">
-                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="TN">
-                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='tn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='tn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SO">
-                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SF">
-                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                     <div class="side" page="SU">
-                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -287,7 +288,7 @@
                             <!--</div>-->
                         </div>
                     </div>
-                    <ng-echart title="POSI mentioned most" platform="twitter,so,sf,su,msdn,tn" type="hori" api-fn="getSpikes" pnscope="neg"></ng-echart>
+                    <ng-echart title="Negative Platform Influence" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home'></ng-echart>
                 </div>
             </div>
         </div>

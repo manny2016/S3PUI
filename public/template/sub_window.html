@@ -1,82 +1,107 @@
-<div class="ui fullscreen modal">
+<div class="ui fullscreen modal" query=query>
     <div class="header">Header</div>
     <div id="sub_window" class="content">
-            <div class="hourly-charts chart" style="width:100%;height:300px;"></div>
-            <div class="ui divider"></div>
-            <div class="ui five column grid">
-                <div class="column">
-                    <user-list title='XXXX Users in Twitter' users=topUsers platform='twitter' style="width:100%;height:300px;"></user-list>
-                </div>
-                <div class="column">
-                    <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' api-fn="getDistribution" style="width:100%;height:300px;"></ng-echart>
-                </div>
-                <div class="column">
-                    <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" pnscope="neg" style="width:100%;height:300px;"></ng-echart>
-                </div>
-                <div class="two width column">
-                
-                </div>
+        <div class="hourly-charts chart" style="width:100%;height:300px;"></div>
+        <div class="ui divider"></div>
+        <div class="ui four column grid">
+            <div class="column">
+                <user-list title='Top Users in Twitter' users=topUsers platform='twitter' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
             </div>
-            <table id="spikes-table" class="ui blue striped celled table">
-                <thead>
-                    <tr>
-                        <th>Service Name</th>
-                        <th>Post Vol</th>
-                        <th>POSI Ratio</th>
-                        <th>NEG Ratio</th>
-                        <th>Unique Users Vol</th>
-                        <th>Total Page View</th>
-                        <th>Detected Spikes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Azure Web Apps</td>
-                        <td>150</td>
-                        <td>98%</td>
-                        <td>2%</td>
-                        <td>34</td>
-                        <td>1582</td>
-                        <td>34</td>
-                    </tr>
-                    <tr>
-                        <td>Azure Cloud Service</td>
-                        <td>110</td>
-                        <td>95%</td>
-                        <td>5%</td>
-                        <td>24</td>
-                        <td>882</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Azure VM</td>
-                        <td>110</td>
-                        <td>95%</td>
-                        <td>5%</td>
-                        <td>24</td>
-                        <td>882</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Azure Mobile Apps</td>
-                        <td>110</td>
-                        <td>95%</td>
-                        <td>5%</td>
-                        <td>24</td>
-                        <td>882</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>Azure Storage</td>
-                        <td>110</td>
-                        <td>95%</td>
-                        <td>5%</td>
-                        <td>24</td>
-                        <td>882</td>
-                        <td>12</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="column">
+                <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' query=query api-fn="getDistribution" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
+            </div>
+            <div class="column">
+                <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
+            </div>
+            <div class="column">
+                <table class="ui definition celled table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>VoC Count</th>
+                            <th>Influence Member Count (PV)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{raw.vocvolcount}}</td>
+                            <td>{{raw.vocinfluencecount}}</td>
+                        </tr>
+                        <tr>
+                            <td>Positive</td>
+                            <td>{{raw.vocpositivecount}}</td>
+                            <td>{{raw.vocposiinfluencecount}}</td>
+                        </tr>
+                        <tr>
+                            <td>Negative</td>
+                            <td>{{raw.vocnegativecount}}</td>
+                            <td>{{raw.vocnegativecount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <table id="spikes-table" class="ui blue striped celled table">
+            <thead>
+                <tr>
+                    <th>Service Name</th>
+                    <th>Post Vol</th>
+                    <th>POSI Ratio</th>
+                    <th>NEG Ratio</th>
+                    <th>Unique Users Vol</th>
+                    <th>Total Page View</th>
+                    <th>Detected Spikes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Azure Web Apps</td>
+                    <td>150</td>
+                    <td>98%</td>
+                    <td>2%</td>
+                    <td>34</td>
+                    <td>1582</td>
+                    <td>34</td>
+                </tr>
+                <tr>
+                    <td>Azure Cloud Service</td>
+                    <td>110</td>
+                    <td>95%</td>
+                    <td>5%</td>
+                    <td>24</td>
+                    <td>882</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Azure VM</td>
+                    <td>110</td>
+                    <td>95%</td>
+                    <td>5%</td>
+                    <td>24</td>
+                    <td>882</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Azure Mobile Apps</td>
+                    <td>110</td>
+                    <td>95%</td>
+                    <td>5%</td>
+                    <td>24</td>
+                    <td>882</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Azure Storage</td>
+                    <td>110</td>
+                    <td>95%</td>
+                    <td>5%</td>
+                    <td>24</td>
+                    <td>882</td>
+                    <td>12</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="actions">
         <div class="ui blue deny button">

@@ -105,41 +105,41 @@ app.factory('rawdataSrv', function (baseSrv) {
         getCate: function (platform) {
             var params = params || {};
             params.platform = platform || 'all'; 
-            return baseSrv.devGet('GetAllEnabledTopicsByPlatform',params);
+            return baseSrv.get('GetAllEnabledTopicsByPlatform', params);
         },
         getUser: function (platform,topNum,topic) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topNum = topNum || 5;
             params.topic = topic || 'all';
-            return baseSrv.devGet('GetTopUsers',params);
+            return baseSrv.get('GetTopUsers', params);
         },
         getSpikes: function (platform,topic,days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.days = days || 7;
             params.topic = topic || 'all';
-            return baseSrv.devGet('GetDailyVolSpikes',params);
+            return baseSrv.get('GetDailyVolSpikes', params);
         },
         getDistribution: function (platform,topic) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
-            return baseSrv.devGet('GetPNDistribution',params);
+            return baseSrv.get('GetPNDistribution', params);
         },
         getMentionedMostServiceList: function (platform,topic,PNScope) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetMentionedMostServiceList',params);
+            return baseSrv.get('GetMentionedMostServiceList', params);
         },
         getMentionedMostServiceDistribution: function (platform,topic,PNScope) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetMentionedMostServiceList',params);
+            return baseSrv.get('GetMentionedMostServiceList', params);
         },
         getInfluence: function (platform,topic,PNScope,days) {
             var params = params || {};

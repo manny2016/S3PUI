@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, $q, testSrv) {
+module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -74,15 +74,18 @@ module.exports = function ($rootScope, $q, testSrv) {
             title: "@",
             type: "@",
             platform: "@",
-            topic: "@",
+            //topic: "@",
             pnscope: "@",
             propertySelect: "@",
             days: "@",
             apiFn: "@",
-            group: "@"
+            group: "@",
+            query: "=",
+            noPop:"@"
         },
         link: function (scope, element, attrs) {
             var _ = scope;
+            _.compelte = false;
             _.initChartOpt = function () {
                 switch (_.type) {
                     case 'pie':
@@ -102,95 +105,99 @@ module.exports = function ($rootScope, $q, testSrv) {
 
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
-            _.chartObj.on('click',function(params){
+            _.chartObj.on('click', function (params) {
+                $rootScope.test();
                 console.log(params)
             });
-            _.chartObj.showLoading();
-            _.getData = function(){
-                var apiFn = testSrv[_.apiFn];
-                switch (_.apiFn) {
-                    case 'getSpikes':
-                        _.platforms = _.platform.split(",");
-                        if (_.platforms.length == 1) {
-                            var fnPromise = apiFn(_.platform, _.topic, _.days);
-                            customSpikesData(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
-                                initChart(_.chartObj, _.chartOpt, _.group);
-                                afterInit($rootScope,_.chartObj);
-                            })
-                        } else {
-                            _.raw = [];
-                            var fnPromises = _.platforms.map(function (item) {
-                                return apiFn(item, _.topic, _.days).then(function (data) {
-                                    var seriesData = data.map(function (raw) {
-                                        // var tmp = { name: item };
-                                        switch (_.pnscope) {
-                                            case 'posi':
-                                                var value = raw.dailyposiinfluencevol
-                                                break;
-                                            case 'neg':
-                                                var value = raw.dailyneginfluencevol
-                                                break;
-                                            default:
-                                                var value = raw.dailytotalinfluencevol
-                                                break;
-                                        }
-                                        // tmp.value = value;
-                                        // return tmp;
-                                        return value;
-                                    })
-                                    _.raw.push(seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
-                                        return previousValue + currentValue;
-                                    }))
+            _.getData = function (location) {
+                if (attrs.location === location) {
+                    var apiFn = rawdataSrv[_.apiFn];
+                    switch (_.apiFn) {
+                        case 'getSpikes':
+                            _.platforms = _.platform.split(",");
+                            if (_.platforms.length == 1) {
+                                var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
+                                customSpikesData(fnPromise, _).then(function (config) {
+                                    _.chartOpt = angular.merge(_.chartOpt, config);
+                                    initChart(_.chartObj, _.chartOpt, _.group);
+                                    afterInit($rootScope,_, _.chartObj);
                                 })
-                            })
-                            // console.log(fnPromises);
-                            $q.all(fnPromises).then(function () {
-                                var config = customHoriBarData(_);
+                            } else {
+                                _.raw = [];
+                                var fnPromises = _.platforms.map(function (item) {
+                                    return apiFn(item, _.query.topic, _.query.days).then(function (data) {
+                                        var seriesData = data.map(function (raw) {
+                                            // var tmp = { name: item };
+                                            switch (_.pnscope) {
+                                                case 'posi':
+                                                    var value = raw.dailyposiinfluencevol
+                                                    break;
+                                                case 'neg':
+                                                    var value = raw.dailyneginfluencevol
+                                                    break;
+                                                default:
+                                                    var value = raw.dailytotalinfluencevol
+                                                    break;
+                                            }
+                                            // tmp.value = value;
+                                            // return tmp;
+                                            return value;
+                                        })
+                                        _.raw.push(seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                            return previousValue + currentValue;
+                                        }))
+                                    })
+                                })
+                                // console.log(fnPromises);
+                                $q.all(fnPromises).then(function () {
+                                    var config = customHoriBarData(_);
+                                    _.chartOpt = angular.merge(_.chartOpt, config);
+                                    initChart(_.chartObj, _.chartOpt);
+                                    afterInit($rootScope,_, _.chartObj);
+                                })
+                            }
+
+                            break;
+                        case 'getDistribution':
+                            var fnPromise = apiFn(_.platform, _.query.topic);
+                            customDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope,_.chartObj);
+                                afterInit($rootScope,_, _.chartObj);
                             })
-                        }
-
-                        break;
-                    case 'getDistribution':
-                        var fnPromise = apiFn(_.platform, _.toppic);
-                        customDistributionData(fnPromise, _).then(function (config) {
-                            _.chartOpt = angular.merge(_.chartOpt, config);
-                            initChart(_.chartObj, _.chartOpt);
-                            afterInit($rootScope,_.chartObj);
-                        })
-                        break;
-                    case 'getMentionedMostServiceList':
-                        var fnPromise = apiFn(_.platform, _.toppic, _.pnscope);
-                        var fn = customWordCloudData;
-                        // switch (scope.type) {
-                        //     case 'hori':
-                        //         fn = customHoriBarData;
-                        //         break;
-                        //     default:
-                        //         break
-                        // }
-                        fn(fnPromise, _).then(function (config) {
-                            _.chartOpt = angular.merge(_.chartOpt, config);
-                            initChart(_.chartObj, _.chartOpt);
-                            afterInit($rootScope,_.chartObj);
-                        })
-                        break;
-                    case 'getMentionedMostServiceDistribution':
-                        var fnPromise = apiFn(_.platform, _.toppic, _.pnscope);
-                        customServicesDistributionData(fnPromise, _).then(function (config) {
-                            _.chartOpt = angular.merge(_.chartOpt, config);
-                            initChart(_.chartObj, _.chartOpt);
-                            afterInit($rootScope,_.chartObj);
-                        })
-                        break;
+                            break;
+                        case 'getMentionedMostServiceList':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customWordCloudData;
+                            // switch (scope.type) {
+                            //     case 'hori':
+                            //         fn = customHoriBarData;
+                            //         break;
+                            //     default:
+                            //         break
+                            // }
+                            fn(fnPromise, _).then(function (config) {
+                                //debugger;
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope,_, _.chartObj);
+                            })
+                            break;
+                        case 'getMentionedMostServiceDistribution':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            customServicesDistributionData(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope,_, _.chartObj);
+                            })
+                            break;
+                    }
                 }
             }
-            _.$on('start-get-data',function(){
-                _.getData();
+            _.$on('start-get-data', function (event, arg) {
+                _.getData(arg);
             });
+            
             // watch window resize
             _.clientWidth = element[0].clientWidth;
             _.$watch("clientWidth", function (newV, oldV) {
@@ -212,15 +219,32 @@ module.exports = function ($rootScope, $q, testSrv) {
 function initChart(echartObj, chartOpt, groupName) {
     // debugger;
     // console.log(echartObj)
+    echartObj.resize();
+    //var echartsWidth = echartObj.getWidth();
+    //var domWidth = echartObj.getDom().offsetWidth;
+    //if (echartsWidth !== domWidth) {
+    //    echartObj.resize()
+    //}
     echartObj.setOption(chartOpt);
-    echartObj.hideLoading();
     if (groupName) {
         echartObj.group = groupName
     }
 }
 
-function afterInit(scope,echartObj){
-    scope.$broadcast('data-get',echartObj);
+function afterInit(rootscope, scope, echartObj) {
+    scope.compelte = true;
+    if (scope.apiFn !== 'getMentionedMostServiceList') {
+        //console.log(scope);
+        setTimeout(function () {
+            echartObj.resize();
+        },150)
+    }
+    //var echartsWidth = echartObj.getWidth();
+    //var domWidth = echartObj.getDom().offsetWidth;
+    //if (echartsWidth !== domWidth) {
+    //    echartObj.resize()
+    //}
+    rootscope.$broadcast('data-got', echartObj);
 }
 
 function customSpikesData(fnPromise, scope) {

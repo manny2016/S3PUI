@@ -15,6 +15,6 @@ app.config(function($routeProvider, $locationProvider){
   .otherwise('/');
 
   // configure html5 to get links working on jsfiddle
-  // $locationProvider.html5Mode(true).hashPrefix('!');
+   $locationProvider.html5Mode(true).hashPrefix('!');
 })
 module.exports = 'app.Route';

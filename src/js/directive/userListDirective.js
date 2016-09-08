@@ -10,16 +10,28 @@ module.exports = function ($rootScope,testSrv) {
         scope: {
             // users: "=",
             title : "@",
-            platform:"@"
+            platform: "@",
+            query: "=",
+            noPop: "@"
         },
-        link:function(scope,e,a){
-            scope.onClick=function(){
+        link: function (scope, e, a) {
+            console.log(scope)
+            scope.onClick = function () {
+                console.log(scope.noPop);
+                console.log(a);
                 $rootScope.test();
             }
-            testSrv.getUser().then(function (data) {
-                // console.log(data);
-                scope.users = data.slice(0, 5);
-            })
+            scope.getData = function (location) {
+                if (a.location === location) {
+                    testSrv.getUser(scope.platform, 5, scope.query.topic).then(function (data) {
+                        // console.log(data);
+                        scope.users = data.slice(0, 5);
+                    })
+                }
+            }
+            scope.$on('start-get-data', function (event, arg) {
+                scope.getData(arg);
+            });
             
         }
     }

@@ -1,5 +1,6 @@
 module.exports = function ($scope, $rootScope, $timeout, $q, rawdataSrv, testSrv) {
-    var totalrequests = 30;
+    $scope.query = {};
+    var totalrequests = 28;
     $('#progress').progress({
         total: totalrequests
     });
@@ -21,21 +22,24 @@ module.exports = function ($scope, $rootScope, $timeout, $q, rawdataSrv, testSrv
         console.log(data)
     })
 
-    $scope.$on('data-get', function (event, arg) {
+    $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
+        //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
-        console.log($('#progress').progress('get value'))
+        //console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value')===totalrequests) {
             $timeout(function(){
                 $('#progress').hide()
             },1000)
         }
-        $timeout(function () {
-            arg.resize();
-        }, 500)
+        //$timeout(function () {
+        //    //console.log(arg)
+        //    arg.resize();
+        //},500)
     });
 
-    $scope.startGetData = function () {
-        $scope.$broadcast('start-get-data');
+    $scope.startGetData = function (topic) {
+        $scope.query.topic = topic;
+        $scope.$broadcast('start-get-data','home');
     }
 }
