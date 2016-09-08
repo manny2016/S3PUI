@@ -12,7 +12,6 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = config.service + api + qs;
-            console.log(path)
             var deferred = $q.defer();
             $http.get(path).then(function (data) {
                 if (data.status == 200) {
@@ -24,10 +23,11 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
             })
             return deferred.promise;
         },
-        devGet: function (api) {
-            var path = '';
-            path = config.dev_service + api + '.json';
-
+        devGet: function (api,params) {
+            var path = '',
+                qs = params ? "?" + $httpParamSerializer(params) : '';
+            
+            path = config.dev_service + api + '.json'  + qs;
             var deferred = $q.defer();
             $http.get(path).then(function (data) {
                 if (data.status == 200) {
@@ -44,77 +44,109 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
 
 app.factory('testSrv', function (baseSrv) {
     return {
-        test: function () {
+        test: function (params) {
             return baseSrv.devGet('GetMentionedServiceList')
         },
-        getCate: function () {
-            return baseSrv.devGet('GetAllEnabledTopicsByPlatform');
+        getCate: function (platform) {
+            var params = params || {};
+            params.platform = platform || 'all'; 
+            return baseSrv.devGet('GetAllEnabledTopicsByPlatform',params);
         },
-        getUser: function () {
-            return baseSrv.devGet('GetTopUsers');
+        getUser: function (platform,topNum,topic) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topNum = topNum || 5;
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetTopUsers',params);
         },
-        getSpikes: function () {
-            return baseSrv.devGet('GetDailyVolSpikes');
+        getSpikes: function (platform,topic,days) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.days = days || 7;
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetDailyVolSpikes',params);
         },
-        getDistribution: function () {
-            return baseSrv.devGet('GetPNDistribution');
+        getDistribution: function (platform,topic) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetPNDistribution',params);
         },
-        getMentionedMostServiceList: function () {
-            return baseSrv.devGet('GetMentionedMostServiceList');
+        getMentionedMostServiceList: function (platform,topic,PNScope) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.devGet('GetMentionedMostServiceList',params);
         },
-        getMentionedMostServiceDistribution: function () {
-            return baseSrv.devGet('GetMentionedMostServiceList');
+        getMentionedMostServiceDistribution: function (platform,topic,PNScope) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.devGet('GetMentionedMostServiceList',params);
+        },
+        getInfluence: function (platform,topic,PNScope,days) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetDailyInfluence',params);
+        },
+        getSubWindow:function(){
+            return baseSrv.devGet('subwindow');
         }
     }
 })
 
 app.factory('rawdataSrv', function (baseSrv) {
     return {
-        getCate: function (params) {
+        getCate: function (platform) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all'; 
-            return baseSrv.get('GetAllEnabledTopicsByPlatform',params);
+            params.platform = platform || 'all'; 
+            return baseSrv.devGet('GetAllEnabledTopicsByPlatform',params);
         },
-        getUser: function (params) {
+        getUser: function (platform,topNum,topic) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topNum) params.topNum = 5;
-            if(!params.topic) params.topic = 'all';
-            return baseSrv.get('GetTopUsers',params);
+            params.platform = platform || 'all';
+            params.topNum = topNum || 5;
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetTopUsers',params);
         },
-        getSpikes: function (params) {
+        getSpikes: function (platform,topic,days) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topNum) params.topNum = 7;
-            if(!params.topic) params.topic = 'all';
-            return baseSrv.get('GetDailyVolSpikes',params);
+            params.platform = platform || 'all';
+            params.days = days || 7;
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetDailyVolSpikes',params);
         },
-        getDistribution: function (params) {
+        getDistribution: function (platform,topic) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topic) params.topic = 'all';
-            return baseSrv.get('GetPNDistribution',params);
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            return baseSrv.devGet('GetPNDistribution',params);
         },
-        getMentionedMostServiceList: function (params) {
+        getMentionedMostServiceList: function (platform,topic,PNScope) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topic) params.topic = 'all';
-            if(!params.PNScope) params.PNScope = 'all';
-            return baseSrv.get('GetMentionedMostServiceList',params);
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.devGet('GetMentionedMostServiceList',params);
         },
-        getMentionedMostServiceDistribution: function (params) {
+        getMentionedMostServiceDistribution: function (platform,topic,PNScope) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topic) params.topic = 'all';
-            if(!params.PNScope) params.PNScope = 'all';
-            return baseSrv.get('GetMentionedMostServiceList',params);
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.devGet('GetMentionedMostServiceList',params);
         },
-        getInfluence: function (params) {
+        getInfluence: function (platform,topic,PNScope,days) {
             var params = params || {};
-            if(!params.platform) params.platform = 'all';
-            if(!params.topic) params.topic = 'all';
-            if(!params.PNScope) params.PNScope = 'all';
-            if(!params.days) params.days = 7;
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetDailyInfluence',params);
         }
 

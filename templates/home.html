@@ -73,7 +73,7 @@
                         Tracked top community platforms, i.e. Twitter / StackExchange / MSDN & TN Forums Data
                     </div>
                 </div>
-                <div class="ui green bottom attached button">
+                <div class="ui green bottom attached button" ng-click="startGetData()">
                     <i class="search icon"></i> Query
                 </div>
             </div>
@@ -115,7 +115,10 @@
     <!--top menu end-->
 
     <!--query metrics-->
-    <div>
+    <div ng-show="flags.m">
+        <div class="ui indicating progress" id="progress">
+            <div class="bar"></div>
+        </div>
         <!--user list-->
         <div class="ui segment violet">
             <h3 class="ui header violet">
@@ -184,19 +187,19 @@
                                         <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="MSDN">
-                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="TN">
-                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='yn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SO">
-                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SF">
-                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SU">
-                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -245,19 +248,19 @@
                                         <ng-echart title="Daily Total Influence in Twitter" type="axis" platform='twitter' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="MSDN">
-                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='MSDN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in MSDN" type="axis" platform='msdn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="TN">
-                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='TN' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Technet" type="axis" platform='tn' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SO">
-                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='SO' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Stackoverflow" type="axis" platform='so' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SF">
-                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='SF' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Serverfault" type="axis" platform='sf' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                     <div class="side" page="SU">
-                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='SU' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
+                                        <ng-echart title="Daily Total Influence in Superuser" type="axis" platform='su' api-fn="getSpikes" style="width:100%;height:264px;"></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -289,5 +292,5 @@
             </div>
         </div>
     </div>
-
+    <sub-window></sub-window>
 </div>
