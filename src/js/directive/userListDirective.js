@@ -23,7 +23,6 @@ module.exports = function ($rootScope, testSrv) {
             scope.getData = function (location) {
                 if (location == 'home') {
                     testSrv.getUser(scope.platform, 5, scope.query.topic).then(function (data) {
-                        console.log(data);
                         scope.users = data.slice(0, 5);
                         scope.complete = true;
                     })

@@ -17,6 +17,7 @@
 </head>
 
 <body ng-app="app">
+    <sub-window></sub-window>
      <form id="form1" runat="server">
     <div ng-controller="navCtrl">
         <!--********-->
@@ -32,8 +33,8 @@
                     </div>
                 </div>
                 <div class="menu right">
-                    <a href="/" ng-class="{ active: isActive('/')}" class="item">What's S3P</a>
-                    <a href="/social" ng-class="{ active: isActive('/social')}"class="item">Social Community</a>
+                    <a href="/" ng-class="{ active: isActive('/')}" class="item">S3P Dashboard</a>
+                    <a href="/social" ng-class="{ active: isActive('/social')}"class="item">Social Media</a>
                     <a href="/stackexchange" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>
 

@@ -86,6 +86,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
         link: function (scope, element, attrs) {
             var _ = scope;
             _.complete = false;
+            _.query = _.query || {};
             _.initChartOpt = function () {
                 switch (_.type) {
                     case 'pie':
@@ -115,19 +116,24 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                             path = '/social';
                             break;
                         case 'so':
-                            path = '/stackexchange';
+                            path = '#';
+                            // path = '/stackexchange';
                             break;
                         case 'sf':
-                            path = '/stackexchange';
+                            path = '#';
+                            // path = '/stackexchange';
                             break;
                         case 'su':
-                            path = '/stackexchange';
+                            path = '#';
+                            // path = '/stackexchange';
                             break;
                         case 'msdn':
-                            path = '/msdn';
+                            path = '#';
+                            // path = '/msdn';
                             break;
                         case 'tn':
-                            path = '/msdn';
+                            path = '#';
+                            // path = '/msdn';
                             break;
                     }
                     scope.$apply(function () {
@@ -244,14 +250,14 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
 function initChart(echartObj, chartOpt, groupName) {
     // debugger;
     // console.log(echartObj)
-    echartObj.resize();
     //var echartsWidth = echartObj.getWidth();
     //var domWidth = echartObj.getDom().offsetWidth;
     //if (echartsWidth !== domWidth) {
     //    echartObj.resize()
     //}
+    echartObj.resize();
     echartObj.setOption(chartOpt);
-    echartObj.hideLoading();
+    // echartObj.hideLoading();
     if (groupName) {
         echartObj.group = groupName
     }

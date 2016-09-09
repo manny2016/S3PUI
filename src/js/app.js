@@ -1,4 +1,4 @@
-var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'),require('./filter'),require('./app.route.js'), require('../../node_modules/angular-scroll')]);
+var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('../../node_modules/angular-scroll')]);
 app.
   run(function ($rootScope, utilitySrv) {
     $rootScope.timeRange = {
@@ -22,25 +22,34 @@ app.
       var hash = $element.prop('hash');
       if (hash) {
         history.replaceState(null, null, hash);
-      } 
+      }
     });
     $rootScope.test = function () {
       $rootScope.$broadcast('start-get-data', 'sub');
-      $('.fullscreen.modal').find('div.echart').map(function(){
-            echarts.getInstanceByDom(this).clear();
-        })
-      $('.fullscreen.modal').modal({
-        onVisible:function(e){
-          $(this).find('.echart').map(function(i){
-            echarts.getInstanceByDom(this).resize();
-          })
-        }
-      }).modal('show');
+      $('.fullscreen.modal').find('div.echart').map(function () {
+        echarts.getInstanceByDom(this).clear();
+      })
+      $('.fullscreen.modal').modal('show');
     }
     // $(window).resize(function () {
     //   console.log(window.innerWidth);
     // })
-
+    $rootScope.init = function () {
+      $('.fullscreen.modal').modal({
+        observeChanges:true,
+        onVisible: function (e) {
+          $(this).find('.echart').map(function (i) {
+            echarts.getInstanceByDom(this).resize();
+          })
+        },
+        onHidden: function () {
+          $(this).find('.echart').map(function (i) {
+            echarts.getInstanceByDom(this).clear();
+          })
+        }
+      });
+    }
+    $rootScope.init();
   });
 
 app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
@@ -69,7 +78,7 @@ app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) 
     }
   })
 });
- 
+
 app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
   // console.log($rootScope.dateList);
   testSrv.getDistribution().then(function (data) {
@@ -93,7 +102,7 @@ app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSr
       }
     };
     $scope.chartOpt = angular.merge($scope.chartOpt, $scope.config);
-    console.log($scope.chartOpt)
+    // console.log($scope.chartOpt)
     $scope.chartObj.setOption($scope.chartOpt)
     if ($scope.config.group) {
       $scope.chartObj.group = $scope.config.group
