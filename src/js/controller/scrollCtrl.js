@@ -1,5 +1,4 @@
 module.exports = function ($scope) {
-    console.log($scope)
      $scope.isSmall=true;
             $(window).resize(function(){
                 // debugger;

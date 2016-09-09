@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
+module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -81,11 +81,11 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
             apiFn: "@",
             group: "@",
             query: "=",
-            noPop:"@"
+            noPop: "@"
         },
         link: function (scope, element, attrs) {
             var _ = scope;
-            _.compelte = false;
+            _.complete = false;
             _.initChartOpt = function () {
                 switch (_.type) {
                     case 'pie':
@@ -106,12 +106,38 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
-                $rootScope.test();
-                console.log(params)
+                if (attrs.noPop === undefined) {
+                    $rootScope.test();
+                } else if (attrs.redirect) {
+                    var path = '/';
+                    switch (params.name) {
+                        case 'twitter':
+                            path = '/social';
+                            break;
+                        case 'so':
+                            path = '/stackexchange';
+                            break;
+                        case 'sf':
+                            path = '/stackexchange';
+                            break;
+                        case 'su':
+                            path = '/stackexchange';
+                            break;
+                        case 'msdn':
+                            path = '/msdn';
+                            break;
+                        case 'tn':
+                            path = '/msdn';
+                            break;
+                    }
+                    scope.$apply(function () {
+                        $location.path(path);
+                    });
+                }
             });
             _.getData = function (location) {
                 if (attrs.location === location) {
-                    var apiFn = rawdataSrv[_.apiFn];
+                    var apiFn = testSrv[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
                             _.platforms = _.platform.split(",");
@@ -120,7 +146,7 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
                                 customSpikesData(fnPromise, _).then(function (config) {
                                     _.chartOpt = angular.merge(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt, _.group);
-                                    afterInit($rootScope,_, _.chartObj);
+                                    afterInit($rootScope, _, _.chartObj);
                                 })
                             } else {
                                 _.raw = [];
@@ -153,7 +179,7 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
                                     var config = customHoriBarData(_);
                                     _.chartOpt = angular.merge(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt);
-                                    afterInit($rootScope,_, _.chartObj);
+                                    afterInit($rootScope, _, _.chartObj);
                                 })
                             }
 
@@ -163,7 +189,7 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
                             customDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope,_, _.chartObj);
+                                afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getMentionedMostServiceList':
@@ -180,7 +206,7 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
                                 //debugger;
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope,_, _.chartObj);
+                                afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getMentionedMostServiceDistribution':
@@ -188,7 +214,7 @@ module.exports = function ($rootScope, $q, rawdataSrv,testSrv) {
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope,_, _.chartObj);
+                                afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                     }
@@ -232,12 +258,12 @@ function initChart(echartObj, chartOpt, groupName) {
 }
 
 function afterInit(rootscope, scope, echartObj) {
-    scope.compelte = true;
+    scope.complete = true;
     if (scope.apiFn !== 'getMentionedMostServiceList') {
         //console.log(scope);
         setTimeout(function () {
             echartObj.resize();
-        },150)
+        }, 150)
     }
     //var echartsWidth = echartObj.getWidth();
     //var domWidth = echartObj.getDom().offsetWidth;

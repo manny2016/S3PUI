@@ -18,19 +18,15 @@ module.exports = function ($scope, $rootScope, $timeout, $q, rawdataSrv, testSrv
         }, 2000)
     })
 
-    testSrv.getCate().then(function (data) {
-        console.log(data)
-    })
-
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
         //console.log($('#progress').progress('get value'))
-        if ($('#progress').progress('get value')===totalrequests) {
-            $timeout(function(){
+        if ($('#progress').progress('get value') === totalrequests) {
+            $timeout(function () {
                 $('#progress').hide()
-            },1000)
+            }, 1000)
         }
         //$timeout(function () {
         //    //console.log(arg)
@@ -39,7 +35,13 @@ module.exports = function ($scope, $rootScope, $timeout, $q, rawdataSrv, testSrv
     });
 
     $scope.startGetData = function (topic) {
+        $scope.flags.m = false;
+        $('div.echart').map(function(){
+            echarts.getInstanceByDom(this).clear();
+        })
+        $('#progress').progress('reset');
+        $('#progress').show();
         $scope.query.topic = topic;
-        $scope.$broadcast('start-get-data','home');
+        $scope.$broadcast('start-get-data', 'home');
     }
 }

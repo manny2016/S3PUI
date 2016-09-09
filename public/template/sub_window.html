@@ -44,6 +44,9 @@
         </div>
         <table id="spikes-table" class="ui blue striped celled table">
             <thead>
+                <tr><th colspan="7">
+                    VoC Mentioned Most Services
+                </th>
                 <tr>
                     <th>Service Name</th>
                     <th>Post Vol</th>
@@ -55,50 +58,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Azure Web Apps</td>
-                    <td>150</td>
-                    <td>98%</td>
-                    <td>2%</td>
-                    <td>34</td>
-                    <td>1582</td>
-                    <td>34</td>
-                </tr>
-                <tr>
-                    <td>Azure Cloud Service</td>
-                    <td>110</td>
-                    <td>95%</td>
-                    <td>5%</td>
-                    <td>24</td>
-                    <td>882</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Azure VM</td>
-                    <td>110</td>
-                    <td>95%</td>
-                    <td>5%</td>
-                    <td>24</td>
-                    <td>882</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Azure Mobile Apps</td>
-                    <td>110</td>
-                    <td>95%</td>
-                    <td>5%</td>
-                    <td>24</td>
-                    <td>882</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Azure Storage</td>
-                    <td>110</td>
-                    <td>95%</td>
-                    <td>5%</td>
-                    <td>24</td>
-                    <td>882</td>
-                    <td>12</td>
+                <tr ng-repeat="item in table">
+                    <td>{{item.attachedobject}}</td>
+                    <td>{{item.vocinfluence.voctotalvol}}</td>
+                    <td>{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                    <td>{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                    <td>{{item.vocinfluence.uniqueusers}}</td>
+                    <td>{{item.vocinfluence.vocinfluencedvol}}</td>
+                    <td>{{item.vocinfluence.detectedspikesvol}}</td>
                 </tr>
             </tbody>
         </table>

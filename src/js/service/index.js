@@ -94,7 +94,7 @@ app.factory('testSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.devGet('GetDailyInfluence',params);
         },
-        getSubWindow:function(){
+        getVoCDetailsByDate:function(){
             return baseSrv.devGet('subwindow');
         }
     }
@@ -148,6 +148,12 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetDailyInfluence',params);
+        },
+        getVoCDetailsByDate:function(platform,topic){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            return baseSrv.get('GetVoCDetailsByDate');
         }
 
     }
