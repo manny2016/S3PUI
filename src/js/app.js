@@ -1,6 +1,11 @@
-var app = require('angular').module("app", [require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('../../node_modules/angular-scroll')]);
+var app = require('angular').module("app", [
+  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js')
+  , require('../../node_modules/angular-scroll')
+]);
 app.
-  run(function ($rootScope, utilitySrv) {
+  run(function ($rootScope, $state, $stateParams, utilitySrv) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
     $rootScope.timeRange = {
       'start': (function (d) { d.setDate(d.getDate() - 7); return d.setHours(0, 0, 0, 0) })(new Date),
       'end': (function (d) { d.setDate(d.getDate() - 1); return d.setHours(0, 0, 0, 0) })(new Date)
@@ -35,8 +40,9 @@ app.
     //   console.log(window.innerWidth);
     // })
     $rootScope.init = function () {
+      $('.menu').find('.ui.dropdown.item').dropdown();
       $('.fullscreen.modal').modal({
-        observeChanges:true,
+        observeChanges: true,
         onVisible: function (e) {
           $(this).find('.echart').map(function (i) {
             echarts.getInstanceByDom(this).resize();

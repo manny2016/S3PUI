@@ -148,3 +148,7 @@
 .user-list > .item:first-child img.image {
   width: 91px;
 }
+.ui.menu .select {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.95);
+}
