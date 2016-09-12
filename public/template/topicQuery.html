@@ -1,0 +1,28 @@
+<div class="card fluid" style="min-width:150px">
+    <div class="content">
+        <div class="header">{{t.TechCategoryName}}</div>
+        <div class="description">
+            <table class="ui very compact small table">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="s in t.Platforms">
+                        <td>{{s.PlatformName}}</td>
+                        <td>
+                            <!--{{s.isEnabled}}-->
+                            <i ng-if="s.isEnabled" class="check circle icon green"></i>
+                            <i ng-if="!(s.isEnabled)" class="remove circle icon red"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui green bottom attached button" ng-click="startGetData(t.TechCategoryName)">
+        <i class="search icon"></i> Query
+    </div>
+</div>

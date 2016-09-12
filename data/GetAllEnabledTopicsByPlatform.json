@@ -85,5 +85,34 @@
             }
         ],
         "TechCategoryName": "UWP"
+    },
+    {
+        "Platforms": [
+            {
+                "PlatformName": "MSDN",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "TN",
+                "isEnabled": true
+            },
+            {
+                "PlatformName": "Twitter",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SU",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SF",
+                "isEnabled": false
+            },
+            {
+                "PlatformName": "SO",
+                "isEnabled": false
+            }
+        ],
+        "TechCategoryName": "TBD"
     }
 ]

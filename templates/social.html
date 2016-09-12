@@ -25,7 +25,7 @@
     <div class="ui segment container" ng-show="flags.m">
         <!--statistic-->
         <div id="summary">
-            <h3 class="ui center aligned header">Impact Summary from S3P</h3>
+            <h2 class="ui center aligned header blue">Summary</h2>
             <!--charts-->
             <!--<div class="ui segment">-->
             <!--<div class="ui three column divided grid center aligned">
@@ -206,9 +206,11 @@
                 </div>
             </div>
         </div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
-        <div id="spikes">
-            <h3 class="ui center aligned header">Volume Spikes</h3>
+        <div class="ui hidden divider"></div>
+        <div id="volumes">
+            <h2 class="ui center aligned header teal">Volumes</h2>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
@@ -216,12 +218,13 @@
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
         </div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
-        <div id="insights">
-            <h3 class="ui center aligned header">
-                Insights of Detailed Distribution
-            </h3>
-
+        <div class="ui hidden divider"></div>
+        <div id="analytics">
+            <h2 class="ui center aligned header green">
+                Services Analytics
+            </h2>
             <div class="ui grid">
                 <div class="two column row">
                     <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='twitter' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home"></ng-echart>
@@ -338,11 +341,32 @@
                 </div>
             </div>
         </div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
+        <div class="ui hidden divider"></div>
         <div id="sentiment">
-            <h3 class="ui center aligned header">
-                VoC Sentiment Analysis
-            </h3>
+            <h2 class="ui center aligned header purple">
+                Sentiment
+            </h2>
+
+            <div class="ui two column grid">
+                <div class="row">
+                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="posi" location="home"></ng-echart>
+                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location="home"></ng-echart>
+                </div>
+                <!--<div class="row">
+                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
+                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
+                </div>-->
+            </div>
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="ui divider"></div>
+        <div class="ui hidden divider"></div>
+        <div id="influencers">
+            <h2 class="ui center aligned header violet">
+                Influencers
+            </h2>
             <div class="ui three column grid">
                 <div class="column">
                     <div class="ui blue inverted segment center aligned voc">
@@ -471,58 +495,53 @@
                     </div>
                 </div>
             </div>
-
-            <div class="ui two column grid">
-                <div class="row">
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="posi" location="home"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location="home"></ng-echart>
-                </div>
-                <!--<div class="row">
-                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
-                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
-                </div>-->
-            </div>
         </div>
+    </div>
 
-        <div id="menu" class="left attached ui rail tab-rail">
+    <!--<div id="menu" class="left attached ui rail tab-rail">
             <div class="ui fixed sticky">
                 <div class="ui vertical mini menu">
                     <a class="active item">Twitter</a>
-                    <!--<a class="item">Reddit</a>-->
                 </div>
             </div>
-        </div>
-        <!--</div>-->
-        <div id="scrollspy" ng-scroll-spy class="ui basic segment">
-            <div class="ui middle aligned selection list">
-                <div class="item">
-                    <a du-smooth-scroll="summary" du-scrollspy offset="30">
-                        <div class="ui label" set-color="blue" data-content="Impact Summary" data-variation="mini inverted">
-                            <i class="icon dashboard"></i><span ng-hide="isSmall">Impact Summary</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a du-smooth-scroll="spikes" du-scrollspy offset="30">
-                        <div class="ui label" set-color="blue" data-content="Volume Spikes" data-variation="mini inverted">
-                            <i class="icon line chart"></i><span ng-hide="isSmall">Volume Spikes</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a du-smooth-scroll="insights" du-scrollspy offset="30">
-                        <div class="ui label" set-color="green" data-content="Insights Analytics" data-variation="mini inverted">
-                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Insights Analytics</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a du-smooth-scroll="sentiment" du-scrollspy offset="30">
-                        <div class="ui label" set-color="purple" data-content="Sentiment Analytics" data-variation="mini inverted">
-                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment Analytics</span>
-                        </div>
-                    </a>
-                </div>
+        </div>-->
+    <!--</div>-->
+    <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+        <div class="ui middle aligned selection list">
+            <div class="item">
+                <a du-smooth-scroll="summary" du-scrollspy offset="60">
+                    <div class="ui label" set-color="blue" data-content="Summary" data-variation="mini inverted">
+                        <i class="icon dashboard"></i><span ng-hide="isSmall">Summary</span>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="volumes" du-scrollspy offset="160">
+                    <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
+                        <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                    <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
+                        <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
+                    <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
+                        <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
+                    </div>
+                </a>
+            </div>
+            <div class="item">
+                <a du-smooth-scroll="influencers" du-scrollspy offset="300">
+                    <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
+                        <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

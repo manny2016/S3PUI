@@ -47,10 +47,10 @@
                                 </div>
                             </div>
 
-                            <div class="ui dropdown item">
+                            <div class="ui dropdown item"  ng-class="{select: $state.includes('social')}">
                                 Social Media <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item">Twitter</a>
+                                    <a class="item" ui-sref-active="active" ui-sref="social.twitter">Twitter</a>
                                 </div>
                             </div>
 

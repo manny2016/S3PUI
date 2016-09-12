@@ -9,7 +9,7 @@ module.exports = function ($scope, $timeout, $document) {
         g: false,
         r: false
     };
-    $('.ui.dropdown').dropdown();
+    $('.ui.segment').find('.ui.dropdown').dropdown();
     $('#scrollspy .list .item .label').popup();
     $document.scrollTopAnimated(10);
     $scope.statistic = {
@@ -74,7 +74,6 @@ function initLineCharts(className) {
         'Poster\'s Regions # Hourly Trend During a Week'
     ];
     for (var i = 0; i < doms.length; i++) {
-        console.log(i,titles[i])
         var myChart = echarts.init(doms.get(i));
         // 绘制图表
         myChart.setOption({

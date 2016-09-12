@@ -27,9 +27,37 @@ app
         controller: 'homeCtrl'
       })
       .state('social', {
+        abstract: true,
         url: '/social',
+        template: '<ui-view/>'
+      })
+      .state('social.platform',{
+        url:'/social/:platform',
         templateUrl: 'templates/social.html',
         controller: 'socialCtrl'
+      })
+      .state('thirdParty', {
+        abstract: true,
+        url: '/thirdParty',
+        template: '<ui-view/>'
+      })
+      .state('thirdParty.platform',{
+        url:'/thirdParty/:platform',
+        templateUrl: 'templates/thirdParty.html',
+        // controller: 'thirdPartyCtrl'
+        controller: function($scope,$stateParams){
+          console.log($stateParams);
+        }
+      })
+      .state('msPlatform', {
+        abstract: true,
+        url: '/msPlatform',
+        template: '<ui-view/>'
+      })
+      .state('msPlatform.platform',{
+        url:'/msPlatform/:platform',
+        templateUrl: 'templates/msPlatform.html',
+        controller: 'msPlatformCtrl'
       });
 
     // configure html5 to get links working on jsfiddle

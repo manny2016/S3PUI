@@ -2,8 +2,8 @@ var app = require('angular').module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js')
   , require('../../node_modules/angular-scroll')
 ]);
-app.
-  run(function ($rootScope, $state, $stateParams, utilitySrv) {
+app
+.run(function ($rootScope, $state, $stateParams, utilitySrv) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.timeRange = {
