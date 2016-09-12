@@ -68,7 +68,7 @@
                                 MS Platforms <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item"  ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>
-                                    <a class="item"  ui-sref="msPlatform.platform({platform:'tn'})">TN Forums</a>
+                                    <a class="item"  ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
                                 </div>
                             </div>
 
