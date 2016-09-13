@@ -311,10 +311,16 @@ function customSpikesData(fnPromise, scope) {
             yAxis: [
                 {
                     type: 'value',
-                    name: 'Spike'
+                    name: 'Spike',
+                    nameTextStyle:{
+                        color:'#2ec7c9'
+                    }
                 }, {
                     type: 'value',
-                    name: 'VoC'
+                    name: 'VoC',
+                    nameTextStyle:{
+                        color:'#baa7e0'
+                    }
                 }
             ],
             series: [{

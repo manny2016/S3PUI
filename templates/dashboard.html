@@ -1,14 +1,8 @@
 <div class="ui segment basic container">
-<<<<<<< HEAD
     <div class="ui breadcrumb">
         <a class="section">S3P</a>
         <i class="right angle icon divider"></i>
         <div class="active section">Dashboard</div>
-    </div>
-=======
->>>>>>> 095473109f38dc29cff4e558143681770cfdd95c
-    <div class="ui indicating progress" ng-show="flags.m" id="progress">
-        <div class="bar"></div>
     </div>
     <div class="ui orange segment clearing animated slideInUp">
         <h3 class="ui header orange">
@@ -67,15 +61,19 @@
             <topic-query ng-repeat="t in topics"></topic-query>
         </div>
     </div>
+
+    <div class="ui indicating progress" ng-show="flags.m" id="progress">
+        <div class="bar"></div>
+    </div>
     <!--top menu end-->
 
     <!--query metrics-->
     <div ng-show="flags.m">
-        
+
         <div class="ui segment green">
             <h3 class="ui header green">Health</h3>
             <div>
-                
+
             </div>
         </div>
         <!--spikes charts-->
@@ -95,11 +93,15 @@
                     <ng-echart title='Volume & Spikes in Superuser' type="barLine" platform='su' query=query api-fn="getSpikes" location='home'></ng-echart>
                 </div>
             </div>
-        <!--</div>
+            <!--</div>
         <div class="ui segment pink">
             <h3 class="ui header pink">
                     Sentiment Analytics Distribution 
                 </h3>-->
+
+        </div>
+        <div class="ui blue segment">
+            <h3 class="ui header blue">Sentiment</h3>
             <div class="ui three column grid">
                 <div class="row">
                     <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' query=query api-fn="getDistribution" location='home'></ng-echart>
@@ -112,11 +114,6 @@
                     <ng-echart title="Positive & Negative Vol Distribution in Stackoverflow" type="pie" platform='so' query=query api-fn="getDistribution" location='home'></ng-echart>
                     <ng-echart title="Positive & Negative Vol Distribution in Superuser" type="pie" platform='su' query=query api-fn="getDistribution" location='home'></ng-echart>
                 </div>
-            </div>
-        </div>
-        <div class="ui blue segment">
-            <h3 class="ui header blue">Sentiment</h3>
-            <div class="ui three column grid">
                 <div class="row">
                     <ng-echart title="Positive Most Mentioned Services" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home'></ng-echart>
                     <div class="column">
