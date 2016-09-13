@@ -75,10 +75,10 @@
 .list {
   background: #fff;
 }
-.left {
+.pull-left {
   float: left !important;
 }
-.right {
+.pull-right {
   float: right !important;
 }
 .static.label.right {

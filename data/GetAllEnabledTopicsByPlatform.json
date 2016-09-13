@@ -26,7 +26,8 @@
                 "isEnabled": true
             }
         ],
-        "TechCategoryName": "Azure"
+        "TechCategoryName": "Azure",
+        "isGA":true
     },
     {
         "Platforms": [
@@ -55,7 +56,8 @@
                 "isEnabled": false
             }
         ],
-        "TechCategoryName": "Office 365"
+        "TechCategoryName": "Office 365",
+        "isGA":true
     },
     {
         "Platforms": [
@@ -84,7 +86,8 @@
                 "isEnabled": true
             }
         ],
-        "TechCategoryName": "UWP"
+        "TechCategoryName": "UWP",
+        "isGA":true
     },
     {
         "Platforms": [
@@ -94,7 +97,7 @@
             },
             {
                 "PlatformName": "TN",
-                "isEnabled": true
+                "isEnabled": false
             },
             {
                 "PlatformName": "Twitter",
@@ -113,6 +116,7 @@
                 "isEnabled": false
             }
         ],
-        "TechCategoryName": "TBD"
+        "TechCategoryName": "TBD",
+        "isGA":false
     }
 ]

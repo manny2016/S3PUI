@@ -1,28 +1,34 @@
-<div class="ui segment clearing container">
-    <a id="server_status" class="ui red right label static">Status</a>
-    <div class="left" style="height:38px;line-height:38px;margin-right:20px;">
-        <div class="ui red horizontal label">UTC</div>
-        {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
+<div class="ui segment basic container">
+    <div class="ui breadcrumb">
+        <a class="section">Social</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Twitter</div>
     </div>
-    <div class="ui left selection dropdown">
-        <input name="category" type="hidden" value="">
-        <i class="dropdown icon"></i>
-        <div class="default text">category</div>
-        <div class="menu">
-            <div class="item" data-value="azure">Azure</div>
-            <div class="item" data-value="powerbi">PowerBi</div>
-            <div class="item" data-value="azure-linux">Azure Linux</div>
+    <div class="ui segment clearing">
+        <a id="server_status" class="ui red right label static">Status</a>
+        <div class="pull-left" style="height:38px;line-height:38px;margin-right:20px;">
+            <div class="ui red horizontal label">UTC</div>
+            {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
         </div>
-    </div>
-    <button class="circular ui icon inverted blue button" ng-click="startGetData('azure',$event)" style="margin-left:20px">
+        <div class="ui pull-left selection dropdown">
+            <input name="category" type="hidden" value="">
+            <i class="dropdown icon"></i>
+            <div class="default text">category</div>
+            <div class="menu">
+                <div class="item" data-value="azure">Azure</div>
+                <div class="item" data-value="powerbi">PowerBi</div>
+                <div class="item" data-value="azure-linux">Azure Linux</div>
+            </div>
+        </div>
+        <button class="circular ui icon inverted blue button" ng-click="startGetData('azure',$event)" style="margin-left:20px">
         <i class="icon search"></i>
     </button>
+    </div>
 
-
-    <div class="ui indicating progress container" id="progress" ng-show="flags.m">
+    <div class="ui indicating progress" id="progress" ng-show="flags.m">
         <div class="bar"></div>
     </div>
-    <div class="ui segment container" ng-show="flags.m">
+    <div class="ui segment" ng-show="flags.m">
         <!--statistic-->
         <div id="summary">
             <h2 class="ui center aligned header blue">Summary</h2>
@@ -496,52 +502,52 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--<div id="menu" class="left attached ui rail tab-rail">
+        <!--<div id="menu" class="left attached ui rail tab-rail">
             <div class="ui fixed sticky">
                 <div class="ui vertical mini menu">
                     <a class="active item">Twitter</a>
                 </div>
             </div>
         </div>-->
-    <!--</div>-->
-    <div id="scrollspy" ng-scroll-spy class="ui basic segment">
-        <div class="ui middle aligned selection list">
-            <div class="item">
-                <a du-smooth-scroll="summary" du-scrollspy offset="60">
-                    <div class="ui label" set-color="blue" data-content="Summary" data-variation="mini inverted">
-                        <i class="icon dashboard"></i><span ng-hide="isSmall">Summary</span>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a du-smooth-scroll="volumes" du-scrollspy offset="160">
-                    <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
-                        <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a du-smooth-scroll="analytics" du-scrollspy offset="300">
-                    <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
-                        <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
-                    <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
-                        <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a du-smooth-scroll="influencers" du-scrollspy offset="300">
-                    <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
-                        <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
-                    </div>
-                </a>
+        <!--</div>-->
+        <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+            <div class="ui middle aligned selection list">
+                <div class="item">
+                    <a du-smooth-scroll="summary" du-scrollspy offset="60">
+                        <div class="ui label" set-color="blue" data-content="Summary" data-variation="mini inverted">
+                            <i class="icon dashboard"></i><span ng-hide="isSmall">Summary</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="volumes" du-scrollspy offset="160">
+                        <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
+                            <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                        <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
+                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
+                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="influencers" du-scrollspy offset="300">
+                        <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
+                            <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

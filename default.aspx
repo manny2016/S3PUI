@@ -20,7 +20,7 @@
     <body>
         <sub-window></sub-window>
         <form id="form1" runat="server">
-            <div ng-controller="navCtrl">
+            <div>
                 <!--********-->
                 <!--Top Menu-->
                 <!--********-->
@@ -39,47 +39,44 @@
                     <a href="/stackexchange" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
 
-                            <div class="ui dropdown item" ng-class="{select: $state.includes('home')}">
+                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('home')}">
                                 S3P <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item"  ui-sref="home.about">What's S3P</a>
-                                    <a class="item"  ui-sref="home.dashboard">Dashboard</a>
+                                    <a class="item" ui-sref="home.about">What's S3P</a>
+                                    <a class="item" ui-sref="home.dashboard">Dashboard</a>
                                 </div>
                             </div>
 
-                            <div class="ui dropdown item" ng-class="{select: $state.includes('social')}">
+                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('social')}">
                                 Social Media <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item"  ui-sref="social.platform({platform:'twitter'})">Twitter</a>
+                                    <a class="item" ui-sref="social.platform({platform:'twitter'})">Twitter</a>
                                 </div>
                             </div>
 
-                            <div class="ui dropdown item" ng-class="{select: $state.includes('thirdParty')}">
+                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('thirdParty')}">
                                 Third Party Forums <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item"  ui-sref="thirdParty.platform({platform:'so'})">Stackoverflow</a>
-                                    <a class="item"  ui-sref="thirdParty.platform({platform:'su'})">SuperUser</a>
-                                    <a class="item"  ui-sref="thirdParty.platform({platform:'sf'})">ServerFault</a>
-                                    <a class="item"  ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>
+                                    <a class="item" ui-sref="thirdParty.platform({platform:'so'})">Stackoverflow</a>
+                                    <a class="item" ui-sref="thirdParty.platform({platform:'su'})">SuperUser</a>
+                                    <a class="item" ui-sref="thirdParty.platform({platform:'sf'})">ServerFault</a>
+                                    <a class="item" ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>
                                 </div>
                             </div>
 
-                            <div class="ui dropdown item" ng-class="{select: $state.includes('msPlatform')}">
+                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('msPlatform')}">
                                 MS Platforms <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item"  ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>
-                                    <a class="item"  ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
+                                    <a class="item" ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>
+                                    <a class="item" ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
                                 </div>
                             </div>
 
-                            <div class="right item ui label simple dropdown" style="display: flex !important;">
-                                <%--<img class="ui mini circular image avator right spaced" src="public/images/patrick.png">--%>
-                                    <div class="text tiny">
-                                        <%=UserAlias %>
-                                    </div>
+                            <div class="item ui label simple dropdown" style="display: flex !important;">
+                                <%=UserAlias %>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
-                                        <a class="item">Profile</a>
+                                        <a class="item" ui-sref="/">Profile</a>
                                         <!--<a class="item">Subscription</a>-->
                                         <a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>
                                     </div>

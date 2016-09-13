@@ -32,7 +32,7 @@ app
         template: '<ui-view/>'
       })
       .state('social.platform',{
-        url:'/social/:platform',
+        url:'/:platform',
         templateUrl: 'templates/social.html',
         controller: 'socialCtrl'
       })
@@ -42,7 +42,7 @@ app
         template: '<ui-view/>'
       })
       .state('thirdParty.platform',{
-        url:'/thirdParty/:platform',
+        url:'/:platform',
         templateUrl: 'templates/thirdParty.html',
         // controller: 'thirdPartyCtrl'
         controller: function($scope,$stateParams){
@@ -55,7 +55,7 @@ app
         template: '<ui-view/>'
       })
       .state('msPlatform.platform',{
-        url:'/msPlatform/:platform',
+        url:'/:platform',
         templateUrl: 'templates/msPlatform.html',
         controller: 'msPlatformCtrl'
       });
