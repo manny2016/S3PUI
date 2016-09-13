@@ -17,7 +17,13 @@ module.exports = function ($scope, $rootScope, $timeout, $q, rawdataSrv, testSrv
             $scope.flags.r = true;
         }, 2000)
     })
-
+    $scope.getTopics = function(){
+        testSrv.getCate().then(function(data){
+            console.log(data)
+            $scope.topics = data;
+        })
+    }
+    $scope.getTopics();
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         //$scope.$broadcast('on-show');

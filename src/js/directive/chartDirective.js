@@ -116,23 +116,23 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                             path = '/social';
                             break;
                         case 'so':
-                            path = '#';
+                            path = '/#';
                             // path = '/stackexchange';
                             break;
                         case 'sf':
-                            path = '#';
+                            path = '/#';
                             // path = '/stackexchange';
                             break;
                         case 'su':
-                            path = '#';
+                            path = '/#';
                             // path = '/stackexchange';
                             break;
                         case 'msdn':
-                            path = '#';
+                            path = '/#';
                             // path = '/msdn';
                             break;
                         case 'tn':
-                            path = '#';
+                            path = '/#';
                             // path = '/msdn';
                             break;
                     }

@@ -1,0 +1,4788 @@
+{
+    "messagesorthreads": [
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "0",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 0",
+            "twitterurl": "http:\/\/0",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 10,
+                "friends_count": 100,
+                "id": 1000,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name0",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "1",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 1",
+            "twitterurl": "http:\/\/1",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 11,
+                "friends_count": 101,
+                "id": 1001,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name1",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "2",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 2",
+            "twitterurl": "http:\/\/2",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 12,
+                "friends_count": 102,
+                "id": 1002,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name2",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "3",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 3",
+            "twitterurl": "http:\/\/3",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 13,
+                "friends_count": 103,
+                "id": 1003,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name3",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "4",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 4",
+            "twitterurl": "http:\/\/4",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 14,
+                "friends_count": 104,
+                "id": 1004,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name4",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "5",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 5",
+            "twitterurl": "http:\/\/5",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 15,
+                "friends_count": 105,
+                "id": 1005,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name5",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "6",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 6",
+            "twitterurl": "http:\/\/6",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 16,
+                "friends_count": 106,
+                "id": 1006,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name6",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "7",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 7",
+            "twitterurl": "http:\/\/7",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 17,
+                "friends_count": 107,
+                "id": 1007,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name7",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "8",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 8",
+            "twitterurl": "http:\/\/8",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 18,
+                "friends_count": 108,
+                "id": 1008,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name8",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "9",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 9",
+            "twitterurl": "http:\/\/9",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 19,
+                "friends_count": 109,
+                "id": 1009,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name9",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "10",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 10",
+            "twitterurl": "http:\/\/10",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 20,
+                "friends_count": 110,
+                "id": 1010,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name10",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "11",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 11",
+            "twitterurl": "http:\/\/11",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 21,
+                "friends_count": 111,
+                "id": 1011,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name11",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "12",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 12",
+            "twitterurl": "http:\/\/12",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 22,
+                "friends_count": 112,
+                "id": 1012,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name12",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "13",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 13",
+            "twitterurl": "http:\/\/13",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 23,
+                "friends_count": 113,
+                "id": 1013,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name13",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "14",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 14",
+            "twitterurl": "http:\/\/14",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 24,
+                "friends_count": 114,
+                "id": 1014,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name14",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "15",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 15",
+            "twitterurl": "http:\/\/15",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 25,
+                "friends_count": 115,
+                "id": 1015,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name15",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "16",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 16",
+            "twitterurl": "http:\/\/16",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 26,
+                "friends_count": 116,
+                "id": 1016,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name16",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "17",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 17",
+            "twitterurl": "http:\/\/17",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 27,
+                "friends_count": 117,
+                "id": 1017,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name17",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "18",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 18",
+            "twitterurl": "http:\/\/18",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 28,
+                "friends_count": 118,
+                "id": 1018,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name18",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "19",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 19",
+            "twitterurl": "http:\/\/19",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 29,
+                "friends_count": 119,
+                "id": 1019,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name19",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "20",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 20",
+            "twitterurl": "http:\/\/20",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 30,
+                "friends_count": 120,
+                "id": 1020,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name20",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "21",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 21",
+            "twitterurl": "http:\/\/21",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 31,
+                "friends_count": 121,
+                "id": 1021,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name21",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "22",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 22",
+            "twitterurl": "http:\/\/22",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 32,
+                "friends_count": 122,
+                "id": 1022,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name22",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "23",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 23",
+            "twitterurl": "http:\/\/23",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 33,
+                "friends_count": 123,
+                "id": 1023,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name23",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "24",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 24",
+            "twitterurl": "http:\/\/24",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 34,
+                "friends_count": 124,
+                "id": 1024,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name24",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "25",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 25",
+            "twitterurl": "http:\/\/25",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 35,
+                "friends_count": 125,
+                "id": 1025,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name25",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "26",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 26",
+            "twitterurl": "http:\/\/26",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 36,
+                "friends_count": 126,
+                "id": 1026,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name26",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "27",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 27",
+            "twitterurl": "http:\/\/27",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 37,
+                "friends_count": 127,
+                "id": 1027,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name27",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "28",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 28",
+            "twitterurl": "http:\/\/28",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 38,
+                "friends_count": 128,
+                "id": 1028,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name28",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "29",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 29",
+            "twitterurl": "http:\/\/29",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 39,
+                "friends_count": 129,
+                "id": 1029,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name29",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "30",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 30",
+            "twitterurl": "http:\/\/30",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 40,
+                "friends_count": 130,
+                "id": 1030,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name30",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "31",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 31",
+            "twitterurl": "http:\/\/31",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 41,
+                "friends_count": 131,
+                "id": 1031,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name31",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "32",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 32",
+            "twitterurl": "http:\/\/32",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 42,
+                "friends_count": 132,
+                "id": 1032,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name32",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "33",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 33",
+            "twitterurl": "http:\/\/33",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 43,
+                "friends_count": 133,
+                "id": 1033,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name33",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "34",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 34",
+            "twitterurl": "http:\/\/34",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 44,
+                "friends_count": 134,
+                "id": 1034,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name34",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "35",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 35",
+            "twitterurl": "http:\/\/35",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 45,
+                "friends_count": 135,
+                "id": 1035,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name35",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "36",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 36",
+            "twitterurl": "http:\/\/36",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 46,
+                "friends_count": 136,
+                "id": 1036,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name36",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "37",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 37",
+            "twitterurl": "http:\/\/37",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 47,
+                "friends_count": 137,
+                "id": 1037,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name37",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "38",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 38",
+            "twitterurl": "http:\/\/38",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 48,
+                "friends_count": 138,
+                "id": 1038,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name38",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "39",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 39",
+            "twitterurl": "http:\/\/39",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 49,
+                "friends_count": 139,
+                "id": 1039,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name39",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "40",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 40",
+            "twitterurl": "http:\/\/40",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 50,
+                "friends_count": 140,
+                "id": 1040,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name40",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "41",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 41",
+            "twitterurl": "http:\/\/41",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 51,
+                "friends_count": 141,
+                "id": 1041,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name41",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "42",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 42",
+            "twitterurl": "http:\/\/42",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 52,
+                "friends_count": 142,
+                "id": 1042,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name42",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "43",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 43",
+            "twitterurl": "http:\/\/43",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 53,
+                "friends_count": 143,
+                "id": 1043,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name43",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "44",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 44",
+            "twitterurl": "http:\/\/44",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 54,
+                "friends_count": 144,
+                "id": 1044,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name44",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "45",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 45",
+            "twitterurl": "http:\/\/45",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 55,
+                "friends_count": 145,
+                "id": 1045,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name45",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "46",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 46",
+            "twitterurl": "http:\/\/46",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 56,
+                "friends_count": 146,
+                "id": 1046,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name46",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "47",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 47",
+            "twitterurl": "http:\/\/47",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 57,
+                "friends_count": 147,
+                "id": 1047,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name47",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "48",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 0,
+            "source": null,
+            "text": "Test text 48",
+            "twitterurl": "http:\/\/48",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 58,
+                "friends_count": 148,
+                "id": 1048,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name48",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        },
+        {
+            "Topic": "Azure",
+            "created_at": null,
+            "entities": null,
+            "favorited": false,
+            "id": "49",
+            "id_str": null,
+            "in_reply_to_screen_name": null,
+            "in_reply_to_status_id": null,
+            "in_reply_to_status_id_str": null,
+            "in_reply_to_user_id": null,
+            "in_reply_to_user_id_str": null,
+            "lang": null,
+            "quoted_status": null,
+            "retweet_count": 0,
+            "retweeted": false,
+            "sentimentscore": 4,
+            "source": null,
+            "text": "Test text 49",
+            "twitterurl": "http:\/\/49",
+            "user": {
+                "created_at": null,
+                "description": null,
+                "followers_count": 59,
+                "friends_count": 149,
+                "id": 1049,
+                "id_str": null,
+                "location": null,
+                "name": "Test User Name49",
+                "profile_image_url": null,
+                "screen_name": null,
+                "statuses_count": 0,
+                "time_zone": null
+            }
+        }
+    ],
+    "topusers": [
+        {
+            "created_at": null,
+            "description": null,
+            "followers_count": 0,
+            "friends_count": 0,
+            "id": 1234,
+            "id_str": null,
+            "location": null,
+            "name": "Test Top User User",
+            "profile_image_url": null,
+            "screen_name": null,
+            "statuses_count": 0,
+            "time_zone": null
+        }
+    ],
+    "vocinfluencecount": 9252243,
+    "vocmentionedmost": [
+        {
+            "attachedobject": "Azure Security",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 3271,
+                "negativeinfluencedvol": 3271,
+                "negativetotalvol": 226,
+                "positiveinfluencedvol": 3271,
+                "positivetotalvol": 626,
+                "uniqueuserregion": 0,
+                "uniqueusers": 3271,
+                "vocinfluencedvol": 32718,
+                "voctotalvol": 3271
+            }
+        },
+        {
+            "attachedobject": "Azure Key Vault",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 8257,
+                "negativeinfluencedvol": 8257,
+                "negativetotalvol": 503,
+                "positiveinfluencedvol": 8257,
+                "positivetotalvol": 903,
+                "uniqueuserregion": 0,
+                "uniqueusers": 8257,
+                "vocinfluencedvol": 82577,
+                "voctotalvol": 8257
+            }
+        },
+        {
+            "attachedobject": "Azure Log Analytics",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 2487,
+                "negativeinfluencedvol": 2487,
+                "negativetotalvol": 182,
+                "positiveinfluencedvol": 2487,
+                "positivetotalvol": 582,
+                "uniqueuserregion": 0,
+                "uniqueusers": 2487,
+                "vocinfluencedvol": 24870,
+                "voctotalvol": 2487
+            }
+        },
+        {
+            "attachedobject": "Azure Automation",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 4243,
+                "negativeinfluencedvol": 4243,
+                "negativetotalvol": 280,
+                "positiveinfluencedvol": 4243,
+                "positivetotalvol": 680,
+                "uniqueuserregion": 0,
+                "uniqueusers": 4243,
+                "vocinfluencedvol": 42437,
+                "voctotalvol": 4243
+            }
+        },
+        {
+            "attachedobject": "Azure Operations Management Suite",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 7472,
+                "negativeinfluencedvol": 7472,
+                "negativetotalvol": 459,
+                "positiveinfluencedvol": 7472,
+                "positivetotalvol": 859,
+                "uniqueuserregion": 0,
+                "uniqueusers": 7472,
+                "vocinfluencedvol": 74729,
+                "voctotalvol": 7472
+            }
+        },
+        {
+            "attachedobject": "Azure Scheduler",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 9229,
+                "negativeinfluencedvol": 9229,
+                "negativetotalvol": 557,
+                "positiveinfluencedvol": 9229,
+                "positivetotalvol": 957,
+                "uniqueuserregion": 0,
+                "uniqueusers": 9229,
+                "vocinfluencedvol": 92296,
+                "voctotalvol": 9229
+            }
+        },
+        {
+            "attachedobject": "Azure Portal",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 7757,
+                "negativeinfluencedvol": 7757,
+                "negativetotalvol": 475,
+                "positiveinfluencedvol": 7757,
+                "positivetotalvol": 875,
+                "uniqueuserregion": 0,
+                "uniqueusers": 7757,
+                "vocinfluencedvol": 77570,
+                "voctotalvol": 7757
+            }
+        },
+        {
+            "attachedobject": "HockeyApp",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 5215,
+                "negativeinfluencedvol": 5215,
+                "negativetotalvol": 334,
+                "positiveinfluencedvol": 5215,
+                "positivetotalvol": 734,
+                "uniqueuserregion": 0,
+                "uniqueusers": 5215,
+                "vocinfluencedvol": 52155,
+                "voctotalvol": 5215
+            }
+        },
+        {
+            "attachedobject": "Application Insights",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 3742,
+                "negativeinfluencedvol": 3742,
+                "negativetotalvol": 252,
+                "positiveinfluencedvol": 3742,
+                "positivetotalvol": 652,
+                "uniqueuserregion": 0,
+                "uniqueusers": 3742,
+                "vocinfluencedvol": 37429,
+                "voctotalvol": 3742
+            }
+        },
+        {
+            "attachedobject": "Visual Studio Team Services",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 1201,
+                "negativeinfluencedvol": 1201,
+                "negativetotalvol": 111,
+                "positiveinfluencedvol": 1201,
+                "positivetotalvol": 511,
+                "uniqueuserregion": 0,
+                "uniqueusers": 1201,
+                "vocinfluencedvol": 12014,
+                "voctotalvol": 1201
+            }
+        },
+        {
+            "attachedobject": "Azure Active Direcotry",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 8728,
+                "negativeinfluencedvol": 8728,
+                "negativetotalvol": 529,
+                "positiveinfluencedvol": 8728,
+                "positivetotalvol": 929,
+                "uniqueuserregion": 0,
+                "uniqueusers": 8728,
+                "vocinfluencedvol": 87288,
+                "voctotalvol": 8728
+            }
+        },
+        {
+            "attachedobject": "Site Recovery",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 1485,
+                "negativeinfluencedvol": 1485,
+                "negativetotalvol": 126,
+                "positiveinfluencedvol": 1485,
+                "positivetotalvol": 526,
+                "uniqueuserregion": 0,
+                "uniqueusers": 1485,
+                "vocinfluencedvol": 14855,
+                "voctotalvol": 1485
+            }
+        },
+        {
+            "attachedobject": "Service Bus",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 4714,
+                "negativeinfluencedvol": 4714,
+                "negativetotalvol": 306,
+                "positiveinfluencedvol": 4714,
+                "positivetotalvol": 706,
+                "uniqueuserregion": 0,
+                "uniqueusers": 4714,
+                "vocinfluencedvol": 47147,
+                "voctotalvol": 4714
+            }
+        },
+        {
+            "attachedobject": "CDN",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 7944,
+                "negativeinfluencedvol": 7944,
+                "negativetotalvol": 485,
+                "positiveinfluencedvol": 7944,
+                "positivetotalvol": 885,
+                "uniqueuserregion": 0,
+                "uniqueusers": 7944,
+                "vocinfluencedvol": 79440,
+                "voctotalvol": 7944
+            }
+        },
+        {
+            "attachedobject": "Media Services",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 9700,
+                "negativeinfluencedvol": 9700,
+                "negativetotalvol": 583,
+                "positiveinfluencedvol": 9700,
+                "positivetotalvol": 983,
+                "uniqueuserregion": 0,
+                "uniqueusers": 9700,
+                "vocinfluencedvol": 97006,
+                "voctotalvol": 9700
+            }
+        },
+        {
+            "attachedobject": "VPN Gateway",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 3929,
+                "negativeinfluencedvol": 3929,
+                "negativetotalvol": 262,
+                "positiveinfluencedvol": 3929,
+                "positivetotalvol": 662,
+                "uniqueuserregion": 0,
+                "uniqueusers": 3929,
+                "vocinfluencedvol": 39299,
+                "voctotalvol": 3929
+            }
+        },
+        {
+            "attachedobject": "Load Balancer",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 2457,
+                "negativeinfluencedvol": 2457,
+                "negativetotalvol": 180,
+                "positiveinfluencedvol": 2457,
+                "positivetotalvol": 580,
+                "uniqueuserregion": 0,
+                "uniqueusers": 2457,
+                "vocinfluencedvol": 24573,
+                "voctotalvol": 2457
+            }
+        },
+        {
+            "attachedobject": "Traffic Manager",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 4213,
+                "negativeinfluencedvol": 4213,
+                "negativetotalvol": 278,
+                "positiveinfluencedvol": 4213,
+                "positivetotalvol": 678,
+                "uniqueuserregion": 0,
+                "uniqueusers": 4213,
+                "vocinfluencedvol": 42139,
+                "voctotalvol": 4213
+            }
+        },
+        {
+            "attachedobject": "ExpressRoute",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 7443,
+                "negativeinfluencedvol": 7443,
+                "negativetotalvol": 457,
+                "positiveinfluencedvol": 7443,
+                "positivetotalvol": 857,
+                "uniqueuserregion": 0,
+                "uniqueusers": 7443,
+                "vocinfluencedvol": 74432,
+                "voctotalvol": 7443
+            }
+        },
+        {
+            "attachedobject": "Azure Virtual Network",
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 1672,
+                "negativeinfluencedvol": 1672,
+                "negativetotalvol": 137,
+                "positiveinfluencedvol": 1672,
+                "positivetotalvol": 537,
+                "uniqueuserregion": 0,
+                "uniqueusers": 1672,
+                "vocinfluencedvol": 16724,
+                "voctotalvol": 1672
+            }
+        }
+    ],
+    "vocnegativecount": 58782,
+    "vocneginfluencecount": 925150,
+    "vocposiinfluencecount": 925150,
+    "vocpositivecount": 125982,
+    "vocvolcount": 925150,
+    "volhourlylist": [
+        {
+            "attachedobject": 1474286050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6275,
+                "negativetotalvol": 393,
+                "positiveinfluencedvol": 6275,
+                "positivetotalvol": 793,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 62750,
+                "voctotalvol": 6275
+            }
+        },
+        {
+            "attachedobject": 1474289650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8031,
+                "negativetotalvol": 490,
+                "positiveinfluencedvol": 8031,
+                "positivetotalvol": 890,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 80317,
+                "voctotalvol": 8031
+            }
+        },
+        {
+            "attachedobject": 1474293250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9788,
+                "negativetotalvol": 588,
+                "positiveinfluencedvol": 9788,
+                "positivetotalvol": 988,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 97884,
+                "voctotalvol": 9788
+            }
+        },
+        {
+            "attachedobject": 1474296850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4017,
+                "negativetotalvol": 267,
+                "positiveinfluencedvol": 4017,
+                "positivetotalvol": 667,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 40176,
+                "voctotalvol": 4017
+            }
+        },
+        {
+            "attachedobject": 1474300450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2545,
+                "negativetotalvol": 185,
+                "positiveinfluencedvol": 2545,
+                "positivetotalvol": 585,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 25450,
+                "voctotalvol": 2545
+            }
+        },
+        {
+            "attachedobject": 1474304050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5774,
+                "negativetotalvol": 365,
+                "positiveinfluencedvol": 5774,
+                "positivetotalvol": 765,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 57743,
+                "voctotalvol": 5774
+            }
+        },
+        {
+            "attachedobject": 1474307650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9003,
+                "negativetotalvol": 544,
+                "positiveinfluencedvol": 9003,
+                "positivetotalvol": 944,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 90035,
+                "voctotalvol": 9003
+            }
+        },
+        {
+            "attachedobject": 1474311250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7530,
+                "negativetotalvol": 462,
+                "positiveinfluencedvol": 7530,
+                "positivetotalvol": 862,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 75309,
+                "voctotalvol": 7530
+            }
+        },
+        {
+            "attachedobject": 1474314850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1760,
+                "negativetotalvol": 142,
+                "positiveinfluencedvol": 1760,
+                "positivetotalvol": 542,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17602,
+                "voctotalvol": 1760
+            }
+        },
+        {
+            "attachedobject": 1474318450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4989,
+                "negativetotalvol": 321,
+                "positiveinfluencedvol": 4989,
+                "positivetotalvol": 721,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49894,
+                "voctotalvol": 4989
+            }
+        },
+        {
+            "attachedobject": 1474322050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6746,
+                "negativetotalvol": 419,
+                "positiveinfluencedvol": 6746,
+                "positivetotalvol": 819,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 67461,
+                "voctotalvol": 6746
+            }
+        },
+        {
+            "attachedobject": 1474325650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8502,
+                "negativetotalvol": 516,
+                "positiveinfluencedvol": 8502,
+                "positivetotalvol": 916,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 85027,
+                "voctotalvol": 8502
+            }
+        },
+        {
+            "attachedobject": 1474329250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2732,
+                "negativetotalvol": 196,
+                "positiveinfluencedvol": 2732,
+                "positivetotalvol": 596,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 27320,
+                "voctotalvol": 2732
+            }
+        },
+        {
+            "attachedobject": 1474332850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1259,
+                "negativetotalvol": 114,
+                "positiveinfluencedvol": 1259,
+                "positivetotalvol": 514,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 12594,
+                "voctotalvol": 1259
+            }
+        },
+        {
+            "attachedobject": 1474336450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4488,
+                "negativetotalvol": 293,
+                "positiveinfluencedvol": 4488,
+                "positivetotalvol": 693,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44887,
+                "voctotalvol": 4488
+            }
+        },
+        {
+            "attachedobject": 1474340050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7717,
+                "negativetotalvol": 473,
+                "positiveinfluencedvol": 7717,
+                "positivetotalvol": 873,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 77179,
+                "voctotalvol": 7717
+            }
+        },
+        {
+            "attachedobject": 1474343650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6245,
+                "negativetotalvol": 391,
+                "positiveinfluencedvol": 6245,
+                "positivetotalvol": 791,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 62453,
+                "voctotalvol": 6245
+            }
+        },
+        {
+            "attachedobject": 1474347250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9474,
+                "negativetotalvol": 570,
+                "positiveinfluencedvol": 9474,
+                "positivetotalvol": 970,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94746,
+                "voctotalvol": 9474
+            }
+        },
+        {
+            "attachedobject": 1474350850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8002,
+                "negativetotalvol": 489,
+                "positiveinfluencedvol": 8002,
+                "positivetotalvol": 889,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 80020,
+                "voctotalvol": 8002
+            }
+        },
+        {
+            "attachedobject": 1474354450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2231,
+                "negativetotalvol": 168,
+                "positiveinfluencedvol": 2231,
+                "positivetotalvol": 568,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 22312,
+                "voctotalvol": 2231
+            }
+        },
+        {
+            "attachedobject": 1474358050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5460,
+                "negativetotalvol": 347,
+                "positiveinfluencedvol": 5460,
+                "positivetotalvol": 747,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54605,
+                "voctotalvol": 5460
+            }
+        },
+        {
+            "attachedobject": 1474361650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7217,
+                "negativetotalvol": 445,
+                "positiveinfluencedvol": 7217,
+                "positivetotalvol": 845,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 72171,
+                "voctotalvol": 7217
+            }
+        },
+        {
+            "attachedobject": 1474365250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1446,
+                "negativetotalvol": 124,
+                "positiveinfluencedvol": 1446,
+                "positivetotalvol": 524,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 14464,
+                "voctotalvol": 1446
+            }
+        },
+        {
+            "attachedobject": 1474368850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8973,
+                "negativetotalvol": 542,
+                "positiveinfluencedvol": 8973,
+                "positivetotalvol": 942,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 89738,
+                "voctotalvol": 8973
+            }
+        },
+        {
+            "attachedobject": 1474372450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3203,
+                "negativetotalvol": 222,
+                "positiveinfluencedvol": 3203,
+                "positivetotalvol": 622,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 32030,
+                "voctotalvol": 3203
+            }
+        },
+        {
+            "attachedobject": 1474376050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1730,
+                "negativetotalvol": 140,
+                "positiveinfluencedvol": 1730,
+                "positivetotalvol": 540,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17305,
+                "voctotalvol": 1730
+            }
+        },
+        {
+            "attachedobject": 1474379650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4959,
+                "negativetotalvol": 319,
+                "positiveinfluencedvol": 4959,
+                "positivetotalvol": 719,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49597,
+                "voctotalvol": 4959
+            }
+        },
+        {
+            "attachedobject": 1474383250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8188,
+                "negativetotalvol": 499,
+                "positiveinfluencedvol": 8188,
+                "positivetotalvol": 899,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81889,
+                "voctotalvol": 8188
+            }
+        },
+        {
+            "attachedobject": 1474386850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6716,
+                "negativetotalvol": 417,
+                "positiveinfluencedvol": 6716,
+                "positivetotalvol": 817,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 67164,
+                "voctotalvol": 6716
+            }
+        },
+        {
+            "attachedobject": 1474390450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9945,
+                "negativetotalvol": 596,
+                "positiveinfluencedvol": 9945,
+                "positivetotalvol": 996,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99456,
+                "voctotalvol": 9945
+            }
+        },
+        {
+            "attachedobject": 1474394050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4174,
+                "negativetotalvol": 276,
+                "positiveinfluencedvol": 4174,
+                "positivetotalvol": 676,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41749,
+                "voctotalvol": 4174
+            }
+        },
+        {
+            "attachedobject": 1474397650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2702,
+                "negativetotalvol": 194,
+                "positiveinfluencedvol": 2702,
+                "positivetotalvol": 594,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 27023,
+                "voctotalvol": 2702
+            }
+        },
+        {
+            "attachedobject": 1474401250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5931,
+                "negativetotalvol": 373,
+                "positiveinfluencedvol": 5931,
+                "positivetotalvol": 773,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 59315,
+                "voctotalvol": 5931
+            }
+        },
+        {
+            "attachedobject": 1474404850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4458,
+                "negativetotalvol": 292,
+                "positiveinfluencedvol": 4458,
+                "positivetotalvol": 692,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44589,
+                "voctotalvol": 4458
+            }
+        },
+        {
+            "attachedobject": 1474408450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1917,
+                "negativetotalvol": 150,
+                "positiveinfluencedvol": 1917,
+                "positivetotalvol": 550,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 19174,
+                "voctotalvol": 1917
+            }
+        },
+        {
+            "attachedobject": 1474412050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9444,
+                "negativetotalvol": 569,
+                "positiveinfluencedvol": 9444,
+                "positivetotalvol": 969,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94448,
+                "voctotalvol": 9444
+            }
+        },
+        {
+            "attachedobject": 1474415650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6903,
+                "negativetotalvol": 427,
+                "positiveinfluencedvol": 6903,
+                "positivetotalvol": 827,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 69033,
+                "voctotalvol": 6903
+            }
+        },
+        {
+            "attachedobject": 1474419250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8660,
+                "negativetotalvol": 525,
+                "positiveinfluencedvol": 8660,
+                "positivetotalvol": 925,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86600,
+                "voctotalvol": 8660
+            }
+        },
+        {
+            "attachedobject": 1474422850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1416,
+                "negativetotalvol": 123,
+                "positiveinfluencedvol": 1416,
+                "positivetotalvol": 523,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 14167,
+                "voctotalvol": 1416
+            }
+        },
+        {
+            "attachedobject": 1474426450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4645,
+                "negativetotalvol": 302,
+                "positiveinfluencedvol": 4645,
+                "positivetotalvol": 702,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 46459,
+                "voctotalvol": 4645
+            }
+        },
+        {
+            "attachedobject": 1474430050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3173,
+                "negativetotalvol": 220,
+                "positiveinfluencedvol": 3173,
+                "positivetotalvol": 620,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 31733,
+                "voctotalvol": 3173
+            }
+        },
+        {
+            "attachedobject": 1474433650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6402,
+                "negativetotalvol": 400,
+                "positiveinfluencedvol": 6402,
+                "positivetotalvol": 800,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 64026,
+                "voctotalvol": 6402
+            }
+        },
+        {
+            "attachedobject": 1474437250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9631,
+                "negativetotalvol": 579,
+                "positiveinfluencedvol": 9631,
+                "positivetotalvol": 979,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 96318,
+                "voctotalvol": 9631
+            }
+        },
+        {
+            "attachedobject": 1474440850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2388,
+                "negativetotalvol": 177,
+                "positiveinfluencedvol": 2388,
+                "positivetotalvol": 577,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23885,
+                "voctotalvol": 2388
+            }
+        },
+        {
+            "attachedobject": 1474444450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9915,
+                "negativetotalvol": 595,
+                "positiveinfluencedvol": 9915,
+                "positivetotalvol": 995,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99159,
+                "voctotalvol": 9915
+            }
+        },
+        {
+            "attachedobject": 1474448050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4145,
+                "negativetotalvol": 274,
+                "positiveinfluencedvol": 4145,
+                "positivetotalvol": 674,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41451,
+                "voctotalvol": 4145
+            }
+        },
+        {
+            "attachedobject": 1474451650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7374,
+                "negativetotalvol": 454,
+                "positiveinfluencedvol": 7374,
+                "positivetotalvol": 854,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 73744,
+                "voctotalvol": 7374
+            }
+        },
+        {
+            "attachedobject": 1474455250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9131,
+                "negativetotalvol": 551,
+                "positiveinfluencedvol": 9131,
+                "positivetotalvol": 951,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91310,
+                "voctotalvol": 9131
+            }
+        },
+        {
+            "attachedobject": 1474458850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1887,
+                "negativetotalvol": 149,
+                "positiveinfluencedvol": 1887,
+                "positivetotalvol": 549,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 18877,
+                "voctotalvol": 1887
+            }
+        },
+        {
+            "attachedobject": 1474462450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5117,
+                "negativetotalvol": 328,
+                "positiveinfluencedvol": 5117,
+                "positivetotalvol": 728,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 51170,
+                "voctotalvol": 5117
+            }
+        },
+        {
+            "attachedobject": 1474466050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3644,
+                "negativetotalvol": 246,
+                "positiveinfluencedvol": 3644,
+                "positivetotalvol": 646,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 36444,
+                "voctotalvol": 3644
+            }
+        },
+        {
+            "attachedobject": 1474469650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1102,
+                "negativetotalvol": 105,
+                "positiveinfluencedvol": 1102,
+                "positivetotalvol": 505,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 11029,
+                "voctotalvol": 1102
+            }
+        },
+        {
+            "attachedobject": 1474473250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8630,
+                "negativetotalvol": 523,
+                "positiveinfluencedvol": 8630,
+                "positivetotalvol": 923,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86303,
+                "voctotalvol": 8630
+            }
+        },
+        {
+            "attachedobject": 1474476850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6088,
+                "negativetotalvol": 382,
+                "positiveinfluencedvol": 6088,
+                "positivetotalvol": 782,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 60888,
+                "voctotalvol": 6088
+            }
+        },
+        {
+            "attachedobject": 1474480450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4616,
+                "negativetotalvol": 300,
+                "positiveinfluencedvol": 4616,
+                "positivetotalvol": 700,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 46162,
+                "voctotalvol": 4616
+            }
+        },
+        {
+            "attachedobject": 1474484050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7845,
+                "negativetotalvol": 480,
+                "positiveinfluencedvol": 7845,
+                "positivetotalvol": 880,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 78454,
+                "voctotalvol": 7845
+            }
+        },
+        {
+            "attachedobject": 1474487650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6372,
+                "negativetotalvol": 398,
+                "positiveinfluencedvol": 6372,
+                "positivetotalvol": 798,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 63728,
+                "voctotalvol": 6372
+            }
+        },
+        {
+            "attachedobject": 1474491250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9602,
+                "negativetotalvol": 577,
+                "positiveinfluencedvol": 9602,
+                "positivetotalvol": 977,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 96021,
+                "voctotalvol": 9602
+            }
+        },
+        {
+            "attachedobject": 1474494850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3831,
+                "negativetotalvol": 257,
+                "positiveinfluencedvol": 3831,
+                "positivetotalvol": 657,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 38313,
+                "voctotalvol": 3831
+            }
+        },
+        {
+            "attachedobject": 1474498450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2358,
+                "negativetotalvol": 175,
+                "positiveinfluencedvol": 2358,
+                "positivetotalvol": 575,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23588,
+                "voctotalvol": 2358
+            }
+        },
+        {
+            "attachedobject": 1474502050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5588,
+                "negativetotalvol": 354,
+                "positiveinfluencedvol": 5588,
+                "positivetotalvol": 754,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 55880,
+                "voctotalvol": 5588
+            }
+        },
+        {
+            "attachedobject": 1474505650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8817,
+                "negativetotalvol": 534,
+                "positiveinfluencedvol": 8817,
+                "positivetotalvol": 934,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 88172,
+                "voctotalvol": 8817
+            }
+        },
+        {
+            "attachedobject": 1474509250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7344,
+                "negativetotalvol": 452,
+                "positiveinfluencedvol": 7344,
+                "positivetotalvol": 852,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 73447,
+                "voctotalvol": 7344
+            }
+        },
+        {
+            "attachedobject": 1474512850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1573,
+                "negativetotalvol": 131,
+                "positiveinfluencedvol": 1573,
+                "positivetotalvol": 531,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 15739,
+                "voctotalvol": 1573
+            }
+        },
+        {
+            "attachedobject": 1474516450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9101,
+                "negativetotalvol": 550,
+                "positiveinfluencedvol": 9101,
+                "positivetotalvol": 950,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 91013,
+                "voctotalvol": 9101
+            }
+        },
+        {
+            "attachedobject": 1474520050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3330,
+                "negativetotalvol": 229,
+                "positiveinfluencedvol": 3330,
+                "positivetotalvol": 629,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 33306,
+                "voctotalvol": 3330
+            }
+        },
+        {
+            "attachedobject": 1474523650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6559,
+                "negativetotalvol": 408,
+                "positiveinfluencedvol": 6559,
+                "positivetotalvol": 808,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 65598,
+                "voctotalvol": 6559
+            }
+        },
+        {
+            "attachedobject": 1474527250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5087,
+                "negativetotalvol": 327,
+                "positiveinfluencedvol": 5087,
+                "positivetotalvol": 727,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 50872,
+                "voctotalvol": 5087
+            }
+        },
+        {
+            "attachedobject": 1474530850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8316,
+                "negativetotalvol": 506,
+                "positiveinfluencedvol": 8316,
+                "positivetotalvol": 906,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 83165,
+                "voctotalvol": 8316
+            }
+        },
+        {
+            "attachedobject": 1474534450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2545,
+                "negativetotalvol": 185,
+                "positiveinfluencedvol": 2545,
+                "positivetotalvol": 585,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 25457,
+                "voctotalvol": 2545
+            }
+        },
+        {
+            "attachedobject": 1474538050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1073,
+                "negativetotalvol": 104,
+                "positiveinfluencedvol": 1073,
+                "positivetotalvol": 504,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 10731,
+                "voctotalvol": 1073
+            }
+        },
+        {
+            "attachedobject": 1474541650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4302,
+                "negativetotalvol": 283,
+                "positiveinfluencedvol": 4302,
+                "positivetotalvol": 683,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 43024,
+                "voctotalvol": 4302
+            }
+        },
+        {
+            "attachedobject": 1474545250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2829,
+                "negativetotalvol": 201,
+                "positiveinfluencedvol": 2829,
+                "positivetotalvol": 601,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 28298,
+                "voctotalvol": 2829
+            }
+        },
+        {
+            "attachedobject": 1474548850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6059,
+                "negativetotalvol": 381,
+                "positiveinfluencedvol": 6059,
+                "positivetotalvol": 781,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 60591,
+                "voctotalvol": 6059
+            }
+        },
+        {
+            "attachedobject": 1474552450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9288,
+                "negativetotalvol": 560,
+                "positiveinfluencedvol": 9288,
+                "positivetotalvol": 960,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 92883,
+                "voctotalvol": 9288
+            }
+        },
+        {
+            "attachedobject": 1474556050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2045,
+                "negativetotalvol": 158,
+                "positiveinfluencedvol": 2045,
+                "positivetotalvol": 558,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 20450,
+                "voctotalvol": 2045
+            }
+        },
+        {
+            "attachedobject": 1474559650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5274,
+                "negativetotalvol": 337,
+                "positiveinfluencedvol": 5274,
+                "positivetotalvol": 737,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 52742,
+                "voctotalvol": 5274
+            }
+        },
+        {
+            "attachedobject": 1474563250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3801,
+                "negativetotalvol": 255,
+                "positiveinfluencedvol": 3801,
+                "positivetotalvol": 655,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 38016,
+                "voctotalvol": 3801
+            }
+        },
+        {
+            "attachedobject": 1474566850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7030,
+                "negativetotalvol": 435,
+                "positiveinfluencedvol": 7030,
+                "positivetotalvol": 835,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 70309,
+                "voctotalvol": 7030
+            }
+        },
+        {
+            "attachedobject": 1474570450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5558,
+                "negativetotalvol": 353,
+                "positiveinfluencedvol": 5558,
+                "positivetotalvol": 753,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 55583,
+                "voctotalvol": 5558
+            }
+        },
+        {
+            "attachedobject": 1474574050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8787,
+                "negativetotalvol": 532,
+                "positiveinfluencedvol": 8787,
+                "positivetotalvol": 932,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 87875,
+                "voctotalvol": 8787
+            }
+        },
+        {
+            "attachedobject": 1474577650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3016,
+                "negativetotalvol": 212,
+                "positiveinfluencedvol": 3016,
+                "positivetotalvol": 612,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 30168,
+                "voctotalvol": 3016
+            }
+        },
+        {
+            "attachedobject": 1474581250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1544,
+                "negativetotalvol": 130,
+                "positiveinfluencedvol": 1544,
+                "positivetotalvol": 530,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 15442,
+                "voctotalvol": 1544
+            }
+        },
+        {
+            "attachedobject": 1474584850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4773,
+                "negativetotalvol": 309,
+                "positiveinfluencedvol": 4773,
+                "positivetotalvol": 709,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 47734,
+                "voctotalvol": 4773
+            }
+        },
+        {
+            "attachedobject": 1474588450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8002,
+                "negativetotalvol": 489,
+                "positiveinfluencedvol": 8002,
+                "positivetotalvol": 889,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 80027,
+                "voctotalvol": 8002
+            }
+        },
+        {
+            "attachedobject": 1474592050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6530,
+                "negativetotalvol": 407,
+                "positiveinfluencedvol": 6530,
+                "positivetotalvol": 807,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 65301,
+                "voctotalvol": 6530
+            }
+        },
+        {
+            "attachedobject": 1474595650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9759,
+                "negativetotalvol": 586,
+                "positiveinfluencedvol": 9759,
+                "positivetotalvol": 986,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 97593,
+                "voctotalvol": 9759
+            }
+        },
+        {
+            "attachedobject": 1474599250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2516,
+                "negativetotalvol": 184,
+                "positiveinfluencedvol": 2516,
+                "positivetotalvol": 584,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 25160,
+                "voctotalvol": 2516
+            }
+        },
+        {
+            "attachedobject": 1474602850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5745,
+                "negativetotalvol": 363,
+                "positiveinfluencedvol": 5745,
+                "positivetotalvol": 763,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 57453,
+                "voctotalvol": 5745
+            }
+        },
+        {
+            "attachedobject": 1474606450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4272,
+                "negativetotalvol": 281,
+                "positiveinfluencedvol": 4272,
+                "positivetotalvol": 681,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 42727,
+                "voctotalvol": 4272
+            }
+        },
+        {
+            "attachedobject": 1474610050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7501,
+                "negativetotalvol": 461,
+                "positiveinfluencedvol": 7501,
+                "positivetotalvol": 861,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 75019,
+                "voctotalvol": 7501
+            }
+        },
+        {
+            "attachedobject": 1474613650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1731,
+                "negativetotalvol": 140,
+                "positiveinfluencedvol": 1731,
+                "positivetotalvol": 540,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17312,
+                "voctotalvol": 1731
+            }
+        },
+        {
+            "attachedobject": 1474617250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9258,
+                "negativetotalvol": 558,
+                "positiveinfluencedvol": 9258,
+                "positivetotalvol": 958,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 92586,
+                "voctotalvol": 9258
+            }
+        },
+        {
+            "attachedobject": 1474620850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3487,
+                "negativetotalvol": 238,
+                "positiveinfluencedvol": 3487,
+                "positivetotalvol": 638,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 34878,
+                "voctotalvol": 3487
+            }
+        },
+        {
+            "attachedobject": 1474624450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2015,
+                "negativetotalvol": 156,
+                "positiveinfluencedvol": 2015,
+                "positivetotalvol": 556,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 20152,
+                "voctotalvol": 2015
+            }
+        },
+        {
+            "attachedobject": 1474628050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5244,
+                "negativetotalvol": 335,
+                "positiveinfluencedvol": 5244,
+                "positivetotalvol": 735,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 52445,
+                "voctotalvol": 5244
+            }
+        },
+        {
+            "attachedobject": 1474631650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8473,
+                "negativetotalvol": 515,
+                "positiveinfluencedvol": 8473,
+                "positivetotalvol": 915,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 84737,
+                "voctotalvol": 8473
+            }
+        },
+        {
+            "attachedobject": 1474635250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7001,
+                "negativetotalvol": 433,
+                "positiveinfluencedvol": 7001,
+                "positivetotalvol": 833,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 70011,
+                "voctotalvol": 7001
+            }
+        },
+        {
+            "attachedobject": 1474638850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1230,
+                "negativetotalvol": 112,
+                "positiveinfluencedvol": 1230,
+                "positivetotalvol": 512,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 12304,
+                "voctotalvol": 1230
+            }
+        },
+        {
+            "attachedobject": 1474642450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4459,
+                "negativetotalvol": 292,
+                "positiveinfluencedvol": 4459,
+                "positivetotalvol": 692,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44596,
+                "voctotalvol": 4459
+            }
+        },
+        {
+            "attachedobject": 1474646050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2987,
+                "negativetotalvol": 210,
+                "positiveinfluencedvol": 2987,
+                "positivetotalvol": 610,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 29871,
+                "voctotalvol": 2987
+            }
+        },
+        {
+            "attachedobject": 1474649650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6216,
+                "negativetotalvol": 389,
+                "positiveinfluencedvol": 6216,
+                "positivetotalvol": 789,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 62163,
+                "voctotalvol": 6216
+            }
+        },
+        {
+            "attachedobject": 1474653250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4743,
+                "negativetotalvol": 307,
+                "positiveinfluencedvol": 4743,
+                "positivetotalvol": 707,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 47437,
+                "voctotalvol": 4743
+            }
+        },
+        {
+            "attachedobject": 1474656850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7973,
+                "negativetotalvol": 487,
+                "positiveinfluencedvol": 7973,
+                "positivetotalvol": 887,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 79730,
+                "voctotalvol": 7973
+            }
+        },
+        {
+            "attachedobject": 1474660450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2202,
+                "negativetotalvol": 166,
+                "positiveinfluencedvol": 2202,
+                "positivetotalvol": 566,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 22022,
+                "voctotalvol": 2202
+            }
+        },
+        {
+            "attachedobject": 1474664050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3958,
+                "negativetotalvol": 264,
+                "positiveinfluencedvol": 3958,
+                "positivetotalvol": 664,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 39589,
+                "voctotalvol": 3958
+            }
+        },
+        {
+            "attachedobject": 1474667650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7188,
+                "negativetotalvol": 443,
+                "positiveinfluencedvol": 7188,
+                "positivetotalvol": 843,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 71881,
+                "voctotalvol": 7188
+            }
+        },
+        {
+            "attachedobject": 1474671250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5715,
+                "negativetotalvol": 361,
+                "positiveinfluencedvol": 5715,
+                "positivetotalvol": 761,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 57155,
+                "voctotalvol": 5715
+            }
+        },
+        {
+            "attachedobject": 1474674850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8944,
+                "negativetotalvol": 541,
+                "positiveinfluencedvol": 8944,
+                "positivetotalvol": 941,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 89448,
+                "voctotalvol": 8944
+            }
+        },
+        {
+            "attachedobject": 1474678450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7472,
+                "negativetotalvol": 459,
+                "positiveinfluencedvol": 7472,
+                "positivetotalvol": 859,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 74722,
+                "voctotalvol": 7472
+            }
+        },
+        {
+            "attachedobject": 1474682050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1701,
+                "negativetotalvol": 138,
+                "positiveinfluencedvol": 1701,
+                "positivetotalvol": 538,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 17014,
+                "voctotalvol": 1701
+            }
+        },
+        {
+            "attachedobject": 1474685650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4930,
+                "negativetotalvol": 318,
+                "positiveinfluencedvol": 4930,
+                "positivetotalvol": 718,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 49307,
+                "voctotalvol": 4930
+            }
+        },
+        {
+            "attachedobject": 1474689250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3458,
+                "negativetotalvol": 236,
+                "positiveinfluencedvol": 3458,
+                "positivetotalvol": 636,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 34581,
+                "voctotalvol": 3458
+            }
+        },
+        {
+            "attachedobject": 1474692850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6687,
+                "negativetotalvol": 415,
+                "positiveinfluencedvol": 6687,
+                "positivetotalvol": 815,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 66874,
+                "voctotalvol": 6687
+            }
+        },
+        {
+            "attachedobject": 1474696450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9916,
+                "negativetotalvol": 595,
+                "positiveinfluencedvol": 9916,
+                "positivetotalvol": 995,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 99166,
+                "voctotalvol": 9916
+            }
+        },
+        {
+            "attachedobject": 1474700050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8444,
+                "negativetotalvol": 513,
+                "positiveinfluencedvol": 8444,
+                "positivetotalvol": 913,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 84440,
+                "voctotalvol": 8444
+            }
+        },
+        {
+            "attachedobject": 1474703650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2673,
+                "negativetotalvol": 192,
+                "positiveinfluencedvol": 2673,
+                "positivetotalvol": 592,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 26733,
+                "voctotalvol": 2673
+            }
+        },
+        {
+            "attachedobject": 1474707250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4429,
+                "negativetotalvol": 290,
+                "positiveinfluencedvol": 4429,
+                "positivetotalvol": 690,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 44299,
+                "voctotalvol": 4429
+            }
+        },
+        {
+            "attachedobject": 1474710850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7659,
+                "negativetotalvol": 469,
+                "positiveinfluencedvol": 7659,
+                "positivetotalvol": 869,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 76592,
+                "voctotalvol": 7659
+            }
+        },
+        {
+            "attachedobject": 1474714450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9415,
+                "negativetotalvol": 567,
+                "positiveinfluencedvol": 9415,
+                "positivetotalvol": 967,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 94158,
+                "voctotalvol": 9415
+            }
+        },
+        {
+            "attachedobject": 1474718050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3645,
+                "negativetotalvol": 246,
+                "positiveinfluencedvol": 3645,
+                "positivetotalvol": 646,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 36451,
+                "voctotalvol": 3645
+            }
+        },
+        {
+            "attachedobject": 1474721650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2172,
+                "negativetotalvol": 165,
+                "positiveinfluencedvol": 2172,
+                "positivetotalvol": 565,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 21725,
+                "voctotalvol": 2172
+            }
+        },
+        {
+            "attachedobject": 1474725250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5401,
+                "negativetotalvol": 344,
+                "positiveinfluencedvol": 5401,
+                "positivetotalvol": 744,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 54017,
+                "voctotalvol": 5401
+            }
+        },
+        {
+            "attachedobject": 1474728850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3929,
+                "negativetotalvol": 262,
+                "positiveinfluencedvol": 3929,
+                "positivetotalvol": 662,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 39292,
+                "voctotalvol": 3929
+            }
+        },
+        {
+            "attachedobject": 1474732450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1387,
+                "negativetotalvol": 121,
+                "positiveinfluencedvol": 1387,
+                "positivetotalvol": 521,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 13876,
+                "voctotalvol": 1387
+            }
+        },
+        {
+            "attachedobject": 1474736050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8915,
+                "negativetotalvol": 539,
+                "positiveinfluencedvol": 8915,
+                "positivetotalvol": 939,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 89151,
+                "voctotalvol": 8915
+            }
+        },
+        {
+            "attachedobject": 1474739650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3144,
+                "negativetotalvol": 219,
+                "positiveinfluencedvol": 3144,
+                "positivetotalvol": 619,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 31443,
+                "voctotalvol": 3144
+            }
+        },
+        {
+            "attachedobject": 1474743250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6373,
+                "negativetotalvol": 398,
+                "positiveinfluencedvol": 6373,
+                "positivetotalvol": 798,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 63736,
+                "voctotalvol": 6373
+            }
+        },
+        {
+            "attachedobject": 1474746850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8130,
+                "negativetotalvol": 496,
+                "positiveinfluencedvol": 8130,
+                "positivetotalvol": 896,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81302,
+                "voctotalvol": 8130
+            }
+        },
+        {
+            "attachedobject": 1474750450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6657,
+                "negativetotalvol": 414,
+                "positiveinfluencedvol": 6657,
+                "positivetotalvol": 814,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 66576,
+                "voctotalvol": 6657
+            }
+        },
+        {
+            "attachedobject": 1474754050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9886,
+                "negativetotalvol": 593,
+                "positiveinfluencedvol": 9886,
+                "positivetotalvol": 993,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 98869,
+                "voctotalvol": 9886
+            }
+        },
+        {
+            "attachedobject": 1474757650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4116,
+                "negativetotalvol": 273,
+                "positiveinfluencedvol": 4116,
+                "positivetotalvol": 673,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 41161,
+                "voctotalvol": 4116
+            }
+        },
+        {
+            "attachedobject": 1474761250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5872,
+                "negativetotalvol": 370,
+                "positiveinfluencedvol": 5872,
+                "positivetotalvol": 770,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 58728,
+                "voctotalvol": 5872
+            }
+        },
+        {
+            "attachedobject": 1474764850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7629,
+                "negativetotalvol": 468,
+                "positiveinfluencedvol": 7629,
+                "positivetotalvol": 868,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 76294,
+                "voctotalvol": 7629
+            }
+        },
+        {
+            "attachedobject": 1474768450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1858,
+                "negativetotalvol": 147,
+                "positiveinfluencedvol": 1858,
+                "positivetotalvol": 547,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 18587,
+                "voctotalvol": 1858
+            }
+        },
+        {
+            "attachedobject": 1474772050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9386,
+                "negativetotalvol": 565,
+                "positiveinfluencedvol": 9386,
+                "positivetotalvol": 965,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 93861,
+                "voctotalvol": 9386
+            }
+        },
+        {
+            "attachedobject": 1474775650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3615,
+                "negativetotalvol": 245,
+                "positiveinfluencedvol": 3615,
+                "positivetotalvol": 645,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 36154,
+                "voctotalvol": 3615
+            }
+        },
+        {
+            "attachedobject": 1474779250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6844,
+                "negativetotalvol": 424,
+                "positiveinfluencedvol": 6844,
+                "positivetotalvol": 824,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 68446,
+                "voctotalvol": 6844
+            }
+        },
+        {
+            "attachedobject": 1474782850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5372,
+                "negativetotalvol": 342,
+                "positiveinfluencedvol": 5372,
+                "positivetotalvol": 742,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 53720,
+                "voctotalvol": 5372
+            }
+        },
+        {
+            "attachedobject": 1474786450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8601,
+                "negativetotalvol": 522,
+                "positiveinfluencedvol": 8601,
+                "positivetotalvol": 922,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 86013,
+                "voctotalvol": 8601
+            }
+        },
+        {
+            "attachedobject": 1474790050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1357,
+                "negativetotalvol": 119,
+                "positiveinfluencedvol": 1357,
+                "positivetotalvol": 519,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 13579,
+                "voctotalvol": 1357
+            }
+        },
+        {
+            "attachedobject": 1474793650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4587,
+                "negativetotalvol": 299,
+                "positiveinfluencedvol": 4587,
+                "positivetotalvol": 699,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 45872,
+                "voctotalvol": 4587
+            }
+        },
+        {
+            "attachedobject": 1474797250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3114,
+                "negativetotalvol": 217,
+                "positiveinfluencedvol": 3114,
+                "positivetotalvol": 617,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 31146,
+                "voctotalvol": 3114
+            }
+        },
+        {
+            "attachedobject": 1474800850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6343,
+                "negativetotalvol": 396,
+                "positiveinfluencedvol": 6343,
+                "positivetotalvol": 796,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 63438,
+                "voctotalvol": 6343
+            }
+        },
+        {
+            "attachedobject": 1474804450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9573,
+                "negativetotalvol": 576,
+                "positiveinfluencedvol": 9573,
+                "positivetotalvol": 976,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 95731,
+                "voctotalvol": 9573
+            }
+        },
+        {
+            "attachedobject": 1474808050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8100,
+                "negativetotalvol": 494,
+                "positiveinfluencedvol": 8100,
+                "positivetotalvol": 894,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 81005,
+                "voctotalvol": 8100
+            }
+        },
+        {
+            "attachedobject": 1474811650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2329,
+                "negativetotalvol": 173,
+                "positiveinfluencedvol": 2329,
+                "positivetotalvol": 573,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23297,
+                "voctotalvol": 2329
+            }
+        },
+        {
+            "attachedobject": 1474815250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5559,
+                "negativetotalvol": 353,
+                "positiveinfluencedvol": 5559,
+                "positivetotalvol": 753,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 55590,
+                "voctotalvol": 5559
+            }
+        },
+        {
+            "attachedobject": 1474818850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 4086,
+                "negativetotalvol": 271,
+                "positiveinfluencedvol": 4086,
+                "positivetotalvol": 671,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 40864,
+                "voctotalvol": 4086
+            }
+        },
+        {
+            "attachedobject": 1474822450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7315,
+                "negativetotalvol": 450,
+                "positiveinfluencedvol": 7315,
+                "positivetotalvol": 850,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 73157,
+                "voctotalvol": 7315
+            }
+        },
+        {
+            "attachedobject": 1474826050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5843,
+                "negativetotalvol": 369,
+                "positiveinfluencedvol": 5843,
+                "positivetotalvol": 769,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 58431,
+                "voctotalvol": 5843
+            }
+        },
+        {
+            "attachedobject": 1474829650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9072,
+                "negativetotalvol": 548,
+                "positiveinfluencedvol": 9072,
+                "positivetotalvol": 948,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 90723,
+                "voctotalvol": 9072
+            }
+        },
+        {
+            "attachedobject": 1474833250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3301,
+                "negativetotalvol": 227,
+                "positiveinfluencedvol": 3301,
+                "positivetotalvol": 627,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 33016,
+                "voctotalvol": 3301
+            }
+        },
+        {
+            "attachedobject": 1474836850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1829,
+                "negativetotalvol": 146,
+                "positiveinfluencedvol": 1829,
+                "positivetotalvol": 546,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 18290,
+                "voctotalvol": 1829
+            }
+        },
+        {
+            "attachedobject": 1474840450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5058,
+                "negativetotalvol": 325,
+                "positiveinfluencedvol": 5058,
+                "positivetotalvol": 725,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 50582,
+                "voctotalvol": 5058
+            }
+        },
+        {
+            "attachedobject": 1474844050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8287,
+                "negativetotalvol": 504,
+                "positiveinfluencedvol": 8287,
+                "positivetotalvol": 904,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 82875,
+                "voctotalvol": 8287
+            }
+        },
+        {
+            "attachedobject": 1474847650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 6814,
+                "negativetotalvol": 423,
+                "positiveinfluencedvol": 6814,
+                "positivetotalvol": 823,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 68149,
+                "voctotalvol": 6814
+            }
+        },
+        {
+            "attachedobject": 1474851250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1044,
+                "negativetotalvol": 102,
+                "positiveinfluencedvol": 1044,
+                "positivetotalvol": 502,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 10441,
+                "voctotalvol": 1044
+            }
+        },
+        {
+            "attachedobject": 1474854850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8571,
+                "negativetotalvol": 520,
+                "positiveinfluencedvol": 8571,
+                "positivetotalvol": 920,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 85715,
+                "voctotalvol": 8571
+            }
+        },
+        {
+            "attachedobject": 1474858450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2800,
+                "negativetotalvol": 200,
+                "positiveinfluencedvol": 2800,
+                "positivetotalvol": 600,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 28008,
+                "voctotalvol": 2800
+            }
+        },
+        {
+            "attachedobject": 1474862050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 7786,
+                "negativetotalvol": 477,
+                "positiveinfluencedvol": 7786,
+                "positivetotalvol": 877,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 77867,
+                "voctotalvol": 7786
+            }
+        },
+        {
+            "attachedobject": 1474865650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2015,
+                "negativetotalvol": 156,
+                "positiveinfluencedvol": 2015,
+                "positivetotalvol": 556,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 20159,
+                "voctotalvol": 2015
+            }
+        },
+        {
+            "attachedobject": 1474869250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 9543,
+                "negativetotalvol": 574,
+                "positiveinfluencedvol": 9543,
+                "positivetotalvol": 974,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 95434,
+                "voctotalvol": 9543
+            }
+        },
+        {
+            "attachedobject": 1474872850,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 3772,
+                "negativetotalvol": 254,
+                "positiveinfluencedvol": 3772,
+                "positivetotalvol": 654,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 37726,
+                "voctotalvol": 3772
+            }
+        },
+        {
+            "attachedobject": 1474876450,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 2300,
+                "negativetotalvol": 172,
+                "positiveinfluencedvol": 2300,
+                "positivetotalvol": 572,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 23000,
+                "voctotalvol": 2300
+            }
+        },
+        {
+            "attachedobject": 1474880050,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 5529,
+                "negativetotalvol": 351,
+                "positiveinfluencedvol": 5529,
+                "positivetotalvol": 751,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 55293,
+                "voctotalvol": 5529
+            }
+        },
+        {
+            "attachedobject": 1474883650,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 8758,
+                "negativetotalvol": 531,
+                "positiveinfluencedvol": 8758,
+                "positivetotalvol": 931,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 87585,
+                "voctotalvol": 8758
+            }
+        },
+        {
+            "attachedobject": 1474887250,
+            "vocinfluence": {
+                "detectednegspikesvol": 0,
+                "detectedposispikesvol": 0,
+                "detectedspikesvol": 0,
+                "negativeinfluencedvol": 1515,
+                "negativetotalvol": 128,
+                "positiveinfluencedvol": 1515,
+                "positivetotalvol": 528,
+                "uniqueuserregion": 0,
+                "uniqueusers": 0,
+                "vocinfluencedvol": 15152,
+                "voctotalvol": 1515
+            }
+        }
+    ]
+}
