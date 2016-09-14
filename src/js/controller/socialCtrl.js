@@ -1,5 +1,6 @@
-module.exports = function ($scope, $timeout, $document) {
+module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
     $scope.query = {};
+    console.log($scope.$stateParams.platform)
     var totalrequests = 4;
     $('#progress').progress({
         total: totalrequests
@@ -7,7 +8,7 @@ module.exports = function ($scope, $timeout, $document) {
     $('#server_status').popup({
         inline: true,
         hoverable: true,
-        position: 'bottom right'
+        position: 'bottom left' 
     })
     $scope.flags = {
         m: false,
@@ -34,6 +35,24 @@ module.exports = function ($scope, $timeout, $document) {
             }]
     }
 
+    $scope.getTopics = function(){
+        testSrv.getCate().then(function(data){
+            $scope.topics = []
+            data.map(function(item){
+                // console.log(item.Platforms)
+                var flage = false;
+                item.Platforms.map(function(obj){
+                    if(obj.PlatformName.toLowerCase() == $scope.$stateParams.platform){
+                        flage = obj.isEnabled;
+                    }
+                })
+                console.log(item.TechCategoryName,flage)
+                if(flage) $scope.topics.push(item.TechCategoryName)
+            })
+            
+        })
+    }
+    $scope.getTopics();
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         //$scope.$broadcast('on-show');

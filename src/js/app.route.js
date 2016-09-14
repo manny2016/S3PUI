@@ -23,7 +23,7 @@ app
       })
       .state('home.dashboard', {
         url: '/dashboard',
-        templateUrl: 'templates/dashboard.html',
+        templateUrl: 'templates/dashboard.test.html',
         controller: 'homeCtrl'
       })
       .state('social', {

@@ -6,7 +6,7 @@
     </div>
     <div class="ui segment clearing">
         <a id="server_status" class="ui red right label static">Status</a>
-        <div class="ui flowing popup top left transition hidden compact segments">
+        <div class="ui flowing popup top left transition hidden compact segments" style="min-width:260px">
                 <div class="ui compact segment">
                     <h4 class="ui red inverted header">Red</h4>
                     <p>Influence Volume Spike (true) <br />&<br />Positve < Negative Ratio (true)</p>
@@ -29,9 +29,7 @@
             <i class="dropdown icon"></i>
             <div class="default text">category</div>
             <div class="menu">
-                <div class="item" data-value="azure">Azure</div>
-                <div class="item" data-value="powerbi">PowerBi</div>
-                <div class="item" data-value="azure-linux">Azure Linux</div>
+                <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
             </div>
         </div>
         <button class="circular ui icon inverted blue button" ng-click="startGetData('azure',$event)" style="margin-left:20px">

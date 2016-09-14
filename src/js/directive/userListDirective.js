@@ -20,7 +20,7 @@ module.exports = function ($rootScope, testSrv) {
                     $rootScope.test();
                 }
             }
-            scope.getData = function (location) {
+            scope.getData = function (location,force) {
                 if (location == 'home') {
                     testSrv.getUser(scope.platform, 5, scope.query.topic).then(function (data) {
                         scope.users = data.slice(0, 5);
@@ -28,6 +28,7 @@ module.exports = function ($rootScope, testSrv) {
                     })
                 }
             }
+            scope.getData('',true);
             scope.$on('start-get-data', function (event, arg) {
                 scope.getData(arg);
             });

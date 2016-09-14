@@ -141,9 +141,12 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                     });
                 }
             });
-            _.getData = function (location) {
-                if (attrs.location === location) {
-                    var apiFn = testSrv[_.apiFn];
+            _.getData = function (location, force) {
+                console.log(attrs.location, location)
+                if ((attrs.location === location) || force) {
+                    _.complete = false;
+
+                    var apiFn = rawdataSrv[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
                             _.platforms = _.platform.split(",");
@@ -242,8 +245,6 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                 });
             });
         },
-        // controller: "@",
-        // name: "controller"
     }
 }
 
@@ -255,12 +256,16 @@ function initChart(echartObj, chartOpt, groupName) {
     //if (echartsWidth !== domWidth) {
     //    echartObj.resize()
     //}
-    echartObj.resize();
-    echartObj.setOption(chartOpt);
+    setTimeout(function () {
+        echartObj.resize();
+        echartObj.setOption(chartOpt);
+        if (groupName) {
+            echartObj.group = groupName
+        }
+    }, 100)
+
     // echartObj.hideLoading();
-    if (groupName) {
-        echartObj.group = groupName
-    }
+
 }
 
 function afterInit(rootscope, scope, echartObj) {
@@ -312,14 +317,14 @@ function customSpikesData(fnPromise, scope) {
                 {
                     type: 'value',
                     name: 'Spike',
-                    nameTextStyle:{
-                        color:'#2ec7c9'
+                    nameTextStyle: {
+                        color: '#2ec7c9'
                     }
                 }, {
                     type: 'value',
                     name: 'VoC',
-                    nameTextStyle:{
-                        color:'#baa7e0'
+                    nameTextStyle: {
+                        color: '#baa7e0'
                     }
                 }
             ],
@@ -456,6 +461,11 @@ function customHoriBarData(scope) {
 
 function initAxisChartOpt(scope) {
     var opt = {
+        title: {
+            textStyle: {
+                fontSize: 13
+            }
+        },
         tooltip: {
             trigger: 'axis'
         },
@@ -484,6 +494,11 @@ function initAxisChartOpt(scope) {
 }
 function initHoriChartOpt(scope) {
     var opt = {
+        title: {
+            textStyle: {
+                fontSize: 13
+            }
+        },
         tooltip: {
             trigger: 'axis'
         },
@@ -512,6 +527,11 @@ function initHoriChartOpt(scope) {
 }
 function initBarLineChartOpt(scope) {
     var opt = {
+        title: {
+            textStyle: {
+                fontSize: 13
+            }
+        },
         tooltip: {
             trigger: 'axis'
         },
@@ -601,9 +621,9 @@ function initPieChartOpt(scope) {
 function initCloudWordChartOpt(scope) {
     return {
         title: {
-            textStyle: {
-                fontSize: 20
-            },
+            // textStyle: {
+            //     fontSize: 20
+            // },
             x: 'center'
         },
         series: {
