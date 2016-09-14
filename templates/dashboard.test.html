@@ -114,27 +114,12 @@
 
                 <div class="row">
                     <div class="column">
-                        <div id="shape1" class="ui fluid card" ng-chart-shape>
+                        <div id="shape1" class="ui fluid card" ng-chart-shape pnscope="posi" linkage="true">
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Positive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
+                                        <ng-echart title="Daily Positive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="posi"></ng-echart>
                                     </div>
-                                    <!--<div class="side" page="MSDN">
-                                        <ng-echart title="Daily Positive Influence in MSDN" type="axis" platform='msdn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="TN">
-                                        <ng-echart title="Daily Positive Influence in Technet" type="axis" platform='yn' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SO">
-                                        <ng-echart title="Daily Positive Influence in Stackoverflow" type="axis" platform='so' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SF">
-                                        <ng-echart title="Daily Positive Influence in Serverfault" type="axis" platform='sf' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SU">
-                                        <ng-echart title="Daily Positive Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
-                                    </div>-->
                                 </div>
                             </div>
                             <div class="ui three ignored icon direction buttons fluid card">
@@ -146,29 +131,51 @@
                                     <span class="text">{{enabledPlatforms[0]}}</span>
                                     <div class="menu">
                                         <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
-                                        <!--<div class="item" data-value="SO">SO</div>
-                                        <div class="item" data-value="SF">SF</div>
-                                        <div class="item" data-value="SU">SU</div>
-                                        <div class="item" data-value="MSDN">MSDN</div>
-                                        <div class="item" data-value="TN">TN</div>-->
                                     </div>
                                 </div>
                                 <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
                             </div>
-                            <!--</div>-->
                         </div>
                     </div>
-                    <ng-echart title="Positive Most Mentioned Services" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home'></ng-echart>
+                    <div class="column">
+                        <div id="shapePosiMostUser" class="ui fluid card" ng-chart-shape>
+                            <div class="ui shape">
+                                <div class="sides">
+                                    <div class="active side" page="Message">
+                                        <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home' style="height:264px;"></ng-echart>
+                                    </div>
+                                    <div class="side" page="User">
+                                        <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="posi" location='home' style="height:264px;"></ng-echart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui three ignored icon direction buttons fluid card">
+                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+
+                                <div class="ui left label icon dropdown button">
+                                    <i class="dropdown icon"></i>
+                                    <input type="hidden" name="category" value="Message">
+                                    <span class="text">Message</span>
+                                    <div class="menu">
+                                        <div class="item" data-value="Message">Message</div>
+                                        <div class="item" data-value="User">User</div>
+                                    </div>
+                                </div>
+                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<ng-echart title="Positive Most Mentioned Services" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home'></ng-echart>-->
                     <ng-echart title="Positive Influence - Platform" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="posi" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>
                 <div class="row">
                     <div class="column">
-                        <div id="shape2" class="ui fluid card" ng-chart-shape>
+                        <div id="shape2" class="ui fluid card" ng-chart-shape pnscope="neg" linkage="true">
                             <!--<div class="ui top attached label">Daily Total Influence</div>-->
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Nagetive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home'></ng-echart>
+                                        <ng-echart title="Daily Nagetive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="neg"></ng-echart>
                                     </div>
                                     <!--<div class="side" page="MSDN">
                                         <ng-echart title="Daily Negative Influence in MSDN" type="axis" platform='msdn' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
@@ -211,7 +218,35 @@
                             <!--</div>-->
                         </div>
                     </div>
-                    <ng-echart title="Negative Most Mentioned Services" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location='home'></ng-echart>
+                    <div class="column">
+                        <div id="shapePosiMost" class="ui fluid card" ng-chart-shape>
+                            <div class="ui shape">
+                                <div class="sides">
+                                    <div class="active side" page="Message">
+                                        <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="neg" location='home' style="height:264px;"></ng-echart>
+                                    </div>
+                                    <div class="side" page="User">
+                                        <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="neg" location='home' style="height:264px;"></ng-echart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui three ignored icon direction buttons fluid card">
+                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+
+                                <div class="ui left label icon dropdown button">
+                                    <i class="dropdown icon"></i>
+                                    <input type="hidden" name="category" value="Message">
+                                    <span class="text">Message</span>
+                                    <div class="menu">
+                                        <div class="item" data-value="Message">Message</div>
+                                        <div class="item" data-value="User">User</div>
+                                    </div>
+                                </div>
+                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<ng-echart title="Negative Most Mentioned Services" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location='home'></ng-echart>-->
                     <ng-echart title="Negative Influence - Platform" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>
             </div>

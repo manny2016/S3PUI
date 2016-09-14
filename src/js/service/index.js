@@ -79,6 +79,13 @@ app.factory('testSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             return baseSrv.devGet('GetMentionedMostServiceList',params);
         },
+        getMentionedMostServiceListByUserVol: function(platform,topic,PNScope){
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.devGet('GetMentionedMostServiceListByUserVol',params);
+        },
         getMentionedMostServiceDistribution: function (platform,topic,PNScope) {
             var params = params || {};
             params.platform = platform || 'all';
@@ -133,6 +140,13 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             return baseSrv.get('GetMentionedMostServiceList', params);
+        },
+        getMentionedMostServiceListByUserVol: function(platform,topic,PNScope){
+            var params = params || {};
+            params.platform = platform || 'all'; 
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            return baseSrv.get('GetMentionedMostServiceListByUserVol',params);
         },
         getMentionedMostServiceDistribution: function (platform,topic,PNScope) {
             var params = params || {};

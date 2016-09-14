@@ -84,6 +84,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
             noPop: "@"
         },
         link: function (scope, element, attrs) {
+            var service = testSrv;
             var _ = scope;
             _.complete = false;
             _.query = _.query || {};
@@ -141,12 +142,12 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                     });
                 }
             });
-            _.getData = function (location, force) {
+            _.getData = function (location) {
                 console.log(attrs.location, location)
-                if ((attrs.location === location) || force) {
+                if (attrs.location === location) {
                     _.complete = false;
 
-                    var apiFn = rawdataSrv[_.apiFn];
+                    var apiFn = service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
                             _.platforms = _.platform.split(",");
@@ -204,15 +205,16 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                         case 'getMentionedMostServiceList':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
                             var fn = customWordCloudData;
-                            // switch (scope.type) {
-                            //     case 'hori':
-                            //         fn = customHoriBarData;
-                            //         break;
-                            //     default:
-                            //         break
-                            // }
                             fn(fnPromise, _).then(function (config) {
-                                //debugger;
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getMentionedMostServiceListByUserVol':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customWordCloudData;
+                            fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -231,6 +233,24 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
             }
             _.$on('start-get-data', function (event, arg) {
                 _.getData(arg);
+            });
+            _.$on('fresh-most-mentioned', function (env, arg) {
+                if ((_.apiFn === 'getMentionedMostServiceList' || _.apiFn === 'getMentionedMostServiceListByUserVol') && attrs.location === 'home') {
+                    var apiFn = service[_.apiFn];
+                    if (arg.pnscope === _.pnscope) {
+                        _.platform = arg.platform? arg.platform : _.platform;
+                        _.pnscope = arg.pnscope? arg.pnscope : _.pnscope;
+                        _.topic = arg.topic? arg.topic : _.topic;
+                        var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                        var fn = customWordCloudData;
+                        // _.chartOpt = initCloudWordChartOpt(_);
+                        fn(fnPromise, _).then(function (config) {
+                            _.chartOpt = angular.merge(_.chartOpt, config);
+                            // console.log(_.chartOpt)
+                            _.chartObj.setOption(_.chartOpt)
+                        })
+                    }
+                }
             });
             // watch window resize
             _.clientWidth = element[0].clientWidth;
@@ -621,9 +641,9 @@ function initPieChartOpt(scope) {
 function initCloudWordChartOpt(scope) {
     return {
         title: {
-            // textStyle: {
-            //     fontSize: 20
-            // },
+            textStyle: {
+                fontSize: 13
+            },
             x: 'center'
         },
         series: {
@@ -633,9 +653,9 @@ function initCloudWordChartOpt(scope) {
             rotationRange: [-90, 90],
             shape: 'pentagon',
             left: 'center',
-            top: 'bottom',
+            top: 'center',
             width: '90%',
-            height: '90%',
+            height: '80%',
             textStyle: {
                 normal: {
                     color: function () {
