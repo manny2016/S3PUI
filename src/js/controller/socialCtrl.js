@@ -4,6 +4,11 @@ module.exports = function ($scope, $timeout, $document) {
     $('#progress').progress({
         total: totalrequests
     });
+    $('#server_status').popup({
+        inline: true,
+        hoverable: true,
+        position: 'bottom right'
+    })
     $scope.flags = {
         m: false,
         g: false,
@@ -20,7 +25,7 @@ module.exports = function ($scope, $timeout, $document) {
             append: 1,
             color: 'red',
             icon: 1,
-            text: 12 
+            text: 12
         }, {
                 append: 0,
                 color: 'green',
