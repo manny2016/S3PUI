@@ -20,13 +20,15 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
                 testSrv.getVoCDetailsByDate().then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.vocmentionedmost;
-                    // console.log(scope.tabledata);
-                    $compile($(e).find('#thread-table'))(scope);
+                    // if(!scope.table){
+                    //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
+                    // }else{
+                    // }
+                    
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.$broadcast('set-sub-widows-charts-data', {data:data,pnscope:'posi'});
+                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: 'posi' });
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
-                    console.log(scope.chartOpt)
                     scope.myChart.setOption(scope.chartOpt);
                     scope.myChart.resize();
                 })
@@ -40,18 +42,28 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
 
 function initHourlyChartData(raw, utility) {
     var seriesData = [], xAxisDate = [];
-    console.log(raw)
     raw.map(function (item) {
         var tmp = {};
         xAxisDate.push(utility.timeToString(item.attachedobject));
-        if(item.vocinfluence.detectedspikesvol){
-            var entity = {value:item.vocinfluence.voctotalvol,symbol:'pin',symbolSize:20,label:{emphasis:{show:true}}};
-            seriesData.push(entity);
-        }else{
-            seriesData.push(item.vocinfluence.voctotalvol);
+        if (item.vocinfluence.detectedspikesvol) {
+            var entity = {
+                value: item.vocinfluence.voctotalvol,
+                symbol: 'pin',
+                symbolSize: 20,
+                label: {
+                    normal: {
+                        show: true
+                    }
+                }
+            };
+        } else {
+            var entity = {
+                value: item.vocinfluence.voctotalvol,
+                symbolSize: 0
+            };
         }
+        seriesData.push(entity);
     })
-    console.log(seriesData);
     var title = 'Hourly trend';
     var opt = {
         title: {
@@ -90,6 +102,7 @@ function initHourlyChartData(raw, utility) {
         series: [{
             name: 'Vol',
             type: 'line',
+            showAllSymbol: true,
             data: seriesData
         }]
     };

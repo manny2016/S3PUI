@@ -29,6 +29,7 @@
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
     "gulp": "^3.9.1",
+    "ng-table": "^1.0.0",
     "ui-router": "^1.0.0-alpha.3",
     "vinyl-source-stream": "^1.1.0"
   }

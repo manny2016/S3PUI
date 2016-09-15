@@ -1,6 +1,6 @@
 var app = require('angular').module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js')
-  , require('../../node_modules/angular-scroll'),require('../../node_modules/angular-smart-table')
+  , require('../../node_modules/angular-scroll'),require('angular-smart-table')
 ]);
 app
 .run(function ($rootScope, $state, $stateParams, utilitySrv) {
