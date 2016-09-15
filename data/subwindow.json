@@ -1413,7 +1413,7 @@
         {
             "attachedobject": 1473857617,
             "vocinfluence": {
-                "detectedspikesvol": 0,
+                "detectedspikesvol": 1,
                 "negativeinfluencedvol": 7753,
                 "negativetotalvol": 475,
                 "positiveinfluencedvol": 7753,
@@ -1491,7 +1491,7 @@
         {
             "attachedobject": 1473879217,
             "vocinfluence": {
-                "detectedspikesvol": 0,
+                "detectedspikesvol": 1,
                 "negativeinfluencedvol": 7252,
                 "negativetotalvol": 447,
                 "positiveinfluencedvol": 7252,
@@ -3441,7 +3441,7 @@
         {
             "attachedobject": 1474419217,
             "vocinfluence": {
-                "detectedspikesvol": 0,
+                "detectedspikesvol": 1,
                 "negativeinfluencedvol": 6850,
                 "negativetotalvol": 425,
                 "positiveinfluencedvol": 6850,

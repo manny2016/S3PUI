@@ -146,7 +146,6 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                 console.log(attrs.location, location)
                 if (attrs.location === location) {
                     _.complete = false;
-
                     var apiFn = service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
@@ -234,13 +233,13 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
             _.$on('start-get-data', function (event, arg) {
                 _.getData(arg);
             });
-            _.$on('fresh-most-mentioned', function (env, arg) {
+            _.$on('fresh-most-mentioned', function (evt, arg) {
                 if ((_.apiFn === 'getMentionedMostServiceList' || _.apiFn === 'getMentionedMostServiceListByUserVol') && attrs.location === 'home') {
                     var apiFn = service[_.apiFn];
                     if (arg.pnscope === _.pnscope) {
-                        _.platform = arg.platform? arg.platform : _.platform;
-                        _.pnscope = arg.pnscope? arg.pnscope : _.pnscope;
-                        _.topic = arg.topic? arg.topic : _.topic;
+                        _.platform = arg.platform ? arg.platform : _.platform;
+                        _.pnscope = arg.pnscope ? arg.pnscope : _.pnscope;
+                        _.topic = arg.topic ? arg.topic : _.topic;
                         var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
                         var fn = customWordCloudData;
                         // _.chartOpt = initCloudWordChartOpt(_);
@@ -252,6 +251,65 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                     }
                 }
             });
+            _.$on('set-sub-widows-charts-data', function (evt, arg) {
+                if (attrs.location !== 'sub') return;
+                console.log('got it')
+                var config = {};
+                switch (_.type) {
+                    case 'pie':
+                        var raw = arg.data;
+                        config = {
+                            series: [{
+                                data: [{
+                                    value: raw.positivetotalvol,
+                                    name: 'POSI',
+                                    // itemStyle: {
+                                    //     normal: {
+                                    //         color: '#91c7ae'
+                                    //     }
+                                    // }
+                                }, {
+                                        value: raw.negativetotalvol,
+                                        name: 'NEG'
+                                    }]
+                            }],
+                            title: {
+                                text: scope.title || ''
+                            }
+                        };
+                        break;
+                    case 'wordcloud':
+                        var raw = arg.data.vocmentionedmost;
+                        var seriesData = raw.map(function (item) {
+                            var tmp = { name: item.attachedobject };
+                            switch (arg.pnscope) {
+                                case 'posi':
+                                    var value = item.vocinfluence.positivetotalvol
+                                    break;
+                                case 'neg':
+                                    var value = item.vocinfluence.negativetotalvol
+                                    break;
+                                default:
+                                    var value = item.vocinfluence.voctotalvol
+                                    break;
+                            }
+                            tmp.value = value;
+                            return tmp;
+                        });
+                        config = {
+                            series: {
+                                data: seriesData
+                            },
+                            title: {
+                                text: scope.title || ''
+                            }
+                        }
+                        break;
+                }
+                _.chartOpt = angular.merge(_.chartOpt, config);
+                initChart(_.chartObj, _.chartOpt);
+                scope.complete = true;
+            })
             // watch window resize
             _.clientWidth = element[0].clientWidth;
             _.$watch("clientWidth", function (newV, oldV) {

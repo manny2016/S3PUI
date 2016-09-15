@@ -1,6 +1,6 @@
 var app = require('angular').module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js')
-  , require('../../node_modules/angular-scroll')
+  , require('../../node_modules/angular-scroll'),require('../../node_modules/angular-smart-table')
 ]);
 app
 .run(function ($rootScope, $state, $stateParams, utilitySrv) {
@@ -15,7 +15,7 @@ app
       return;
     };
     $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
-      //Automaticly update location
+      //Automaticly update location 
       var color = $element.find("div").attr('set-color');
       $($element.find("div")).addClass(color);
       var siblings = $element.parent().siblings();
@@ -30,7 +30,7 @@ app
       }
     });
     $rootScope.test = function () {
-      $rootScope.$broadcast('start-get-data', 'sub');
+      $rootScope.$broadcast('start-get-data-in-window', 'sub');
       $('.fullscreen.modal').find('div.echart').map(function () {
         echarts.getInstanceByDom(this).clear();
       })

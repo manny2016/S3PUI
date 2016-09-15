@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = function ($rootScope, utilitySrv, testSrv) {
+module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html'),
@@ -14,34 +14,44 @@ module.exports = function ($rootScope, utilitySrv, testSrv) {
             query: "="
         },
         link: function (scope, e, a) {
-            console.log($(e).find('.hourly-charts'))
+            // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function () {
                 testSrv.getVoCDetailsByDate().then(function (data) {
                     scope.raw = data;
-                    scope.table = data.vocmentionedmost.slice(0,5);
+                    scope.tabledata = data.vocmentionedmost;
+                    // console.log(scope.tabledata);
+                    $compile($(e).find('#thread-table'))(scope);
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.chartOpt = initHourlyChartData(data.volhourlylist,utilitySrv);
+                    scope.$broadcast('set-sub-widows-charts-data', {data:data,pnscope:'posi'});
+                    scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     console.log(scope.chartOpt)
-                    scope.myChart.setOption(scope.chartOpt); 
+                    scope.myChart.setOption(scope.chartOpt);
                     scope.myChart.resize();
                 })
             }
-            scope.$on('start-get-data', function (event, arg) {
+            scope.$on('start-get-data-in-window', function (event, arg) {
                 if (arg === 'sub') scope.getData(arg);
             });
         }
     }
 }
 
-function initHourlyChartData(raw,utility) {
+function initHourlyChartData(raw, utility) {
     var seriesData = [], xAxisDate = [];
+    console.log(raw)
     raw.map(function (item) {
         var tmp = {};
         xAxisDate.push(utility.timeToString(item.attachedobject));
-        seriesData.push(item.vocinfluence.voctotalvol);
+        if(item.vocinfluence.detectedspikesvol){
+            var entity = {value:item.vocinfluence.voctotalvol,symbol:'pin',symbolSize:20,label:{emphasis:{show:true}}};
+            seriesData.push(entity);
+        }else{
+            seriesData.push(item.vocinfluence.voctotalvol);
+        }
     })
+    console.log(seriesData);
     var title = 'Hourly trend';
     var opt = {
         title: {

@@ -10,6 +10,7 @@ app.directive('ngChartShape',require('./chartShapeDirective'));
 app.directive('userList',require('./userListDirective'));
 app.directive('subWindow',require('./subWindowDirective'));
 app.directive('topicQuery',require('./topicQueryDirective'));
+app.directive('selectPage',require('./selectPageDirective'));
 app.directive('testDire', function(){
     return{
         restrict:'AE',
