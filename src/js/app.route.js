@@ -23,7 +23,7 @@ app
       })
       .state('home.dashboard', {
         url: '/dashboard',
-        templateUrl: 'templates/dashboard.test.html',
+        templateUrl: 'templates/dashboard.html',
         controller: 'homeCtrl'
       })
       .state('social', {
@@ -33,7 +33,7 @@ app
       })
       .state('social.platform',{
         url:'/:platform',
-        templateUrl: 'templates/social.html',
+        templateUrl: 'templates/social.test.html',
         controller: 'socialCtrl'
       })
       .state('thirdParty', {

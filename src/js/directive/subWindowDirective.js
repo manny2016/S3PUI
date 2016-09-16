@@ -16,25 +16,53 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
         link: function (scope, e, a) {
             // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
-            scope.getData = function () {
-                testSrv.getVoCDetailsByDate().then(function (data) {
+            scope.getData = function (params) {
+                var fnPromise,
+                    service = testSrv,
+                    fn = service[params.fn];
+                switch (params.fn) {
+                    case 'getVoCDetailsByDate':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.date,
+                            params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
+                    case 'getVoCDetailsByPN':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
+                    case 'getVoCDetailsByServiceName':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.service,
+                            params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
+                }
+                fnPromise.then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.vocmentionedmost;
                     // if(!scope.table){
                     //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
                     // }else{
                     // }
-                    
+
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: 'posi' });
+                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: params.param.pnscope||'posi' });
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     scope.myChart.setOption(scope.chartOpt);
                     scope.myChart.resize();
                 })
             }
             scope.$on('start-get-data-in-window', function (event, arg) {
-                if (arg === 'sub') scope.getData(arg);
+                scope.getData(arg);
             });
         }
     }

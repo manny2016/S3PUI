@@ -79,6 +79,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
             propertySelect: "@",
             days: "@",
             apiFn: "@",
+            subFn: '@',
             group: "@",
             query: "=",
             noPop: "@"
@@ -109,7 +110,47 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
                 if (attrs.noPop === undefined) {
-                    $rootScope.test();
+                    // $rootScope.popSubWin();
+                    console.log(params)
+                    console.log(_)
+                    console.log(_.subFn);
+                    switch (_.subFn) {
+                        case 'getVoCDetailsByDate':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name))/1000),
+                                pnscope: _.pnscope
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getVoCDetailsByPN':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                pnscope: params.name.toLowerCase()
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getVoCDetailsByServiceName':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                service:params.name,
+                                pnscope: _.pnscope
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                    }
                 } else if (attrs.redirect) {
                     var path = '/';
                     switch (params.name) {
@@ -261,7 +302,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                         config = {
                             series: [{
                                 data: [{
-                                    value: raw.positivetotalvol,
+                                    value: raw.vocpositivecount,
                                     name: 'POSI',
                                     // itemStyle: {
                                     //     normal: {
@@ -269,7 +310,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                                     //     }
                                     // }
                                 }, {
-                                        value: raw.negativetotalvol,
+                                        value: raw.vocnegativecount,
                                         name: 'NEG'
                                     }]
                             }],

@@ -25,14 +25,14 @@
             {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
         </div>
         <div class="ui pull-left selection dropdown">
-            <input name="category" type="hidden" value="">
+            <input name="category" ng-model="topic" type="hidden" value="">
             <i class="dropdown icon"></i>
             <div class="default text">category</div>
             <div class="menu">
                 <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
             </div>
         </div>
-        <button class="circular ui icon inverted blue button" ng-click="startGetData('azure',$event)" style="margin-left:20px">
+        <button class="circular ui icon inverted blue button" ng-click="startGetData($event)" style="margin-left:20px">
             <i class="icon search"></i>
         </button>
     </div>
@@ -81,7 +81,7 @@
                                 Users Joined Discussion
                             </div>
                             <div class="value">
-                                3543
+                                {{statistic.joinedusers.objectcountthistime}}
                             </div>
                             <div class="mini label">
                                 <span><i class="long arrow up icon green"></i>12% Compared with Last Week</span>

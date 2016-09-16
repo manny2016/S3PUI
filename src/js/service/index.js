@@ -101,8 +101,48 @@ app.factory('testSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.devGet('GetDailyInfluence',params);
         },
-        getVoCDetailsByDate:function(){
-            return baseSrv.devGet('subwindow');
+        getVoCDetailsByDate:function(platform,topic,date,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.date = date || Math.floor(new Date().getTime()/1000);
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('subwindow',params);
+        },
+        getVoCDetailsByUser:function(platform,topic,user,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.user = user || 1234;
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('subwindow',params);
+        },
+        getVoCDetailsByPN:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('subwindow',params);
+        },
+        getVoCDetailsByServiceName:function(platform,topic,service,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.servicename = service || 'webapp';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('subwindow',params);
+        },
+        getImpactSummary:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetImpactSummary',params);
         }
     }
 })
@@ -163,13 +203,49 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetDailyInfluence',params);
         },
-        getVoCDetailsByDate:function(platform,topic){
+        getVoCDetailsByDate:function(platform,topic,date,PNScope,days){
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
+            params.date = date || Math.floor(new Date().getTime()/1000);
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetVoCDetailsByDate');
+        },
+        getVoCDetailsByUser:function(platform,topic,user,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.user = user || 1234;
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetVoCDetailsByUser',params);
+        },
+        getVoCDetailsByPN:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetVoCDetailsByPN',params);
+        },
+        getVoCDetailsByServiceName:function(platform,topic,service,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.servicename = service || 'webapp';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetVoCDetailsByServiceName',params);
+        },
+        getImpactSummary:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetImpactSummary',params);
         }
-
     }
 })
 module.exports = 'app.Srv';

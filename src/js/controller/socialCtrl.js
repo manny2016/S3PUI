@@ -1,6 +1,6 @@
 module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
     $scope.query = {};
-    console.log($scope.$stateParams.platform)
+    // console.log($scope.$stateParams.platform)
     var totalrequests = 4;
     $('#progress').progress({
         total: totalrequests
@@ -15,25 +15,14 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
         g: false,
         r: false
     };
-    $('.ui.segment').find('.ui.dropdown').dropdown();
+    $('.ui.segment').find('.ui.dropdown').dropdown({
+        onChange: function(value, text, $selectedItem) {
+            console.log(value)
+            $scope.topic = value;
+        }
+    });
     $('#scrollspy .list .item .label').popup();
     $document.scrollTopAnimated(10);
-    $scope.statistic = {
-        title: 'Users Joined Discussion',
-        volume: 3424,
-        comment: 'Page Views - POST : NEG',
-        labels: [{
-            append: 1,
-            color: 'red',
-            icon: 1,
-            text: 12
-        }, {
-                append: 0,
-                color: 'green',
-                icon: 0,
-                text: 13
-            }]
-    }
 
     $scope.getTopics = function(){
         testSrv.getCate().then(function(data){
@@ -46,7 +35,7 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
                         flage = obj.isEnabled;
                     }
                 })
-                console.log(item.TechCategoryName,flage)
+                // console.log(item.TechCategoryName,flage)
                 if(flage) $scope.topics.push(item.TechCategoryName)
             })
             
@@ -69,21 +58,32 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
         //},500)
     });
 
-    $scope.startGetData = function (topic, $event) {
+    $scope.startGetData = function ($event) {
         $event.stopPropagation();
         $event.preventDefault();
+        console.log($scope.topic)
+        if(!$scope.topic){
+            alert('Need to select a topic!');
+            return false;
+        }
         $scope.flags.m = false;
         $('div.echart').map(function () {
             echarts.getInstanceByDom(this).clear();
         })
         $('#progress').progress('reset');
         $('#progress').show();
-        $scope.query.topic = topic;
+        $scope.query.topic = $scope.topic;
+        $scope.getStatistic($scope.$stateParams.platform,$scope.topic)
         $scope.$broadcast('start-get-data', 'home');
     }
     initLineCharts('.hourly-charts.home');
     echarts.connect('hourlyCharts');
-
+    $scope.getStatistic = function(platform,topic,pnscope,days){
+        testSrv.getImpactSummary(platform,topic,pnscope,days).then(function(data){
+            console.log(data);
+            $scope.statistic = data;
+        })
+    }
 }
 
 function initLineCharts(className) {

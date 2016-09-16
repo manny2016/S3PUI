@@ -29,8 +29,9 @@ app
         history.replaceState(null, null, hash);
       }
     });
-    $rootScope.test = function () {
-      $rootScope.$broadcast('start-get-data-in-window', 'sub');
+    $rootScope.popSubWin = function (params) {
+      console.log(params)
+      $rootScope.$broadcast('start-get-data-in-window', params);
       $('.fullscreen.modal').find('div.echart').map(function () {
         echarts.getInstanceByDom(this).clear();
       })

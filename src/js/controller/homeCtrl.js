@@ -68,7 +68,6 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile, rawdataSr
     }
 
     $scope.finished = function () {
-        console.log("finished")
         $timeout(function () {
             $rootScope.$broadcast('start-get-data', 'home');
         }, 50)
