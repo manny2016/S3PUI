@@ -56,6 +56,7 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
                     scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: params.param.pnscope||'posi' });
+
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     scope.myChart.setOption(scope.chartOpt);
                     scope.myChart.resize();
