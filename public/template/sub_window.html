@@ -42,7 +42,7 @@
                 </table>
             </div>
         </div>
-        <table id="thread-table" st-table="tabledata" class="ui blue striped celled table">
+        <table id="thread-table" st-table="stTable" st-safe-src="tabledata" class="ui blue striped celled table">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -58,7 +58,7 @@
                     </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in tabledata">
+                <tr ng-repeat="item in stTable">
                     <td>{{item.attachedobject}}</td>
                     <td>{{item.vocinfluence.voctotalvol}}</td>
                     <td>{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
@@ -71,19 +71,6 @@
                 <tr>
                     <td colspan="6" >
                         <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
-                        <!--<div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>-->
-                        <!--<div class="ui right floated pagination menu">
-                            <a class="icon item">
-                            <i class="left chevron icon"></i>
-                            </a>
-                            <a class="item">1</a>
-                            <a class="item">2</a>
-                            <a class="item">3</a>
-                            <a class="item">4</a>
-                            <a class="icon item">
-                            <i class="right chevron icon"></i>
-                            </a>
-                        </div>-->
                     </td>
                 </tr>
             </tfoot>
