@@ -52,11 +52,12 @@ app.factory('testSrv', function (baseSrv) {
             params.platform = platform || 'all'; 
             return baseSrv.devGet('GetAllEnabledTopicsByPlatform',params);
         },
-        getUser: function (platform,topNum,topic) {
+        getUser: function (platform,topNum,topic,PNScope) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topNum = topNum || 5;
             params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
             return baseSrv.devGet('GetTopUsers',params);
         },
         getSpikes: function (platform,topic,days) {
@@ -143,6 +144,46 @@ app.factory('testSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.devGet('GetImpactSummary',params);
+        },
+        getUserVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetUserVolSpikes',params);
+        },
+        getMessageVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetMessageVolSpikes',params);
+        },
+        getInfluenceVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetInfluenceVolSpikes',params);
+        },
+        getUserRegionVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetUserRegionVolSpikes',params);
+        },
+        getKeywordsMentionedMostMapping:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.devGet('GetKeywordsMentionedMostMapping',params);
         }
     }
 })
@@ -154,11 +195,12 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'all'; 
             return baseSrv.get('GetAllEnabledTopicsByPlatform', params);
         },
-        getUser: function (platform,topNum,topic) {
+        getUser: function (platform,topNum,topic,PNScope) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topNum = topNum || 5;
             params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
             return baseSrv.get('GetTopUsers', params);
         },
         getSpikes: function (platform,topic,days) {
@@ -245,6 +287,46 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetImpactSummary',params);
+        },
+        getUserVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetUserVolSpikes',params);
+        },
+        getMessageVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetMessageVolSpikes',params);
+        },
+        getInfluenceVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetInfluenceVolSpikes',params);
+        },
+        getUserRegionVolSpikes:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetUserRegionVolSpikes',params);
+        },
+        getKeywordsMentionedMostMapping:function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.days = days || 7;
+            return baseSrv.get('GetKeywordsMentionedMostMapping',params);
         }
     }
 })

@@ -27,12 +27,16 @@ module.exports = function () {
         replace: true,
         scope: {},
         link: function (scope, e, a) {
-            // console.log(scope.$parent.label); 
             scope.label = scope.$parent.label || {};
-            scope.icon = icon_type[scope.label.icon] || null;
-            scope.append = label_type[scope.label.append] || "";
+            scope.style = scope.label.style || "";
+            scope.volume = !isNaN(Number(scope.label.volume))?Number(scope.label.volume):null;
+            scope.text = scope.label.text || "";
             scope.color = scope.label.color || "black";
-            scope.text = scope.label.text;
+            scope.type = scope.label.type || "";
+            scope.isCompared = scope.label.isCompared || "";
+            scope.getColor = function(){
+                return (scope.volume===null)?scope.color:'';
+            }
         }
     }
 }

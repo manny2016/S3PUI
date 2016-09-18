@@ -43,11 +43,9 @@ app
       })
       .state('thirdParty.platform',{
         url:'/:platform',
-        templateUrl: 'templates/thirdParty.html',
+        templateUrl: 'templates/social.test.html',
         // controller: 'thirdPartyCtrl'
-        controller: function($scope,$stateParams){
-          console.log($stateParams);
-        }
+        controller: 'socialCtrl'
       })
       .state('msPlatform', {
         abstract: true,
@@ -56,8 +54,9 @@ app
       })
       .state('msPlatform.platform',{
         url:'/:platform',
-        templateUrl: 'templates/msPlatform.html',
-        controller: 'msPlatformCtrl'
+        templateUrl: 'templates/social.test.html',
+        // controller: 'msPlatformCtrl'
+        controller: 'socialCtrl'
       });
 
     // configure html5 to get links working on jsfiddle

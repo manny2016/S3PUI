@@ -1,6 +1,6 @@
-module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
+module.exports = function ($scope, $timeout, $document, $location,rawdataSrv, testSrv) {
     $scope.query = {};
-    // console.log($scope.$stateParams.platform)
+    $scope.path = $location.path().split("/");
     var totalrequests = 4;
     $('#progress').progress({
         total: totalrequests
@@ -17,7 +17,7 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
     };
     $('.ui.segment').find('.ui.dropdown').dropdown({
         onChange: function(value, text, $selectedItem) {
-            console.log(value)
+            // console.log(value)
             $scope.topic = value;
         }
     });
@@ -25,7 +25,7 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
     $document.scrollTopAnimated(10);
 
     $scope.getTopics = function(){
-        testSrv.getCate().then(function(data){
+        testSrv.getCate($scope.$stateParams.platform).then(function(data){
             $scope.topics = []
             data.map(function(item){
                 // console.log(item.Platforms)
@@ -76,11 +76,11 @@ module.exports = function ($scope, $timeout, $document,rawdataSrv, testSrv) {
         $scope.getStatistic($scope.$stateParams.platform,$scope.topic)
         $scope.$broadcast('start-get-data', 'home');
     }
-    initLineCharts('.hourly-charts.home');
-    echarts.connect('hourlyCharts');
+    // initLineCharts('.hourly-charts.home');
+    // echarts.connect('hourlyCharts');
     $scope.getStatistic = function(platform,topic,pnscope,days){
         testSrv.getImpactSummary(platform,topic,pnscope,days).then(function(data){
-            console.log(data);
+            // console.log(data);
             $scope.statistic = data;
         })
     }

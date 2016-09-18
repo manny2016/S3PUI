@@ -44,6 +44,14 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
                             params.param.days
                         )
                         break;
+                    case 'getVoCDetailsByUser':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.userid,
+                            params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
                 }
                 fnPromise.then(function (data) {
                     scope.raw = data;

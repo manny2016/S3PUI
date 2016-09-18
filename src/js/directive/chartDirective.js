@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
+module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, testSrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -100,15 +100,18 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                     case 'wordcloud':
                         _.chartOpt = initCloudWordChartOpt(_);
                         break;
+                    case 'hourly':
+                        _.chartOpt = initHourlyChartOpt(_);
+                        break;
                     default:
                         _.chartOpt = initAxisChartOpt(_);
                         break;
                 }
             } ();
-
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
+                console.log(params)
                 if (attrs.noPop === undefined) {
                     // $rootScope.popSubWin();
                     console.log(params)
@@ -119,7 +122,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name))/1000),
+                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -142,7 +145,19 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                service:params.name,
+                                service: params.name,
+                                pnscope: _.pnscope
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getVoCDetailsByServiceName':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                service: params.name,
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -184,7 +199,7 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                 }
             });
             _.getData = function (location) {
-                console.log(attrs.location, location)
+                // console.log(attrs.location, location)
                 if (attrs.location === location) {
                     _.complete = false;
                     var apiFn = service[_.apiFn];
@@ -265,6 +280,63 @@ module.exports = function ($rootScope, $q, $location, rawdataSrv, testSrv) {
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getKeywordsMentionedMostMapping':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customWordCloudData;
+                            fn(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getUserVolSpikes':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customHourlyData;
+                            fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getMessageVolSpikes':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customHourlyData,
+                                key = '';
+                            switch (_.pnscope) {
+                                case 'posi':
+                                    key = 'positivetotalvol';
+                                    break;
+                                case 'neg':
+                                    key = 'negativetotalvol';
+                                    break;
+                                default:
+                                    key = 'voctotalvol';
+                                    break;
+                            }
+                            fn(fnPromise, key, utilitySrv, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getInfluenceVolSpikes':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customHourlyData;
+                            fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getUserRegionVolSpikes':
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fn = customHourlyData;
+                            fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
@@ -379,6 +451,7 @@ function initChart(echartObj, chartOpt, groupName) {
         echartObj.resize();
         echartObj.setOption(chartOpt);
         if (groupName) {
+            console.log(groupName)
             echartObj.group = groupName
         }
     }, 100)
@@ -389,11 +462,14 @@ function initChart(echartObj, chartOpt, groupName) {
 
 function afterInit(rootscope, scope, echartObj) {
     scope.complete = true;
-    if (scope.apiFn !== 'getMentionedMostServiceList') {
+    if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
         //console.log(scope);
         setTimeout(function () {
             echartObj.resize();
         }, 150)
+    }
+    if(scope.group){
+        echarts.connect(scope.group);
     }
     //var echartsWidth = echartObj.getWidth();
     //var domWidth = echartObj.getDom().offsetWidth;
@@ -576,6 +652,55 @@ function customHoriBarData(scope) {
             text: scope.title || ''
         }
     };
+}
+
+function customHourlyData(fnPromise, key, utility, scope) {
+    var seriesData = [], xAxisDate = [];
+    return fnPromise.then(function (data) {
+        data.map(function (item) {
+            var tmp = {};
+            xAxisDate.push(utility.timeToString(item.attachedobject.timeslot));
+            if (item.attachedobject.isspike) {
+                var entity = {
+                    value: item.vocinfluence[key],
+                    symbol: 'pin',
+                    symbolSize: 20,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    }
+                };
+            } else {
+                var entity = {
+                    value: item.vocinfluence[key],
+                    symbolSize: 4
+                };
+            }
+            // console.log(entity)
+            seriesData.push(entity);
+        })
+        // console.log(seriesData)
+        return {
+            series: [{
+                name: 'Vol',
+                type: 'line',
+                showAllSymbol: true,
+                data: seriesData
+            }],
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                axisLine: {
+                    onZero: false
+                },
+                data: xAxisDate
+            },
+            title: {
+                text: scope.title || ''
+            }
+        }
+    })
 }
 
 function initAxisChartOpt(scope) {
@@ -775,3 +900,42 @@ function initCloudWordChartOpt(scope) {
     }
 }
 
+function initHourlyChartOpt(scope) {
+    var opt = {
+        title: {
+            textStyle: {
+                fontSize: 13
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        toolbox: {
+            show: false,
+            trigger: 'axis',
+            feature: {
+                saveAsImage: { show: true, title: "Save as Image" }
+            }
+        },
+        dataZoom: [{
+            show: true,
+            realtime: true,
+            start: 0,
+            end: 100
+        }, {
+                type: 'inside',
+                realtime: true,
+                start: 0,
+                end: 100
+            }],
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: []
+    };
+    return opt;
+}

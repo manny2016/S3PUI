@@ -6,7 +6,7 @@ app.filter('percentage', ['$window', function ($window) {
         if ($window.isNaN(input)) {
             return '';
         }
-        return Math.round(input * Math.pow(10, decimals + 2)) / Math.pow(10, decimals) + suffix
+        return Math.round(Math.abs(input) * Math.pow(10, decimals + 2)) / Math.pow(10, decimals) + suffix
     };
 }]);
 

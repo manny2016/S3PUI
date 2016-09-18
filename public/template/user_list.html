@@ -10,14 +10,20 @@
         </div>
         <div class="ui aligned selection celled list user-list">
             <!--TOP 1-->
-            <div class="item" ng-repeat="u in users" ng-click="onClick()">
+            <div class="item" ng-repeat="u in users" ng-click="onClick(u.attachedobject.id)">
                 <!--<div class="image">-->
                     <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = u.attachedobject.profile_image_url? u.attachedobject.profile_image_url : 'public/images/image.png'" ng-src="{{avator}}">
                 <!--</div>-->
                 <div class="content">
                     <div class="header">{{u.attachedobject.name}}{{u.attachedobject.displayName}}{{u.attachedobject.display_name}}</div>
-                    <div class="mete">
+                    <div class="mete" ng-if="pnscope=='all'">
                         <b>Post Vol</b>: {{u.vocinfluence.voctotalvol}}
+                    </div>
+                    <div class="mete" ng-if="pnscope=='posi'">
+                        <b>Positive Post Vol</b>: {{u.vocinfluence.voctotalvol}}
+                    </div>
+                    <div class="mete" ng-if="pnscope=='neg'">
+                        <b>Negative Post Vol</b>: {{u.vocinfluence.voctotalvol}}
                     </div>
                     <div ng-if="($first)" class="mete">
                         <b>Influenc Vol</b>: {{u.vocinfluence.vocinfluencedvol}}

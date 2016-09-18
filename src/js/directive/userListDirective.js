@@ -12,23 +12,33 @@ module.exports = function ($rootScope, testSrv) {
             title: "@",
             platform: "@",
             query: "=",
+            pnscope: "@",
             noPop: "@"
         },
         link: function (scope, e, a) {
-            scope.onClick = function () {
+            scope.onClick = function (userid) {
                 if (a.noPop === undefined) {
-                    $rootScope.test();
+                    var param = {
+                        platform: scope.platform,
+                        topic: scope.query.topic,
+                        userid: userid,
+                        pnscope: scope.pnscope 
+                    }
+                    $rootScope.popSubWin({
+                        fn: 'getVoCDetailsByUser',
+                        param: param
+                    });
                 }
             }
-            scope.getData = function (location,force) {
+            scope.getData = function (location, force) {
                 if (location == 'home') {
-                    testSrv.getUser(scope.platform, 5, scope.query.topic).then(function (data) {
+                    testSrv.getUser(scope.platform, 5, scope.query.topic, scope.pnscope).then(function (data) {
                         scope.users = data.slice(0, 5);
                         scope.complete = true;
                     })
                 }
             }
-            scope.getData('',true);
+            scope.getData('', true);
             scope.$on('start-get-data', function (event, arg) {
                 scope.getData(arg);
             });

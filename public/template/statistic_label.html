@@ -1,3 +1,7 @@
 <span>
-<i ng-show="icon" class=" icon {{icon}} {{color}}"></i> <span class="text {{color}}">{{text}}</span> {{append}}
+<i ng-if="isCompared" class="icon" ng-class="{true:'long arrow up green',false:'long arrow down red'}[volume>0]"></i> 
+<span ng-if="type === 'ratio'" class="text {{color}}" ng-class="{true:'green',false:'red'}[volume>0]">{{volume|percentage}}</span>
+<span ng-if="type !== 'ratio'" class="text {{color}}">{{volume}}</span>
+<span class="text" ng-class="getColor()">{{text}}</span>
+<span ng-if="!text">&nbsp;</span>
 </span>
