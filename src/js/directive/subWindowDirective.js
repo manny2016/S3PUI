@@ -17,6 +17,8 @@ module.exports = function ($rootScope, $compile, utilitySrv) {
             // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
+                console.log(params)
+                scope.platform = params.param.platform
                 var fnPromise,
                     fn = $rootScope.service[params.fn];
                 switch (params.fn) {
@@ -72,6 +74,7 @@ module.exports = function ($rootScope, $compile, utilitySrv) {
                 fnPromise.then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.messagesorthreads;
+                    console.log(scope.tabledata);
                     // if(!scope.table){
                     //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
                     // }else{
@@ -89,6 +92,12 @@ module.exports = function ($rootScope, $compile, utilitySrv) {
             scope.$on('start-get-data-in-window', function (event, arg) {
                 scope.getData(arg);
             });
+
+            scope.getters={
+                twitterInf:function(value){
+                    return value.user.followers_count+value.user.friends_count;
+                }
+            }
         }
     }
 }

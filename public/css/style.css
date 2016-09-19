@@ -156,3 +156,15 @@
   width: 40px;
   text-align: center;
 }
+.topic-selector.topic-selector:hover {
+  background: lightgrey;
+}
+.topic-selector.topic-selector:hover div.content .header {
+  color: orange;
+}
+.topic-selector.topic-selector.active {
+  background: orange;
+}
+.topic-selector.topic-selector.active div.content .header {
+  color: #fff;
+}

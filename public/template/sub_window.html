@@ -5,13 +5,13 @@
         <div class="ui divider"></div>
         <div class="ui four column grid">
             <div class="column">
-                <user-list title='Top Users in Twitter' users=topUsers platform='twitter' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
+                <user-list title='Top Users in Twitter' users=topUsers platform='{{platform}}' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
             </div>
             <div class="column">
-                <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='twitter' query=query api-fn="getDistribution" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
+                <ng-echart title="Positive & Negative Vol Distribution in Twitter" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <div class="column">
-                <ng-echart title="Negative mentioned most" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
+                <ng-echart title="Negative mentioned most" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <div class="column">
                 <table class="ui definition celled table">
@@ -48,29 +48,61 @@
                     <th colspan="6">
                         Messages List
                     </th>
-                    <tr>
-                        <th>Thread Name</th>
-                        <th>Post By</th>
-                        <th>Influence Num</th>
-                        <th>Time (UTC)</th>
-                        <th>Sentiment</th>
+                    <tr ng-if="(platform=='twitter')">
+                        <th st-sort="text">Thread Name</th>
+                        <th st-sort="user.name">Post By</th>
+                        <th st-sort="getters.twitterInf">Influence Num</th>
+                        <th st-sort="created_at">Time (UTC)</th>
+                        <th st-sort="sentimentscore">Sentiment</th>
+                        <th>Post within spike period</th>
+                    </tr>
+                    <tr ng-if="(platform=='so'||platform=='sf'||platform=='su')">
+                        <th st-sort="title">Thread Name</th>
+                        <th st-sort="owner.display_name">Post By</th>
+                        <th st-sort="view_count">Influence Num</th>
+                        <th st-sort="creation_date">Time (UTC)</th>
+                        <th st-sort="sentimentscore">Sentiment</th>
+                        <th>Post within spike period</th>
+                    </tr>
+                    <tr ng-if="(platform=='msdn'||platform=='tn')">
+                        <th st-sort="title">Thread Name</th>
+                        <th st-sort="createdBy">Post By</th>
+                        <th st-sort="views">Influence Num</th>
+                        <th st-sort="created">Time (UTC)</th>
+                        <th st-sort="sentimentscore">Sentiment</th>
                         <th>Post within spike period</th>
                     </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in stTable">
-                    <td>{{item.text}}</td>
-                    <td>{{item.user.name`                                                                                                                                                                                                                                                                                                                                                                                            }}</td>
-                    <td>{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                    <td>{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                    <td>{{item.vocinfluence.uniqueusers}}</td>
-                    <td>{{item.vocinfluence.vocinfluencedvol}}</td>
+                <tr ng-repeat="item in stTable" ng-if="(platform=='twitter')">
+                    <td><a href="{{item.twitterurl}}" target="_blank">{{item.text}}</a></td>
+                    <td>{{item.user.name}}</td>
+                    <td>{{(item.user.followers_count)+(item.user.friends_count)}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td>{{item.sentimentscore|sentimentScore}}</td>
+                    <td>{{}}</td>
+                </tr>
+                <tr ng-repeat="item in stTable" ng-if="(platform=='so'||platform=='sf'||platform=='su')">
+                    <td><a href="{{item.link}}" target="_blank">{{item.title}}</a></td>
+                    <td>{{item.owner.display_name}}</td>
+                    <td>{{item.view_count}}</td>
+                    <td>{{item.creation_date}}</td>
+                    <td>{{item.sentimentscore|sentimentScore}}</td>
+                    <td>{{}}</td>
+                </tr>
+                <tr ng-repeat="item in stTable" ng-if="(platform=='msdn'||platform=='tn')">
+                    <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
+                    <td>{{item.createdBy}}</td>
+                    <td>{{item.views}}</td>
+                    <td>{{item.created}}</td>
+                    <td>{{item.sentimentscore|sentimentScore}}</td>
+                    <td>{{}}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="6" >
-                        <div st-items-by-page="7" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
 
                     </td>
                 </tr>

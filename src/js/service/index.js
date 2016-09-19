@@ -118,7 +118,7 @@ app.factory('testSrv', function (baseSrv) {
             params.user = user || 1234;
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow', params);
+            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
         },
         getVoCDetailsByPN: function (platform, topic, PNScope, days) {
             var params = params || {};
@@ -126,7 +126,7 @@ app.factory('testSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow', params);
+            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
         },
         getVoCDetailsByServiceName: function (platform, topic, service, PNScope, days) {
             var params = params || {};
@@ -135,7 +135,7 @@ app.factory('testSrv', function (baseSrv) {
             params.servicename = service || 'webapp';
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow', params);
+            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
         },
         getImpactSummary: function (platform, topic, PNScope, days) {
             var params = params || {};
@@ -192,7 +192,7 @@ app.factory('testSrv', function (baseSrv) {
             params.date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('GetSubPageVoCDetails', params);
+            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
         },
         getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope,IsFuzzyQuery,days) {
             var params = params || {};
@@ -202,7 +202,7 @@ app.factory('testSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.IsFuzzyQuery = IsFuzzyQuery || 'true';
             params.days = days || 7;
-            return baseSrv.devGet('GetSubPageVoCDetailsbyKeywords', params);
+            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
         }
     }
 })
