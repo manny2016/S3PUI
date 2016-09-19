@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function (testSrv) {
+module.exports = function () {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -81,7 +81,7 @@ module.exports = function (testSrv) {
         },
         link: function (scope, element, attrs) {
             _ = scope;
-            var apiFn = testSrv[scope.apiFn] || testSrv.getSpikes;
+            var apiFn = $scope.service[scope.apiFn] || $scope.service.getSpikes;
             console.log(typeof(apiFn))
             apiFn(_.platform).then(function(data){
                 var seriesData = data.map(function (item) {

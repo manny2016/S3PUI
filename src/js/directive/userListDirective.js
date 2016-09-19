@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = function ($rootScope, testSrv) {
+module.exports = function ($rootScope) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/user_list.html'),
@@ -16,6 +16,7 @@ module.exports = function ($rootScope, testSrv) {
             noPop: "@"
         },
         link: function (scope, e, a) {
+            console.log(scope.platform)
             scope.onClick = function (userid) {
                 if (a.noPop === undefined) {
                     var param = {
@@ -32,7 +33,7 @@ module.exports = function ($rootScope, testSrv) {
             }
             scope.getData = function (location, force) {
                 if (location == 'home') {
-                    testSrv.getUser(scope.platform, 5, scope.query.topic, scope.pnscope).then(function (data) {
+                    $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope).then(function (data) {
                         scope.users = data.slice(0, 5);
                         scope.complete = true;
                     })

@@ -1,4 +1,4 @@
-module.exports = function ($scope, $timeout, $document, $location,rawdataSrv, testSrv) {
+module.exports = function ($scope, $timeout, $document, $location) {
     $scope.query = {};
     $scope.path = $location.path().split("/");
     var totalrequests = 4;
@@ -25,7 +25,7 @@ module.exports = function ($scope, $timeout, $document, $location,rawdataSrv, te
     $document.scrollTopAnimated(10);
 
     $scope.getTopics = function(){
-        testSrv.getCate($scope.$stateParams.platform).then(function(data){
+        $scope.service.getCate($scope.$stateParams.platform).then(function(data){
             $scope.topics = []
             data.map(function(item){
                 // console.log(item.Platforms)
@@ -57,6 +57,11 @@ module.exports = function ($scope, $timeout, $document, $location,rawdataSrv, te
         //    arg.resize();
         //},500)
     });
+    $scope.getMentionedServiceTable = function(platform,topic){
+        $scope.service.getMentionedMostServiceList(platform,topic).then(function(data){
+            $scope.mostMentionedService = data;
+        })
+    }
 
     $scope.startGetData = function ($event) {
         $event.stopPropagation();
@@ -74,16 +79,18 @@ module.exports = function ($scope, $timeout, $document, $location,rawdataSrv, te
         $('#progress').show();
         $scope.query.topic = $scope.topic;
         $scope.getStatistic($scope.$stateParams.platform,$scope.topic)
+        $scope.getMentionedServiceTable($scope.$stateParams.platform,$scope.topic)
         $scope.$broadcast('start-get-data', 'home');
     }
     // initLineCharts('.hourly-charts.home');
     // echarts.connect('hourlyCharts');
     $scope.getStatistic = function(platform,topic,pnscope,days){
-        testSrv.getImpactSummary(platform,topic,pnscope,days).then(function(data){
+        $scope.service.getImpactSummary(platform,topic,pnscope,days).then(function(data){
             // console.log(data);
             $scope.statistic = data;
         })
     }
+
 }
 
 function initLineCharts(className) {

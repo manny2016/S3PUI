@@ -82,22 +82,22 @@
             <h2 class="ui center aligned header teal">Volumes</h2>
             <div class="ui grid">
                 <div class="ui row">
-                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getUserVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getUserVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="ui row">
-                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="all" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="ui row">
-                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="ui row">
-                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="ui row">
-                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getInfluenceVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getInfluenceVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="ui row">
-                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getUserRegionVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" group="hourly"></ng-echart>
+                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='twitter' query=query api-fn="getUserRegionVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
             </div>
             <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>
@@ -121,110 +121,44 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <table id="spikes-table" class="ui blue striped celled table">
+                        <table id="spikes-table" st-table="stTable" st-safe-src="mostMentionedService" class="ui blue striped celled table">
                             <thead>
                                 <tr>
-                                    <th>Service Name</th>
-                                    <th>Post Vol</th>
-                                    <th>POSI Ratio</th>
-                                    <th>NEG Ratio</th>
-                                    <th>Unique Users</th>
-                                    <th>Total Page View</th>
-                                    <th>Detected Spikes</th>
+                                    <th st-sort="attachedobject">Service Name</th>
+                                    <th st-sort="vocinfluence.voctotalvol">Post Vol</th>
+                                    <th st-sort="vocinfluence.positivetotalvol">POSI Ratio</th>
+                                    <th st-sort="vocinfluence.negativetotalvol">NEG Ratio</th>
+                                    <th st-sort="vocinfluence.uniqueusers">Unique Users</th>
+                                    <th st-sort="vocinfluence.vocinfluencedvol">Total Page View</th>
+                                    <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Azure Web Apps</td>
-                                    <td>150</td>
-                                    <td>98%</td>
-                                    <td>2%</td>
-                                    <td>34</td>
-                                    <td>1582</td>
-                                    <td>34</td>
+                                    <td colspan="7">
+                                        <div class="ui icon input">
+                                            <input type="search" st-search  placeholder="Search ...">
+                                            <i class="search icon"></i>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Azure Cloud Service</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure VM</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Mobile Apps</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Storage</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Web Apps</td>
-                                    <td>150</td>
-                                    <td>98%</td>
-                                    <td>2%</td>
-                                    <td>34</td>
-                                    <td>1582</td>
-                                    <td>34</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Cloud Service</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure VM</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Mobile Apps</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Storage</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
+                                <tr ng-repeat="item in stTable">
+                                    <td>{{item.attachedobject}}</td>
+                                    <td width="100">{{item.vocinfluence.voctotalvol}}</td>
+                                    <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                    <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                    <td width="100">{{item.vocinfluence.uniqueusers}}</td>
+                                    <td width="100">{{item.vocinfluence.vocinfluencedvol}}</td>
+                                    <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -240,8 +174,8 @@
 
             <div class="ui two column grid">
                 <div class="row">
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getKeywordsMentionedMostMapping" pnscope="posi" location="home"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getKeywordsMentionedMostMapping" pnscope="neg" location="home"></ng-echart>
+                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getKeywordsMentionedMostMapping" pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getKeywordsMentionedMostMapping" pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
                 </div>
                 <!--<div class="row">
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>

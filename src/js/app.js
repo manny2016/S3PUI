@@ -3,7 +3,17 @@ var app = require('angular').module("app", [
   , require('../../node_modules/angular-scroll'),require('angular-smart-table')
 ]);
 app
-.run(function ($rootScope, $state, $stateParams, utilitySrv) {
+.run(function ($rootScope, $state, $stateParams, $injector, utilitySrv) {
+    // var config = require('../../public/config');
+    // console.log(config);
+    var config = {
+      mode:'prod'
+    }
+    if(config.mode==='dev'){
+      $rootScope.service = $injector.get('testSrv')
+    }else{
+      $rootScope.service = $injector.get('rawdataSrv')
+    }
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.timeRange = {
@@ -30,7 +40,6 @@ app
       }
     });
     $rootScope.popSubWin = function (params) {
-      console.log(params)
       $rootScope.$broadcast('start-get-data-in-window', params);
       $('.fullscreen.modal').find('div.echart').map(function () {
         echarts.getInstanceByDom(this).clear();
@@ -58,61 +67,3 @@ app
     }
     $rootScope.init();
   });
-
-app.controller("testChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
-  // console.log($rootScope.dateList);
-  testSrv.getSpikes().then(function (data) {
-    var seriesData = data.map(function (item) {
-      return item.dailyspikevol
-    })
-    // console.log(seriesData)
-    $scope.config = {
-      xAxis: { data: $rootScope.dateList },
-      series: [{
-        name: 'Spikes',
-        type: 'bar',
-        data: seriesData
-      }],
-      title: {
-        text: 'Daily Spikes in Test'
-      }
-    };
-    $scope.chartOpt = angular.merge($scope.chartOpt, $scope.config);
-    // console.log($scope.chartOpt)
-    $scope.chartObj.setOption($scope.chartOpt)
-    if ($scope.config.group) {
-      $scope.chartObj.group = $scope.config.group
-    }
-  })
-});
-
-app.controller("testPieChartCtrl", function ($scope, $rootScope, $filter, testSrv) {
-  // console.log($rootScope.dateList);
-  testSrv.getDistribution().then(function (data) {
-    $scope.config = {
-      series: [{
-        data: [{
-          value: data.positivetotalvol,
-          name: 'POSI',
-          itemStyle: {
-            normal: {
-              color: '#91c7ae'
-            }
-          }
-        }, {
-            value: data.negativetotalvol,
-            name: 'NEG'
-          }]
-      }],
-      title: {
-        text: 'Positive & Negative Vol Distribution'
-      }
-    };
-    $scope.chartOpt = angular.merge($scope.chartOpt, $scope.config);
-    // console.log($scope.chartOpt)
-    $scope.chartObj.setOption($scope.chartOpt)
-    if ($scope.config.group) {
-      $scope.chartObj.group = $scope.config.group
-    }
-  });
-});

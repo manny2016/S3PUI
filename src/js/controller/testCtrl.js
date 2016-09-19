@@ -1,11 +1,11 @@
-module.exports = function ($scope,$http,testSrv) {
-    testSrv.test().then(function(data){
+module.exports = function ($scope,$http) {
+    $scope.service.test().then(function(data){
         // console.log(data);
     },function(err){
         console.log(err)
     })
 
-    testSrv.getUser().then(function(data){
+    $scope.service.getUser().then(function(data){
         // console.log(data);
         $scope.topUsers = data.slice(0,5);
     })

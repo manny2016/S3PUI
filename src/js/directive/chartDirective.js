@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, testSrv) {
+module.exports = function ($rootScope, $q, $location, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -85,8 +85,8 @@ module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, te
             noPop: "@"
         },
         link: function (scope, element, attrs) {
-            var service = testSrv;
             var _ = scope;
+            _.service = $rootScope.service;
             _.complete = false;
             _.query = _.query || {};
             _.initChartOpt = function () {
@@ -141,11 +141,11 @@ module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, te
                                 param: param
                             });
                             break;
-                        case 'getVoCDetailsByServiceName':
+                        case 'getVoCDetailsByUser':
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                service: params.name,
+                                user: params.name,
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -158,6 +158,30 @@ module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, te
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 service: params.name,
+                                pnscope: _.pnscope
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getSubPageVoCDetails': 
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
+                                pnscope: _.pnscope
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getSubPageVoCDetailsbyKeywords': 
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                keywords: params.name,
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -202,7 +226,7 @@ module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, te
                 // console.log(attrs.location, location)
                 if (attrs.location === location) {
                     _.complete = false;
-                    var apiFn = service[_.apiFn];
+                    var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
                             _.platforms = _.platform.split(",");
@@ -307,10 +331,10 @@ module.exports = function ($rootScope, $q, $location, utilitySrv, rawdataSrv, te
                                 key = '';
                             switch (_.pnscope) {
                                 case 'posi':
-                                    key = 'positivetotalvol';
+                                    key = 'voctotalvol';
                                     break;
                                 case 'neg':
-                                    key = 'negativetotalvol';
+                                    key = 'voctotalvol';
                                     break;
                                 default:
                                     key = 'voctotalvol';
@@ -869,6 +893,10 @@ function initCloudWordChartOpt(scope) {
                 fontSize: 13
             },
             x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b} : {c}"
         },
         series: {
             type: 'wordCloud',

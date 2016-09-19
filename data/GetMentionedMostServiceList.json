@@ -2,261 +2,321 @@
     {
         "attachedobject": "Azure Security",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 8407,
+            "negativeinfluencedvol": 8407,
+            "negativetotalvol": 511,
+            "positiveinfluencedvol": 8407,
+            "positivetotalvol": 911,
+            "uniqueuserregion": 0,
+            "uniqueusers": 8407,
+            "vocinfluencedvol": 84076,
+            "voctotalvol": 8407
         }
     },
     {
         "attachedobject": "Azure Key Vault",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 6935,
+            "negativeinfluencedvol": 6935,
+            "negativetotalvol": 429,
+            "positiveinfluencedvol": 6935,
+            "positivetotalvol": 829,
+            "uniqueuserregion": 0,
+            "uniqueusers": 6935,
+            "vocinfluencedvol": 69350,
+            "voctotalvol": 6935
         }
     },
     {
         "attachedobject": "Azure Log Analytics",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 1164,
+            "negativeinfluencedvol": 1164,
+            "negativetotalvol": 109,
+            "positiveinfluencedvol": 1164,
+            "positivetotalvol": 509,
+            "uniqueuserregion": 0,
+            "uniqueusers": 1164,
+            "vocinfluencedvol": 11643,
+            "voctotalvol": 1164
         }
     },
     {
         "attachedobject": "Azure Automation",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 8691,
+            "negativeinfluencedvol": 8691,
+            "negativetotalvol": 527,
+            "positiveinfluencedvol": 8691,
+            "positivetotalvol": 927,
+            "uniqueuserregion": 0,
+            "uniqueusers": 8691,
+            "vocinfluencedvol": 86917,
+            "voctotalvol": 8691
         }
     },
     {
         "attachedobject": "Azure Operations Management Suite",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 2921,
+            "negativeinfluencedvol": 2921,
+            "negativetotalvol": 206,
+            "positiveinfluencedvol": 2921,
+            "positivetotalvol": 606,
+            "uniqueuserregion": 0,
+            "uniqueusers": 2921,
+            "vocinfluencedvol": 29210,
+            "voctotalvol": 2921
         }
     },
     {
         "attachedobject": "Azure Scheduler",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 6150,
+            "negativeinfluencedvol": 6150,
+            "negativetotalvol": 386,
+            "positiveinfluencedvol": 6150,
+            "positivetotalvol": 786,
+            "uniqueuserregion": 0,
+            "uniqueusers": 6150,
+            "vocinfluencedvol": 61502,
+            "voctotalvol": 6150
         }
     },
     {
         "attachedobject": "Azure Portal",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 4677,
+            "negativeinfluencedvol": 4677,
+            "negativetotalvol": 304,
+            "positiveinfluencedvol": 4677,
+            "positivetotalvol": 704,
+            "uniqueuserregion": 0,
+            "uniqueusers": 4677,
+            "vocinfluencedvol": 46776,
+            "voctotalvol": 4677
         }
     },
     {
         "attachedobject": "HockeyApp",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 7906,
+            "negativeinfluencedvol": 7906,
+            "negativetotalvol": 483,
+            "positiveinfluencedvol": 7906,
+            "positivetotalvol": 883,
+            "uniqueuserregion": 0,
+            "uniqueusers": 7906,
+            "vocinfluencedvol": 79069,
+            "voctotalvol": 7906
         }
     },
     {
         "attachedobject": "Application Insights",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 2136,
+            "negativeinfluencedvol": 2136,
+            "negativetotalvol": 163,
+            "positiveinfluencedvol": 2136,
+            "positivetotalvol": 563,
+            "uniqueuserregion": 0,
+            "uniqueusers": 2136,
+            "vocinfluencedvol": 21361,
+            "voctotalvol": 2136
         }
     },
     {
         "attachedobject": "Visual Studio Team Services",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 9663,
+            "negativeinfluencedvol": 9663,
+            "negativetotalvol": 581,
+            "positiveinfluencedvol": 9663,
+            "positivetotalvol": 981,
+            "uniqueuserregion": 0,
+            "uniqueusers": 9663,
+            "vocinfluencedvol": 96635,
+            "voctotalvol": 9663
         }
     },
     {
         "attachedobject": "Azure Active Direcotry",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 3892,
+            "negativeinfluencedvol": 3892,
+            "negativetotalvol": 260,
+            "positiveinfluencedvol": 3892,
+            "positivetotalvol": 660,
+            "uniqueuserregion": 0,
+            "uniqueusers": 3892,
+            "vocinfluencedvol": 38928,
+            "voctotalvol": 3892
         }
     },
     {
         "attachedobject": "Site Recovery",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 2420,
+            "negativeinfluencedvol": 2420,
+            "negativetotalvol": 178,
+            "positiveinfluencedvol": 2420,
+            "positivetotalvol": 578,
+            "uniqueuserregion": 0,
+            "uniqueusers": 2420,
+            "vocinfluencedvol": 24202,
+            "voctotalvol": 2420
         }
     },
     {
         "attachedobject": "Service Bus",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 5649,
+            "negativeinfluencedvol": 5649,
+            "negativetotalvol": 358,
+            "positiveinfluencedvol": 5649,
+            "positivetotalvol": 758,
+            "uniqueuserregion": 0,
+            "uniqueusers": 5649,
+            "vocinfluencedvol": 56494,
+            "voctotalvol": 5649
         }
     },
     {
         "attachedobject": "CDN",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 8878,
+            "negativeinfluencedvol": 8878,
+            "negativetotalvol": 537,
+            "positiveinfluencedvol": 8878,
+            "positivetotalvol": 937,
+            "uniqueuserregion": 0,
+            "uniqueusers": 8878,
+            "vocinfluencedvol": 88787,
+            "voctotalvol": 8878
         }
     },
     {
         "attachedobject": "Media Services",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 7406,
+            "negativeinfluencedvol": 7406,
+            "negativetotalvol": 455,
+            "positiveinfluencedvol": 7406,
+            "positivetotalvol": 855,
+            "uniqueuserregion": 0,
+            "uniqueusers": 7406,
+            "vocinfluencedvol": 74061,
+            "voctotalvol": 7406
         }
     },
     {
         "attachedobject": "VPN Gateway",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 1635,
+            "negativeinfluencedvol": 1635,
+            "negativetotalvol": 135,
+            "positiveinfluencedvol": 1635,
+            "positivetotalvol": 535,
+            "uniqueuserregion": 0,
+            "uniqueusers": 1635,
+            "vocinfluencedvol": 16353,
+            "voctotalvol": 1635
         }
     },
     {
         "attachedobject": "Load Balancer",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 4864,
+            "negativeinfluencedvol": 4864,
+            "negativetotalvol": 314,
+            "positiveinfluencedvol": 4864,
+            "positivetotalvol": 714,
+            "uniqueuserregion": 0,
+            "uniqueusers": 4864,
+            "vocinfluencedvol": 48646,
+            "voctotalvol": 4864
         }
     },
     {
         "attachedobject": "Traffic Manager",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 3392,
+            "negativeinfluencedvol": 3392,
+            "negativetotalvol": 232,
+            "positiveinfluencedvol": 3392,
+            "positivetotalvol": 632,
+            "uniqueuserregion": 0,
+            "uniqueusers": 3392,
+            "vocinfluencedvol": 33920,
+            "voctotalvol": 3392
         }
     },
     {
         "attachedobject": "ExpressRoute",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 6621,
+            "negativeinfluencedvol": 6621,
+            "negativetotalvol": 412,
+            "positiveinfluencedvol": 6621,
+            "positivetotalvol": 812,
+            "uniqueuserregion": 0,
+            "uniqueusers": 6621,
+            "vocinfluencedvol": 66212,
+            "voctotalvol": 6621
         }
     },
     {
         "attachedobject": "Azure Virtual Network",
         "vocinfluence": {
-            "detectedspikesvol": 2766,
-            "negativeinfluencedvol": 2766,
-            "negativetotalvol": 198,
-            "positiveinfluencedvol": 2766,
-            "positivetotalvol": 598,
-            "uniqueusers": 2766,
-            "vocinfluencedvol": 27669,
-            "voctotalvol": 2766
+            "detectednegspikesvol": 0,
+            "detectedposispikesvol": 0,
+            "detectedspikesvol": 5148,
+            "negativeinfluencedvol": 5148,
+            "negativetotalvol": 330,
+            "positiveinfluencedvol": 5148,
+            "positivetotalvol": 730,
+            "uniqueuserregion": 0,
+            "uniqueusers": 5148,
+            "vocinfluencedvol": 51487,
+            "voctotalvol": 5148
         }
     }
 ]

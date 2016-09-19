@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
+module.exports = function ($rootScope, $compile, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html'),
@@ -18,8 +18,7 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
                 var fnPromise,
-                    service = testSrv,
-                    fn = service[params.fn];
+                    fn = $rootScope.service[params.fn];
                 switch (params.fn) {
                     case 'getVoCDetailsByDate':
                         fnPromise = fn(params.param.platform,
@@ -52,10 +51,27 @@ module.exports = function ($rootScope, $compile, utilitySrv, testSrv) {
                             params.param.days
                         )
                         break;
+                    case 'getSubPageVoCDetails':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.date,
+                            params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
+                    case 'getSubPageVoCDetailsbyKeywords':
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.keywords,
+                            params.param.pnscope,
+                            params.param.IsFuzzyQuery,
+                            params.param.days
+                        )
+                        break;
                 }
                 fnPromise.then(function (data) {
                     scope.raw = data;
-                    scope.tabledata = data.vocmentionedmost;
+                    scope.tabledata = data.messagesorthreads;
                     // if(!scope.table){
                     //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
                     // }else{

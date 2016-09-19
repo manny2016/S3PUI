@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $q, $compile, rawdataSrv, testSrv) {
+module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     $scope.query = {};
     var totalrequests = 28;
     $('#progress').progress({
@@ -18,7 +18,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile, rawdataSr
         }, 2000)
     })
     $scope.getTopics = function () {
-        testSrv.getCate().then(function (data) {
+        $scope.service.getCate().then(function (data) {
             console.log(data)
             $scope.topics = data;
         })
