@@ -10,4 +10,15 @@ app.filter('percentage', ['$window', function ($window) {
     };
 }]);
 
+app.filter('sentimentScore', ['$window', function ($window) {
+    var dict = {
+        '-1':'Undefined',
+        '0':'Negative',
+        '2':'Neutral',
+        '4':'Positive'
+    };
+    return function (input) {
+        return dict[input.toString()];
+    };
+}]);
 module.exports = 'app.Filter';

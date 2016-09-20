@@ -263,3 +263,22 @@
   width: 40px;
   text-align: center;
 }
+
+.topic-selector{
+    &&:hover{
+        background:lightgrey;
+        div.content{
+            .header{
+                color: orange;
+            }
+        }
+    }
+    &&.active{
+        background:orange;
+        div.content{
+            .header{
+                color: #fff;
+            }
+        }
+    }
+}

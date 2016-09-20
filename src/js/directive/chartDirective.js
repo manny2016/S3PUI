@@ -372,7 +372,7 @@ module.exports = function ($rootScope, $q, $location, utilitySrv) {
             });
             _.$on('fresh-most-mentioned', function (evt, arg) {
                 if ((_.apiFn === 'getMentionedMostServiceList' || _.apiFn === 'getMentionedMostServiceListByUserVol') && attrs.location === 'home') {
-                    var apiFn = service[_.apiFn];
+                    var apiFn = _.service[_.apiFn];
                     if (arg.pnscope === _.pnscope) {
                         _.platform = arg.platform ? arg.platform : _.platform;
                         _.pnscope = arg.pnscope ? arg.pnscope : _.pnscope;
