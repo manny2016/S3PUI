@@ -121,7 +121,7 @@ module.exports = function ($parse) {
                     scope.volume = scope.data.mostlikedservice[0].mentionedmostservice.attachedobject
                         + ":"
                         + scope.data.mostdislikedservice[0].mentionedmostservice.attachedobject
-                    scope.style={'font-size':'30px'}; 
+                    scope.style={'font-size':'26px'}; 
                     scope.labels = [
                         {
                             text: scope.data.mostlikedservice.map(function (item) {

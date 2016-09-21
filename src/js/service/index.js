@@ -271,7 +271,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.get('GetVoCDetailsByDate');
+            return baseSrv.get('GetVoCDetailsByDate',params);
         },
         getVoCDetailsByUser: function (platform, topic, user, PNScope, days) {
             var params = params || {};

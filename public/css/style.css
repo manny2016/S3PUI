@@ -157,7 +157,7 @@
   text-align: center;
 }
 .topic-selector.topic-selector:hover {
-  background: lightgrey;
+  background: #f0f0f0;
 }
 .topic-selector.topic-selector:hover div.content .header {
   color: orange;

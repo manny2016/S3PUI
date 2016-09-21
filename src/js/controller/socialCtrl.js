@@ -1,14 +1,16 @@
 module.exports = function ($scope, $timeout, $document, $location) {
+    $('.container').find('.basic.segment').dimmer('show');
+    $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.query = {};
     $scope.path = $location.path().split("/");
-    var totalrequests = 4;
+    var totalrequests = 10;
     $('#progress').progress({
         total: totalrequests
     });
     $('#server_status').popup({
         inline: true,
         hoverable: true,
-        position: 'bottom left' 
+        position: 'bottom left'
     })
     $scope.flags = {
         m: false,
@@ -16,40 +18,44 @@ module.exports = function ($scope, $timeout, $document, $location) {
         r: false
     };
     $('.ui.segment').find('.ui.dropdown').dropdown({
-        onChange: function(value, text, $selectedItem) {
+        onChange: function (value, text, $selectedItem) {
             // console.log(value)
             $scope.topic = value;
         }
     });
     $('#scrollspy .list .item .label').popup();
-    $document.scrollTopAnimated(10);
 
-    $scope.getTopics = function(){
-        $scope.service.getCate($scope.$stateParams.platform).then(function(data){
+    $scope.getTopics = function () {
+        $scope.service.getCate($scope.$stateParams.platform).then(function (data) {
             $scope.topics = []
-            data.map(function(item){
+            data.map(function (item) {
                 // console.log(item.Platforms)
                 var flage = false;
-                item.Platforms.map(function(obj){
-                    if(obj.PlatformName.toLowerCase() == $scope.$stateParams.platform){
+                item.Platforms.map(function (obj) {
+                    if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
                         flage = obj.isEnabled;
                     }
                 })
                 // console.log(item.TechCategoryName,flage)
-                if(flage) $scope.topics.push(item.TechCategoryName)
+                if (flage) $scope.topics.push(item.TechCategoryName)
             })
-            
+
         })
     }
     $scope.getTopics();
+    // var count=0;
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
+        // console.log(++count);
         //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
         //console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value') === totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
+                // $('#summary').dimmer('hide');
+                var firstSection = angular.element(document.getElementById('summary'));
+                $document.scrollToElementAnimated(firstSection);
             }, 1000)
         }
         //$timeout(function () {
@@ -57,8 +63,8 @@ module.exports = function ($scope, $timeout, $document, $location) {
         //    arg.resize();
         //},500)
     });
-    $scope.getMentionedServiceTable = function(platform,topic){
-        $scope.service.getMentionedMostServiceList(platform,topic).then(function(data){
+    $scope.getMentionedServiceTable = function (platform, topic) {
+        $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
             $scope.mostMentionedService = data;
         })
     }
@@ -67,7 +73,7 @@ module.exports = function ($scope, $timeout, $document, $location) {
         $event.stopPropagation();
         $event.preventDefault();
         console.log($scope.topic)
-        if(!$scope.topic){
+        if (!$scope.topic) {
             alert('Need to select a topic!');
             return false;
         }
@@ -78,14 +84,14 @@ module.exports = function ($scope, $timeout, $document, $location) {
         $('#progress').progress('reset');
         $('#progress').show();
         $scope.query.topic = $scope.topic;
-        $scope.getStatistic($scope.$stateParams.platform,$scope.topic)
-        $scope.getMentionedServiceTable($scope.$stateParams.platform,$scope.topic)
+        $scope.getStatistic($scope.$stateParams.platform, $scope.topic)
+        $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
         $scope.$broadcast('start-get-data', 'home');
     }
     // initLineCharts('.hourly-charts.home');
     // echarts.connect('hourlyCharts');
-    $scope.getStatistic = function(platform,topic,pnscope,days){
-        $scope.service.getImpactSummary(platform,topic,pnscope,days).then(function(data){
+    $scope.getStatistic = function (platform, topic, pnscope, days) {
+        $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);
             $scope.statistic = data;
         })

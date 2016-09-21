@@ -16,7 +16,7 @@ module.exports = function ($rootScope) {
             noPop: "@"
         },
         link: function (scope, e, a) {
-            console.log(scope.platform)
+            scope.pnscope = scope.pnscope || 'all';
             scope.onClick = function (userid) {
                 if (a.noPop === undefined) {
                     var param = {
@@ -32,14 +32,15 @@ module.exports = function ($rootScope) {
                 }
             }
             scope.getData = function (location, force) {
-                if (location == 'home') {
+                if (a.location === location) {
                     $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope).then(function (data) {
                         scope.users = data.slice(0, 5);
+                        // console.log(scope.users)
                         scope.complete = true;
                     })
                 }
             }
-            scope.getData('', true);
+            // scope.getData('', true);
             scope.$on('start-get-data', function (event, arg) {
                 scope.getData(arg);
             });

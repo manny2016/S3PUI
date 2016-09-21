@@ -4,7 +4,7 @@
         <i class="right angle icon divider"></i>
         <div class="active section">{{path[2]}}</div>
     </div>
-    <div class="ui segment clearing">
+    <div id="topic_select" class="ui segment clearing">
         <a id="server_status" class="ui red right label static">Status</a>
         <div class="ui flowing popup top left transition hidden compact segments" style="min-width:260px">
             <div class="ui compact segment">
@@ -44,41 +44,60 @@
     </div>
     <div class="ui segment" ng-show="flags.m">
         <!--statistic-->
-        <div id="summary">
+        <div id="summary" class="ui basic segment">
             <h2 class="ui center aligned header blue">Summary</h2>
             <!--charts-->
             <!--<div class="ui segment">-->
             <div ng-if="statistic" class="ui three column divided grid center aligned">
                 <div class="column">
-                    <div class="ui horizontal top divider">Community Users</div>
-                    <ng-statistic title="Users Joined Discussion" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Regions of Users" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Influence of Users(page Views)" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
+                    <div>
+                        <div class="ui horizontal top divider">Community Users</div>
+                        <ng-statistic title="Users Joined Discussion" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
+                    </div>
+                    <div ng-if="platform=='twitter'">
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Regions of Users" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
+                    </div>
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Influence of Users(page Views)" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
+                    </div>
                 </div>
                 <div class="column">
-                    <div class="ui horizontal top divider">Product Status</div>
-                    <ng-statistic title="Services be Discussed" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice"></ng-statistic>
+                    <div>
+                        <div class="ui horizontal top divider">Product Status</div>
+                        <ng-statistic title="Services be Discussed" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
+                    </div>
+                    <div ng-if="platform=='twitter'">
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>
+                    </div>
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice"></ng-statistic>
+                    </div>
                 </div>
                 <div class="column">
-                    <div class="ui horizontal top divider">VoC Insights</div>
-                    <ng-statistic title="Message Posts" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Sentiment of Messages (POSI:NEG)" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic title="Influence of Sentiment" comment="Page Views - POST : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>
+                    <div>
+                        <div class="ui horizontal top divider">VoC Insights</div>
+                        <ng-statistic title="Message Posts" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
+                    </div>
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Sentiment of Messages (POSI:NEG)" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
+                    </div>
+                    <div ng-if="platform=='twitter'">
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Influence of Sentiment" comment="Page Views - POST : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
         <div class="ui hidden divider"></div>
-        <div id="volumes">
+        <div id="volumes" class="ui basic segment">
             <h2 class="ui center aligned header teal">Volumes</h2>
             <div class="ui grid">
                 <div class="ui row">
@@ -96,7 +115,7 @@
                 <div class="ui row">
                     <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="ui row">
+                <div ng-if="platform=='twitter'" class="ui row">
                     <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
             </div>
@@ -108,9 +127,10 @@
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>-->
         </div>
         <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
         <div class="ui hidden divider"></div>
-        <div id="analytics">
+        <div id="analytics" class="ui basic segment">
             <h2 class="ui center aligned header green">
                 Services Analytics
             </h2>
@@ -165,9 +185,10 @@
             </div>
         </div>
         <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
         <div class="ui hidden divider"></div>
-        <div id="sentiment">
+        <div id="sentiment" class="ui basic segment">
             <h2 class="ui center aligned header purple">
                 Sentiment
             </h2>
@@ -184,32 +205,36 @@
             </div>
         </div>
         <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <div class="ui divider"></div>
         <div class="ui hidden divider"></div>
-        <div id="influencers">
+        <div id="influencers" class="ui basic segment">
             <h2 class="ui center aligned header violet">
                 Influencers
             </h2>
             <div class="ui three column grid">
-                <div class="column">
-                    <div class="ui blue inverted segment center aligned voc">
-                        <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
-                    </div>
-                </div>
-                
-                <div class="column">
-                    <div class="ui green inverted segment center aligned voc">
-                        <user-list title='Most POSI VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui red inverted segment center aligned voc">
-                        <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!--<div class="column">-->
+                <!--<div class="ui blue inverted segment center aligned voc">-->
+                <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
+                <!--</div>-->
+                <!--</div>-->
 
+                <!--<div class="column">-->
+                <!--<div class="ui green inverted segment center aligned voc">-->
+                <user-list title='Most POSI VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="column">-->
+                <!--<div class="ui red inverted segment center aligned voc">-->
+                <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+
+        </div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
         <!--<div id="menu" class="left attached ui rail tab-rail">
             <div class="ui fixed sticky">
                 <div class="ui vertical mini menu">
@@ -218,24 +243,24 @@
             </div>
         </div>-->
         <!--</div>-->
-        <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+        <div id="scrollspy" ng-scroll-spy class="">
             <div class="ui middle aligned selection list">
                 <div class="item">
-                    <a du-smooth-scroll="summary" du-scrollspy offset="60">
+                    <a du-smooth-scroll="summary" du-scrollspy offset="600">
                         <div class="ui label" set-color="blue" data-content="Summary" data-variation="mini inverted">
                             <i class="icon dashboard"></i><span ng-hide="isSmall">Summary</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="volumes" du-scrollspy offset="160">
+                    <a du-smooth-scroll="volumes" du-scrollspy offset="60">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
                             <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="30">
                         <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
                             <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
                         </div>
@@ -249,7 +274,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="influencers" du-scrollspy offset="300">
+                    <a du-smooth-scroll="influencers" du-scrollspy offset="600">
                         <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
                             <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
                         </div>

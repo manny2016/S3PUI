@@ -13,6 +13,7 @@ module.exports = function ($rootScope) {
             //         console.log(s);
             //     }
             // })
+            var lastTime = new Date();
             scope.category = 'twitter';
             $('#' + id + ' .ui.dropdown').dropdown({
                 onChange: function (value, text, $selectedItem) {
@@ -29,6 +30,11 @@ module.exports = function ($rootScope) {
                 rightButton = angular.element(e.find(".ui.right.icon.button")[0]),
                 cateInput = angular.element(e.find("input:hidden"));
             var flipLeft = function () {
+                var current = new Date();
+                if(current.getTime()-lastTime.getTime()<1000){
+                    return false;
+                }
+                lastTime = current;
                 e.find("div.shape").shape('flip left');
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
@@ -41,6 +47,11 @@ module.exports = function ($rootScope) {
                 resizeChart();
             }
             var flipRight = function () {
+                var current = new Date();
+                if(current.getTime()-lastTime.getTime()<1000){
+                    return false;
+                }
+                lastTime = current;
                 e.find("div.shape").shape('flip right');
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
@@ -64,8 +75,8 @@ module.exports = function ($rootScope) {
             }
             function callMentionedService() {
                 if(a.linkage !== 'true') return;
-                console.log(scope.category); // platform
-                console.log(a);
+                // console.log(scope.category); // platform
+                // console.log(a);
                 $rootScope.$broadcast('fresh-most-mentioned',{
                     platform:scope.category,
                     pnscope:a.pnscope

@@ -5,11 +5,11 @@ var app = angular.module('app.Route', ['ui.router']);
 app
   
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider.when("", "/home/about");
-    $urlRouterProvider.when("/", "/home/about");
+    $urlRouterProvider.when("", "/home/dashboard");
+    $urlRouterProvider.when("/", "/home/dashboard");
 
     // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise("/home/about");
+    $urlRouterProvider.otherwise("/home/dashboard");
 
     $stateProvider
       .state('home', {
@@ -57,6 +57,10 @@ app
         templateUrl: 'templates/social.test.html',
         // controller: 'msPlatformCtrl'
         controller: 'socialCtrl'
+      })
+      .state('share',{
+        url:'/share',
+        template:'<sub-window></sub-window>'
       });
 
     // configure html5 to get links working on jsfiddle

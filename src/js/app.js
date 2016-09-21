@@ -7,7 +7,7 @@ app
     // var config = require('../../public/config');
     // console.log(config);
     var config = {
-      mode:'dev'
+      mode:'prod'
     }
     if(config.mode==='dev'){
       $rootScope.service = $injector.get('testSrv')
@@ -26,6 +26,10 @@ app
     };
     $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
       //Automaticly update location 
+      // debugger;
+      // console.log($($target).siblings('.segment'))
+      $($target).siblings('.segment').dimmer('show')
+      $($target).dimmer('hide');
       var color = $element.find("div").attr('set-color');
       $($element.find("div")).addClass(color);
       var siblings = $element.parent().siblings();

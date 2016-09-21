@@ -18,7 +18,7 @@ module.exports = function ($rootScope, $compile, utilitySrv) {
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
                 console.log(params)
-                scope.platform = params.param.platform
+                scope.platform = params.param.platform.toLowerCase()
                 var fnPromise,
                     fn = $rootScope.service[params.fn];
                 switch (params.fn) {

@@ -54,7 +54,7 @@
                         <th st-sort="getters.twitterInf">Influence Num</th>
                         <th st-sort="created_at">Time (UTC)</th>
                         <th st-sort="sentimentscore">Sentiment</th>
-                        <th>Post within spike period</th>
+                        <!--<th>Post within spike period</th>-->
                     </tr>
                     <tr ng-if="(platform=='so'||platform=='sf'||platform=='su')">
                         <th st-sort="title">Thread Name</th>
@@ -62,7 +62,7 @@
                         <th st-sort="view_count">Influence Num</th>
                         <th st-sort="creation_date">Time (UTC)</th>
                         <th st-sort="sentimentscore">Sentiment</th>
-                        <th>Post within spike period</th>
+                        <!--<th>Post within spike period</th>-->
                     </tr>
                     <tr ng-if="(platform=='msdn'||platform=='tn')">
                         <th st-sort="title">Thread Name</th>
@@ -70,17 +70,25 @@
                         <th st-sort="views">Influence Num</th>
                         <th st-sort="created">Time (UTC)</th>
                         <th st-sort="sentimentscore">Sentiment</th>
-                        <th>Post within spike period</th>
+                        <!--<th>Post within spike period</th>-->
                     </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td colspan="5">
+                        <div class="ui icon input">
+                            <input type="search" st-search placeholder="Search ...">
+                            <i class="search icon"></i>
+                        </div>
+                    </td>
+                </tr>
                 <tr ng-repeat="item in stTable" ng-if="(platform=='twitter')">
                     <td><a href="{{item.twitterurl}}" target="_blank">{{item.text}}</a></td>
                     <td>{{item.user.name}}</td>
                     <td>{{(item.user.followers_count)+(item.user.friends_count)}}</td>
                     <td>{{item.created_at}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
-                    <td>{{}}</td>
+                    <!--<td>{{}}</td>-->
                 </tr>
                 <tr ng-repeat="item in stTable" ng-if="(platform=='so'||platform=='sf'||platform=='su')">
                     <td><a href="{{item.link}}" target="_blank">{{item.title}}</a></td>
@@ -88,7 +96,7 @@
                     <td>{{item.view_count}}</td>
                     <td>{{item.creation_date}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
-                    <td>{{}}</td>
+                    <!--<td>{{}}</td>-->
                 </tr>
                 <tr ng-repeat="item in stTable" ng-if="(platform=='msdn'||platform=='tn')">
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
@@ -96,12 +104,12 @@
                     <td>{{item.views}}</td>
                     <td>{{item.created}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
-                    <td>{{}}</td>
+                    <!--<td>{{}}</td>-->
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" >
+                    <td colspan="6">
                         <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
 
                     </td>
