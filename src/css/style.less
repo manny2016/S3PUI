@@ -259,6 +259,54 @@
     color: rgba(0, 0, 0, 0.95);
 }
 
+.ui.menu .dropdown{
+    &.blue{
+        // background-color: @blue;
+        &.select{
+            color: @blue !important;
+        }
+        &:hover{
+            color: @blue !important;
+        }
+    }
+    &.green{
+        // background-color: @blue;
+        &.select{
+            color: @green !important;
+        }
+        &:hover{
+            color: @green !important;
+        }
+    }
+    &.olive{
+        // background-color: @blue;
+        &.select{
+            color: @olive !important;
+        }
+        &:hover{
+            color: @olive !important;
+        }
+    }
+    &.yellow{
+        // background-color: @blue;
+        &.select{
+            color: @yellow !important;
+        }
+        &:hover{
+            color: @yellow !important;
+        }
+    }
+    &.red{
+        // background-color: @blue;
+        &.select{
+            color: @red !important;
+        }
+        &:hover{
+            color: @red !important;
+        }
+    }
+}
+
 .select-page {
   width: 40px;
   text-align: center;
@@ -280,5 +328,13 @@
                 color: #fff;
             }
         }
+    }
+}
+
+.ui.segment{
+    .ui.header:first-child {
+        margin: -1rem -1rem 1rem -1rem !important;
+        padding: 1rem;
+        background: #f0f0f0;
     }
 }

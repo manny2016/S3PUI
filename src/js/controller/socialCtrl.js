@@ -1,5 +1,4 @@
 module.exports = function ($scope, $timeout, $document, $location) {
-    $('.container').find('.basic.segment').dimmer('show');
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.query = {};
     $scope.path = $location.path().split("/");
@@ -54,8 +53,8 @@ module.exports = function ($scope, $timeout, $document, $location) {
             $timeout(function () {
                 $('#progress').hide()
                 // $('#summary').dimmer('hide');
-                var firstSection = angular.element(document.getElementById('summary'));
-                $document.scrollToElementAnimated(firstSection);
+                // var firstSection = angular.element(document.getElementById('summary'));
+                // $document.scrollToElementAnimated(firstSection);
             }, 1000)
         }
         //$timeout(function () {

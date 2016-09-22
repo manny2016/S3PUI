@@ -28,8 +28,8 @@ app
       //Automaticly update location 
       // debugger;
       // console.log($($target).siblings('.segment'))
-      $($target).siblings('.segment').dimmer('show')
-      $($target).dimmer('hide');
+      // $($target).siblings('.segment').dimmer('show')
+      // $($target).dimmer('hide');
       var color = $element.find("div").attr('set-color');
       $($element.find("div")).addClass(color);
       var siblings = $element.parent().siblings();
@@ -54,7 +54,7 @@ app
     //   console.log(window.innerWidth);
     // })
     $rootScope.init = function () {
-      $('.menu').find('.ui.dropdown.item').dropdown();
+      // $('.menu').find('.ui.dropdown.item').dropdown();
       $('.fullscreen.modal').modal({
         observeChanges: true,
         onVisible: function (e) {

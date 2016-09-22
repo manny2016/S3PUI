@@ -42,10 +42,10 @@
     <div class="ui indicating progress" id="progress" ng-show="flags.m">
         <div class="bar"></div>
     </div>
-    <div class="ui segment" ng-show="flags.m">
+    <div class="" ng-show="flags.m">
         <!--statistic-->
-        <div id="summary" class="ui basic segment">
-            <h2 class="ui center aligned header blue">Summary</h2>
+        <div id="summary" class="ui blue segment">
+            <h3 class="ui center aligned header blue">Summary</h3>
             <!--charts-->
             <!--<div class="ui segment">-->
             <div ng-if="statistic" class="ui three column divided grid center aligned">
@@ -93,30 +93,30 @@
                 </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="volumes" class="ui basic segment">
-            <h2 class="ui center aligned header teal">Volumes</h2>
-            <div class="ui grid">
-                <div class="ui row">
-                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="volumes" class="ui teal segment">
+            <h3 class="ui center aligned header teal">Volumes</h3>
+            <div class="ui one column grid">
+                <div class="column">
+                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="ui row">
-                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                <div class="column">
+                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="ui row">
-                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                <div class="column">
+                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="ui row">
-                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" style="height:264px;" location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                <div class="column">
+                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="ui row">
-                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                <div class="column">
+                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div ng-if="platform=='twitter'" class="ui row">
-                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                <div ng-if="platform=='twitter'" class="column">
+                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
             </div>
             <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>
@@ -126,14 +126,14 @@
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>-->
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="analytics" class="ui basic segment">
-            <h2 class="ui center aligned header green">
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="analytics" class="ui green segment">
+            <h3 class="ui center aligned header green">
                 Services Analytics
-            </h2>
+            </h3>
             <div class="ui grid">
                 <div class="two column row">
                     <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>
@@ -184,14 +184,14 @@
                 </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="sentiment" class="ui basic segment">
-            <h2 class="ui center aligned header purple">
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="sentiment" class="ui purple segment">
+            <h3 class="ui center aligned header purple">
                 Sentiment
-            </h2>
+            </h3>
 
             <div class="ui two column grid">
                 <div class="row">
@@ -204,14 +204,14 @@
                 </div>-->
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="influencers" class="ui basic segment">
-            <h2 class="ui center aligned header violet">
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="influencers" class="ui orange segment">
+            <h3 class="ui center aligned header orange">
                 Influencers
-            </h2>
+            </h3>
             <div class="ui three column grid">
                 <!--<div class="column">-->
                 <!--<div class="ui blue inverted segment center aligned voc">-->
@@ -232,9 +232,9 @@
             </div>
 
         </div>
+        <!--<div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>-->
         <!--<div id="menu" class="left attached ui rail tab-rail">
             <div class="ui fixed sticky">
                 <div class="ui vertical mini menu">
@@ -260,14 +260,14 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="analytics" du-scrollspy offset="30">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="100">
                         <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
                             <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="400">
                         <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
                             <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
                         </div>
@@ -275,7 +275,7 @@
                 </div>
                 <div class="item">
                     <a du-smooth-scroll="influencers" du-scrollspy offset="600">
-                        <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
+                        <div class="ui label" set-color="orange" data-content="influencers" data-variation="mini inverted">
                             <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
                         </div>
                     </a>

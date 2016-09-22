@@ -24,7 +24,7 @@
                 <!--********-->
                 <!--Top Menu-->
                 <!--********-->
-                <div class="ui top menu">
+                <div class="ui top inverted menu">
                     <div class="ui container">
                         <div class="ui header item">
                             <!--<img class="logo" src="assets/images/logo.png">-->
@@ -39,22 +39,22 @@
                     <a href="/stackexchange" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
 
-                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('home')}">
+                            <div class="green ui dropdown simple item" ng-class="{select: $state.includes('home')}">
                                 S3P <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <a class="item" ui-sref="home.about">What's S3P</a>
                                     <a class="item" ui-sref="home.dashboard">Dashboard</a>
+                                    <a class="item" ui-sref="home.about">What's S3P</a>
                                 </div>
                             </div>
 
-                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('social')}">
+                            <div class="olive ui dropdown simple item" ng-class="{select: $state.includes('social')}">
                                 Social Media <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="social.platform({platform:'twitter'})">Twitter</a>
                                 </div>
                             </div>
 
-                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('thirdParty')}">
+                            <div class="blue ui dropdown simple item" ng-class="{select: $state.includes('thirdParty')}">
                                 Third Party Forums <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="thirdParty.platform({platform:'so'})">Stackoverflow</a>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
 
-                            <div class="ui dropdown simple item" ng-class="{select: $state.includes('msPlatform')}">
+                            <div class="yellow ui dropdown simple item" ng-class="{select: $state.includes('msPlatform')}">
                                 MS Platforms <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>

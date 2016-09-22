@@ -7,7 +7,7 @@
     <div class="ui orange segment clearing animated slideInUp">
         <h3 class="ui header orange">
             S3P Products
-            <div class="sub right header">
+            <div class="sub pull-right header">
                 <div class="ui orange horizontal label">UTC</div>
                 {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
             </div>
@@ -25,14 +25,14 @@
     <!--query metrics-->
     <div ng-show="flags.m">
 
-        <div class="ui segment green">
+        <div id="health" class="ui segment green">
             <h3 class="ui header green">Health</h3>
             <div>
 
             </div>
         </div>
         <!--spikes charts-->
-        <div class="ui segment teal">
+        <div id="volumes" class="ui segment teal">
             <h3 class="ui header teal">
                 Volumes
             </h3>
@@ -42,7 +42,7 @@
 
         </div>
 
-        <div class="ui blue segment">
+        <div id="sentiment" class="ui blue segment">
             <h3 class="ui header blue">Sentiment</h3>
             <div class="ui three column grid">
                 <ng-echart ng-repeat="p in enabledPlatforms" title="Positive & Negative Vol Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
@@ -163,12 +163,45 @@
             </div>
         </div>
 
-        <div class="ui segment violet">
+        <div id="influencers" class="ui segment violet">
             <h3 class="ui header violet">
                 Influencers
             </h3>
             <div class="ui three column grid">
                 <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform='{{p}}' query=query location='home'></user-list>
+            </div>
+        </div>
+
+        <div id="scrollspy" ng-scroll-spy class="">
+            <div class="ui middle aligned selection list">
+                <div class="item">
+                    <a du-smooth-scroll="health" du-scrollspy offset="200">
+                        <div class="ui label" set-color="green" data-content="Health" data-variation="mini inverted">
+                            <i class="icon dashboard"></i><span ng-hide="isSmall">Health</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="volumes" du-scrollspy offset="200">
+                        <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
+                            <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="200">
+                        <div class="ui label" set-color="blue" data-content="Sentiment" data-variation="mini inverted">
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="influencers" du-scrollspy offset="200">
+                        <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
+                            <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
