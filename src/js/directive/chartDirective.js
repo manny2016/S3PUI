@@ -194,26 +194,26 @@ module.exports = function ($rootScope, $q, $location, utilitySrv) {
                     var path = '/';
                     switch (params.name) {
                         case 'twitter':
-                            path = '/social';
+                            path = '/social/'+params.name;
                             break;
                         case 'so':
-                            path = '/#';
+                            path = '/thirdParty/'+params.name;
                             // path = '/stackexchange';
                             break;
                         case 'sf':
-                            path = '/#';
+                            path = '/thirdParty/'+params.name;
                             // path = '/stackexchange';
                             break;
                         case 'su':
-                            path = '/#';
+                            path = '/thirdParty/'+params.name;
                             // path = '/stackexchange';
                             break;
                         case 'msdn':
-                            path = '/#';
+                            path = '/msPlatform/'+params.name;
                             // path = '/msdn';
                             break;
                         case 'tn':
-                            path = '/#';
+                            path = '/msPlatform/'+params.name;
                             // path = '/msdn';
                             break;
                     }
@@ -229,8 +229,8 @@ module.exports = function ($rootScope, $q, $location, utilitySrv) {
                     var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
-                            _.platforms = _.platform.split(",");
-                            if (_.platforms.length == 1) {
+                            if (_.platform) {
+                                // _.platform = _.platforms[0];
                                 var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
                                 customSpikesData(fnPromise, _).then(function (config) {
                                     _.chartOpt = angular.merge(_.chartOpt, config);
@@ -238,6 +238,7 @@ module.exports = function ($rootScope, $q, $location, utilitySrv) {
                                     afterInit($rootScope, _, _.chartObj);
                                 })
                             } else {
+                                _.platforms = _.$parent.enabledPlatforms;
                                 _.raw = [];
                                 var fnPromises = _.platforms.map(function (item) {
                                     return apiFn(item, _.query.topic, _.query.days).then(function (data) {
