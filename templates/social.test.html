@@ -68,13 +68,49 @@
                         <div class="ui horizontal top divider">Product Status</div>
                         <ng-statistic title="Services be Discussed" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
                     </div>
-                    <div ng-if="platform=='twitter'">
+                    <div ng-if="platform=='twitter'" style="max-height:129px;">
                         <div class="ui inverted divider"></div>
-                        <ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>
+                        <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>-->
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <h6 style="margin:0">Most Mentioned Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <h6 style="margin:0">Weekly Growth Ranking</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <div class="ui inverted divider"></div>
-                        <ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice"></ng-statistic>
+                        <!--<ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice"></ng-statistic>-->
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <h6 style="margin:0">Most Liked Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <h6 style="margin:0">Most Disliked Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="column">
