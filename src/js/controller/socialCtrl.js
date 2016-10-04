@@ -2,7 +2,17 @@ module.exports = function ($scope, $timeout, $document, $location) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.query = {};
     $scope.path = $location.path().split("/");
-    var totalrequests = 10;
+    var totalrequests = 0;
+    // debugger;
+    switch ($scope.platform) {
+        case 'twitter':
+            totalrequests = 15;
+            break;
+        default:
+            totalrequests = 14;
+            break;
+
+    }
     $('#progress').progress({
         total: totalrequests
     });
@@ -20,10 +30,12 @@ module.exports = function ($scope, $timeout, $document, $location) {
         onChange: function (value, text, $selectedItem) {
             // console.log(value)
             $scope.topic = value;
+            $scope.startGetData()
         }
     });
     $('#scrollspy .list .item .label').popup();
 
+    $('#topic_select').dimmer('show');
     $scope.getTopics = function () {
         $scope.service.getCate($scope.$stateParams.platform).then(function (data) {
             $scope.topics = []
@@ -38,11 +50,11 @@ module.exports = function ($scope, $timeout, $document, $location) {
                 // console.log(item.TechCategoryName,flage)
                 if (flage) $scope.topics.push(item.TechCategoryName)
             })
-
+            $('#topic_select').dimmer('hide');
         })
     }
     $scope.getTopics();
-    // var count=0;
+    // var count = 0;
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         // console.log(++count);
@@ -65,13 +77,14 @@ module.exports = function ($scope, $timeout, $document, $location) {
     $scope.getMentionedServiceTable = function (platform, topic) {
         $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
             $scope.mostMentionedService = data;
+            $scope.$broadcast('data-got');
         })
     }
 
-    $scope.startGetData = function ($event) {
-        $event.stopPropagation();
-        $event.preventDefault();
-        console.log($scope.topic)
+    $scope.startGetData = function () {
+        // $event.stopPropagation();
+        // $event.preventDefault();
+        // console.log($scope.topic)
         if (!$scope.topic) {
             alert('Need to select a topic!');
             return false;
@@ -93,6 +106,7 @@ module.exports = function ($scope, $timeout, $document, $location) {
         $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);
             $scope.statistic = data;
+            $scope.$broadcast('data-got');
         })
     }
 

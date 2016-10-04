@@ -37,6 +37,7 @@ module.exports = function ($rootScope) {
                         scope.users = data.slice(0, 5);
                         // console.log(scope.users)
                         scope.complete = true;
+                        $rootScope.$broadcast('data-got');
                     })
                 }
             }
