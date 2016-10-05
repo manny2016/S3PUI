@@ -1,4 +1,3 @@
-'use strict';
 
 var app = angular.module('app.Srv', []);
 app.constant('config', {

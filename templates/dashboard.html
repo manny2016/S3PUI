@@ -79,10 +79,10 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="active side" page="Message">
-                                        <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}' query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                     </div>
                                     <div class="side" page="User">
-                                        <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" platform='{{enabledPlatforms[0]}}' query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +135,10 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="active side" page="Message">
-                                        <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}' query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                     </div>
                                     <div class="side" page="User">
-                                        <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" platform='{{enabledPlatforms[0]}}' query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                     </div>
                                 </div>
                             </div>

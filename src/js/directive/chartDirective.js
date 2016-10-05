@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = function ($rootScope, $q, $location, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',

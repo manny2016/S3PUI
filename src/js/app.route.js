@@ -1,4 +1,3 @@
-'use strict';
 require('angular-ui-router');
 var app = angular.module('app.Route', ['ui.router']);
 

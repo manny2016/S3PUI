@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = function ($rootScope, $compile, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html'),
