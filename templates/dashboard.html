@@ -165,7 +165,7 @@
 
         <div id="influencers" class="ui segment violet">
             <h3 class="ui header violet">
-                Influencers
+                Top Active Users
             </h3>
             <div class="ui three column grid">
                 <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform='{{p}}' query=query location='home'></user-list>
@@ -198,7 +198,7 @@
                 <div class="item">
                     <a du-smooth-scroll="influencers" du-scrollspy offset="200">
                         <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
-                            <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                            <i class="icon users"></i> <span ng-hide="isSmall">Top Active Users</span>
                         </div>
                     </a>
                 </div>
