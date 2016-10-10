@@ -75,7 +75,7 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
                                     {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Weekly Growth Ranking</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
                                     {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
                                     </div>
                                 </div>
