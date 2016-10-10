@@ -12,7 +12,7 @@
             <!--TOP 1-->
             <div class="item" ng-repeat="u in users" ng-click="onClick(u)">
                 <!--<div class="image">-->
-                    <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = u.attachedobject.profile_image_url? u.attachedobject.profile_image_url : 'public/images/image.png'" ng-src="{{avator}}">
+                    <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = getAvatorUrl(u)" ng-src="{{avator}}">
                 <!--</div>-->
                 <div class="content">
                     <div class="header">{{u.name}}{{u.attachedobject.name}}{{u.attachedobject.displayName}}{{u.attachedobject.display_name}}</div>

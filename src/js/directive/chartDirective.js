@@ -111,12 +111,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
-                console.log(params)
+                // console.log(params)
                 if (attrs.noPop === undefined) {
                     // $rootScope.popSubWin();
-                    console.log(params)
-                    console.log(_)
-                    console.log(_.subFn);
+                    // console.log(params)
+                    // console.log(_)
+                    // console.log(_.subFn);
                     switch (_.subFn) {
                         case 'getVoCDetailsByDate':
                             var param = {
