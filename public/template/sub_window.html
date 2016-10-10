@@ -100,7 +100,7 @@
                 </tr>
                 <tr ng-repeat="item in stTable" ng-if="(platform=='msdn'||platform=='tn')">
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
-                    <td>{{item.createdBy}}</td>
+                    <td>{{item.createdBy.displayName}}</td>
                     <td>{{item.views}}</td>
                     <td>{{item.created}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>

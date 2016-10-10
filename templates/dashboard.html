@@ -1,15 +1,15 @@
 <div class="ui segment basic container">
     <div class="ui breadcrumb">
-        <a class="section">S3P</a>
+        <a class="section">Social Health Predictor</a>
         <i class="right angle icon divider"></i>
         <div class="active section">Dashboard</div>
     </div>
     <div class="ui orange segment clearing animated slideInUp">
         <h3 class="ui header orange">
-            S3P Products
+            Services and Products
             <div class="sub pull-right header">
                 <div class="ui orange horizontal label">UTC</div>
-                {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
+                {{dateList[0]}} - {{dateList.slice(-1)[0]}}
             </div>
         </h3>
         <div class="ui four cards">
@@ -26,7 +26,7 @@
     <div ng-show="flags.m">
 
         <div id="health" class="ui segment green">
-            <h3 class="ui header green">Health</h3>
+            <h3 class="ui header green">Social Health</h3>
             <div>
 
             </div>
@@ -55,7 +55,7 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Positive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        <ng-echart title="Daily Positive Influence in {{p}}" platform='{{p}}' query=query api-fn="getSpikes" type="influence" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Nagetive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        <ng-echart title="Daily Nagetive Influence in {{p}}" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" type="influence" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
                                     </div>
 
                                 </div>
@@ -165,7 +165,7 @@
 
         <div id="influencers" class="ui segment violet">
             <h3 class="ui header violet">
-                Influencers
+                Top Active Users
             </h3>
             <div class="ui three column grid">
                 <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform='{{p}}' query=query location='home'></user-list>
@@ -198,7 +198,7 @@
                 <div class="item">
                     <a du-smooth-scroll="influencers" du-scrollspy offset="200">
                         <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
-                            <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                            <i class="icon users"></i> <span ng-hide="isSmall">Top Active Users</span>
                         </div>
                     </a>
                 </div>

@@ -5,7 +5,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 
     <head runat="server">
-        <title>Service Status and Sentiment Predictor (S3P)</title>
+        <title>Social Health Predictor</title>
         <base href="/" />
         <link rel="stylesheet" href="/public/semantic.css" />
         <link rel="stylesheet" href="/public/css/style.css" />
@@ -28,10 +28,10 @@
                     <div class="ui container">
                         <div class="ui header item">
                             <!--<img class="logo" src="assets/images/logo.png">-->
-                            S3P
-                            <div class="text tiny" style="margin-left:10px;">
+                            Social Health Predictor
+                            <!--<div class="text tiny" style="margin-left:10px;">
                                 Service Status and Sentiment Predictor
-                            </div>
+                            </div>-->
                         </div>
                         <div class="menu right">
                             <!--<a href="/" ng-class="{ active: isActive('/')}" class="item">S3P Dashboard</a>
@@ -40,10 +40,10 @@
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
 
                             <div class="green ui dropdown simple item" ng-class="{select: $state.includes('home')}">
-                                S3P <i class="dropdown icon"></i>
+                                Social Health Predictor <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="home.dashboard">Dashboard</a>
-                                    <a class="item" ui-sref="home.about">What's S3P</a>
+                                    <a class="item" ui-sref="home.about">What's Social Health Predictor</a>
                                 </div>
                             </div>
 

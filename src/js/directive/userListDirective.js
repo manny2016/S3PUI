@@ -17,12 +17,12 @@ module.exports = function ($rootScope) {
         },
         link: function (scope, e, a) {
             scope.pnscope = scope.pnscope || 'all';
-            scope.onClick = function (userid) {
+            scope.onClick = function (user) {
                 if (a.noPop === undefined) {
                     var param = {
                         platform: scope.platform,
                         topic: scope.query.topic,
-                        userid: userid,
+                        userid: user.attachedobject.userId||user.attachedobject.user_id,
                         pnscope: scope.pnscope 
                     }
                     $rootScope.popSubWin({

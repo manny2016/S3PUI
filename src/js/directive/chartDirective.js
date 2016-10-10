@@ -165,7 +165,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                 param: param
                             });
                             break;
-                        case 'getSubPageVoCDetails': 
+                        case 'getSubPageVoCDetails':
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
@@ -177,7 +177,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                 param: param
                             });
                             break;
-                        case 'getSubPageVoCDetailsbyKeywords': 
+                        case 'getSubPageVoCDetailsbyKeywords':
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
@@ -194,26 +194,26 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                     var path = '/';
                     switch (params.name) {
                         case 'twitter':
-                            path = '/social/'+params.name;
+                            path = '/social/' + params.name;
                             break;
                         case 'so':
-                            path = '/thirdParty/'+params.name;
+                            path = '/thirdParty/' + params.name;
                             // path = '/stackexchange';
                             break;
                         case 'sf':
-                            path = '/thirdParty/'+params.name;
+                            path = '/thirdParty/' + params.name;
                             // path = '/stackexchange';
                             break;
                         case 'su':
-                            path = '/thirdParty/'+params.name;
+                            path = '/thirdParty/' + params.name;
                             // path = '/stackexchange';
                             break;
                         case 'msdn':
-                            path = '/msPlatform/'+params.name;
+                            path = '/msPlatform/' + params.name;
                             // path = '/msdn';
                             break;
                         case 'tn':
-                            path = '/msPlatform/'+params.name;
+                            path = '/msPlatform/' + params.name;
                             // path = '/msdn';
                             break;
                     }
@@ -239,7 +239,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                 })
                             } else {
                                 _.platforms = _.$parent.enabledPlatforms;
-                                _.raw = [];
+                                // _.raw = [];
+                                _.raw = {};
+                                _.platforms.forEach(function (element) {
+                                    _.raw[element] = 0;
+                                }, this);
+                                console.log(_.raw);
                                 var fnPromises = _.platforms.map(function (item) {
                                     return apiFn(item, _.query.topic, _.query.days).then(function (data) {
                                         var seriesData = data.map(function (raw) {
@@ -259,7 +264,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                             // return tmp;
                                             return value;
                                         })
-                                        _.raw.push(seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                        _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
                                             return previousValue + currentValue;
                                         }))
                                     })
@@ -380,10 +385,11 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                         _.topic = arg.topic ? arg.topic : _.topic;
                         var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
                         var fn = customWordCloudData;
-                        // _.chartOpt = initCloudWordChartOpt(_);
+                        _.chartOpt = initCloudWordChartOpt(_);
                         fn(fnPromise, _).then(function (config) {
                             _.chartOpt = angular.merge(_.chartOpt, config);
                             // console.log(_.chartOpt)
+                            // initChart(_.chartObj, _.chartOpt);
                             _.chartObj.setOption(_.chartOpt)
                         })
                     }
@@ -493,7 +499,7 @@ function afterInit(rootscope, scope, echartObj) {
             echartObj.resize();
         }, 150)
     }
-    if(scope.group){
+    if (scope.group) {
         echarts.connect(scope.group);
     }
     //var echartsWidth = echartObj.getWidth();
@@ -528,6 +534,7 @@ function customSpikesData(fnPromise, scope) {
         var lineData = raw.map(function (item) {
             return item.dailytotalvol
         })
+
         return {
             xAxis: { data: scope.$root.dateList },
             grid: {
@@ -563,10 +570,47 @@ function customSpikesData(fnPromise, scope) {
             }
         }
     }
+    var influenceSeries = function (raw) {
+        var influenceData = raw.map(function (item) {
+            return item.dailytotalinfluencevol
+        })
+        var influencePOSIData = raw.map(function (item) {
+            return item.dailyposiinfluencevol
+        })
+        var influenceNEGData = raw.map(function (item) {
+            return item.dailyneginfluencevol
+        })
+        var seriesData = [];
+        switch (scope.pnscope) {
+            case 'posi':
+                seriesData = influencePOSIData;
+                break;
+            case 'neg':
+                seriesData = influenceNEGData;
+                break;
+            default:
+                seriesData = influenceData;
+                break;
+        }
+        return {
+            xAxis: { data: scope.$root.dateList },
+            series: [{
+                name: 'Influence Vol',
+                type: 'line',
+                data: seriesData
+            }],
+            title: {
+                text: scope.title || ''
+            }
+        }
+    }
     var fn = simpleSeries;
     switch (scope.type) {
         case 'barLine':
             fn = barLineSeries;
+            break;
+        case 'influence':
+            fn = influenceSeries;
             break;
         default:
             break;
@@ -666,12 +710,14 @@ function customServicesDistributionData(fnPromise, scope) {
 function customHoriBarData(scope) {
     return {
         yAxis: {
-            data: scope.platforms
+            data: Object.keys(scope.raw)
         },
         series: [{
             name: scope.pnscope + ' Vol',
             type: 'bar',
-            data: scope.raw
+            data: Object.keys(scope.raw).map(function (key) {
+                return scope.raw[key];
+            })
         }],
         title: {
             text: scope.title || ''
