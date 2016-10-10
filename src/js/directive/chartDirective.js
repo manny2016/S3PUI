@@ -906,24 +906,15 @@ function initPieChartOpt(scope) {
                 name: 'Tech Scope Distribution',
                 type: 'pie',
                 radius: ['35%', '55%'],
-                itemStyle: {
+                label: {
                     normal: {
                         label: {
                             show: true
                         },
                         labelLine: {
                             show: true
-                        }
-                    },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            position: 'center',
-                            textStyle: {
-                                fontSize: '14',
-                                fontWeight: 'normal'
-                            }
-                        }
+                        },
+                        formatter: '{b}\n ({d}%)'
                     }
                 },
                 data: []
