@@ -13,13 +13,13 @@
                     <tr ng-repeat="s in t.Platforms">
                         <td>{{s.PlatformName}}</td>
                         <td>
-                            <!--{{s.isEnabled}}-->
                             <i ng-if="s.isEnabled" class="check circle icon green"></i>
                             <i ng-if="!(s.isEnabled)" class="remove circle icon red"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <!--<a class="ui circular label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'red'" >{{s.PlatformName}}</a>-->
         </div>
     </div>
     <div ng-if="t.isGA" class="ui green bottom attached button" ng-click="startGetData(t.TechCategoryName)">

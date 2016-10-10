@@ -19,7 +19,7 @@ module.exports = function ($rootScope) {
             scope.pnscope = scope.pnscope || 'all';
             scope.getAvatorUrl = function(user){
                 return user.attachedobject.profile_image|| user.attachedobject.profile_image_url ||'public/images/avator.png'
-            } 
+            }
             scope.onClick = function (user) {
                 if (a.noPop === undefined) {
                     var param = {

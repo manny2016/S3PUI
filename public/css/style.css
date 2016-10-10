@@ -186,6 +186,9 @@
   width: 40px;
   text-align: center;
 }
+.topic-selector table {
+  line-height: 0.4em;
+}
 .topic-selector.topic-selector:hover {
   background: #f0f0f0;
 }
