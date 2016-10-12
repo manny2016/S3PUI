@@ -75,16 +75,16 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
-                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Weekly Growth Ranking</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
-                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}" ng-class="{0:'red',1:'green',2:'blue'}[$index]">
+                                    {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>

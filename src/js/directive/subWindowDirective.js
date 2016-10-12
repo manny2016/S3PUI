@@ -17,7 +17,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
             // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
-                console.log(params)
+                // console.log(params)
                 scope.platform = params.param.platform.toLowerCase()
                 var fnPromise,
                     fn = $rootScope.service[params.fn];
@@ -74,7 +74,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
                 fnPromise.then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.messagesorthreads;
-                    console.log(scope.tabledata);
+                    // console.log(scope.tabledata);
                     // if(!scope.table){
                     //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
                     // }else{
@@ -90,6 +90,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
                 })
             }
             scope.$on('start-get-data-in-window', function (event, arg) {
+                scope.raw = [];
+                scope.tabledata = [];
+                scope.chartOpt = {};
+                scope.$broadcast('set-user-data', []);
                 scope.getData(arg);
             });
 
