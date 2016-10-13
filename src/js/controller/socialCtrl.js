@@ -6,7 +6,7 @@ module.exports = function ($scope, $timeout, $document, $location) {
     // debugger;
     switch ($scope.platform) {
         case 'twitter':
-            totalrequests = 15;
+            totalrequests = 14;
             break;
         default:
             totalrequests = 14;
@@ -76,6 +76,8 @@ module.exports = function ($scope, $timeout, $document, $location) {
     });
     $scope.getMentionedServiceTable = function (platform, topic) {
         $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
+        // detect server status
+            
             $scope.mostMentionedService = data;
             $scope.$broadcast('data-got');
         })
@@ -105,6 +107,20 @@ module.exports = function ($scope, $timeout, $document, $location) {
     $scope.getStatistic = function (platform, topic, pnscope, days) {
         $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);
+            var influenceData = data.vocinsights.objectcountthistime;
+            $scope.serviceStatus = 'gery';
+            var flag_spike = influenceData.detectedspikesvol>0;
+            var flag_health = influenceData.positivetotalvol<influenceData.negativetotalvol;
+            console.log(flag_spike,flag_health)
+            if(flag_spike&&flag_health){
+                $scope.serviceStatus = 'red';
+            }
+            if(flag_spike || flag_health){
+                $scope.serviceStatus = 'yellow';
+            }
+            if(!flag_spike && !flag_health){
+                $scope.serviceStatus = 'green';
+            }
             $scope.statistic = data;
             $scope.$broadcast('data-got');
         })
