@@ -46,6 +46,7 @@ module.exports = function ($rootScope) {
             }
             // scope.getData('', true);
             scope.$on('start-get-data', function (event, arg) {
+                scope.complete = false;
                 scope.getData(arg);
             });
 

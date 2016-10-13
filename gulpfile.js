@@ -18,19 +18,19 @@ gulp.task('browserify', function () {
         // bundles it and creates a file called main.js
         .bundle()
         .pipe(source('main.min.js'))
-        .pipe(streamify(uglify({ mangle: false }))) 
+        // .pipe(streamify(uglify({ mangle: false }))) 
         // .pipe(buffer()) 
         // .pipe(uglify())
         // saves it the public/js/ directory
         .pipe(gulp.dest('public'));
 });
-// gulp.task('minify-js', function() {
-//   return gulp.src('./public/main.min.js')
-//     .pipe(concat('main.min.js'))
-//     .pipe(ngAnnotate())
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./public/dist'))
-// });
+gulp.task('minify-js', function() {
+  return browserify('./src/js/app.js', { debug: true })
+        .bundle()
+        .pipe(source('main.min.js'))
+        .pipe(streamify(uglify({ mangle: false }))) 
+        .pipe(gulp.dest('public'));
+});
 gulp.task('watch', function () {
     gulp.watch('./src/js/**/*.js', ['browserify'])
 });

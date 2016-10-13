@@ -86,7 +86,7 @@
                     <td><a href="{{item.twitterurl}}" target="_blank">{{item.text}}</a></td>
                     <td>{{item.user.name}}</td>
                     <td>{{(item.user.followers_count)+(item.user.friends_count)}}</td>
-                    <td>{{item.created_at}}</td>
+                    <td>{{item.created_at | timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
                 </tr>
@@ -94,7 +94,7 @@
                     <td><a href="{{item.link}}" target="_blank">{{item.title}}</a></td>
                     <td>{{item.owner.display_name}}</td>
                     <td>{{item.view_count}}</td>
-                    <td>{{item.creation_date}}</td>
+                    <td>{{item.creation_date| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
                 </tr>
@@ -102,7 +102,7 @@
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
                     <td>{{item.createdBy.displayName}}</td>
                     <td>{{item.views}}</td>
-                    <td>{{item.created}}</td>
+                    <td>{{item.created| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
                 </tr>

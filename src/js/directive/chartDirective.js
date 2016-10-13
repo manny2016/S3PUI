@@ -374,6 +374,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                 }
             }
             _.$on('start-get-data', function (event, arg) {
+                _.complete = false;
                 _.getData(arg);
             });
             _.$on('fresh-most-mentioned', function (evt, arg) {
@@ -397,7 +398,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
             });
             _.$on('set-sub-widows-charts-data', function (evt, arg) {
                 if (attrs.location !== 'sub') return;
-                console.log('got it')
                 var config = {};
                 switch (_.type) {
                     case 'pie':
@@ -418,7 +418,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                     }]
                             }],
                             title: {
-                                text: scope.title || ''
+                                text: _.title || ''
                             }
                         };
                         break;
@@ -452,7 +452,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                 }
                 _.chartOpt = angular.merge(_.chartOpt, config);
                 initChart(_.chartObj, _.chartOpt);
-                scope.complete = true;
+                _.complete = true;
             })
             // watch window resize
             _.clientWidth = element[0].clientWidth;
@@ -462,7 +462,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                 }
             })
             $(window).resize(function () {
-                scope.$apply(function () {
+                _.$apply(function () {
                     _.clientWidth = element[0].clientWidth;
                 });
             });
@@ -557,12 +557,12 @@ function customSpikesData(fnPromise, scope) {
             ],
             series: [{
                 name: 'Spikes',
-                type: 'bar',
+                type: 'line',
                 data: barData
             }, {
                     name: 'VoC',
                     yAxisIndex: 1,
-                    type: 'line',
+                    type: 'bar',
                     data: lineData
                 }],
             title: {

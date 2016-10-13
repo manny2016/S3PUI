@@ -24,7 +24,7 @@ var label_type = {
     spike: 'Vol Spike Detected (hourly)',
     string: ''
 };
-module.exports = function ($parse) {
+module.exports = function ($parse,$filter) {
     var colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     return {
         restrict: 'E',
@@ -36,6 +36,7 @@ module.exports = function ($parse) {
             comment: "@"
         },
         link: function (scope, e, a) {
+            var numberFormat = $filter('thousandsuffix');
             scope.color = colors[Math.round(Math.random() * colors.length)];
             scope.volume = scope.data.volume;
             if (scope.comment) {
@@ -46,7 +47,7 @@ module.exports = function ($parse) {
             // console.log(scope.data)
             switch (a.type) {
                 case 'joinedusers':
-                    scope.volume = scope.data.objectcountthistime
+                    scope.volume = numberFormat(scope.data.objectcountthistime)
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -61,7 +62,7 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'regionofusers':
-                    scope.volume = scope.data.objectcountthistime
+                    scope.volume = numberFormat(scope.data.objectcountthistime)
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -76,7 +77,7 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'influenceofusers':
-                    scope.volume = scope.data.objectcountthistime
+                    scope.volume = numberFormat(scope.data.objectcountthistime)
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -91,7 +92,7 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'mentionedservicecount':
-                    scope.volume = scope.data.objectcountthistime
+                    scope.volume = numberFormat(scope.data.objectcountthistime)
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -140,7 +141,7 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'vocinsightsVol':
-                    scope.volume = scope.data.objectcountthistime.voctotalvol
+                    scope.volume = numberFormat(scope.data.objectcountthistime.voctotalvol)
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -155,12 +156,12 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'vocinsightsPN':
-                    scope.volume = scope.data.objectcountthistime.positivetotalvol
+                    scope.volume = numberFormat(scope.data.objectcountthistime.positivetotalvol)
                         + ":"
-                        + scope.data.objectcountthistime.negativetotalvol
+                        + numberFormat(scope.data.objectcountthistime.negativetotalvol)
                     scope.labels = [
                         {
-                            text: 'POSI ' + label_type.spike,
+                            text: 'POS ' + label_type.spike,
                             volume: scope.data.objectcountthistime.detectedposispikesvol,
                             color: 'green'
                         }, {
@@ -171,12 +172,12 @@ module.exports = function ($parse) {
                     ]
                     break;
                 case 'mostposifrom':
-                    scope.volume = scope.data.mostposifrom.vocinfluence.vocinfluencedvol
+                    scope.volume = numberFormat(scope.data.mostposifrom.vocinfluence.vocinfluencedvol)
                         + ":"
-                        + scope.data.mostnegfrom.vocinfluence.vocinfluencedvol
+                        + numberFormat(scope.data.mostnegfrom.vocinfluence.vocinfluencedvol)
                     scope.labels = [
                         {
-                            text: 'Most POSI From ' + scope.data.mostposifrom.attachedobject,
+                            text: 'Most POS From ' + scope.data.mostposifrom.attachedobject,
                             color: 'green'
                         }, {
                             text: 'Most NEG From  ' + scope.data.mostnegfrom.attachedobject,

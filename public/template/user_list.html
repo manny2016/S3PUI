@@ -1,9 +1,10 @@
 <div class="column">
     <div class="ui active dimmer" ng-show="!complete">
-            <div class="ui text loader">Loading</div>
-        </div>
+        <div class="ui text loader">Loading</div>
+    </div>
     <div class="ui fluid card">
-        <div class="ui top attached label">{{title}}
+        <div class="ui top attached label">
+            {{title}}
             <i class="ui red right mini corner label">
                 Top 5
             </i>
@@ -12,30 +13,34 @@
             <!--TOP 1-->
             <div class="item" ng-repeat="u in users" ng-click="onClick(u)">
                 <!--<div class="image">-->
-                    <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}"  class="image" ng-init="avator = getAvatorUrl(u)" ng-src="{{avator}}">
+                <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}" class="image" ng-init="avator = getAvatorUrl(u)" ng-src="{{avator}}">
                 <!--</div>-->
                 <div class="content">
                     <div class="header">{{u.name}}{{u.attachedobject.name}}{{u.attachedobject.displayName}}{{u.attachedobject.display_name}}</div>
                     <div class="mete" ng-if="pnscope=='all'">
-                        <b>Post Vol</b>: {{u.vocinfluence.voctotalvol}}
+                        <b>Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
                     </div>
                     <div class="mete" ng-if="pnscope=='posi'">
-                        <b>Positive Post Vol</b>: {{u.vocinfluence.voctotalvol}}
+                        <b>Positive Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
                     </div>
                     <div class="mete" ng-if="pnscope=='neg'">
-                        <b>Negative Post Vol</b>: {{u.vocinfluence.voctotalvol}}
+                        <b>Negative Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
                     </div>
                     <div ng-if="($first)" class="mete">
-                        <b>Influenc Vol</b>: {{u.vocinfluence.vocinfluencedvol}}
+                        <b>Influenc Vol</b>: {{u.vocinfluence.vocinfluencedvol|thousandsuffix}}
                         <br/>
-                        <b>Positive Post Vol</b>: {{u.vocinfluence.positivetotalvol}}
+                        <b>Positive Post Vol</b>: {{u.vocinfluence.positivetotalvol|thousandsuffix}}
                         <br/>
-                        <b>Negative Post Vol</b>: {{u.vocinfluence.negativetotalvol}}
+                        <b>Negative Post Vol</b>: {{u.vocinfluence.negativetotalvol|thousandsuffix}}
                         <br/>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <div class="content" ng-show="!(users.length)">
+            <div class="header text center">
+                No Data
+            </div>
+        </div>
     </div>
 </div>
