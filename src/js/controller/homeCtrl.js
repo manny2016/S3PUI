@@ -64,13 +64,13 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         } else {
             // $scope.enabledPlatforms=[];
             // $rootScope.$broadcast('destory-charts', 'home');
-            $rootScope.$broadcast('start-get-data', 'home');
+            $scope.$broadcast('start-get-data', 'home');
         }
     }
 
     $scope.finished = function () {
         $timeout(function () {
-            $rootScope.$broadcast('start-get-data', 'home');
+            $scope.$broadcast('start-get-data', 'home');
         }, 50)
     }
 

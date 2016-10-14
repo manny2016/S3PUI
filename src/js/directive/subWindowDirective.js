@@ -82,11 +82,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
 
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: params.param.pnscope||'posi' });
+                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: params.param.pnscope || 'posi' });
 
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     scope.myChart.setOption(scope.chartOpt);
                     scope.myChart.resize();
+                    scope.complete = true;
                 })
             }
             scope.$on('start-get-data-in-window', function (event, arg) {
@@ -95,11 +96,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
                 scope.chartOpt = {};
                 scope.$broadcast('set-user-data', []);
                 scope.getData(arg);
+                scope.complete = false;
             });
 
-            scope.getters={
-                twitterInf:function(value){
-                    return value.user.followers_count+value.user.friends_count;
+            scope.getters = {
+                twitterInf: function (value) {
+                    return value.user.followers_count + value.user.friends_count;
                 }
             }
         }

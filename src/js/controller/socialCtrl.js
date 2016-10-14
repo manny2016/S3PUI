@@ -9,7 +9,7 @@ module.exports = function ($scope, $timeout, $document, $location) {
             totalrequests = 14;
             break;
         default:
-            totalrequests = 14;
+            totalrequests = 13;
             break;
 
     }
