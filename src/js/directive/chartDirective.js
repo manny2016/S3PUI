@@ -626,15 +626,21 @@ function customDistributionData(fnPromise, scope) {
     return fnPromise.then(function (data) {
         return {
             series: [{
-                data: [{
-                    value: data.positivetotalvol,
-                    name: 'POSI',
-                    // itemStyle: {
-                    //     normal: {
-                    //         color: '#91c7ae'
-                    //     }
-                    // }
-                }, {
+                data: [
+                    {
+                        value: data.positivetotalvol,
+                        name: 'POS',
+                        // itemStyle: {
+                        //     normal: {
+                        //         color: '#91c7ae'
+                        //     }
+                        // }
+                    },
+                    {
+                        value: data.neutraltotalvol,
+                        name: 'NEU'
+                    },
+                    {
                         value: data.negativetotalvol,
                         name: 'NEG'
                     }]
