@@ -17,8 +17,9 @@ module.exports = function ($rootScope) {
         },
         link: function (scope, e, a) {
             scope.pnscope = scope.pnscope || 'all';
+            console.log(scope.platform);
             scope.getAvatorUrl = function(user){
-                return user.attachedobject.profile_image|| user.attachedobject.profile_image_url ||'public/images/avator.png'
+                return user.attachedobject.profile_image|| user.attachedobject.profile_image_url ||'public/images/'+scope.platform.toLowerCase()+'.png'
             }
             scope.onClick = function (user) {
                 if (a.noPop === undefined) {
