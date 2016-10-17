@@ -145,8 +145,11 @@
 .text.black {
   color: #1B1C1D;
 }
+.user-list {
+  margin-bottom: 0 !important;
+}
 .user-list > .item:first-child img.image {
-  width: 91px;
+  width: 84px;
 }
 .ui.menu .select {
   background-color: rgba(0, 0, 0, 0.05);
