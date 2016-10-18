@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h6 style="margin:0;font-size:13px">Weekly Growth Ranking</h6>
+                                <h6 style="margin:0;font-size:13px">Growth Ranking <small>(since last seven days)</small></h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}"> <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                     {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
@@ -137,7 +137,7 @@
             <h3 class="ui center aligned header teal">Volumes</h3>
             <div class="ui one column grid">
                 <div class="column">
-                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column">
                     <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
@@ -149,10 +149,10 @@
                     <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column">
-                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div ng-if="platform=='twitter'" class="column">
-                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
             </div>
             <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>

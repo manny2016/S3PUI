@@ -55,7 +55,7 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Positive Influence in {{p}}" platform='{{p}}' query=query api-fn="getSpikes" type="influence" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        <ng-echart title="Daily Positive Influence in {{p}}" platform='{{p}}' query=query api-fn="getInfluence" type="influence" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <ng-echart title="Positive Influence - Platform" query=query type="hori" api-fn="getSpikes" pnscope="posi" location='home' no-pop="true" redirect='true'></ng-echart>
+                    <ng-echart title="Positive Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="posi" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>
                 <div class="row">
                     <div class="column">
@@ -110,7 +110,7 @@
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Nagetive Influence in {{p}}" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" type="influence" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        <ng-echart title="Daily Nagetive Influence in {{p}}" platform='{{p}}' query=query api-fn="getInfluence" style="height:264px;" type="influence" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
                                     </div>
 
                                 </div>
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                     </div>
-                    <ng-echart title="Negative Influence - Platform" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
+                    <ng-echart title="Negative Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>
             </div>
         </div>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="item">
                     <a du-smooth-scroll="influencers" du-scrollspy offset="300">
-                        <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
+                        <div class="ui label" set-color="violet" data-content="Top Active Users" data-variation="mini inverted">
                             <i class="icon users"></i> <span ng-hide="isSmall">Top Active Users</span>
                         </div>
                     </a>

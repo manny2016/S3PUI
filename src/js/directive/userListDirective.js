@@ -26,7 +26,7 @@ module.exports = function ($rootScope) {
                     var param = {
                         platform: scope.platform,
                         topic: scope.query.topic,
-                        userid: user.attachedobject.userId||user.attachedobject.user_id||user.attachedobject.id,
+                        userid: user.attachedobject.userId||user.attachedobject.user_id||user.attachedobject.id_str,
                         pnscope: scope.pnscope 
                     }
                     $rootScope.popSubWin({

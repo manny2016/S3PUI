@@ -350,7 +350,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
-            params.date = date || Math.floor(new Date().getTime() / 1000);
+            params.Date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetails', params);

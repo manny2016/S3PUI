@@ -111,7 +111,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
             var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
-                // console.log(params)
+                console.log(params)
+                if(params.value === 0) return;
                 if (attrs.noPop === undefined) {
                     // $rootScope.popSubWin();
                     // console.log(params)
@@ -229,10 +230,67 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                     var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
+                            // if (_.platform) {
+                            // _.platform = _.platforms[0];
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
+                            customSpikesData(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            // } else {
+                            //     _.platforms = _.$parent.enabledPlatforms;
+                            //     // _.raw = [];
+                            //     _.raw = {};
+                            //     _.platforms.forEach(function (element) {
+                            //         _.raw[element] = 0;
+                            //     }, this);
+                            //     console.log(_.raw);
+                            //     var fnPromises = _.platforms.map(function (item) {
+                            //         return apiFn(item, _.query.topic, _.query.days).then(function (data) {
+                            //             var seriesData = data.map(function (raw) {
+                            //                 // var tmp = { name: item };
+                            //                 switch (_.pnscope) {
+                            //                     case 'posi':
+                            //                         var value = raw.dailyposiinfluencevol
+                            //                         break;
+                            //                     case 'neg':
+                            //                         var value = raw.dailyneginfluencevol
+                            //                         break;
+                            //                     default:
+                            //                         var value = raw.dailytotalinfluencevol
+                            //                         break;
+                            //                 }
+                            //                 // tmp.value = value;
+                            //                 // return tmp;
+                            //                 return value;
+                            //             })
+                            //             _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                            //                 return previousValue + currentValue;
+                            //             }))
+                            //         })
+                            //     })
+                            //     // console.log(fnPromises);
+                            //     $q.all(fnPromises).then(function () {
+                            //         var config = customHoriBarData(_);
+                            //         _.chartOpt = angular.merge(_.chartOpt, config);
+                            //         initChart(_.chartObj, _.chartOpt);
+                            //         afterInit($rootScope, _, _.chartObj);
+                            //     })
+                            // }
+                            break;
+                        case 'getInfluence':
+                            // var fnPromise = apiFn(_.platform, _.query.topic);
+                            // customInfluenceData(fnPromise, _).then(function (config) {
+                            //     _.chartOpt = angular.merge(_.chartOpt, config);
+                            //     initChart(_.chartObj, _.chartOpt);
+                            //     afterInit($rootScope, _, _.chartObj);
+                            // })
                             if (_.platform) {
                                 // _.platform = _.platforms[0];
-                                var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
-                                customSpikesData(fnPromise, _).then(function (config) {
+                                var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.days);
+                                // console.log(_);
+                                customInfluenceData(fnPromise, _).then(function (config) {
                                     _.chartOpt = angular.merge(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt, _.group);
                                     afterInit($rootScope, _, _.chartObj);
@@ -244,20 +302,20 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                 _.platforms.forEach(function (element) {
                                     _.raw[element] = 0;
                                 }, this);
-                                console.log(_.raw);
+                                // console.log(_.raw);
                                 var fnPromises = _.platforms.map(function (item) {
-                                    return apiFn(item, _.query.topic, _.query.days).then(function (data) {
+                                    return apiFn(item, _.query.topic, _.pnscope, _.query.days).then(function (data) {
                                         var seriesData = data.map(function (raw) {
                                             // var tmp = { name: item };
                                             switch (_.pnscope) {
                                                 case 'posi':
-                                                    var value = raw.dailyposiinfluencevol
+                                                    var value = raw.vocinfluence.dailyposiinfluencevol
                                                     break;
                                                 case 'neg':
-                                                    var value = raw.dailyneginfluencevol
+                                                    var value = raw.vocinfluence.dailyneginfluencevol
                                                     break;
                                                 default:
-                                                    var value = raw.dailytotalinfluencevol
+                                                    var value = raw.vocinfluence.voctotalvol
                                                     break;
                                             }
                                             // tmp.value = value;
@@ -277,7 +335,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                     afterInit($rootScope, _, _.chartObj);
                                 })
                             }
-
                             break;
                         case 'getDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic);
@@ -402,17 +459,23 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                 switch (_.type) {
                     case 'pie':
                         var raw = arg.data;
+                        // console.log(raw);
                         config = {
                             series: [{
-                                data: [{
-                                    value: raw.vocpositivecount,
-                                    name: 'POSI',
-                                    // itemStyle: {
-                                    //     normal: {
-                                    //         color: '#91c7ae'
-                                    //     }
-                                    // }
-                                }, {
+                                data: [
+                                    {
+                                        value: raw.vocpositivecount,
+                                        name: 'POS',
+                                        // itemStyle: {
+                                        //     normal: {
+                                        //         color: '#91c7ae'
+                                        //     }
+                                        // }
+                                    },
+                                    {
+                                        value: raw.neutraltotalvol,
+                                        name: 'NEU'
+                                    }, {
                                         value: raw.vocnegativecount,
                                         name: 'NEG'
                                     }]
@@ -510,6 +573,54 @@ function afterInit(rootscope, scope, echartObj) {
     rootscope.$broadcast('data-got', echartObj);
 }
 
+function customInfluenceData(fnPromise, scope) {
+    var influenceSeries = function (raw) {
+        var influenceData = raw.map(function (item) {
+            return item.vocinfluence.voctotalvol
+        })
+        var influencePOSIData = raw.map(function (item) {
+            return item.vocinfluence.positiveinfluencedvol
+        })
+        var influenceNEGData = raw.map(function (item) {
+            return item.vocinfluence.negativeinfluencedvol
+        })
+        var seriesData = [];
+        switch (scope.pnscope) {
+            case 'posi':
+                seriesData = influencePOSIData;
+                break;
+            case 'neg':
+                seriesData = influenceNEGData;
+                break;
+            default:
+                seriesData = influenceData;
+                break;
+        }
+        return {
+            xAxis: { data: scope.$root.dateList },
+            series: [{
+                name: 'Influence Vol',
+                type: 'line',
+                data: seriesData
+            }],
+            title: {
+                text: scope.title || ''
+            }
+        }
+    }
+    var fn = influenceSeries;
+    // switch (scope.type) {
+    //     case 'influence':
+    //         fn = influenceSeries;
+    //         break;
+    //     default:
+    //         break;
+    // }
+    // console.log(scope.$root.dateList);
+    return fnPromise.then(function (data) {
+        return fn(data);
+    })
+}
 function customSpikesData(fnPromise, scope) {
     var simpleSeries = function (raw) {
         var seriesData = raw.map(function (item) {
