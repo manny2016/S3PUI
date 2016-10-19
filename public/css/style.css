@@ -218,6 +218,11 @@
 #summary .ui.horizontal.top.divider {
   color: #2185D0;
 }
+#summary div .collection.column:hover {
+  border: 1px solid #2185D0;
+  box-shadow: 10px 10px 5px #888888;
+  margin: -1px;
+}
 body {
   overflow: auto;
 }

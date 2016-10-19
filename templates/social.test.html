@@ -49,7 +49,7 @@
             <!--charts-->
             <!--<div class="ui segment">-->
             <div ng-if="statistic" class="ui three column divided grid center aligned">
-                <div class="column">
+                <div class="column collection">
                     <div>
                         <div class="ui horizontal top divider">Community Users</div>
                         <ng-statistic title="Users Joined Discussion" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
@@ -63,7 +63,7 @@
                         <ng-statistic title="Influence of Users(page Views)" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
                     </div>
                 </div>
-                <div class="column">
+                <div class="column collection">
                     <div>
                         <div class="ui horizontal top divider">Services & Products Status</div>
                         <ng-statistic title="Services & Products being Discussed" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column">
+                <div class="column collection">
                     <div>
                         <div class="ui horizontal top divider">VoC Insights</div>
                         <ng-statistic title="Message Posts" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
