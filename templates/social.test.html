@@ -75,16 +75,19 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mentionedmostservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}"> <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                    {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.mentionedmostservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
-                                <h6 style="margin:0;font-size:13px">Growth Ranking <small>(since last seven days)</small></h6>
+                                <h6 style="margin:0;font-size:13px" title="since last seven days" >Growth Ranking
+                                </h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}"> <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                    {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.rankingservice.attachedobject}}" title="{{s.rankingservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        {{s.rankingservice.attachedobject| limitTo: 15 }}<span ng-if="s.rankingservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>
@@ -97,16 +100,18 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny blue"> <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.mostlikedservice" class="item text tiny blue">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny blue"> <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                    {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
+                                    <div ng-repeat="s in statistic.mostdislikedservice" class="item text tiny blue">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        {{s.mentionedmostservice.attachedobject}}({{s.occupyratio}}%)
                                     </div>
                                 </div>
                             </div>
@@ -120,11 +125,11 @@
                     </div>
                     <div>
                         <div class="ui inverted divider"></div>
-                        <ng-statistic title="Sentiment of Messages (POS:NEG)" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
+                        <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
                     </div>
                     <div ng-if="platform=='twitter'">
                         <div class="ui inverted divider"></div>
-                        <ng-statistic title="Influence of Sentiment" comment="Page Views - POST : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>
+                        <ng-statistic title="Influence of Sentiment" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>
                     </div>
                 </div>
             </div>

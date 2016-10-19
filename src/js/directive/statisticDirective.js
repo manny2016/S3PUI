@@ -159,6 +159,8 @@ module.exports = function ($parse,$filter) {
                     scope.volume = numberFormat(scope.data.objectcountthistime.positivetotalvol)
                         + ":"
                         + numberFormat(scope.data.objectcountthistime.negativetotalvol)
+                        + ":"
+                        + numberFormat(scope.data.objectcountthistime.neutraltotalvol)
                     scope.labels = [
                         {
                             text: 'POS ' + label_type.spike,

@@ -34,7 +34,6 @@ module.exports = function ($scope, $timeout, $document, $location) {
         }
     });
     $('#scrollspy .list .item .label').popup();
-
     $('#topic_select').dimmer('show');
     $scope.getTopics = function () {
         $scope.service.getCate($scope.$stateParams.platform).then(function (data) {

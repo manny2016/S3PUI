@@ -82,7 +82,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
 
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.$broadcast('set-sub-widows-charts-data', { data: data, pnscope: params.param.pnscope || 'posi' });
+                    scope.$broadcast('set-sub-widows-charts-data', { data: data });
 
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     scope.myChart.setOption(scope.chartOpt);

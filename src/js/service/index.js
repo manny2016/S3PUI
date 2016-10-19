@@ -276,7 +276,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
-            params.user = user || 1234;
+            params.userid = user || 1234;
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetVoCDetailsByUser', params);

@@ -71,7 +71,9 @@ module.exports = function ($rootScope) {
                     dom = e.find(".side.active").siblings();
                     dom = $(dom[0]).find('.echart');
                 }
-                echarts.getInstanceByDom(dom.get(0)).resize();
+                if(dom.length){
+                    echarts.getInstanceByDom(dom.get(0)).resize();
+                }
             }
             function callMentionedService() {
                 if(a.linkage !== 'true') return;

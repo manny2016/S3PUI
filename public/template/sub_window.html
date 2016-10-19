@@ -12,12 +12,60 @@
                 <user-list title='Top Users in {{platform}}' users=topUsers platform='{{platform}}' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
             </div>
             <div class="column">
-                <ng-echart title="Positive & Negative Vol Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
+                <div id="shape-pup" class="ui fluid card" ng-chart-shape>
+                    <div class="ui shape">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;height:264px;" location='sub' no-pop="true"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <table class="ui definition celled table" style="height:264px;margin-bottom:0px !important">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>VoC Count</th>
+                                            <th>Influence Member Count (PV)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>{{raw.vocvolcount}}</td>
+                                            <td>{{raw.vocinfluencecount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Positive</td>
+                                            <td>{{raw.vocpositivecount}}</td>
+                                            <td>{{raw.vocposiinfluencecount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Negative</td>
+                                            <td>{{raw.vocnegativecount}}</td>
+                                            <td>{{raw.vocneginfluencecount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Neutral</td>
+                                            <td>{{raw.vocneutralcount}}</td>
+                                            <td>{{raw.vocneutralinfluencecount}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui two ignored icon direction buttons fluid card">
+                        <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                        <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <ng-echart title="Positive mentioned most" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="posi" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <div class="column">
                 <ng-echart title="Negative mentioned most" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:300px;" location='sub' no-pop="true"></ng-echart>
             </div>
-            <div class="column">
+            <!--<div class="column">
                 <table class="ui definition celled table">
                     <thead>
                         <tr>
@@ -44,7 +92,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div>-->
         </div>
         <table id="thread-table" st-table="stTable" st-safe-src="tabledata" class="ui blue striped celled table">
             <thead>
@@ -123,11 +171,11 @@
     </div>
     <div class="actions">
         <div class="ui blue deny button">
-            I know, thanks
+            Close
         </div>
-        <div class="ui positive right labeled icon button">
+        <!--<div class="ui positive right labeled icon button">
             Share the view
             <i class="share icon"></i>
-        </div>
+        </div>-->
     </div>
 </div>

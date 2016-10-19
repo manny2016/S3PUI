@@ -309,13 +309,19 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                             // var tmp = { name: item };
                                             switch (_.pnscope) {
                                                 case 'posi':
-                                                    var value = raw.vocinfluence.dailyposiinfluencevol
+                                                    var value = raw.vocinfluence.positiveinfluencedvol
                                                     break;
                                                 case 'neg':
-                                                    var value = raw.vocinfluence.dailyneginfluencevol
+                                                    var value = raw.vocinfluence.negativeinfluencedvol
+                                                    break;
+                                                case 'neu':
+                                                    var value = raw.vocinfluence.neutralinfluencedvol
+                                                    break;
+                                                case 'undif':
+                                                    var value = raw.vocinfluence.undefinedinfluencedvol
                                                     break;
                                                 default:
-                                                    var value = raw.vocinfluence.voctotalvol
+                                                    var value = raw.vocinfluence.vocinfluencedvol
                                                     break;
                                             }
                                             // tmp.value = value;
@@ -473,7 +479,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                                         // }
                                     },
                                     {
-                                        value: raw.neutraltotalvol,
+                                        value: raw.vocneutralcount,
                                         name: 'NEU'
                                     }, {
                                         value: raw.vocnegativecount,
@@ -489,7 +495,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                         var raw = arg.data.vocmentionedmost;
                         var seriesData = raw.map(function (item) {
                             var tmp = { name: item.attachedobject };
-                            switch (arg.pnscope) {
+                            switch (_.pnscope) {
                                 case 'posi':
                                     var value = item.vocinfluence.positivetotalvol
                                     break;
