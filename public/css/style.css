@@ -215,6 +215,9 @@
 .ui.container {
   min-width: 1127px;
 }
+#summary .ui.horizontal.top.divider {
+  color: #2185D0;
+}
 body {
   overflow: auto;
 }
