@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -86,9 +86,23 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
         },
         link: function (scope, element, attrs) {
             var _ = scope;
+            var echartDom = $(element).find("div.echart");
             _.service = $rootScope.service;
             _.complete = false;
             _.query = _.query || {};
+            _.compile = function(chart,dom){
+                // console.log(_.$parent)
+                var el = $compile(chart)(_.$parent);
+                console.log(el);
+                $(dom).append( el );
+            }
+            _.enlarge = function(){
+                // console.log(element);
+                $(element).parent().removeClass('two');
+                $(element).addClass('large-chart');
+                echartDom.addClass('large-chart');
+                echarts.getInstanceByDom(echartDom.get(0)).resize();
+            }
             _.initChartOpt = function () {
                 switch (_.type) {
                     case 'pie':
@@ -108,10 +122,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                         break;
                 }
             } ();
-            var echartDom = $(element).find("div.echart");
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
-                console.log(params)
                 if(params.value === 0) return;
                 if (attrs.noPop === undefined) {
                     // $rootScope.popSubWin();
@@ -361,9 +373,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                             break;
                         case 'getMentionedMostServiceListByUserVol':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
-                            var fn = customWordCloudData;
+                            var fn = customServicesDistributionData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
+                                console.log(_.chartOpt)
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -372,6 +385,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location, utilitySrv) 
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
+                                console.log(_.chartOpt);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -802,6 +816,7 @@ function customWordCloudData(fnPromise, scope) {
 function customServicesDistributionData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
+        var legendData = [];
         var seriesData = data.map(function (item) {
             var tmp = { name: item.attachedobject };
             switch (propertySelect) {
@@ -816,6 +831,7 @@ function customServicesDistributionData(fnPromise, scope) {
                     break;
             }
             tmp.value = value;
+            // legendData.push(item.attachedobject)
             return tmp;
         })
         // console.log(seriesData)
@@ -823,6 +839,31 @@ function customServicesDistributionData(fnPromise, scope) {
             series: [{
                 data: seriesData
             }],
+            // legend: {
+            //     orient: 'vertical',
+            //     x: 'left',
+            //     data:legendData
+            // },
+            toolbox:{
+                feature: {
+                    myTool1: {
+                        show: true,
+                        title: '自定义扩展方法1',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            alert('myToolHandler1')
+                            scope.enlarge()
+                            // var chart = '<ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform="'+scope.platform+'" query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>';
+                            // // scope.compile(chart);
+                            // var dom = "<div class='ui fullscreen modal'>"+chart+"</div>";
+                            // scope.compile(chart,dom);
+                            // $(dom).modal('show')
+
+                        }
+                    }
+                },
+                show:true
+            },
             title: {
                 text: scope.title || ''
             }
@@ -1018,10 +1059,10 @@ function initPieChartOpt(scope) {
         toolbox: {
             show: false,
             feature: {
-                saveAsImage: {
-                    show: true,
-                    title: "Save as Image"
-                }
+                // saveAsImage: {
+                //     show: true,
+                //     title: "Save as Image"
+                // }
             }
         },
         series: [

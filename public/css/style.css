@@ -226,3 +226,11 @@
 body {
   overflow: auto;
 }
+.echart {
+  width: 100%;
+  height: 300px;
+}
+.large-chart {
+  width: 100% !important;
+  height: 900px !important;
+}
