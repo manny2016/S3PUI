@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <h6 style="margin:0;font-size:13px" title="since last seven days" >Growth Ranking
+                                <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.rankingservice.attachedobject}}" title="{{s.rankingservice.attachedobject}}">
@@ -177,8 +177,26 @@
             </h3>
             <div class="ui grid">
                 <div class="two column row">
-                    <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>
-                    <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{path[2]}}' query=query association="message"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{path[2]}}' query=query association="user"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="column">
@@ -189,7 +207,7 @@
                                     <th st-sort="vocinfluence.voctotalvol">Post Vol</th>
                                     <th st-sort="vocinfluence.positivetotalvol">POS Ratio</th>
                                     <th st-sort="vocinfluence.negativetotalvol">NEG Ratio</th>
-                                    <th st-sort="vocinfluence.uniqueusers">Unique Users</th>
+                                    <!--<th st-sort="vocinfluence.uniqueusers">Unique Users</th>-->
                                     <th st-sort="vocinfluence.vocinfluencedvol">Total Page View</th>
                                     <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
                                 </tr>
@@ -208,7 +226,7 @@
                                     <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
                                     <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
                                     <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                                    <td width="100">{{item.vocinfluence.uniqueusers}}</td>
+                                    <!--<td width="100">{{item.vocinfluence.uniqueusers}}</td>-->
                                     <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
                                     <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
                                 </tr>

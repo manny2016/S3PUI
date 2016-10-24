@@ -30,23 +30,23 @@
                                     <tbody>
                                         <tr>
                                             <td>Total</td>
-                                            <td>{{raw.vocvolcount}}</td>
-                                            <td>{{raw.vocinfluencecount}}</td>
+                                            <td>{{raw.vocvolcount|thousandsuffix}}</td>
+                                            <td>{{raw.vocinfluencecount|thousandsuffix}}</td>
                                         </tr>
                                         <tr>
                                             <td>Positive</td>
-                                            <td>{{raw.vocpositivecount}}</td>
-                                            <td>{{raw.vocposiinfluencecount}}</td>
+                                            <td>{{raw.vocpositivecount|thousandsuffix}}</td>
+                                            <td>{{raw.vocposiinfluencecount|thousandsuffix}}</td>
                                         </tr>
                                         <tr>
                                             <td>Negative</td>
-                                            <td>{{raw.vocnegativecount}}</td>
-                                            <td>{{raw.vocneginfluencecount}}</td>
+                                            <td>{{raw.vocnegativecount|thousandsuffix}}</td>
+                                            <td>{{raw.vocneginfluencecount|thousandsuffix}}</td>
                                         </tr>
                                         <tr>
                                             <td>Neutral</td>
-                                            <td>{{raw.vocneutralcount}}</td>
-                                            <td>{{raw.vocneutralinfluencecount}}</td>
+                                            <td>{{raw.vocneutralcount|thousandsuffix}}</td>
+                                            <td>{{raw.vocneutralinfluencecount|thousandsuffix}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -137,7 +137,7 @@
                 <tr ng-repeat="item in stTable" ng-if="(platform=='twitter')">
                     <td><a href="{{item.twitterurl}}" target="_blank">{{item.text}}</a></td>
                     <td>{{item.user.name}}</td>
-                    <td>{{(item.user.followers_count)+(item.user.friends_count)}}</td>
+                    <td>{{(item.user.followers_count)+(item.user.friends_count)|thousandsuffix}}</td>
                     <td>{{item.created_at | timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
@@ -145,7 +145,7 @@
                 <tr ng-repeat="item in stTable" ng-if="(platform=='so'||platform=='sf'||platform=='su')">
                     <td><a href="{{item.link}}" target="_blank">{{item.title}}</a></td>
                     <td>{{item.owner.display_name}}</td>
-                    <td>{{item.view_count}}</td>
+                    <td>{{item.view_count|thousandsuffix}}</td>
                     <td>{{item.creation_date| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
@@ -153,7 +153,7 @@
                 <tr ng-repeat="item in stTable" ng-if="(platform=='msdn'||platform=='tn')">
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
                     <td>{{item.createdBy.displayName}}</td>
-                    <td>{{item.views}}</td>
+                    <td>{{item.views|thousandsuffix}}</td>
                     <td>{{item.created| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->

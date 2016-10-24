@@ -64,7 +64,7 @@ $scope.config={
 
 */
 
-module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -82,7 +82,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
             subFn: '@',
             group: "@",
             query: "=",
-            noPop: "@"
+            noPop: "@",
+            association:"@",
         },
         link: function (scope, element, attrs) {
             var _ = scope;
@@ -90,18 +91,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
             _.service = $rootScope.service;
             _.complete = false;
             _.query = _.query || {};
-            _.compile = function(chart,dom){
+            _.compile = function (chart, dom) {
                 // console.log(_.$parent)
                 var el = $compile(chart)(_.$parent);
                 console.log(el);
-                $(dom).append( el );
+                $(dom).append(el);
             }
-            _.enlarge = function(){
-                // console.log(element);
-                $(element).parent().removeClass('two');
-                $(element).addClass('large-chart');
-                echartDom.addClass('large-chart');
-                echarts.getInstanceByDom(echartDom.get(0)).resize();
+            _.swithside = function () {
+                $(element).parent().parent().parent().shape('flip up')
             }
             _.initChartOpt = function () {
                 switch (_.type) {
@@ -124,7 +121,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
             } ();
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
-                if(params.value === 0) return;
+                if (params.value === 0) return;
                 if (attrs.noPop === undefined) {
                     // $rootScope.popSubWin();
                     // console.log(params)
@@ -173,10 +170,15 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
                                 service: params.name,
                                 pnscope: _.pnscope
                             }
-                            $rootScope.popSubWin({
-                                fn: _.subFn,
-                                param: param
-                            });
+                            if (params.name === 'Others') {
+                                _.swithside();
+                            } else {
+                                $rootScope.popSubWin({
+                                    fn: _.subFn,
+                                    param: param
+                                });
+                            }
+
                             break;
                         case 'getSubPageVoCDetails':
                             var param = {
@@ -373,6 +375,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
                             break;
                         case 'getMentionedMostServiceListByUserVol':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -383,6 +386,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $q, $location,$compile, uti
                             break;
                         case 'getMentionedMostServiceDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            _.order = $filter('orderBy');
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 console.log(_.chartOpt);
@@ -834,7 +838,26 @@ function customServicesDistributionData(fnPromise, scope) {
             // legendData.push(item.attachedobject)
             return tmp;
         })
-        // console.log(seriesData)
+        seriesData = scope.order(seriesData, '-value')
+        if (seriesData.length > 11) {
+            var tops = seriesData.slice(0, 10);
+            var rest = seriesData.slice(10);
+            var sum = 0,total = 0;
+            for (var i = 0; i < tops.length; i++) {
+                total += tops[i]['value'];
+            }
+            for (var i = 0; i < rest.length; i++) {
+                sum += rest[i]['value'];
+            }
+            total += sum;
+            var other = {
+                name: 'Others', value: sum
+            }
+            tops.push(other);
+            seriesData = tops;
+            console.log(scope);
+            scope.$root.$broadcast('set-mentioned-table-data',{data:rest,total:total,association:scope.association});
+        }
         return {
             series: [{
                 data: seriesData
@@ -844,15 +867,14 @@ function customServicesDistributionData(fnPromise, scope) {
             //     x: 'left',
             //     data:legendData
             // },
-            toolbox:{
+            toolbox: {
                 feature: {
                     myTool1: {
                         show: true,
-                        title: '自定义扩展方法1',
+                        title: 'Switch to Others List',
                         icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
-                        onclick: function (){
-                            alert('myToolHandler1')
-                            scope.enlarge()
+                        onclick: function () {
+                            scope.swithside()
                             // var chart = '<ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform="'+scope.platform+'" query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>';
                             // // scope.compile(chart);
                             // var dom = "<div class='ui fullscreen modal'>"+chart+"</div>";
@@ -862,7 +884,7 @@ function customServicesDistributionData(fnPromise, scope) {
                         }
                     }
                 },
-                show:true
+                show: true
             },
             title: {
                 text: scope.title || ''
