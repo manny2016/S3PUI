@@ -16,6 +16,12 @@ app
     }
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+
+    //global variables
+    $rootScope.global = {
+      topic:''
+    }
+
     $rootScope.timeRange = {
       'start': (function (d) { d.setDate(d.getDate() - 7); return d.setHours(0, 0, 0, 0) })(new Date),
       'end': (function (d) { d.setDate(d.getDate() - 1); return d.setHours(0, 0, 0, 0) })(new Date)

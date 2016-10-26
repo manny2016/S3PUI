@@ -20,8 +20,12 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     })
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
-            console.log(data)
+            // console.log(data)
             $scope.topics = data;
+            debugger;
+            if($rootScope.global.topic){
+                $scope.startGetData($rootScope.global.topic);
+            }
         })
     }
     $scope.getTopics();
@@ -42,6 +46,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     });
 
     $scope.startGetData = function (topic) {
+        $rootScope.global.topic = topic;
         $scope.flags.m = false;
         $('div.echart').map(function () {
             echarts.getInstanceByDom(this).clear();

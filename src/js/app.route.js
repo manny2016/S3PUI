@@ -1,9 +1,13 @@
 require('angular-ui-router');
+window.AuthenticationContext = require('adal-angular');
+require('adal-angular/lib/adal-angular');
 var app = angular.module('app.Route', ['ui.router']);
 
 app
-  
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+
+
     $urlRouterProvider.when("", "/home/dashboard");
     $urlRouterProvider.when("/", "/home/dashboard");
 
@@ -30,8 +34,8 @@ app
         url: '/social',
         template: '<ui-view/>'
       })
-      .state('social.platform',{
-        url:'/:platform',
+      .state('social.platform', {
+        url: '/:platform',
         templateUrl: 'templates/social.test.html',
         controller: 'socialCtrl'
       })
@@ -40,8 +44,8 @@ app
         url: '/thirdParty',
         template: '<ui-view/>'
       })
-      .state('thirdParty.platform',{
-        url:'/:platform',
+      .state('thirdParty.platform', {
+        url: '/:platform',
         templateUrl: 'templates/social.test.html',
         // controller: 'thirdPartyCtrl'
         controller: 'socialCtrl'
@@ -51,15 +55,15 @@ app
         url: '/msPlatform',
         template: '<ui-view/>'
       })
-      .state('msPlatform.platform',{
-        url:'/:platform',
+      .state('msPlatform.platform', {
+        url: '/:platform',
         templateUrl: 'templates/social.test.html',
         // controller: 'msPlatformCtrl'
         controller: 'socialCtrl'
       })
-      .state('share',{
-        url:'/share',
-        template:'<sub-window></sub-window>'
+      .state('share', {
+        url: '/share',
+        template: '<sub-window></sub-window>'
       });
 
     // configure html5 to get links working on jsfiddle

@@ -4,6 +4,9 @@
         <i class="right angle icon divider"></i>
         <div class="active section">{{path[2]}}</div>
     </div>
+    <div class="ui label blue pull-right" ng-show="global.topic">
+        <i class="server icon"></i> Current Topic: {{global.topic}}
+    </div>
     <div id="topic_select" class="ui segment clearing">
         <a id="server_status" class="ui right label static" ng-class="serviceStatus">Status</a>
         <div class="ui flowing popup top left transition hidden compact segments" style="min-width:260px">

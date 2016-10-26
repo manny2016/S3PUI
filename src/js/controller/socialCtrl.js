@@ -1,4 +1,4 @@
-module.exports = function ($scope, $timeout, $document, $location) {
+module.exports = function ($scope, $rootScope, $timeout, $document, $location) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.query = {};
     $scope.path = $location.path().split("/");
@@ -50,6 +50,11 @@ module.exports = function ($scope, $timeout, $document, $location) {
                 if (flage) $scope.topics.push(item.TechCategoryName)
             })
             $('#topic_select').dimmer('hide');
+            if($scope.topics.indexOf($rootScope.global.topic) !== -1 ){
+                $scope.topic = $rootScope.global.topic;
+                $scope.startGetData()
+                $('.ui.segment').find('.ui.dropdown').dropdown('set text',$rootScope.global.topic)
+            }
         })
     }
     $scope.getTopics();
@@ -90,6 +95,7 @@ module.exports = function ($scope, $timeout, $document, $location) {
             alert('Need to select a topic!');
             return false;
         }
+        $rootScope.global.topic = $scope.topic;
         $scope.flags.m = false;
         $('div.echart').map(function () {
             echarts.getInstanceByDom(this).clear();
