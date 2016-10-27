@@ -207,10 +207,10 @@
                             <thead>
                                 <tr>
                                     <th st-sort="attachedobject">Service Name</th>
-                                    <th st-sort="vocinfluence.voctotalvol">Post Vol</th>
-                                    <th st-sort="vocinfluence.positivetotalvol">POS Ratio</th>
-                                    <th st-sort="vocinfluence.negativetotalvol">NEG Ratio</th>
-                                    <!--<th st-sort="vocinfluence.uniqueusers">Unique Users</th>-->
+                                    <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Post Volume</th>
+                                    <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">POS Ratio</th>
+                                    <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">NEG Ratio</th>
+                                    <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">NEU Ratio</th>
                                     <th st-sort="vocinfluence.vocinfluencedvol">Total Page View</th>
                                     <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
                                 </tr>
@@ -229,7 +229,7 @@
                                     <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
                                     <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
                                     <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                                    <!--<td width="100">{{item.vocinfluence.uniqueusers}}</td>-->
+                                    <td width="100">{{(item.vocinfluence.neutraltotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
                                     <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
                                     <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
                                 </tr>

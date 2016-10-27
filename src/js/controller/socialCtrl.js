@@ -1,5 +1,6 @@
-module.exports = function ($scope, $rootScope, $timeout, $document, $location) {
+module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
+    $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
     var totalrequests = 0;
@@ -50,10 +51,10 @@ module.exports = function ($scope, $rootScope, $timeout, $document, $location) {
                 if (flage) $scope.topics.push(item.TechCategoryName)
             })
             $('#topic_select').dimmer('hide');
-            if($scope.topics.indexOf($rootScope.global.topic) !== -1 ){
+            if ($scope.topics.indexOf($rootScope.global.topic) !== -1) {
                 $scope.topic = $rootScope.global.topic;
                 $scope.startGetData()
-                $('.ui.segment').find('.ui.dropdown').dropdown('set text',$rootScope.global.topic)
+                $('.ui.segment').find('.ui.dropdown').dropdown('set text', $rootScope.global.topic)
             }
         })
     }
@@ -80,9 +81,10 @@ module.exports = function ($scope, $rootScope, $timeout, $document, $location) {
     });
     $scope.getMentionedServiceTable = function (platform, topic) {
         $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
-        // detect server status
+            // detect server status
             
-            $scope.mostMentionedService = data;
+            // $scope.mostMentionedService = $scope.order(data,'-vocinfluence.voctotalvol');
+            $scope.mostMentionedService = data
             $scope.$broadcast('data-got');
         })
     }
@@ -114,16 +116,16 @@ module.exports = function ($scope, $rootScope, $timeout, $document, $location) {
             // console.log(data);
             var influenceData = data.vocinsights.objectcountthistime;
             $scope.serviceStatus = 'gery';
-            var flag_spike = influenceData.detectedspikesvol>0;
-            var flag_health = influenceData.positivetotalvol<influenceData.negativetotalvol;
-            console.log(flag_spike,flag_health)
-            if(flag_spike&&flag_health){
+            var flag_spike = influenceData.detectedspikesvol > 0;
+            var flag_health = influenceData.positivetotalvol < influenceData.negativetotalvol;
+            console.log(flag_spike, flag_health)
+            if (flag_spike && flag_health) {
                 $scope.serviceStatus = 'red';
             }
-            if(flag_spike || flag_health){
+            if (flag_spike || flag_health) {
                 $scope.serviceStatus = 'yellow';
             }
-            if(!flag_spike && !flag_health){
+            if (!flag_spike && !flag_health) {
                 $scope.serviceStatus = 'green';
             }
             $scope.statistic = data;

@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html'),
@@ -73,7 +73,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, utilitySrv) {
                 }
                 fnPromise.then(function (data) {
                     scope.raw = data;
-                    scope.tabledata = data.messagesorthreads;
+                    scope.tabledata = data.messagesorthreads
                     // console.log(scope.tabledata);
                     // if(!scope.table){
                     //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
