@@ -1,6 +1,6 @@
 module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     $scope.query = {};
-    var totalrequests = 28;
+    var totalrequests = 28+12;
     $('#progress').progress({
         total: totalrequests
     });

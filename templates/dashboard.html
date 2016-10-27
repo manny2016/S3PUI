@@ -25,8 +25,8 @@
     <!--query metrics-->
     <div ng-show="flags.m">
 
-        <div id="health" class="ui segment green">
-            <h3 class="ui header green">Social Health Summary</h3>
+        <div id="health" class="ui segment blue">
+            <h3 class="ui header blue">Social Health Summary</h3>
             <div>
 
             </div>
@@ -42,8 +42,8 @@
 
         </div>
 
-        <div id="sentiment" class="ui blue segment">
-            <h3 class="ui header blue">Sentiment</h3>
+        <div id="sentiment" class="ui purple segment">
+            <h3 class="ui header purple">Sentiment</h3>
             <div class="ui three column grid">
                 <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
             </div>
@@ -163,8 +163,38 @@
             </div>
         </div>
 
-        <div id="influencers" class="ui segment violet">
-            <h3 class="ui header violet">
+        <div id="analytics" class="ui green segment">
+            <h3 class="ui center aligned header green">
+                Services Analytics
+            </h3>
+            <div class="ui grid">
+                <div ng-repeat="p in enabledPlatforms" class="two column row">
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Messages Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{p}}' query=query association="message_{{p}}"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Users Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{p}}' query=query association="user_{{p}}"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="influencers" class="ui segment orange">
+            <h3 class="ui header orange">
                 Top Active Users
             </h3>
             <div class="ui three column grid">
@@ -176,7 +206,7 @@
             <div class="ui middle aligned selection list">
                 <div class="item">
                     <a du-smooth-scroll="health" du-scrollspy offset="200">
-                        <div class="ui label" set-color="green" data-content="Health" data-variation="mini inverted">
+                        <div class="ui label" set-color="blue" data-content="Health" data-variation="mini inverted">
                             <i class="icon dashboard"></i><span ng-hide="isSmall">Health</span>
                         </div>
                     </a>
@@ -190,14 +220,21 @@
                 </div>
                 <div class="item">
                     <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
-                        <div class="ui label" set-color="blue" data-content="Sentiment" data-variation="mini inverted">
+                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
                             <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                        <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
+                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
                     <a du-smooth-scroll="influencers" du-scrollspy offset="300">
-                        <div class="ui label" set-color="violet" data-content="Top Active Users" data-variation="mini inverted">
+                        <div class="ui label" set-color="orange" data-content="Top Active Users" data-variation="mini inverted">
                             <i class="icon users"></i> <span ng-hide="isSmall">Top Active Users</span>
                         </div>
                     </a>
