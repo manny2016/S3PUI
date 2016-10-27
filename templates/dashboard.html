@@ -45,7 +45,7 @@
         <div id="sentiment" class="ui blue segment">
             <h3 class="ui header blue">Sentiment</h3>
             <div class="ui three column grid">
-                <ng-echart ng-repeat="p in enabledPlatforms" title="Positive & Negative Vol Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
+                <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
             </div>
             <div class="ui three column grid">
 
