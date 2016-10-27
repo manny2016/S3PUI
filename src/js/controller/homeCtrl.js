@@ -22,7 +22,6 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         $scope.service.getCate().then(function (data) {
             // console.log(data)
             $scope.topics = data;
-            debugger;
             if($rootScope.global.topic){
                 $scope.startGetData($rootScope.global.topic);
             }

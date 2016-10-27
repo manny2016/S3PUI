@@ -16,6 +16,8 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {
+                    console.log(data);
+                    deferred.reject(data);
                 }
             }, function (err) {
                 deferred.reject(err);

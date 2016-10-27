@@ -310,6 +310,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     afterInit($rootScope, _, _.chartObj);
                                 })
                             } else {
+                                _.thousandsuffix = $filter('thousandsuffix');
                                 _.platforms = _.$parent.enabledPlatforms;
                                 // _.raw = [];
                                 _.raw = {};
@@ -351,6 +352,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 $q.all(fnPromises).then(function () {
                                     var config = customHoriBarData(_);
                                     _.chartOpt = angular.merge(_.chartOpt, config);
+                                    // console.log(_.chartOpt);
                                     initChart(_.chartObj, _.chartOpt);
                                     afterInit($rootScope, _, _.chartObj);
                                 })
@@ -855,7 +857,7 @@ function customServicesDistributionData(fnPromise, scope) {
             }
             tops.push(other);
             seriesData = tops;
-            console.log(scope);
+            // console.log(scope);
             scope.$root.$broadcast('set-mentioned-table-data',{data:rest,total:total,association:scope.association});
         }
         return {
@@ -993,6 +995,7 @@ function initAxisChartOpt(scope) {
     };
     return opt;
 }
+
 function initHoriChartOpt(scope) {
     var opt = {
         title: {
@@ -1016,7 +1019,11 @@ function initHoriChartOpt(scope) {
             }
         },
         xAxis: {
-            type: 'value'
+            type: 'value',
+            axisLabel:{
+                // rotate:45,
+                formatter:function(value){return scope.thousandsuffix(value,1)}
+            }
         },
         yAxis: {
             type: 'category',
