@@ -37,6 +37,7 @@ module.exports = function ($parse,$filter) {
         },
         link: function (scope, e, a) {
             var numberFormat = $filter('thousandsuffix');
+            var percentage = $filter('percentage');
             scope.color = colors[Math.round(Math.random() * colors.length)];
             scope.volume = scope.data.volume;
             if (scope.comment) {
@@ -156,19 +157,25 @@ module.exports = function ($parse,$filter) {
                     ]
                     break;
                 case 'vocinsightsPN':
-                    scope.volume = numberFormat(scope.data.objectcountthistime.positivetotalvol)
+                    // scope.volume = numberFormat(scope.data.objectcountthistime.positivetotalvol)
+                    //     + ":"
+                    //     + numberFormat(scope.data.objectcountthistime.negativetotalvol)
+                    //     + ":"
+                    //     + numberFormat(scope.data.objectcountthistime.neutraltotalvol)
+                    var originBoj = scope.data.objectcountthistime;
+                    scope.volume = percentage(originBoj.positivetotalvol/originBoj.voctotalvol,0)
                         + ":"
-                        + numberFormat(scope.data.objectcountthistime.negativetotalvol)
+                        + percentage(originBoj.negativetotalvol/originBoj.voctotalvol,0)
                         + ":"
-                        + numberFormat(scope.data.objectcountthistime.neutraltotalvol)
+                        + percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
                     scope.labels = [
                         {
                             text: 'POS ' + label_type.spike,
-                            volume: scope.data.objectcountthistime.detectedposispikesvol,
+                            volume: originBoj.detectedposispikesvol,
                             color: 'green'
                         }, {
                             text: 'NEG ' + label_type.spike,
-                            volume: scope.data.objectcountthistime.detectednegspikesvol,
+                            volume: originBoj.detectednegspikesvol,
                             color: 'red'
                         }
                     ]
