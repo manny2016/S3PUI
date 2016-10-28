@@ -141,10 +141,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             });
                             break;
                         case 'getVoCDetailsByPN':
+                            var pnscope = params.name.toLowerCase();
+                            if(pnscope =='pos') pnscope='posi';
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                pnscope: params.name.toLowerCase()
+                                pnscope: pnscope
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
