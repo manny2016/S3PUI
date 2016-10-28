@@ -127,12 +127,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     // console.log(params)
                     // console.log(_)
                     // console.log(_.subFn);
+                    // debugger;
                     switch (_.subFn) {
                         case 'getVoCDetailsByDate':
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
+                                date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
+                                // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -186,7 +188,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
+                                date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
                                 pnscope: _.pnscope
                             }
                             $rootScope.popSubWin({
@@ -944,7 +946,7 @@ function customHourlyData(fnPromise, key, utility, scope) {
             // console.log(entity)
             seriesData.push(entity);
         })
-        // console.log(seriesData)
+        // console.log(xAxisDate)
         return {
             series: [{
                 name: 'Vol',

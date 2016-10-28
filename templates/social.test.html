@@ -78,7 +78,7 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mentionedmostservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                     </div>
@@ -88,9 +88,9 @@
                                 <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.rankingservice.attachedobject}}" title="{{s.rankingservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                        {{s.rankingservice.attachedobject| limitTo: 15 }}<span ng-if="s.rankingservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                        {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.mentionedmostservice.vocinfluence.vocvolgrowthratio|number:0}}%)
                                     </div>
                                 </div>
                             </div>

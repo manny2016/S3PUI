@@ -127,7 +127,7 @@ function initHourlyChartData(raw, utility) {
         } else {
             var entity = {
                 value: item.vocinfluence.voctotalvol,
-                symbolSize: 0
+                symbolSize: 4
             };
         }
         seriesData.push(entity);
