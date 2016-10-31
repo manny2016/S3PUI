@@ -94,7 +94,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             _.compile = function (chart, dom) {
                 // console.log(_.$parent)
                 var el = $compile(chart)(_.$parent);
-                console.log(el);
+                // console.log(el);
                 $(dom).append(el);
             }
             _.swithside = function () {
@@ -385,7 +385,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = customServicesDistributionData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
-                                console.log(_.chartOpt)
+                                // console.log(_.chartOpt)
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })

@@ -10,7 +10,6 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         r: false
     };
     $('#scrollspy .list .item .label').popup();
-
     $timeout(function () {
         $scope.flags.g = true;
     }, 2000).then(function () {

@@ -14,7 +14,6 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
             association: "@"
         },
         link: function (scope, e, a) {
-            // console.log($(e).find('.hourly-charts'))
             $rootScope.$on('set-mentioned-table-data', function (evt, arg) {
                 if (scope.association === arg.association) {
                     scope.total = arg.total;

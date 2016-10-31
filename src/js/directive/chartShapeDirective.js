@@ -35,7 +35,13 @@ module.exports = function ($rootScope) {
                     return false;
                 }
                 lastTime = current;
-                e.find("div.shape").shape('flip left');
+                debugger;
+                if(e.find('.nested')){
+                    $(e.find(".nested").get(0)).shape('flip left');
+                    return;
+                }else{
+                    $(e.find("div.shape").get(0)).shape('flip left');
+                }
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
                     var dom = e.find(".side.active").siblings();
@@ -63,8 +69,14 @@ module.exports = function ($rootScope) {
                 callMentionedService();
                 resizeChart();
             }
-            leftButton.bind("click", flipLeft);
-            rightButton.bind("click", flipRight);
+            leftButton.bind("click", function(e){
+                e.stopPropagation();
+                flipLeft()
+            });
+            rightButton.bind("click", function(e){
+                e.stopPropagation();
+                flipRight()
+            });
             function resizeChart() {
                 var dom = e.find(".side.active").next().find(".echart");
                 if (!dom.get(0)) {
