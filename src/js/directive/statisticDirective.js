@@ -33,12 +33,13 @@ module.exports = function ($parse, $filter) {
         scope: {
             data: "=",
             title: "@",
-            comment: "@"
+            comment: "@",
+            color:"@"
         },
         link: function (scope, e, a) {
             var numberFormat = $filter('thousandsuffix');
             var percentage = $filter('percentage');
-            scope.color = colors[Math.round(Math.random() * colors.length)];
+            // scope.color = colors[Math.round(Math.random() * colors.length)];
             scope.volume = scope.data.volume;
             if (scope.comment) {
                 scope.comment = scope.data.comment;
