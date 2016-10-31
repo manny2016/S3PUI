@@ -31,33 +31,46 @@ module.exports = function ($rootScope) {
                 cateInput = angular.element(e.find("input:hidden"));
             var flipLeft = function () {
                 var current = new Date();
-                if(current.getTime()-lastTime.getTime()<1000){
+                if (current.getTime() - lastTime.getTime() < 1000) {
                     return false;
                 }
                 lastTime = current;
-                debugger;
-                if(e.find('.nested')){
-                    $(e.find(".nested").get(0)).shape('flip left');
-                    return;
-                }else{
+                // debugger;
+                if (e.find('.nested')) {
+                    var root = e.find('div.side.root').not('.active');
+                    var leaf = root.find('.sides>.side').get(0);
+                    console.log(root.find('.sides>.side.active'))
+                    $(e.find(".nested").get(0)).shape({
+                        onChange: function () {
+                            // debugger;
+                            console.log(root)
+                            console.log(leaf) 
+                            $(root).find('.ui.shape').shape('set next side', $(leaf)).shape('flip left');
+                            // $(leaf).removeClass('hidden').addClass('active');
+                            resizeNestChart(leaf);
+                        }
+                    }).shape('set next side', $(root)).shape('flip left');
+                } else {
                     $(e.find("div.shape").get(0)).shape('flip left');
+                    var cate = e.find("div.side.active").next().attr("page");
+                    if (!cate) {
+                        var dom = e.find(".side.active").siblings();
+                        cate = $(dom[0]).attr("page");
+                    }
+                    scope.category = cate;
+                    $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
+                    callMentionedService();
+                    resizeChart();
                 }
-                var cate = e.find("div.side.active").next().attr("page");
-                if (!cate) {
-                    var dom = e.find(".side.active").siblings();
-                    cate = $(dom[0]).attr("page");
-                }
-                scope.category = cate;
-                $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
-                callMentionedService();
-                resizeChart();
+
             }
             var flipRight = function () {
                 var current = new Date();
-                if(current.getTime()-lastTime.getTime()<1000){
+                if (current.getTime() - lastTime.getTime() < 1000) {
                     return false;
                 }
                 lastTime = current;
+
                 e.find("div.shape").shape('flip right');
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
@@ -69,11 +82,11 @@ module.exports = function ($rootScope) {
                 callMentionedService();
                 resizeChart();
             }
-            leftButton.bind("click", function(e){
+            leftButton.bind("click", function (e) {
                 e.stopPropagation();
                 flipLeft()
             });
-            rightButton.bind("click", function(e){
+            rightButton.bind("click", function (e) {
                 e.stopPropagation();
                 flipRight()
             });
@@ -83,17 +96,29 @@ module.exports = function ($rootScope) {
                     dom = e.find(".side.active").siblings();
                     dom = $(dom[0]).find('.echart');
                 }
-                if(dom.length){
+                if (dom.length) {
+                    echarts.getInstanceByDom(dom.get(0)).resize();
+                }
+            }
+            function resizeNestChart(leaf) {
+                // debugger; 
+                var dom = $(leaf).find("div.echart");
+                console.log(dom)
+                if (!dom.get(0)) {
+                    dom = e.find('div.side.root.active').siblings();
+                    dom = $(dom[0]).find('.echart');
+                }
+                if (dom.length) {
                     echarts.getInstanceByDom(dom.get(0)).resize();
                 }
             }
             function callMentionedService() {
-                if(a.linkage !== 'true') return;
+                if (a.linkage !== 'true') return;
                 // console.log(scope.category); // platform
                 // console.log(a);
-                $rootScope.$broadcast('fresh-most-mentioned',{
-                    platform:scope.category,
-                    pnscope:a.pnscope
+                $rootScope.$broadcast('fresh-most-mentioned', {
+                    platform: scope.category,
+                    pnscope: a.pnscope
                 })
             }
 
