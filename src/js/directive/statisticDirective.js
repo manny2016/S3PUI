@@ -24,7 +24,7 @@ var label_type = {
     spike: 'Vol Spike Detected (hourly)',
     string: ''
 };
-module.exports = function ($parse,$filter) {
+module.exports = function ($parse, $filter) {
     var colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     return {
         restrict: 'E',
@@ -123,21 +123,21 @@ module.exports = function ($parse,$filter) {
                     scope.volume = scope.data.mostlikedservice[0].mentionedmostservice.attachedobject
                         + ":"
                         + scope.data.mostdislikedservice[0].mentionedmostservice.attachedobject
-                    scope.style={'font-size':'26px'}; 
+                    scope.style = { 'font-size': '26px' };
                     scope.labels = [
                         {
                             text: scope.data.mostlikedservice.map(function (item) {
                                 return item.mentionedmostservice.attachedobject
                                     + "(" + item.occupyratio + "%)"
                             }).join(","),
-                            color:"green"
+                            color: "green"
                         },
                         {
                             text: scope.data.mostdislikedservice.map(function (item) {
                                 return item.mentionedmostservice.attachedobject
                                     + "(" + item.occupyratio + "%)"
                             }).join(","),
-                            color:"red"
+                            color: "red"
                         },
                     ]
                     break;
@@ -157,17 +157,35 @@ module.exports = function ($parse,$filter) {
                     ]
                     break;
                 case 'vocinsightsPN':
-                    // scope.volume = numberFormat(scope.data.objectcountthistime.positivetotalvol)
-                    //     + ":"
-                    //     + numberFormat(scope.data.objectcountthistime.negativetotalvol)
-                    //     + ":"
-                    //     + numberFormat(scope.data.objectcountthistime.neutraltotalvol)
                     var originBoj = scope.data.objectcountthistime;
-                    scope.volume = percentage(originBoj.positivetotalvol/originBoj.voctotalvol,0)
-                        + ":"
-                        + percentage(originBoj.negativetotalvol/originBoj.voctotalvol,0)
-                        + ":"
-                        + percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
+                    scope.volume = [
+                        numberFormat(originBoj.positivetotalvol,0),
+                        numberFormat(originBoj.negativetotalvol,0),
+                        numberFormat(originBoj.neutraltotalvol,0)
+                    ];
+                    // scope.subVolume = [
+                    //     percentage(originBoj.positivetotalvol / originBoj.voctotalvol, 0),
+                    //     percentage(originBoj.negativetotalvol / originBoj.voctotalvol, 0),
+                    //     percentage(originBoj.positivetotalvol / originBoj.voctotalvol, 0)
+                    // ];
+                    scope.subVolume = [
+                        originBoj.positivetotalvol / originBoj.voctotalvol,
+                        originBoj.negativetotalvol / originBoj.voctotalvol,
+                        originBoj.neutraltotalvol / originBoj.voctotalvol
+                    ];
+                    // scope.volume = numberFormat(originBoj.positivetotalvol)
+                    //     + "(" + percentage(originBoj.positivetotalvol / originBoj.voctotalvol, 0) + ")"
+                    //     + ":"
+                    //     + numberFormat(originBoj.negativetotalvol)
+                    //     + "(" + percentage(originBoj.negativetotalvol / originBoj.voctotalvol, 0) + ")"
+                    //     + ":"
+                    //     + numberFormat(originBoj.neutraltotalvol)
+                    //     + "(" + percentage(originBoj.positivetotalvol / originBoj.voctotalvol, 0) + ")";
+                    // scope.volume += percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
+                    //     + ":"
+                    //     + percentage(originBoj.negativetotalvol/originBoj.voctotalvol,0)
+                    //     + ":"
+                    //     + percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
                     scope.labels = [
                         {
                             text: 'POS ' + label_type.spike,
@@ -195,6 +213,9 @@ module.exports = function ($parse,$filter) {
                     ]
                     break;
 
+            }
+            scope.isVolObj = function(){
+                return angular.isArray(scope.volume) || angular.isObject(scope.volume)
             }
             // scope.labels = scope.data.labels;
         }

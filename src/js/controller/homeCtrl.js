@@ -1,9 +1,9 @@
 module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     $scope.query = {};
-    var totalrequests = 28+12;
-    $('#progress').progress({
-        total: totalrequests
-    });
+    // var totalrequests = 28+12;
+    var sections = 8,
+        totalrequests = 0;
+    // $('#progress').progress();
     $scope.flags = {
         m: false,
         g: false,
@@ -13,7 +13,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
 
     $timeout(function () {
         $scope.flags.g = true;
-    }, 2000).then(function () { 
+    }, 2000).then(function () {
         $timeout(function () {
             $scope.flags.r = true;
         }, 2000)
@@ -22,7 +22,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         $scope.service.getCate().then(function (data) {
             // console.log(data)
             $scope.topics = data;
-            if($rootScope.global.topic){
+            if ($rootScope.global.topic) {
                 $scope.startGetData($rootScope.global.topic);
             }
         })
@@ -32,8 +32,8 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         $scope.flags.m = true;
         //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
-        //console.log($('#progress').progress('get value'))
-        if ($('#progress').progress('get value') === totalrequests) {
+        // console.log($('#progress').progress('get value'))
+        if ($('#progress').progress('get value') === $scope.totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
             }, 1000)
@@ -64,6 +64,10 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
                         })
                     }
                 })
+                $scope.totalrequests = sections * $scope.enabledPlatforms.length + totalrequests;
+                $('#progress').progress({
+                    total: $scope.totalrequests
+                });
             }, 50)
         } else {
             // $scope.enabledPlatforms=[];

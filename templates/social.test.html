@@ -53,8 +53,8 @@
             <!--<div class="ui segment">-->
             <div ng-if="statistic" class="ui three column divided grid center aligned">
                 <div class="column collection">
+                    <div class="ui horizontal top divider">Community Users</div>
                     <div>
-                        <div class="ui horizontal top divider">Community Users</div>
                         <ng-statistic title="Users Joined Discussion" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
                     </div>
                     <div ng-if="platform=='twitter'">
@@ -67,8 +67,8 @@
                     </div>
                 </div>
                 <div class="column collection">
+                    <div class="ui horizontal top divider">Services & Products Status</div>
                     <div>
-                        <div class="ui horizontal top divider">Services & Products Status</div>
                         <ng-statistic title="Services & Products being Discussed" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
                     </div>
                     <div ng-if="platform=='twitter'" style="max-height:129px;">
@@ -122,8 +122,8 @@
                     </div>
                 </div>
                 <div class="column collection">
+                    <div class="ui horizontal top divider">VoC Insights</div>
                     <div>
-                        <div class="ui horizontal top divider">VoC Insights</div>
                         <ng-statistic title="Message Posts" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
                     </div>
                     <div>
@@ -208,10 +208,10 @@
                                 <tr>
                                     <th st-sort="attachedobject">Service Name</th>
                                     <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Post Volume</th>
-                                    <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">POS Ratio</th>
-                                    <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">NEG Ratio</th>
-                                    <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">NEU Ratio</th>
-                                    <th st-sort="vocinfluence.vocinfluencedvol">Total Page View</th>
+                                    <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Positive Ratio</th>
+                                    <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Negative Ratio</th>
+                                    <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Neutral Ratio</th>
+                                    <th st-sort="vocinfluence.vocinfluencedvol">Total Page Views</th>
                                     <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
                                 </tr>
                             </thead>
