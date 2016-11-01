@@ -6,23 +6,11 @@ app.directive('ngStatistic',require('./statisticDirective'));
 app.directive('ngStatisticLabel',require('./statisticLabelDirective'));
 app.directive('ngScrollSpy',require('./scrollspyDirective'));
 app.directive('ngChartShape',require('./chartShapeDirective'));
+app.directive('ngChartNestShape',require('./chartNestShapeDirective'));
 app.directive('userList',require('./userListDirective'));
 app.directive('subWindow',require('./subWindowDirective'));
 app.directive('topicQuery',require('./topicQueryDirective'));
 app.directive('selectPage',require('./selectPageDirective'));
 app.directive('mentionedTable',require('./mentionedTableDirective'));
-app.directive('testDire', function(){
-    return{
-        restrict:'AE',
-        replace:true,
-        template:"<div></div>",
-        scope:{
-            config:"="
-        },
-        link:function(scope,e,a){
-            console.log(scope.config);
-        }
-    }
-});
 
 module.exports = 'app.Directive';
