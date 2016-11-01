@@ -6,7 +6,7 @@ app.directive('ngStatistic',require('./statisticDirective'));
 app.directive('ngStatisticLabel',require('./statisticLabelDirective'));
 app.directive('ngScrollSpy',require('./scrollspyDirective'));
 app.directive('ngChartShape',require('./chartShapeDirective'));
-app.directive('ngChartNestShape',require('./chartNestShapeDirective'));
+// app.directive('ngChartNestShape',require('./chartNestShapeDirective')); 
 app.directive('userList',require('./userListDirective'));
 app.directive('subWindow',require('./subWindowDirective'));
 app.directive('topicQuery',require('./topicQueryDirective'));
