@@ -20,7 +20,7 @@
                 </tbody>
             </table>-->
             <a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'red'" >
-                <img ng-src=public/images/{{s.PlatformName.toLowerCase()}}.png alt="" style="width:26px !important">
+                <img ng-src=public/images/{{s.PlatformName.toLowerCase()}}.png alt="{{s.PlatformName}}" title="{{s.PlatformName}}" style="width:26px !important">
             </a>
         </div>
     </div>
