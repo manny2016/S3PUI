@@ -1,7 +1,7 @@
 <div class="card fluid topic-selector" ng-class="{'active':t.TechCategoryName===query.topic}" style="min-width:150px">
     <div class="content">
         <div class="header">{{t.TechCategoryName}}</div>
-        <div class="description" style="line-height:42px">
+        <div class="description" style="line-height:42px;background-color: #fff;text-align: center;padding: 1px;">
             <!--<table class="ui very compact small table">
                 <thead>
                     <tr>
@@ -19,7 +19,7 @@
                     </tr>
                 </tbody>
             </table>-->
-            <a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'red'" >
+            <a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'lightGrey'" >
                 <img ng-src=public/images/{{s.PlatformName.toLowerCase()}}.png alt="{{s.PlatformName}}" title="{{s.PlatformName}}" style="width:26px !important">
             </a>
         </div>
