@@ -57,7 +57,8 @@
                     <div>
                         <ng-statistic title="Users Joined Discussion" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
                     </div>
-                    <div ng-if="platform=='twitter'">
+                    <!--<div ng-if="platform=='twitter'">-->
+                    <div>
                         <div class="ui inverted divider"></div>
                         <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
                     </div>
@@ -71,7 +72,8 @@
                     <div>
                         <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
                     </div>
-                    <div ng-if="platform=='twitter'" style="max-height:129px;">
+                    <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
+                    <div style="max-height:129px;">
                         <div class="ui inverted divider"></div>
                         <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>-->
                         <div class="ui two column grid">
@@ -84,7 +86,7 @@
                                             {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                         </span>
                                         <span ng-if="!s">
-                                            No Feedback!
+                                            No Data Available
                                         </span>
                                     </div>
                                 </div>
@@ -101,7 +103,7 @@
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio<0" class="icon long arrow down red pull-left"></i> {{s.mentionedmostservice.attachedobject| limitTo: 10 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 10">&hellip;</span>({{s.mentionedmostservice.vocinfluence.vocvolgrowthratio|number:0}}%)
                                         </span>
                                         <span ng-if="!s">
-                                            No Feedback!
+                                            No Data Available
                                         </span>
                                     </div>
                                 </div>
@@ -121,7 +123,7 @@
                                             {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                         </span>
                                         <span ng-if="!s">
-                                            No Feedback!
+                                            No Data Available
                                         </span>
                                     </div>
                                 </div>
@@ -135,7 +137,7 @@
                                             {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                         </span>
                                         <span ng-if="!s">
-                                            No Feedback!!!
+                                            No Data Available
                                         </span>
                                     </div>
                                 </div>
@@ -152,9 +154,12 @@
                         <div class="ui inverted divider"></div>
                         <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
                     </div>
-                    <div ng-if="platform=='twitter'">
+                    <!--<div ng-if="platform=='twitter'">-->
+                    <div>
                         <div class="ui inverted divider"></div>
-                        <ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>
+                        <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
+                        <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
+                        <ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="statistic.vocinsights" type="mostposifrom"></ng-statistic>
                     </div>
                 </div>
             </div>

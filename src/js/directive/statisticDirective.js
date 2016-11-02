@@ -65,6 +65,7 @@ module.exports = function ($parse, $filter) {
                     break;
                 case 'regionofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
+                    // scope.volume = scope.volume===0?"No Data Available":scope.volume;
                     scope.labels = [
                         {
                             text: label_type.compared,
@@ -200,17 +201,26 @@ module.exports = function ($parse, $filter) {
                     ]
                     break;
                 case 'mostposifrom':
-                    scope.volume = numberFormat(scope.data.mostposifrom.vocinfluence.vocinfluencedvol)
-                        + ":"
-                        + numberFormat(scope.data.mostnegfrom.vocinfluence.vocinfluencedvol)
+                    // scope.volume = numberFormat(scope.data.mostposifrom.vocinfluence.vocinfluencedvol)
+                    //     + ":"
+                    //     + numberFormat(scope.data.mostnegfrom.vocinfluence.vocinfluencedvol)
+                    var originBoj = scope.data.objectcountthistime;
+                    scope.volume = [
+                        numberFormat(originBoj.positiveinfluencedvol,0),
+                        numberFormat(originBoj.negativeinfluencedvol,0)
+                    ];
+                    scope.subVolume = [
+                        originBoj.positiveinfluencedvol / originBoj.vocinfluencedvol,
+                        originBoj.negativeinfluencedvol / originBoj.vocinfluencedvol
+                    ];
                     scope.labels = [
-                        {
-                            text: 'Most POS From ' + scope.data.mostposifrom.attachedobject,
-                            color: 'green'
-                        }, {
-                            text: 'Most NEG From  ' + scope.data.mostnegfrom.attachedobject,
-                            color: 'red'
-                        }
+                        // {
+                        //     text: 'Most POS From ' + scope.data.mostposifrom.attachedobject,
+                        //     color: 'green'
+                        // }, {
+                        //     text: 'Most NEG From  ' + scope.data.mostnegfrom.attachedobject,
+                        //     color: 'red'
+                        // }
                     ]
                     break;
 

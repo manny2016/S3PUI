@@ -1,0 +1,25 @@
+<div class="column">
+    <!--<div class="ui two column grid">
+        <div class="column">
+            <div class="ui bulleted list ">
+                <div class="item">Gaining Access</div>
+                <div class="item">Inviting Friends</div>
+                <div class="item">Warranty</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="ui active dimmer" ng-show="!complete">
+                    <div class="ui text loader">Loading</div>
+                </div>
+                <div class="echart"></div>
+            </div>
+        </div>
+    </div>-->
+    <div class="ui top attached tabular menu">
+        <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in platforms">{{p}}</a>
+    </div>
+    <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in platforms" data-tab="{{p}}">
+        {{p}}
+    </div>
+</div>

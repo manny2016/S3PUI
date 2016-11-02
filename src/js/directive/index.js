@@ -2,6 +2,7 @@
 var app = angular.module('app.Directive', []);
 
 app.directive('ngEchart',require('./chartDirective'));
+app.directive('ngRadarEchart',require('./chartRadarDirective'));
 app.directive('ngStatistic',require('./statisticDirective'));
 app.directive('ngStatisticLabel',require('./statisticLabelDirective'));
 app.directive('ngScrollSpy',require('./scrollspyDirective'));

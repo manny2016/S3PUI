@@ -319,20 +319,31 @@
     table{
         line-height: 0.4em;
     }
+    div.header{
+        padding-left: 0.5em;
+        font-weight: bolder;
+    }
     &&:hover{
         background:#f0f0f0;
-        div.content{
-            .header{
+        div.header{
                 color: orange;
             }
-        }
     }
     &&.active{
         background:orange;
-        div.content{
-            .header{
+        div.header{
                 color: #fff;
             }
+        a.forum_icon{
+            background-color: orange;
+        }
+    }
+    a.forum_icon{
+        padding:5px;
+        background-color: white;
+        img{
+            width:20px !important;
+            height:20px !important;
         }
     }
 }

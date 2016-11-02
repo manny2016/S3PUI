@@ -37,7 +37,9 @@ app.filter('thousandsuffix', ['$window', function ($window) {
         if ($window.isNaN(input)) {
             return input;
         }
-
+        if (input === 0 ) {
+            return "No Data Available";
+        }
         if (input < 1000) {
             return input;
         }

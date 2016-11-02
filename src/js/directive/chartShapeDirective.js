@@ -3,7 +3,7 @@
 
 */
 module.exports = function ($rootScope) {
-    return {
+    return { 
         restrict: 'A',
         scope: false,
         link: function (scope, e, a) {
@@ -36,21 +36,21 @@ module.exports = function ($rootScope) {
                 }
                 lastTime = current;
                 // debugger;
-                if (e.find('.nested')) {
-                    var root = e.find('div.side.root').not('.active');
-                    var leaf = root.find('.sides>.side').get(0);
-                    console.log(root.find('.sides>.side.active'))
-                    $(e.find(".nested").get(0)).shape({
-                        onChange: function () {
-                            // debugger;
-                            console.log(root)
-                            console.log(leaf) 
-                            $(root).find('.ui.shape').shape('set next side', $(leaf)).shape('flip left');
-                            // $(leaf).removeClass('hidden').addClass('active');
-                            resizeNestChart(leaf);
-                        }
-                    }).shape('set next side', $(root)).shape('flip left');
-                } else {
+                // if (e.find('.nested')) {
+                //     var root = e.find('div.side.root').not('.active');
+                //     var leaf = root.find('.sides>.side').get(0);
+                //     console.log(root.find('.sides>.side.active'))
+                //     $(e.find(".nested").get(0)).shape({
+                //         onChange: function () {
+                //             // debugger;
+                //             console.log(root)
+                //             console.log(leaf) 
+                //             $(root).find('.ui.shape').shape('set next side', $(leaf)).shape('flip left');
+                //             // $(leaf).removeClass('hidden').addClass('active');
+                //             resizeNestChart(leaf);
+                //         }
+                //     }).shape('set next side', $(root)).shape('flip left');
+                // } else {
                     $(e.find("div.shape").get(0)).shape('flip left');
                     var cate = e.find("div.side.active").next().attr("page");
                     if (!cate) {
@@ -61,7 +61,7 @@ module.exports = function ($rootScope) {
                     $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
                     callMentionedService();
                     resizeChart();
-                }
+                // }
 
             }
             var flipRight = function () {

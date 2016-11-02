@@ -1,7 +1,20 @@
 <div class="card fluid topic-selector" ng-class="{'active':t.TechCategoryName===query.topic}" style="min-width:150px">
-    <div class="content">
-        <div class="header">{{t.TechCategoryName}}</div>
-        <div class="description" style="line-height:42px;background-color: #fff;text-align: center;padding: 1px;">
+    <!--<div class="content">-->
+        <!--<div class="header">-->
+                <!--<a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'lightGrey'">-->
+        <!--</div>-->
+        <div class="description" style="line-height:30px;padding: 1px;">
+            <!--<div class="ui grid">-->
+                <div class="header">
+                    {{t.TechCategoryName}}
+                <!--</div>
+                <div class="ten wide column">-->
+                    <!--<a class="ui label forum_icon" ng-repeat="s in t.Platforms" ng-show="s.isEnabled" ng-class="s.isEnabled?'green':'lightGrey'">-->
+                    <a class="ui label forum_icon white" ng-repeat="s in t.Platforms" ng-show="s.isEnabled">
+                        <img ng-src=public/images/{{s.PlatformName.toLowerCase()}}.png alt="{{s.PlatformName}}" title="{{s.PlatformName}}" >
+                    </a>
+                </div>
+            <!--</div>-->
             <!--<table class="ui very compact small table">
                 <thead>
                     <tr>
@@ -19,15 +32,18 @@
                     </tr>
                 </tbody>
             </table>-->
-            <a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'lightGrey'" >
+            <!--<a class="ui label" ng-repeat="s in t.Platforms" ng-class="s.isEnabled?'green':'lightGrey'">
                 <img ng-src=public/images/{{s.PlatformName.toLowerCase()}}.png alt="{{s.PlatformName}}" title="{{s.PlatformName}}" style="width:26px !important">
-            </a>
+            </a>-->
+            <!--<span ng-repeat="s in t.Platforms" ng-show="s.isEnabled">
+                {{s.PlatformName}} {{$last ? '' : '/'}}
+            </span>-->
         </div>
-    </div>
+    <!--</div>-->
     <div ng-if="t.isGA" class="ui green bottom attached button" ng-click="startGetData(t.TechCategoryName)">
         <i class="search icon"></i> Query
     </div>
     <div ng-if="!(t.isGA)" class="ui bottom attached button">
-        <i class="search military icon"></i>  Coming Soon...
+        <i class="search military icon"></i> Coming Soon...
     </div>
 </div>

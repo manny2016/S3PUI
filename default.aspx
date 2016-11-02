@@ -77,7 +77,7 @@
                                 <%=UserAlias %>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
-                                        <a class="item" ui-sref="/">Profile</a>
+                                        <!--<a class="item" ui-sref="/">Profile</a>-->
                                         <!--<a class="item">Subscription</a>-->
                                         <a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>
                                     </div>

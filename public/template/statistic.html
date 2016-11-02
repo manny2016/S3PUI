@@ -4,7 +4,7 @@
             {{title}}
             <i ng-show="comment" class="popup small link help icon" data-content="{{comment}}" data-variation="mini inverted"></i>
         </div>
-        <div class="value" ng-if="!isVolObj()" ng-style="style">
+        <div class="value" ng-if="!isVolObj()" ng-style="{'font-size': volume.length>15?'32px':'auto'}">
             {{volume| thousandsuffix }}
         </div>
         <div class="value" ng-if="isVolObj()" ng-style="style" style="font-size:36px">

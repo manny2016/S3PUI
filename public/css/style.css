@@ -193,17 +193,32 @@
 .topic-selector table {
   line-height: 0.4em;
 }
+.topic-selector div.header {
+  padding-left: 0.5em;
+  font-weight: bolder;
+}
 .topic-selector.topic-selector:hover {
   background: #f0f0f0;
 }
-.topic-selector.topic-selector:hover div.content .header {
+.topic-selector.topic-selector:hover div.header {
   color: orange;
 }
 .topic-selector.topic-selector.active {
   background: orange;
 }
-.topic-selector.topic-selector.active div.content .header {
+.topic-selector.topic-selector.active div.header {
   color: #fff;
+}
+.topic-selector.topic-selector.active a.forum_icon {
+  background-color: orange;
+}
+.topic-selector a.forum_icon {
+  padding: 5px;
+  background-color: white;
+}
+.topic-selector a.forum_icon img {
+  width: 20px !important;
+  height: 20px !important;
 }
 .ui.segment .ui.header:first-child {
   margin: -1rem -1rem 1rem -1rem !important;

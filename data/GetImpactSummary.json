@@ -1,265 +1,420 @@
 {
     "influenceofusers": {
-        "comparedratio": 0.10810810810810811,
+        "comparedratio": -0.5030990825845032,
         "detectedhourlyspikesvol": 0,
-        "objectcountlasttime": 111,
-        "objectcountthistime": 123
+        "objectcountlasttime": 143087184,
+        "objectcountthistime": 71100153
     },
     "joinedusers": {
-        "comparedratio": 0.04396728016359918,
-        "detectedhourlyspikesvol": 12,
-        "objectcountlasttime": 978,
-        "objectcountthistime": 1021
+        "comparedratio": -0.5290521624864309,
+        "detectedhourlyspikesvol": 0,
+        "objectcountlasttime": 17503,
+        "objectcountthistime": 8243
     },
     "mentionedservicecount": {
-        "comparedratio": 0.8888888888888888,
+        "comparedratio": 0.40789473684210525,
         "detectedhourlyspikesvol": 0,
-        "objectcountlasttime": 9,
-        "objectcountthistime": 17
+        "objectcountlasttime": 76,
+        "objectcountthistime": 107
     },
     "mostdislikedservice": [
         {
             "mentionedmostservice": {
-                "attachedobject": "Azure VPN",
+                "attachedobject": "SQL Server Stretch Database",
                 "vocinfluence": {
                     "detectednegspikesvol": 0,
                     "detectedposispikesvol": 0,
                     "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
+                    "negativeinfluencedvol": 28205,
+                    "negativetotalvol": 17,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 0,
+                    "positivetotalvol": 0,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
                     "uniqueuserregion": 0,
                     "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 9
-        },
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure XX",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 7
-        },
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure XXXX",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 5
-        }
-    ],
-    "mostlikedservice": [
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure VM",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 9
-        },
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure AD",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 7
-        },
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure Web App",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 5
-        }
-    ],
-    "mostmentionedservice": [
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure VM",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
-                }
-            },
-            "occupyratio": 10
-        },
-        {
-            "mentionedmostservice": {
-                "attachedobject": "Azure AD",
-                "vocinfluence": {
-                    "detectednegspikesvol": 0,
-                    "detectedposispikesvol": 0,
-                    "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
-                    "uniqueuserregion": 0,
-                    "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
+                    "vocinfluencedvol": 28205,
+                    "voclasttimetotalvolume": 10,
+                    "voctotalvol": 17,
+                    "vocvolgrowthratio": 0.7
                 }
             },
             "occupyratio": 8
         },
         {
             "mentionedmostservice": {
-                "attachedobject": "Azure Web App",
+                "attachedobject": "R Server for HDInsight",
                 "vocinfluence": {
                     "detectednegspikesvol": 0,
                     "detectedposispikesvol": 0,
                     "detectedspikesvol": 0,
-                    "negativeinfluencedvol": 5328,
-                    "negativetotalvol": 340,
-                    "positiveinfluencedvol": 5328,
-                    "positivetotalvol": 740,
+                    "negativeinfluencedvol": 61571,
+                    "negativetotalvol": 16,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 0,
+                    "positivetotalvol": 0,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
                     "uniqueuserregion": 0,
                     "uniqueusers": 0,
-                    "vocinfluencedvol": 53283,
-                    "voctotalvol": 5328
+                    "vocinfluencedvol": 61571,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 16,
+                    "vocvolgrowthratio": 16
+                }
+            },
+            "occupyratio": 8
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "App Service",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 29668,
+                    "negativetotalvol": 13,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 0,
+                    "positivetotalvol": 0,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 29668,
+                    "voclasttimetotalvolume": 25,
+                    "voctotalvol": 13,
+                    "vocvolgrowthratio": -0.48
                 }
             },
             "occupyratio": 6
         }
     ],
+    "mostlikedservice": [
+        {
+            "mentionedmostservice": {
+                "attachedobject": "R Server for HDInsight",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 0,
+                    "negativetotalvol": 0,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 1418534,
+                    "positivetotalvol": 370,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 1418534,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 370,
+                    "vocvolgrowthratio": 370
+                }
+            },
+            "occupyratio": 10
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "App Service",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 0,
+                    "negativetotalvol": 0,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 418448,
+                    "positivetotalvol": 182,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 418448,
+                    "voclasttimetotalvolume": 290,
+                    "voctotalvol": 182,
+                    "vocvolgrowthratio": -0.3724137931034483
+                }
+            },
+            "occupyratio": 4
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "Cloud Services",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 0,
+                    "negativetotalvol": 0,
+                    "neutralinfluencedvol": 0,
+                    "neutraltotalvol": 0,
+                    "positiveinfluencedvol": 346719,
+                    "positivetotalvol": 145,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 346719,
+                    "voclasttimetotalvolume": 236,
+                    "voctotalvol": 145,
+                    "vocvolgrowthratio": -0.3855932203389831
+                }
+            },
+            "occupyratio": 3
+        }
+    ],
+    "mostmentionedservice": [
+        {
+            "mentionedmostservice": {
+                "attachedobject": "R Server for HDInsight",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 61571,
+                    "negativetotalvol": 16,
+                    "neutralinfluencedvol": 9328309,
+                    "neutraltotalvol": 1868,
+                    "positiveinfluencedvol": 1418534,
+                    "positivetotalvol": 370,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 10808414,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 2254,
+                    "vocvolgrowthratio": 2254
+                }
+            },
+            "occupyratio": 7
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "App Service",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 29668,
+                    "negativetotalvol": 13,
+                    "neutralinfluencedvol": 5636056,
+                    "neutraltotalvol": 1464,
+                    "positiveinfluencedvol": 418448,
+                    "positivetotalvol": 182,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 6084172,
+                    "voclasttimetotalvolume": 2229,
+                    "voctotalvol": 1659,
+                    "vocvolgrowthratio": -0.2557200538358008
+                }
+            },
+            "occupyratio": 5
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "Cloud Services",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 20519,
+                    "negativetotalvol": 3,
+                    "neutralinfluencedvol": 5263533,
+                    "neutraltotalvol": 1297,
+                    "positiveinfluencedvol": 346719,
+                    "positivetotalvol": 145,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 5630771,
+                    "voclasttimetotalvolume": 3269,
+                    "voctotalvol": 1445,
+                    "vocvolgrowthratio": -0.5579687977974915
+                }
+            },
+            "occupyratio": 4
+        }
+    ],
     "mostnegfrom": {
-        "attachedobject": "Tokyo",
+        "attachedobject": "null",
         "vocinfluence": {
             "detectednegspikesvol": 0,
             "detectedposispikesvol": 0,
             "detectedspikesvol": 0,
-            "negativeinfluencedvol": 5328,
-            "negativetotalvol": 340,
-            "positiveinfluencedvol": 5328,
-            "positivetotalvol": 740,
+            "negativeinfluencedvol": 43886,
+            "negativetotalvol": 40,
+            "neutralinfluencedvol": 0,
+            "neutraltotalvol": 0,
+            "positiveinfluencedvol": 0,
+            "positivetotalvol": 0,
+            "undefinedinfluencedvol": 0,
+            "undefinedtotalvol": 0,
             "uniqueuserregion": 0,
             "uniqueusers": 0,
-            "vocinfluencedvol": 53283,
-            "voctotalvol": 5328
+            "vocinfluencedvol": 43886,
+            "voclasttimetotalvolume": 0,
+            "voctotalvol": 40,
+            "vocvolgrowthratio": 0
         }
     },
     "mostposifrom": {
-        "attachedobject": "Tokyo",
+        "attachedobject": "null",
         "vocinfluence": {
             "detectednegspikesvol": 0,
             "detectedposispikesvol": 0,
             "detectedspikesvol": 0,
-            "negativeinfluencedvol": 5328,
-            "negativetotalvol": 340,
-            "positiveinfluencedvol": 5328,
-            "positivetotalvol": 740,
+            "negativeinfluencedvol": 0,
+            "negativetotalvol": 0,
+            "neutralinfluencedvol": 0,
+            "neutraltotalvol": 0,
+            "positiveinfluencedvol": 607432,
+            "positivetotalvol": 297,
+            "undefinedinfluencedvol": 0,
+            "undefinedtotalvol": 0,
             "uniqueuserregion": 0,
             "uniqueusers": 0,
-            "vocinfluencedvol": 53283,
-            "voctotalvol": 5328
+            "vocinfluencedvol": 607432,
+            "voclasttimetotalvolume": 0,
+            "voctotalvol": 297,
+            "vocvolgrowthratio": 0
         }
     },
+    "rankingservice": [
+        {
+            "mentionedmostservice": {
+                "attachedobject": "R Server for HDInsight",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 61571,
+                    "negativetotalvol": 16,
+                    "neutralinfluencedvol": 9328309,
+                    "neutraltotalvol": 1868,
+                    "positiveinfluencedvol": 1418534,
+                    "positivetotalvol": 370,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 10808414,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 2254,
+                    "vocvolgrowthratio": 2254
+                }
+            },
+            "occupyratio": 7
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "Apache Spark for Azure HDInsight",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 3997,
+                    "negativetotalvol": 4,
+                    "neutralinfluencedvol": 2472703,
+                    "neutraltotalvol": 444,
+                    "positiveinfluencedvol": 414384,
+                    "positivetotalvol": 102,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 2891084,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 550,
+                    "vocvolgrowthratio": 550
+                }
+            },
+            "occupyratio": 1
+        },
+        {
+            "mentionedmostservice": {
+                "attachedobject": "Apache Storm for HDInsight",
+                "vocinfluence": {
+                    "detectednegspikesvol": 0,
+                    "detectedposispikesvol": 0,
+                    "detectedspikesvol": 0,
+                    "negativeinfluencedvol": 3997,
+                    "negativetotalvol": 4,
+                    "neutralinfluencedvol": 2469337,
+                    "neutraltotalvol": 441,
+                    "positiveinfluencedvol": 416408,
+                    "positivetotalvol": 103,
+                    "undefinedinfluencedvol": 0,
+                    "undefinedtotalvol": 0,
+                    "uniqueuserregion": 0,
+                    "uniqueusers": 0,
+                    "vocinfluencedvol": 2889742,
+                    "voclasttimetotalvolume": 0,
+                    "voctotalvol": 548,
+                    "vocvolgrowthratio": 548
+                }
+            },
+            "occupyratio": 1
+        }
+    ],
     "regionofusers": {
-        "comparedratio": -0.3235294117647059,
+        "comparedratio": -0.625,
         "detectedhourlyspikesvol": 0,
-        "objectcountlasttime": 34,
-        "objectcountthistime": 23
+        "objectcountlasttime": 40,
+        "objectcountthistime": 15
     },
     "vocinsights": {
-        "comparedratio": -0.1875,
-        "detectedhourlyspikesvol": null,
+        "comparedratio": -0.5244325544455127,
+        "detectedhourlyspikesvol": 0,
         "objectcountlasttime": {
             "detectednegspikesvol": 0,
             "detectedposispikesvol": 0,
             "detectedspikesvol": 0,
-            "negativeinfluencedvol": 117,
-            "negativetotalvol": 32,
-            "positiveinfluencedvol": 144,
-            "positivetotalvol": 53,
+            "negativeinfluencedvol": 612235,
+            "negativetotalvol": 255,
+            "neutralinfluencedvol": 117621594,
+            "neutraltotalvol": 20230,
+            "positiveinfluencedvol": 24853355,
+            "positivetotalvol": 3438,
+            "undefinedinfluencedvol": 0,
+            "undefinedtotalvol": 0,
             "uniqueuserregion": 0,
             "uniqueusers": 0,
-            "vocinfluencedvol": 0,
-            "voctotalvol": 112
+            "vocinfluencedvol": 143087184,
+            "voclasttimetotalvolume": 0,
+            "voctotalvol": 23923,
+            "vocvolgrowthratio": 0
         },
         "objectcountthistime": {
             "detectednegspikesvol": 0,
             "detectedposispikesvol": 0,
             "detectedspikesvol": 0,
-            "negativeinfluencedvol": 67,
-            "negativetotalvol": 12,
-            "positiveinfluencedvol": 123,
-            "positivetotalvol": 43,
+            "negativeinfluencedvol": 12364895,
+            "negativetotalvol": 138,
+            "neutralinfluencedvol": 51275751,
+            "neutraltotalvol": 9432,
+            "positiveinfluencedvol": 7459507,
+            "positivetotalvol": 1807,
+            "undefinedinfluencedvol": 0,
+            "undefinedtotalvol": 0,
             "uniqueuserregion": 0,
             "uniqueusers": 0,
-            "vocinfluencedvol": 0,
-            "voctotalvol": 91
+            "vocinfluencedvol": 71100153,
+            "voclasttimetotalvolume": 0,
+            "voctotalvol": 11377,
+            "vocvolgrowthratio": 0
         }
     }
 }
