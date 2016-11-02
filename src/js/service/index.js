@@ -274,11 +274,13 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetVoCDetailsByDate',params);
         },
-        getVoCDetailsByUser: function (platform, topic, user, PNScope, days) {
+        getVoCDetailsByUser: function (platform, topic, user, index, PNScope, days) {
+            debugger;
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.userid = user || 1234;
+            params.index = (index!==undefined)? index : -1;
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetVoCDetailsByUser', params);

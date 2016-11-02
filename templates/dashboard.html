@@ -167,7 +167,6 @@
             <h3 class="ui center aligned header green">
                 Services Analytics
             </h3>
-<<<<<<< HEAD
             <div class="ui grid">
                 <div ng-repeat="p in enabledPlatforms" class="two column row">
                     <div class="ui shape column">
@@ -177,39 +176,6 @@
                             </div>
                             <div class="side">
                                 <mentioned-table platform='{{p}}' query=query association="message_{{p}}"></mentioned-table>
-=======
-            <div class="ui two column grid">
-                <div ng-repeat="p in enabledPlatforms" class="column">
-                    <div class="ui fluid card" ng-chart-shape>
-                        <div class="ui shape nested">
-                            <div class="sides">
-                                <div class="side active root">
-                                    111
-                                    <div class="ui shape">
-                                        <div class="sides">
-                                            <div class="side active">
-                                                <ng-echart title="Mentioned (Messages Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}"></ng-echart>
-                                            </div>
-                                            <div class="side">
-                                                <mentioned-table platform='{{p}}' query=query association="message_{{p}}"></mentioned-table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="side root">
-                                    222
-                                    <div class="ui shape column">
-                                        <div class="sides">
-                                            <div class="side active">
-                                                <ng-echart title="Mentioned (Users Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"></ng-echart>
-                                            </div>
-                                            <div class="side">
-                                                <mentioned-table platform='{{p}}' query=query association="user_{{p}}"></mentioned-table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
->>>>>>> f7a09a8e6df3eacd7b11bcb741f2fc3b045edf3d
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
         </div>
         <div class="ui aligned selection celled list user-list">
             <!--TOP 1-->
-            <div class="item" ng-repeat="u in users" ng-click="onClick(u)">
+            <div class="item" ng-repeat="u in users" ng-click="onClick(u,$index)">
                 <!--<div class="image">-->
                 <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}" class="image" ng-init="avator = getAvatorUrl(u)" ng-src="{{avator}}">
                 <!--</div>-->

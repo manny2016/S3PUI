@@ -49,6 +49,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
                             params.param.userid,
+                            params.param.index,
                             params.param.pnscope,
                             params.param.days
                         )
