@@ -77,9 +77,19 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
         link: function (scope, element, attrs) {
             var _ = scope;
             var echartDom = $(element).find("div.echart");
+            _.labels = [
+                'User Joined Discussion',
+                'Service Mentioned',
+                'Influence Impact',
+                'Message Post',
+                'Postive Post',
+                'Negative Post'
+            ]
+            _.listData = [];
             _.service = $rootScope.service;
             _.complete = false;
             _.query = _.query || {};
+            _.filter = $filter;
             _.chartOpt = initRadarChartOpt(_);
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.getData = function (location) {
@@ -95,6 +105,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     })
                 }
             }
+
             _.$on('start-get-data', function (event, arg) {
                 _.complete = false;
                 _.getData(arg);
@@ -130,19 +141,28 @@ function afterInit(rootscope, scope, echartObj) {
 
 function customRadarData(fnPromise, scope) {
     var dataSeries = function (raw) {
+        var numberic = scope.filter('number');
         var joinedusers = raw.joinedusers.comparedratio,
             influenceofusers = raw.influenceofusers.comparedratio,
             mentionedservicecount = raw.mentionedservicecount.comparedratio,
             mostpost = raw.vocinsights.comparedratio,
-            positivepost = (raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / raw.vocinsights.objectcountlasttime.positivetotalvol,
-            negativepost = (raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / raw.vocinsights.objectcountlasttime.negativetotalvol;
+            positivepost = (raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol||1),
+            negativepost = (raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol||1);
+        scope.listData = [
+            joinedusers,
+            influenceofusers,
+            mentionedservicecount,
+            mostpost,
+            positivepost,
+            negativepost
+        ]
         var dataArray = [
-            1 + joinedusers,
-            1 + influenceofusers,
-            1 + mentionedservicecount,
-            1 + mostpost,
-            1 + positivepost,
-            1 + negativepost
+            numberic(1 + joinedusers),
+            numberic(1 + influenceofusers),
+            numberic(1 + mentionedservicecount),
+            numberic(1 + mostpost),
+            numberic(1 + positivepost),
+            numberic(1 + negativepost)
         ];
         for (var i = 0; i < dataArray.length; i++) {
             if (dataArray[i] > 2) dataArray[i] = 2;
@@ -174,14 +194,20 @@ function initRadarChartOpt(scope) {
         tooltip: {},
         radar: {
             // shape: 'circle',
-            indicator: [
-                { name: 'User Joined Discussion', max: 2 },
-                { name: 'Service Mentioned', max: 2 },
-                { name: 'Influence Impact', max: 2 },
-                { name: 'Message Post', max: 2 },
-                { name: 'Postive Post', max: 2 },
-                { name: 'Negative Post', max: 2 }
-            ]
+            indicator: scope.labels.map(function (item) {
+                return {
+                    name: item,
+                    max: 2
+                }
+            })
+            // [
+            //     { name: 'User Joined Discussion', max: 2 },
+            //     { name: 'Service Mentioned', max: 2 },
+            //     { name: 'Influence Impact', max: 2 },
+            //     { name: 'Message Post', max: 2 },
+            //     { name: 'Postive Post', max: 2 },
+            //     { name: 'Negative Post', max: 2 }
+            // ]
         }
     };
 

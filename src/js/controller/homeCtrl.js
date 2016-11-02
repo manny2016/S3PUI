@@ -17,6 +17,18 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
             $scope.flags.r = true;
         }, 2000)
     })
+    $scope.swapTab = function (platform) {
+        $scope.selected = platform;
+        $('.ui.tabular.menu').tab('change tab', platform);
+        // debugger;
+        var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
+        if (chartDom) {
+            echarts.getInstanceByDom(chartDom).resize();
+        }
+    }
+    $scope.isSelected = function (section) {
+        return $scope.selected === section;
+    }
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
             // console.log(data)
@@ -67,11 +79,13 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
                 $('#progress').progress({
                     total: $scope.totalrequests
                 });
+                $scope.selected = $scope.enabledPlatforms[0];
             }, 50)
         } else {
             // $scope.enabledPlatforms=[];
             // $rootScope.$broadcast('destory-charts', 'home');
             $scope.$broadcast('start-get-data', 'home');
+            $scope.selected = $scope.enabledPlatforms[0];
         }
     }
 

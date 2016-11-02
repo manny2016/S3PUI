@@ -29,9 +29,12 @@
             <h3 class="ui header blue">Social Health Summary</h3>
             <div>
                 <div class="ui one column grid">
-
-                                        <!--<ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>-->
-
+                    <div class="ui top attached tabular menu">
+                        <a class="item" ng-class="{active:isSelected(p)}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms" ng-click="swapTab(p)">{{p}}</a>
+                    </div>
+                    <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
+                        <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
+                    </div>
                     <!--<div class="ui fluid card" ng-chart-shape>
                             <div class="ui shape">
                                 <div class="sides">
@@ -54,7 +57,7 @@
                                 <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
                             </div>
                         </div>-->
-                    
+
                 </div>
             </div>
         </div>
