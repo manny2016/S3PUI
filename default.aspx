@@ -60,7 +60,7 @@
                                     <a class="item" ui-sref="thirdParty.platform({platform:'so'})">Stackoverflow</a>
                                     <a class="item" ui-sref="thirdParty.platform({platform:'su'})">SuperUser</a>
                                     <a class="item" ui-sref="thirdParty.platform({platform:'sf'})">ServerFault</a>
-                                    <a class="item" ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>
+                                    <!--<a class="item" ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>-->
                                 </div>
                             </div>
 

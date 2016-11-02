@@ -65,7 +65,7 @@ module.exports = function ($parse, $filter) {
                     break;
                 case 'regionofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
-                    // scope.volume = scope.volume===0?"No Data Available":scope.volume;
+                    scope.volume = scope.volume===0?"No Data Available":scope.volume;
                     scope.labels = [
                         {
                             text: label_type.compared,

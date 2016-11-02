@@ -196,6 +196,10 @@
 .topic-selector div.header {
   padding-left: 0.5em;
   font-weight: bolder;
+  min-height: 42px;
+}
+.topic-selector div.button {
+  bottom: 0px;
 }
 .topic-selector.topic-selector:hover {
   background: #f0f0f0;
@@ -212,11 +216,11 @@
 .topic-selector.topic-selector.active a.forum_icon {
   background-color: orange;
 }
-.topic-selector a.forum_icon {
+.topic-selector div.forum_icon {
   padding: 5px;
   background-color: white;
 }
-.topic-selector a.forum_icon img {
+.topic-selector div.forum_icon img {
   width: 20px !important;
   height: 20px !important;
 }
