@@ -365,7 +365,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.keywords = keywords || 'notworking';
             params.PNScope = PNScope || 'all';
-            params.IsFuzzyQuery = IsFuzzyQuery || 'true';
+            params.IsFuzzyQuery = IsFuzzyQuery || 'false';
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
         }

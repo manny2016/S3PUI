@@ -146,8 +146,8 @@ function customRadarData(fnPromise, scope) {
             influenceofusers = raw.influenceofusers.comparedratio,
             mentionedservicecount = raw.mentionedservicecount.comparedratio,
             mostpost = raw.vocinsights.comparedratio,
-            positivepost = (raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol||1),
-            negativepost = (raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol||1);
+            positivepost = (raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol || 1),
+            negativepost = (raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol || 1);
         scope.listData = [
             joinedusers,
             influenceofusers,
@@ -188,10 +188,18 @@ function customRadarData(fnPromise, scope) {
         return fn(data);
     })
 }
-
 function initRadarChartOpt(scope) {
     var opt = {
-        tooltip: {},
+        tooltip: {
+            formatter: function (params) {
+                console.log(params)
+                var res = [];
+                params.value.forEach(function(cur,index){
+                    res.push(scope.labels[index] + " : " + scope.filter('percentage')(cur-1,3,true))
+                })
+                return res.join("<br />");
+            }
+        },
         radar: {
             // shape: 'circle',
             indicator: scope.labels.map(function (item) {
