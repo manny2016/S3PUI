@@ -1,11 +1,12 @@
 <div class="column">
     <div class="ui grid">
-        <div class="six wide column">
-            <div class="ui large bulleted list">
-                <div class="item" ng-repeat="l in labels" style="padding:0 1em;line-height: 32px;">
-                    <span style="font-weight:bolder">{{l}}：</span>
-                    <i class="icon" ng-class="{true:'long arrow up green',false:'long arrow down red'}[listData[$index]>0]" style="display:inline"></i> 
-                    {{listData[$index]|percentage}}
+        <div class="seven wide column">
+            <div class="ui large message blue" style="height:100%">
+                <div class="ui large bulleted list">
+                    <div class="item" ng-repeat="l in labels" style="padding:0 1em;line-height: 32px;">
+                        <span style="font-weight:bolder">{{l}}：</span>
+                        <i class="icon" ng-if="listData[$index]!==0" ng-class="{true:'long arrow up green',false:'long arrow down red'}[listData[$index]>0]" style="display:inline"></i> {{listData[$index]|percentage}}
+                    </div>
                 </div>
                 <!--<div class="item">
                     <i class="icon" ng-class="{true:'long arrow up green',false:'long arrow down red'}[listData[1]>0]"></i> 
@@ -24,7 +25,7 @@
                     Negative Post {{listData[5]|percentage}}</div>-->
             </div>
         </div>
-        <div class="ten wide column">
+        <div class="nine wide column">
             <div class="ui fluid card">
                 <div class="ui active dimmer" ng-show="!complete">
                     <div class="ui text loader">Loading</div>
@@ -33,5 +34,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
