@@ -84,7 +84,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             group: "@",
             query: "=",
             noPop: "@",
-            association:"@",
+            association: "@",
         },
         link: function (scope, element, attrs) {
             var _ = scope;
@@ -146,7 +146,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getVoCDetailsByPN':
                             var pnscope = params.name.toLowerCase();
-                            if(pnscope =='pos') pnscope='posi';
+                            if (pnscope == 'pos') pnscope = 'posi';
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
@@ -250,54 +250,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
-                            // if (_.platform) {
-                            // _.platform = _.platforms[0];
                             var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
                             customSpikesData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
-                            // } else {
-                            //     _.platforms = _.$parent.enabledPlatforms;
-                            //     // _.raw = [];
-                            //     _.raw = {};
-                            //     _.platforms.forEach(function (element) {
-                            //         _.raw[element] = 0;
-                            //     }, this);
-                            //     console.log(_.raw);
-                            //     var fnPromises = _.platforms.map(function (item) {
-                            //         return apiFn(item, _.query.topic, _.query.days).then(function (data) {
-                            //             var seriesData = data.map(function (raw) {
-                            //                 // var tmp = { name: item };
-                            //                 switch (_.pnscope) {
-                            //                     case 'posi':
-                            //                         var value = raw.dailyposiinfluencevol
-                            //                         break;
-                            //                     case 'neg':
-                            //                         var value = raw.dailyneginfluencevol
-                            //                         break;
-                            //                     default:
-                            //                         var value = raw.dailytotalinfluencevol
-                            //                         break;
-                            //                 }
-                            //                 // tmp.value = value;
-                            //                 // return tmp;
-                            //                 return value;
-                            //             })
-                            //             _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
-                            //                 return previousValue + currentValue;
-                            //             }))
-                            //         })
-                            //     })
-                            //     // console.log(fnPromises);
-                            //     $q.all(fnPromises).then(function () {
-                            //         var config = customHoriBarData(_);
-                            //         _.chartOpt = angular.merge(_.chartOpt, config);
-                            //         initChart(_.chartObj, _.chartOpt);
-                            //         afterInit($rootScope, _, _.chartObj);
-                            //     })
-                            // }
                             break;
                         case 'getInfluence':
                             // var fnPromise = apiFn(_.platform, _.query.topic);
@@ -351,7 +309,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                         })
                                         _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
                                             return previousValue + currentValue;
-                                        }))
+                                        }, 0))
+                                        _.hasData = true;
                                     })
                                 })
                                 // console.log(fnPromises);
@@ -540,7 +499,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 data: seriesData
                             },
                             title: {
-                                text: scope.title || ''
+                                text: _.title || ''
                             }
                         }
                         break;
@@ -550,6 +509,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 _.complete = true;
             })
             // watch window resize
+            _.validData = function (data) {
+                _.hasData = !isEmpty(data);
+            }
+
             _.clientWidth = element[0].clientWidth;
             _.$watch("clientWidth", function (newV, oldV) {
                 if (newV !== oldV) {
@@ -650,6 +613,7 @@ function customInfluenceData(fnPromise, scope) {
     // }
     // console.log(scope.$root.dateList);
     return fnPromise.then(function (data) {
+        scope.validData(data);
         return fn(data);
     })
 }
@@ -760,6 +724,13 @@ function customSpikesData(fnPromise, scope) {
     }
     // console.log(scope.$root.dateList);
     return fnPromise.then(function (data) {
+        // if (!data.length) {
+        //     scope.hasData = false;
+        //     return;
+        // } else {
+        //     scope.hasData = true;
+        // }
+        scope.validData(data);
         return fn(data);
     })
 
@@ -767,6 +738,8 @@ function customSpikesData(fnPromise, scope) {
 
 function customDistributionData(fnPromise, scope) {
     return fnPromise.then(function (data) {
+        // debugger;
+        scope.validData(data);
         return {
             series: [{
                 data: [
@@ -798,6 +771,7 @@ function customDistributionData(fnPromise, scope) {
 function customWordCloudData(fnPromise, scope) {
     var pnscope = scope.pnscope;
     return fnPromise.then(function (data) {
+        scope.validData(data);
         var seriesData = data.map(function (item) {
             var tmp = { name: item.attachedobject };
             switch (pnscope) {
@@ -828,6 +802,7 @@ function customWordCloudData(fnPromise, scope) {
 function customServicesDistributionData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
+        scope.validData(data);
         var legendData = [];
         var seriesData = data.map(function (item) {
             var tmp = { name: item.attachedobject };
@@ -849,25 +824,25 @@ function customServicesDistributionData(fnPromise, scope) {
         seriesData = scope.order(seriesData, '-value')
         // debugger;
         // if (seriesData.length > 11) {
-            var tops = seriesData.slice(0, 10);
-            var rest = seriesData.slice(10);
-            var sum = 0,total = 0;
-            for (var i = 0; i < tops.length; i++) {
-                total += tops[i]['value'];
+        var tops = seriesData.slice(0, 10);
+        var rest = seriesData.slice(10);
+        var sum = 0, total = 0;
+        for (var i = 0; i < tops.length; i++) {
+            total += tops[i]['value'];
+        }
+        for (var i = 0; i < rest.length; i++) {
+            sum += rest[i]['value'];
+        }
+        total += sum;
+        if (seriesData.length > 11) {
+            var other = {
+                name: 'Others', value: sum
             }
-            for (var i = 0; i < rest.length; i++) {
-                sum += rest[i]['value'];
-            }
-            total += sum;
-            if (seriesData.length > 11) {
-                var other = {
-                    name: 'Others', value: sum
-                }
-                tops.push(other);
-            }
-            seriesData = tops;
-            // console.log(scope);
-            scope.$root.$broadcast('set-mentioned-table-data',{data:rest,total:total,association:scope.association});
+            tops.push(other);
+        }
+        seriesData = tops;
+        // console.log(scope);
+        scope.$root.$broadcast('set-mentioned-table-data', { data: rest, total: total, association: scope.association });
         // }
         return {
             series: [{
@@ -925,6 +900,7 @@ function customHoriBarData(scope) {
 function customHourlyData(fnPromise, key, utility, scope) {
     var seriesData = [], xAxisDate = [];
     return fnPromise.then(function (data) {
+        scope.validData(data);
         data.map(function (item) {
             var tmp = {};
             xAxisDate.push(utility.timeToString(item.attachedobject.timeslot));
@@ -1029,9 +1005,9 @@ function initHoriChartOpt(scope) {
         },
         xAxis: {
             type: 'value',
-            axisLabel:{
+            axisLabel: {
                 // rotate:45,
-                formatter:function(value){return scope.thousandsuffix(value,1)}
+                formatter: function (value) { return scope.thousandsuffix(value, 1) }
             }
         },
         yAxis: {
@@ -1206,4 +1182,29 @@ function initHourlyChartOpt(scope) {
         series: []
     };
     return opt;
+}
+
+function isEmpty(obj) {
+
+    // null and undefined are "empty"
+    if (obj == null) return true;
+
+    // Assume if it has a length property with a non-zero value
+    // that that property is correct.
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    // If it isn't an object at this point
+    // it is empty, but it can't be anything *but* empty
+    // Is it empty?  Depends on your application.
+    if (typeof obj !== "object") return true;
+
+    // Otherwise, does it have any properties of its own?
+    // Note that this doesn't handle
+    // toString and valueOf enumeration bugs in IE < 9
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+
+    return true;
 }

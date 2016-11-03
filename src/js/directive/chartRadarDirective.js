@@ -192,7 +192,6 @@ function initRadarChartOpt(scope) {
     var opt = {
         tooltip: {
             formatter: function (params) {
-                console.log(params)
                 var res = [];
                 params.value.forEach(function(cur,index){
                     res.push(scope.labels[index] + " : " + scope.filter('percentage')(cur-1,3,true))

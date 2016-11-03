@@ -3,7 +3,14 @@
         <div class="ui active dimmer" ng-show="!complete">
             <div class="ui text loader">Loading</div>
         </div>
-        <div class="echart"></div>
-
+        <div class="echart" ng-show="complete&&hasData"></div>
+        <div class="content" style="min-height:300px" ng-show="!hasData">
+            <div class="header">{{title}}</div>
+            <div class="description">
+                <div class="ui message" style="text-align:center">
+                    No Data Available
+                </div>
+            </div>
+        </div>
     </div>
 </div>
