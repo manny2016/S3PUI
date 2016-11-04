@@ -51,7 +51,11 @@ module.exports = function ($rootScope) {
                 //         }
                 //     }).shape('set next side', $(root)).shape('flip left');
                 // } else {
-                    $(e.find("div.shape").get(0)).shape('flip left');
+                    $(e.find("div.shape").get(0)).shape({
+                        onChange:function(){
+                            resizeChart();
+                        }
+                    }).shape('flip left');
                     var cate = e.find("div.side.active").next().attr("page");
                     if (!cate) {
                         var dom = e.find(".side.active").siblings();
@@ -60,9 +64,8 @@ module.exports = function ($rootScope) {
                     scope.category = cate;
                     $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
                     callMentionedService();
-                    resizeChart();
+                    // resizeChart();
                 // }
-
             }
             var flipRight = function () {
                 var current = new Date();
@@ -70,8 +73,11 @@ module.exports = function ($rootScope) {
                     return false;
                 }
                 lastTime = current;
-
-                e.find("div.shape").shape('flip right');
+                e.find("div.shape").shape({
+                        onChange:function(){
+                            resizeChart();
+                        }
+                    }).shape('flip right');
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
                     var dom = e.find(".side.active").siblings();
@@ -80,7 +86,7 @@ module.exports = function ($rootScope) {
                 scope.category = cate;
                 $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
                 callMentionedService();
-                resizeChart();
+                // resizeChart();
             }
             leftButton.bind("click", function (e) {
                 e.stopPropagation();
@@ -91,7 +97,8 @@ module.exports = function ($rootScope) {
                 flipRight()
             });
             function resizeChart() {
-                var dom = e.find(".side.active").next().find(".echart");
+                // debugger;
+                var dom = e.find(".side.active").find(".echart");
                 if (!dom.get(0)) {
                     dom = e.find(".side.active").siblings();
                     dom = $(dom[0]).find('.echart');

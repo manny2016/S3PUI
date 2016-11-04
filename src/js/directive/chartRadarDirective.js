@@ -105,7 +105,20 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     })
                 }
             }
-
+            _.validData = function (data) {
+                var length = Object.keys(data).length;
+                var noDataLen = 0;
+                for(var key in data){
+                    noDataLen += isEmpty(data[key])?1:0;
+                }
+                if(noDataLen === length){
+                    return false;
+                }else{
+                    _.hasData = true;
+                    return true;
+                }
+                // _.hasData = !isEmpty(data);
+            }
             _.$on('start-get-data', function (event, arg) {
                 _.complete = false;
                 _.getData(arg);
@@ -142,12 +155,12 @@ function afterInit(rootscope, scope, echartObj) {
 function customRadarData(fnPromise, scope) {
     var dataSeries = function (raw) {
         var numberic = scope.filter('number');
-        var joinedusers = raw.joinedusers.comparedratio,
-            influenceofusers = raw.influenceofusers.comparedratio,
-            mentionedservicecount = raw.mentionedservicecount.comparedratio,
-            mostpost = raw.vocinsights.comparedratio,
-            positivepost = (raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol || 1),
-            negativepost = (raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol || 1);
+        var joinedusers = raw.joinedusers.comparedratio || 0,
+            influenceofusers = raw.influenceofusers.comparedratio || 0,
+            mentionedservicecount = raw.mentionedservicecount.comparedratio || 0,
+            mostpost = raw.vocinsights.comparedratio || 0,
+            positivepost = ((raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol || 1)) || 0,
+            negativepost = ((raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol || 1)) || 0;
         scope.listData = [
             joinedusers,
             influenceofusers,
@@ -185,7 +198,11 @@ function customRadarData(fnPromise, scope) {
     }
     var fn = dataSeries;
     return fnPromise.then(function (data) {
-        return fn(data);
+        if(scope.validData(data)){
+            return fn(data);
+        }else{
+            return false;
+        }
     })
 }
 function initRadarChartOpt(scope) {
@@ -219,4 +236,29 @@ function initRadarChartOpt(scope) {
     };
 
     return opt;
+}
+
+function isEmpty(obj) {
+
+    // null and undefined are "empty"
+    if (obj == null) return true;
+
+    // Assume if it has a length property with a non-zero value
+    // that that property is correct.
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+
+    // If it isn't an object at this point
+    // it is empty, but it can't be anything *but* empty
+    // Is it empty?  Depends on your application.
+    if (typeof obj !== "object") return true;
+
+    // Otherwise, does it have any properties of its own?
+    // Note that this doesn't handle
+    // toString and valueOf enumeration bugs in IE < 9
+    for (var key in obj) {
+        if (hasOwnProperty.call(obj, key)) return false;
+    }
+
+    return true;
 }

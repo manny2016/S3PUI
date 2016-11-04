@@ -356,7 +356,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             _.order = $filter('orderBy');
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
-                                console.log(_.chartOpt);
+                                // console.log(_.chartOpt);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -439,6 +439,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             _.chartOpt = angular.merge(_.chartOpt, config);
                             // console.log(_.chartOpt)
                             // initChart(_.chartObj, _.chartOpt);
+                            // debugger;
+                            var clientWidth = element.parents('.sides').width();
+                            element.find('.echart').width(clientWidth);
                             _.chartObj.setOption(_.chartOpt)
                         })
                     }
@@ -450,6 +453,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 switch (_.type) {
                     case 'pie':
                         var raw = arg.data;
+                        _.validData(raw);
                         // console.log(raw);
                         config = {
                             series: [{
@@ -478,6 +482,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         break;
                     case 'wordcloud':
                         var raw = arg.data.vocmentionedmost;
+                        _.validData(raw);
                         var seriesData = raw.map(function (item) {
                             var tmp = { name: item.attachedobject };
                             switch (_.pnscope) {
@@ -511,6 +516,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             // watch window resize
             _.validData = function (data) {
                 _.hasData = !isEmpty(data);
+                // if (isEmpty(data)) {
+                //     _.chartObj.showLoading('default', {
+                //         text: 'No Data Available',
+                //         maskColor:'#fff'
+                //     })
+                // }
+
             }
 
             _.clientWidth = element[0].clientWidth;
@@ -540,7 +552,7 @@ function initChart(echartObj, chartOpt, groupName) {
         echartObj.resize();
         echartObj.setOption(chartOpt);
         if (groupName) {
-            console.log(groupName)
+            // console.log(groupName)
             echartObj.group = groupName
         }
     }, 100)
@@ -1191,8 +1203,8 @@ function isEmpty(obj) {
 
     // Assume if it has a length property with a non-zero value
     // that that property is correct.
-    if (obj.length > 0)    return false;
-    if (obj.length === 0)  return true;
+    if (obj.length > 0) return false;
+    if (obj.length === 0) return true;
 
     // If it isn't an object at this point
     // it is empty, but it can't be anything *but* empty
