@@ -5,7 +5,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 
     <head runat="server">
-        <title>Social Health Predictor</title>
+        <title>Social Health Platform</title>
         <base href="/" />
         <link rel="stylesheet" href="/public/semantic.css" />
         <link rel="stylesheet" href="/public/css/style.css" />
@@ -28,7 +28,7 @@
                     <div class="ui container">
                         <div class="ui header item">
                             <!--<img class="logo" src="assets/images/logo.png">-->
-                            Social Health Predictor
+                            Social Health Platform
                             <!--<div class="text tiny" style="margin-left:10px;">
                                 Service Status and Sentiment Predictor
                             </div>-->
@@ -40,10 +40,10 @@
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
 
                             <div class="green ui dropdown simple item" ng-class="{select: $state.includes('home')}">
-                                Social Health Predictor <i class="dropdown icon"></i>
+                                Social Health Platform <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="home.dashboard">Dashboard</a>
-                                    <a class="item" ui-sref="home.about">What's Social Health Predictor</a>
+                                    <a class="item" ui-sref="home.about">What's Social Health Platform</a>
                                 </div>
                             </div>
 
