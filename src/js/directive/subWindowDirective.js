@@ -104,6 +104,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
                 twitterInf: function (value) {
                     return value.user.followers_count + value.user.friends_count;
                 }
+            };
+
+            scope.swithside = function () {
+                $('#shape-pup').shape('flip up')
             }
         }
     }
@@ -133,7 +137,7 @@ function initHourlyChartData(raw, utility) {
         }
         seriesData.push(entity);
     })
-    var title = 'Hourly trend';
+    var title = 'Hourly Volume Trend';
     var opt = {
         title: {
             text: title,

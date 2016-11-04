@@ -34,7 +34,7 @@ module.exports = function ($parse, $filter) {
             data: "=",
             title: "@",
             comment: "@",
-            color:"@"
+            color: "@"
         },
         link: function (scope, e, a) {
             var numberFormat = $filter('thousandsuffix');
@@ -65,19 +65,24 @@ module.exports = function ($parse, $filter) {
                     break;
                 case 'regionofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
-                    scope.volume = scope.volume===0?"No Data Available":scope.volume;
-                    scope.labels = [
-                        {
-                            text: label_type.compared,
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike,
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }
-                    ]
+                    scope.volume = scope.volume === 0 ? "No Data Available" : scope.volume;
+                    if (scope.$parent.$parent.platform.toLowerCase() !== 'twitter') {
+                        scope.labels = []
+                    } else {
+                        scope.labels = [
+                            {
+                                text: label_type.compared,
+                                volume: scope.data.comparedratio,
+                                type: 'ratio',
+                                isCompared: true
+                            }, {
+                                text: label_type.spike,
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }
+                        ]
+                    }
+
                     break;
                 case 'influenceofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
@@ -161,9 +166,9 @@ module.exports = function ($parse, $filter) {
                 case 'vocinsightsPN':
                     var originBoj = scope.data.objectcountthistime;
                     scope.volume = [
-                        numberFormat(originBoj.positivetotalvol,0),
-                        numberFormat(originBoj.negativetotalvol,0),
-                        numberFormat(originBoj.neutraltotalvol,0)
+                        numberFormat(originBoj.positivetotalvol, 0),
+                        numberFormat(originBoj.negativetotalvol, 0),
+                        numberFormat(originBoj.neutraltotalvol, 0)
                     ];
                     // scope.subVolume = [
                     //     percentage(originBoj.positivetotalvol / originBoj.voctotalvol, 0),
@@ -206,8 +211,8 @@ module.exports = function ($parse, $filter) {
                     //     + numberFormat(scope.data.mostnegfrom.vocinfluence.vocinfluencedvol)
                     var originBoj = scope.data.objectcountthistime;
                     scope.volume = [
-                        numberFormat(originBoj.positiveinfluencedvol,0),
-                        numberFormat(originBoj.negativeinfluencedvol,0)
+                        numberFormat(originBoj.positiveinfluencedvol, 0),
+                        numberFormat(originBoj.negativeinfluencedvol, 0)
                     ];
                     scope.subVolume = [
                         originBoj.positiveinfluencedvol / originBoj.vocinfluencedvol,
@@ -225,7 +230,7 @@ module.exports = function ($parse, $filter) {
                     break;
 
             }
-            scope.isVolObj = function(){
+            scope.isVolObj = function () {
                 return angular.isArray(scope.volume) || angular.isObject(scope.volume)
             }
             // scope.labels = scope.data.labels;

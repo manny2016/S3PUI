@@ -16,13 +16,14 @@
                     <div class="ui shape">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;height:264px;" location='sub' no-pop="true"></ng-echart>
+                                <ng-echart title="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;" location='sub' no-pop="true" swith-tool="true"></ng-echart>
                             </div>
                             <div class="side">
-                                <table class="ui definition celled table" style="height:264px;margin-bottom:0px !important">
+                                <table class="ui definition celled table" style="height:300px;margin-bottom:0px !important">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>
+                                            </th>
                                             <th>VoC Count</th>
                                             <th>Influence Member Count (PV)</th>
                                         </tr>
@@ -48,15 +49,20 @@
                                             <td>{{raw.vocneutralcount|thousandsuffix}}</td>
                                             <td>{{raw.vocneutralinfluencecount|thousandsuffix}}</td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="ui right icon button" data-animation="flip" data-direction="left" title="Back"><i class="left long arrow icon"></i></div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="ui two ignored icon direction buttons fluid card">
+                    <!--<div class="ui two ignored icon direction buttons fluid card">
                         <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
                         <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="column">
