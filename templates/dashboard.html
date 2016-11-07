@@ -64,7 +64,7 @@
         <!--spikes charts-->
         <div id="volumes" class="ui segment teal">
             <h3 class="ui header teal">
-                Volumes
+                Volumes & Spikes
             </h3>
             <div class="ui three column grid">
                 <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
@@ -244,7 +244,7 @@
                 <div class="item">
                     <a du-smooth-scroll="volumes" du-scrollspy offset="200">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
-                            <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
+                            <i class="icon line chart"></i><span ng-hide="isSmall">Volumes & Spikes</span>
                         </div>
                     </a>
                 </div>

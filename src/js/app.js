@@ -7,7 +7,7 @@ app
     // var config = require('../../public/config');
     // console.log(config);
     var config = {
-      mode:'prod'
+      mode:'prod' 
     }
     if(config.mode==='dev'){
       $rootScope.service = $injector.get('testSrv')
