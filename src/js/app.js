@@ -65,6 +65,7 @@ app
         observeChanges: true,
         onVisible: function (e) {
           $(this).find('.echart').map(function (i) {
+            echarts.getInstanceByDom(this).clear();
             echarts.getInstanceByDom(this).resize();
           })
         },
@@ -75,5 +76,4 @@ app
         }
       });
     }
-    $rootScope.init();
   });

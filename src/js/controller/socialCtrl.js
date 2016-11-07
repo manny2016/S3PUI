@@ -12,7 +12,6 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         default:
             totalrequests = 13;
             break;
-
     }
     $('#progress').progress({
         total: totalrequests

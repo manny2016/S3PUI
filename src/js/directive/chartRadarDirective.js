@@ -82,7 +82,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 'Service Mentioned',
                 'Influence Impact',
                 'Message Post',
-                'Postive Post',
+                'Positive Post',
                 'Negative Post'
             ]
             _.listData = [];
