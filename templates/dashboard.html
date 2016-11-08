@@ -75,7 +75,7 @@
         <div id="sentiment" class="ui purple segment">
             <h3 class="ui header purple">Sentiment</h3>
             <div class="ui three column grid">
-                <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
+                <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
             </div>
             <div class="ui three column grid">
 
@@ -236,8 +236,8 @@
             <div class="ui middle aligned selection list">
                 <div class="item">
                     <a du-smooth-scroll="health" du-scrollspy offset="50">
-                        <div class="ui label" set-color="blue" data-content="Health" data-variation="mini inverted">
-                            <i class="icon dashboard"></i><span ng-hide="isSmall">Health</span>
+                        <div class="ui label" set-color="blue" data-content="Health Summary" data-variation="mini inverted">
+                            <i class="icon dashboard"></i><span ng-hide="isSmall">Health Summary</span>
                         </div>
                     </a>
                 </div>
