@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="column collection">
-                    <div class="ui horizontal top divider">Services & Products Status</div>
+                    <div class="ui horizontal top divider">Services & Products</div>
                     <div>
                         <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
                     </div>
@@ -100,7 +100,7 @@
                                         <span ng-if="s">
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio===0" class="icon minus blue pull-left"></i>
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio>0" class="icon long arrow up green pull-left"></i>
-                                            <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio<0" class="icon long arrow down red pull-left"></i> {{s.mentionedmostservice.attachedobject| limitTo: 10 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 10">&hellip;</span>({{s.mentionedmostservice.vocinfluence.vocvolgrowthratio|number:0}}%)
+                                            <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio<0" class="icon long arrow down red pull-left"></i> {{s.mentionedmostservice.attachedobject| limitTo: 10 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 10">&hellip;</span>({{s.mentionedmostservice.vocinfluence.vocvolgrowthratio|number:1}}%)
                                         </span>
                                         <span ng-if="!s">
                                             No Data Available
@@ -146,7 +146,7 @@
                     </div>
                 </div>
                 <div class="column collection">
-                    <div class="ui horizontal top divider">VoC Insights</div>
+                    <div class="ui horizontal top divider">VoC</div>
                     <div>
                         <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
                     </div>
@@ -159,7 +159,7 @@
                         <div class="ui inverted divider"></div>
                         <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
                         <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
-                        <ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="statistic.vocinsights" type="mostposifrom"></ng-statistic>
+                        <ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" data="statistic.vocinsights" type="mostposifrom"></ng-statistic>
                     </div>
                 </div>
             </div>
@@ -279,11 +279,12 @@
         <!--<div class="ui hidden divider"></div>-->
         <div id="sentiment" class="ui purple segment">
             <h3 class="ui center aligned header purple">
-                Sentiment Word Cloud
+                Sentiment
             </h3>
 
-            <div class="ui two column grid">
+            <div class="ui three column grid">
                 <div class="row">
+                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
                     <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping" pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
                     <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping" pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
                 </div>
@@ -358,7 +359,7 @@
                 <div class="item">
                     <a du-smooth-scroll="sentiment" du-scrollspy offset="400">
                         <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
-                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment Word Cloud</span>
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
                         </div>
                     </a>
                 </div>
