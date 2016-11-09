@@ -53,7 +53,7 @@
             <!--<div class="ui segment">-->
             <div ng-if="statistic" class="ui three column divided grid center aligned">
                 <div class="column collection">
-                    <div class="ui horizontal top divider">Community Users</div>
+                    <div class="ui horizontal top divider">Users</div>
                     <div>
                         <ng-statistic title="Users Joined Discussion" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
                     </div>
@@ -80,7 +80,8 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
@@ -95,7 +96,8 @@
                                 <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio===0" class="icon minus blue pull-left"></i>
@@ -117,7 +119,8 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
@@ -131,7 +134,8 @@
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
                                 <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}" title="{{s.mentionedmostservice.attachedobject}}">
+                                    <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
                                         <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
@@ -168,159 +172,169 @@
         <!--<div class="ui hidden divider"></div>-->
         <!--<div class="ui divider"></div>-->
         <!--<div class="ui hidden divider"></div>-->
-        <div id="volumes" class="ui teal segment">
-            <h3 class="ui center aligned header teal">Volumes</h3>
-            <div class="ui one column grid">
-                <div class="column">
-                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+        <div class="ui accordion">
+            <div id="volumes" class="ui teal segment">
+                <h3 class="ui center aligned header teal title">Volumes</h3>
+                <div class="ui one column grid content">
+                    <div class="column">
+                        <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes"
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
+                    <div class="column">
+                        <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
+                    <div class="column">
+                        <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                            location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
+                    <div class="column">
+                        <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                            location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
+                    <div class="column">
+                        <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
+                    <div ng-if="platform=='twitter'" class="column">
+                        <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                    </div>
                 </div>
-                <div class="column">
-                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
-                </div>
-                <div class="column">
-                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
-                </div>
-                <div class="column">
-                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes" location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
-                </div>
-                <div class="column">
-                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
-                </div>
-                <div ng-if="platform=='twitter'" class="column">
-                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
-                </div>
-            </div>
-            <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>
+                <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>
             <div class="hourly-charts home" style="width:100%;height:300px;"></div>-->
-        </div>
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <div id="analytics" class="ui green segment">
-            <h3 class="ui center aligned header green">
-                Services Analytics
-            </h3>
-            <div class="ui grid">
-                <div class="two column row">
-                    <div class="ui shape column">
-                        <div class="sides">
-                            <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
+            </div>
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <div id="analytics" class="ui green segment">
+                <h3 class="ui center aligned header green">
+                    Services Analytics
+                </h3>
+                <div class="ui grid content">
+                    <div class="two column row">
+                        <div class="ui shape column">
+                            <div class="sides">
+                                <div class="side active">
+                                    <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                        property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
+                                </div>
+                                <div class="side">
+                                    <mentioned-table platform='{{path[2]}}' query=query association="message"></mentioned-table>
+                                </div>
                             </div>
-                            <div class="side">
-                                <mentioned-table platform='{{path[2]}}' query=query association="message"></mentioned-table>
+                        </div>
+                        <div class="ui shape column">
+                            <div class="sides">
+                                <div class="side active">
+                                    <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                        property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
+                                </div>
+                                <div class="side">
+                                    <mentioned-table platform='{{path[2]}}' query=query association="user"></mentioned-table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui shape column">
-                        <div class="sides">
-                            <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
-                            </div>
-                            <div class="side">
-                                <mentioned-table platform='{{path[2]}}' query=query association="user"></mentioned-table>
-                            </div>
+                    <div class="row">
+                        <div class="column">
+                            <table id="spikes-table" st-table="stTable" st-safe-src="mostMentionedService" class="ui blue striped celled table stTable">
+                                <thead>
+                                    <tr>
+                                        <th st-sort="attachedobject">Service Name</th>
+                                        <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Post Volume</th>
+                                        <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Positive Ratio</th>
+                                        <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Negative Ratio</th>
+                                        <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Neutral Ratio</th>
+                                        <th st-sort="vocinfluence.vocinfluencedvol">Total Page Views</th>
+                                        <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="ui icon input">
+                                                <input type="search" st-search placeholder="Search ...">
+                                                <i class="search icon"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="item in stTable">
+                                        <td>{{item.attachedobject}}</td>
+                                        <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
+                                        <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                        <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                        <td width="100">{{(item.vocinfluence.neutraltotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                        <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
+                                        <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6">
+                                            <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <table id="spikes-table" st-table="stTable" st-safe-src="mostMentionedService" class="ui blue striped celled table stTable">
-                            <thead>
-                                <tr>
-                                    <th st-sort="attachedobject">Service Name</th>
-                                    <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Post Volume</th>
-                                    <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Positive Ratio</th>
-                                    <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Negative Ratio</th>
-                                    <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Neutral Ratio</th>
-                                    <th st-sort="vocinfluence.vocinfluencedvol">Total Page Views</th>
-                                    <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="7">
-                                        <div class="ui icon input">
-                                            <input type="search" st-search placeholder="Search ...">
-                                            <i class="search icon"></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="item in stTable">
-                                    <td>{{item.attachedobject}}</td>
-                                    <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
-                                    <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                                    <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                                    <td width="100">{{(item.vocinfluence.neutraltotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
-                                    <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
-                                    <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <div id="sentiment" class="ui purple segment">
-            <h3 class="ui center aligned header purple">
-                Sentiment
-            </h3>
-
-            <div class="ui three column grid">
-                <div class="row">
-                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping" pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping" pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
-                </div>
-                <!--<div class="row">
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <div id="sentiment" class="ui purple segment">
+                <h3 class="ui center aligned header purple">
+                    Sentiment
+                </h3>
+                <div class="ui three column grid content">
+                    <div class="row">
+                        <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
+                            location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                        <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                            pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                        <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                            pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                    </div>
+                    <!--<div class="row">
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>-->
+                </div>
             </div>
-        </div>
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <div id="influencers" class="ui orange segment">
-            <h3 class="ui center aligned header orange">
-                Top Active users
-            </h3>
-            <div class="ui three column grid">
-                <!--<div class="column">-->
-                <!--<div class="ui blue inverted segment center aligned voc">-->
-                <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="column">-->
-                <!--<div class="ui green inverted segment center aligned voc">-->
-                <user-list title='Most POS VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="column">-->
-                <!--<div class="ui red inverted segment center aligned voc">-->
-                <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
-                <!--</div>-->
-                <!--</div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <!--<div class="ui divider"></div>-->
+            <!--<div class="ui hidden divider"></div>-->
+            <div id="influencers" class="ui orange segment">
+                <h3 class="ui center aligned header orange">
+                    Top Active users
+                </h3>
+                <div class="ui three column grid content">
+                    <!--<div class="column">-->
+                    <!--<div class="ui blue inverted segment center aligned voc">-->
+                    <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="column">-->
+                    <!--<div class="ui green inverted segment center aligned voc">-->
+                    <user-list title='Most POS VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="column">-->
+                    <!--<div class="ui red inverted segment center aligned voc">-->
+                    <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
             </div>
-
         </div>
         <!--<div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>

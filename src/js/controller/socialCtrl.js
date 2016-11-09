@@ -10,12 +10,26 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             totalrequests = 14;
             break;
         default:
-            totalrequests = 13;
+            totalrequests = 15;
             break;
     }
     $('#progress').progress({
         total: totalrequests
     });
+    $('.ui.accordion').accordion({
+        exclusive: false,
+        // debug:true,
+        selector: {
+            trigger: '.segment .title'
+        },
+        onOpen: function () {
+            // debugger;
+            console.log(this)
+            $(this).find('div.echart').map(function (index,currentObj,array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })
+        }
+    })
     $('#server_status').popup({
         inline: true,
         hoverable: true,
@@ -42,11 +56,11 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 // console.log(item.Platforms)
                 var flage = false;
                 item.Platforms.map(function (obj) {
-                    if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
-                        flage = obj.isEnabled;
-                    }
-                })
-                // console.log(item.TechCategoryName,flage)
+                        if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
+                            flage = obj.isEnabled;
+                        }
+                    })
+                    // console.log(item.TechCategoryName,flage)
                 if (flage) $scope.topics.push(item.TechCategoryName)
             })
             $('#topic_select').dimmer('hide');
@@ -68,9 +82,9 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         if ($('#progress').progress('get value') === totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
-                // $('#summary').dimmer('hide');
-                // var firstSection = angular.element(document.getElementById('summary'));
-                // $document.scrollToElementAnimated(firstSection);
+                    // $('#summary').dimmer('hide');
+                    // var firstSection = angular.element(document.getElementById('summary'));
+                    // $document.scrollToElementAnimated(firstSection);
             }, 1000)
         }
         //$timeout(function () {
@@ -81,7 +95,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.getMentionedServiceTable = function (platform, topic) {
         $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
             // detect server status
-            
+
             // $scope.mostMentionedService = $scope.order(data,'-vocinfluence.voctotalvol');
             $scope.mostMentionedService = data
             $scope.$broadcast('data-got');
@@ -89,27 +103,27 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     }
 
     $scope.startGetData = function () {
-        // $event.stopPropagation();
-        // $event.preventDefault();
-        // console.log($scope.topic)
-        if (!$scope.topic) {
-            alert('Need to select a topic!');
-            return false;
+            // $event.stopPropagation();
+            // $event.preventDefault();
+            // console.log($scope.topic)
+            if (!$scope.topic) {
+                alert('Need to select a topic!');
+                return false;
+            }
+            $rootScope.global.topic = $scope.topic;
+            $scope.flags.m = false;
+            $('div.echart').map(function () {
+                echarts.getInstanceByDom(this).clear();
+            })
+            $('#progress').progress('reset');
+            $('#progress').show();
+            $scope.query.topic = $scope.topic;
+            $scope.getStatistic($scope.$stateParams.platform, $scope.topic)
+            $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
+            $scope.$broadcast('start-get-data', 'home');
         }
-        $rootScope.global.topic = $scope.topic;
-        $scope.flags.m = false;
-        $('div.echart').map(function () {
-            echarts.getInstanceByDom(this).clear();
-        })
-        $('#progress').progress('reset');
-        $('#progress').show();
-        $scope.query.topic = $scope.topic;
-        $scope.getStatistic($scope.$stateParams.platform, $scope.topic)
-        $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
-        $scope.$broadcast('start-get-data', 'home');
-    }
-    // initLineCharts('.hourly-charts.home');
-    // echarts.connect('hourlyCharts');
+        // initLineCharts('.hourly-charts.home');
+        // echarts.connect('hourlyCharts');
     $scope.getStatistic = function (platform, topic, pnscope, days) {
         $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);
@@ -168,11 +182,11 @@ function initLineCharts(className) {
                 start: 0,
                 end: 100
             }, {
-                    type: 'inside',
-                    realtime: true,
-                    start: 0,
-                    end: 100
-                }],
+                type: 'inside',
+                realtime: true,
+                start: 0,
+                end: 100
+            }],
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
@@ -198,6 +212,7 @@ function initLineCharts(className) {
         myChart.group = 'hourlyCharts';
     }
 }
+
 function rangeData(num, radix) {
     var radix = radix || 10;
     if (parseInt(num) == 1) {
