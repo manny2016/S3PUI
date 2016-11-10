@@ -59,10 +59,11 @@
         </div>
         <!--spikes charts-->
         <div id="volumes" class="ui segment teal">
-            <h3 class="ui center aligned header teal">
+            <h3 class="ui center aligned header title teal active">
                 Volumes & Spikes
+                <i class="dropdown icon pull-left"></i>                
             </h3>
-            <div class="ui three column grid">
+            <div class="ui three column grid active content">
                 <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
                     api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
             </div>
