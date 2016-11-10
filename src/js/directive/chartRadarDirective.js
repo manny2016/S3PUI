@@ -1,67 +1,4 @@
 /*
-======================
-example pie 
-======================
-$scope.config = {
-        type: 'pie',
-        series: [{
-            data: [{
-                value: 1024,
-                name: 'POSI',
-                itemStyle: {
-                    normal: {
-                        color: '#91c7ae'
-                    }
-                }
-            }, {
-                    value: 233,
-                    name: 'NEG'
-                }]
-        }],
-        title: {
-            text: "hello world"
-        }
-    }
-
-
-==========================
-example axis
-==========================
-$scope.config={
-        series:[{
-            name: 'Vol',
-            type: 'bar',
-            data:[1,2,3,4,5]
-        }],
-        title:{
-            text:"hello world"
-        }
-    } 
-
-===========================
-example connect
-==========================
-$scope.config={
- group:"chart-group",
- .....
- }
- echarts.connect('chart-group');
-
- **********************
- discarded above
- **********************
-
- @parameters:
-    platform string
-        all,twitter,so,sf,su,msdn,tn
-    topic string
-        all,azure,...
-    pnscope string
-        all,posi,neg
-    days number
-        7,14
-    
-
 */
 
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, utilitySrv) {
@@ -78,12 +15,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             var _ = scope;
             var echartDom = $(element).find("div.echart");
             _.labels = [
-                'User Joined Discussion',
-                'Service Mentioned',
-                'Influence Impact',
-                'Message Post',
-                'Positive Post',
-                'Negative Post'
+                {text:'User Joined Discussion',sort:4},
+                {text:'Service Mentioned'},
+                {text:'Influence Impact',sort:5},
+                {text:'Message Post',sort:1},
+                {text:'Positive Post',sort:2},
+                {text:'Negative Post',sort:3}
             ]
             _.listData = [];
             _.service = $rootScope.service;
@@ -211,7 +148,7 @@ function initRadarChartOpt(scope) {
             formatter: function (params) {
                 var res = [];
                 params.value.forEach(function(cur,index){
-                    res.push(scope.labels[index] + " : " + scope.filter('percentage')(cur-1,3,true))
+                    res.push(scope.labels[index].text + " : " + scope.filter('percentage')(cur-1,3,true))
                 })
                 return res.join("<br />");
             }
@@ -220,7 +157,7 @@ function initRadarChartOpt(scope) {
             // shape: 'circle',
             indicator: scope.labels.map(function (item) {
                 return {
-                    name: item,
+                    name: item.text,
                     max: 2
                 }
             })
