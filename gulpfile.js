@@ -44,4 +44,4 @@ gulp.task('css', function () {
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['minify-js','css']);

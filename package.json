@@ -30,13 +30,10 @@
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-ng-annotate": "^2.0.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "ng-table": "^1.0.0",
     "ui-router": "^1.0.0-alpha.3",
-    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }
