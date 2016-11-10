@@ -10,7 +10,19 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile ,$document
         r: false
     };
     $('#scrollspy .list .item .label').popup();
-    
+    $('.ui.accordion').accordion({
+        exclusive: false,
+        selector: {
+            trigger: '.segment .title'
+        },
+        onOpen: function () {
+            // debugger;
+            console.log(this)
+            $(this).find('div.echart').map(function (index,currentObj,array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })
+        }
+    })
     //social Health section UI controller
     $scope.swapTab = function (platform) {
         $scope.selected = platform;
