@@ -19,9 +19,6 @@
   "homepage": "https://github.com/Walk4Muscle/S3PUI#readme",
   "dependencies": {
     "angular": "^1.5.8",
-    "semantic-ui": "^2.2.2"
-  },
-  "devDependencies": {
     "adal-angular": "^1.0.12",
     "angular-route": "^1.5.8",
     "angular-scroll": "^1.0.0",
@@ -35,5 +32,8 @@
     "ng-table": "^1.0.0",
     "ui-router": "^1.0.0-alpha.3",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "semantic-ui": "^2.2.2"
   }
 }
