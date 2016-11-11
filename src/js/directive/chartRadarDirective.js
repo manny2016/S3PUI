@@ -15,12 +15,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             var _ = scope;
             var echartDom = $(element).find("div.echart");
             _.labels = [
-                {text:'User Joined Discussion',sort:4},
-                {text:'Service Mentioned'},
-                {text:'Influence Impact',sort:5},
-                {text:'Message Post',sort:1},
-                {text:'Positive Post',sort:2},
-                {text:'Negative Post',sort:3}
+                {text:'Unique User Posts',sort:5},
+                {text:'Services Mentioned'},
+                {text:'Influence Impact',sort:6},
+                {text:'Message Posts',sort:1},
+                {text:'Positive Posts',sort:2},
+                {text:'Negative Posts',sort:3},
+                {text:'Neutral Posts',sort:4}
             ]
             _.listData = [];
             _.service = $rootScope.service;
@@ -98,13 +99,15 @@ function customRadarData(fnPromise, scope) {
             mostpost = raw.vocinsights.comparedratio || 0,
             positivepost = ((raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol || 1)) || 0,
             negativepost = ((raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol || 1)) || 0;
+            neutralpost = ((raw.vocinsights.objectcountthistime.neutraltotalvol - raw.vocinsights.objectcountlasttime.neutraltotalvol) / (raw.vocinsights.objectcountlasttime.neutraltotalvol || 1)) || 0;
         scope.listData = [
             joinedusers,
             influenceofusers,
             mentionedservicecount,
             mostpost,
             positivepost,
-            negativepost
+            negativepost,
+            neutralpost
         ]
         var dataArray = [
             numberic(1 + joinedusers),
@@ -112,7 +115,8 @@ function customRadarData(fnPromise, scope) {
             numberic(1 + mentionedservicecount),
             numberic(1 + mostpost),
             numberic(1 + positivepost),
-            numberic(1 + negativepost)
+            numberic(1 + negativepost),
+            numberic(1 + neutralpost)
         ];
         for (var i = 0; i < dataArray.length; i++) {
             if (dataArray[i] > 2) dataArray[i] = 2;
