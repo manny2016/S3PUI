@@ -55,7 +55,7 @@
                 <div class="column collection">
                     <div class="ui horizontal top divider">Users</div>
                     <div>
-                        <ng-statistic title="Users Joined Discussion" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
+                        <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
                     </div>
                     <!--<div ng-if="platform=='twitter'">-->
                     <div>
@@ -213,6 +213,30 @@
         <!--<div class="ui hidden divider"></div>-->
         <!--<div class="ui divider"></div>-->
         <!--<div class="ui hidden divider"></div>-->
+        <div id="sentiment" class="ui purple segment">
+            <h3 class="ui center aligned header title purple">
+                Sentiment
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui three column grid content">
+                <div class="row">
+                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                        pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                        pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                </div>
+                <!--<div class="row">
+                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
+                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
+                </div>-->
+            </div>
+        </div>
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
         <div id="analytics" class="ui green segment">
             <h3 class="ui center aligned header title green">
                 Services Analytics
@@ -292,30 +316,6 @@
         <!--<div class="ui hidden divider"></div>-->
         <!--<div class="ui divider"></div>-->
         <!--<div class="ui hidden divider"></div>-->
-        <div id="sentiment" class="ui purple segment">
-            <h3 class="ui center aligned header title purple">
-                Sentiment
-                <i class="dropdown icon pull-left"></i>
-            </h3>
-            <div class="ui three column grid content">
-                <div class="row">
-                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
-                        pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
-                        pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
-                </div>
-                <!--<div class="row">
-                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
-                    <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
-                </div>-->
-            </div>
-        </div>
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
-        <!--<div class="ui divider"></div>-->
-        <!--<div class="ui hidden divider"></div>-->
         <div id="influencers" class="ui orange segment">
             <h3 class="ui center aligned header title orange">
                 Top Active users
@@ -369,16 +369,16 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
-                        <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
-                            <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="600">
+                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
+                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Sentiment</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="sentiment" du-scrollspy offset="600">
-                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
-                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Sentiment</span>
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                        <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
                         </div>
                     </a>
                 </div>
