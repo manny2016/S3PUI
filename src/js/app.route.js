@@ -36,7 +36,7 @@ app
       })
       .state('social.platform', {
         url: '/:platform',
-        templateUrl: 'templates/social.html',
+        templateUrl: 'templates/social.test.html',
         controller: 'socialCtrl'
       })
       .state('thirdParty', {
