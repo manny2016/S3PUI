@@ -36,7 +36,7 @@ app
       })
       .state('social.platform', {
         url: '/:platform',
-        templateUrl: 'templates/social.test.html',
+        templateUrl: 'templates/social.html',
         controller: 'socialCtrl'
       })
       .state('thirdParty', {
@@ -46,7 +46,7 @@ app
       })
       .state('thirdParty.platform', {
         url: '/:platform',
-        templateUrl: 'templates/social.test.html',
+        templateUrl: 'templates/social.html',
         // controller: 'thirdPartyCtrl'
         controller: 'socialCtrl'
       })
@@ -57,7 +57,7 @@ app
       })
       .state('msPlatform.platform', {
         url: '/:platform',
-        templateUrl: 'templates/social.test.html',
+        templateUrl: 'templates/social.html',
         // controller: 'msPlatformCtrl'
         controller: 'socialCtrl'
       })

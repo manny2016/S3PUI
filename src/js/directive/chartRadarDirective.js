@@ -1,67 +1,4 @@
 /*
-======================
-example pie 
-======================
-$scope.config = {
-        type: 'pie',
-        series: [{
-            data: [{
-                value: 1024,
-                name: 'POSI',
-                itemStyle: {
-                    normal: {
-                        color: '#91c7ae'
-                    }
-                }
-            }, {
-                    value: 233,
-                    name: 'NEG'
-                }]
-        }],
-        title: {
-            text: "hello world"
-        }
-    }
-
-
-==========================
-example axis
-==========================
-$scope.config={
-        series:[{
-            name: 'Vol',
-            type: 'bar',
-            data:[1,2,3,4,5]
-        }],
-        title:{
-            text:"hello world"
-        }
-    } 
-
-===========================
-example connect
-==========================
-$scope.config={
- group:"chart-group",
- .....
- }
- echarts.connect('chart-group');
-
- **********************
- discarded above
- **********************
-
- @parameters:
-    platform string
-        all,twitter,so,sf,su,msdn,tn
-    topic string
-        all,azure,...
-    pnscope string
-        all,posi,neg
-    days number
-        7,14
-    
-
 */
 
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, utilitySrv) {
@@ -78,12 +15,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             var _ = scope;
             var echartDom = $(element).find("div.echart");
             _.labels = [
-                'User Joined Discussion',
-                'Service Mentioned',
-                'Influence Impact',
-                'Message Post',
-                'Postive Post',
-                'Negative Post'
+                {text:'Unique User Posts',sort:5},
+                {text:'Services Mentioned'},
+                {text:'Influence Impact',sort:6},
+                {text:'Message Posts',sort:1},
+                {text:'Positive Posts',sort:2},
+                {text:'Negative Posts',sort:3},
+                {text:'Neutral Posts',sort:4}
             ]
             _.listData = [];
             _.service = $rootScope.service;
@@ -161,13 +99,15 @@ function customRadarData(fnPromise, scope) {
             mostpost = raw.vocinsights.comparedratio || 0,
             positivepost = ((raw.vocinsights.objectcountthistime.positivetotalvol - raw.vocinsights.objectcountlasttime.positivetotalvol) / (raw.vocinsights.objectcountlasttime.positivetotalvol || 1)) || 0,
             negativepost = ((raw.vocinsights.objectcountthistime.negativetotalvol - raw.vocinsights.objectcountlasttime.negativetotalvol) / (raw.vocinsights.objectcountlasttime.negativetotalvol || 1)) || 0;
+            neutralpost = ((raw.vocinsights.objectcountthistime.neutraltotalvol - raw.vocinsights.objectcountlasttime.neutraltotalvol) / (raw.vocinsights.objectcountlasttime.neutraltotalvol || 1)) || 0;
         scope.listData = [
             joinedusers,
             influenceofusers,
             mentionedservicecount,
             mostpost,
             positivepost,
-            negativepost
+            negativepost,
+            neutralpost
         ]
         var dataArray = [
             numberic(1 + joinedusers),
@@ -175,7 +115,8 @@ function customRadarData(fnPromise, scope) {
             numberic(1 + mentionedservicecount),
             numberic(1 + mostpost),
             numberic(1 + positivepost),
-            numberic(1 + negativepost)
+            numberic(1 + negativepost),
+            numberic(1 + neutralpost)
         ];
         for (var i = 0; i < dataArray.length; i++) {
             if (dataArray[i] > 2) dataArray[i] = 2;
@@ -211,7 +152,7 @@ function initRadarChartOpt(scope) {
             formatter: function (params) {
                 var res = [];
                 params.value.forEach(function(cur,index){
-                    res.push(scope.labels[index] + " : " + scope.filter('percentage')(cur-1,3,true))
+                    res.push(scope.labels[index].text + " : " + scope.filter('percentage')(cur-1,3,true))
                 })
                 return res.join("<br />");
             }
@@ -220,7 +161,7 @@ function initRadarChartOpt(scope) {
             // shape: 'circle',
             indicator: scope.labels.map(function (item) {
                 return {
-                    name: item,
+                    name: item.text,
                     max: 2
                 }
             })

@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
+module.exports = function ($scope, $rootScope, $timeout, $q, $compile ,$document) {
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -10,13 +10,20 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
         r: false
     };
     $('#scrollspy .list .item .label').popup();
-    $timeout(function () {
-        $scope.flags.g = true;
-    }, 2000).then(function () {
-        $timeout(function () {
-            $scope.flags.r = true;
-        }, 2000)
+    $('.ui.accordion').accordion({
+        exclusive: false,
+        selector: {
+            trigger: '.segment .title'
+        },
+        onOpen: function () {
+            // debugger;
+            console.log(this)
+            $(this).find('div.echart').map(function (index,currentObj,array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })
+        }
     })
+    //social Health section UI controller
     $scope.swapTab = function (platform) {
         $scope.selected = platform;
         $('.ui.tabular.menu').tab('change tab', platform);
@@ -29,6 +36,8 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
     $scope.isSelected = function (section) {
         return $scope.selected === section;
     }
+
+    // Top Seclectors data
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
             // console.log(data)
@@ -37,8 +46,10 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
                 $scope.startGetData($rootScope.global.topic);
             }
         })
-    }
-    $scope.getTopics();
+    }();
+    // $scope.getTopics();
+
+
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         //$scope.$broadcast('on-show');
@@ -49,10 +60,6 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $compile) {
                 $('#progress').hide()
             }, 1000)
         }
-        //$timeout(function () {
-        //    //console.log(arg)
-        //    arg.resize();
-        //},500)
     });
 
     $scope.startGetData = function (topic) {

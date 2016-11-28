@@ -28,7 +28,7 @@
                     <div class="ui container">
                         <div class="ui header item">
                             <!--<img class="logo" src="assets/images/logo.png">-->
-                            Social Health Platform
+                            <a ui-sref="home.dashboard">Social Health Platform</a>
                             <!--<div class="text tiny" style="margin-left:10px;">
                                 Service Status and Sentiment Predictor
                             </div>-->

@@ -4,6 +4,8 @@ semantic
 public/main.min.js
 main.js
 bin
+data
+demos
 DataService
 obj
 Properties

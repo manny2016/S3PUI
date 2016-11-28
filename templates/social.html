@@ -1,28 +1,34 @@
 <div class="ui segment basic container">
     <div class="ui breadcrumb">
-        <a class="section">Social</a>
+        <a class="section">{{path[1]}}</a>
         <i class="right angle icon divider"></i>
-        <div class="active section">Twitter</div>
+        <div class="active section">{{path[2]}}</div>
     </div>
-    <div class="ui segment clearing">
-        <a id="server_status" class="ui red right label static">Status</a>
+    <div class="ui label blue pull-right" ng-show="global.topic">
+        <i class="server icon"></i> Current Service/Product: {{global.topic}}
+    </div>
+    <div id="topic_select" class="ui segment clearing">
+        <a id="server_status" class="ui right label static" ng-class="serviceStatus">Status</a>
         <div class="ui flowing popup top left transition hidden compact segments" style="min-width:260px">
-                <div class="ui compact segment">
-                    <h4 class="ui red inverted header">Red</h4>
-                    <p>Influence Volume Spike (true) <br />&<br />Positve < Negative Ratio (true)</p>
-                </div>
-                <div class="ui compact segment">
-                    <h4 class="ui orange inverted header">Yellow</h4>
-                    <p>Influence Volume Spike (true)<br />Or<br />Positve < Negative Ratio (true)</p>
-                </div>
-                <div class="ui compact segment">
-                    <h4 class="ui green inverted header">Green</h4>
-                    <p>Influence Volume Spike (false)<br />&<br />Positve < Negative Ratio (false)</p>
-                </div>
+            <div class="ui compact segment">
+                <h4 class="ui red inverted header">Red</h4>
+                <p>Influence Volume Spike (true) <br />&<br />Positve
+                    < Negative Ratio (true)</p>
+            </div>
+            <div class="ui compact segment">
+                <h4 class="ui orange inverted header">Yellow</h4>
+                <p>Influence Volume Spike (true)<br />Or<br />Positve
+                    < Negative Ratio (true)</p>
+            </div>
+            <div class="ui compact segment">
+                <h4 class="ui green inverted header">Green</h4>
+                <p>Influence Volume Spike (false)<br />&<br />Positve
+                    < Negative Ratio (false)</p>
+            </div>
         </div>
         <div class="pull-left" style="height:38px;line-height:38px;margin-right:20px;">
             <div class="ui red horizontal label">UTC</div>
-            {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
+            {{dateList[0]}} - {{dateList.slice(-1)[0]}}
         </div>
         <div class="ui pull-left selection dropdown">
             <input name="category" ng-model="topic" type="hidden" value="">
@@ -32,345 +38,194 @@
                 <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
             </div>
         </div>
-        <button class="circular ui icon inverted blue button" ng-click="startGetData($event)" style="margin-left:20px">
+        <!--<button class="circular ui icon inverted blue button" ng-click="startGetData($event)" style="margin-left:20px">
             <i class="icon search"></i>
-        </button>
+        </button>-->
     </div>
-
     <div class="ui indicating progress" id="progress" ng-show="flags.m">
         <div class="bar"></div>
     </div>
-    <div class="ui segment" ng-show="flags.m">
+    <div class="ui accordion" ng-show="flags.m">
         <!--statistic-->
-        <div id="summary">
-            <h2 class="ui center aligned header blue">Summary</h2>
+        <div id="summary" class="ui blue segment">
+            <h3 class="ui center aligned header blue">Summary</h3>
             <!--charts-->
             <!--<div class="ui segment">-->
-            <!--<div class="ui three column divided grid center aligned">
-                <div class="column">
-                    <div class="ui horizontal top divider">Community Users</div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                </div>
-                <div class="column">
-                    <div class="ui horizontal top divider">Product Status</div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                </div>
-                <div class="column">
-                    <div class="ui horizontal top divider">VoC Insights</div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                    <div class="ui inverted divider"></div>
-                    <ng-statistic data="statistic"></ng-statistic>
-                </div>
-            </div>-->
-            <div class="ui three column divided grid center aligned">
-                <div class="column">
-                    <div class="ui horizontal top divider">Community Users</div>
-                    <div class="row">
-                        <div class="ui small blue statistic">
-                            <div class="label">
-                                Users Joined Discussion
-                            </div>
-                            <div class="value">
-                                {{statistic.joinedusers.objectcountthistime}}
-                            </div>
-                            <div class="mini label">
-                                <span><i class="long arrow up icon green"></i>12% Compared with Last Week</span>
-                                <br />
-                                <span><i class="icon red">9</i> Vol Spike Detected (hourly)</span>
-                            </div>
-                        </div>
+            <div ng-if="statistic" class="ui three column divided grid center aligned">
+                <div class="column collection">
+                    <div class="ui horizontal top divider">Users</div>
+                    <div>
+                        <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
                     </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui red small statistic">
-                            <div class="label">
-                                Regions of Users
-                            </div>
-                            <div class="value">
-                                43
-                            </div>
-                            <div class="mini label">
-                                <i class="long arrow up icon red"></i>1.2% Compared with Last Week
-                                <br />
-                                <i class="icon red">9</i> Vol Spike Detected (hourly)
-                            </div>
-                        </div>
+                    <!--<div ng-if="platform=='twitter'">-->
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
                     </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui yellow small statistic">
-                            <div class="label">
-                                Influence of Users(page Views)
-                            </div>
-                            <div class="value">
-                                45476
-                            </div>
-                            <div class="mini label">
-                                <i class="long arrow up icon green"></i>32% Compared with Last Week
-                                <br />
-                                <i class="icon red">9</i> Vol Spike Detected (hourly)
-                            </div>
-                        </div>
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="ui horizontal top divider">Product Status</div>
-                    <div class="row">
-                        <div class="ui orange small statistic">
-                            <div class="label">
-                                Services be Discussed
+                <div class="column collection">
+                    <div class="ui horizontal top divider">Services & Products</div>
+                    <div>
+                        <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
+                    </div>
+                    <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
+                    <div style="max-height:129px;">
+                        <div class="ui inverted divider"></div>
+                        <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>-->
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        <span ng-if="s">
+                                            {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                        </span>
+                                        <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="value">
-                                18
-                            </div>
-                            <div class="mini label">
-                                <i class="long arrow up icon green"></i>4 Compared with Last Week
-                                <br />
-                                <label>&nbsp;</label>
+                            <div class="column">
+                                <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
+                                </h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        <span ng-if="s">
+                                            <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio===0" class="icon minus blue pull-left"></i>
+                                            <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio>0" class="icon long arrow up green pull-left"></i>
+                                            <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio<0" class="icon long arrow down red pull-left"></i> {{s.mentionedmostservice.attachedobject| limitTo: 10 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 10">&hellip;</span>({{s.mentionedmostservice.vocinfluence.vocvolgrowthratio|number:1}}%)
+                                        </span>
+                                        <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui olive small statistic">
-                            <div class="label">
-                                Most Mentioned Service
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <!--<ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice"></ng-statistic>-->
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        <span ng-if="s">
+                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                        </span>
+                                        <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="value">
-                                AzureAD
-                            </div>
-                            <div class="mini label">
-                                <label class="text green" style="margin-right:20px">AAD(10%), Azure Web App(9%), VM(8%)</label>
-                                <br />
-                                <label>&nbsp;</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui grey small statistic">
-                            <div class="label">
-                                Most Liked Service : Most Disliked Service<i class="popup small link help icon" data-content="Receievd hightest Ratio of positive posts" data-variation="mini inverted"></i>
-                            </div>
-                            <div class="value" style="font-size: 1.5rem;">
-                                <span class="text green">Web App</span> : <br /><span class="text red">Cloud Service</span>
-                            </div>
-                            <div class="mini label">
-                                <label class="text green" style="margin-right:20px">Azure Web App (69%), VM(58%) ,AAD</label>
-                                <br />
-                                <label class="text red" style="margin-right:20px">Azure Web App (69%), VM(58%) ,AAD</label>
+                            <div class="column">
+                                <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
+                                <div class="ui relaxed divided list">
+                                    <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                        title="{{s.mentionedmostservice.attachedobject}}">
+                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                        <span ng-if="s">
+                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                        </span>
+                                        <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="ui horizontal top divider">Voc Insights</div>
-                    <div class="row">
-                        <div class="ui green small statistic">
-                            <div class="label">
-                                Message Posts
-                            </div>
-                            <div class="value">
-                                98736
-                            </div>
-                            <div class="mini label">
-                                <i class="long arrow up icon green"></i>12% Compared with Last Week
-                                <br />
-                                <i class="icon red">9</i> Vol Spike Detected (hourly)
-                            </div>
-                        </div>
+                <div class="column collection">
+                    <div class="ui horizontal top divider">VoC</div>
+                    <div>
+                        <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
                     </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui violet small statistic">
-                            <div class="label">
-                                Sentiment of Messages (POSI:NEG)
-                            </div>
-                            <div class="value">
-                                1390:323
-                            </div>
-                            <div class="mini label">
-                                <i class="icon green">21</i> POSI Vol Spike Detected (hourly)
-                                <br />
-                                <i class="icon red">9</i> NEG Vol Spike Detected (hourly)
-                            </div>
-                        </div>
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
                     </div>
-                    <div class="ui inverted divider"></div>
-                    <div class="row">
-                        <div class="ui pupple small statistic">
-                            <div class="label">
-                                Influence of Sentiment <i class="popup small link help icon" data-content="Page Views - POST : NEG" data-variation="mini inverted"></i>
-                            </div>
-                            <div class="value">
-                                20121:32101
-                            </div>
-                            <div class="mini label">
-                                Most POSI From <label class="green">USA</label>
-                                <br /> Most NEG From <label class="red">Tokyo</label>
-                            </div>
-                        </div>
+                    <!--<div ng-if="platform=='twitter'">-->
+                    <div>
+                        <div class="ui inverted divider"></div>
+                        <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
+                        <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
+                        <ng-statistic title="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights" type="mostposifrom"></ng-statistic>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="volumes">
-            <h2 class="ui center aligned header teal">Volumes</h2>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
-        </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="analytics">
-            <h2 class="ui center aligned header green">
-                Services Analytics
-            </h2>
-            <div class="ui grid">
-                <div class="two column row">
-                    <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='twitter' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home"></ng-echart>
-                    <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='twitter' query=query api-fn="getMentionedMostServiceDistribution" property-select="users" location="home"></ng-echart>
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="volumes" class="ui teal segment">
+            <h3 class="ui center aligned header title teal">Volumes
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui one column grid content">
+                <div class="column">
+                    <ng-echart title="Users' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes"
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="row">
-                    <div class="column">
-                        <table id="spikes-table" class="ui blue striped celled table">
-                            <thead>
-                                <tr>
-                                    <th>Service Name</th>
-                                    <th>Post Vol</th>
-                                    <th>POSI Ratio</th>
-                                    <th>NEG Ratio</th>
-                                    <th>Unique Users</th>
-                                    <th>Total Page View</th>
-                                    <th>Detected Spikes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Azure Web Apps</td>
-                                    <td>150</td>
-                                    <td>98%</td>
-                                    <td>2%</td>
-                                    <td>34</td>
-                                    <td>1582</td>
-                                    <td>34</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Cloud Service</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure VM</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Mobile Apps</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Storage</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Web Apps</td>
-                                    <td>150</td>
-                                    <td>98%</td>
-                                    <td>2%</td>
-                                    <td>34</td>
-                                    <td>1582</td>
-                                    <td>34</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Cloud Service</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure VM</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Mobile Apps</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Azure Storage</td>
-                                    <td>110</td>
-                                    <td>95%</td>
-                                    <td>5%</td>
-                                    <td>24</td>
-                                    <td>882</td>
-                                    <td>12</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="column">
+                    <ng-echart title="Message Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                </div>
+                <div class="column">
+                    <ng-echart title="Positive Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                        location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                </div>
+                <div class="column">
+                    <ng-echart title="Negative Posts' Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                        location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                </div>
+                <div class="column">
+                    <ng-echart title="Message Influence Vol Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                </div>
+                <div ng-if="platform=='twitter'" class="column">
+                    <ng-echart title="Poster's Regions # Hourly Trend During a Week" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
             </div>
+            <!--<div class="hourly-charts home" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts home" style="width:100%;height:300px;"></div>
+            <div class="hourly-charts home" style="width:100%;height:300px;"></div>-->
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="sentiment">
-            <h2 class="ui center aligned header purple">
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="sentiment" class="ui purple segment">
+            <h3 class="ui center aligned header title purple">
                 Sentiment
-            </h2>
-
-            <div class="ui two column grid">
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui three column grid content">
                 <div class="row">
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="posi" location="home"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location="home"></ng-echart>
+                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                        pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                        pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
                 </div>
                 <!--<div class="row">
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
@@ -378,143 +233,117 @@
                 </div>-->
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-        <div class="ui divider"></div>
-        <div class="ui hidden divider"></div>
-        <div id="influencers">
-            <h2 class="ui center aligned header violet">
-                Influencers
-            </h2>
-            <div class="ui three column grid">
-                <div class="column">
-                    <div class="ui blue inverted segment center aligned voc">
-                        <h3 class="ui header">Most VoC Post By</h3>
-                        <div class="ui aligned selection celled list">
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="analytics" class="ui green segment">
+            <h3 class="ui center aligned header title green">
+                Services Analytics
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui grid content">
+                <div class="two column row">
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
                             </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
+                            <div class="side">
+                                <mentioned-table platform='{{path[2]}}' query=query association="message"></mentioned-table>
                             </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
+                        </div>
+                    </div>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
                             </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
+                            <div class="side">
+                                <mentioned-table platform='{{path[2]}}' query=query association="user"></mentioned-table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="column">
-                    <div class="ui green inverted segment center aligned voc">
-                        <h3 class="ui header">Most POSI VoC Post By</h3>
-                        <div class="ui aligned selection celled list">
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="ui red inverted segment center aligned voc">
-                        <h3 class="ui header">Most NEG VoC Post By</h3>
-                        <div class="ui aligned selection celled list">
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="public/images/patrick.png">
-                                <div class="content">
-                                    <div class="header">Will Shao</div>
-                                    Vol: 233, Influence: 23
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="column">
+                        <table id="spikes-table" st-table="stTable" st-safe-src="mostMentionedService" class="ui blue striped celled table stTable">
+                            <thead>
+                                <tr>
+                                    <th st-sort="attachedobject">Service Name</th>
+                                    <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Post Volume</th>
+                                    <th st-sort="(vocinfluence.positivetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Positive Ratio</th>
+                                    <th st-sort="(vocinfluence.negativetotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Negative Ratio</th>
+                                    <th st-sort="(vocinfluence.neutraltotalvol/vocinfluence.voctotalvol)" st-skip-natural="true">Neutral Ratio</th>
+                                    <th st-sort="vocinfluence.vocinfluencedvol">Total Page Views</th>
+                                    <th st-sort="vocinfluence.detectedspikesvol">Detected Spikes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="ui icon input">
+                                            <input type="search" st-search placeholder="Search ...">
+                                            <i class="search icon"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="item in stTable">
+                                    <td>{{item.attachedobject}}</td>
+                                    <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
+                                    <td width="100">{{(item.vocinfluence.positivetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                    <td width="100">{{(item.vocinfluence.negativetotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                    <td width="100">{{(item.vocinfluence.neutraltotalvol)/(item.vocinfluence.voctotalvol)|percentage}}</td>
+                                    <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
+                                    <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <!--<div class="ui divider"></div>-->
+        <!--<div class="ui hidden divider"></div>-->
+        <div id="influencers" class="ui orange segment">
+            <h3 class="ui center aligned header title orange">
+                Top Active users
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="content">
+                <div class="ui three column grid">
+                    <!--<div class="column">-->
+                    <!--<div class="ui blue inverted segment center aligned voc">-->
+                    <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="column">-->
+                    <!--<div class="ui green inverted segment center aligned voc">-->
+                    <user-list title='Most POS VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="column">-->
+                    <!--<div class="ui red inverted segment center aligned voc">-->
+                    <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <!--<div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>-->
         <!--<div id="menu" class="left attached ui rail tab-rail">
             <div class="ui fixed sticky">
                 <div class="ui vertical mini menu">
@@ -523,40 +352,40 @@
             </div>
         </div>-->
         <!--</div>-->
-        <div id="scrollspy" ng-scroll-spy class="ui basic segment">
+        <div id="scrollspy" ng-scroll-spy class="">
             <div class="ui middle aligned selection list">
                 <div class="item">
-                    <a du-smooth-scroll="summary" du-scrollspy offset="60">
+                    <a du-smooth-scroll="summary" du-scrollspy offset="30">
                         <div class="ui label" set-color="blue" data-content="Summary" data-variation="mini inverted">
                             <i class="icon dashboard"></i><span ng-hide="isSmall">Summary</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="volumes" du-scrollspy offset="160">
+                    <a du-smooth-scroll="volumes" du-scrollspy offset="60">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
                             <i class="icon line chart"></i><span ng-hide="isSmall">Volumes</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="600">
+                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
+                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Sentiment</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
                     <a du-smooth-scroll="analytics" du-scrollspy offset="300">
                         <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
-                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Services Analytics</span>
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
                         </div>
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
-                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
-                            <i class="icon comments"></i> <span ng-hide="isSmall">Sentiment</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a du-smooth-scroll="influencers" du-scrollspy offset="300">
-                        <div class="ui label" set-color="violet" data-content="influencers" data-variation="mini inverted">
-                            <i class="icon users"></i> <span ng-hide="isSmall">Influencers</span>
+                    <a du-smooth-scroll="influencers" du-scrollspy offset="600">
+                        <div class="ui label" set-color="orange" data-content="Top Active users" data-variation="mini inverted">
+                            <i class="icon users"></i> <span ng-hide="isSmall">Top Active users</span>
                         </div>
                     </a>
                 </div>
