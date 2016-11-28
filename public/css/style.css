@@ -264,3 +264,6 @@ body {
   color: blue !important;
   cursor: pointer !important;
 }
+.admin.cards .card .ui.button .icon {
+  margin: 0 !important;
+}

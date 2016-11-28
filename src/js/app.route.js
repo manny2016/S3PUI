@@ -1,6 +1,6 @@
 require('angular-ui-router');
-window.AuthenticationContext = require('adal-angular');
-require('adal-angular/lib/adal-angular');
+// window.AuthenticationContext = require('adal-angular');
+// require('adal-angular/lib/adal-angular');
 var app = angular.module('app.Route', ['ui.router']);
 
 app
@@ -60,6 +60,11 @@ app
         templateUrl: 'templates/social.html',
         // controller: 'msPlatformCtrl'
         controller: 'socialCtrl'
+      })
+      .state('admin', {
+        url: '/admin',
+        controller: 'adminCtrl',
+        templateUrl: 'templates/admin.html'
       })
       .state('share', {
         url: '/share',
