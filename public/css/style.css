@@ -271,3 +271,10 @@ body {
 .admin.cards .card .ui.button .icon {
   margin: 0 !important;
 }
+.admin.cards .card.active {
+  border: 2px solid #F2711C;
+  box-shadow: 10px 10px 5px #e0e0e0;
+}
+.admin.cards .card.active .content .header {
+  color: #F2711C;
+}

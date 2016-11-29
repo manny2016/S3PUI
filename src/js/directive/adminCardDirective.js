@@ -1,9 +1,9 @@
 module.exports = function () {
     return {
-        restrict: 'EA',
+        restrict: 'E',
         templateUrl: 'public/template/adminCard.html',
-        replace:true,
-        transclude:true,
+        replace: true,
+        transclude: true,
         link: function (scope, e, a) {
             // scope.isSmall = (window.innerWidth < 1510) ? 1 : 0;
             // $(window).resize(function () {
@@ -19,6 +19,10 @@ module.exports = function () {
             // $(e).dimmer({
             //     on: 'hover'
             // });
+
         },
+        controller: function ($scope) {
+            this.selectPlatform = $scope.selectPlatform;
+        }
     }
 }
