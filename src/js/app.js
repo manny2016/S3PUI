@@ -1,13 +1,14 @@
 var app = require('angular').module("app", [
-  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js')
+  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'),require('./app.constants.js')
   , require('../../node_modules/angular-scroll'),require('angular-smart-table')
 ]);
 app
-.run(function ($rootScope, $state, $stateParams, $injector, utilitySrv) {
+.run(function ($rootScope, $state, $stateParams, $injector, utilitySrv,CONST) {
     // var config = require('../../public/config');
     // console.log(config);
+    $rootScope.CONST = CONST;
     var config = {
-      mode:'prod' 
+      mode:'dev' 
     }
     if(config.mode==='dev'){
       $rootScope.service = $injector.get('testSrv')
