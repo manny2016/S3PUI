@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="S3PWebUI._default" %>
-
     <!DOCTYPE html>
-
     <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 
     <head runat="server">
@@ -38,7 +36,6 @@
                     <a href="/social" ng-class="{ active: isActive('/social')}"class="item">Social Media</a>
                     <a href="/stackexchange" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
                     <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
-
                             <div class="green ui dropdown simple item" ng-class="{select: $state.includes('home')}">
                                 Social Health Platform <i class="dropdown icon"></i>
                                 <div class="menu">
@@ -46,14 +43,12 @@
                                     <a class="item" ui-sref="home.about">What's Social Health Platform</a>
                                 </div>
                             </div>
-
                             <div class="olive ui dropdown simple item" ng-class="{select: $state.includes('social')}">
                                 Social Media <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="social.platform({platform:'twitter'})">Twitter</a>
                                 </div>
                             </div>
-
                             <div class="blue ui dropdown simple item" ng-class="{select: $state.includes('thirdParty')}">
                                 Third Party Forums <i class="dropdown icon"></i>
                                 <div class="menu">
@@ -63,22 +58,20 @@
                                     <!--<a class="item" ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>-->
                                 </div>
                             </div>
-
                             <div class="yellow ui dropdown simple item" ng-class="{select: $state.includes('msPlatform')}">
                                 MS Platforms <i class="dropdown icon"></i>
                                 <div class="menu">
                                     <a class="item" ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>
                                     <a class="item" ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
-
                                 </div>
                             </div>
-
                             <div class="item ui label simple dropdown" style="display: flex !important;">
                                 <%=UserAlias %>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
                                         <!--<a class="item" ui-sref="/">Profile</a>-->
                                         <!--<a class="item">Subscription</a>-->
+                                        <a class="item" ui-sref="admin">Administrator</a>
                                         <a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>
                                     </div>
                             </div>
@@ -86,7 +79,6 @@
                     </div>
                 </div>
                 <!--top menu end-->
-
             </div>
             <div id="main">
                 <!--<div ng-view></div>-->

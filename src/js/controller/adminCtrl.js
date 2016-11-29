@@ -1,6 +1,12 @@
-module.exports = function ($scope, $location) {
-    console.log("this is admin");    
-    $('.admin.cards .card').dimmer({
-        on: 'hover'
-    });
+module.exports = function ($scope, $location, $timeout) {
+    // console.log("this is admin");  
+    $scope.getPlatforms = function () {
+        //simulate api calling
+        $timeout(function () {
+                $scope.platforms = ['twitter','so','sf','su','msdn','tn']
+            }, 500)
+    }();  
+    // $('.admin.cards .card').dimmer({
+    //     on: 'hover'
+    // });
 }

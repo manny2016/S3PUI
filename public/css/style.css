@@ -264,6 +264,10 @@ body {
   color: blue !important;
   cursor: pointer !important;
 }
+.admin.cards .card {
+  max-width: 166px;
+  width: 100%;
+}
 .admin.cards .card .ui.button .icon {
   margin: 0 !important;
 }
