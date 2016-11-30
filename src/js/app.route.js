@@ -66,6 +66,11 @@ app
         controller: 'adminCtrl',
         templateUrl: 'templates/admin.html'
       })
+      .state('notification', {
+        url: '/notification',
+        controller: 'notificationCtrl',
+        templateUrl: 'templates/notification_center.html'
+      })
       .state('share', {
         url: '/share',
         template: '<sub-window></sub-window>'

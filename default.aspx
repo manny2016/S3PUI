@@ -65,6 +65,10 @@
                                     <a class="item" ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
                                 </div>
                             </div>
+                            <a class="ui item" ui-sref="notification" ng-class="{select: $state.includes('notification')}">
+                                <i class="alarm outline icon"></i>
+                                <div class="mini floating circular ui red label">22</div>
+                            </a>
                             <div class="item ui label simple dropdown" style="display: flex !important;">
                                 <%=UserAlias %>
                                     <i class="dropdown icon"></i>

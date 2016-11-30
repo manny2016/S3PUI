@@ -1,0 +1,71 @@
+<div class="ui segment basic container">
+    <div class="ui breadcrumb">
+        <a class="section">{{CONST.APP_NAME}}</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Notification Center</div>
+    </div>
+    <div class="ui segment form">
+        <h5 class="ui header">
+            Search
+        </h5>
+        <div class="four fields">
+            <div class="field">
+                <label>Data Source</label>
+                <select id="platform_sel" class="ui fluid dropdown">
+                    <option value="0">all</option>
+                     <option value="{{p}}" ng-repeat="p in platforms">{{p}}</option>
+                    </select>
+            </div>
+            <div class="field">
+                <label>Message Type</label>
+                <select class="ui fluid dropdown">
+                    <option value="0">all</option>
+                     <option value="1">Posts volumn spike detected</option>
+                     <option value="2">Unique user sessions spike detected</option>
+                     <option value="3">Positive volume post spike detected</option>
+                     <option value="4">Negative volume post spike detected</option>
+                     <option value="5">Services mentioned spike detected</option>
+                     <option value="6">Influence volume spike detected</option>
+                    </select>
+            </div>
+            <div class="field">
+                <label>Date</label>
+                <div class="ui input">
+                    <input type="" name="" value="">
+                </div>
+            </div>
+            <div class="field">
+                <label>Data Download Available</label>
+                <select class="ui fluid dropdown">
+                    <option value="0">all</option>
+                     <option value="1">Available</option>
+                     <option value="-1">Unavailable</option>
+                    </select>
+            </div>
+        </div>
+    </div>
+    <table class="ui striped green table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Data Source</th>
+                <th>Message</th>
+                <th>Data Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>11/08/2016</td>
+                <td>Stackoverflow</td>
+                <td>Post Volume spike detected</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>11/08/2016</td>
+                <td>Twitter</td>
+                <td>Negative Sentiment spike detected</td>
+                <td>N/A</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -278,3 +278,7 @@ body {
 .admin.cards .card.active .content .header {
   color: #F2711C;
 }
+#form1 .menu .ui.floating.label {
+  top: 0.5em;
+  margin: 0em 0em 0em -2.5em !important;
+}
