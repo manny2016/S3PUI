@@ -8,7 +8,7 @@
         <h4 class="ui header orange" style="padding: 0.5rem;">
             Platforms
         </h4>
-        <div class="ui equal width grid admin cards">
+        <div class="ui grid admin cards">
             <!--<div class="column ui card">
                 <div class="ui dimmer">
                     <div class="content">
@@ -34,9 +34,6 @@
                     </a>
                 </div>
             </div>-->
-            <admin-card ng-repeat="p in platforms">
-                <platform-card-content platform="{{p}}"></platform-card-content>
-            </admin-card>
             <admin-card ng-repeat="p in platforms">
                 <platform-card-content platform="{{p}}"></platform-card-content>
             </admin-card>
