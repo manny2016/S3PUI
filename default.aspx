@@ -6,6 +6,7 @@
         <title>Social Health Platform</title>
         <base href="/" />
         <link rel="stylesheet" href="/public/semantic.css" />
+        <link rel="stylesheet" href="/public/angular-datepicker.min.css" />
         <link rel="stylesheet" href="/public/css/style.css" />
         <link rel="stylesheet" href="/public/css/Animated.css" />
         <script type="text/javascript" src="/public/jquery-2.2.4.min.js"></script>
@@ -91,6 +92,8 @@
             </div>
         </form>
         <script type="text/javascript" src="/public/main.min.js"></script>
+        <script type="text/javascript" src="/public/angular-datepicker.min.js"></script>
+        
     </body>
 
     </html>

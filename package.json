@@ -24,6 +24,7 @@
     "angular-scroll": "^1.0.0",
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^1.0.0-beta.2",
+    "angularjs-datepicker": "^2.1.7",
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
     "gulp": "^3.9.1",
@@ -35,6 +36,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
-    "semantic-ui": "^2.2.2"
+    "semantic-ui": "^2.2.2",
+    "socket.io-client": "^1.7.1"
   }
 }

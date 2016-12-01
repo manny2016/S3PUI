@@ -11,28 +11,26 @@
         <div class="four fields">
             <div class="field">
                 <label>Data Source</label>
-                <select id="platform_sel" class="ui fluid dropdown">
+                <select class="ui fluid dropdown">
                     <option value="0">all</option>
-                     <option value="{{p}}" ng-repeat="p in platforms">{{p}}</option>
-                    </select>
+                    <option value="{{v}}" ng-repeat="(v,p) in platforms">{{p}}</option>
+                </select>
             </div>
             <div class="field">
                 <label>Message Type</label>
                 <select class="ui fluid dropdown">
                     <option value="0">all</option>
-                     <option value="1">Posts volumn spike detected</option>
-                     <option value="2">Unique user sessions spike detected</option>
-                     <option value="3">Positive volume post spike detected</option>
-                     <option value="4">Negative volume post spike detected</option>
-                     <option value="5">Services mentioned spike detected</option>
-                     <option value="6">Influence volume spike detected</option>
+                    <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
                     </select>
             </div>
             <div class="field">
                 <label>Date</label>
-                <div class="ui input">
-                    <input type="" name="" value="">
-                </div>
+                <datepicker date-format="yyyy-MM-dd" selector="input-text">
+                    <div class="ui left icon input">
+                        <input class="input-text" ng-model="date" type="text" />
+                        <i class="calendar icon"></i>
+                    </div>
+                </datepicker>
             </div>
             <div class="field">
                 <label>Data Download Available</label>
@@ -54,17 +52,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>11/08/2016</td>
-                <td>Stackoverflow</td>
-                <td>Post Volume spike detected</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td>11/08/2016</td>
-                <td>Twitter</td>
-                <td>Negative Sentiment spike detected</td>
-                <td>N/A</td>
+            <tr ng-repeat="m in notifications">
+                <td>{{m.date}}</td>
+                <td>{{platforms[m.dataSource]}}</td>
+                <td>{{CONST.MESSAGE_TYPES[m.messageType]}}</td>
+                <td>{{m.link}}</td>
             </tr>
         </tbody>
     </table>

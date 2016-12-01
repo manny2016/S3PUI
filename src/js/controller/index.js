@@ -1,4 +1,4 @@
-var app = angular.module('app.Ctrl', []);
+var app = angular.module('app.Ctrl', ['720kb.datepicker']);
 
 // app.controller('testCtrl',require('./testCtrl'));
 app.controller('homeCtrl',require('./homeCtrl'));
