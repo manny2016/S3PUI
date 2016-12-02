@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/Walk4Muscle/S3PUI/issues"
   },
+  "engines":{"node": "6.0.0 || 0.8.x"},
   "homepage": "https://github.com/Walk4Muscle/S3PUI#readme",
   "dependencies": {
     "adal-angular": "^1.0.12",
