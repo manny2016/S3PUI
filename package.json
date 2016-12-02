@@ -16,7 +16,9 @@
   "bugs": {
     "url": "https://github.com/Walk4Muscle/S3PUI/issues"
   },
-  "engines":{"node": "6.0.0 || 0.8.x"},
+  "engines": {
+    "node": "6.0.0 || 0.8.x"
+  },
   "homepage": "https://github.com/Walk4Muscle/S3PUI#readme",
   "dependencies": {
     "adal-angular": "^1.0.12",
@@ -29,6 +31,8 @@
     "browserify": "^13.1.0",
     "echarts": "^3.2.3",
     "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-less": "^3.3.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "moment": "^2.16.0",
