@@ -5,6 +5,14 @@ module.exports = function ($scope, $location, $timeout) {
         $scope.selectedPlatform = platform;
         $scope.$broadcast('admin-select-platform',platform)
     }
+
+    $scope.platforms = [];
+    $scope.getTopics = function () {
+        $scope.service.getCate().then(function (data) {
+            console.log(data)
+            $scope.topics = data;
+        })
+    }();
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {

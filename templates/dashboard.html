@@ -61,16 +61,42 @@
         <div id="volumes" class="ui segment teal">
             <h3 class="ui center aligned header title teal active">
                 Volumes & Spikes
-                <i class="dropdown icon pull-left"></i>                
+                <i class="dropdown icon pull-left"></i>
             </h3>
             <div class="ui three column grid active content">
                 <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
                     api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
             </div>
         </div>
+        <div id="notifications" class="ui segment olive">
+            <h3 class="ui center aligned header title olive">
+                <a ui-sref="notification">Notification Center</a>
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="content">
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Data Source</th>
+                            <th>Message</th>
+                            <th>Data Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in notifications">
+                            <td>{{m.date}}</td>
+                            <td>{{platforms[m.dataSource]}}</td>
+                            <td>{{CONST.MESSAGE_TYPES[m.messageType]}}</td>
+                            <td>{{m.link}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div id="sentiment" class="ui purple segment">
             <h3 class="ui center aligned header title purple">Sentiment
-                <i class="dropdown icon pull-left"></i>                
+                <i class="dropdown icon pull-left"></i>
             </h3>
             <div class="content">
                 <div class="ui three column grid">
@@ -251,6 +277,13 @@
                     <a du-smooth-scroll="volumes" du-scrollspy offset="200">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
                             <i class="icon line chart"></i><span ng-hide="isSmall">Volumes & Spikes</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="notifications" du-scrollspy offset="200">
+                        <div class="ui label" set-color="violet" data-content="Notification" data-variation="mini inverted">
+                            <i class="icon line alarm"></i><span ng-hide="isSmall">Notification Center</span>
                         </div>
                     </a>
                 </div>

@@ -5,6 +5,7 @@ public/main.min.js
 main.js
 data
 demos
+tmp
 DataService
 obj
 Properties
