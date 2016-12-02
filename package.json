@@ -37,7 +37,6 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
-    "semantic-ui": "^2.2.2",
     "socket.io-client": "^1.7.1"
   }
 }
