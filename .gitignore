@@ -3,14 +3,12 @@ node_modules
 semantic
 public/main.min.js
 main.js
-bin
 data
 demos
 DataService
 obj
 Properties
 scripts
-*.asax
 *.cs
 S3PWebUI.*
 *.config

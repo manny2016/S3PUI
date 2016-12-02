@@ -1,18 +1,21 @@
 var app = require('angular').module("app", [
-  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'),require('./app.constants.js')
-  , require('../../node_modules/angular-scroll'),require('angular-smart-table')
+  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), require('../../node_modules/angular-scroll'), require('angular-smart-table')
 ]);
 app
-.run(function ($rootScope, $state, $stateParams, $injector, utilitySrv,CONST) {
+  .run(function ($rootScope, $state, $stateParams, $injector, utilitySrv, CONST, adalAuthenticationService) {
     // var config = require('../../public/config');
     // console.log(config);
+    //check authentication
+    if (!$rootScope.userInfo.isAuthenticated) {
+      $state.go("login");
+    }
     $rootScope.CONST = CONST;
     var config = {
-      mode:'dev' 
+      mode: 'prod'
     }
-    if(config.mode==='dev'){
+    if (config.mode === 'dev') {
       $rootScope.service = $injector.get('testSrv')
-    }else{
+    } else {
       $rootScope.service = $injector.get('rawdataSrv')
     }
     $rootScope.$state = $state;
@@ -20,12 +23,20 @@ app
 
     //global variables
     $rootScope.global = {
-      topic:''
+      topic: ''
     }
-
+    $rootScope.signOut = function(){
+      adalAuthenticationService.logOut();
+    }
     $rootScope.timeRange = {
-      'start': (function (d) { d.setDate(d.getDate() - 7); return d.setHours(0, 0, 0, 0) })(new Date),
-      'end': (function (d) { d.setDate(d.getDate() - 1); return d.setHours(0, 0, 0, 0) })(new Date)
+      'start': (function (d) {
+        d.setDate(d.getDate() - 7);
+        return d.setHours(0, 0, 0, 0)
+      })(new Date),
+      'end': (function (d) {
+        d.setDate(d.getDate() - 1);
+        return d.setHours(0, 0, 0, 0)
+      })(new Date)
     };
     $rootScope.dateList = utilitySrv.getTimeRange($rootScope.timeRange.start, $rootScope.timeRange.end)
     if (!window.history || !history.replaceState) {
@@ -51,15 +62,15 @@ app
       }
     });
     $rootScope.popSubWin = function (params) {
-      $rootScope.$broadcast('start-get-data-in-window', params);
-      $('.fullscreen.modal').find('div.echart').map(function () {
-        echarts.getInstanceByDom(this).clear();
-      })
-      $('.fullscreen.modal').modal('show');
-    }
-    // $(window).resize(function () {
-    //   console.log(window.innerWidth);
-    // })
+        $rootScope.$broadcast('start-get-data-in-window', params);
+        $('.fullscreen.modal').find('div.echart').map(function () {
+          echarts.getInstanceByDom(this).clear();
+        })
+        $('.fullscreen.modal').modal('show');
+      }
+      // $(window).resize(function () {
+      //   console.log(window.innerWidth);
+      // })
     $rootScope.init = function () {
       // $('.menu').find('.ui.dropdown.item').dropdown();
       $('.fullscreen.modal').modal({

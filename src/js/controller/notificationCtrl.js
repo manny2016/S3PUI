@@ -2,7 +2,7 @@ module.exports = function ($scope, $location, $timeout, $filter) {
     var socket = new WebSocket("ws://localhost:8888/");
     $scope.notifications = [{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}];
     socket.addEventListener('message',function(m){
-        console.log(JSON.parse(m.data))
+        // console.log(JSON.parse(m.data))
         $scope.$apply($scope.notifications.push(JSON.parse(m.data)));
     })
     console.log($scope.CONST.MESSAGE_TYPES);

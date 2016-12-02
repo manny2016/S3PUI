@@ -71,13 +71,15 @@
                                 <div class="mini floating circular ui red label">22</div>
                             </a>
                             <div class="item ui label simple dropdown" style="display: flex !important;">
-                                <%=UserAlias %>
+                                <!--<%=UserAlias %>-->
+                                <span ng-if="userInfo">{{userInfo.userName}}</span>
                                     <i class="dropdown icon"></i>
                                     <div class="menu">
                                         <!--<a class="item" ui-sref="/">Profile</a>-->
                                         <!--<a class="item">Subscription</a>-->
                                         <a class="item" ui-sref="admin">Administrator</a>
-                                        <a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>
+                                        <!--<a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>-->
+                                        <a class="item" ng-click="signOut()">Sign Out</a>
                                     </div>
                             </div>
                         </div>
