@@ -9,7 +9,7 @@ app
     if (!$rootScope.userInfo.isAuthenticated) {
       $state.go("login");
     }
-    $rootScope.CONST = CONST;
+    $rootScope.CONST = CONST; 
     var config = {
       mode: 'prod'
     }
