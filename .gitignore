@@ -10,6 +10,5 @@ DataService
 obj
 Properties
 scripts
-*.cs
 S3PWebUI.*
 *.config
