@@ -16,7 +16,7 @@ app
     $urlRouterProvider.otherwise("/home/dashboard");
 
     $stateProvider
-      .state('/', {
+      .state('login', {
         url: '/',
         template: '<div></div>',
         requireADLogin: true,
@@ -90,30 +90,34 @@ app
         templateUrl: 'templates/notification_center.html',
         requireADLogin: true
       });
-
+      let endpoints = {
+        'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
+      }
     adalAuthenticationServiceProvider.init({
         instance: 'https://login.microsoftonline.com/', 
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
+        endpoints:endpoints,
         cacheLocation: 'sessionStorage',
-        // displayCall: function (urlNavigate) {
-        //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
-        //   if (popupWindow && popupWindow.focus)
-        //     popupWindow.focus();
-        //   var registeredRedirectUri = this.redirectUri;
-        //   var pollTimer = window.setInterval(function () {
-        //     if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
-        //       window.clearInterval(pollTimer);
-        //     }
-        //     try {
-        //       if (popupWindow.document.URL.indexOf(registeredRedirectUri) != -1) {
-        //         window.clearInterval(pollTimer);
-        //         window.location.hash = popupWindow.location.hash;
-        //         popupWindow.close();
-        //       }
-        //     } catch (e) {}
-        //   }, 20);
-        // },
+        // redirectUri:window.location.origin,
+        displayCall: function (urlNavigate) {
+          var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
+          if (popupWindow && popupWindow.focus)
+            popupWindow.focus();
+          var registeredRedirectUri = this.redirectUri;
+          var pollTimer = window.setInterval(function () {
+            if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
+              window.clearInterval(pollTimer);
+            }
+            try {
+              if (popupWindow.document.URL.indexOf(registeredRedirectUri) != -1) {
+                window.clearInterval(pollTimer);
+                window.location.hash = popupWindow.location.hash;
+                popupWindow.close();
+              }
+            } catch (e) {}
+          }, 20);
+        },
         anonymousEndpoints: ['public/', 'templates/']
       },
       $httpProvider);

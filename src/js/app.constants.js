@@ -15,6 +15,10 @@ app.constant('CONST',{
         '5':'Services mentioned spike detected',
         '6':'Influence volume spike detected'
     },
+    SERVICE_INFO:{
+        ENDPOINT:'/DataService/S3PDataService.svc/',
+        LOCAL_TEST_DATA:'/data/'
+    }
 })
 
 module.exports = 'app.Constant';

@@ -1,4 +1,4 @@
-module.exports = function ($scope, $location, $timeout, $filter) {
+module.exports = function ($scope, $location, $timeout, $filter,$http) {
     var socket = new WebSocket("ws://localhost:8888/");
     $scope.notifications = [{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}];
     socket.addEventListener('message',function(m){
@@ -51,4 +51,8 @@ module.exports = function ($scope, $location, $timeout, $filter) {
     // $('.admin.cards .card').dimmer({
     //     on: 'hover'
     // });
+    $scope.adaltest = function(){
+    $http({url:'https://garyphp.azurewebsites.net/api.php',method:'get'}).then(function(data){
+        console.log(data);
+    })}
 }

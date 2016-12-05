@@ -6,10 +6,10 @@ app
     // var config = require('../../public/config');
     // console.log(config);
     //check authentication
+    $rootScope.CONST = CONST; 
     if (!$rootScope.userInfo.isAuthenticated) {
       $state.go("login");
     }
-    $rootScope.CONST = CONST; 
     var config = {
       mode: 'prod'
     }

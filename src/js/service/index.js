@@ -1,16 +1,18 @@
-
-var app = angular.module('app.Srv', []);
-app.constant('config', {
-    'service': '/DataService/S3PDataService.svc/',
-    'dev_service': '/data/'
-});
+require('angular-websocket/dist/angular-websocket');
+// var ngWebSocket = require('angular-websocket');
+var app = angular.module('app.Srv', [ngWebSocket.name,'app.Constant']);
+// app.constant('config', {
+//     'service': '/DataService/S3PDataService.svc/',
+//     'dev_service': '/data/'
+// });
 app.factory('utilitySrv', require('./utility'));
-app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
+
+app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     return {
         get: function (api, params) {
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
-            path = config.service + api + qs;
+            path = CONST.SERVICE_INFO.ENDPOINT + api + qs;
             var deferred = $q.defer();
             $http.get(path).then(function (data) {
                 if (data.status == 200) {
@@ -28,7 +30,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
 
-            path = config.dev_service + api + '.json' + qs;
+            path = CONST.SERVICE_INFO.LOCAL_TEST_DATA + api + '.json' + qs;
             var deferred = $q.defer();
             $http.get(path).then(function (data) {
                 if (data.status == 200) {
@@ -39,6 +41,21 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, config) {
                 deferred.reject(err);
             })
             return deferred.promise;
+        }
+    }
+});
+
+app.factory('notificationSrv',function($websocket,baseSrv){
+    let dataStraem = $websocket('ws://localhost:8888/');
+    let notificationList = [];
+    let unReadMessage = 0;
+    dataStraem.onMessage(function(message){
+        notificationList.push(JSON.parse(message.data));
+    });
+    return {
+        currentNotification : notificationList,
+        queryNotification: function(){
+            
         }
     }
 });
