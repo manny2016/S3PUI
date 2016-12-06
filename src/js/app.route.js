@@ -1,8 +1,8 @@
 require('angular-ui-router');
 window.AuthenticationContext = require('adal-angular');
 require('adal-angular/lib/adal-angular');
-var app = angular.module('app.Route', ['ui.router', 'AdalAngular', 'app.Constant']);
 
+var app = angular.module('app.Route', ['ui.router', 'AdalAngular', 'app.Constant']);
 app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
 
@@ -99,27 +99,33 @@ app
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints:endpoints,
         cacheLocation: 'sessionStorage',
-        // redirectUri:window.location.origin,
-        displayCall: function (urlNavigate) {
-          var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
-          if (popupWindow && popupWindow.focus)
-            popupWindow.focus();
-          var registeredRedirectUri = this.redirectUri;
-          var pollTimer = window.setInterval(function () {
-            if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
-              window.clearInterval(pollTimer);
-            }
-            try {
-              if (popupWindow.document.URL.indexOf(registeredRedirectUri) != -1) {
-                window.clearInterval(pollTimer);
-                window.location.hash = popupWindow.location.hash;
-                popupWindow.close();
-              }
-            } catch (e) {}
-          }, 20);
-        },
+        redirectUri:window.location.origin,
+        // displayCall: function (urlNavigate) {
+        //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
+        //   if (popupWindow && popupWindow.focus)
+        //     popupWindow.focus();
+        //   var registeredRedirectUri = this.redirectUri;
+        //   var pollTimer = window.setInterval(function () {
+        //     if (!popupWindow || popupWindow.closed || popupWindow.closed === undefined) {
+        //       window.clearInterval(pollTimer);
+        //     }
+        //     try {
+        //       if (popupWindow.document.URL.indexOf(registeredRedirectUri) != -1) {
+        //         window.clearInterval(pollTimer);
+        //         window.location.hash = popupWindow.location.hash;
+        //         popupWindow.close();
+        //       }
+        //     } catch (e) {}
+        //   }, 20);
+        // },
+        // popUp:true,
         anonymousEndpoints: ['public/', 'templates/']
       },
       $httpProvider);
+  })
+  .run(function($rootScope,$state,adalAuthenticationService){
+    if ((!$rootScope.userInfo.isAuthenticated)&&(window.location.hash === "")) {
+      $state.go("login");
+    }
   })
 module.exports = 'app.Route';

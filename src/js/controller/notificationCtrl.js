@@ -1,5 +1,5 @@
 module.exports = function ($scope, $location, $timeout, $filter,$http) {
-    var socket = new WebSocket("ws://localhost:8888/");
+    var socket = new WebSocket("wss://10.168.176.18/api/SystemDetected/");
     $scope.notifications = [{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}];
     socket.addEventListener('message',function(m){
         // console.log(JSON.parse(m.data))

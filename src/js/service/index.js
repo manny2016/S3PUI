@@ -1,6 +1,6 @@
-require('angular-websocket/dist/angular-websocket');
+// require('angular-websocket/dist/angular-websocket');
 // var ngWebSocket = require('angular-websocket');
-var app = angular.module('app.Srv', [ngWebSocket.name,'app.Constant']);
+var app = angular.module('app.Srv', ['app.Constant']);
 // app.constant('config', {
 //     'service': '/DataService/S3PDataService.svc/',
 //     'dev_service': '/data/'
@@ -45,20 +45,20 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     }
 });
 
-app.factory('notificationSrv',function($websocket,baseSrv){
-    let dataStraem = $websocket('ws://localhost:8888/');
-    let notificationList = [];
-    let unReadMessage = 0;
-    dataStraem.onMessage(function(message){
-        notificationList.push(JSON.parse(message.data));
-    });
-    return {
-        currentNotification : notificationList,
-        queryNotification: function(){
+// app.factory('notificationSrv',function($websocket,baseSrv){
+//     let dataStraem = $websocket('ws://localhost:8888/');
+//     let notificationList = [];
+//     let unReadMessage = 0;
+//     dataStraem.onMessage(function(message){
+//         notificationList.push(JSON.parse(message.data));
+//     });
+//     return {
+//         currentNotification : notificationList,
+//         queryNotification: function(){
             
-        }
-    }
-});
+//         }
+//     }
+// });
 
 app.factory('testSrv', function (baseSrv) {
     return {
