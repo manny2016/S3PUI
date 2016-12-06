@@ -1,11 +1,11 @@
-module.exports = function ($scope, $location, $timeout, $filter,$http) {
-    var socket = new WebSocket("wss://10.168.176.18/api/SystemDetected/");
-    $scope.notifications = [{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}];
-    socket.addEventListener('message',function(m){
-        // console.log(JSON.parse(m.data))
-        $scope.$apply($scope.notifications.push(JSON.parse(m.data)));
-    })
-    console.log($scope.CONST.MESSAGE_TYPES);
+module.exports = function ($scope, $location, $timeout, $filter,$http,Notifications) {
+    // var socket = new WebSocket("ws://10.168.176.18/api/SystemDetected/");
+    $scope.Notifications = Notifications; //{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}
+    // socket.addEventListener('message',function(m){
+    //     // console.log(JSON.parse(m.data))
+    //     $scope.$apply($scope.notifications.push(JSON.parse(m.data)));
+    // })
+    // console.log($scope.CONST.MESSAGE_TYPES);
     $scope.date = $filter('date')(new Date(), 'yyyy-MM-dd');
     $scope.selectPlatform = function (platform) {
         $scope.selectedPlatform = platform;

@@ -1,6 +1,6 @@
 // require('angular-websocket/dist/angular-websocket');
 // var ngWebSocket = require('angular-websocket');
-var app = angular.module('app.Srv', ['app.Constant']);
+var app = angular.module('app.Srv', ['app.Constant', 'ngWebSocket']);
 // app.constant('config', {
 //     'service': '/DataService/S3PDataService.svc/',
 //     'dev_service': '/data/'
@@ -35,8 +35,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             $http.get(path).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
-                } else {
-                }
+                } else {}
             }, function (err) {
                 deferred.reject(err);
             })
@@ -45,20 +44,36 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     }
 });
 
-// app.factory('notificationSrv',function($websocket,baseSrv){
-//     let dataStraem = $websocket('ws://localhost:8888/');
-//     let notificationList = [];
-//     let unReadMessage = 0;
-//     dataStraem.onMessage(function(message){
-//         notificationList.push(JSON.parse(message.data));
-//     });
-//     return {
-//         currentNotification : notificationList,
-//         queryNotification: function(){
-            
-//         }
-//     }
-// });
+app.factory('Notifications', function ($websocket, baseSrv, CONST) {
+    let ws = $websocket(CONST.SERVICE_INFO.WS);
+    let collection = [];
+    let unReadMessage = 0;
+    ws.onMessage(function (event) {
+        console.log(event);
+        collection.push(JSON.parse(event.data));
+    });
+    ws.onError(function (event) {
+        console.log('connection Error', event);
+    });
+
+    ws.onClose(function (event) {
+        console.log('connection closed', event);
+    });
+    return {
+        collection: collection,
+        status: function () {
+            return ws.readyState;
+        },
+        send: function (message) {
+            if (angular.isString(message)) {
+                ws.send(message);
+            } else if (angular.isObject(message)) {
+                ws.send(JSON.stringify(message));
+            }
+        }
+
+    }
+});
 
 app.factory('testSrv', function (baseSrv) {
     return {
@@ -136,7 +151,7 @@ app.factory('testSrv', function (baseSrv) {
             params.user = user || 1234;
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
+            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
         getVoCDetailsByPN: function (platform, topic, PNScope, days) {
             var params = params || {};
@@ -144,7 +159,7 @@ app.factory('testSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
+            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
         getVoCDetailsByServiceName: function (platform, topic, service, PNScope, days) {
             var params = params || {};
@@ -153,7 +168,7 @@ app.factory('testSrv', function (baseSrv) {
             params.servicename = service || 'webapp';
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
+            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
         getImpactSummary: function (platform, topic, PNScope, days) {
             var params = params || {};
@@ -210,9 +225,9 @@ app.factory('testSrv', function (baseSrv) {
             params.date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
+            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
-        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope,IsFuzzyQuery,days) {
+        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, days) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
@@ -220,7 +235,7 @@ app.factory('testSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.IsFuzzyQuery = IsFuzzyQuery || 'true';
             params.days = days || 7;
-            return baseSrv.devGet('subwindow'+'.'+params.platform, params);
+            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         }
     }
 })
@@ -289,14 +304,14 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
-            return baseSrv.get('GetVoCDetailsByDate',params);
+            return baseSrv.get('GetVoCDetailsByDate', params);
         },
         getVoCDetailsByUser: function (platform, topic, user, index, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.userid = user || 1234;
-            params.index = (index!==undefined)? index : -1;
+            params.index = (index !== undefined) ? index : -1;
             params.PNScope = PNScope || 'all';
             params.days = days || 7;
             return baseSrv.get('GetVoCDetailsByUser', params);
@@ -375,7 +390,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetails', params);
         },
-        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope,IsFuzzyQuery,days) {
+        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, days) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';

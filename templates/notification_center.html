@@ -52,7 +52,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="m in notifications">
+            <tr ng-repeat="m in Notifications.collection">
                 <td>{{m.date}}</td>
                 <td>{{platforms[m.dataSource]}}</td>
                 <td>{{CONST.MESSAGE_TYPES[m.messageType]}}</td>
@@ -61,4 +61,5 @@
         </tbody>
     </table>
     <button type="button" ng-click="adaltest()">adaltest</button>
+    Connection: {{ Notifications.status() }}
 </div>

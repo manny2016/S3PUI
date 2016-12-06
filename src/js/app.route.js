@@ -7,7 +7,10 @@ app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
 
     // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    }).hashPrefix('!');
 
     // $urlRouterProvider.when("", "/home/dashboard");
     // $urlRouterProvider.when("/", "/home/dashboard");
@@ -90,16 +93,16 @@ app
         templateUrl: 'templates/notification_center.html',
         requireADLogin: true
       });
-      let endpoints = {
-        'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
-      }
+    let endpoints = {
+      'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
+    }
     adalAuthenticationServiceProvider.init({
-        instance: 'https://login.microsoftonline.com/', 
+        instance: 'https://login.microsoftonline.com/',
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
-        endpoints:endpoints,
+        endpoints: endpoints,
         cacheLocation: 'sessionStorage',
-        redirectUri:window.location.origin,
+        redirectUri: window.location.origin,
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
         //   if (popupWindow && popupWindow.focus)
@@ -123,8 +126,8 @@ app
       },
       $httpProvider);
   })
-  .run(function($rootScope,$state,adalAuthenticationService){
-    if ((!$rootScope.userInfo.isAuthenticated)&&(window.location.hash === "")) {
+  .run(function ($rootScope, $state, adalAuthenticationService) {
+    if ((!$rootScope.userInfo.isAuthenticated) && (window.location.hash === "")) {
       $state.go("login");
     }
   })

@@ -13,10 +13,14 @@ app.constant('CONST',{
         '3':'Positive volume post spike detected',
         '4':'Negative volume post spike detected',
         '5':'Services mentioned spike detected',
-        '6':'Influence volume spike detected'
+        '6':'Influence volume spike detected',
+        '7':'Support experience issues',
+        '8':'Possible service outage issues'
     },
     SERVICE_INFO:{
         ENDPOINT:'/DataService/S3PDataService.svc/',
+        // WS:'ws://10.168.176.18/api/SystemDetected/',
+        WS:'ws://localhost:8889/',
         LOCAL_TEST_DATA:'/data/'
     }
 })
