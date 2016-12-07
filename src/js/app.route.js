@@ -93,7 +93,7 @@ app
         templateUrl: 'templates/notification_center.html',
         requireADLogin: true
       });
-    let endpoints = {
+    var endpoints = {
       'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
     }
     adalAuthenticationServiceProvider.init({
@@ -101,7 +101,7 @@ app
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
-        cacheLocation: 'sessionStorage',
+        // cacheLocation: 'sessionStorage',
         redirectUri: window.location.origin,
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');

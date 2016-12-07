@@ -44,12 +44,12 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     }
 });
 
-app.factory('Notifications', function ($websocket, baseSrv, CONST) {
-    let ws = $websocket(CONST.SERVICE_INFO.WS);
-    let collection = [];
-    let unReadMessage = 0;
+app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
+    var ws = $websocket(CONST.SERVICE_INFO.WS);
+    var collection = [];
     ws.onMessage(function (event) {
         console.log(event);
+        console.log($state)
         collection.push(JSON.parse(event.data));
     });
     ws.onError(function (event) {
@@ -63,6 +63,9 @@ app.factory('Notifications', function ($websocket, baseSrv, CONST) {
         collection: collection,
         status: function () {
             return ws.readyState;
+        },
+        clearUnRead:function(){
+            unReadMessage = 0;
         },
         send: function (message) {
             if (angular.isString(message)) {
