@@ -310,6 +310,57 @@
                         </table>
                     </div>
                 </div>
+                <div class="two column row">
+                    <ng-echart title="Area Distribution for Positive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                    <ng-echart title="Area Distribution for Nagetive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                </div>
+            </div>
+        </div>
+        <div id="userdistribution" class="ui violet segment">
+            <h3 class="ui center aligned header title violet">
+                User Distribution
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui grid content">
+                <div class="two column row">
+                    <ng-echart title="User Distribution" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution" location='home'
+                        sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                    <div class="column">
+                        <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
+                            <thead>
+                                <tr>
+                                    <th st-sort="attachedobject">Language</th>
+                                    <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Volume</th>
+                                    <th st-sort="vocinfluence.ratio" st-skip-natural="true">Ratio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="ui icon input">
+                                            <input type="search" st-search placeholder="Search ...">
+                                            <i class="search icon"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="item in stTable2">
+                                    <td>{{item.attachedobject}}</td>
+                                    <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
+                                    <td width="100">{{item.vocinfluence.ratio|percentage}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">
+                                        <div st-items-by-page="5" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <!--<div class="ui hidden divider"></div>-->
@@ -379,6 +430,13 @@
                     <a du-smooth-scroll="analytics" du-scrollspy offset="300">
                         <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
                             <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="userdistribution" du-scrollspy offset="300">
+                        <div class="ui label" set-color="violet" data-content="User Distribution" data-variation="mini inverted">
+                            <i class="icon map"></i> <span ng-hide="isSmall">User Distribution</span>
                         </div>
                     </a>
                 </div>

@@ -101,7 +101,7 @@ app
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
-        // cacheLocation: 'sessionStorage',
+        cacheLocation: 'localStorage',
         redirectUri: window.location.origin,
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');

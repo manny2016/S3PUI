@@ -48,8 +48,8 @@ app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
     var ws = $websocket(CONST.SERVICE_INFO.WS);
     var collection = [];
     ws.onMessage(function (event) {
-        console.log(event);
-        console.log($state)
+        // console.log(event);
+        // console.log($state)
         collection.push(JSON.parse(event.data));
     });
     ws.onError(function (event) {
@@ -239,6 +239,15 @@ app.factory('testSrv', function (baseSrv) {
             params.IsFuzzyQuery = IsFuzzyQuery || 'true';
             params.days = days || 7;
             return baseSrv.devGet('subwindow' + '.' + params.platform, params);
+        },
+        getSysDetections : function(forumName,msgType,downloadable,bgTime,egTime){
+            var params = params || {};
+            params.forumName = forumName || 'all';
+            params.msgType = msgType || 'all';
+            params.downloadable = downloadable || 'all';
+            params.bgTime = bgTime || 0;
+            params.egTime = egTime || 0;
+            return baseSrv.devGet('GetSysDetections', params);
         }
     }
 })
@@ -402,6 +411,15 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.IsFuzzyQuery = IsFuzzyQuery || 'false';
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
+        },
+        getSysDetections : function(forumName,msgType,downloadable,bgTime,egTime){
+            var params = params || {};
+            params.forumName = forumName || 'all';
+            params.msgType = msgType || 'all';
+            params.downloadable = downloadable || 'all';
+            params.bgTime = bgTime || 0;
+            params.egTime = egTime || 0;
+            return baseSrv.get('GetSysDetections', params);
         }
     }
 })

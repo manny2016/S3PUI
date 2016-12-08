@@ -24,6 +24,7 @@
     "adal-angular": "^1.0.12",
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
+    "angular-sanitize": "^1.5.9",
     "angular-scroll": "^1.0.0",
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^1.0.0-beta.2",

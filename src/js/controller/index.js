@@ -1,4 +1,5 @@
-var app = angular.module('app.Ctrl', ['720kb.datepicker']);
+require('angular-sanitize');
+var app = angular.module('app.Ctrl', ['720kb.datepicker','ngSanitize']);
 
 // app.controller('testCtrl',require('./testCtrl'));
 app.controller('homeCtrl',require('./homeCtrl'));

@@ -35,7 +35,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             noPop: "@",
             association: "@",
             swithTool: "@",
-            noSwap:"@"
+            noSwap: "@"
         },
         link: function (scope, element, attrs) {
             var _ = scope;
@@ -66,11 +66,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     case 'hourly':
                         _.chartOpt = initHourlyChartOpt(_);
                         break;
+                    case 'world':
+                        _.chartOpt = initWorldChartOpt(_);
+                        break;
                     default:
                         _.chartOpt = initAxisChartOpt(_);
                         break;
                 }
-            } ();
+            }();
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.chartObj.on('click', function (params) {
                 if (params.value === 0) return;
@@ -234,37 +237,37 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 }, this);
                                 // console.log(_.raw);
                                 var fnPromises = _.platforms.map(function (item) {
-                                    return apiFn(item, _.query.topic, _.pnscope, _.query.days).then(function (data) {
-                                        var seriesData = data.map(function (raw) {
-                                            // var tmp = { name: item };
-                                            switch (_.pnscope) {
-                                                case 'posi':
-                                                    var value = raw.vocinfluence.positiveinfluencedvol
-                                                    break;
-                                                case 'neg':
-                                                    var value = raw.vocinfluence.negativeinfluencedvol
-                                                    break;
-                                                case 'neu':
-                                                    var value = raw.vocinfluence.neutralinfluencedvol
-                                                    break;
-                                                case 'undif':
-                                                    var value = raw.vocinfluence.undefinedinfluencedvol
-                                                    break;
-                                                default:
-                                                    var value = raw.vocinfluence.vocinfluencedvol
-                                                    break;
-                                            }
-                                            // tmp.value = value;
-                                            // return tmp;
-                                            return value;
+                                        return apiFn(item, _.query.topic, _.pnscope, _.query.days).then(function (data) {
+                                            var seriesData = data.map(function (raw) {
+                                                // var tmp = { name: item };
+                                                switch (_.pnscope) {
+                                                    case 'posi':
+                                                        var value = raw.vocinfluence.positiveinfluencedvol
+                                                        break;
+                                                    case 'neg':
+                                                        var value = raw.vocinfluence.negativeinfluencedvol
+                                                        break;
+                                                    case 'neu':
+                                                        var value = raw.vocinfluence.neutralinfluencedvol
+                                                        break;
+                                                    case 'undif':
+                                                        var value = raw.vocinfluence.undefinedinfluencedvol
+                                                        break;
+                                                    default:
+                                                        var value = raw.vocinfluence.vocinfluencedvol
+                                                        break;
+                                                }
+                                                // tmp.value = value;
+                                                // return tmp;
+                                                return value;
+                                            })
+                                            _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
+                                                return previousValue + currentValue;
+                                            }, 0))
+                                            _.hasData = true;
                                         })
-                                        _.raw[item] = (seriesData.reduce(function (previousValue, currentValue, currentIndex, array) {
-                                            return previousValue + currentValue;
-                                        }, 0))
-                                        _.hasData = true;
                                     })
-                                })
-                                // console.log(fnPromises);
+                                    // console.log(fnPromises);
                                 $q.all(fnPromises).then(function () {
                                     var config = customHoriBarData(_);
                                     _.chartOpt = angular.merge(_.chartOpt, config);
@@ -369,6 +372,17 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
+                        case 'getWorldDistribution':
+                            // var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = $q.resolve(true);
+                            var fn = customWorldData;
+                            _.hasData = true;
+                            fn(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
                     }
                 }
             }
@@ -399,17 +413,16 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 }
             });
             _.$on('set-sub-widows-charts-data', function (evt, arg) {
-                if (attrs.location !== 'sub') return;
-                var config = {};
-                switch (_.type) {
-                    case 'pie':
-                        var raw = arg.data;
-                        _.validData(raw);
-                        // console.log(raw);
-                        config = {
-                            series: [{
-                                data: [
-                                    {
+                    if (attrs.location !== 'sub') return;
+                    var config = {};
+                    switch (_.type) {
+                        case 'pie':
+                            var raw = arg.data;
+                            _.validData(raw);
+                            // console.log(raw);
+                            config = {
+                                series: [{
+                                    data: [{
                                         value: raw.vocpositivecount,
                                         name: 'POS',
                                         // itemStyle: {
@@ -417,54 +430,55 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                         //         color: '#91c7ae'
                                         //     }
                                         // }
-                                    },
-                                    {
+                                    }, {
                                         value: raw.vocneutralcount,
                                         name: 'NEU'
                                     }, {
                                         value: raw.vocnegativecount,
                                         name: 'NEG'
                                     }]
-                            }],
-                            title: {
-                                text: _.title || ''
+                                }],
+                                title: {
+                                    text: _.title || ''
+                                }
+                            };
+                            break;
+                        case 'wordcloud':
+                            var raw = arg.data.vocmentionedmost;
+                            _.validData(raw);
+                            var seriesData = raw.map(function (item) {
+                                var tmp = {
+                                    name: item.attachedobject
+                                };
+                                switch (_.pnscope) {
+                                    case 'posi':
+                                        var value = item.vocinfluence.positivetotalvol
+                                        break;
+                                    case 'neg':
+                                        var value = item.vocinfluence.negativetotalvol
+                                        break;
+                                    default:
+                                        var value = item.vocinfluence.voctotalvol
+                                        break;
+                                }
+                                tmp.value = value;
+                                return tmp;
+                            });
+                            config = {
+                                series: {
+                                    data: seriesData
+                                },
+                                title: {
+                                    text: _.title || ''
+                                }
                             }
-                        };
-                        break;
-                    case 'wordcloud':
-                        var raw = arg.data.vocmentionedmost;
-                        _.validData(raw);
-                        var seriesData = raw.map(function (item) {
-                            var tmp = { name: item.attachedobject };
-                            switch (_.pnscope) {
-                                case 'posi':
-                                    var value = item.vocinfluence.positivetotalvol
-                                    break;
-                                case 'neg':
-                                    var value = item.vocinfluence.negativetotalvol
-                                    break;
-                                default:
-                                    var value = item.vocinfluence.voctotalvol
-                                    break;
-                            }
-                            tmp.value = value;
-                            return tmp;
-                        });
-                        config = {
-                            series: {
-                                data: seriesData
-                            },
-                            title: {
-                                text: _.title || ''
-                            }
-                        }
-                        break;
-                }
-                _.chartOpt = angular.merge(_.chartOpt, config);
-                initChart(_.chartObj, _.chartOpt);
-                _.complete = true;
-            })
-            // watch window resize
+                            break;
+                    }
+                    _.chartOpt = angular.merge(_.chartOpt, config);
+                    initChart(_.chartObj, _.chartOpt);
+                    _.complete = true;
+                })
+                // watch window resize
             _.validData = function (data) {
                 _.hasData = !isEmpty(data);
                 // if (isEmpty(data)) {
@@ -555,7 +569,9 @@ function customInfluenceData(fnPromise, scope) {
                 break;
         }
         return {
-            xAxis: { data: scope.$root.dateList },
+            xAxis: {
+                data: scope.$root.dateList
+            },
             series: [{
                 name: 'Influence Vol',
                 type: 'line',
@@ -580,13 +596,16 @@ function customInfluenceData(fnPromise, scope) {
         return fn(data);
     })
 }
+
 function customSpikesData(fnPromise, scope) {
     var simpleSeries = function (raw) {
         var seriesData = raw.map(function (item) {
             return item.dailyspikevol
         })
         return {
-            xAxis: { data: scope.$root.dateList },
+            xAxis: {
+                data: scope.$root.dateList
+            },
             series: [{
                 name: 'Spikes',
                 type: 'bar',
@@ -606,35 +625,35 @@ function customSpikesData(fnPromise, scope) {
         })
 
         return {
-            xAxis: { data: scope.$root.dateList },
+            xAxis: {
+                data: scope.$root.dateList
+            },
             grid: {
                 width: '75%'
             },
-            yAxis: [
-                {
-                    type: 'value',
-                    name: 'Spike',
-                    nameTextStyle: {
-                        color: '#2ec7c9'
-                    }
-                }, {
-                    type: 'value',
-                    name: 'VoC',
-                    nameTextStyle: {
-                        color: '#baa7e0'
-                    }
+            yAxis: [{
+                type: 'value',
+                name: 'Spike',
+                nameTextStyle: {
+                    color: '#2ec7c9'
                 }
-            ],
+            }, {
+                type: 'value',
+                name: 'VoC',
+                nameTextStyle: {
+                    color: '#baa7e0'
+                }
+            }],
             series: [{
                 name: 'Spikes',
                 type: 'line',
                 data: barData
             }, {
-                    name: 'VoC',
-                    yAxisIndex: 1,
-                    type: 'bar',
-                    data: lineData
-                }],
+                name: 'VoC',
+                yAxisIndex: 1,
+                type: 'bar',
+                data: lineData
+            }],
             title: {
                 text: scope.title || ''
             }
@@ -663,7 +682,9 @@ function customSpikesData(fnPromise, scope) {
                 break;
         }
         return {
-            xAxis: { data: scope.$root.dateList },
+            xAxis: {
+                data: scope.$root.dateList
+            },
             series: [{
                 name: 'Influence Vol',
                 type: 'line',
@@ -705,24 +726,21 @@ function customDistributionData(fnPromise, scope) {
         scope.validData(data);
         return {
             series: [{
-                data: [
-                    {
-                        value: data.positivetotalvol,
-                        name: 'POS',
-                        // itemStyle: {
-                        //     normal: {
-                        //         color: '#91c7ae'
-                        //     }
-                        // }
-                    },
-                    {
-                        value: data.neutraltotalvol,
-                        name: 'NEU'
-                    },
-                    {
-                        value: data.negativetotalvol,
-                        name: 'NEG'
-                    }]
+                data: [{
+                    value: data.positivetotalvol,
+                    name: 'POS',
+                    // itemStyle: {
+                    //     normal: {
+                    //         color: '#91c7ae'
+                    //     }
+                    // }
+                }, {
+                    value: data.neutraltotalvol,
+                    name: 'NEU'
+                }, {
+                    value: data.negativetotalvol,
+                    name: 'NEG'
+                }]
             }],
             title: {
                 text: scope.title || ''
@@ -736,7 +754,9 @@ function customWordCloudData(fnPromise, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
         var seriesData = data.map(function (item) {
-            var tmp = { name: item.attachedobject };
+            var tmp = {
+                name: item.attachedobject
+            };
             switch (pnscope) {
                 case 'posi':
                     var value = item.vocinfluence.positivetotalvol
@@ -768,7 +788,9 @@ function customServicesDistributionData(fnPromise, scope) {
         scope.validData(data);
         var legendData = [];
         var seriesData = data.map(function (item) {
-            var tmp = { name: item.attachedobject };
+            var tmp = {
+                name: item.attachedobject
+            };
             switch (propertySelect) {
                 case 'messages':
                     var value = item.vocinfluence.voctotalvol
@@ -785,11 +807,12 @@ function customServicesDistributionData(fnPromise, scope) {
             return tmp;
         })
         seriesData = scope.order(seriesData, '-value')
-        // debugger;
-        // if (seriesData.length > 11) {
+            // debugger;
+            // if (seriesData.length > 11) {
         var tops = seriesData.slice(0, 10);
         var rest = seriesData.slice(10);
-        var sum = 0, total = 0;
+        var sum = 0,
+            total = 0;
         for (var i = 0; i < tops.length; i++) {
             total += tops[i]['value'];
         }
@@ -799,13 +822,18 @@ function customServicesDistributionData(fnPromise, scope) {
         total += sum;
         if (seriesData.length > 11) {
             var other = {
-                name: 'Others', value: sum
+                name: 'Others',
+                value: sum
             }
             tops.push(other);
         }
         seriesData = tops;
         // console.log(scope);
-        scope.$root.$broadcast('set-mentioned-table-data', { data: rest, total: total, association: scope.association });
+        scope.$root.$broadcast('set-mentioned-table-data', {
+            data: rest,
+            total: total,
+            association: scope.association
+        });
         // }
         return {
             series: [{
@@ -824,11 +852,11 @@ function customServicesDistributionData(fnPromise, scope) {
                         icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
                         onclick: function () {
                             scope.swithside()
-                            // var chart = '<ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform="'+scope.platform+'" query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>';
-                            // // scope.compile(chart);
-                            // var dom = "<div class='ui fullscreen modal'>"+chart+"</div>";
-                            // scope.compile(chart,dom);
-                            // $(dom).modal('show')
+                                // var chart = '<ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform="'+scope.platform+'" query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>';
+                                // // scope.compile(chart);
+                                // var dom = "<div class='ui fullscreen modal'>"+chart+"</div>";
+                                // scope.compile(chart,dom);
+                                // $(dom).modal('show')
 
                         }
                     }
@@ -860,34 +888,590 @@ function customHoriBarData(scope) {
     };
 }
 
-function customHourlyData(fnPromise, key, utility, scope) {
-    var seriesData = [], xAxisDate = [];
-    return fnPromise.then(function (data) {
-        scope.validData(data);
-        data.map(function (item) {
-            var tmp = {};
-            xAxisDate.push(utility.timeToString(item.attachedobject.timeslot));
-            if (item.attachedobject.isspike) {
-                var entity = {
-                    value: item.vocinfluence[key],
-                    symbol: 'pin',
-                    symbolSize: 20,
-                    label: {
-                        normal: {
+function customWorldData(fnPromise, scope) {
+    return fnPromise.then(function(){
+        return {
+            series: [{
+                name: scope.title,
+                type: 'map',
+                mapType: 'world',
+                roam: true,
+                itemStyle: {
+                    emphasis: {
+                        label: {
                             show: true
                         }
                     }
-                };
-            } else {
-                var entity = {
-                    value: item.vocinfluence[key],
-                    symbolSize: 4
-                };
+                },
+                data: [{
+                    name: 'Afghanistan',
+                    value: 28397.812
+                }, {
+                    name: 'Angola',
+                    value: 19549.124
+                }, {
+                    name: 'Albania',
+                    value: 3150.143
+                }, {
+                    name: 'United Arab Emirates',
+                    value: 8441.537
+                }, {
+                    name: 'Argentina',
+                    value: 40374.224
+                }, {
+                    name: 'Armenia',
+                    value: 2963.496
+                }, {
+                    name: 'French Southern and Antarctic Lands',
+                    value: 268.065
+                }, {
+                    name: 'Australia',
+                    value: 22404.488
+                }, {
+                    name: 'Austria',
+                    value: 8401.924
+                }, {
+                    name: 'Azerbaijan',
+                    value: 9094.718
+                }, {
+                    name: 'Burundi',
+                    value: 9232.753
+                }, {
+                    name: 'Belgium',
+                    value: 10941.288
+                }, {
+                    name: 'Benin',
+                    value: 9509.798
+                }, {
+                    name: 'Burkina Faso',
+                    value: 15540.284
+                }, {
+                    name: 'Bangladesh',
+                    value: 151125.475
+                }, {
+                    name: 'Bulgaria',
+                    value: 7389.175
+                }, {
+                    name: 'The Bahamas',
+                    value: 66402.316
+                }, {
+                    name: 'Bosnia and Herzegovina',
+                    value: 3845.929
+                }, {
+                    name: 'Belarus',
+                    value: 9491.07
+                }, {
+                    name: 'Belize',
+                    value: 308.595
+                }, {
+                    name: 'Bermuda',
+                    value: 64.951
+                }, {
+                    name: 'Bolivia',
+                    value: 716.939
+                }, {
+                    name: 'Brazil',
+                    value: 195210.154
+                }, {
+                    name: 'Brunei',
+                    value: 27.223
+                }, {
+                    name: 'Bhutan',
+                    value: 716.939
+                }, {
+                    name: 'Botswana',
+                    value: 1969.341
+                }, {
+                    name: 'Central African Republic',
+                    value: 4349.921
+                }, {
+                    name: 'Canada',
+                    value: 34126.24
+                }, {
+                    name: 'Switzerland',
+                    value: 7830.534
+                }, {
+                    name: 'Chile',
+                    value: 17150.76
+                }, {
+                    name: 'China',
+                    value: 1359821.465
+                }, {
+                    name: 'Ivory Coast',
+                    value: 60508.978
+                }, {
+                    name: 'Cameroon',
+                    value: 20624.343
+                }, {
+                    name: 'Democratic Republic of the Congo',
+                    value: 62191.161
+                }, {
+                    name: 'Republic of the Congo',
+                    value: 3573.024
+                }, {
+                    name: 'Colombia',
+                    value: 46444.798
+                }, {
+                    name: 'Costa Rica',
+                    value: 4669.685
+                }, {
+                    name: 'Cuba',
+                    value: 11281.768
+                }, {
+                    name: 'Northern Cyprus',
+                    value: 1.468
+                }, {
+                    name: 'Cyprus',
+                    value: 1103.685
+                }, {
+                    name: 'Czech Republic',
+                    value: 10553.701
+                }, {
+                    name: 'Germany',
+                    value: 83017.404
+                }, {
+                    name: 'Djibouti',
+                    value: 834.036
+                }, {
+                    name: 'Denmark',
+                    value: 5550.959
+                }, {
+                    name: 'Dominican Republic',
+                    value: 10016.797
+                }, {
+                    name: 'Algeria',
+                    value: 37062.82
+                }, {
+                    name: 'Ecuador',
+                    value: 15001.072
+                }, {
+                    name: 'Egypt',
+                    value: 78075.705
+                }, {
+                    name: 'Eritrea',
+                    value: 5741.159
+                }, {
+                    name: 'Spain',
+                    value: 46182.038
+                }, {
+                    name: 'Estonia',
+                    value: 1298.533
+                }, {
+                    name: 'Ethiopia',
+                    value: 87095.281
+                }, {
+                    name: 'Finland',
+                    value: 5367.693
+                }, {
+                    name: 'Fiji',
+                    value: 860.559
+                }, {
+                    name: 'Falkland Islands',
+                    value: 49.581
+                }, {
+                    name: 'France',
+                    value: 63230.866
+                }, {
+                    name: 'Gabon',
+                    value: 1556.222
+                }, {
+                    name: 'United Kingdom',
+                    value: 62066.35
+                }, {
+                    name: 'Georgia',
+                    value: 4388.674
+                }, {
+                    name: 'Ghana',
+                    value: 24262.901
+                }, {
+                    name: 'Guinea',
+                    value: 10876.033
+                }, {
+                    name: 'Gambia',
+                    value: 1680.64
+                }, {
+                    name: 'Guinea Bissau',
+                    value: 10876.033
+                }, {
+                    name: 'Equatorial Guinea',
+                    value: 696.167
+                }, {
+                    name: 'Greece',
+                    value: 11109.999
+                }, {
+                    name: 'Greenland',
+                    value: 56.546
+                }, {
+                    name: 'Guatemala',
+                    value: 14341.576
+                }, {
+                    name: 'French Guiana',
+                    value: 231.169
+                }, {
+                    name: 'Guyana',
+                    value: 786.126
+                }, {
+                    name: 'Honduras',
+                    value: 7621.204
+                }, {
+                    name: 'Croatia',
+                    value: 4338.027
+                }, {
+                    name: 'Haiti',
+                    value: 9896.4
+                }, {
+                    name: 'Hungary',
+                    value: 10014.633
+                }, {
+                    name: 'Indonesia',
+                    value: 240676.485
+                }, {
+                    name: 'India',
+                    value: 1205624.648
+                }, {
+                    name: 'Ireland',
+                    value: 4467.561
+                }, {
+                    name: 'Iran',
+                    value: 240676.485
+                }, {
+                    name: 'Iraq',
+                    value: 30962.38
+                }, {
+                    name: 'Iceland',
+                    value: 318.042
+                }, {
+                    name: 'Israel',
+                    value: 7420.368
+                }, {
+                    name: 'Italy',
+                    value: 60508.978
+                }, {
+                    name: 'Jamaica',
+                    value: 2741.485
+                }, {
+                    name: 'Jordan',
+                    value: 6454.554
+                }, {
+                    name: 'Japan',
+                    value: 127352.833
+                }, {
+                    name: 'Kazakhstan',
+                    value: 15921.127
+                }, {
+                    name: 'Kenya',
+                    value: 40909.194
+                }, {
+                    name: 'Kyrgyzstan',
+                    value: 5334.223
+                }, {
+                    name: 'Cambodia',
+                    value: 14364.931
+                }, {
+                    name: 'South Korea',
+                    value: 51452.352
+                }, {
+                    name: 'Kosovo',
+                    value: 97.743
+                }, {
+                    name: 'Kuwait',
+                    value: 2991.58
+                }, {
+                    name: 'Laos',
+                    value: 6395.713
+                }, {
+                    name: 'Lebanon',
+                    value: 4341.092
+                }, {
+                    name: 'Liberia',
+                    value: 3957.99
+                }, {
+                    name: 'Libya',
+                    value: 6040.612
+                }, {
+                    name: 'Sri Lanka',
+                    value: 20758.779
+                }, {
+                    name: 'Lesotho',
+                    value: 2008.921
+                }, {
+                    name: 'Lithuania',
+                    value: 3068.457
+                }, {
+                    name: 'Luxembourg',
+                    value: 507.885
+                }, {
+                    name: 'Latvia',
+                    value: 2090.519
+                }, {
+                    name: 'Morocco',
+                    value: 31642.36
+                }, {
+                    name: 'Moldova',
+                    value: 103.619
+                }, {
+                    name: 'Madagascar',
+                    value: 21079.532
+                }, {
+                    name: 'Mexico',
+                    value: 117886.404
+                }, {
+                    name: 'Macedonia',
+                    value: 507.885
+                }, {
+                    name: 'Mali',
+                    value: 13985.961
+                }, {
+                    name: 'Myanmar',
+                    value: 51931.231
+                }, {
+                    name: 'Montenegro',
+                    value: 620.078
+                }, {
+                    name: 'Mongolia',
+                    value: 2712.738
+                }, {
+                    name: 'Mozambique',
+                    value: 23967.265
+                }, {
+                    name: 'Mauritania',
+                    value: 3609.42
+                }, {
+                    name: 'Malawi',
+                    value: 15013.694
+                }, {
+                    name: 'Malaysia',
+                    value: 28275.835
+                }, {
+                    name: 'Namibia',
+                    value: 2178.967
+                }, {
+                    name: 'New Caledonia',
+                    value: 246.379
+                }, {
+                    name: 'Niger',
+                    value: 15893.746
+                }, {
+                    name: 'Nigeria',
+                    value: 159707.78
+                }, {
+                    name: 'Nicaragua',
+                    value: 5822.209
+                }, {
+                    name: 'Netherlands',
+                    value: 16615.243
+                }, {
+                    name: 'Norway',
+                    value: 4891.251
+                }, {
+                    name: 'Nepal',
+                    value: 26846.016
+                }, {
+                    name: 'New Zealand',
+                    value: 4368.136
+                }, {
+                    name: 'Oman',
+                    value: 2802.768
+                }, {
+                    name: 'Pakistan',
+                    value: 173149.306
+                }, {
+                    name: 'Panama',
+                    value: 3678.128
+                }, {
+                    name: 'Peru',
+                    value: 29262.83
+                }, {
+                    name: 'Philippines',
+                    value: 93444.322
+                }, {
+                    name: 'Papua New Guinea',
+                    value: 6858.945
+                }, {
+                    name: 'Poland',
+                    value: 38198.754
+                }, {
+                    name: 'Puerto Rico',
+                    value: 3709.671
+                }, {
+                    name: 'North Korea',
+                    value: 1.468
+                }, {
+                    name: 'Portugal',
+                    value: 10589.792
+                }, {
+                    name: 'Paraguay',
+                    value: 6459.721
+                }, {
+                    name: 'Qatar',
+                    value: 1749.713
+                }, {
+                    name: 'Romania',
+                    value: 21861.476
+                }, {
+                    name: 'Russia',
+                    value: 21861.476
+                }, {
+                    name: 'Rwanda',
+                    value: 10836.732
+                }, {
+                    name: 'Western Sahara',
+                    value: 514.648
+                }, {
+                    name: 'Saudi Arabia',
+                    value: 27258.387
+                }, {
+                    name: 'Sudan',
+                    value: 35652.002
+                }, {
+                    name: 'South Sudan',
+                    value: 9940.929
+                }, {
+                    name: 'Senegal',
+                    value: 12950.564
+                }, {
+                    name: 'Solomon Islands',
+                    value: 526.447
+                }, {
+                    name: 'Sierra Leone',
+                    value: 5751.976
+                }, {
+                    name: 'El Salvador',
+                    value: 6218.195
+                }, {
+                    name: 'Somaliland',
+                    value: 9636.173
+                }, {
+                    name: 'Somalia',
+                    value: 9636.173
+                }, {
+                    name: 'Republic of Serbia',
+                    value: 3573.024
+                }, {
+                    name: 'Suriname',
+                    value: 524.96
+                }, {
+                    name: 'Slovakia',
+                    value: 5433.437
+                }, {
+                    name: 'Slovenia',
+                    value: 2054.232
+                }, {
+                    name: 'Sweden',
+                    value: 9382.297
+                }, {
+                    name: 'Swaziland',
+                    value: 1193.148
+                }, {
+                    name: 'Syria',
+                    value: 7830.534
+                }, {
+                    name: 'Chad',
+                    value: 11720.781
+                }, {
+                    name: 'Togo',
+                    value: 6306.014
+                }, {
+                    name: 'Thailand',
+                    value: 66402.316
+                }, {
+                    name: 'Tajikistan',
+                    value: 7627.326
+                }, {
+                    name: 'Turkmenistan',
+                    value: 5041.995
+                }, {
+                    name: 'East Timor',
+                    value: 10016.797
+                }, {
+                    name: 'Trinidad and Tobago',
+                    value: 1328.095
+                }, {
+                    name: 'Tunisia',
+                    value: 10631.83
+                }, {
+                    name: 'Turkey',
+                    value: 72137.546
+                }, {
+                    name: 'United Republic of Tanzania',
+                    value: 44973.33
+                }, {
+                    name: 'Uganda',
+                    value: 33987.213
+                }, {
+                    name: 'Ukraine',
+                    value: 46050.22
+                }, {
+                    name: 'Uruguay',
+                    value: 3371.982
+                }, {
+                    name: 'United States of America',
+                    value: 312247.116
+                }, {
+                    name: 'Uzbekistan',
+                    value: 27769.27
+                }, {
+                    name: 'Venezuela',
+                    value: 236.299
+                }, {
+                    name: 'Vietnam',
+                    value: 89047.397
+                }, {
+                    name: 'Vanuatu',
+                    value: 236.299
+                }, {
+                    name: 'West Bank',
+                    value: 13.565
+                }, {
+                    name: 'Yemen',
+                    value: 22763.008
+                }, {
+                    name: 'South Africa',
+                    value: 51452.352
+                }, {
+                    name: 'Zambia',
+                    value: 13216.985
+                }, {
+                    name: 'Zimbabwe',
+                    value: 13076.978
+                }]
+            }],
+            title: {
+                text: scope.title || ''
             }
-            // console.log(entity)
-            seriesData.push(entity);
-        })
-        // console.log(xAxisDate)
+        }
+    });
+}
+
+function customHourlyData(fnPromise, key, utility, scope) {
+    var seriesData = [],
+        xAxisDate = [];
+    return fnPromise.then(function (data) {
+        scope.validData(data);
+        data.map(function (item) {
+                var tmp = {};
+                xAxisDate.push(utility.timeToString(item.attachedobject.timeslot));
+                if (item.attachedobject.isspike) {
+                    var entity = {
+                        value: item.vocinfluence[key],
+                        symbol: 'pin',
+                        symbolSize: 20,
+                        label: {
+                            normal: {
+                                show: true
+                            }
+                        }
+                    };
+                } else {
+                    var entity = {
+                        value: item.vocinfluence[key],
+                        symbolSize: 4
+                    };
+                }
+                // console.log(entity)
+                seriesData.push(entity);
+            })
+            // console.log(xAxisDate)
         return {
             series: [{
                 name: 'Vol',
@@ -924,21 +1508,22 @@ function initAxisChartOpt(scope) {
             show: false,
             trigger: 'axis',
             feature: {
-                saveAsImage: { show: true, title: "Save as Image" }
+                saveAsImage: {
+                    show: true,
+                    title: "Save as Image"
+                }
             }
         },
         xAxis: {
             type: 'category',
             data: []
         },
-        yAxis: [
-            {
-                type: 'value',
-                axisLabel: {
-                    formatter: '{value}'
-                }
+        yAxis: [{
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
             }
-        ],
+        }],
         series: []
     };
     return opt;
@@ -963,14 +1548,19 @@ function initHoriChartOpt(scope) {
             show: false,
             trigger: 'axis',
             feature: {
-                saveAsImage: { show: true, title: "Save as Image" }
+                saveAsImage: {
+                    show: true,
+                    title: "Save as Image"
+                }
             }
         },
         xAxis: {
             type: 'value',
             axisLabel: {
                 // rotate:45,
-                formatter: function (value) { return scope.thousandsuffix(value, 1) }
+                formatter: function (value) {
+                    return scope.thousandsuffix(value, 1)
+                }
             }
         },
         yAxis: {
@@ -981,6 +1571,7 @@ function initHoriChartOpt(scope) {
     };
     return opt;
 }
+
 function initBarLineChartOpt(scope) {
     var opt = {
         title: {
@@ -995,21 +1586,22 @@ function initBarLineChartOpt(scope) {
             show: false,
             trigger: 'axis',
             feature: {
-                saveAsImage: { show: true, title: "Save as Image" }
+                saveAsImage: {
+                    show: true,
+                    title: "Save as Image"
+                }
             }
         },
         xAxis: {
             type: 'category',
             data: []
         },
-        yAxis: [
-            {
-                type: 'value',
-                axisLabel: {
-                    formatter: '{value}'
-                }
+        yAxis: [{
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
             }
-        ],
+        }],
         series: []
     };
 }
@@ -1046,28 +1638,26 @@ function initPieChartOpt(scope) {
             },
             show: true
         },
-        series: [
-            {
-                name: 'Tech Scope Distribution',
-                type: 'pie',
-                radius: ['35%', '55%'],
-                label: {
-                    normal: {
-                        label: {
-                            show: true
-                        },
-                        labelLine: {
-                            show: true
-                        },
-                        formatter: '{b}\n ({d}%)'
-                    }
-                },
-                data: []
-            }
-        ]
+        series: [{
+            name: 'Tech Scope Distribution',
+            type: 'pie',
+            radius: ['35%', '55%'],
+            label: {
+                normal: {
+                    label: {
+                        show: true
+                    },
+                    labelLine: {
+                        show: true
+                    },
+                    formatter: '{b}\n ({d}%)'
+                }
+            },
+            data: []
+        }]
     };
-    if(scope.noSwap==="true"){
-        opt.toolbox.show=false;
+    if (scope.noSwap === "true") {
+        opt.toolbox.show = false;
     }
     return opt;
 }
@@ -1131,7 +1721,10 @@ function initHourlyChartOpt(scope) {
             show: false,
             trigger: 'axis',
             feature: {
-                saveAsImage: { show: true, title: "Save as Image" }
+                saveAsImage: {
+                    show: true,
+                    title: "Save as Image"
+                }
             }
         },
         dataZoom: [{
@@ -1140,15 +1733,50 @@ function initHourlyChartOpt(scope) {
             start: 0,
             end: 100
         }, {
-                type: 'inside',
-                realtime: true,
-                start: 0,
-                end: 100
-            }],
+            type: 'inside',
+            realtime: true,
+            start: 0,
+            end: 100
+        }],
         xAxis: {
             data: []
         },
         yAxis: {},
+        series: []
+    };
+    return opt;
+}
+
+function initWorldChartOpt(scope) {
+    var opt = {
+        title: {
+            textStyle: {
+                fontSize: 13
+            }
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        toolbox: {
+            show: false,
+            trigger: 'axis',
+            feature: {
+                saveAsImage: {
+                    show: true,
+                    title: "Save as Image"
+                }
+            }
+        },
+        visualMap: {
+            min: 0,
+            max: 1000000,
+            text: ['High', 'Low'],
+            realtime: false,
+            calculable: true,
+            inRange: {
+                color: ['lightskyblue', 'yellow', 'orangered']
+            }
+        },
         series: []
     };
     return opt;

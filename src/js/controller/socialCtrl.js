@@ -144,7 +144,39 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.statistic = data;
             $scope.$broadcast('data-got');
         })
-    }
+    };
+
+    //test language distribution fake data
+    $scope.languageDistribution = [
+        {
+            attachedobject:'Chinese',
+            vocinfluence:{
+                voctotalvol: 95502120230,
+                ratio:0.331
+            }   
+        },
+        {
+            attachedobject:'English',
+            vocinfluence:{
+                voctotalvol: 33502120230,
+                ratio:0.111
+            }   
+        },
+        {
+            attachedobject:'Arabic',
+            vocinfluence:{
+                voctotalvol: 30002120230,
+                ratio:0.101
+            }   
+        },
+        {
+            attachedobject:'Portuguese',
+            vocinfluence:{
+                voctotalvol: 22002120230,
+                ratio:0.091
+            }   
+        }
+    ]
 
 }
 
