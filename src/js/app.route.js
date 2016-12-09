@@ -7,10 +7,10 @@ app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
 
     // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false
-    }).hashPrefix('!');
+    // $locationProvider.html5Mode({
+    //   enabled: true,
+    //   // requireBase: false
+    // }).hashPrefix('!');
 
     // $urlRouterProvider.when("", "/home/dashboard");
     // $urlRouterProvider.when("/", "/home/dashboard");
@@ -102,7 +102,8 @@ app
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
         cacheLocation: 'localStorage',
-        redirectUri: window.location.origin,
+        extraQueryParameter: 'nux=1',
+        redirectUri: window.location.origin+'/',
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
         //   if (popupWindow && popupWindow.focus)

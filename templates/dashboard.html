@@ -84,11 +84,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="m in notifications">
-                            <td>{{m.date}}</td>
-                            <td>{{platforms[m.dataSource]}}</td>
-                            <td>{{CONST.MESSAGE_TYPES[m.messageType]}}</td>
-                            <td>{{m.link}}</td>
+                        <tr ng-repeat="m in collections">
+                            <td>{{m.createdTime|timetostring}}</td>
+                            <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
+                            <td>
+                                <div ng-if="m.hasDetails">
+                                    <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
+                                </div>
+                                <div ng-if="!m.hasDetails">
+                                    {{CONST.MESSAGE_TYPES[m.msgType]}}
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-bind-html="generateDownloadUrl(m)"></div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -4,6 +4,12 @@
         <i class="right angle icon divider"></i>
         <div class="active section">Notification Center</div>
     </div>
+    <div class="ui label blue pull-right">
+        <i class="server icon"></i>
+        Notification Service Connection Status: <span class="text" ng-class="{1:'green',3:'red'}[Notifications.status()]">{{CONST.WS_STATUS[Notifications.status()]}}
+        </span>
+        <a class="" ng-click="Notifications.reconnect()" alt="reconnect to notification server"><i class="refresh icon"></i></a>
+    </div>
     <div class="ui segment form">
         <h5 class="ui header">
             Search
@@ -35,8 +41,8 @@
                         <div class="item" data-value="0">All</div>
                         <div class="item" ng-repeat="(k,v) in CONST.MESSAGE_TYPES" data-value="{{k}}">{{v}}</div>
                     </div>-->
-                    <!--<option value="0">all</option>-->
-                    <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
+                <!--<option value="0">all</option>-->
+                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
                 <!--</div>-->
                 <select class="ui fluid dropdown" ng-model="search.messagetype">
                     <option value="all">All</option>
@@ -63,8 +69,8 @@
                         <div class="item" data-value="1">Available</div>
                         <div class="item" data-value="-1">Unavailable</div>
                     </div>-->
-                    <!--<option value="0">all</option>-->
-                    <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
+                <!--<option value="0">all</option>-->
+                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
                 <!--</div>-->
                 <select class="ui fluid dropdown" ng-model="search.downloadable">
                     <option value="all">All</option>
@@ -86,7 +92,7 @@
         <tbody>
             <tr ng-repeat="m in collections">
                 <td>{{m.createdTime|timetostring}}</td>
-                <td>{{platforms[m.forumName]}}</td>
+                <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
                 <td>
                     <div ng-if="m.hasDetails">
                         <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>

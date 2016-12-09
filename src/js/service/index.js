@@ -64,6 +64,9 @@ app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
         status: function () {
             return ws.readyState;
         },
+        reconnect:function(){
+            ws.reconnect();
+        },
         clearUnRead:function(){
             unReadMessage = 0;
         },

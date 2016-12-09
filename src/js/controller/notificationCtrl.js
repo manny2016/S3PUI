@@ -101,4 +101,5 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
             param: param
         });
     }
+  
 }
