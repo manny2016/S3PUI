@@ -10,6 +10,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
         g: false,
         r: false
     };
+    $('.popup').popup();
     $('#scrollspy .list .item .label').popup();
     $('.ui.accordion').accordion({
             exclusive: false,

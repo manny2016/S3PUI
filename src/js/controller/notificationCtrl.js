@@ -62,6 +62,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
                     $scope.listNotification();
                 }
             });
+            $('.popup').popup();
         }, 50)
     }();
     // $('.admin.cards .card').dimmer({

@@ -15,17 +15,27 @@ app.directive('mentionedTable', require('./mentionedTableDirective'));
 
 app.directive('adminCard', require('./adminCardDirective'));
 app.directive('platformCardContent', require('./platformCardContentDirective'));
-
-// app.directive('onFinishRender', function ($timeout) {
-//     return {
-//         restrict: 'A',
-//         link: function (scope, element, attr) {
-//             $timeout(function () {
-//                 scope.$emit(attr.onFinishRender);
-//             });
-//         }
-//     }
-// });
+// require('./ng-FitText.js');
+app.directive('fittext', function ($timeout) {
+    return {
+        restrict: 'A',
+        scope:{
+            fittext:'=',
+            height:"@"
+        },
+        link: function (scope, element, attr) {
+            var height = element.height();
+            var regexp = /\d+(\.\d+)?/;
+            $timeout(function(){
+                while(element.height()>height){
+                    var fontSize = element.css('font-size').match(regexp);;
+                    element.css('font-size',fontSize - 1);
+                }
+                console.log(element.height());
+            },0);
+        }
+    }
+});
 // app.directive('compile', function ($compile) {
 //     return {
 //         restrict: 'A',

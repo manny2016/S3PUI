@@ -1,4 +1,4 @@
-var app = require('angular').module("app", [
+var app = angular.module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), require('../../node_modules/angular-scroll'), require('angular-smart-table')
 ]);
 app

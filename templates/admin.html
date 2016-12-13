@@ -44,7 +44,26 @@
             Services / Products
         </h4>
         <div class="ui equal width grid admin cards">
-            <div class="column ui card">
+            <admin-card ng-repeat="t in topics" ng-init="$last && init()">
+                <div class="ui card">
+                    <div class="ui hover dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <div class="ui mini buttons">
+                                    <div class="ui inverted button centerr" ng-click="selectTopic(t)"><i class="icon angle double down"></i></div>
+                                    <div class="ui green inverted button"><i class="icon plus"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui unfocus dimmer">
+                    </div>
+                    <div class="content">
+                        <a class="header text center" fittext="t" height="23">{{t}}</a>
+                    </div>
+                </div>
+            </admin-card>
+            <!--<div class="column ui card">
                 <div class="content">
                     <a class="header">Azure</a>
                     <div class="ui hover dimmer">
@@ -56,7 +75,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="ui green segment">
@@ -65,5 +84,3 @@
         </h4>
     </div>
 </div>
-
-{{Notifications.collection.length}}

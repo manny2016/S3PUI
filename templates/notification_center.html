@@ -5,8 +5,7 @@
         <div class="active section">Notification Center</div>
     </div>
     <div class="ui label blue pull-right">
-        <i class="server icon"></i>
-        Notification Service Connection Status: <span class="text" ng-class="{1:'green',3:'red'}[Notifications.status()]">{{CONST.WS_STATUS[Notifications.status()]}}
+        <i class="server icon"></i> Notification Service Connection Status: <span class="text" ng-class="{1:'green',3:'red'}[Notifications.status()]">{{CONST.WS_STATUS[Notifications.status()]}}
         </span>
         <a class="" ng-click="Notifications.reconnect()" alt="reconnect to notification server"><i class="refresh icon"></i></a>
     </div>
@@ -83,10 +82,26 @@
     <table class="ui striped green table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Data Source</th>
-                <th>Message</th>
-                <th>Data Download</th>
+                <th>Date
+                    <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                </th>
+                <th>Data Source
+                    <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                </th>
+                <th>Message
+                    <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                </th>
+                <th>Data Download
+                    <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                </th>
             </tr>
         </thead>
         <tbody>
