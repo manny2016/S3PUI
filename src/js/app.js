@@ -9,7 +9,7 @@ app
     $rootScope.CONST = CONST; 
     $rootScope.Notifications = Notifications;
     var config = {
-      mode: 'prod'
+      mode: 'dev'
     }
     if (config.mode === 'dev') {
       $rootScope.service = $injector.get('testSrv')

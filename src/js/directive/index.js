@@ -29,9 +29,10 @@ app.directive('fittext', function ($timeout) {
             $timeout(function(){
                 while(element.height()>height){
                     var fontSize = element.css('font-size').match(regexp);;
-                    element.css('font-size',fontSize - 1);
+                    element.css('font-size',fontSize[0] - 1);
                 }
-                console.log(element.height());
+                element.height(height);
+                // console.log(element.height());
             },0);
         }
     }
