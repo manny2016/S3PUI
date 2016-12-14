@@ -28,7 +28,12 @@ module.exports = function ($scope, $location, $timeout) {
             // }
         });},50)
     }
-
+    $scope.selectTopic = function(t){
+        $scope.selectedTopic = t;
+    }
+    $scope.isSelectedTopic = function(t){
+        return $scope.selectedTopic === t;
+    }
     $scope.autoScale = function(e){
         console.log(e)
     }

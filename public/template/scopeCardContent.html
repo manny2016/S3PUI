@@ -1,0 +1,173 @@
+<div class="scope ui card">
+    <div class="content">
+        <div class="header">Azure</div>
+    </div>
+    <div class="content">
+        <div class="ui sub header">Enabled Platforms</div>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="p in platforms">
+                <img ng-src="public/images/{{p}}.png" alt="{{p}}" title="{{p}}" style="width: 32px;">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="{{p}}"><label>{{p}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">Twitter Keywords
+        </div>
+        <button class="circular green ui icon button mini" ng-click="twitterKeywords.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in twitterKeywords">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="twitterKeywords.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="Twitter Keyword...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="twitterKeywords.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">SO Tags</div>
+        <button class="circular green ui icon button mini" ng-click="sotags.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in sotags">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="sotags.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="SO Tag...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="sotags.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">SU Tags</div>
+        <button class="circular green ui icon button mini" ng-click="sutags.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in sutags">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="sutags.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="SU Tag...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="sutags.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">SF Tags</div>
+        <button class="circular green ui icon button mini" ng-click="sftags.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in sftags">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="sftags.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="SF Tag...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="sftags.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">MSDN Category Names</div>
+        <button class="circular green ui icon button mini" ng-click="msdncategorys.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in msdncategorys">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="msdncategorys.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="MSDN Category Name...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="msdncategorys.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content first">
+        <div class="ui sub header">TN Category Names</div>
+        <button class="circular green ui icon button mini" ng-click="tncategorys.push('')">
+            <i class="icon plus"></i>
+        </button>
+        <div class="ui divided list">
+            <div class="item" ng-repeat="w in tncategorys">
+                <div class="right floated content">
+                    <button class="circular red ui icon button mini" ng-click="tncategorys.splice($index,1)">
+                        <i class="icon minus"></i>
+                    </button>
+                </div>
+                <div class="content">
+                    <div class="ui input">
+                        <input type="text" value={{w}} placeholder="TN Category Name...">
+                    </div>
+                </div>
+            </div>
+            <div class="item" ng-show="tncategorys.length === 0">
+                <div class="ui floating message text center">
+                    {{CONST.ERRORS['2']}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="extra content">
+        <div class="ui two buttons">
+            <div class="ui green basic button" ng-click="approve()">Approve</div>
+            <div class="ui red basic button" ng-click="decline()" >Decline</div>
+        </div>
+    </div>
+</div>

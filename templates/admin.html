@@ -45,12 +45,12 @@
         </h4>
         <div class="ui equal width grid admin cards">
             <admin-card ng-repeat="t in topics" ng-init="$last && init()">
-                <div class="ui card">
+                <div class="ui card" ng-class="{'active':isSelectedTopic(t)}">
                     <div class="ui hover dimmer">
                         <div class="content">
                             <div class="center">
                                 <div class="ui mini buttons">
-                                    <div class="ui inverted button center" ng-click="selectTopic(t)"><i class="icon angle double down"></i></div>
+                                    <div class="ui inverted button center" ng-click="selectTopic(t)"><i class="icon edit"></i></div>
                                     <div class="ui green inverted button"><i class="icon plus"></i></div>
                                 </div>
                             </div>
@@ -82,5 +82,25 @@
         <h4 class="ui header green" style="padding: 0.5rem;">
             Scopes
         </h4>
+        <!--<div class="ui card" style="width:auto">
+            <div class="content">
+                <div class="header">Azure</div>
+            </div>
+            <div class="content">
+                <div class="ui sub header">Enabled Platforms</div>
+            </div>
+            <div class="content">
+                <div class="ui sub header">Twitter Keywords</div>
+            </div>
+            <div class="extra content">
+                <div class="ui two buttons">
+                    <div class="ui green basic button">Approve</div>
+                    <div class="ui red basic button">Decline</div>
+                </div>
+            </div>
+        </div>-->
+        <scope-card-content platforms="platforms">
+
+        </scope-card-content>
     </div>
 </div>

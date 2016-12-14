@@ -353,7 +353,7 @@
 }
 
 .ui.segment{
-    .ui.header:first-child {
+    >.ui.header:first-child {
         margin: -1rem -1rem 1rem -1rem !important;
         padding: 1rem;
         background: #f0f0f0;
@@ -439,7 +439,16 @@ content: '\25BC';
         }
     }
 }
-
+.scope.ui.card{
+    .content.first{
+        position: relative;
+        >button{
+            position: absolute;
+            top: 5px;
+            right: 14px;
+        }
+    }
+}
 #form1{
     .menu{
         .ui.floating.label{

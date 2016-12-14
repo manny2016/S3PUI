@@ -1,7 +1,12 @@
 require('angular-ui-router');
-window.AuthenticationContext = require('adal-angular');
-require('adal-angular/lib/adal-angular');
-
+// window.AuthenticationContext = require('adal-angular');
+// require('adal-angular/lib/adal-angular');
+Logging = {
+level: 3,
+log: function (message) {
+console.log(message);
+}
+};
 var app = angular.module('app.Route', ['ui.router', 'AdalAngular', 'app.Constant']);
 app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
@@ -97,13 +102,13 @@ app
       'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
     }
     adalAuthenticationServiceProvider.init({
-        instance: 'https://login.microsoftonline.com/',
+        // instance: 'https://login.microsoftonline.com/',
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
         cacheLocation: 'localStorage',
         extraQueryParameter: 'nux=1',
-        redirectUri: window.location.origin+'/',
+        // redirectUri: window.location.origin,
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
         //   if (popupWindow && popupWindow.focus)
@@ -128,7 +133,7 @@ app
       $httpProvider);
   })
   .run(function ($rootScope, $state, adalAuthenticationService) {
-    if ((!$rootScope.userInfo.isAuthenticated) && (window.location.hash === "")) {
+    if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
       $state.go("login");
     }
   })

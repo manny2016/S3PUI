@@ -221,7 +221,7 @@
   width: 20px !important;
   height: 20px !important;
 }
-.ui.segment .ui.header:first-child {
+.ui.segment > .ui.header:first-child {
   margin: -1rem -1rem 1rem -1rem !important;
   padding: 1rem;
   background: #f0f0f0;
@@ -277,6 +277,14 @@ body {
 }
 .admin.cards .card.active .content .header {
   color: #F2711C;
+}
+.scope.ui.card .content.first {
+  position: relative;
+}
+.scope.ui.card .content.first > button {
+  position: absolute;
+  top: 5px;
+  right: 14px;
 }
 #form1 .menu .ui.floating.label {
   top: 0.5em;

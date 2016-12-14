@@ -19,8 +19,8 @@ app.constant('CONST', {
     },
     SERVICE_INFO: {
         ENDPOINT: 'http://10.168.176.27:8091/WebServices/S3PDataService/',
-        // WS:'ws://10.168.176.18/api/SystemDetected/',
-        WS: 'ws://localhost:8889/',
+        WS:'ws://10.168.176.27:8091/api/Notify/',
+        // WS: 'ws://localhost:8889/',
         LOCAL_TEST_DATA: '/data/'
     },
     ALL_ENABLED_PLARFORMS: {
@@ -29,13 +29,18 @@ app.constant('CONST', {
         'sf': 'Serverfault',
         'su': 'Superuser',
         'msdn': 'MSDN',
-        'tn': 'Telnet'
+        'tn': 'Technet'
     },
     WS_STATUS:{
         0 : 'connecting',
         1 : 'online',
         2 : 'closing',
         3 : 'offline'
+    },
+    ERRORS:{
+        "1" : 'No Data Available',
+        "2" : 'Null',
+        "3" : 'N/A',
     }
 })
 
