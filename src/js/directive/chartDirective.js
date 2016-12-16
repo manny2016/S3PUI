@@ -438,9 +438,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                         name: 'NEG'
                                     }]
                                 }],
-                                title: {
-                                    text: _.title || ''
-                                }
+                                // title: {
+                                //     text: _.title || ''
+                                // }
                             };
                             break;
                         case 'wordcloud':
@@ -468,9 +468,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 series: {
                                     data: seriesData
                                 },
-                                title: {
-                                    text: _.title || ''
-                                }
+                                // title: {
+                                //     text: _.title || ''
+                                // }
                             }
                             break;
                     }
@@ -501,6 +501,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     _.clientWidth = element[0].clientWidth;
                 });
             });
+
+            $(element).find('.popup').popup();
         },
     }
 }
@@ -577,9 +579,9 @@ function customInfluenceData(fnPromise, scope) {
                 type: 'line',
                 data: seriesData
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     }
     var fn = influenceSeries;
@@ -611,9 +613,9 @@ function customSpikesData(fnPromise, scope) {
                 type: 'bar',
                 data: seriesData
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     }
     var barLineSeries = function (raw) {
@@ -654,9 +656,9 @@ function customSpikesData(fnPromise, scope) {
                 type: 'bar',
                 data: lineData
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     }
     var influenceSeries = function (raw) {
@@ -690,9 +692,9 @@ function customSpikesData(fnPromise, scope) {
                 type: 'line',
                 data: seriesData
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     }
     var fn = simpleSeries;
@@ -742,9 +744,9 @@ function customDistributionData(fnPromise, scope) {
                     name: 'NEG'
                 }]
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         };
     })
 }
@@ -775,9 +777,9 @@ function customWordCloudData(fnPromise, scope) {
             series: {
                 data: seriesData
             },
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     })
 }
@@ -863,9 +865,9 @@ function customServicesDistributionData(fnPromise, scope) {
                 },
                 show: true
             },
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     })
 }
@@ -882,9 +884,9 @@ function customHoriBarData(scope) {
                 return scope.raw[key];
             })
         }],
-        title: {
-            text: scope.title || ''
-        }
+        // title: {
+        //     text: scope.title || ''
+        // }
     };
 }
 
@@ -1436,9 +1438,9 @@ function customWorldData(fnPromise, scope) {
                     value: 13076.978
                 }]
             }],
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     });
 }
@@ -1487,9 +1489,9 @@ function customHourlyData(fnPromise, key, utility, scope) {
                 },
                 data: xAxisDate
             },
-            title: {
-                text: scope.title || ''
-            }
+            // title: {
+            //     text: scope.title || ''
+            // }
         }
     })
 }
