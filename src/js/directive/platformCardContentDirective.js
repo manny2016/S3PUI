@@ -3,11 +3,11 @@ module.exports = function () {
         restrict: 'E',
         templateUrl: 'public/template/platformCardContent.html',
         replace:true,
-        require:'^adminCard',
-        scope:{
-            platform:"@"
-        },
-        link: function (scope, e, a ,adminCardCtrl) {
+        // require:'^adminCard',
+        // scope:{
+        //     platform:"@"
+        // },
+        link: function (scope, e, a) {
             // scope.isSmall = (window.innerWidth < 1510) ? 1 : 0;
             // $(window).resize(function () {
             //     scope.$apply(function () {
@@ -18,26 +18,26 @@ module.exports = function () {
             //         }
             //     });
             // });
-            scope.adminCardCtrl = adminCardCtrl;
-            $(e).find('.hover.dimmer').dimmer({
-                on: 'hover',
-                // onShow:function(){
-                //     $(e).find('.unfocus.dimmer').dimmer('hide');
-                // }
-            });
-           scope.$on('admin-select-platform', function(evt,platform){
-                if(platform === scope.platform){
-                    $(e).addClass('active');
-                }else{
-                    $(e).removeClass('active');
-                }
-            });
+            // scope.adminCardCtrl = adminCardCtrl;
+            // $(e).find('.hover.dimmer').dimmer({
+            //     on: 'hover',
+            //     // onShow:function(){
+            //     //     $(e).find('.unfocus.dimmer').dimmer('hide');
+            //     // }
+            // });
+        //    scope.$on('admin-select-platform', function(evt,platform){
+        //         if(platform === scope.platform){
+        //             $(e).addClass('active');
+        //         }else{
+        //             $(e).removeClass('active');
+        //         }
+        //     });
         },
-        controller:function($scope){
-            $scope.selectPlatform = function (platform) {
-                // $scope.changedimmer(platform);
-                $scope.adminCardCtrl.selectPlatform(platform);
-            }
-        }
+        // controller:function($scope){
+        //     $scope.selectPlatform = function (platform) {
+        //         // $scope.changedimmer(platform);
+        //         $scope.adminCardCtrl.selectPlatform(platform);
+        //     }
+        // }
     }
 }

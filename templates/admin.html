@@ -34,48 +34,69 @@
                     </a>
                 </div>
             </div>-->
-            <admin-card ng-repeat="p in platforms">
-                <platform-card-content platform="{{p}}"></platform-card-content>
+            <admin-card ng-repeat="p in TopicWithForum" ng-init="$last && renderDimmer()">
+                <!--<platform-card-content></platform-card-content>-->
+                <div class="ui card" ng-class="{'active':isSelectedPlatform(p.platform_Name)}">
+                    <div class="ui hover dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <!--<div class="ui mini buttons">-->
+                                <div class="ui mini inverted button center" ng-click="selectPlatform(p)"><i class="icon angle double down"></i></div>
+                                <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui unfocus dimmer">
+                    </div>
+                    <div class="blurring dimmable image" style="background:#fff">
+                        <img ng-src="public/images/{{p.platform_Name}}.png">
+                    </div>
+                    <div class="content">
+                        <a class="header">{{p.platform_Name}}</a>
+                    </div>
+                </div>
             </admin-card>
         </div>
     </div>
-    <div class="ui violet segment">
+    <div class="ui violet segment" ng-show="topics.length>0">
         <h4 class="ui header violet" style="padding: 0.5rem;">
             Services / Products
         </h4>
         <div class="ui equal width grid admin cards">
-            <admin-card ng-repeat="t in topics" ng-init="$last && init()">
-                <div class="ui card" ng-class="{'active':isSelectedTopic(t)}">
+            <admin-card ng-repeat="t in topics" ng-init="$last && renderDimmer()">
+                <div class="ui card" ng-class="{'active':isSelectedTopic(t.topic)}">
                     <div class="ui hover dimmer">
                         <div class="content">
                             <div class="center">
-                                <div class="ui mini buttons">
-                                    <div class="ui inverted button center" ng-click="selectTopic(t)"><i class="icon edit"></i></div>
-                                    <div class="ui green inverted button"><i class="icon plus"></i></div>
-                                </div>
+                                <!--<div class="ui mini buttons">-->
+                                <div class="ui mini inverted button center" ng-click="selectTopic(t)"><i class="icon edit"></i></div>
+                                <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
                     <div class="ui unfocus dimmer">
                     </div>
                     <div class="content">
-                        <a class="header text center" fittext="t" height="23">{{t}}</a>
+                        <a class="header text center" fittext="t.topic" height="23" style="line-height: 23px;">{{t.topic}}</a>
                     </div>
                 </div>
             </admin-card>
-            <!--<div class="column ui card">
-                <div class="content">
-                    <a class="header">Azure</a>
-                    <div class="ui hover dimmer">
+            <div class="two wide column">
+                <div class="ui card">
                     <div class="content">
-                        <div class="center">
-                            <div class="ui inverted button centerr"><i class="icon write"></i></div>
-                            <div class="ui green inverted button"><i class="icon plus"></i></div>
+                        <a class="header  text center">New</a>
+                        <div class="ui hover dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui mini green inverted button"><i class="icon plus"></i></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
-            </div>-->
+            </div>
         </div>
     </div>
     <div class="ui green segment">
@@ -100,7 +121,6 @@
             </div>
         </div>-->
         <scope-card-content platforms="platforms">
-
         </scope-card-content>
     </div>
 </div>

@@ -25,14 +25,14 @@ app.directive('fittext', function ($timeout) {
             height:"@"
         },
         link: function (scope, element, attr) {
-            var height = element.height();
+            // var height = element.height();
             var regexp = /\d+(\.\d+)?/;
             $timeout(function(){
-                while(element.height()>height){
+                while(element.height()>scope.height){
                     var fontSize = element.css('font-size').match(regexp);;
                     element.css('font-size',fontSize[0] - 1);
                 }
-                element.height(height);
+                element.height(scope.height);
                 // console.log(element.height());
             },0);
         }

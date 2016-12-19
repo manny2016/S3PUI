@@ -1,9 +1,9 @@
-<div class="ui card">
+<div class="ui card"  ng-class="{'active':isSelectedTopic(p.platform_Name)}">
     <div class="ui hover dimmer">
         <div class="content">
             <div class="center">
                 <div class="ui mini buttons">
-                    <div class="ui inverted button center" ng-click="selectPlatform(platform)"><i class="icon angle double down"></i></div>
+                    <div class="ui inverted button center" ng-click="selectPlatform(p.platform_Name)"><i class="icon angle double down"></i></div>
                     <div class="ui green inverted button"><i class="icon plus"></i></div>
                 </div>
             </div>
@@ -12,9 +12,9 @@
     <div class="ui unfocus dimmer">
     </div>
     <div class="blurring dimmable image" style="background:#fff">
-        <img ng-src="public/images/{{platform}}.png">
+        <img ng-src="public/images/{{p.platform_Name}}.png">
     </div>
     <div class="content">
-        <a class="header">{{platform}}</a>
+        <a class="header">{{p.platform_Name}}</a>
     </div>
 </div>
