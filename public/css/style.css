@@ -267,6 +267,7 @@ body {
 .admin.cards .card {
   max-width: 166px;
   width: 100%;
+  padding: 2px;
 }
 .admin.cards .card .ui.button .icon {
   margin: 0 !important;
@@ -274,6 +275,7 @@ body {
 .admin.cards .card.active {
   border: 2px solid #F2711C;
   box-shadow: 10px 10px 5px #e0e0e0;
+  padding: 0px;
 }
 .admin.cards .card.active .content .header {
   color: #F2711C;
@@ -285,6 +287,9 @@ body {
   position: absolute;
   top: 5px;
   right: 14px;
+}
+.scope-tags {
+  margin-bottom: 2px !important;
 }
 #form1 .menu .ui.floating.label {
   top: 0.5em;

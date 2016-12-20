@@ -16,6 +16,7 @@ app.directive('mentionedTable', require('./mentionedTableDirective'));
 app.directive('adminCard', require('./adminCardDirective'));
 app.directive('platformCardContent', require('./platformCardContentDirective'));
 app.directive('scopeCardContent', require('./scopeCardContentDirective'));
+app.directive('scopeTagsEditer', require('./scopeTagsDirective'));
 // require('./ng-FitText.js');
 app.directive('fittext', function ($timeout) {
     return {

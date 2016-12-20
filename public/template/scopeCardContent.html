@@ -15,6 +15,10 @@
     </div>-->
     <div class="content first" ng-show="selectedPlatform==='twitter'">
         <div class="ui sub header">Twitter Keywords
+            <div class="ui small icon input">
+                <input type="text" placeholder="Twitter Keyword..." ng-keypress="($event.charCode==13)? addKwd($event) : return">
+                <i class="plus icon"></i>
+            </div>
         </div>
         <!--<button class="circular green ui icon button mini" ng-click="twitterKeywords.push('')">
             <i class="icon plus"></i>
@@ -38,93 +42,70 @@
                 </div>
             </div>
         </div>-->
-        <div class="ui input">
-            <input type="text" placeholder="Twitter Keyword..." ng-keypress="($event.charCode==13)? addKwd($event,currentTopic.tagsCfg.Keywords) : return">
-        </div>
-        <div class="ui raised segment" ng-show="currentTopic.tagsCfg.Keywords.length">
-            <div class="ui blue label" ng-repeat="kwd in currentTopic.tagsCfg.Keywords">
+        <!--<div class="ui raised segment" ng-show="currentTopic.tagsCfg.Keywords.length">
+            <div class="ui blue label" ng-repeat="kwd in currentTopic.tagsCfg.Keywords track by $index">
                 {{kwd}}
                 <i class="delete icon" ng-click="currentTopic.tagsCfg.Keywords.splice($index,1)"></i>
             </div>
         </div>
         <div class="ui floating message text center" ng-show="currentTopic.tagsCfg.Keywords.length === 0">
             {{CONST.ERRORS['2']}}
-        </div>
+        </div>-->
+        <scope-tags-editer></scope-tags-editer>
     </div>
     <div class="content first" ng-show="selectedPlatform==='so'">
-        <div class="ui sub header">SO Tags</div>
-        <button class="circular green ui icon button mini" ng-click="sotags.push('')">
-            <i class="icon plus"></i>
-        </button>
-        <div class="ui divided list">
-            <div class="item" ng-repeat="w in sotags">
-                <div class="right floated content">
-                    <button class="circular red ui icon button mini" ng-click="sotags.splice($index,1)">
-                        <i class="icon minus"></i>
-                    </button>
-                </div>
-                <div class="content">
-                    <div class="ui input">
-                        <input type="text" value={{w}} placeholder="SO Tag...">
-                    </div>
-                </div>
-            </div>
-            <div class="item" ng-show="sotags.length === 0">
-                <div class="ui floating message text center">
-                    {{CONST.ERRORS['2']}}
-                </div>
+        <div class="ui sub header">SO Tags
+            <div class="ui small icon input">
+                <input type="text" placeholder="SO Tags..." ng-keypress="($event.charCode==13)? addKwd($event) : return">
+                <i class="plus icon"></i>
             </div>
         </div>
+        <!--<div class="ui raised segment" ng-show="currentTopic.tagsCfg.Keywords.length">
+            <div class="ui blue label" ng-repeat="kwd in currentTopic.tagsCfg.Keywords track by $index">
+                {{kwd}}
+                <i class="delete icon" ng-click="currentTopic.tagsCfg.Keywords.splice($index,1)"></i>
+            </div>
+        </div>
+        <div class="ui floating message text center" ng-show="currentTopic.tagsCfg.Keywords.length === 0">
+            {{CONST.ERRORS['2']}}
+        </div>-->
+        <scope-tags-editer></scope-tags-editer>
     </div>
     <div class="content first" ng-show="selectedPlatform==='su'">
-        <div class="ui sub header">SU Tags</div>
-        <button class="circular green ui icon button mini" ng-click="sutags.push('')">
-            <i class="icon plus"></i>
-        </button>
-        <div class="ui divided list">
-            <div class="item" ng-repeat="w in sutags">
-                <div class="right floated content">
-                    <button class="circular red ui icon button mini" ng-click="sutags.splice($index,1)">
-                        <i class="icon minus"></i>
-                    </button>
-                </div>
-                <div class="content">
-                    <div class="ui input">
-                        <input type="text" value={{w}} placeholder="SU Tag...">
-                    </div>
-                </div>
-            </div>
-            <div class="item" ng-show="sutags.length === 0">
-                <div class="ui floating message text center">
-                    {{CONST.ERRORS['2']}}
-                </div>
+        <div class="ui sub header">SU Tags
+            <div class="ui small icon input">
+                <input type="text" placeholder="SU Tags..." ng-keypress="($event.charCode==13)? addKwd($event) : return">
+                <i class="plus icon"></i>
             </div>
         </div>
+        <!--<div class="ui raised segment" ng-show="currentTopic.tagsCfg.Keywords.length">
+            <div class="ui blue label" ng-repeat="kwd in currentTopic.tagsCfg.Keywords track by $index">
+                {{kwd}}
+                <i class="delete icon" ng-click="currentTopic.tagsCfg.Keywords.splice($index,1)"></i>
+            </div>
+        </div>
+        <div class="ui floating message text center" ng-show="currentTopic.tagsCfg.Keywords.length === 0">
+            {{CONST.ERRORS['2']}}
+        </div>-->
+        <scope-tags-editer></scope-tags-editer>
     </div>
     <div class="content first" ng-show="selectedPlatform==='sf'">
-        <div class="ui sub header">SF Tags</div>
-        <button class="circular green ui icon button mini" ng-click="sftags.push('')">
-            <i class="icon plus"></i>
-        </button>
-        <div class="ui divided list">
-            <div class="item" ng-repeat="w in sftags">
-                <div class="right floated content">
-                    <button class="circular red ui icon button mini" ng-click="sftags.splice($index,1)">
-                        <i class="icon minus"></i>
-                    </button>
-                </div>
-                <div class="content">
-                    <div class="ui input">
-                        <input type="text" value={{w}} placeholder="SF Tag...">
-                    </div>
-                </div>
-            </div>
-            <div class="item" ng-show="sftags.length === 0">
-                <div class="ui floating message text center">
-                    {{CONST.ERRORS['2']}}
-                </div>
+        <div class="ui sub header">SF Tags
+            <div class="ui small icon input">
+                <input type="text" placeholder="SF Tags..." ng-keypress="($event.charCode==13)? addKwd($event) : return">
+                <i class="plus icon"></i>
             </div>
         </div>
+        <!--<div class="ui raised segment" ng-show="currentTopic.tagsCfg.Keywords.length">
+            <div class="ui blue label" ng-repeat="kwd in currentTopic.tagsCfg.Keywords track by $index">
+                {{kwd}}
+                <i class="delete icon" ng-click="currentTopic.tagsCfg.Keywords.splice($index,1)"></i>
+            </div>
+        </div>
+        <div class="ui floating message text center" ng-show="currentTopic.tagsCfg.Keywords.length === 0">
+            {{CONST.ERRORS['2']}}
+        </div>-->
+        <scope-tags-editer></scope-tags-editer>
     </div>
     <div class="content first" ng-show="selectedPlatform==='msdn'">
         <div class="ui sub header">MSDN Category Names</div>
@@ -157,8 +138,8 @@
     </div>
     <div class="extra content">
         <div class="ui two buttons">
-            <div class="ui green basic button" ng-click="approve()">Approve</div>
-            <div class="ui red basic button" ng-click="decline()">Decline</div>
+            <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
+            <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
         </div>
     </div>
 </div>

@@ -1,0 +1,11 @@
+<div>
+    <div class="ui blue raised segment" ng-show="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.length">
+        <div class="ui blue label scope-tags" ng-repeat="kwd in TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords track by $index">
+            {{kwd}}
+            <i class="delete icon" ng-click="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.splice($index,1)"></i>
+        </div>
+    </div>
+    <div class="ui floating message text center" ng-show="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.length === 0">
+        {{CONST.ERRORS['2']}}
+    </div>
+</div>

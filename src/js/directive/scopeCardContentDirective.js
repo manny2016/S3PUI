@@ -3,6 +3,7 @@ module.exports = function (CONST) {
         restrict: 'E',
         templateUrl: 'public/template/scopeCardContent.html',
         replace: true,
+        transclude:true,
         // scope: {
         //     data: "=",
         //     platforms: "="

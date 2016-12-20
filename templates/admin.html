@@ -41,7 +41,7 @@
                         <div class="content">
                             <div class="center">
                                 <!--<div class="ui mini buttons">-->
-                                <div class="ui mini inverted button center" ng-click="selectPlatform(p)"><i class="icon angle double down"></i></div>
+                                <div class="ui mini inverted button center" ng-click="selectPlatform($index)"><i class="icon angle double down"></i></div>
                                 <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
                                 <!--</div>-->
                             </div>
@@ -59,34 +59,34 @@
             </admin-card>
         </div>
     </div>
-    <div class="ui violet segment" ng-show="topics.length>0">
+    <div class="ui violet segment" ng-show="TopicWithForum[selectedPlatformIndex].topics.length>0">
         <h4 class="ui header violet" style="padding: 0.5rem;">
             Services / Products
         </h4>
         <div class="ui equal width grid admin cards">
-            <admin-card ng-repeat="t in topics" ng-init="$last && renderDimmer()">
+            <admin-card ng-repeat="t in TopicWithForum[selectedPlatformIndex].topics" ng-init="$last && renderDimmer()">
                 <div class="ui card" ng-class="{'active':isSelectedTopic(t.topic)}">
-                    <div class="ui hover dimmer">
-                        <div class="content">
-                            <div class="center">
-                                <!--<div class="ui mini buttons">-->
-                                <div class="ui mini inverted button center" ng-click="selectTopic(t)"><i class="icon edit"></i></div>
-                                <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
-                                <!--</div>-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui unfocus dimmer">
-                    </div>
                     <div class="content">
                         <a class="header text center" fittext="t.topic" height="23" style="line-height: 23px;">{{t.topic}}</a>
+                        <div class="ui hover dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <!--<div class="ui mini buttons">-->
+                                    <div class="ui mini inverted button center" ng-click="selectTopic($index)"><i class="icon edit"></i></div>
+                                    <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="ui unfocus dimmer">
+                        </div>-->
                     </div>
                 </div>
             </admin-card>
             <div class="two wide column">
                 <div class="ui card">
                     <div class="content">
-                        <a class="header  text center">New</a>
+                        <a class="header text center">New</a>
                         <div class="ui hover dimmer">
                             <div class="content">
                                 <div class="center">
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div>-->
-        <scope-card-content platforms="platforms">
+        <scope-card-content ng-transclude>
         </scope-card-content>
     </div>
 </div>
