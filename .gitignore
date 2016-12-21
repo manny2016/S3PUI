@@ -3,7 +3,6 @@ node_modules
 semantic
 public/main.min.js
 main.js
-data
 demos
 tmp
 DataService

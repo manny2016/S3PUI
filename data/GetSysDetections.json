@@ -1,0 +1,19 @@
+[{
+    "id": 0,
+    "msgType": "1",
+    "title": "Volume Spike has been detectioned",
+    "forumName": "su",
+    "hasDetails": false,
+    "hasDownload": true,
+    "createdTime": 1481187442,
+    "link": "/"
+}, {
+    "id": 1,
+    "msgType": "2",
+    "title": "Volume Spike has been detectioned",
+    "forumName": "so",
+    "hasDetails": true,
+    "hasDownload": false,
+    "createdTime": 1481187442,
+    "link": "/"
+}]
