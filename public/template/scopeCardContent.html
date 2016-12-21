@@ -1,6 +1,7 @@
 <div class="scope ui card" style="width:auto">
     <div class="content">
-        <div class="header">Azure</div>
+        <div class="header">{{TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].topic}}
+        </div>
     </div>
     <!--<div class="content">
         <div class="ui sub header">Enabled Platforms</div>
@@ -109,38 +110,39 @@
     </div>
     <div class="content first" ng-show="selectedPlatform==='msdn'">
         <div class="ui sub header">MSDN Category Names</div>
-        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic"
-         data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
+        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
             <option value="">Null</option>
             <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
         </select>
     </div>
     <div class="content first" ng-show="selectedPlatform==='tn'">
         <div class="ui sub header">TN Category Names</div>
-        <div class="ui divided list">
-            <div class="item" ng-repeat="w in tncategorys">
-                <div class="right floated content">
-                    <button class="circular red ui icon button mini" ng-click="tncategorys.splice($index,1)">
-                        <i class="icon minus"></i>
-                    </button>
-                </div>
-                <div class="content">
-                    <div class="ui input">
-                        <input type="text" value={{w}} placeholder="TN Category Name...">
-                    </div>
-                </div>
-            </div>
-            <div class="item" ng-show="tncategorys.length === 0">
-                <div class="ui floating message text center">
-                    {{CONST.ERRORS['2']}}
-                </div>
-            </div>
-        </div>
+        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
+            <option value="">Null</option>
+            <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
+        </select>
     </div>
     <div class="extra content">
         <div class="ui two buttons">
             <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
             <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
+        </div>
+    </div>
+
+    <div id="newServiceModal" class="ui small modal">
+        <div class="header">
+            New Service/Product Name
+        </div>
+        <div class="content">
+            <div class="description">
+                <div class="ui input">
+                    <input type="text" placeholder="New Service/Product Name...">
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">Cancel</div>
+            <div class="ui approve button">OK</div>
         </div>
     </div>
 </div>
