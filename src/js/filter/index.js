@@ -51,4 +51,15 @@ app.filter('thousandsuffix', ['$window', function ($window) {
         return (input / Math.pow(1000, exp)).toFixed(decimals) + suffixes[exp - 1];
     };
 }]);
+
+app.filter('findObjectInArray',function(){
+    return function(input,perproty,value){
+        for(var i=0;i<input.length;i++){
+            if(input[i][perproty]===value){
+                return input[i]
+            }
+        }
+        return null;
+    }
+})
 module.exports = 'app.Filter';

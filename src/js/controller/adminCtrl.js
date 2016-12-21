@@ -1,4 +1,4 @@
-module.exports = function ($scope, $location, $timeout, $http) {
+module.exports = function ($scope, $location, $timeout, $http, $filter) {
     // console.log("this is admin");  
     $scope.platforms = [];
     // $scope.getTopics = function () {
@@ -47,11 +47,12 @@ module.exports = function ($scope, $location, $timeout, $http) {
         return $scope.selectedPlatform === platform;
     }
     $scope.selectTopic = function (index) {
+        $scope.filterTags = "";
         $scope.selectedTopicIndex = index;
         if (Number.isInteger(index)) {
             var t = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[index];
             $scope.selectedTopic = t.topic;
-        }else{
+        } else {
             $scope.selectedTopic = undefined;
         }
 
@@ -80,9 +81,9 @@ module.exports = function ($scope, $location, $timeout, $http) {
     $scope.cancelUpdate = function () {
         var src = $scope.originData;
         var dist = $scope.TopicWithForum;
-        if(Number.isInteger($scope.selectedTopicIndex)){
+        if (Number.isInteger($scope.selectedTopicIndex)) {
             angular.extend(dist[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex],
-            src[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex]);
+                src[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex]);
         }
         // angular.extend($scope.TopicWithForum, $scope.originData);
         // console.log($scope.originData);
@@ -91,6 +92,16 @@ module.exports = function ($scope, $location, $timeout, $http) {
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
+    }
+    $scope.forumSelectChanged = function (index) {
+        if (index === null) {
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = {};
+        }else{
+            console.log(index);
+            var tagCfg = $filter('findObjectInArray')($scope.MsdnTopicMapping,'topic',index);
+            console.log(angular.copy(tagCfg));
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = angular.copy(tagCfg);
+       }
     }
     $scope.init()
 }

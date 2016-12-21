@@ -109,9 +109,10 @@
     </div>
     <div class="content first" ng-show="selectedPlatform==='msdn'">
         <div class="ui sub header">MSDN Category Names</div>
-        <select class="ui fluid dropdown">
+        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.topic"
+         data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
             <option value="">Null</option>
-            <option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>
+            <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
         </select>
     </div>
     <div class="content first" ng-show="selectedPlatform==='tn'">
