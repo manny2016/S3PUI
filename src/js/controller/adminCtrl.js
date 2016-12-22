@@ -1,6 +1,19 @@
 module.exports = function ($scope, $location, $timeout, $http, $filter) {
     // console.log("this is admin");  
     $scope.platforms = [];
+    var CONST_MSDN_CFG = {
+        topic: '',
+        tagsCfg: {
+        }
+    };
+    var CONST_KWD_CFG = {
+        topic: '',
+        tagsCfg: {
+            topic: '',
+            Keywords: []
+        }
+    }
+    // $scope.isAddNew = false;
     // $scope.getTopics = function () {
     //     $scope.service.getCate().then(function (data) {
     //         console.log(data)
@@ -12,7 +25,7 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
         $timeout(function () {
             $scope.platforms = ['twitter', 'so', 'sf', 'su', 'msdn', 'tn']
         }, 500)
-    }();
+    } ();
     // $scope.topics = ['Azure', 'Office365', 'CRM Online', 'Intune'];
 
     $scope.getConfigData = function () {
@@ -66,20 +79,20 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
         console.log(e)
     }
     $scope.addKwd = function (event) {
-            event.stopPropagation();
-            var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
-            var array = currentTopic.tagsCfg.Keywords;
-            var string = event.target.value.trim()
-            if (string !== "" && array.indexOf(string) === -1) {
-                array.push(string);
-            }
-            event.target.value = "";
+        event.stopPropagation();
+        var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
+        var array = currentTopic.tagsCfg.Keywords;
+        var string = event.target.value.trim()
+        if (string !== "" && array.indexOf(string) === -1) {
+            array.push(string);
         }
-        // $('.admin.cards .card').dimmer({
-        //     on: 'hover'
-        // });
+        event.target.value = "";
+    }
+    // $('.admin.cards .card').dimmer({
+    //     on: 'hover'
+    // });
     $scope.cancelUpdate = function () {
-        var src = $scope.originData;
+        var src = angular.copy($scope.originData);
         var dist = $scope.TopicWithForum;
         if (Number.isInteger($scope.selectedTopicIndex)) {
             angular.extend(dist[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex],
@@ -96,12 +109,32 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
             $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = {};
-        }else{
+        } else {
             console.log(index);
-            var tagCfg = $filter('findObjectInArray')($scope.MsdnTopicMapping,'topic',index);
+            var tagCfg = $filter('findObjectInArray')(angular.copy($scope.MsdnTopicMapping), 'topic', index);
             console.log(angular.copy(tagCfg));
             $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = angular.copy(tagCfg);
-       }
+        }
+    }
+
+    $scope.newScope = function () {
+        // $scope.isAddNew = true;
+        $('#newServiceModal').modal({
+            onDeny: function () {
+                // return false;
+            },
+            onApprove: function () {
+                window.alert('Approved!');
+            }
+        }).modal('show')
+        // switch ($scope.selectedPlatform) {
+        //     case 'so': case 'sf': case 'su': case 'twitter':
+        //         $scope.newScope = angular.copy(CONST_KWD_CFG);
+        //         break;
+        //     case 'msdn': case 'tn':
+        //         $scope.newScope = angular.copy(CONST_MSDN_CFG);
+        //         break;
+        // }
     }
     $scope.init()
 }
