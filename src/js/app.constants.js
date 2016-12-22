@@ -18,7 +18,8 @@ app.constant('CONST', {
         'SupportExperienceIssuesDetected': 'Possible service outage issues'
     },
     SERVICE_INFO: {
-        ENDPOINT: 'http://10.168.176.27:8091/WebServices/S3PDataService/',
+        // ENDPOINT: 'http://10.168.176.27:8091/WebServices/S3PDataService/',
+        ENDPOINT: 'https://shpv1.azurewebsites.net/DataService/S3PDataService.svc/',
         WS:'ws://10.168.176.27:8091/api/Notify/',
         // WS: 'ws://localhost:8889/',
         LOCAL_TEST_DATA: '/data/'

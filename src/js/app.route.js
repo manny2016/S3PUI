@@ -59,7 +59,7 @@ app
       .state('social.platform', {
         url: '/:platform',
         requireADLogin: true,
-        templateUrl: 'templates/social.test.html',
+        templateUrl: 'templates/social.html',
         controller: 'socialCtrl'
       })
       .state('thirdParty', {

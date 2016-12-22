@@ -76,13 +76,12 @@
                     <div style="max-height:129px;">
                         <div class="ui inverted divider"></div>
                         <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice"></ng-statistic>-->
-                        <div class="ui two column grid">
+                        <div class="ui column grid">
                             <div class="column">
                                 <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
                                         title="{{s.mentionedmostservice.attachedobject}}">
-                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
                                         </span>
@@ -92,13 +91,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="column">
+                            <!--<div class="column">
                                 <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
                                         title="{{s.mentionedmostservice.attachedobject}}">
-                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                         <span ng-if="s">
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio===0" class="icon minus blue pull-left"></i>
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio>0" class="icon long arrow up green pull-left"></i>
@@ -109,7 +107,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div>
