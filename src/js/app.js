@@ -1,12 +1,25 @@
 var app = angular.module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), require('../../node_modules/angular-scroll'), require('angular-smart-table')
+  ,'toastr'
 ]);
 app
+  .config(function (toastrConfig) {
+    angular.extend(toastrConfig, {
+      autoDismiss: false,
+      containerId: 'toast-container',
+      maxOpened: 5,
+      newestOnTop: true,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+      preventOpenDuplicates: false,
+      target: 'body'
+    });
+  })
   .run(function ($rootScope, $state, $stateParams, $injector, utilitySrv, CONST, Notifications) {
     // var config = require('../../public/config');
     // console.log(config);
     //check authentication
-    $rootScope.CONST = CONST; 
+    $rootScope.CONST = CONST;
     $rootScope.Notifications = Notifications;
     var config = {
       mode: 'dev'
@@ -23,7 +36,7 @@ app
     $rootScope.global = {
       topic: ''
     }
-    $rootScope.signOut = function(){
+    $rootScope.signOut = function () {
       adalAuthenticationService.logOut();
     }
     $rootScope.timeRange = {

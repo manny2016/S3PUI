@@ -1,31 +1,30 @@
-module.exports = function ($scope, $location, $timeout, $http, $filter) {
+module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
     $scope.platforms = [];
     var CONST_MSDN_CFG = {
         topic: '',
-        tagsCfg: {
-        }
+        tagsCfg: {}
     };
     var CONST_KWD_CFG = {
-        topic: '',
-        tagsCfg: {
             topic: '',
-            Keywords: []
+            tagsCfg: {
+                topic: '',
+                Keywords: []
+            }
         }
-    }
-    // $scope.isAddNew = false;
-    // $scope.getTopics = function () {
-    //     $scope.service.getCate().then(function (data) {
-    //         console.log(data)
-    //         $scope.topics = data;
-    //     })
-    // }();
+        // $scope.isAddNew = false;
+        // $scope.getTopics = function () {
+        //     $scope.service.getCate().then(function (data) {
+        //         console.log(data)
+        //         $scope.topics = data;
+        //     })
+        // }();
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {
             $scope.platforms = ['twitter', 'so', 'sf', 'su', 'msdn', 'tn']
         }, 500)
-    } ();
+    }();
     // $scope.topics = ['Azure', 'Office365', 'CRM Online', 'Intune'];
 
     $scope.getConfigData = function () {
@@ -79,25 +78,29 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
         console.log(e)
     }
     $scope.addKwd = function (event) {
-        event.stopPropagation();
-        var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
-        var array = currentTopic.tagsCfg.Keywords;
-        var string = event.target.value.trim()
-        if (string !== "" && array.indexOf(string) === -1) {
-            array.push(string);
+            event.stopPropagation();
+            var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
+            var array = currentTopic.tagsCfg.Keywords;
+            var string = event.target.value.trim()
+            if (string !== "" && array.indexOf(string) === -1) {
+                array.push(string);
+            }
+            event.target.value = "";
         }
-        event.target.value = "";
-    }
-    // $('.admin.cards .card').dimmer({
-    //     on: 'hover'
-    // });
+        // $('.admin.cards .card').dimmer({
+        //     on: 'hover'
+        // });
     $scope.cancelUpdate = function () {
         var src = angular.copy($scope.originData);
         var dist = $scope.TopicWithForum;
         if (Number.isInteger($scope.selectedTopicIndex)) {
             angular.extend(dist[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex],
                 src[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex]);
+        }else{
+            angular.extend(dist[$scope.selectedPlatformIndex],
+                src[$scope.selectedPlatformIndex]);
         }
+        // $scope.$digest();
         // angular.extend($scope.TopicWithForum, $scope.originData);
         // console.log($scope.originData);
         // console.log($scope.TopicWithForum);
@@ -105,6 +108,8 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
+        toastr.success('Success', 'Operation Success!');
+        // $scope.$digest();
     }
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
@@ -116,25 +121,52 @@ module.exports = function ($scope, $location, $timeout, $http, $filter) {
             $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = angular.copy(tagCfg);
         }
     }
-
+    $scope.isDirty = function () {
+        return !angular.equals(angular.copy($scope.originData), angular.copy($scope.TopicWithForum));
+    }
+    $scope.removeTopic = function (index) {
+        $('#removeConfirmModal').modal({
+            onDeny: function () {},
+            onApprove: function () {
+                $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.splice(index, 1);
+                $scope.$digest();
+            }
+        }).modal('show')
+    }
     $scope.newScope = function () {
         // $scope.isAddNew = true;
+        var newScope = {};
         $('#newServiceModal').modal({
             onDeny: function () {
                 // return false;
+                $scope.newTopicName = '';
             },
             onApprove: function () {
-                window.alert('Approved!');
+                if ($scope.newTopicName.trim() === '') {
+
+                } else {
+                    switch ($scope.selectedPlatform) {
+                        case 'so':
+                        case 'sf':
+                        case 'su':
+                        case 'twitter':
+                            newScope = angular.copy(CONST_KWD_CFG);
+                            newScope.topic = $scope.newTopicName;
+                            break;
+                        case 'msdn':
+                        case 'tn':
+                            newScope = angular.copy(CONST_MSDN_CFG);
+                            newScope.topic = $scope.newTopicName;
+                            newScope.tagsCfg.topic = $scope.newTopicName;
+                            break;
+                    }
+                    $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.push(newScope)
+                    $scope.newTopicName = '';
+                    $scope.$digest();
+                }
             }
         }).modal('show')
-        // switch ($scope.selectedPlatform) {
-        //     case 'so': case 'sf': case 'su': case 'twitter':
-        //         $scope.newScope = angular.copy(CONST_KWD_CFG);
-        //         break;
-        //     case 'msdn': case 'tn':
-        //         $scope.newScope = angular.copy(CONST_MSDN_CFG);
-        //         break;
-        // }
+
     }
     $scope.init()
 }

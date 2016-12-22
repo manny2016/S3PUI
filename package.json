@@ -27,6 +27,7 @@
     "angular-sanitize": "^1.5.9",
     "angular-scroll": "^1.0.0",
     "angular-smart-table": "^2.1.8",
+    "angular-toastr": "^2.1.1",
     "angular-ui-router": "^1.0.0-beta.2",
     "angular-websocket": "^2.0.1",
     "angularjs-datepicker": "^2.1.7",

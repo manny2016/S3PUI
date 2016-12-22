@@ -59,7 +59,7 @@
             </admin-card>
         </div>
     </div>
-    <div class="ui violet segment" ng-show="TopicWithForum[selectedPlatformIndex].topics.length>0">
+    <div class="ui violet segment" ng-show="selectedPlatformIndex!==undefined">
         <h4 class="ui header violet" style="padding: 0.5rem;">
             Services / Products
         </h4>
@@ -71,10 +71,10 @@
                         <div class="ui hover dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <!--<div class="ui mini buttons">-->
+                                    <div class="ui mini buttons">
                                     <div class="ui mini inverted button center" ng-click="selectTopic($index)"><i class="icon edit"></i></div>
-                                    <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
-                                    <!--</div>-->
+                                    <div class="ui mini red inverted button" ng-click="removeTopic($index)"><i class="icon minus"></i></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div class="ui green segment">
+    <div class="ui green segment" ng-show="selectedTopic!==undefined">
         <h4 class="ui header green" style="padding: 0.5rem;">
             Scopes
         </h4>
@@ -123,4 +123,26 @@
         <scope-card-content ng-transclude>
         </scope-card-content>
     </div>
+
+    <div class="extra content" ng-show="isDirty()">
+        <div class="ui two buttons">
+            <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
+            <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
+        </div>
+    </div>
 </div>
+
+<div id="removeConfirmModal" class="ui small modal">
+        <div class="header">
+            Attention !
+        </div>
+        <div class="content">
+            <div class="description text red">
+                This operation will remove this topic!!!
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">Cancel</div>
+            <div class="ui approve button">OK</div>
+        </div>
+    </div>

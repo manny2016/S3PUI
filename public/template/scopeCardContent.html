@@ -122,12 +122,6 @@
             <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
         </select>
     </div>
-    <div class="extra content">
-        <div class="ui two buttons">
-            <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
-            <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
-        </div>
-    </div>
 
     <div id="newServiceModal" class="ui small modal">
         <div class="header">
@@ -136,7 +130,7 @@
         <div class="content">
             <div class="description">
                 <div class="ui input">
-                    <input type="text" placeholder="New Service/Product Name...">
+                    <input type="text" placeholder="New Service/Product Name..." ng-model="newTopicName">
                 </div>
             </div>
         </div>
