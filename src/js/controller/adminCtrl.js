@@ -129,6 +129,7 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
             onDeny: function () {},
             onApprove: function () {
                 $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.splice(index, 1);
+                $scope.selectedTopic = undefined;
                 $scope.$digest();
             }
         }).modal('show')

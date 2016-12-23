@@ -40,7 +40,17 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         g: false,
         r: false
     };
-    $('.ui.segment').find('.ui.dropdown').dropdown({
+    $('#dataRangeSelection').dropdown('set selected', '7').dropdown({
+        onChange: function (value, text, $selectedItem) {
+            if(value !== '7'){
+                $scope.isLargeDateRange=true;
+            }else{
+                $scope.isLargeDateRange=false;
+            }
+            $scope.$digest()
+        }
+    });
+    $('#topicSelection').dropdown({
         onChange: function (value, text, $selectedItem) {
             // console.log(value)
             $scope.topic = value;
