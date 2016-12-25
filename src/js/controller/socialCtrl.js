@@ -25,7 +25,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         onOpen: function () {
             // debugger;
             console.log(this)
-            $(this).find('div.echart').map(function (index,currentObj,array) {
+            $(this).find('div.echart').map(function (index, currentObj, array) {
                 echarts.getInstanceByDom(currentObj).resize();
             })
         }
@@ -42,11 +42,15 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     };
     $('#dataRangeSelection').dropdown('set selected', '7').dropdown({
         onChange: function (value, text, $selectedItem) {
-            if(value !== '7'){
-                $scope.isLargeDateRange=true;
-            }else{
-                $scope.isLargeDateRange=false;
+            $scope.dateRange = value;
+            if (value !== '7') {
+                $scope.isLargeDateRange = true;
+            } else {
+                $scope.isLargeDateRange = false;
             }
+            $timeout(function(){$('#largeDateRangeScetion').find('div.echart').map(function (index, currentObj, array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })},0)
             $scope.$digest()
         }
     });
@@ -157,36 +161,31 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     };
 
     //test language distribution fake data
-    $scope.languageDistribution = [
-        {
-            attachedobject:'Chinese',
-            vocinfluence:{
-                voctotalvol: 95502120230,
-                ratio:0.331
-            }   
-        },
-        {
-            attachedobject:'English',
-            vocinfluence:{
-                voctotalvol: 33502120230,
-                ratio:0.111
-            }   
-        },
-        {
-            attachedobject:'Arabic',
-            vocinfluence:{
-                voctotalvol: 30002120230,
-                ratio:0.101
-            }   
-        },
-        {
-            attachedobject:'Portuguese',
-            vocinfluence:{
-                voctotalvol: 22002120230,
-                ratio:0.091
-            }   
+    $scope.languageDistribution = [{
+        attachedobject: 'Chinese',
+        vocinfluence: {
+            voctotalvol: 95502120230,
+            ratio: 0.331
         }
-    ]
+    }, {
+        attachedobject: 'English',
+        vocinfluence: {
+            voctotalvol: 33502120230,
+            ratio: 0.111
+        }
+    }, {
+        attachedobject: 'Arabic',
+        vocinfluence: {
+            voctotalvol: 30002120230,
+            ratio: 0.101
+        }
+    }, {
+        attachedobject: 'Portuguese',
+        vocinfluence: {
+            voctotalvol: 22002120230,
+            ratio: 0.091
+        }
+    }]
 
 }
 

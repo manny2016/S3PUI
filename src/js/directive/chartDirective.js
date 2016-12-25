@@ -35,7 +35,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             noPop: "@",
             association: "@",
             swithTool: "@",
-            noSwap: "@"
+            noSwap: "@",
+            stack: '@'
         },
         link: function (scope, element, attrs) {
             var _ = scope;
@@ -379,6 +380,26 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getStackMessageVol':
+                            var fnPromise = $q.resolve(true);
+                            var fn = stackAxisData;
+                            _.hasData = true;
+                            fn(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getVoCDetailsByServiceName1':
+                            var fnPromise = $q.resolve(true);
+                            var fn = barNegativeData;
+                            _.hasData = true;
+                            fn(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -891,7 +912,7 @@ function customHoriBarData(scope) {
 }
 
 function customWorldData(fnPromise, scope) {
-    return fnPromise.then(function(){
+    return fnPromise.then(function () {
         return {
             series: [{
                 name: scope.title,
@@ -1441,6 +1462,89 @@ function customWorldData(fnPromise, scope) {
             // title: {
             //     text: scope.title || ''
             // }
+        }
+    });
+}
+
+function stackAxisData(fnPromise, scope) {
+    return fnPromise.then(function () {
+        return {
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                data: scope.dateList
+            }],
+            series: [{
+                name: 'Undefined',
+                type: 'line',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [120, 132, 101, 134, 90, 230, 210]
+            }, {
+                name: 'Positive',
+                type: 'line',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [220, 182, 191, 234, 290, 330, 310]
+            }, {
+                name: 'Negative',
+                type: 'line',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [150, 232, 201, 154, 190, 330, 410]
+            }, {
+                name: 'Neutral',
+                type: 'line',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [320, 332, 301, 334, 390, 330, 320]
+            }],
+            // title: {
+            //     text: scope.title || ''
+            // }
+        }
+    });
+}
+
+function barNegativeData(fnPromise, scope) {
+    return fnPromise.then(function () {
+        return {
+            xAxis: [{
+                type: 'value'
+            }],
+            yAxis: [{
+                type: 'category',
+                axisTick : {show: false},
+                data: ['周一','周二','周三','周四','周五','周六','周日']
+            }],
+            series: [{
+                name: 'Like',
+                type: 'bar',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [120, 132, 101, 134, 90, 230, 210]
+            }, {
+                name: 'Dislike',
+                type: 'bar',
+                stack: 'volume',
+                areaStyle: {
+                    normal: {
+                        show: true,
+                        position: 'left'
+                    }
+                },
+                data: [-220, -182, -191, -234, -290, -330, -310]
+            }],
         }
     });
 }
