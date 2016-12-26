@@ -3,6 +3,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
+    $scope.daterange='7';
     var totalrequests = 0;
     // debugger;
     switch ($scope.platform) {
@@ -24,7 +25,6 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         },
         onOpen: function () {
             // debugger;
-            console.log(this)
             $(this).find('div.echart').map(function (index, currentObj, array) {
                 echarts.getInstanceByDom(currentObj).resize();
             })
@@ -40,6 +40,13 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         g: false,
         r: false
     };
+    $('#topicSelection').dropdown({
+        onChange: function (value, text, $selectedItem) {
+            // console.log(value)
+            $scope.topic = value;
+            $scope.startGetData()
+        }
+    });
     $('#dataRangeSelection').dropdown('set selected', '7').dropdown({
         onChange: function (value, text, $selectedItem) {
             $scope.dateRange = value;
@@ -54,13 +61,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.$digest()
         }
     });
-    $('#topicSelection').dropdown({
-        onChange: function (value, text, $selectedItem) {
-            // console.log(value)
-            $scope.topic = value;
-            $scope.startGetData()
-        }
-    });
+    
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
     $scope.getTopics = function () {
@@ -81,7 +82,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             if ($scope.topics.indexOf($rootScope.global.topic) !== -1) {
                 $scope.topic = $rootScope.global.topic;
                 $scope.startGetData()
-                $('.ui.segment').find('.ui.dropdown').dropdown('set text', $rootScope.global.topic)
+                $('#topicSelection').dropdown('set text', $rootScope.global.topic)
             }
         })
     }

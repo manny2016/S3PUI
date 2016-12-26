@@ -1719,6 +1719,9 @@ function initPieChartOpt(scope) {
                 fontSize: 13
             }
         },
+        grid:{
+            bottom:0
+        },
         tooltip: {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
