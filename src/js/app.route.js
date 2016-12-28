@@ -2,26 +2,30 @@ require('angular-ui-router');
 // window.AuthenticationContext = require('adal-angular');
 // require('adal-angular/lib/adal-angular');
 Logging = {
-level: 3,
-log: function (message) {
-console.log(message);
-}
+  level: 3,
+  log: function (message) {
+    console.log(message);
+  }
 };
 var app = angular.module('app.Route', ['ui.router', 'AdalAngular', 'app.Constant']);
 app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
 
     // configure html5 to get links working on jsfiddle
-    // $locationProvider.html5Mode({
-    //   enabled: true,
-    //   // requireBase: false
-    // }).hashPrefix('!');
+    $locationProvider.html5Mode({
+      enabled: true,
+      // requireBase: false
+    }).hashPrefix('!');
 
     // $urlRouterProvider.when("", "/home/dashboard");
     // $urlRouterProvider.when("/", "/home/dashboard");
 
     // For any unmatched url, send to /route1
-    $urlRouterProvider.otherwise("/home/dashboard");
+    $urlRouterProvider.otherwise("home.dashboard");
+    // $urlRouterProvider.otherwise(function ($injector) {
+    //   var $state = $injector.get('$state');
+    //   $state.go('home.dashboard');
+    // });
 
     $stateProvider
       .state('login', {
@@ -134,7 +138,7 @@ app
   })
   .run(function ($rootScope, $state, adalAuthenticationService) {
     if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
-      $state.go("login");
+      window.location = '/';
     }
   })
 module.exports = 'app.Route';
