@@ -12,7 +12,7 @@
     
 
 */
-var moment = require('moment');
+// var moment = require('moment');
 
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, utilitySrv) {
     return {

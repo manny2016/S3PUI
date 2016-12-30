@@ -1,3 +1,4 @@
+moment = require('moment-timezone');
 var app = angular.module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), 'duScroll', 'smart-table'
   ,'toastr'
@@ -20,6 +21,7 @@ app
     // console.log(config);
     //check authentication
     $rootScope.CONST = CONST;
+    $rootScope.TZ = moment.tz(moment.tz.guess()).format('z');
     $rootScope.Notifications = Notifications;
     var config = {
       mode: 'dev'

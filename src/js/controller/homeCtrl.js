@@ -1,5 +1,4 @@
 module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $document, CONST) {
-    var moment = require('moment');
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,

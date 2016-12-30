@@ -1,5 +1,5 @@
 module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $rootScope, CONST) {
-    var moment = require('moment');
+    // var moment = require('moment');
     // var socket = new WebSocket("ws://10.168.176.18/api/SystemDetected/");
     // $scope.Notifications = Notifications; //{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}
     // $scope.Notifications.clearUnRead();
