@@ -3,7 +3,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
-    $scope.daterange='7';
+    $scope.daterange = '7';
     var totalrequests = 0;
     // debugger;
     switch ($scope.platform) {
@@ -20,8 +20,10 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $('.ui.accordion').accordion({
         exclusive: false,
         // debug:true,
+        // animateChildren: false,
         selector: {
-            trigger: '.segment .title'
+            trigger: '.segment .title',
+            content: '.segment'
         },
         onOpen: function () {
             // debugger;
@@ -55,13 +57,15 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             } else {
                 $scope.isLargeDateRange = false;
             }
-            $timeout(function(){$('#largeDateRangeScetion').find('div.echart').map(function (index, currentObj, array) {
-                echarts.getInstanceByDom(currentObj).resize();
-            })},0)
+            $timeout(function () {
+                $('#largeDateRangeScetion').find('div.echart').map(function (index, currentObj, array) {
+                    echarts.getInstanceByDom(currentObj).resize();
+                })
+            }, 0)
             $scope.$digest()
         }
     });
-    
+
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
     $scope.getTopics = function () {

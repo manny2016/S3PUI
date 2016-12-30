@@ -14,27 +14,34 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
     $('#scrollspy .list .item .label').popup();
     $('.ui.accordion').accordion({
             exclusive: false,
+            animateChildren:false,
             selector: {
-                trigger: '.segment .title'
+                trigger: '.segment .title',
+                content: '.segment .content'
             },
+            // className:{
+            //     active:'content active'
+            // },
             onOpen: function () {
                 // debugger;
-                console.log(this)
+                console.log($(this).find('.ui.segment.visible'))
+                $(this).find('.ui.segment').removeClass('visible');
                 $(this).find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
                 })
             }
         })
         //social Health section UI controller
-    $scope.swapTab = function (platform) {
-        $scope.selected = platform;
-        $('.ui.tabular.menu').tab('change tab', platform);
-        // debugger;
-        var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
-        if (chartDom) {
-            echarts.getInstanceByDom(chartDom).resize();
-        }
-    }
+        // $scope.swapTab = function (platform) {
+        //     $scope.selected = platform;
+        //     $('.ui.tabular.menu').tab('change tab', platform);
+        //     // debugger;
+        //     var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
+        //     if (chartDom) {
+        //         echarts.getInstanceByDom(chartDom).resize();
+        //     }
+        // }
+        // $timeout(function(){$('.tabular.menu .item').tab()},50);
     $scope.isSelected = function (section) {
         return $scope.selected === section;
     }
@@ -54,7 +61,16 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
 
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
-        //$scope.$broadcast('on-show');
+        $('.tabular.menu .item').tab({
+                onVisible: function (tab) {
+                    console.log(tab);
+                    var chartDom = $('.ui.tab[data-tab="' + tab + '"]').find('div.echart').get(0);
+                    if (chartDom) {
+                        echarts.getInstanceByDom(chartDom).resize();
+                    }
+                }
+            })
+            //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
         // console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value') === $scope.totalrequests) {

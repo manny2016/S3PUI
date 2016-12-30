@@ -23,16 +23,17 @@
     <!--query metrics-->
     <div class="ui accordion" ng-show="flags.m">
         <div id="health" class="ui segment blue">
-            <h3 class="ui center aligned header blue">Social Health Summary</h3>
-            <div>
-                <div class="ui one column grid">
-                    <div class="ui top attached tabular menu">
-                        <a class="item" ng-class="{active:isSelected(p)}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms" ng-click="swapTab(p)">{{p}}</a>
-                    </div>
-                    <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
-                        <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
-                    </div>
-                    <!--<div class="ui fluid card" ng-chart-shape>
+            <h3 class="ui center aligned title header blue active">Social Health Summary
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui one column grid content active">
+                <div class="ui top attached tabular menu">
+                    <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms">{{p}}</a>
+                </div>
+                <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
+                    <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
+                </div>
+                <!--<div class="ui fluid card" ng-chart-shape>
                             <div class="ui shape">
                                 <div class="sides">
                                     <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
@@ -54,16 +55,15 @@
                                 <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
                             </div>
                         </div>-->
-                </div>
             </div>
         </div>
         <!--spikes charts-->
         <div id="volumes" class="ui segment teal">
-            <h3 class="ui center aligned header title teal active">
+            <h3 class="ui center aligned header title teal">
                 Volumes & Spikes
                 <i class="dropdown icon pull-left"></i>
             </h3>
-            <div class="ui three column grid active content">
+            <div class="ui three column grid content">
                 <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
                     api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
             </div>
@@ -165,7 +165,7 @@
                                         <div class="side" page="User">
                                             <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
                                                 platform='{{enabledPlatforms[0]}}' query=query pnscope="posi" location='home'
-                                                style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                                style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
                                         <div class="side" page="User">
                                             <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
                                                 platform='{{enabledPlatforms[0]}}' query=query pnscope="neg" location='home'
-                                                style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                                style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                                         </div>
                                     </div>
                                 </div>

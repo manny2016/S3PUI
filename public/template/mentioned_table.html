@@ -4,6 +4,7 @@
             <th st-sort="name">Service Name</th>
             <th st-sort="value">Post Vol</th>
             <th style="color: #000 !important;cursor: default !important;">Post Ratio</th>
+            <th style="color: #000 !important;cursor: default !important;">Data Download</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +20,14 @@
             <td>{{item.name}}</td>
             <td width="100">{{item.value|thousandsuffix}}</td>
             <td width="100">{{(item.value)/(total)|percentage}}</td>
+            <td width="100"><a href="javascript:void(0);"><i class="file text outline icon"></i></a></td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
             <td colspan="3">
                 <a title="back" alt="back" style="display: inline-block;float: left;cursor: pointer;" ng-click="swithside()"><i class="reply all icon"></i> Back</a>
-                <div st-items-by-page="5" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                <div st-items-by-page="6" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
             </td>
         </tr>
     </tfoot>

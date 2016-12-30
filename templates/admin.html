@@ -4,12 +4,21 @@
         <i class="right angle icon divider"></i>
         <div class="active section">Administrator</div>
     </div>
-    <div class="ui orange segment">
-        <h4 class="ui header orange" style="padding: 0.5rem;">
-            Platforms
-        </h4>
-        <div class="ui grid admin cards">
-            <!--<div class="column ui card">
+    <div class="ui top attached tabular menu">
+        <a data-tab="services" class="item active">
+            Services/Products
+        </a>
+        <a data-tab="notification" class="item">
+            Notification
+        </a>
+    </div>
+    <div data-tab="services" class="ui tab bottom attached segment active">
+        <div class="ui orange segment">
+            <h4 class="ui header orange" style="padding: 0.5rem;">
+                Platforms
+            </h4>
+            <div class="ui grid admin cards">
+                <!--<div class="column ui card">
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
@@ -34,63 +43,64 @@
                     </a>
                 </div>
             </div>-->
-            <admin-card ng-repeat="p in TopicWithForum" ng-init="$last && renderDimmer()">
-                <!--<platform-card-content></platform-card-content>-->
-                <div class="ui card" ng-class="{'active':isSelectedPlatform(p.platform_Name)}">
-                    <div class="ui hover dimmer">
-                        <div class="content">
-                            <div class="center">
-                                <!--<div class="ui mini buttons">-->
-                                <div class="ui mini inverted button center" ng-click="selectPlatform($index)"><i class="icon angle double down"></i></div>
-                                <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
-                                <!--</div>-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ui unfocus dimmer">
-                    </div>
-                    <div class="blurring dimmable image" style="background:#fff">
-                        <img ng-src="public/images/{{p.platform_Name}}.png">
-                    </div>
-                    <div class="content">
-                        <a class="header">{{p.platform_Name}}</a>
-                    </div>
-                </div>
-            </admin-card>
-        </div>
-    </div>
-    <div class="ui violet segment" ng-show="selectedPlatformIndex!==undefined">
-        <h4 class="ui header violet" style="padding: 0.5rem;">
-            Services / Products
-        </h4>
-        <div class="ui equal width grid admin cards">
-            <admin-card ng-repeat="t in TopicWithForum[selectedPlatformIndex].topics" ng-init="$last && renderDimmer()">
-                <div class="ui card" ng-class="{'active':isSelectedTopic(t.topic)}">
-                    <div class="content">
-                        <a class="header text center" fittext="t.topic" height="23" style="line-height: 23px;">{{t.topic}}</a>
+                <admin-card ng-repeat="p in TopicWithForum" ng-init="$last && renderDimmer()">
+                    <!--<platform-card-content></platform-card-content>-->
+                    <div class="ui card" ng-class="{'active':isSelectedPlatform(p.platform_Name)}">
                         <div class="ui hover dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <div class="ui mini buttons">
-                                    <div class="ui mini inverted button center" ng-click="selectTopic($index)"><i class="icon edit"></i></div>
-                                    <div class="ui mini red inverted button" ng-click="removeTopic($index)"><i class="icon minus"></i></div>
-                                    </div>
+                                    <!--<div class="ui mini buttons">-->
+                                    <div class="ui mini inverted button center" ng-click="selectPlatform($index)"><i class="icon angle double down"></i></div>
+                                    <!--<div class="ui green inverted button"><i class="icon plus"></i></div>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="ui unfocus dimmer">
-                        </div>-->
+                        <div class="ui unfocus dimmer">
+                        </div>
+                        <div class="blurring dimmable image" style="background:#fff">
+                            <img ng-src="public/images/{{p.platform_Name}}.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">{{p.platform_Name}}</a>
+                        </div>
                     </div>
-                </div>
-            </admin-card>
-            <div class="two wide column">
-                <div class="ui card">
-                    <div class="content">
-                        <a class="header text center">New</a>
-                        <div class="ui hover dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui mini green inverted button" ng-click="newScope()"><i class="icon plus"></i></div>
+                </admin-card>
+            </div>
+        </div>
+        <div class="ui violet segment" ng-show="selectedPlatformIndex!==undefined">
+            <h4 class="ui header violet" style="padding: 0.5rem;">
+                Services / Products
+            </h4>
+            <div class="ui equal width grid admin cards">
+                <admin-card ng-repeat="t in TopicWithForum[selectedPlatformIndex].topics" ng-init="$last && renderDimmer()">
+                    <div class="ui card" ng-class="{'active':isSelectedTopic(t.topic)}">
+                        <div class="content">
+                            <a class="header text center" fittext="t.topic" height="23" style="line-height: 23px;">{{t.topic}}</a>
+                            <div class="ui hover dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui mini buttons">
+                                            <div class="ui mini inverted button center" ng-click="selectTopic($index)"><i class="icon edit"></i></div>
+                                            <div class="ui mini red inverted button" ng-click="removeTopic($index)"><i class="icon minus"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="ui unfocus dimmer">
+                        </div>-->
+                        </div>
+                    </div>
+                </admin-card>
+                <div class="two wide column">
+                    <div class="ui card">
+                        <div class="content">
+                            <a class="header text center">New</a>
+                            <div class="ui hover dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui mini green inverted button" ng-click="newScope()"><i class="icon plus"></i></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -98,12 +108,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ui green segment" ng-show="selectedTopic!==undefined">
-        <h4 class="ui header green" style="padding: 0.5rem;">
-            Scopes
-        </h4>
-        <!--<div class="ui card" style="width:auto">
+        <div class="ui green segment" ng-show="selectedTopic!==undefined">
+            <h4 class="ui header green" style="padding: 0.5rem;">
+                Scopes
+            </h4>
+            <!--<div class="ui card" style="width:auto">
             <div class="content">
                 <div class="header">Azure</div>
             </div>
@@ -120,29 +129,125 @@
                 </div>
             </div>
         </div>-->
-        <scope-card-content ng-transclude>
-        </scope-card-content>
+            <scope-card-content ng-transclude>
+            </scope-card-content>
+        </div>
+        <div class="extra content" ng-show="isDirty()">
+            <div class="ui two buttons">
+                <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
+                <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
+            </div>
+        </div>
     </div>
-
-    <div class="extra content" ng-show="isDirty()">
-        <div class="ui two buttons">
-            <div class="ui green basic button" ng-click="approveUpdate()">Approve</div>
-            <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
+    <div data-tab="notification" class="ui tab bottom attached segment">
+        <div class="ui grid">
+            <div class="three wide column">
+                <div class="ui vertical fluid tabular menu">
+                    <a data-tab="azure" class="active item" style="margin-top: 0em">
+                        Azure
+                    </a>
+                    <a data-tab="uwp" class="item" style="margin-top: 0em">
+                        UWP
+                    </a>
+                    <a data-tab="office" class="item" style="margin-top: 0em">
+                        Office
+                    </a>
+                </div>
+            </div>
+            <div class="thirteen wide column">
+                <div data-tab="azure" class="ui tab basic segment active">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="enable" tabindex="0" class="hidden">
+                            <label>Enable Azure Alarm</label>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui form">
+                                <div class="field">
+                                    <label>Recipients</label>
+                                    <div class="fields">
+                                        <div class="twelve wide field">
+                                            <input type="text" name="shipping[address]" placeholder="Email Address">
+                                        </div>
+                                        <div class="four wide field">
+                                            <button class="ui icon red basic button center"><i class="icon red remove"></i></button>
+                                            <button class="ui icon green basic button center"><i class="icon green plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-tab="uwp" class="ui tab basic segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="enable" tabindex="0" class="hidden">
+                            <label>Enable Azure Alarm</label>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui form">
+                                <div class="field">
+                                    <label>Recipients</label>
+                                    <div class="fields">
+                                        <div class="twelve wide field">
+                                            <input type="text" name="shipping[address]" placeholder="Email Address">
+                                        </div>
+                                        <div class="four wide field">
+                                            <button class="ui icon red basic button center"><i class="icon red remove"></i></button>
+                                            <button class="ui icon green basic button center"><i class="icon green plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-tab="office" class="ui tab basic segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="enable" tabindex="0" class="hidden">
+                            <label>Enable Azure Alarm</label>
+                        </div>
+                        <div class="ui segment">
+                            <div class="ui form">
+                                <div class="field">
+                                    <label>Recipients</label>
+                                    <div class="fields">
+                                        <div class="twelve wide field">
+                                            <input type="text" name="shipping[address]" placeholder="Email Address">
+                                        </div>
+                                        <div class="four wide field">
+                                            <button class="ui icon red basic button center"><i class="icon red remove"></i></button>
+                                            <button class="ui icon green basic button center"><i class="icon green plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="extra content">
+            <div class="ui two buttons">
+                <div class="ui green basic button">Approve</div>
+                <div class="ui red basic button">Decline</div>
+            </div>
         </div>
     </div>
 </div>
-
 <div id="removeConfirmModal" class="ui small modal">
-        <div class="header">
-            Attention !
-        </div>
-        <div class="content">
-            <div class="description text red">
-                This operation will remove this topic!!!
-            </div>
-        </div>
-        <div class="actions">
-            <div class="ui cancel button">Cancel</div>
-            <div class="ui approve button">OK</div>
+    <div class="header">
+        Attention !
+    </div>
+    <div class="content">
+        <div class="description text red">
+            This operation will remove this topic!!!
         </div>
     </div>
+    <div class="actions">
+        <div class="ui cancel button">Cancel</div>
+        <div class="ui approve button">OK</div>
+    </div>
+</div>

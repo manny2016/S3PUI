@@ -19,6 +19,10 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
         //         $scope.topics = data;
         //     })
         // }();
+        // $timeout(function(){$('.tabular.menu .item').tab()},0);
+    $('.tabular.menu .item').tab();
+    $('.vertical.menu .item').tab();
+    $('.ui.checkbox').checkbox();
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {
@@ -96,7 +100,7 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
         if (Number.isInteger($scope.selectedTopicIndex)) {
             angular.extend(dist[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex],
                 src[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex]);
-        }else{
+        } else {
             angular.extend(dist[$scope.selectedPlatformIndex],
                 src[$scope.selectedPlatformIndex]);
         }

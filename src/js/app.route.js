@@ -31,7 +31,6 @@ app
       .state('login', {
         url: '/',
         template: '<div></div>',
-        requireADLogin: true,
         controller: function ($scope, $state, adalAuthenticationService) {
           if ($scope.userInfo.isAuthenticated) {
             $state.go("home.dashboard");
@@ -111,7 +110,7 @@ app
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
         cacheLocation: 'localStorage',
-        extraQueryParameter: 'nux=1',
+        // extraQueryParameter: 'nux=1',
         // redirectUri: window.location.origin,
         // displayCall: function (urlNavigate) {
         //   var popupWindow = window.open(urlNavigate, "login", 'width=483, height=600');
@@ -138,6 +137,7 @@ app
   })
   .run(function ($rootScope, $state, adalAuthenticationService) {
     if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
+      // adalAuthenticationService.login();
       window.location = '/';
     }
   })
