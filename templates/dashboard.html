@@ -13,7 +13,7 @@
             </div>
         </h3>
         <div class="ui four cards">
-            <topic-query ng-repeat="t in topics"></topic-query>
+            <topic-query ng-repeat="t in topics | filter:{isGA:true}"></topic-query>
         </div>
     </div>
     <div class="ui indicating progress" ng-show="flags.m" id="progress">

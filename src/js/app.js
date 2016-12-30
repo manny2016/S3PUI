@@ -23,10 +23,7 @@ app
     $rootScope.CONST = CONST;
     $rootScope.TZ = moment.tz(moment.tz.guess()).format('z');
     $rootScope.Notifications = Notifications;
-    var config = {
-      mode: 'dev'
-    }
-    if (config.mode === 'dev') {
+    if (CONST.DEV_MODE === true) {
       $rootScope.service = $injector.get('testSrv')
     } else {
       $rootScope.service = $injector.get('rawdataSrv')

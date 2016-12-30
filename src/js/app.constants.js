@@ -4,6 +4,7 @@ app.constant('CONST', {
     APP_NAME: 'Social Health Platform',
     APP_NAME_SHORT: 'SHP',
     DEFAULT_TIMEZONE:'PST',
+    DEV_MODE:false,
     AD_CONFIG: {
         TENANT_ID: 'microsoft.onmicrosoft.com',
         CLIENT_ID: '482514c8-43d4-4421-a58e-73771b9e9e4c'
@@ -19,8 +20,8 @@ app.constant('CONST', {
         'SupportExperienceIssuesDetected': 'Possible service outage issues'
     },
     SERVICE_INFO: {
-        // ENDPOINT: 'http://10.168.176.27:8091/WebServices/S3PDataService/',
-        ENDPOINT: 'https://shpv1.azurewebsites.net/DataService/S3PDataService.svc/',
+        ENDPOINT: 'http://40.114.88.191/WebServices/S3PDataService/',
+        // ENDPOINT: 'https://shpv1.azurewebsites.net/DataService/S3PDataService.svc/',
         WS:'ws://10.168.176.27:8091/api/Notify/',
         // WS: 'ws://localhost:8889/',
         LOCAL_TEST_DATA: '/data/'

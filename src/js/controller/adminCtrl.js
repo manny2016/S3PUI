@@ -32,10 +32,9 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     // $scope.topics = ['Azure', 'Office365', 'CRM Online', 'Intune'];
 
     $scope.getConfigData = function () {
-        $http.get('/data/adminpage.json').then(function (data) {
-            console.log(data.data);
-            $scope.MsdnTopicMapping = data.data.MsdnTopicMapping;
-            $scope.TopicWithForum = data.data.TopicWithForum;
+        $scope.service.getPlatformSyncSetting().then(function (data) {
+            $scope.MsdnTopicMapping = data.MsdnTopicMapping;
+            $scope.TopicWithForum = data.TopicWithForum;
             $scope.originData = angular.copy($scope.TopicWithForum);
         })
     }

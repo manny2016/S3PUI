@@ -251,6 +251,11 @@ app.factory('testSrv', function (baseSrv) {
             params.bgTime = bgTime || 0;
             params.egTime = egTime || 0;
             return baseSrv.devGet('GetSysDetections', params);
+        },
+        getPlatformSyncSetting : function(platform){
+            var params = params || {};
+            params.platform = platform || 'all';
+            return baseSrv.devGet('GetPlatformSyncSetting',params);
         }
     }
 })
@@ -415,14 +420,19 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
         },
-        getSysDetections : function(forumName,msgType,downloadable,bgTime,egTime){
+        getSysDetections : function(platform,msgType,downloadable,bgTime,egTime){
             var params = params || {};
-            params.forumName = forumName || 'all';
+            params.platform = platform || 'all';
             params.msgType = msgType || 'all';
             params.downloadable = downloadable || 'all';
             params.bgTime = bgTime || 0;
             params.egTime = egTime || 0;
             return baseSrv.get('GetSysDetections', params);
+        },
+        getPlatformSyncSetting : function(platform){
+            var params = params || {};
+            params.platform = platform || 'all';
+            return baseSrv.get('GetPlatformSyncSetting',params);
         }
     }
 })
