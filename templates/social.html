@@ -471,92 +471,96 @@
             </div>
         </div>
     </div>
-    <div ng-show="isLargeDateRange" id="largeDateRangeScetion">
+    <div ng-show="isLargeDateRange" class="ui accordion" id="largeDateRangeScetion">
         <div id="daterangesummary" class="ui blue segment">
-            <h3 class="ui center aligned header blue">Summary in {{dateRange}} Days</h3>
-            <div ng-if="statistic" class="ui three column divided grid center aligned">
-                <div class="column collection">
-                    <div class="ui horizontal top divider">Users</div>
-                    <div>
-                        <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
+            <h3 class="ui center aligned header blue title">Summary in {{dateRange}} Days
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="content active">
+                <div ng-if="statistic" class="ui three column divided grid center aligned">
+                    <div class="column collection">
+                        <div class="ui horizontal top divider">Users</div>
+                        <div>
+                            <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers"></ng-statistic>
+                        </div>
+                        <div>
+                            <div class="ui inverted divider"></div>
+                            <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
+                        </div>
+                        <div>
+                            <div class="ui inverted divider"></div>
+                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
+                        </div>
                     </div>
-                    <div>
-                        <div class="ui inverted divider"></div>
-                        <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
-                    </div>
-                    <div>
-                        <div class="ui inverted divider"></div>
-                        <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
-                    </div>
-                </div>
-                <div class="column collection">
-                    <div class="ui horizontal top divider">Services & Products</div>
-                    <div>
-                        <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
-                    </div>
-                    <div style="max-height:129px;">
-                        <div class="ui inverted divider"></div>
-                        <div class="ui column grid">
-                            <div class="column">
-                                <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
-                                <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
-                                        title="{{s.mentionedmostservice.attachedobject}}">
-                                        <span ng-if="s">
+                    <div class="column collection">
+                        <div class="ui horizontal top divider">Services & Products</div>
+                        <div>
+                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
+                        </div>
+                        <div style="max-height:129px;">
+                            <div class="ui inverted divider"></div>
+                            <div class="ui column grid">
+                                <div class="column">
+                                    <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
+                                    <div class="ui relaxed divided list">
+                                        <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                            title="{{s.mentionedmostservice.attachedobject}}">
+                                            <span ng-if="s">
                                             {{s.mentionedmostservice.attachedobject | limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
-                                        </span>
-                                        <span ng-if="!s">
+                                            </span>
+                                            <span ng-if="!s">
                                             No Data Available
                                         </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ui inverted divider"></div>
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
+                                    <div class="ui relaxed divided list">
+                                        <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                            title="{{s.mentionedmostservice.attachedobject}}">
+                                            <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                            <span ng-if="s">
+                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                            </span>
+                                            <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
+                                    <div class="ui relaxed divided list">
+                                        <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
+                                            title="{{s.mentionedmostservice.attachedobject}}">
+                                            <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
+                                            <span ng-if="s">
+                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
+                                            </span>
+                                            <span ng-if="!s">
+                                            No Data Available
+                                        </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="ui inverted divider"></div>
-                        <div class="ui two column grid">
-                            <div class="column">
-                                <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
-                                <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
-                                        title="{{s.mentionedmostservice.attachedobject}}">
-                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                        <span ng-if="s">
-                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
-                                        </span>
-                                        <span ng-if="!s">
-                                            No Data Available
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
-                                <div class="ui relaxed divided list">
-                                    <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
-                                        title="{{s.mentionedmostservice.attachedobject}}">
-                                        <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
-                                        <span ng-if="s">
-                                            {{s.mentionedmostservice.attachedobject| limitTo: 15 }}<span ng-if="s.mentionedmostservice.attachedobject.length > 15">&hellip;</span>({{s.occupyratio}}%)
-                                        </span>
-                                        <span ng-if="!s">
-                                            No Data Available
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="column collection">
+                        <div class="ui horizontal top divider">VoC</div>
+                        <div>
+                            <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
                         </div>
-                    </div>
-                </div>
-                <div class="column collection">
-                    <div class="ui horizontal top divider">VoC</div>
-                    <div>
-                        <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
-                    </div>
-                    <div>
-                        <div class="ui inverted divider"></div>
-                        <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
+                        <div>
+                            <div class="ui inverted divider"></div>
+                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
+                        </div>
                     </div>
                 </div>
             </div>
