@@ -149,39 +149,58 @@
 .user-list > .item:first-child img.image {
   width: 84px;
 }
-.ui.menu .select {
+.ui.menu .select,
+.ui.menu a.ui.item.select {
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.95);
 }
-.ui.menu .dropdown.blue.select {
+.ui.menu .dropdown.blue.select,
+.ui.menu a.ui.item.blue.select {
   color: #2185D0 !important;
 }
-.ui.menu .dropdown.blue:hover {
+.ui.menu .dropdown.blue:hover,
+.ui.menu a.ui.item.blue:hover {
   color: #2185D0 !important;
 }
-.ui.menu .dropdown.green.select {
+.ui.menu .dropdown.green.select,
+.ui.menu a.ui.item.green.select {
   color: #21BA45 !important;
 }
-.ui.menu .dropdown.green:hover {
+.ui.menu .dropdown.green:hover,
+.ui.menu a.ui.item.green:hover {
   color: #21BA45 !important;
 }
-.ui.menu .dropdown.olive.select {
+.ui.menu .dropdown.olive.select,
+.ui.menu a.ui.item.olive.select {
   color: #B5CC18 !important;
 }
-.ui.menu .dropdown.olive:hover {
+.ui.menu .dropdown.olive:hover,
+.ui.menu a.ui.item.olive:hover {
   color: #B5CC18 !important;
 }
-.ui.menu .dropdown.yellow.select {
+.ui.menu .dropdown.yellow.select,
+.ui.menu a.ui.item.yellow.select {
   color: #FBBD08 !important;
 }
-.ui.menu .dropdown.yellow:hover {
+.ui.menu .dropdown.yellow:hover,
+.ui.menu a.ui.item.yellow:hover {
   color: #FBBD08 !important;
 }
-.ui.menu .dropdown.red.select {
+.ui.menu .dropdown.red.select,
+.ui.menu a.ui.item.red.select {
   color: #DB2828 !important;
 }
-.ui.menu .dropdown.red:hover {
+.ui.menu .dropdown.red:hover,
+.ui.menu a.ui.item.red:hover {
   color: #DB2828 !important;
+}
+.ui.menu .dropdown.teal.select,
+.ui.menu a.ui.item.teal.select {
+  color: #00B5AD !important;
+}
+.ui.menu .dropdown.teal:hover,
+.ui.menu a.ui.item.teal:hover {
+  color: #00B5AD !important;
 }
 .select-page {
   width: 40px;

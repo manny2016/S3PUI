@@ -257,12 +257,12 @@
    }
 }
 
-.ui.menu .select{
+.ui.menu .select,.ui.menu a.ui.item.select{
     background-color: rgba(0, 0, 0, 0.05);
     color: rgba(0, 0, 0, 0.95);
 }
 
-.ui.menu .dropdown{
+.ui.menu .dropdown,.ui.menu a.ui.item{
     &.blue{
         // background-color: @blue;
         &.select{
@@ -306,6 +306,15 @@
         }
         &:hover{
             color: @red !important;
+        }
+    }
+    &.teal{
+        // background-color: @blue;
+        &.select{
+            color: @teal !important;
+        }
+        &:hover{
+            color: @teal !important;
         }
     }
 }

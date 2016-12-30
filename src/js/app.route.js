@@ -1,4 +1,4 @@
-require('angular-ui-router');
+// require('angular-ui-router');
 // window.AuthenticationContext = require('adal-angular');
 // require('adal-angular/lib/adal-angular');
 Logging = {
