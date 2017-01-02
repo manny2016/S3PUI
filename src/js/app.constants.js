@@ -4,7 +4,7 @@ app.constant('CONST', {
     APP_NAME: 'Social Health Platform',
     APP_NAME_SHORT: 'SHP',
     DEFAULT_TIMEZONE:'PST',
-    DEV_MODE:false,
+    DEV_MODE:true,
     AD_CONFIG: {
         TENANT_ID: 'microsoft.onmicrosoft.com',
         CLIENT_ID: '482514c8-43d4-4421-a58e-73771b9e9e4c'

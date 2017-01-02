@@ -3,7 +3,9 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
-    $scope.daterange = '7';
+    $scope.dateRange = '7';
+    $scope.isLargeDateRange = false;
+    $scope.commonTrendTitle="Hourly Trend During a Week";
     var totalrequests = 0;
     // debugger;
     switch ($scope.platform) {
@@ -20,7 +22,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $('.ui.accordion').accordion({
         exclusive: false,
         // debug:true,
-        // animateChildren: false,
+        animateChildren: false,
         selector: {
             trigger: '.segment .title',
             content: '.segment'
@@ -58,14 +60,23 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 $scope.isLargeDateRange = false;
             }
             $timeout(function () {
-                $('#largeDateRangeScetion').find('div.echart').map(function (index, currentObj, array) {
+                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
                 })
             }, 0)
-            $scope.$digest()
+            $scope.$apply()
         }
     });
-
+    $scope.$watch('dateRange',function(newV,oldV){
+        $scope.commonTrendTitle="Daily Trend In Last "+newV+" Days";
+        if(newV !== '7'){
+            $timeout(function () {
+                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
+                    echarts.getInstanceByDom(currentObj).resize();
+                })
+            }, 0)
+        }
+    })
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
     $scope.getTopics = function () {
