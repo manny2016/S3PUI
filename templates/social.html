@@ -27,27 +27,35 @@
                     < Negative Ratio (false)</p>
             </div>
         </div>-->
-        <div class="ui pull-left inline dropdown" id="dataRangeSelection" style="height:38px;line-height:38px;margin-right:20px;">
-            <!--<div style="height:38px;line-height:38px;margin-right:20px;">-->
-            <div class="ui red horizontal label">{{TZ}}</div>
-            <!--</div>-->
-            <input name="daterange" ng-model="daterange" type="hidden" value="">
-            <i class="dropdown icon"></i>
-            <div class="default text">DateRange</div>
-            <div class="menu">
-                <div class="item" data-value="7">7 Days</div>
-                <div class="item" data-value="30">30 Days</div>
-                <div class="item" data-value="90">90 Days</div>
-                <div class="item" data-value="180">180 Days</div>
+        <div class="ui form pull-left">
+            <div class="inline field">
+                <label>Selected Service/Product: </label>
+                <div class="ui selection dropdown" id="topicSelection">
+                    <input name="category" ng-model="topic" type="hidden" value="">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">category</div>
+                    <div class="menu">
+                        <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
+                    </div>
+                </div>
             </div>
-            [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
-        </div>
-        <div class="ui pull-left selection dropdown" id="topicSelection">
-            <input name="category" ng-model="topic" type="hidden" value="">
-            <i class="dropdown icon"></i>
-            <div class="default text">category</div>
-            <div class="menu">
-                <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
+            <div class="inline field">
+                <label>Date Range ({{TZ}}): </label>
+                <!--<div class="ui horizontal label">{{TZ}}</div>-->
+                <div class="ui dropdown" id="dataRangeSelection">
+                    <!--<div style="height:38px;line-height:38px;margin-right:20px;">-->
+                    <!--</div>-->
+                    <input name="daterange" ng-model="daterange" type="hidden" value="">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">DateRange</div>
+                    <div class="menu">
+                        <div class="item" data-value="7">7 Days</div>
+                        <div class="item" data-value="30">30 Days</div>
+                        <div class="item" data-value="90">90 Days</div>
+                        <div class="item" data-value="180">180 Days</div>
+                    </div>
+                </div>
+                [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
             </div>
         </div>
         <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;">

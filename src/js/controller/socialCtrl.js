@@ -1,11 +1,11 @@
-module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location) {
+module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location,utilitySrv) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
     $scope.dateRange = '7';
     $scope.isLargeDateRange = false;
-    $scope.commonTrendTitle="Hourly Trend During a Week";
+    $scope.commonTrendTitle = "Hourly Trend During a Week";
     var totalrequests = 0;
     // debugger;
     switch ($scope.platform) {
@@ -67,9 +67,20 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.$apply()
         }
     });
-    $scope.$watch('dateRange',function(newV,oldV){
-        $scope.commonTrendTitle="Daily Trend In Last "+newV+" Days";
-        if(newV !== '7'){
+    $scope.$watch('dateRange', function (newV, oldV) {
+        $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
+        var timeRange = {
+            'start': (function (d) {
+                d.setDate(d.getDate() - parseInt(newV));
+                return d.setHours(0, 0, 0, 0)
+            })(new Date),
+            'end': (function (d) {
+                d.setDate(d.getDate() - 1);
+                return d.setHours(0, 0, 0, 0)
+            })(new Date)
+        };
+        $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
+        if (newV !== '7') {
             $timeout(function () {
                 $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
