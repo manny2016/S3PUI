@@ -30,7 +30,11 @@ app.filter('timetostring', ['utilitySrv', function (utilitySrv) {
         return utilitySrv.timeToString(input);
     }
 }]);
-
+app.filter('mankindTime2String', ['utilitySrv', function (utilitySrv) {
+    return function (input) {
+        return utilitySrv.mankindTime2String(input);
+    }
+}]);
 app.filter('thousandsuffix', ['$window', function ($window) {
     return function (input, decimals) {
         var exp, rounded,
