@@ -10,7 +10,7 @@ app.constant('CONST', {
         CLIENT_ID: '482514c8-43d4-4421-a58e-73771b9e9e4c'
     },
     MESSAGE_TYPES: {
-        'PostsVolumeSpikeDetected': 'Posts volumn spike detected',
+        'PostsVolumeSpikeDetected': 'Posts volume spike detected',
         'UniqueUserSessionsSpikeDetected': 'Unique user sessions spike detected',
         'PositiveVolumePostSpikeDetected': 'Positive volume post spike detected',
         'NegativeVolumePostSpikeDetected': 'Negative volume post spike detected',
