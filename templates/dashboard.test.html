@@ -1,272 +1,338 @@
 <div class="ui segment basic container">
     <div class="ui breadcrumb">
-        <a class="section">S3P</a>
+        <a class="section">Social Health Platform</a>
         <i class="right angle icon divider"></i>
         <div class="active section">Dashboard</div>
     </div>
     <div class="ui orange segment clearing animated slideInUp">
         <h3 class="ui header orange">
-            S3P Products
-            <div class="sub right header">
-                <div class="ui orange horizontal label">UTC</div>
-                {{dateList[0]}} ~ {{dateList.slice(-1)[0]}}
+            Services and Products
+            <div class="sub pull-right header">
+                <div class="ui orange horizontal label">{{TZ}}</div>
+                {{dateList[0]}} - {{dateList.slice(-1)[0]}}
             </div>
         </h3>
         <div class="ui four cards">
-            <!--<div class="card fluid">
-                <div class="content">
-                    <div class="header">Azure</div>
-                    <div class="description">
-                        Tracked top community platforms, i.e. Twitter / StackExchange / MSDN & TN Forums Data
-                    </div>
-                </div>
-                <div class="ui green bottom attached button" ng-click="startGetData('azure')">
-
-                    <i class="search icon"></i> Query
-                </div>
-            </div>
-            <div class="card fluid">
-                <div class="content">
-                    <div class="header">UWP</div>
-                    <div class="description">
-                        Coming Soon...
-                    </div>
-                </div>
-                <div class="ui bottom attached button disabled">
-                    <i class="military icon"></i> Coming Soon...
-                </div>
-            </div>
-            <div class="card fluid">
-                <div class="content">
-                    <div class="header">PowerBI</div>
-                    <div class="description">
-                        Coming Soon...
-                    </div>
-                </div>
-                <div class="ui bottom attached button disabled">
-                    <i class="military icon"></i> Coming Soon...
-                </div>
-            </div>
-            <div class="card fluid">
-                <div class="content">
-                    <div class="header">TBD</div>
-                    <div class="description">
-                        Coming Soon...
-                    </div>
-                </div>
-                <div class="ui bottom attached button disabled">
-                    <i class="military icon"></i> Coming Soon...
-                </div>
-            </div>-->
-            <topic-query ng-repeat="t in topics"></topic-query>
+            <topic-query ng-repeat="t in topics | filter:{isGA:true}"></topic-query>
         </div>
     </div>
-
     <div class="ui indicating progress" ng-show="flags.m" id="progress">
         <div class="bar"></div>
     </div>
     <!--top menu end-->
-
     <!--query metrics-->
-    <div ng-show="flags.m">
+    <div class="ui accordion" ng-show="flags.m">
+        <div id="health" class="ui segment blue">
+            <h3 class="ui center aligned title header blue active">Social Health Summary
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui one column grid content active">
+                <div class="ui top attached tabular menu">
+                    <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms">{{p}}</a>
+                </div>
+                <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
+                    <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
+                </div>
+                <!--<div class="ui fluid card" ng-chart-shape>
+                            <div class="ui shape">
+                                <div class="sides">
+                                    <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
+                                        <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui three ignored icon direction buttons fluid card">
+                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
 
-        <div class="ui segment green">
-            <h3 class="ui header green">Health</h3>
-            <div>
-
+                                <div class="ui left label icon dropdown button">
+                                    <i class="dropdown icon"></i>
+                                    <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
+                                    <span class="text">{{enabledPlatforms[0]}}</span>
+                                    <div class="menu">
+                                        <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
+                                    </div>
+                                </div>
+                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                            </div>
+                        </div>-->
             </div>
         </div>
         <!--spikes charts-->
-        <div class="ui segment teal">
-            <h3 class="ui header teal">
-                Volumes
+        <div id="volumes" class="ui segment teal">
+            <h3 class="ui center aligned header title teal">
+                Volumes & Spikes
+                <i class="dropdown icon pull-left"></i>
             </h3>
-            <div class="ui three column grid">
-                <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
-                <!--<ng-echart title='Volume & Spikes in MSDN Forums' type="barLine" platform='msdn' query=query api-fn="getSpikes" location='home'></ng-echart>
-                    <ng-echart title='Volume & Spikes in Technet Forums' type="barLine" platform='tn' query=query api-fn="getSpikes" location='home'></ng-echart>
-                    <ng-echart title='Volume & Spikes in Stackoverflow' type="barLine" platform='so' query=query api-fn="getSpikes" location='home'></ng-echart>
-                    <ng-echart title='Volume & Spikes in Serverfault' type="barLine" platform='sf' query=query api-fn="getSpikes" location='home'></ng-echart>
-                    <ng-echart title='Volume & Spikes in Superuser' type="barLine" platform='su' query=query api-fn="getSpikes" location='home'></ng-echart>-->
-            </div>
-            <!--</div>
-        <div class="ui segment pink">
-            <h3 class="ui header pink">
-                    Sentiment Analytics Distribution 
-                </h3>-->
-
-        </div>
-
-        <div class="ui blue segment">
-            <h3 class="ui header blue">Sentiment</h3>
-            <div class="ui three column grid">
-                <ng-echart ng-repeat="p in enabledPlatforms" title="Positive & Negative Vol Distribution in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN"></ng-echart>
-                <!--<ng-echart title="Positive & Negative Vol Distribution in MSDN Forums" type="pie" platform='msdn' query=query api-fn="getDistribution" location='home'></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Technet Forums" type="pie" platform='tn' query=query api-fn="getDistribution" location='home'></ng-echart>
-
-                </div>
-                <div class="row">
-                    <ng-echart title="Positive & Negative Vol Distribution in Serverfault" type="pie" platform='sf' query=query api-fn="getDistribution" location='home'></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Stackoverflow" type="pie" platform='so' query=query api-fn="getDistribution" location='home'></ng-echart>
-                    <ng-echart title="Positive & Negative Vol Distribution in Superuser" type="pie" platform='su' query=query api-fn="getDistribution" location='home'></ng-echart>-->
-            </div>
-            <div class="ui three column grid">
-
-                <div class="row">
-                    <div class="column">
-                        <div id="shape1" class="ui fluid card" ng-chart-shape pnscope="posi" linkage="true">
-                            <div class="ui shape">
-                                <div class="sides">
-                                    <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Positive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ui three ignored icon direction buttons fluid card">
-                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-
-                                <div class="ui left label icon dropdown button">
-                                    <i class="dropdown icon"></i>
-                                    <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
-                                    <span class="text">{{enabledPlatforms[0]}}</span>
-                                    <div class="menu">
-                                        <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
-                                    </div>
-                                </div>
-                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div id="shapePosiMostUser" class="ui fluid card" ng-chart-shape>
-                            <div class="ui shape">
-                                <div class="sides">
-                                    <div class="active side" page="Message">
-                                        <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
-                                    </div>
-                                    <div class="side" page="User">
-                                        <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="posi" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ui three ignored icon direction buttons fluid card">
-                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-
-                                <div class="ui left label icon dropdown button">
-                                    <i class="dropdown icon"></i>
-                                    <input type="hidden" name="category" value="Message">
-                                    <span class="text">Message</span>
-                                    <div class="menu">
-                                        <div class="item" data-value="Message">Message</div>
-                                        <div class="item" data-value="User">User</div>
-                                    </div>
-                                </div>
-                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<ng-echart title="Positive Most Mentioned Services" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="posi" location='home'></ng-echart>-->
-                    <ng-echart title="Positive Influence - Platform" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="posi" location='home' no-pop="true" redirect='true'></ng-echart>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <div id="shape2" class="ui fluid card" ng-chart-shape pnscope="neg" linkage="true">
-                            <!--<div class="ui top attached label">Daily Total Influence</div>-->
-                            <div class="ui shape">
-                                <div class="sides">
-                                    <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-echart title="Daily Nagetive Influence in {{p}}" type="axis" platform='{{p}}' query=query api-fn="getSpikes" style="height:264px;" location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
-                                    </div>
-                                    <!--<div class="side" page="MSDN">
-                                        <ng-echart title="Daily Negative Influence in MSDN" type="axis" platform='msdn' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="TN">
-                                        <ng-echart title="Daily Negative Influence in Technet" type="axis" platform='tn' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SO">
-                                        <ng-echart title="Daily Negative Influence in Stackoverflow" type="axis" platform='so' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SF">
-                                        <ng-echart title="Daily Negative Influence in Serverfault" type="axis" platform='sf' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
-                                    </div>
-                                    <div class="side" page="SU">
-                                        <ng-echart title="Daily Negative Influence in Superuser" type="axis" platform='su' query=query api-fn="getSpikes" style="width:100%;height:264px;" location='home'></ng-echart>
-                                    </div>-->
-                                </div>
-                            </div>
-                            <!--<div class="ui fluid card">-->
-                            <div class="ui three ignored icon direction buttons fluid card">
-                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-                                <!--<a class="ui icon pointing button" data-animation="flip" data-direction="left" title="Flip Left" onclick="javascript:$('#shape2').shape('flip left');chartResize('shape2')"><i class="left long arrow icon"></i></a>-->
-
-                                <div class="ui left label icon dropdown button">
-                                    <i class="dropdown icon"></i>
-                                    <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
-                                    <span class="text">{{enabledPlatforms[0]}}</span>
-                                    <div class="menu">
-                                        <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
-                                        <!--<div class="item" data-value="twitter">twitter</div>
-                                        <div class="item" data-value="SO">SO</div>
-                                        <div class="item" data-value="SF">SF</div>
-                                        <div class="item" data-value="SU">SU</div>
-                                        <div class="item" data-value="MSDN">MSDN</div>
-                                        <div class="item" data-value="TN">TN</div>-->
-                                    </div>
-                                </div>
-                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                            </div>
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div id="shapePosiMost" class="ui fluid card" ng-chart-shape>
-                            <div class="ui shape">
-                                <div class="sides">
-                                    <div class="active side" page="Message">
-                                        <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
-                                    </div>
-                                    <div class="side" page="User">
-                                        <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol" query=query pnscope="neg" location='home' style="height:264px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ui three ignored icon direction buttons fluid card">
-                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-
-                                <div class="ui left label icon dropdown button">
-                                    <i class="dropdown icon"></i>
-                                    <input type="hidden" name="category" value="Message">
-                                    <span class="text">Message</span>
-                                    <div class="menu">
-                                        <div class="item" data-value="Message">Message</div>
-                                        <div class="item" data-value="User">User</div>
-                                    </div>
-                                </div>
-                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--<ng-echart title="Negative Most Mentioned Services" type="wordcloud" query=query api-fn="getMentionedMostServiceList" pnscope="neg" location='home'></ng-echart>-->
-                    <ng-echart title="Negative Influence - Platform" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
-                </div>
+            <div class="ui three column grid content">
+                <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
+                    api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
             </div>
         </div>
-
-        <div class="ui segment violet">
-            <h3 class="ui header violet">
-                    Influencers 
-                </h3>
-            <div class="ui three column grid">
-                <!--<div class="row">-->
-                    <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform='{{p}}' query=query location='home'></user-list>
-                    <!--<user-list title='Top Users in MSDN Forums' users=topUsers platform='msdn' query=query location='home'></user-list>
-                    <user-list title='Top Users in Technet Forums' users=topUsers platform='tn' query=query location='home'></user-list>
+        <div id="notifications" class="ui segment olive">
+            <h3 class="ui center aligned header title olive">
+                <a ui-sref="notification">Notification Center</a>
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="content">
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th>Date
+                                <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                            </th>
+                            <th>Data Source
+                                <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                            </th>
+                            <th>Message
+                                <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                            </th>
+                            <th>Data Download
+                                <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in collections">
+                            <td>{{m.createdTime|timetostring}}</td>
+                            <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
+                            <td>
+                                <div ng-if="m.hasDetails">
+                                    <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
+                                </div>
+                                <div ng-if="!m.hasDetails">
+                                    {{CONST.MESSAGE_TYPES[m.msgType]}}
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-bind-html="generateDownloadUrl(m)"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="sentiment" class="ui purple segment">
+            <h3 class="ui center aligned header title purple">Sentiment
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="content">
+                <div class="ui three column grid">
+                    <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" type="pie" platform='{{p}}' query=query
+                        api-fn="getDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
                 </div>
-                <div class="row">
-                    <user-list title='Top Users in Stackoverflow' users=topUsers platform='so' query=query location='home'></user-list>
-                    <user-list title='Top Users in Serverfault' users=topUsers platform='sf' query=query location='home'></user-list>
-                    <user-list title='Top Users in Superuser' users=topUsers platform='su' query=query location='home'></user-list>-->
-                <!--</div>-->
+                <div class="ui three column grid">
+                    <div class="row">
+                        <div class="column">
+                            <div id="shape1" class="ui fluid card" ng-chart-shape pnscope="posi" linkage="true">
+                                <div class="ui shape">
+                                    <div class="sides">
+                                        <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
+                                            <ng-echart title="Positive Influence in {{p}}" platform='{{p}}' query=query api-fn="getInfluence" type="influence" style="height:306px;"
+                                                location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui three ignored icon direction buttons fluid card">
+                                    <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                                    <div class="ui left label icon dropdown button">
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
+                                        <span class="text">{{enabledPlatforms[0]}}</span>
+                                        <div class="menu">
+                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div id="shapePosiMostUser" class="ui fluid card" ng-chart-shape>
+                                <div class="ui shape">
+                                    <div class="sides">
+                                        <div class="active side" page="Message">
+                                            <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
+                                                query=query pnscope="posi" location='home' style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        </div>
+                                        <div class="side" page="User">
+                                            <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
+                                                platform='{{enabledPlatforms[0]}}' query=query pnscope="posi" location='home'
+                                                style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui three ignored icon direction buttons fluid card">
+                                    <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                                    <div class="ui left label icon dropdown button">
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="category" value="Message">
+                                        <span class="text">Message</span>
+                                        <div class="menu">
+                                            <div class="item" data-value="Message">Message</div>
+                                            <div class="item" data-value="User">User</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-echart title="Positive Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="posi" location='home'
+                            no-pop="true" redirect='true'></ng-echart>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <div id="shape2" class="ui fluid card" ng-chart-shape pnscope="neg" linkage="true">
+                                <div class="ui shape">
+                                    <div class="sides">
+                                        <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
+                                            <ng-echart title="Negative Influence in {{p}}" platform='{{p}}' query=query api-fn="getInfluence" style="height:306px;" type="influence"
+                                                location='home' pnscope="neg" sub-fn="getVoCDetailsByDate"></ng-echart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui three ignored icon direction buttons fluid card">
+                                    <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                                    <div class="ui left label icon dropdown button">
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
+                                        <span class="text">{{enabledPlatforms[0]}}</span>
+                                        <div class="menu">
+                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div id="shapePosiMost" class="ui fluid card" ng-chart-shape>
+                                <div class="ui shape">
+                                    <div class="sides">
+                                        <div class="active side" page="Message">
+                                            <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
+                                                query=query pnscope="neg" location='home' style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        </div>
+                                        <div class="side" page="User">
+                                            <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
+                                                platform='{{enabledPlatforms[0]}}' query=query pnscope="neg" location='home'
+                                                style="height:306px;" sub-fn="getVoCDetailsByServiceName"></ng-echart>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui three ignored icon direction buttons fluid card">
+                                    <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
+                                    <div class="ui left label icon dropdown button">
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="category" value="Message">
+                                        <span class="text">Message</span>
+                                        <div class="menu">
+                                            <div class="item" data-value="Message">Message</div>
+                                            <div class="item" data-value="User">User</div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-echart title="Negative Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="neg" location='home'
+                            no-pop="true" redirect='true'></ng-echart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="analytics" class="ui green segment">
+            <h3 class="ui center aligned header title green">
+                Services Analytics
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui grid content">
+                <div ng-repeat="p in enabledPlatforms" class="two column row">
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Messages Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{p}}' query=query association="message_{{p}}"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Mentioned (Users Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform='{{p}}' query=query association="user_{{p}}"></mentioned-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="influencers" class="ui segment orange">
+            <h3 class="ui center aligned header orange title">
+                Top Active Users
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui three column grid content">
+                <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform='{{p}}' query=query location='home'></user-list>
+            </div>
+        </div>
+        <div id="scrollspy" ng-scroll-spy class="">
+            <div class="ui middle aligned selection list">
+                <div class="item">
+                    <a du-smooth-scroll="health" du-scrollspy offset="50">
+                        <div class="ui label" set-color="blue" data-content="Health Summary" data-variation="mini inverted">
+                            <i class="icon dashboard"></i><span ng-hide="isSmall">Health Summary</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="volumes" du-scrollspy offset="200">
+                        <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
+                            <i class="icon line chart"></i><span ng-hide="isSmall">Volumes & Spikes</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="notifications" du-scrollspy offset="200">
+                        <div class="ui label" set-color="violet" data-content="Notification" data-variation="mini inverted">
+                            <i class="icon line alarm"></i><span ng-hide="isSmall">Notification Center</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="sentiment" du-scrollspy offset="300">
+                        <div class="ui label" set-color="purple" data-content="Sentiment" data-variation="mini inverted">
+                            <i class="icon heartbeat"></i> <span ng-hide="isSmall">Sentiment</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                        <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
+                            <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a du-smooth-scroll="influencers" du-scrollspy offset="300">
+                        <div class="ui label" set-color="orange" data-content="Top Active Users" data-variation="mini inverted">
+                            <i class="icon users"></i> <span ng-hide="isSmall">Top Active Users</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

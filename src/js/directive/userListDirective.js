@@ -19,14 +19,16 @@ module.exports = function ($rootScope) {
             scope.pnscope = scope.pnscope || 'all';
             console.log(scope.platform);
             scope.getAvatorUrl = function(user){
-                return user.attachedobject.profile_image|| user.attachedobject.profile_image_url ||'public/images/'+scope.platform.toLowerCase()+'.png'
+                // return user.attachedobject.profile_image|| user.attachedobject.profile_image_url ||'public/images/'+scope.platform.toLowerCase()+'.png'
+                return user.attachedobject.url ||'public/images/'+scope.platform.toLowerCase()+'.png'
             }
             scope.onClick = function (user,index) {
                 if (a.noPop === undefined) {
                     var param = {
                         platform: scope.platform,
                         topic: scope.query.topic,
-                        userid: user.attachedobject.userId||user.attachedobject.user_id||user.attachedobject.id_str,
+                        // userid: user.attachedobject.userId||user.attachedobject.user_id||user.attachedobject.id_str,
+                        userid: user.attachedobject.userId,
                         index:index,
                         pnscope: scope.pnscope 
                     }

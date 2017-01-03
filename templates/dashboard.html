@@ -22,58 +22,12 @@
     <!--top menu end-->
     <!--query metrics-->
     <div class="ui accordion" ng-show="flags.m">
-        <div id="health" class="ui segment blue">
-            <h3 class="ui center aligned title header blue active">Social Health Summary
-                <i class="dropdown icon pull-left"></i>
-            </h3>
-            <div class="ui one column grid content active">
-                <div class="ui top attached tabular menu">
-                    <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms">{{p}}</a>
-                </div>
-                <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
-                    <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
-                </div>
-                <!--<div class="ui fluid card" ng-chart-shape>
-                            <div class="ui shape">
-                                <div class="sides">
-                                    <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                        <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ui three ignored icon direction buttons fluid card">
-                                <div class="ui left icon button" data-animation="flip" data-direction="left" title="Last"><i class="left long arrow icon"></i></div>
-
-                                <div class="ui left label icon dropdown button">
-                                    <i class="dropdown icon"></i>
-                                    <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
-                                    <span class="text">{{enabledPlatforms[0]}}</span>
-                                    <div class="menu">
-                                        <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
-                                    </div>
-                                </div>
-                                <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
-                            </div>
-                        </div>-->
-            </div>
-        </div>
-        <!--spikes charts-->
-        <div id="volumes" class="ui segment teal">
-            <h3 class="ui center aligned header title teal">
-                Volumes & Spikes
-                <i class="dropdown icon pull-left"></i>
-            </h3>
-            <div class="ui three column grid content">
-                <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
-                    api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
-            </div>
-        </div>
         <div id="notifications" class="ui segment olive">
-            <h3 class="ui center aligned header title olive">
+            <h3 class="ui center aligned header title active olive">
                 <a ui-sref="notification">Notification Center</a>
                 <i class="dropdown icon pull-left"></i>
             </h3>
-            <div class="content">
+            <div class="content active">
                 <table class="ui striped table">
                     <thead>
                         <tr>
@@ -117,6 +71,30 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <!--<div id="health" class="ui segment blue">
+            <h3 class="ui center aligned title header blue active">Social Health Summary
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui one column grid content active">
+                <div class="ui top attached tabular menu">
+                    <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms">{{p}}</a>
+                </div>
+                <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
+                    <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
+                </div>
+            </div>
+        </div>-->
+        <!--spikes charts-->
+        <div id="volumes" class="ui segment teal">
+            <h3 class="ui center aligned header title teal">
+                Volumes & Spikes
+                <i class="dropdown icon pull-left"></i>
+            </h3>
+            <div class="ui three column grid content">
+                <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
+                    api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
             </div>
         </div>
         <div id="sentiment" class="ui purple segment">
@@ -292,23 +270,23 @@
         <div id="scrollspy" ng-scroll-spy class="">
             <div class="ui middle aligned selection list">
                 <div class="item">
+                    <a du-smooth-scroll="notifications" du-scrollspy offset="200">
+                        <div class="ui label" set-color="violet" data-content="Notification" data-variation="mini inverted">
+                            <i class="icon line alarm"></i><span ng-hide="isSmall">Notification Center</span>
+                        </div>
+                    </a>
+                </div>
+                <!--<div class="item">
                     <a du-smooth-scroll="health" du-scrollspy offset="50">
                         <div class="ui label" set-color="blue" data-content="Health Summary" data-variation="mini inverted">
                             <i class="icon dashboard"></i><span ng-hide="isSmall">Health Summary</span>
                         </div>
                     </a>
-                </div>
+                </div>-->
                 <div class="item">
                     <a du-smooth-scroll="volumes" du-scrollspy offset="200">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">
                             <i class="icon line chart"></i><span ng-hide="isSmall">Volumes & Spikes</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a du-smooth-scroll="notifications" du-scrollspy offset="200">
-                        <div class="ui label" set-color="violet" data-content="Notification" data-variation="mini inverted">
-                            <i class="icon line alarm"></i><span ng-hide="isSmall">Notification Center</span>
                         </div>
                     </a>
                 </div>
