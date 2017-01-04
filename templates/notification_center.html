@@ -50,7 +50,7 @@
             </div>
             <div class="three wide field">
                 <label>Start Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="bgTime" selector="input-text">
+                <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
                     <div class="ui left icon input">
                         <input class="input-text" ng-model="search.bgTime" type="text" />
                         <i class="calendar icon"></i>
@@ -59,7 +59,7 @@
             </div>
             <div class="three wide field">
                 <label>End Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="egTime" selector="input-text">
+                <datepicker date-format="yyyy-MM-dd" id="egTime" date-min-limit="{{search.bgTime}}" selector="input-text">
                     <div class="ui left icon input">
                         <input class="input-text" ng-model="search.egTime" type="text" />
                         <i class="calendar icon"></i>
