@@ -11,7 +11,11 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     $scope.search = {
             datasource: 'all',
             messagetype: 'all',
-            date: $filter('date')(new Date(), 'yyyy-MM-dd'),
+            bgTime: $filter('date')((function (d) {
+                d.setDate(d.getDate() - 1);
+                return d
+            })(new Date), 'yyyy-MM-dd'),
+            egTime: $filter('date')(new Date(), 'yyyy-MM-dd'),
             downloadable: 'all'
         }
         // $scope.date = $filter('date')(new Date(), 'yyyy-MM-dd');
@@ -71,9 +75,10 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
 
     $scope.listNotification = function () {
         var params = angular.copy($scope.search);
-        params.date = Math.floor(moment.utc(params.date) / 1000);
+        params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
+        params.egTime = Math.floor(moment.utc(params.egTime) / 1000);
         console.log(params)
-        $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.date).then(function (data) {
+        $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
             $scope.collections = angular.merge($scope.collections, data);
         })
@@ -95,12 +100,12 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         var param = {
             platform: 'all',
             topic: 'azure',
-            date: Math.floor(moment.utc($scope.search.date) / 1000)
+            date: Math.floor(moment.utc($scope.search.bgTime) / 1000)
         }
         $rootScope.popSubWin({
             fn: 'getVoCDetailsByDate',
             param: param
         });
     }
-  
+
 }
