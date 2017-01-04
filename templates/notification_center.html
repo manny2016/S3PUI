@@ -9,8 +9,8 @@
         </span>
         <!--<a class="" ng-click="Notifications.reconnect()" alt="reconnect to notification server"><i class="refresh icon"></i></a>-->
     </div>
-    <div class="ui segment form">
-        <h5 class="ui header">
+    <div class="ui segment blue form">
+        <h5 class="ui header blue">
             Search
         </h5>
         <div class="fields">
@@ -88,47 +88,49 @@
             </div>
         </div>
     </div>
-    <table class="ui striped green table">
-        <thead>
-            <tr>
-                <th>Date
-                    <span class="label">
+    <div class="ui basic segment" style="padding-left:0px;padding-right:0px;">
+        <table class="ui striped green table">
+            <thead>
+                <tr>
+                    <th>Date
+                        <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
-                </th>
-                <th>Data Source
-                    <span class="label">
+                    </th>
+                    <th>Data Source
+                        <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
-                </th>
-                <th>Message
-                    <span class="label">
+                    </th>
+                    <th>Message
+                        <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
-                </th>
-                <th>Data Download
-                    <span class="label">
+                    </th>
+                    <th>Data Download
+                        <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="m in collections">
-                <td>{{m.createdTime|mankindTime2String}}</td>
-                <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
-                <td>
-                    <div ng-if="m.hasDetails">
-                        <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
-                    </div>
-                    <div ng-if="!m.hasDetails">
-                        {{CONST.MESSAGE_TYPES[m.msgType]}}
-                    </div>
-                </td>
-                <td>
-                    <div ng-bind-html="generateDownloadUrl(m)"></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="m in collections">
+                    <td>{{m.createdTime|mankindTime2String}}</td>
+                    <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
+                    <td>
+                        <div ng-if="m.hasDetails">
+                            <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
+                        </div>
+                        <div ng-if="!m.hasDetails">
+                            {{CONST.MESSAGE_TYPES[m.msgType]}}
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-bind-html="generateDownloadUrl(m)"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
