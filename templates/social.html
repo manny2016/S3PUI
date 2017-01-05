@@ -188,8 +188,8 @@
                             <div class="ui inverted divider"></div>
                             <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
                             <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom"></ng-statistic>-->
-                            <ng-statistic ng-hide="isLargeDateRange" title="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
-                                type="mostposifrom"></ng-statistic>
+                            <!--<ng-statistic ng-hide="isLargeDateRange" title="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
+                                type="mostposifrom"></ng-statistic>-->
                         </div>
                     </div>
                 </div>
@@ -261,6 +261,12 @@
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
                 </div>-->
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails"></ng-echart>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="analytics" class="ui green segment">

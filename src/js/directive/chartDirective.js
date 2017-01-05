@@ -404,6 +404,16 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
+                        case 'sentimentconversion':
+                         var fnPromise = $q.resolve(true);
+                            var fn = sentimentconversionData;
+                            _.hasData = true;
+                            fn(fnPromise, _).then(function (config) {
+                                _.chartOpt = angular.extend(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                        break;
                     }
                 }
             }
@@ -1548,7 +1558,57 @@ function barNegativeData(fnPromise, scope) {
         }
     });
 }
-
+function sentimentconversionData(fnPromise, scope){
+    return fnPromise.then(function () {
+        return {
+            yAxis: [{
+                type: 'value'
+            },{
+                type: 'value',
+                position: 'right',
+                max:1
+            }],
+            xAxis: [{
+                type: 'category',
+                data: scope.$root.dateList
+            }],
+            series: [{
+                name: 'Init Positive Volume',
+                type: 'bar',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [100, 130, 101, 104, 90, 130, 110]
+            },{
+                name: 'After Support Positive Volume',
+                type: 'bar',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [170, 132, 90, 134, 90, 230, 210]
+            },{
+                name: 'Init Negative Volume',
+                type: 'bar',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [-10, -32, -11, -34, -9, -20, -10]
+            },{
+                name: 'After Support Negative Volume',
+                type: 'bar',
+                areaStyle: {
+                    normal: {}
+                },
+                data: [-1, -20, -11, -27, -5, -10, 0]
+            },{
+                name: 'Positive Sentiment Conversion',
+                type: 'line',
+                yAxisIndex: 1,
+                data: [0.23,0.01,-0.04,0.10,0.00,0.33,0.40]
+            }],
+        }
+    });
+}
 function customHourlyData(fnPromise, key, utility, scope) {
     var seriesData = [],
         xAxisDate = [];
