@@ -14,7 +14,9 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = CONST.SERVICE_INFO.ENDPOINT + api + qs;
             var deferred = $q.defer();
-            $http.get(path, { cache: true}).then(function (data) {
+            $http.get(path, {
+                cache: true
+            }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {
@@ -32,7 +34,9 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
 
             path = CONST.SERVICE_INFO.LOCAL_TEST_DATA + api + '.json' + qs;
             var deferred = $q.defer();
-            $http.get(path, { cache: true}).then(function (data) {
+            $http.get(path, {
+                cache: true
+            }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {}
@@ -64,10 +68,10 @@ app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
         status: function () {
             return ws.readyState;
         },
-        reconnect:function(){
+        reconnect: function () {
             ws.reconnect();
         },
-        clearUnRead:function(){
+        clearUnRead: function () {
             unReadMessage = 0;
         },
         send: function (message) {
@@ -243,7 +247,7 @@ app.factory('testSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
-        getSysDetections : function(forumName,msgType,downloadable,bgTime,egTime){
+        getSysDetections: function (forumName, msgType, downloadable, bgTime, egTime) {
             var params = params || {};
             params.forumName = forumName || 'all';
             params.msgType = msgType || 'all';
@@ -252,10 +256,10 @@ app.factory('testSrv', function (baseSrv) {
             params.egTime = egTime || 0;
             return baseSrv.devGet('GetSysDetections', params);
         },
-        getPlatformSyncSetting : function(platform){
+        getPlatformSyncSetting: function (platform) {
             var params = params || {};
             params.platform = platform || 'all';
-            return baseSrv.devGet('GetPlatformSyncSetting',params);
+            return baseSrv.devGet('GetPlatformSyncSetting', params);
         }
     }
 })
@@ -425,7 +429,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
         },
-        getSysDetections : function(platform,msgType,downloadable,bgTime,egTime){
+        getSysDetections: function (platform, msgType, downloadable, bgTime, egTime) {
             var params = params || {};
             params.platform = platform || 'all';
             params.msgType = msgType || 'all';
@@ -434,10 +438,25 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.egTime = egTime || 0;
             return baseSrv.get('GetSysDetections', params);
         },
-        getPlatformSyncSetting : function(platform){
+        getPlatformSyncSetting: function (platform) {
             var params = params || {};
             params.platform = platform || 'all';
-            return baseSrv.get('GetPlatformSyncSetting',params);
+            return baseSrv.get('GetPlatformSyncSetting', params);
+        },
+        getUserLanguageDistribution: function (platform, topic, days) {
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'azure';
+            params.gays = days || 7;
+            return baseSrv.get('GetUserLanguageDistribution', params);
+        },
+        getRegionDistribution: function (platform, topic, PNScope, days) {
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'azure';
+            params.PNScope = PNScope || 'all';
+            params.gays = days || 7;
+            return baseSrv.get('GetRegionDistribution', params);
         }
     }
 })

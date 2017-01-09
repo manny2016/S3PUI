@@ -60,7 +60,8 @@ module.exports = function ($filter) {
             return (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm");
         },
         mankindTime2String: function(timestamp){
-            return moment().utc(timestamp).format("YYYY-MM-DD hh:mm A");
+            // return (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm A");
+            return moment(timestamp * 1000).format("YYYY-MM-DD hh:mm A");
         }
     }
 };

@@ -354,10 +354,10 @@
                     </div>
                 </div>
                 <div class="two column row" ng-if="platform=='twitter'">
-                    <ng-echart title="Area Distribution for Positive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
-                    <ng-echart title="Area Distribution for Nagetive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
+                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="positive"></ng-echart>
+                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="negative"></ng-echart>
                 </div>
             </div>
         </div>
@@ -368,8 +368,8 @@
             </h3>
             <div class="ui grid content">
                 <div class="two column row">
-                    <ng-echart title="User Distribution" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution" location='home'
-                        sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
+                    <ng-echart title="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution" location='home'
+                        sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="users"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>

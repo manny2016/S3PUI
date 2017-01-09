@@ -31,6 +31,9 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
             $scope.collections.push($scope.Notifications.collection.pop());
         }
     }, true)
+    $scope.$watch('search', function (newV, oldV) {
+        $scope.listNotification();
+    }, true)
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {
@@ -62,9 +65,9 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
                 'tn': 'Telnet'
             };
             $('.ui.fluid.dropdown').dropdown({
-                onChange: function (value, text, $choice) {
-                    $scope.listNotification();
-                }
+                // onChange: function (value, text, $choice) {
+                //     $scope.listNotification();
+                // }
             });
             $('.popup').popup();
         }, 50)
@@ -76,22 +79,16 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     $scope.listNotification = function () {
         var params = angular.copy($scope.search);
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
-        params.egTime = Math.floor(moment.utc(params.egTime) / 1000);
+        params.egTime = Math.floor(moment.utc(params.egTime).add(1,'days') / 1000);
         console.log(params)
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
-            $scope.collections = angular.merge($scope.collections, data);
+            // $scope.collections = angular.extend($scope.collections, data);
+            $scope.collections = data;
+            // $scope.$digest();
         })
     }
-    $scope.listNotification();
-    $scope.adaltest = function () {
-        $http({
-            url: 'https://garyphp.azurewebsites.net/api.php',
-            method: 'get'
-        }).then(function (data) {
-            console.log(data);
-        })
-    }
+    // $scope.listNotification();
     $scope.generateDownloadUrl = function (entity) {
         var downloadTemplate = '<a href="' + entity.link + '" target="_blank">Download Data</a>';
         return entity.hasDownload ? $sce.trustAsHtml(downloadTemplate) : 'N/A';
