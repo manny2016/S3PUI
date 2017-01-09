@@ -31,7 +31,7 @@
             <div class="inline field">
                 <label>Selected Service/Product: </label>
                 <div class="ui selection dropdown" id="topicSelection">
-                    <input name="category" ng-model="topic" type="hidden" value="">
+                    <input name="category" type="hidden" value="">
                     <i class="dropdown icon"></i>
                     <div class="default text">category</div>
                     <div class="menu">
@@ -207,39 +207,39 @@
                 <!--Users' Vol Trend-->
                 <div class="column">
                     <ng-echart title="Users' Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes"
-                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <div class="column">
                     <ng-echart title="Message Posts' Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
-                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <!--Message Posts' Vol By Sentiment Daily Trend-->
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange">
                     <ng-echart title="Message Posts' Vol By Sentiment Daily Trend In Last {{dateRange}} Days" type="hourly" platform='{{path[2]}}'
                         query=query api-fn="getStackMessageVol" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"
-                        stack="volume"></ng-echart>
+                        stack="volume" days="{{dateRange}}"></ng-echart>
                 </div>
                 <div class="column">
                     <ng-echart title="Positive Posts' Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
-                        location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <div class="column">
                     <ng-echart title="Negative Posts' Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
-                        location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <div class="column">
                     <ng-echart title="Message Influence Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
-                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <div ng-if="platform=='twitter'" class="column">
                     <ng-echart title="Poster's Regions # {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
-                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
+                        location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="platform=='twitter'">
                     <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getSpikes"
-                        type="bar" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate"></ng-echart>
+                        type="bar" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
                 </div>
             </div>
         </div>
@@ -251,11 +251,11 @@
             <div class="ui three column grid content">
                 <div class="row">
                     <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
                     <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
-                        pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                        pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords" days="{{dateRange}}"></ng-echart>
                     <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
-                        pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
+                        pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords" days="{{dateRange}}"></ng-echart>
                 </div>
                 <!--<div class="row">
                     <ng-echart title="Negative Platform Influence" style="height:300px" platform="twitter,so,sf,su,msdn,tn" query=query type="hori" api-fn="getSpikes" pnscope="neg" location='home' no-pop="true" redirect='true'></ng-echart>
@@ -264,7 +264,7 @@
                 <div class="row">
                     <div class="sixteen wide column">
                         <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
-                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails"></ng-echart>
+                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
                     </div>
                 </div>
             </div>
@@ -280,10 +280,10 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
-                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
+                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message" days="{{dateRange}}"></ng-echart>
                             </div>
                             <div class="side">
-                                <mentioned-table platform='{{path[2]}}' query=query association="message"></mentioned-table>
+                                <mentioned-table platform='{{path[2]}}' query=query association="message" days="{{dateRange}}"></mentioned-table>
                             </div>
                         </div>
                     </div>
@@ -291,10 +291,10 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
-                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
+                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user" days="{{dateRange}}"></ng-echart>
                             </div>
                             <div class="side">
-                                <mentioned-table platform='{{path[2]}}' query=query association="user"></mentioned-table>
+                                <mentioned-table platform='{{path[2]}}' query=query association="user" days="{{dateRange}}"></mentioned-table>
                             </div>
                         </div>
                     </div>
@@ -303,7 +303,7 @@
                 <div class="row" ng-show="isLargeDateRange">
                     <div class="column large-date-range">
                         <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="barNagetive" platform='{{path[2]}}' query=query
-                            api-fn="getVoCDetailsByServiceName1" location='home' pnscope="all" sub-fn="getSubPageVoCDetails"></ng-echart>
+                            api-fn="getVoCDetailsByServiceName1" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
                     </div>
                 </div>
                 <div class="row">
@@ -355,9 +355,9 @@
                 </div>
                 <div class="two column row" ng-if="platform=='twitter'">
                     <ng-echart title="Area Distribution for Positive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
                     <ng-echart title="Area Distribution for Nagetive Feedback" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
                 </div>
             </div>
         </div>
@@ -369,7 +369,7 @@
             <div class="ui grid content">
                 <div class="two column row">
                     <ng-echart title="User Distribution" type="world" platform='{{path[2]}}' query=query api-fn="getWorldDistribution" location='home'
-                        sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
+                        sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>
@@ -415,17 +415,17 @@
                 <div class="ui three column grid">
                     <!--<div class="column">-->
                     <!--<div class="ui blue inverted segment center aligned voc">-->
-                    <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home'></user-list>
+                    <user-list title='Most VoC Post By' platform='{{path[2]}}' pnscope="all" query=query location='home' days="{{dateRange}}"></user-list>
                     <!--</div>-->
                     <!--</div>-->
                     <!--<div class="column">-->
                     <!--<div class="ui green inverted segment center aligned voc">-->
-                    <user-list title='Most POS VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home'></user-list>
+                    <user-list title='Most POS VoC Post By' platform='{{path[2]}}' pnscope="posi" query=query location='home' days="{{dateRange}}"></user-list>
                     <!--</div>-->
                     <!--</div>-->
                     <!--<div class="column">-->
                     <!--<div class="ui red inverted segment center aligned voc">-->
-                    <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home'></user-list>
+                    <user-list title='Most NEG VoC Post By' platform='{{path[2]}}' pnscope="neg" query=query location='home' days="{{dateRange}}"></user-list>
                     <!--</div>-->
                     <!--</div>-->
                 </div>

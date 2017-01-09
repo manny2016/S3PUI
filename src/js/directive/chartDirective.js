@@ -279,7 +279,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             }
                             break;
                         case 'getDistribution':
-                            var fnPromise = apiFn(_.platform, _.query.topic);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.days);
                             customDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
@@ -287,7 +287,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMentionedMostServiceList':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -296,7 +296,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             fn(fnPromise, _).then(function (config) {
@@ -307,7 +307,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMentionedMostServiceDistribution':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             _.order = $filter('orderBy');
                             customServicesDistributionData(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -317,7 +317,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getKeywordsMentionedMostMapping':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -326,7 +326,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getUserVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -335,7 +335,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMessageVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData,
                                 key = '';
                             switch (_.pnscope) {
@@ -356,7 +356,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getInfluenceVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -365,7 +365,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getUserRegionVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -853,6 +853,11 @@ function customServicesDistributionData(fnPromise, scope) {
             sum += rest[i]['value'];
         }
         total += sum;
+        scope.$root.$broadcast('set-mentioned-table-data', {
+            data: seriesData,
+            total: total,
+            association: scope.association
+        });
         if (seriesData.length > 11) {
             var other = {
                 name: 'Others',
@@ -862,11 +867,7 @@ function customServicesDistributionData(fnPromise, scope) {
         }
         seriesData = tops;
         // console.log(scope);
-        scope.$root.$broadcast('set-mentioned-table-data', {
-            data: rest,
-            total: total,
-            association: scope.association
-        });
+        
         // }
         return {
             series: [{
@@ -881,7 +882,7 @@ function customServicesDistributionData(fnPromise, scope) {
                 feature: {
                     myTool1: {
                         show: true, //true
-                        title: 'Switch to Others List',
+                        title: 'Switch to Details List',
                         icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
                         onclick: function () {
                             scope.swithside()

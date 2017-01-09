@@ -11,7 +11,8 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
             // users: "=",
             platform: "@",
             query: "=",
-            association: "@"
+            association: "@",
+            days:"@"
         },
         link: function (scope, e, a) {
             $rootScope.$on('set-mentioned-table-data', function (evt, arg) {
@@ -25,6 +26,8 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
                     platform: scope.platform,
                     topic: scope.query.topic,
                     service: serverName,
+                    PNScope:'all',
+                    days:scope.days
                 }
                 $rootScope.popSubWin({
                     fn: 'getVoCDetailsByServiceName',

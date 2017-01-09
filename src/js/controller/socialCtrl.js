@@ -60,6 +60,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 $scope.isLargeDateRange = false;
             }
             $timeout(function () {
+                $scope.startGetData()
                 $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
                 })
@@ -134,7 +135,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         //},500)
     });
     $scope.getMentionedServiceTable = function (platform, topic) {
-        $scope.service.getMentionedMostServiceList(platform, topic).then(function (data) {
+        $scope.service.getMentionedMostServiceList(platform, topic, undefined, $scope.dateRange).then(function (data) {
             // detect server status
 
             // $scope.mostMentionedService = $scope.order(data,'-vocinfluence.voctotalvol');
@@ -159,7 +160,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $('#progress').progress('reset');
             $('#progress').show();
             $scope.query.topic = $scope.topic;
-            $scope.getStatistic($scope.$stateParams.platform, $scope.topic)
+            $scope.getStatistic($scope.$stateParams.platform, $scope.topic, $scope.dateRange)
             $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
             $scope.$broadcast('start-get-data', 'home');
         }

@@ -267,12 +267,13 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'all';
             return baseSrv.get('GetAllEnabledTopicsByPlatform', params);
         },
-        getUser: function (platform, topNum, topic, PNScope) {
+        getUser: function (platform, topNum, topic, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topNum = topNum || 5;
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetTopUsers', params);
         },
         getSpikes: function (platform, topic, days) {
@@ -282,31 +283,35 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             return baseSrv.get('GetDailyVolSpikes', params);
         },
-        getDistribution: function (platform, topic) {
+        getDistribution: function (platform, topic, days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetPNDistribution', params);
         },
-        getMentionedMostServiceList: function (platform, topic, PNScope) {
+        getMentionedMostServiceList: function (platform, topic, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetMentionedMostServiceList', params);
         },
-        getMentionedMostServiceListByUserVol: function (platform, topic, PNScope) {
+        getMentionedMostServiceListByUserVol: function (platform, topic, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetMentionedMostServiceListByUserVol', params);
         },
-        getMentionedMostServiceDistribution: function (platform, topic, PNScope) {
+        getMentionedMostServiceDistribution: function (platform, topic, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
+            params.days = days || 7;
             return baseSrv.get('GetMentionedMostServiceList', params);
         },
         getInfluence: function (platform, topic, PNScope, days) {

@@ -106,13 +106,12 @@
                     <th colspan="6" style="color: #000 !important;cursor: default !important;">
                         Messages List
                     </th>
-                    <tr ng-if="(platform=='twitter')">
+                    <!--<tr ng-if="(platform=='twitter')">
                         <th st-sort="text">Thread Name</th>
                         <th st-sort="user.name">Post By</th>
                         <th st-sort="getters.twitterInf">Influence Num</th>
                         <th st-sort="created_at">Time (UTC)</th>
                         <th st-sort="sentimentscore">Sentiment</th>
-                        <!--<th>Post within spike period</th>-->
                     </tr>
                     <tr ng-if="(platform=='so'||platform=='sf'||platform=='su')">
                         <th st-sort="title">Thread Name</th>
@@ -120,9 +119,8 @@
                         <th st-sort="view_count">Influence Num</th>
                         <th st-sort="creation_date">Time (UTC)</th>
                         <th st-sort="sentimentscore">Sentiment</th>
-                        <!--<th>Post within spike period</th>-->
-                    </tr>
-                    <tr ng-if="(platform=='msdn'||platform=='tn')">
+                    </tr>-->
+                    <tr> <!--ng-if="(platform=='msdn'||platform=='tn')"-->
                         <th st-sort="title">Thread Name</th>
                         <th st-sort="createdBy">Post By</th>
                         <th st-sort="views">Influence Num</th>
@@ -140,13 +138,12 @@
                         </div>
                     </td>
                 </tr>
-                <tr ng-repeat="item in stTable" ng-if="(platform=='twitter')">
+                <!--<tr ng-repeat="item in stTable" ng-if="(platform=='twitter')">
                     <td><a href="{{item.twitterurl}}" target="_blank">{{item.text}}</a></td>
                     <td>{{item.user.name}}</td>
                     <td>{{(item.user.followers_count)+(item.user.friends_count)|thousandsuffix}}</td>
                     <td>{{item.created_at | timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
-                    <!--<td>{{}}</td>-->
                 </tr>
                 <tr ng-repeat="item in stTable" ng-if="(platform=='so'||platform=='sf'||platform=='su')">
                     <td><a href="{{item.link}}" target="_blank">{{item.title}}</a></td>
@@ -154,14 +151,13 @@
                     <td>{{item.view_count|thousandsuffix}}</td>
                     <td>{{item.creation_date| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
-                    <!--<td>{{}}</td>-->
-                </tr>
-                <tr ng-repeat="item in stTable" ng-if="(platform=='msdn'||platform=='tn')">
+                </tr>-->
+                <tr ng-repeat="item in stTable">  <!--ng-if="(platform=='msdn'||platform=='tn')"-->
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
                     <td>{{item.createdBy.displayName}}</td>
-                    <td>{{item.views|thousandsuffix}}</td>
+                    <td>{{item.InfluenceNum|thousandsuffix}}</td>
                     <td>{{item.created| timetostring}}</td>
-                    <td>{{item.sentimentscore|sentimentScore}}</td>
+                    <td>{{item.Sentiment|sentimentScore}}</td>
                     <!--<td>{{}}</td>-->
                 </tr>
             </tbody>
