@@ -238,8 +238,8 @@
                 </div>
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="platform=='twitter'">
-                    <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getSpikes"
-                        type="bar" location='home' pnscope="posi" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
+                    <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                        type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
                 </div>
             </div>
         </div>
@@ -375,8 +375,8 @@
                             <thead>
                                 <tr>
                                     <th st-sort="attachedobject">Language</th>
-                                    <th st-sort="vocinfluence.voctotalvol" st-sort-default="reverse" st-skip-natural="true">Volume</th>
-                                    <th st-sort="vocinfluence.ratio" st-skip-natural="true">Ratio</th>
+                                    <th st-sort="volume" st-sort-default="reverse" st-skip-natural="true">Volume</th>
+                                    <th st-sort="ratio" st-skip-natural="true">Ratio</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -389,9 +389,9 @@
                                     </td>
                                 </tr>
                                 <tr ng-repeat="item in stTable2">
-                                    <td>{{item.attachedobject}}</td>
-                                    <td width="100">{{item.vocinfluence.voctotalvol|thousandsuffix}}</td>
-                                    <td width="100">{{item.vocinfluence.ratio|percentage}}</td>
+                                    <td>{{item.languagename}}</td>
+                                    <td width="100">{{item.volume|thousandsuffix}}</td>
+                                    <td width="100">{{item.ratio|percentage}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>

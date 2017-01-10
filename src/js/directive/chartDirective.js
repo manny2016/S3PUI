@@ -376,7 +376,11 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getRegionDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             // var fnPromise = $q.resolve(true);
-                            var fn = customWorldData;
+                            if (_.type === 'world') {
+                                var fn = customWorldData;
+                            } else {
+                                var fn = customRegionData;
+                            }
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -385,12 +389,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getStackMessageVol':
-                            var fnPromise = $q.resolve(true);
+                            var fnPromise = _.service['getMessageVolSpikes'](_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = stackAxisData;
-                            _.hasData = true;
-                            fn(fnPromise, _).then(function (config) {
+                            // _.hasData = true;
+                            fn(fnPromise, utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
-                                initChart(_.chartObj, _.chartOpt);
+                                initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
@@ -405,7 +409,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'sentimentconversion':
-                         var fnPromise = $q.resolve(true);
+                            var fnPromise = $q.resolve(true);
                             var fn = sentimentconversionData;
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
@@ -413,7 +417,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
-                        break;
+                            break;
                     }
                 }
             }
@@ -867,7 +871,7 @@ function customServicesDistributionData(fnPromise, scope) {
         }
         seriesData = tops;
         // console.log(scope);
-        
+
         // }
         return {
             series: [{
@@ -925,7 +929,6 @@ function customHoriBarData(scope) {
 function customWorldData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
-        console.log(data);
         scope.validData(data);
         var seriesData = data.map(function (item) {
             var tmp = {
@@ -970,52 +973,169 @@ function customWorldData(fnPromise, scope) {
     });
 }
 
-function stackAxisData(fnPromise, scope) {
-    return fnPromise.then(function () {
+function customRegionData(fnPromise, scope) {
+    var xData=[];
+    return fnPromise.then(function (data) {
+        scope.validData(data);
+        var seriesData = data.map(function (item) {
+            xData.push(item.name)
+            return item.uniqueusers
+        })
         return {
-            xAxis: [{
-                type: 'category',
-                boundaryGap: false,
-                data: scope.dateList
+            dataZoom: [{
+                show: true,
+                realtime: true,
+                start: 0,
+                end: 100
             }],
+            xAxis: {
+                data: xData
+            },
             series: [{
-                name: 'Undefined',
-                type: 'line',
-                stack: 'volume',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [120, 132, 101, 134, 90, 230, 210]
-            }, {
-                name: 'Positive',
-                type: 'line',
-                stack: 'volume',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [220, 182, 191, 234, 290, 330, 310]
-            }, {
-                name: 'Negative',
-                type: 'line',
-                stack: 'volume',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [150, 232, 201, 154, 190, 330, 410]
-            }, {
-                name: 'Neutral',
-                type: 'line',
-                stack: 'volume',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [320, 332, 301, 334, 390, 330, 320]
+                name: 'Volume',
+                type: 'bar',
+                data: seriesData
             }],
             // title: {
             //     text: scope.title || ''
             // }
         }
     });
+}
+
+function stackAxisData(fnPromise, utility, scope) {
+    var seriesData = {
+            'undif': [],
+            'posi': [],
+            'neg': [],
+            'neu': []
+        },
+        xAxisDate = [];
+    return fnPromise.then(function (data) {
+            scope.validData(data);
+            data.map(function (item) {
+                    var tmp = {};
+                    xAxisDate.push(utility.timeToString(item.attachedobject.timeslot));
+                    var entity = {
+                        value: item.vocinfluence['undefinedtotalvol'],
+                        symbolSize: 4
+                    };
+                    seriesData.undif.push(entity);
+                    var entity = {
+                        value: item.vocinfluence['positivetotalvol'],
+                        symbolSize: 4
+                    };
+                    seriesData.posi.push(entity);
+                    var entity = {
+                        value: item.vocinfluence['negativetotalvol'],
+                        symbolSize: 4
+                    };
+                    seriesData.neg.push(entity);
+                    var entity = {
+                        value: item.vocinfluence['neutraltotalvol'],
+                        symbolSize: 4
+                    };
+                    seriesData.neu.push(entity);
+                })
+                // console.log(xAxisDate)
+            return {
+                legend: {
+                    data: ['Undefined', 'Positive', 'Negative', 'Nuetral']
+                },
+                series: [{
+                    name: 'Undefined',
+                    type: 'line',
+                    stack: 'total',
+                    showAllSymbol: true,
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: seriesData.undif
+                }, {
+                    name: 'Positive',
+                    type: 'line',
+                    stack: 'total',
+                    showAllSymbol: true,
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: seriesData.posi
+                }, {
+                    name: 'Negative',
+                    type: 'line',
+                    stack: 'total',
+                    showAllSymbol: true,
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: seriesData.neg
+                }, {
+                    name: 'Nuetral',
+                    type: 'line',
+                    stack: 'total',
+                    showAllSymbol: true,
+                    areaStyle: {
+                        normal: {}
+                    },
+                    data: seriesData.neu
+                }],
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    axisLine: {
+                        onZero: false
+                    },
+                    data: xAxisDate
+                },
+                // title: {
+                //     text: scope.title || ''
+                // }
+            }
+        })
+        //     return {
+        //         xAxis: [{
+        //             type: 'category',
+        //             boundaryGap: false,
+        //             data: scope.dateList
+        //         }],
+        //         series: [{
+        //             name: 'Undefined',
+        //             type: 'line',
+        //             stack: 'volume',
+        //             areaStyle: {
+        //                 normal: {}
+        //             },
+        //             data: [120, 132, 101, 134, 90, 230, 210]
+        //         }, {
+        //             name: 'Positive',
+        //             type: 'line',
+        //             stack: 'volume',
+        //             areaStyle: {
+        //                 normal: {}
+        //             },
+        //             data: [220, 182, 191, 234, 290, 330, 310]
+        //         }, {
+        //             name: 'Negative',
+        //             type: 'line',
+        //             stack: 'volume',
+        //             areaStyle: {
+        //                 normal: {}
+        //             },
+        //             data: [150, 232, 201, 154, 190, 330, 410]
+        //         }, {
+        //             name: 'Neutral',
+        //             type: 'line',
+        //             stack: 'volume',
+        //             areaStyle: {
+        //                 normal: {}
+        //             },
+        //             data: [320, 332, 301, 334, 390, 330, 320]
+        //         }],
+        //         // title: {
+        //         //     text: scope.title || ''
+        //         // }
+        //     }
+        // });
 }
 
 function barNegativeData(fnPromise, scope) {
@@ -1026,7 +1146,9 @@ function barNegativeData(fnPromise, scope) {
             }],
             yAxis: [{
                 type: 'category',
-                axisTick : {show: false},
+                axisTick: {
+                    show: false
+                },
                 data: scope.$root.dateList
             }],
             series: [{
@@ -1052,15 +1174,16 @@ function barNegativeData(fnPromise, scope) {
         }
     });
 }
-function sentimentconversionData(fnPromise, scope){
+
+function sentimentconversionData(fnPromise, scope) {
     return fnPromise.then(function () {
         return {
             yAxis: [{
                 type: 'value'
-            },{
+            }, {
                 type: 'value',
                 position: 'right',
-                max:1
+                max: 1
             }],
             xAxis: [{
                 type: 'category',
@@ -1073,36 +1196,37 @@ function sentimentconversionData(fnPromise, scope){
                     normal: {}
                 },
                 data: [100, 130, 101, 104, 90, 130, 110]
-            },{
+            }, {
                 name: 'After Support Positive Volume',
                 type: 'bar',
                 areaStyle: {
                     normal: {}
                 },
                 data: [170, 132, 90, 134, 90, 230, 210]
-            },{
+            }, {
                 name: 'Init Negative Volume',
                 type: 'bar',
                 areaStyle: {
                     normal: {}
                 },
                 data: [-10, -32, -11, -34, -9, -20, -10]
-            },{
+            }, {
                 name: 'After Support Negative Volume',
                 type: 'bar',
                 areaStyle: {
                     normal: {}
                 },
                 data: [-1, -20, -11, -27, -5, -10, 0]
-            },{
+            }, {
                 name: 'Positive Sentiment Conversion',
                 type: 'line',
                 yAxisIndex: 1,
-                data: [0.23,0.01,-0.04,0.10,0.00,0.33,0.40]
+                data: [0.23, 0.01, -0.04, 0.10, 0.00, 0.33, 0.40]
             }],
         }
     });
 }
+
 function customHourlyData(fnPromise, key, utility, scope) {
     var seriesData = [],
         xAxisDate = [];
@@ -1273,8 +1397,8 @@ function initPieChartOpt(scope) {
                 fontSize: 13
             }
         },
-        grid:{
-            bottom:0
+        grid: {
+            bottom: 0
         },
         tooltip: {
             trigger: 'item',

@@ -162,6 +162,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.query.topic = $scope.topic;
             $scope.getStatistic($scope.$stateParams.platform, $scope.topic, $scope.dateRange)
             $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
+            $scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
             $scope.$broadcast('start-get-data', 'home');
         }
         // initLineCharts('.hourly-charts.home');
@@ -188,32 +189,36 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         })
     };
 
-    //test language distribution fake data
-    $scope.languageDistribution = [{
-        attachedobject: 'Chinese',
-        vocinfluence: {
-            voctotalvol: 95502120230,
-            ratio: 0.331
-        }
-    }, {
-        attachedobject: 'English',
-        vocinfluence: {
-            voctotalvol: 33502120230,
-            ratio: 0.111
-        }
-    }, {
-        attachedobject: 'Arabic',
-        vocinfluence: {
-            voctotalvol: 30002120230,
-            ratio: 0.101
-        }
-    }, {
-        attachedobject: 'Portuguese',
-        vocinfluence: {
-            voctotalvol: 22002120230,
-            ratio: 0.091
-        }
-    }]
+    $scope.getLanguageDistribution = function(platform, topic, days){
+        $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
+            $scope.languageDistribution = $filter('orderBy')(data,'-volume');
+        })
+    }
+    // $scope.languageDistribution = [{
+    //     attachedobject: 'Chinese',
+    //     vocinfluence: {
+    //         voctotalvol: 95502120230,
+    //         ratio: 0.331
+    //     }
+    // }, {
+    //     attachedobject: 'English',
+    //     vocinfluence: {
+    //         voctotalvol: 33502120230,
+    //         ratio: 0.111
+    //     }
+    // }, {
+    //     attachedobject: 'Arabic',
+    //     vocinfluence: {
+    //         voctotalvol: 30002120230,
+    //         ratio: 0.101
+    //     }
+    // }, {
+    //     attachedobject: 'Portuguese',
+    //     vocinfluence: {
+    //         voctotalvol: 22002120230,
+    //         ratio: 0.091
+    //     }
+    // }]
 
 }
 
