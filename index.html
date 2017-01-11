@@ -70,7 +70,7 @@
                         <a class="ui item teal" ui-sref="notification" ng-class="{select: $state.includes('notification')}">
                             <!--<i class="alarm outline icon"></i>-->
                             Notification Center
-                            <div class="mini floating circular ui red label">{{Notifications.collection.length}}</div>
+                            <div class="mini floating circular ui red label" ng-show="Notifications.collection.length" >{{Notifications.collection.length}}</div>
                         </a>
                         <a class="green ui item" ui-sref="home.about" ng-class="{select: $state.includes('home.about')}">
                                 About
