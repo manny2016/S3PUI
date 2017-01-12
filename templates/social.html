@@ -302,8 +302,8 @@
                 <!--large date range only-->
                 <div class="row" ng-show="isLargeDateRange">
                     <div class="column large-date-range">
-                        <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="barNagetive" platform='{{path[2]}}' query=query
-                            api-fn="getVoCDetailsByServiceName1" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
+                        <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="hori" platform='{{path[2]}}' query=query
+                            api-fn="getMentionedMostServiceDistribution" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
                     </div>
                 </div>
                 <div class="row">

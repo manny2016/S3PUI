@@ -309,9 +309,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getMentionedMostServiceDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             _.order = $filter('orderBy');
-                            customServicesDistributionData(fnPromise, _).then(function (config) {
+                            var fn = customServicesDistributionData;
+                            if(_.type==='hori'){
+                                _.thousandsuffix = $filter('thousandsuffix');
+                                fn = barNegativeData;
+                            }
+                            fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
-                                // console.log(_.chartOpt);
+                                console.log(_.chartOpt);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -974,7 +979,7 @@ function customWorldData(fnPromise, scope) {
 }
 
 function customRegionData(fnPromise, scope) {
-    var xData=[];
+    var xData = [];
     return fnPromise.then(function (data) {
         scope.validData(data);
         var seriesData = data.map(function (item) {
@@ -1139,18 +1144,33 @@ function stackAxisData(fnPromise, utility, scope) {
 }
 
 function barNegativeData(fnPromise, scope) {
-    return fnPromise.then(function () {
+    return fnPromise.then(function (data) {
+        scope.validData(data);
+        var usedData = scope.order(data.splice(0,10), '-value');
+        var likeData = [],
+            dislikeData = [],
+            yAxisData = []
+        usedData.map(function(item){
+            yAxisData.push(item.attachedobject)
+            likeData.push(item.vocinfluence.positivetotalvol)
+            dislikeData.push(-1 * item.vocinfluence.negativetotalvol)
+        })
         return {
             xAxis: [{
                 type: 'value'
             }],
-            yAxis: [{
+            yAxis: {
                 type: 'category',
                 axisTick: {
                     show: false
                 },
-                data: scope.$root.dateList
-            }],
+                axisLabel:{
+                    interval:0
+                },
+                data: yAxisData
+            },
+            grid: {
+            },
             series: [{
                 name: 'Like',
                 type: 'bar',
@@ -1158,7 +1178,7 @@ function barNegativeData(fnPromise, scope) {
                 areaStyle: {
                     normal: {}
                 },
-                data: [120, 132, 101, 134, 90, 230, 210]
+                data: likeData
             }, {
                 name: 'Dislike',
                 type: 'bar',
@@ -1169,7 +1189,7 @@ function barNegativeData(fnPromise, scope) {
                         position: 'left'
                     }
                 },
-                data: [-220, -182, -191, -234, -290, -330, -310]
+                data: dislikeData
             }],
         }
     });
