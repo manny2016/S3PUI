@@ -1146,7 +1146,7 @@ function stackAxisData(fnPromise, utility, scope) {
 function barNegativeData(fnPromise, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var usedData = scope.order(data.splice(0,10), '-value');
+        var usedData = scope.order(data, '-(vocinfluence.positivetotalvol+vocinfluence.negativetotalvol)').splice(0,10);
         var likeData = [],
             dislikeData = [],
             yAxisData = []
