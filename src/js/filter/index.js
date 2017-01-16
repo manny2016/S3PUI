@@ -26,8 +26,8 @@ app.filter('sentimentScore', ['$window', function ($window) {
 }]);
 
 app.filter('timetostring', ['utilitySrv', function (utilitySrv) {
-    return function (input) {
-        return utilitySrv.timeToString(input);
+    return function (input,type) {
+        return utilitySrv.timeToString(input,type);
     }
 }]);
 app.filter('mankindTime2String', ['utilitySrv', function (utilitySrv) {

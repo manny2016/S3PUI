@@ -1,4 +1,3 @@
-
 module.exports = function ($filter) {
     Date.prototype.format = function (format) {
         var o = {
@@ -15,7 +14,7 @@ module.exports = function ($filter) {
             "q+": Math.floor((this.getUTCMonth() + 3) / 3),
             // quarter
             "S": this.getUTCMilliseconds()
-            // millisecond
+                // millisecond
         };
         if (/(y+)/.test(format) || /(Y+)/.test(format)) {
             format = format.replace(RegExp.$1, (this.getUTCFullYear() + "").substr(4 - RegExp.$1.length));
@@ -25,7 +24,7 @@ module.exports = function ($filter) {
                 format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
             }
         }
-        return format; 
+        return format;
     };
     return {
         toPercent: function (data, decimal) {
@@ -47,7 +46,10 @@ module.exports = function ($filter) {
 
             while (current <= endDate) {
                 retVal.push(new Date(current));
-                current = (function (d) { d.setDate(d.getDate() + interval); return d.setHours(0, 0, 0, 0) })(new Date(current));
+                current = (function (d) {
+                    d.setDate(d.getDate() + interval);
+                    return d.setHours(0, 0, 0, 0)
+                })(new Date(current));
             }
             if (needFormat) {
                 retVal = retVal.map(function (date) {
@@ -56,13 +58,22 @@ module.exports = function ($filter) {
             }
             return retVal;
         },
-        timeToString: function (timestamp) {
-            return (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm");
+        timeToString: function (timestamp, type) {
+            var type = type || 'hourly';
+            var timeString = '';
+            switch (type) {
+                case 'hourly':
+                    timeString = (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm");
+                    break;
+                case 'daily':
+                    timeString = (new Date(timestamp * 1000)).format("yyyy/MM/dd");
+                    break;
+            }
+            return timeString;
         },
-        mankindTime2String: function(timestamp){
+        mankindTime2String: function (timestamp) {
             // return (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm A");
             return moment(timestamp * 1000).format("YYYY-MM-DD hh:mm A");
         }
     }
 };
-

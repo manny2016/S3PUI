@@ -60,6 +60,9 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 $scope.isLargeDateRange = false;
             }
             $timeout(function () {
+                // $('div.echart').map(function () {
+                //     echarts.getInstanceByDom(this).clear();
+                // })
                 $scope.startGetData()
                 $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
