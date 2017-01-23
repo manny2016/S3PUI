@@ -457,6 +457,15 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.gays = days || 7;
             return baseSrv.get('GetRegionDistribution', params);
+        },
+        //sentimentconversion
+        getSentimentTrend : function(platform,topic,PNScope,days){
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'azure';
+            params.PNScope = PNScope || 'all';
+            params.gays = days || 7;
+            return baseSrv.get('GetSentimentTrend', params);
         }
     }
 })

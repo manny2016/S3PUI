@@ -284,7 +284,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.days);
                             customDistributionData(fnPromise, _).then(function (config) {
-                                    console.log('getDistribution')
+                                console.log('getDistribution')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -294,7 +294,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getMentionedMostServiceList')
+                                console.log('getMentionedMostServiceList')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -305,7 +305,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getMentionedMostServiceListByUserVol')
+                                console.log('getMentionedMostServiceListByUserVol')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 // console.log(_.chartOpt)
                                 initChart(_.chartObj, _.chartOpt);
@@ -316,12 +316,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
-                            if(_.type==='hori'){
+                            if (_.type === 'hori') {
                                 _.thousandsuffix = $filter('thousandsuffix');
                                 fn = barNegativeData;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getMentionedMostServiceDistribution')
+                                console.log('getMentionedMostServiceDistribution')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 console.log(_.chartOpt);
                                 initChart(_.chartObj, _.chartOpt);
@@ -332,7 +332,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getKeywordsMentionedMostMapping')
+                                console.log('getKeywordsMentionedMostMapping')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -342,7 +342,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
-                                    console.log('getUserVolSpikes')
+                                console.log('getUserVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -364,7 +364,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, key, utilitySrv, _).then(function (config) {
-                                    console.log('getMessageVolSpikes')
+                                console.log('getMessageVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -374,7 +374,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
-                                    console.log('getInfluenceVolSpikes')
+                                console.log('getInfluenceVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -384,7 +384,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
-                                    console.log('getUserRegionVolSpikes')
+                                console.log('getUserRegionVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -400,7 +400,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             }
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getRegionDistribution')
+                                console.log('getRegionDistribution')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -411,8 +411,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = stackAxisData;
                             // _.hasData = true;
                             fn(fnPromise, utilitySrv, _).then(function (config) {
-                                    console.log('getStackMessageVol')
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                console.log('getStackMessageVol')
+                                _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -422,18 +422,18 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = barNegativeData;
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                    console.log('getVoCDetailsByServiceName1')
+                                console.log('getVoCDetailsByServiceName1')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'sentimentconversion':
-                            var fnPromise = $q.resolve(true);
+                            var fnPromise = _.service['getSentimentTrend'](_.platform, _.query.topic, _.pnscope, _.days);
+                            // var fnPromise = $q.resolve(true);
                             var fn = sentimentconversionData;
-                            _.hasData = true;
-                            fn(fnPromise, _).then(function (config) {
-                                    console.log('sentimentconversion')
+                            fn(fnPromise, utilitySrv, _).then(function (config) {
+                                console.log('sentimentconversion')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -1035,10 +1035,10 @@ function stackAxisData(fnPromise, utility, scope) {
     return fnPromise.then(function (data) {
             console.log(scope);
             scope.validData(data);
-            var timeFormatType = scope.days ==='7'? 'hourly':'daily';
+            var timeFormatType = scope.days === '7' ? 'hourly' : 'daily';
             data.map(function (item) {
                     var tmp = {};
-                    xAxisDate.push(utility.timeToString(item.attachedobject.timeslot,timeFormatType));
+                    xAxisDate.push(utility.timeToString(item.attachedobject.timeslot, timeFormatType));
                     var entity = {
                         value: item.vocinfluence['undefinedtotalvol'],
                         symbolSize: 4
@@ -1164,11 +1164,11 @@ function stackAxisData(fnPromise, utility, scope) {
 function barNegativeData(fnPromise, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var usedData = scope.order(data, '-(vocinfluence.positivetotalvol+vocinfluence.negativetotalvol)').splice(0,10);
+        var usedData = scope.order(data, '-(vocinfluence.positivetotalvol+vocinfluence.negativetotalvol)').splice(0, 10);
         var likeData = [],
             dislikeData = [],
             yAxisData = []
-        usedData.map(function(item){
+        usedData.map(function (item) {
             yAxisData.push(item.attachedobject)
             likeData.push(item.vocinfluence.positivetotalvol)
             dislikeData.push(-1 * item.vocinfluence.negativetotalvol)
@@ -1182,13 +1182,12 @@ function barNegativeData(fnPromise, scope) {
                 axisTick: {
                     show: false
                 },
-                axisLabel:{
-                    interval:0
+                axisLabel: {
+                    interval: 0
                 },
                 data: yAxisData
             },
-            grid: {
-            },
+            grid: {},
             series: [{
                 name: 'Like',
                 type: 'bar',
@@ -1213,53 +1212,47 @@ function barNegativeData(fnPromise, scope) {
     });
 }
 
-function sentimentconversionData(fnPromise, scope) {
-    return fnPromise.then(function () {
+function sentimentconversionData(fnPromise, utility, scope) {
+    var seriesData = {
+        totalVol:[],
+        initPostive:[],
+        afterSptPostive:[],
+        initNegative:[],
+        afterSptNegative:[],
+    },
+        xAxisDate = [];
+    return fnPromise.then(function (data) {
+        scope.validData(data);
+        data.map(function (item) {
+                xAxisDate.push(utility.timeToString(item.SclingTime, 'daily'));
+                seriesData.totalVol.push(item.TotalVolume);
+                seriesData.initPostive.push(item.InitialPostiveVolume);
+                seriesData.afterSptPostive.push(item.AfterSupportPostiveVolume);
+                seriesData.initNegative.push(item.InitialNegtiveVolume);
+                seriesData.afterSptNegative.push(item.AfterSupportNegtiveVolume);
+        })
         return {
             yAxis: [{
                 type: 'value'
-            }, {
-                type: 'value',
-                position: 'right',
-                max: 1
             }],
             xAxis: [{
                 type: 'category',
-                data: scope.$root.dateList
+                data: xAxisDate
             }],
             series: [{
                 name: 'Init Positive Volume',
-                type: 'bar',
+                type: 'line',
                 areaStyle: {
                     normal: {}
                 },
-                data: [100, 130, 101, 104, 90, 130, 110]
+                data: seriesData.initPostive
             }, {
                 name: 'After Support Positive Volume',
-                type: 'bar',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [170, 132, 90, 134, 90, 230, 210]
-            }, {
-                name: 'Init Negative Volume',
-                type: 'bar',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [-10, -32, -11, -34, -9, -20, -10]
-            }, {
-                name: 'After Support Negative Volume',
-                type: 'bar',
-                areaStyle: {
-                    normal: {}
-                },
-                data: [-1, -20, -11, -27, -5, -10, 0]
-            }, {
-                name: 'Positive Sentiment Conversion',
                 type: 'line',
-                yAxisIndex: 1,
-                data: [0.23, 0.01, -0.04, 0.10, 0.00, 0.33, 0.40]
+                areaStyle: {
+                    normal: {}
+                },
+                data: seriesData.afterSptPostive
             }],
         }
     });
@@ -1268,12 +1261,12 @@ function sentimentconversionData(fnPromise, scope) {
 function customHourlyData(fnPromise, key, utility, scope) {
     var seriesData = [],
         xAxisDate = [];
-    var timeFormatType = scope.days ==='7'? 'hourly':'daily';
+    var timeFormatType = scope.days === '7' ? 'hourly' : 'daily';
     return fnPromise.then(function (data) {
         scope.validData(data);
         data.map(function (item) {
                 var tmp = {};
-                xAxisDate.push(utility.timeToString(item.attachedobject.timeslot,timeFormatType));
+                xAxisDate.push(utility.timeToString(item.attachedobject.timeslot, timeFormatType));
                 if (item.attachedobject.isspike) {
                     var entity = {
                         value: item.vocinfluence[key],
