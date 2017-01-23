@@ -115,9 +115,9 @@ module.exports = function ($parse, $filter) {
                     ]
                     break;
                 case 'mostmentionedservice':
-                    scope.volume = scope.data[0].mentionedmostservice.attachedobject
+                    scope.volume = scope.data[0].attachedobject
                     var tmp = scope.data.map(function (item) {
-                        return item.mentionedmostservice.attachedobject
+                        return item.attachedobject
                             + "(" + item.occupyratio + "%)"
                     })
                     scope.labels = [
@@ -127,21 +127,21 @@ module.exports = function ($parse, $filter) {
                     ]
                     break;
                 case 'mostlikedservice':
-                    scope.volume = scope.data.mostlikedservice[0].mentionedmostservice.attachedobject
+                    scope.volume = scope.data.mostlikedservice[0].attachedobject
                         + ":"
-                        + scope.data.mostdislikedservice[0].mentionedmostservice.attachedobject
+                        + scope.data.mostdislikedservice[0].attachedobject
                     scope.style = { 'font-size': '26px' };
                     scope.labels = [
                         {
                             text: scope.data.mostlikedservice.map(function (item) {
-                                return item.mentionedmostservice.attachedobject
+                                return item.attachedobject
                                     + "(" + item.occupyratio + "%)"
                             }).join(","),
                             color: "green"
                         },
                         {
                             text: scope.data.mostdislikedservice.map(function (item) {
-                                return item.mentionedmostservice.attachedobject
+                                return item.attachedobject
                                     + "(" + item.occupyratio + "%)"
                             }).join(","),
                             color: "red"
