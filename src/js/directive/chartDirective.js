@@ -207,7 +207,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
                             customSpikesData(fnPromise, _).then(function (config) {
-                                console.log('getSpikes')
+                                // console.log('getSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -225,7 +225,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.days);
                                 // console.log(_);
                                 customInfluenceData(fnPromise, _).then(function (config) {
-                                    console.log('getInfluence')
+                                    // console.log('getInfluence')
                                     _.chartOpt = angular.extend(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt, _.group);
                                     afterInit($rootScope, _, _.chartObj);
@@ -273,7 +273,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     // console.log(fnPromises);
                                 $q.all(fnPromises).then(function () {
                                     var config = customHoriBarData(_);
-                                    console.log('getInfluence all')
+                                    // console.log('getInfluence all')
                                     _.chartOpt = angular.extend(_.chartOpt, config);
                                     // console.log(_.chartOpt);
                                     initChart(_.chartObj, _.chartOpt);
@@ -284,7 +284,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.days);
                             customDistributionData(fnPromise, _).then(function (config) {
-                                console.log('getDistribution')
+                                // console.log('getDistribution')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -294,7 +294,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getMentionedMostServiceList')
+                                // console.log('getMentionedMostServiceList')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -313,7 +313,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getMentionedMostServiceListByUserVol')
+                                // console.log('getMentionedMostServiceListByUserVol')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 // console.log(_.chartOpt)
                                 initChart(_.chartObj, _.chartOpt);
@@ -329,9 +329,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 fn = barNegativeData;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getMentionedMostServiceDistribution')
+                                // console.log('getMentionedMostServiceDistribution')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
-                                console.log(_.chartOpt);
+                                // console.log(_.chartOpt);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -340,7 +340,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getKeywordsMentionedMostMapping')
+                                // console.log('getKeywordsMentionedMostMapping')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -350,7 +350,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
-                                console.log('getUserVolSpikes')
+                                // console.log('getUserVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -372,7 +372,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, key, utilitySrv, _).then(function (config) {
-                                console.log('getMessageVolSpikes')
+                                // console.log('getMessageVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -382,7 +382,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
-                                console.log('getInfluenceVolSpikes')
+                                // console.log('getInfluenceVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -392,7 +392,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
-                                console.log('getUserRegionVolSpikes')
+                                // console.log('getUserRegionVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -408,7 +408,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             }
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getRegionDistribution')
+                                // console.log('getRegionDistribution')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -419,7 +419,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = stackAxisData;
                             // _.hasData = true;
                             fn(fnPromise, utilitySrv, _).then(function (config) {
-                                console.log('getStackMessageVol')
+                                // console.log('getStackMessageVol')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -430,7 +430,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = barNegativeData;
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                console.log('getVoCDetailsByServiceName1')
+                                // console.log('getVoCDetailsByServiceName1')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -441,7 +441,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             // var fnPromise = $q.resolve(true);
                             var fn = sentimentconversionData;
                             fn(fnPromise, utilitySrv, _).then(function (config) {
-                                console.log('sentimentconversion')
+                                // console.log('sentimentconversion')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -1041,7 +1041,7 @@ function stackAxisData(fnPromise, utility, scope) {
         },
         xAxisDate = [];
     return fnPromise.then(function (data) {
-            console.log(scope);
+            // console.log(scope);
             scope.validData(data);
             var timeFormatType = scope.days === '7' ? 'hourly' : 'daily';
             data.map(function (item) {

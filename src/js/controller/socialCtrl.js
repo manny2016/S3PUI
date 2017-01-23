@@ -67,8 +67,8 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
                     echarts.getInstanceByDom(currentObj).resize();
                 })
+                $scope.$apply()
             }, 0)
-            $scope.$apply()
         }
     });
     $scope.$watch('dateRange', function (newV, oldV) {
