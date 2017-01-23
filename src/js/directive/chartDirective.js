@@ -362,10 +362,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 key = '';
                             switch (_.pnscope) {
                                 case 'posi':
-                                    key = 'voctotalvol';
+                                    key = 'positivetotalvol';
                                     break;
                                 case 'neg':
-                                    key = 'voctotalvol';
+                                    key = 'negativetotalvol';
                                     break;
                                 default:
                                     key = 'voctotalvol';
