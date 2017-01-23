@@ -333,7 +333,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
                                     console.log('getKeywordsMentionedMostMapping')
-                                _.chartOpt = angular.extend(_.chartOpt, config);
+                                _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
