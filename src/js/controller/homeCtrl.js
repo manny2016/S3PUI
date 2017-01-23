@@ -116,7 +116,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
 
     //list latest top {number} notifications
     $scope.listNotification = function (top) {
-        var date = Math.floor(moment.utc() / 1000);
+        var date = Math.floor(moment.utc().startOf('day') / 1000);
         $scope.service.getSysDetections(undefined, undefined, undefined, date).then(function (data) {
             // console.log(data);
             $scope.collections = data.splice(0, top);
