@@ -34,7 +34,8 @@ module.exports = function ($parse, $filter) {
             data: "=",
             title: "@",
             comment: "@",
-            color: "@"
+            color: "@",
+            dayrange: "="
         },
         link: function (scope, e, a) {
             var numberFormat = $filter('thousandsuffix');
@@ -50,8 +51,8 @@ module.exports = function ($parse, $filter) {
             switch (a.type) {
                 case 'joinedusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
-                    scope.labels = [
-                        {
+                    if (scope.dayrange == '7') {
+                        scope.labels = [{
                             text: label_type.compared,
                             volume: scope.data.comparedratio,
                             type: 'ratio',
@@ -60,8 +61,17 @@ module.exports = function ($parse, $filter) {
                             text: label_type.spike,
                             volume: scope.data.detectedhourlyspikesvol,
                             color: 'red'
+                        }]
+                    } else {
+                        scope.labels = [
+                        {
+                            text: "Spike Detected (Last "+scope.dayrange+" days)",
+                            volume: scope.data.detectedhourlyspikesvol,
+                            color: 'red'
                         }
                     ]
+                    }
+
                     break;
                 case 'regionofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
@@ -69,99 +79,88 @@ module.exports = function ($parse, $filter) {
                     if (scope.$parent.$parent.platform.toLowerCase() !== 'twitter') {
                         scope.labels = []
                     } else {
-                        scope.labels = [
-                            {
-                                text: label_type.compared,
-                                volume: scope.data.comparedratio,
-                                type: 'ratio',
-                                isCompared: true
-                            }, {
-                                text: label_type.spike,
-                                volume: scope.data.detectedhourlyspikesvol,
-                                color: 'red'
-                            }
-                        ]
+                        scope.labels = [{
+                            text: label_type.compared,
+                            volume: scope.data.comparedratio,
+                            type: 'ratio',
+                            isCompared: true
+                        }, {
+                            text: label_type.spike,
+                            volume: scope.data.detectedhourlyspikesvol,
+                            color: 'red'
+                        }]
                     }
 
                     break;
                 case 'influenceofusers':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
-                    scope.labels = [
-                        {
-                            text: label_type.compared,
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike,
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }
-                    ]
+                    scope.labels = [{
+                        text: label_type.compared,
+                        volume: scope.data.comparedratio,
+                        type: 'ratio',
+                        isCompared: true
+                    }, {
+                        text: label_type.spike,
+                        volume: scope.data.detectedhourlyspikesvol,
+                        color: 'red'
+                    }]
                     break;
                 case 'mentionedservicecount':
                     scope.volume = numberFormat(scope.data.objectcountthistime)
-                    scope.labels = [
-                        {
-                            text: label_type.compared,
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike,
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }
-                    ]
+                    scope.labels = [{
+                        text: label_type.compared,
+                        volume: scope.data.comparedratio,
+                        type: 'ratio',
+                        isCompared: true
+                    }, {
+                        text: label_type.spike,
+                        volume: scope.data.detectedhourlyspikesvol,
+                        color: 'red'
+                    }]
                     break;
                 case 'mostmentionedservice':
                     scope.volume = scope.data[0].attachedobject
                     var tmp = scope.data.map(function (item) {
-                        return item.attachedobject
-                            + "(" + item.occupyratio + "%)"
+                        return item.attachedobject +
+                            "(" + item.occupyratio + "%)"
                     })
-                    scope.labels = [
-                        {
-                            text: tmp.join(",")
-                        }
-                    ]
+                    scope.labels = [{
+                        text: tmp.join(",")
+                    }]
                     break;
                 case 'mostlikedservice':
-                    scope.volume = scope.data.mostlikedservice[0].attachedobject
-                        + ":"
-                        + scope.data.mostdislikedservice[0].attachedobject
-                    scope.style = { 'font-size': '26px' };
-                    scope.labels = [
-                        {
-                            text: scope.data.mostlikedservice.map(function (item) {
-                                return item.attachedobject
-                                    + "(" + item.occupyratio + "%)"
-                            }).join(","),
-                            color: "green"
-                        },
-                        {
-                            text: scope.data.mostdislikedservice.map(function (item) {
-                                return item.attachedobject
-                                    + "(" + item.occupyratio + "%)"
-                            }).join(","),
-                            color: "red"
-                        },
-                    ]
+                    scope.volume = scope.data.mostlikedservice[0].attachedobject +
+                        ":" +
+                        scope.data.mostdislikedservice[0].attachedobject
+                    scope.style = {
+                        'font-size': '26px'
+                    };
+                    scope.labels = [{
+                        text: scope.data.mostlikedservice.map(function (item) {
+                            return item.attachedobject +
+                                "(" + item.occupyratio + "%)"
+                        }).join(","),
+                        color: "green"
+                    }, {
+                        text: scope.data.mostdislikedservice.map(function (item) {
+                            return item.attachedobject +
+                                "(" + item.occupyratio + "%)"
+                        }).join(","),
+                        color: "red"
+                    }, ]
                     break;
                 case 'vocinsightsVol':
                     scope.volume = numberFormat(scope.data.objectcountthistime.voctotalvol)
-                    scope.labels = [
-                        {
-                            text: label_type.compared,
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike,
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }
-                    ]
+                    scope.labels = [{
+                        text: label_type.compared,
+                        volume: scope.data.comparedratio,
+                        type: 'ratio',
+                        isCompared: true
+                    }, {
+                        text: label_type.spike,
+                        volume: scope.data.detectedhourlyspikesvol,
+                        color: 'red'
+                    }]
                     break;
                 case 'vocinsightsPN':
                     var originBoj = scope.data.objectcountthistime;
@@ -193,17 +192,15 @@ module.exports = function ($parse, $filter) {
                     //     + percentage(originBoj.negativetotalvol/originBoj.voctotalvol,0)
                     //     + ":"
                     //     + percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
-                    scope.labels = [
-                        {
-                            text: 'POS ' + label_type.spike,
-                            volume: originBoj.detectedposispikesvol,
-                            color: 'green'
-                        }, {
-                            text: 'NEG ' + label_type.spike,
-                            volume: originBoj.detectednegspikesvol,
-                            color: 'red'
-                        }
-                    ]
+                    scope.labels = [{
+                        text: 'POS ' + label_type.spike,
+                        volume: originBoj.detectedposispikesvol,
+                        color: 'green'
+                    }, {
+                        text: 'NEG ' + label_type.spike,
+                        volume: originBoj.detectednegspikesvol,
+                        color: 'red'
+                    }]
                     break;
                 case 'mostposifrom':
                     // scope.volume = numberFormat(scope.data.mostposifrom.vocinfluence.vocinfluencedvol)
@@ -231,9 +228,9 @@ module.exports = function ($parse, $filter) {
 
             }
             scope.isVolObj = function () {
-                return angular.isArray(scope.volume) || angular.isObject(scope.volume)
-            }
-            // scope.labels = scope.data.labels;
+                    return angular.isArray(scope.volume) || angular.isObject(scope.volume)
+                }
+                // scope.labels = scope.data.labels;
         }
     }
 }
