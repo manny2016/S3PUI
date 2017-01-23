@@ -295,7 +295,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
                                 console.log('getMentionedMostServiceList')
-                                _.chartOpt = angular.extend(_.chartOpt, config);
+                                _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -304,6 +304,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
+                            switch (_.type) {
+                                case 'pie':
+                                    fn = customServicesDistributionData;
+                                    break;
+                                case 'wordcloud':
+                                    fn = customWordCloudData;
+                                    break;
+                            }
                             fn(fnPromise, _).then(function (config) {
                                 console.log('getMentionedMostServiceListByUserVol')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -1214,22 +1222,22 @@ function barNegativeData(fnPromise, scope) {
 
 function sentimentconversionData(fnPromise, utility, scope) {
     var seriesData = {
-        totalVol:[],
-        initPostive:[],
-        afterSptPostive:[],
-        initNegative:[],
-        afterSptNegative:[],
-    },
+            totalVol: [],
+            initPostive: [],
+            afterSptPostive: [],
+            initNegative: [],
+            afterSptNegative: [],
+        },
         xAxisDate = [];
     return fnPromise.then(function (data) {
         scope.validData(data);
         data.map(function (item) {
-                xAxisDate.push(utility.timeToString(item.SclingTime, 'daily'));
-                seriesData.totalVol.push(item.TotalVolume);
-                seriesData.initPostive.push(item.InitialPostiveVolume);
-                seriesData.afterSptPostive.push(item.AfterSupportPostiveVolume);
-                seriesData.initNegative.push(item.InitialNegtiveVolume);
-                seriesData.afterSptNegative.push(item.AfterSupportNegtiveVolume);
+            xAxisDate.push(utility.timeToString(item.SclingTime, 'daily'));
+            seriesData.totalVol.push(item.TotalVolume);
+            seriesData.initPostive.push(item.InitialPostiveVolume);
+            seriesData.afterSptPostive.push(item.AfterSupportPostiveVolume);
+            seriesData.initNegative.push(item.InitialNegtiveVolume);
+            seriesData.afterSptNegative.push(item.AfterSupportNegtiveVolume);
         })
         return {
             yAxis: [{
