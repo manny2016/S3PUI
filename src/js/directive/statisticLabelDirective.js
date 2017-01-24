@@ -22,21 +22,32 @@ module.exports = function () {
         'long arrow down'
     ]
     return {
-        restrict: 'E',
+        restrict: 'AE',
         templateUrl: ('public/template/statistic_label.html'),
-        replace: true,
-        scope: {},
+        // replace: true,
+        scope: {
+            label:"="
+        },
         link: function (scope, e, a) {
-            scope.label = scope.$parent.label || {};
-            scope.style = scope.label.style || "";
-            scope.volume = !isNaN(Number(scope.label.volume))?Number(scope.label.volume):null;
-            scope.text = scope.label.text || "";
-            scope.color = scope.label.color || "black";
-            scope.type = scope.label.type || "";
-            scope.isCompared = scope.label.isCompared || "";
-            scope.getColor = function(){
-                return (scope.volume===null)?scope.color:'';
+            // scope.label = scope.label || {};
+            // scope.label = scope.$parent.label || {};
+            scope.render = function (){
+                scope.label = scope.label || {};
+                scope.style = scope.label.style || "";
+                scope.volume = !isNaN(Number(scope.label.volume))?Number(scope.label.volume):null;
+                scope.text = scope.label.text || "";
+                scope.color = scope.label.color || "black";
+                scope.type = scope.label.type || "";
+                scope.isCompared = scope.label.isCompared || "";
+                scope.getColor = function(){
+                    return (scope.volume===null)?scope.color:'';
+                }
             }
+            scope.$watch('label',function(nv,ov){
+                // if(nv){
+                scope.render();
+                // }
+            })
         }
     }
 }
