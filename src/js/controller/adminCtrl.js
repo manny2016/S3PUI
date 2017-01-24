@@ -83,7 +83,7 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     $scope.addKwd = function (event) {
             event.stopPropagation();
             var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
-            var array = currentTopic.tagsCfg.Keywords;
+            var array = currentTopic[$scope.tagsCfg].Keywords;
             var string = event.target.value.trim()
             if (string !== "" && array.indexOf(string) === -1) {
                 array.push(string);
@@ -111,17 +111,23 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
-        toastr.success('Success', 'Operation Success!');
+        $scope.service.saveForumServiceSetting($scope.originData).then(function(data){
+            if(data == 'true'){
+                toastr.success('Success', 'Operation Success!');
+            }else{
+                toastr.error('Error', 'Operation Failed!');
+            }
+        })
         // $scope.$digest();
     }
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
-            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = {};
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex][$scope.tagsCfg] = {};
         } else {
             console.log(index);
             var tagCfg = $filter('findObjectInArray')(angular.copy($scope.MsdnTopicMapping), 'topic', index);
             console.log(angular.copy(tagCfg));
-            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].tagsCfg = angular.copy(tagCfg);
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex][$scope.tagsCfg] = angular.copy(tagCfg);
         }
     }
     $scope.isDirty = function () {
@@ -172,5 +178,21 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
         }).modal('show')
 
     }
-    $scope.init()
+    $scope.init();
+    $scope.$watch("selectedPlatform", function (nv, ov) {
+        switch ($scope.selectedPlatform) {
+            case 'sf':
+            case 'su':
+            case 'so':
+                $scope.tagsCfg = 'stackExchange';
+                break;
+            case 'twitter':
+                $scope.tagsCfg = 'twitter';
+                break;
+            case 'msdn':
+            case 'tn':
+                $scope.tagsCfg = 'msdn';
+                break;
+        }
+    })
 }
