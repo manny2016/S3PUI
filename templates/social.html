@@ -87,17 +87,17 @@
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers"></ng-statistic>
+                            <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers" dayrange=dateRange></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers"></ng-statistic>
+                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" dayrange=dateRange></ng-statistic>
                         </div>
                     </div>
                     <div class="column collection">
                         <div class="ui horizontal top divider">Services & Products</div>
                         <div>
-                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"></ng-statistic>
+                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" dayrange=dateRange></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
                         <div style="max-height:129px;">
@@ -177,11 +177,11 @@
                     <div class="column collection">
                         <div class="ui horizontal top divider">VoC</div>
                         <div>
-                            <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol"></ng-statistic>
+                            <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol" dayrange=dateRange></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"></ng-statistic>
+                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" dayrange=dateRange></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>

@@ -19,12 +19,25 @@
     }
 
 */
+// var label_type = {
+//     compared: 'Compared with Last Week',
+//     spike: 'Vol Spike Detected (hourly)',
+//     string: ''
+// };
 var label_type = {
-    compared: 'Compared with Last Week',
-    spike: 'Vol Spike Detected (hourly)',
+    compared: 'Compared with',
+    spike: 'Vol Spike Detected',
     string: ''
 };
-module.exports = function ($parse, $filter,$timeout) {
+var dateRangeAppend = function (dateRange) {
+    if (dateRange === '7') {
+        return ' Last Week'
+    } else {
+        return ' (Last ' + dateRange + ' days)';
+    }
+
+}
+module.exports = function ($parse, $filter, $timeout) {
     var colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     return {
         restrict: 'E',
@@ -54,18 +67,18 @@ module.exports = function ($parse, $filter,$timeout) {
                         scope.volume = numberFormat(scope.data.objectcountthistime)
                         if (scope.dayrange == '7') {
                             scope.labels = [{
-                                text: label_type.compared,
+                                text: label_type.compared + dateRangeAppend(scope.dayrange),
                                 volume: scope.data.comparedratio,
                                 type: 'ratio',
                                 isCompared: true
                             }, {
-                                text: label_type.spike,
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
                                 volume: scope.data.detectedhourlyspikesvol,
                                 color: 'red'
                             }]
                         } else {
                             scope.labels = [{
-                                text: "Spike Detected (Last " + scope.dayrange + " days)",
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
                                 volume: scope.data.detectedhourlyspikesvol,
                                 color: 'red'
                             }]
@@ -75,16 +88,16 @@ module.exports = function ($parse, $filter,$timeout) {
                     case 'regionofusers':
                         scope.volume = numberFormat(scope.data.objectcountthistime)
                         scope.volume = scope.volume === 0 ? "No Data Available" : scope.volume;
-                        if (scope.$parent.$parent.platform.toLowerCase() !== 'twitter') {
+                        if ((scope.$parent.$parent.platform.toLowerCase() !== 'twitter') || scope.dayrange !== '7') {
                             scope.labels = []
                         } else {
                             scope.labels = [{
-                                text: label_type.compared,
+                                text: label_type.compared + dateRangeAppend(scope.dayrange),
                                 volume: scope.data.comparedratio,
                                 type: 'ratio',
                                 isCompared: true
                             }, {
-                                text: label_type.spike,
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
                                 volume: scope.data.detectedhourlyspikesvol,
                                 color: 'red'
                             }]
@@ -93,26 +106,39 @@ module.exports = function ($parse, $filter,$timeout) {
                         break;
                     case 'influenceofusers':
                         scope.volume = numberFormat(scope.data.objectcountthistime)
-                        scope.labels = [{
-                            text: label_type.compared,
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike,
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }]
+                        if (scope.dayrange == '7') {
+                            scope.labels = [{
+                                text: label_type.compared + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.comparedratio,
+                                type: 'ratio',
+                                isCompared: true
+                            }, {
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        } else {
+                            scope.labels = [{
+                                text: label_type.compared,
+                                volume: scope.data.comparedratio,
+                                type: 'ratio',
+                                isCompared: true
+                            }, {
+                                text: "Spike Detected (Last " + scope.dayrange + " days)",
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        }
                         break;
                     case 'mentionedservicecount':
                         scope.volume = numberFormat(scope.data.objectcountthistime)
                         scope.labels = [{
-                            text: label_type.compared,
+                            text: label_type.compared + dateRangeAppend(scope.dayrange),
                             volume: scope.data.comparedratio,
                             type: 'ratio',
                             isCompared: true
                         }, {
-                            text: label_type.spike,
+                            text: label_type.spike + dateRangeAppend(scope.dayrange),
                             volume: scope.data.detectedhourlyspikesvol,
                             color: 'red'
                         }]
@@ -151,12 +177,12 @@ module.exports = function ($parse, $filter,$timeout) {
                     case 'vocinsightsVol':
                         scope.volume = numberFormat(scope.data.objectcountthistime.voctotalvol)
                         scope.labels = [{
-                            text: label_type.compared,
+                            text: label_type.compared + dateRangeAppend(scope.dayrange),
                             volume: scope.data.comparedratio,
                             type: 'ratio',
                             isCompared: true
                         }, {
-                            text: label_type.spike,
+                            text: label_type.spike + dateRangeAppend(scope.dayrange),
                             volume: scope.data.detectedhourlyspikesvol,
                             color: 'red'
                         }]
@@ -192,11 +218,11 @@ module.exports = function ($parse, $filter,$timeout) {
                         //     + ":"
                         //     + percentage(originBoj.neutraltotalvol/originBoj.voctotalvol,0)
                         scope.labels = [{
-                            text: 'POS ' + label_type.spike,
+                            text: 'POS ' + label_type.spike + dateRangeAppend(scope.dayrange),
                             volume: originBoj.detectedposispikesvol,
                             color: 'green'
                         }, {
-                            text: 'NEG ' + label_type.spike,
+                            text: 'NEG ' + label_type.spike + dateRangeAppend(scope.dayrange),
                             volume: originBoj.detectednegspikesvol,
                             color: 'red'
                         }]
@@ -233,10 +259,10 @@ module.exports = function ($parse, $filter,$timeout) {
             }
             scope.$watch('dayrange', function (newV, oldV) {
                     console.log(newV)
-                    $timeout(function(){
-                        scope.randerUI();
-                        scope.$apply();
-                    },0)
+                        // $timeout(function () {
+                    scope.randerUI();
+                    // scope.$apply();
+                    // }, 0)
                 })
                 // scope.labels = scope.data.labels;
         }
