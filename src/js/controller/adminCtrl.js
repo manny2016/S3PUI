@@ -1,6 +1,41 @@
 module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
     $scope.platforms = [];
+
+    function generateNewScopeObj(platform) {
+        var newScope = {};
+        switch (platform) {
+            case 'so':
+            case 'sf':
+            case 'su':
+                newScope = {
+                    topic: '',
+                    stackExchange: {}
+                };
+                newScope.topic = $scope.newTopicName;
+                break;
+            case 'twitter':
+                newScope = {
+                    topic: '',
+                    twitter: {}
+                };
+                newScope.topic = $scope.newTopicName;
+                break;
+            case 'msdn':
+            case 'tn':
+                newScope = {
+                    topic: '',
+                    msdn: {
+                        topic: '',
+                        Keywords: []
+                    }
+                };
+                newScope.topic = $scope.newTopicName;
+                newScope.msdn.topic = $scope.newTopicName;
+                break;
+        }
+        return newScope;
+    }
     var CONST_MSDN_CFG = {
         topic: '',
         tagsCfg: {}
@@ -111,14 +146,14 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
-        $scope.service.saveForumServiceSetting($scope.originData).then(function(data){
-            if(data == 'true'){
-                toastr.success('Success', 'Operation Success!');
-            }else{
-                toastr.error('Error', 'Operation Failed!');
-            }
-        })
-        // $scope.$digest();
+        $scope.service.saveForumServiceSetting($scope.originData).then(function (data) {
+                if (data == 'true') {
+                    toastr.success('Success', 'Operation Success!');
+                } else {
+                    toastr.error('Error', 'Operation Failed!');
+                }
+            })
+            // $scope.$digest();
     }
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
@@ -155,21 +190,22 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
                 if ($scope.newTopicName.trim() === '') {
 
                 } else {
-                    switch ($scope.selectedPlatform) {
-                        case 'so':
-                        case 'sf':
-                        case 'su':
-                        case 'twitter':
-                            newScope = angular.copy(CONST_KWD_CFG);
-                            newScope.topic = $scope.newTopicName;
-                            break;
-                        case 'msdn':
-                        case 'tn':
-                            newScope = angular.copy(CONST_MSDN_CFG);
-                            newScope.topic = $scope.newTopicName;
-                            newScope.tagsCfg.topic = $scope.newTopicName;
-                            break;
-                    }
+                    // switch ($scope.selectedPlatform) {
+                    //     case 'so':
+                    //     case 'sf':
+                    //     case 'su':
+                    //     case 'twitter':
+                    //         newScope = angular.copy(CONST_KWD_CFG);
+                    //         newScope.topic = $scope.newTopicName;
+                    //         break;
+                    //     case 'msdn':
+                    //     case 'tn':
+                    //         newScope = angular.copy(CONST_MSDN_CFG);
+                    //         newScope.topic = $scope.newTopicName;
+                    //         newScope.tagsCfg.topic = $scope.newTopicName;
+                    //         break;
+                    // }
+                    newScope = generateNewScopeObj($scope.selectedPlatform);
                     $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.push(newScope)
                     $scope.newTopicName = '';
                     $scope.$digest();
