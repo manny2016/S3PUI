@@ -28,6 +28,22 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             })
             return deferred.promise;
         },
+        post: function(api,data){
+            var path = '';
+            path = CONST.SERVICE_INFO.ENDPOINT + api ;
+            var deferred = $q.defer();
+            $http.post(path, data).then(function (data) {
+                if (data.status == 200) {
+                    deferred.resolve(data.data)
+                } else {
+                    console.log(data);
+                    deferred.reject(data);
+                }
+            }, function (err) {
+                deferred.reject(err);
+            })
+            return deferred.promise;
+        },
         devGet: function (api, params) {
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
@@ -466,6 +482,10 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.gays = days || 7;
             return baseSrv.get('GetSentimentTrend', params);
+        },
+        saveForumServiceSetting:function(data){
+            return baseSrv.post('SaveForumServiceSetting', data);
+            
         }
     }
 })

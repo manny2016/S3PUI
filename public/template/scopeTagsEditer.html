@@ -1,16 +1,16 @@
 <div>
-    <div class="ui blue raised segment" ng-show="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.length">
+    <div class="ui blue raised segment" ng-show="kwds.length">
         <div class="ui transparent small left icon input">
             <input type="text" placeholder="Filter..." ng-model="filterTags">
             <i class="search icon"></i>
         </div>
         <br />
-        <div class="ui blue label scope-tags" ng-repeat="kwd in TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords | filter:filterTags track by $index ">
+        <div class="ui blue label scope-tags" ng-repeat="kwd in kwds | filter:filterTags track by $index ">
             {{kwd}}
-            <i class="delete icon" ng-click="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.splice($index,1)"></i>
+            <i class="delete icon" ng-click="kwds.splice($index,1)"></i>
         </div>
     </div>
-    <div class="ui floating message text center" ng-show="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].tagsCfg.Keywords.length === 0">
+    <div class="ui floating message text center" ng-show="kwds.length === 0">
         {{CONST.ERRORS['2']}}
     </div>
 </div>
