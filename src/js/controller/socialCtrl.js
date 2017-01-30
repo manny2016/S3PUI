@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location,utilitySrv) {
+module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location, utilitySrv) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
@@ -44,13 +44,13 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         g: false,
         r: false
     };
-    $('#topicSelection').dropdown({
-        onChange: function (value, text, $selectedItem) {
-            // console.log(value)
-            $scope.topic = value;
-            $scope.startGetData()
-        }
-    });
+    // $('#topicSelection').dropdown({
+    //     onChange: function (value, text, $selectedItem) {
+    //         // console.log(value)
+    //         $scope.topic = value;
+    //         $scope.startGetData()
+    //     }
+    // });
     $('#dataRangeSelection').dropdown('set selected', '7').dropdown({
         onChange: function (value, text, $selectedItem) {
             $scope.dateRange = value;
@@ -71,6 +71,13 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             }, 0)
         }
     });
+
+    $scope.$watch('topic',function(nv,ov){
+        console.log(nv);
+        if(nv){
+            $scope.startGetData()
+        }
+    })
     $scope.$watch('dateRange', function (newV, oldV) {
         $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
         var timeRange = {
@@ -100,23 +107,30 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             data.map(function (item) {
                 // console.log(item.Platforms)
                 var flage = false;
-                item.Platforms.map(function (obj) {
-                        if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
-                            flage = obj.isEnabled;
-                        }
-                    })
-                    // console.log(item.TechCategoryName,flage)
-                if (flage) $scope.topics.push(item.TechCategoryName)
+
+                // add GA decision
+                // if (item.isGA) {
+                    item.Platforms.map(function (obj) {
+                            if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
+                                flage = obj.isEnabled;
+                            }
+                        })
+                        // console.log(item.TechCategoryName,flage)
+                    if (flage) $scope.topics.push(item.TechCategoryName)
+                // }
+
             })
             $('#topic_select').dimmer('hide');
             if ($scope.topics.indexOf($rootScope.global.topic) !== -1) {
                 $scope.topic = $rootScope.global.topic;
                 $scope.startGetData()
-                $('#topicSelection').dropdown('set text', $rootScope.global.topic)
+                // $('#topicSelection').dropdown('set text', $rootScope.global.topic)
             }
         })
     }
-    $scope.getTopics();
+    $timeout(function(){
+        $scope.getTopics();
+    },0)
     // var count = 0;
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
@@ -192,36 +206,36 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         })
     };
 
-    $scope.getLanguageDistribution = function(platform, topic, days){
-        $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
-            $scope.languageDistribution = $filter('orderBy')(data,'-volume');
-        })
-    }
-    // $scope.languageDistribution = [{
-    //     attachedobject: 'Chinese',
-    //     vocinfluence: {
-    //         voctotalvol: 95502120230,
-    //         ratio: 0.331
-    //     }
-    // }, {
-    //     attachedobject: 'English',
-    //     vocinfluence: {
-    //         voctotalvol: 33502120230,
-    //         ratio: 0.111
-    //     }
-    // }, {
-    //     attachedobject: 'Arabic',
-    //     vocinfluence: {
-    //         voctotalvol: 30002120230,
-    //         ratio: 0.101
-    //     }
-    // }, {
-    //     attachedobject: 'Portuguese',
-    //     vocinfluence: {
-    //         voctotalvol: 22002120230,
-    //         ratio: 0.091
-    //     }
-    // }]
+    $scope.getLanguageDistribution = function (platform, topic, days) {
+            $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
+                $scope.languageDistribution = $filter('orderBy')(data, '-volume');
+            })
+        }
+        // $scope.languageDistribution = [{
+        //     attachedobject: 'Chinese',
+        //     vocinfluence: {
+        //         voctotalvol: 95502120230,
+        //         ratio: 0.331
+        //     }
+        // }, {
+        //     attachedobject: 'English',
+        //     vocinfluence: {
+        //         voctotalvol: 33502120230,
+        //         ratio: 0.111
+        //     }
+        // }, {
+        //     attachedobject: 'Arabic',
+        //     vocinfluence: {
+        //         voctotalvol: 30002120230,
+        //         ratio: 0.101
+        //     }
+        // }, {
+        //     attachedobject: 'Portuguese',
+        //     vocinfluence: {
+        //         voctotalvol: 22002120230,
+        //         ratio: 0.091
+        //     }
+        // }]
 
 }
 

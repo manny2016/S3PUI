@@ -1,12 +1,12 @@
 // require('angular-ui-router');
 // window.AuthenticationContext = require('adal-angular');
 // require('adal-angular/lib/adal-angular');
-Logging = {
-  level: 3,
-  log: function (message) {
-    console.log(message);
-  }
-};
+// Logging = {
+//   level: 3,
+//   log: function (message) {
+//     console.log(message);
+//   }
+// };
 var app = angular.module('app.Route', ['ui.router', 'AdalAngular', 'app.Constant']);
 app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
@@ -109,6 +109,7 @@ app
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
+        redirectUri: window.location.origin+'/frameRedirect.html',
         cacheLocation: 'localStorage',
         // extraQueryParameter: 'nux=1',
         // redirectUri: window.location.origin,
@@ -136,9 +137,9 @@ app
       $httpProvider);
   })
   .run(function ($rootScope, $state, adalAuthenticationService) {
-    if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
-      // adalAuthenticationService.login();
-      window.location = '/';
-    }
+    // if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
+    //   // adalAuthenticationService.login();
+    //   // window.location = '/';
+    // }
   })
 module.exports = 'app.Route';

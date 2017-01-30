@@ -30,14 +30,17 @@
         <div class="ui form pull-left">
             <div class="inline field">
                 <label>Selected Service/Product: </label>
-                <div class="ui selection dropdown" id="topicSelection">
-                    <input name="category" type="hidden" value="">
+                <!--<div class="ui selection dropdown" id="topicSelection">
+                    <input name="category" ng-model="topic" type="hidden" value="">
                     <i class="dropdown icon"></i>
                     <div class="default text">category</div>
                     <div class="menu">
                         <div ng-repeat="t in topics" class="item" data-value="{{t}}">{{t}}</div>
                     </div>
-                </div>
+                </div>-->
+                <dropdown title="category" ng-model="topic">
+                    <dropdown-group value="t" title="t" ng-repeat="t in topics">{{t}}</dropdown-group>
+                </dropdown>
             </div>
             <div class="inline field">
                 <label>Date Range ({{TZ}}): </label>

@@ -2,121 +2,51 @@
     {
         "Platforms": [
             {
-                "PlatformName": "MSDN",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "TN",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "Twitter",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "SU",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "SF",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "SO",
+                "PlatformName": "twitter",
                 "isEnabled": true
             }
         ],
         "TechCategoryName": "Azure",
-        "isGA":true
+        "isGA": true
     },
     {
-        "Platforms": [
-            {
-                "PlatformName": "MSDN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "TN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "Twitter",
-                "isEnabled": true
-            },
-            {
-                "PlatformName": "SU",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SF",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SO",
-                "isEnabled": false
-            }
-        ],
-        "TechCategoryName": "Office 365",
-        "isGA":true
-    },
-    {
-        "Platforms": [
-            {
-                "PlatformName": "MSDN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "TN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "Twitter",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SU",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SF",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SO",
-                "isEnabled": true
-            }
-        ],
+        "Platforms": [],
         "TechCategoryName": "UWP",
-        "isGA":true
+        "isGA": true
+    },
+    {
+        "Platforms": [],
+        "TechCategoryName": "TBD",
+        "isGA": false
     },
     {
         "Platforms": [
             {
-                "PlatformName": "MSDN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "TN",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "Twitter",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SU",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SF",
-                "isEnabled": false
-            },
-            {
-                "PlatformName": "SO",
-                "isEnabled": false
+                "PlatformName": "twitter",
+                "isEnabled": true
             }
         ],
-        "TechCategoryName": "TBD",
-        "isGA":false
+        "TechCategoryName": "C",
+        "isGA": true
+    },
+    {
+        "Platforms": [
+            {
+                "PlatformName": "twitter",
+                "isEnabled": true
+            }
+        ],
+        "TechCategoryName": "Intune",
+        "isGA": true
+    },
+    {
+        "Platforms": [
+            {
+                "PlatformName": "twitter",
+                "isEnabled": true
+            }
+        ],
+        "TechCategoryName": "Xbox",
+        "isGA": false
     }
 ]

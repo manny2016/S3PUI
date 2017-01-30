@@ -154,7 +154,7 @@
                 </tr>-->
                 <tr ng-repeat="item in stTable">  <!--ng-if="(platform=='msdn'||platform=='tn')"-->
                     <td><a href="{{item.webUrl}}" target="_blank">{{item.title}}</a></td>
-                    <td>{{item.createdBy}}</td>
+                    <td>{{item.createdby}}</td>
                     <td>{{item.influencenum|thousandsuffix}}</td>
                     <td>{{item.created| timetostring}}</td>
                     <td>{{item.sentimentscore|sentimentScore}}</td>
