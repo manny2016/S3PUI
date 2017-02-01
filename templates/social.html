@@ -47,9 +47,13 @@
                 </label>
                     [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
                 <!--<div class="ui horizontal label">{{TZ}}</div>-->
-                <div class="ui selection dropdown" id="dataRangeSelection" style="min-width:100px;width:100px !important">
-                    <!--<div style="height:38px;line-height:38px;margin-right:20px;">-->
-                    <!--</div>-->
+                <dropdown title="date range" ng-model="dateRange" style="min-width:100px;width:120px !important">
+                    <dropdown-group value="7">7 Days</dropdown-group>
+                    <dropdown-group value="30">30 Days</dropdown-group>
+                    <dropdown-group value="90">90 Days</dropdown-group>
+                    <dropdown-group value="180">180 Days</dropdown-group>
+                </dropdown>
+                <!--<div class="ui selection dropdown" id="dataRangeSelection" style="min-width:100px;width:120px !important">
                     <input name="daterange" ng-model="daterange" type="hidden" value="">
                     <i class="dropdown icon"></i>
                     <div class="default text">DateRange</div>
@@ -59,7 +63,7 @@
                         <div class="item" data-value="90">90 Days</div>
                         <div class="item" data-value="180">180 Days</div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;">
