@@ -43,9 +43,11 @@
                 </dropdown>
             </div>
             <div class="inline field">
-                <label>Date Range ({{TZ}}): </label>
+                <label>Date Range ({{TZ}}): 
+                </label>
+                    [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
                 <!--<div class="ui horizontal label">{{TZ}}</div>-->
-                <div class="ui dropdown" id="dataRangeSelection">
+                <div class="ui selection dropdown" id="dataRangeSelection" style="min-width:100px;width:100px !important">
                     <!--<div style="height:38px;line-height:38px;margin-right:20px;">-->
                     <!--</div>-->
                     <input name="daterange" ng-model="daterange" type="hidden" value="">
@@ -58,7 +60,6 @@
                         <div class="item" data-value="180">180 Days</div>
                     </div>
                 </div>
-                [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
             </div>
         </div>
         <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;">
