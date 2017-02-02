@@ -21,6 +21,7 @@ app.constant('CONST', {
     },
     SERVICE_INFO: {
         ENDPOINT: 'http://40.114.88.191/WebServices/S3PDataService/',
+        // ENDPOINT: 'http://10.168.176.27:44306/WebServices/S3PDataService/',
         // ENDPOINT: 'https://shpv1.azurewebsites.net/DataService/S3PDataService.svc/',
         WS:'ws://40.114.88.191/api/Notify/',
         // WS: 'ws://localhost:8889/',

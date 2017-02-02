@@ -146,8 +146,8 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
-        $scope.service.saveForumServiceSetting($scope.originData).then(function (data) {
-                if (data == 'true') {
+        $scope.service.saveForumServiceSetting({"MsdnTopicMapping":$scope.MsdnTopicMapping,"TopicWithForum":$scope.originData}).then(function (data) {
+                if (data == true) {
                     toastr.success('Success', 'Operation Success!');
                 } else {
                     toastr.error('Error', 'Operation Failed!');
