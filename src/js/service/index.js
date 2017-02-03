@@ -28,12 +28,12 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             })
             return deferred.promise;
         },
-        post: function(api,data,config){
+        post: function (api, data, config) {
             var path = '';
             var config = config || {};
-            path = CONST.SERVICE_INFO.ENDPOINT + api ;
+            path = CONST.SERVICE_INFO.ENDPOINT + api;
             var deferred = $q.defer();
-            $http.post(path, data,config).then(function (data) {
+            $http.post(path, data, config).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {
@@ -476,7 +476,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             return baseSrv.get('GetRegionDistribution', params);
         },
         //sentimentconversion
-        getSentimentTrend : function(platform,topic,PNScope,days){
+        getSentimentTrend: function (platform, topic, PNScope, days) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
@@ -484,11 +484,20 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.gays = days || 7;
             return baseSrv.get('GetSentimentTrend', params);
         },
-        saveForumServiceSetting:function(data){
-            return baseSrv.post('SaveForumServiceSetting', data ,{headers:{
-                'Content-Type':'text/plain'
-            }});
-            
+        saveForumServiceSetting: function (data) {
+            return baseSrv.post('SaveForumServiceSetting', data, {
+                headers: {
+                    'Content-Type': 'text/plain'
+                }
+            });
+
+        },
+        getDownloadUrl: function (platform, topic, days) {
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'azure';
+            params.gays = days || 7;
+            return baseSrv.get('GetDownloadUrl', params);
         }
     }
 })

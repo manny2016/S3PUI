@@ -16,11 +16,14 @@
                 </div>
             </td>
         </tr>
-        <tr ng-repeat="item in stTable" ng-click="popDetail(item.name)">
+        <tr ng-repeat="item in stTable">
             <td>{{item.name}}</td>
             <td width="100">{{item.value|thousandsuffix}}</td>
             <td width="100">{{(item.value)/(total)|percentage}}</td>
-            <td width="100"><a href="javascript:void(0);"><i class="file text outline icon"></i></a></td>
+            <td width="100">
+                <a href="javascript:void(0);" ng-click="popDetail(item.name)"><i class="file text outline icon"></i></a>
+                <a ng-href="{{item.url}}" target="_blank"><i class="download icon"></i></a>
+            </td>
         </tr>
     </tbody>
     <tfoot>

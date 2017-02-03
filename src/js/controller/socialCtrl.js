@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location, utilitySrv) {
+module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location, utilitySrv, toastr) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
@@ -225,6 +225,25 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 $scope.languageDistribution = $filter('orderBy')(data, '-volume');
             })
         }
+
+    $scope.getDownloadUrl = function(){
+        if(!$scope.$stateParams.platform){
+            toastr.error('Platform Required');
+            return false;
+        }
+        if(!$scope.topic){
+            toastr.error('Topic Select Required');
+            return false;
+        }
+        if(!$scope.dateRange){
+            toastr.error('Date Range Required');
+            return false;
+        }
+        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function(url){
+            console.log(url)
+            window.location.assign(url);
+        })
+    }
         // $scope.languageDistribution = [{
         //     attachedobject: 'Chinese',
         //     vocinfluence: {

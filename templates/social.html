@@ -44,8 +44,7 @@
             </div>
             <div class="inline field">
                 <label>Date Range ({{TZ}}): 
-                </label>
-                    [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
+                </label> [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
                 <!--<div class="ui horizontal label">{{TZ}}</div>-->
                 <dropdown title="date range" ng-model="dateRange" style="min-width:100px;width:120px !important">
                     <dropdown-group value="7">7 Days</dropdown-group>
@@ -66,7 +65,7 @@
                 </div>-->
             </div>
         </div>
-        <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;">
+        <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;" ng-click="getDownloadUrl()">
             <i class="icon download"></i>
             Download CSV
         </button>
@@ -99,13 +98,15 @@
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" dayrange=dateRange></ng-statistic>
+                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers"
+                                dayrange=dateRange></ng-statistic>
                         </div>
                     </div>
                     <div class="column collection">
                         <div class="ui horizontal top divider">Services & Products</div>
                         <div>
-                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" dayrange=dateRange></ng-statistic>
+                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount"
+                                dayrange=dateRange></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
                         <div style="max-height:129px;">
@@ -115,8 +116,7 @@
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                     <div class="ui relaxed divided list">
-                                        <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.attachedobject}}"
-                                            title="{{s.attachedobject}}">
+                                        <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.attachedobject}}" title="{{s.attachedobject}}">
                                             <span ng-if="s">
                                             {{s.attachedobject | limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
                                             </span>
@@ -152,8 +152,7 @@
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
                                     <div class="ui relaxed divided list">
-                                        <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}"
-                                            title="{{s.attachedobject}}">
+                                        <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}" title="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
                                             {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
@@ -189,7 +188,8 @@
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" dayrange=dateRange></ng-statistic>
+                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN"
+                                dayrange=dateRange></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
@@ -288,7 +288,8 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
-                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message" days="{{dateRange}}"></ng-echart>
+                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"
+                                    days="{{dateRange}}"></ng-echart>
                             </div>
                             <div class="side">
                                 <mentioned-table platform='{{path[2]}}' query=query association="message" days="{{dateRange}}"></mentioned-table>
@@ -299,7 +300,8 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Mentioned (Users Vol) Azure Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
-                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user" days="{{dateRange}}"></ng-echart>
+                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"
+                                    days="{{dateRange}}"></ng-echart>
                             </div>
                             <div class="side">
                                 <mentioned-table platform='{{path[2]}}' query=query association="user" days="{{dateRange}}"></mentioned-table>
@@ -311,7 +313,8 @@
                 <div class="row" ng-show="isLargeDateRange">
                     <div class="column large-date-range">
                         <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="hori" platform='{{path[2]}}' query=query
-                            api-fn="getMentionedMostServiceDistribution" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
+                            api-fn="getMentionedMostServiceDistribution" location='home' pnscope="all" sub-fn="getSubPageVoCDetails"
+                            days="{{dateRange}}"></ng-echart>
                     </div>
                 </div>
                 <div class="row">
@@ -347,7 +350,7 @@
                                     <td width="100">{{item.vocinfluence.vocinfluencedvol|thousandsuffix}}</td>
                                     <td width="100">{{item.vocinfluence.detectedspikesvol}}</td>
                                     <td width="100">
-                                        <a href="javascript:void(0);"><i class="file text outline icon"></i></a>
+                                        <a ng-href="{{item.url}}" target="_blank"><i class="download icon"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -362,10 +365,12 @@
                     </div>
                 </div>
                 <div class="two column row" ng-if="platform=='twitter'">
-                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="positive"></ng-echart>
-                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="negative"></ng-echart>
+                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
+                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
+                        property-select="positive"></ng-echart>
+                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
+                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
+                        property-select="negative"></ng-echart>
                 </div>
             </div>
         </div>
@@ -376,8 +381,8 @@
             </h3>
             <div class="ui grid content">
                 <div class="two column row">
-                    <ng-echart title="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution" location='home'
-                        sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="users"></ng-echart>
+                    <ng-echart title="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="users"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>
@@ -645,7 +650,7 @@
             </div>
         </div>
     </div>-->
-    <button class="ui basic button mini pull-right" ng-show="topic !== undefined">
+    <button class="ui basic button mini pull-right" ng-show="topic !== undefined" ng-click="getDownloadUrl()">
             <i class="icon download"></i>
             Download CSV
         </button>

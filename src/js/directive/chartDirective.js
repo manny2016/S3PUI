@@ -855,7 +855,8 @@ function customServicesDistributionData(fnPromise, scope) {
         var legendData = [];
         var seriesData = data.map(function (item) {
             var tmp = {
-                name: item.attachedobject
+                name: item.attachedobject,
+                url:item.url
             };
             switch (propertySelect) {
                 case 'messages':
