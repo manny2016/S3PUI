@@ -71,19 +71,28 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
                             params.param.days
                         )
                         break;
+                    case 'getVoCDetailsBySpikeDetected':
+                        fnPromise = fn(params.param.platform,
+                            params.param.msgType,
+                            params.param.topic,
+                            params.param.timestamp
+                        )
+                        break;
                 }
                 fnPromise.then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.messagesorthreads
-                    // console.log(scope.tabledata);
-                    // if(!scope.table){
-                    //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
-                    // }else{
-                    // }
+                        // console.log(scope.tabledata);
+                        // if(!scope.table){
+                        //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
+                        // }else{
+                        // }
 
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);
-                    scope.$broadcast('set-sub-widows-charts-data', { data: data });
+                    scope.$broadcast('set-sub-widows-charts-data', {
+                        data: data
+                    });
 
                     scope.chartOpt = initHourlyChartData(data.volhourlylist, utilitySrv);
                     scope.myChart.setOption(scope.chartOpt);
@@ -114,7 +123,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
 }
 
 function initHourlyChartData(raw, utility) {
-    var seriesData = [], xAxisDate = [];
+    var seriesData = [],
+        xAxisDate = [];
     raw.map(function (item) {
         var tmp = {};
         xAxisDate.push(utility.timeToString(item.attachedobject));
@@ -158,11 +168,11 @@ function initHourlyChartData(raw, utility) {
             start: 0,
             end: 100
         }, {
-                type: 'inside',
-                realtime: true,
-                start: 0,
-                end: 100
-            }],
+            type: 'inside',
+            realtime: true,
+            start: 0,
+            end: 100
+        }],
         xAxis: {
             type: 'category',
             boundaryGap: false,

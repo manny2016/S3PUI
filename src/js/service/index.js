@@ -455,10 +455,21 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.egTime = egTime || 0;
             return baseSrv.get('GetSysDetections', params);
         },
+
+        //NC query
         getPlatformSyncSetting: function (platform) {
             var params = params || {};
             params.platform = platform || 'all';
             return baseSrv.get('GetPlatformSyncSetting', params);
+        },
+        //NC detailed page
+        getVoCDetailsBySpikeDetected: function (platform, msgType, topic, timestamp) {
+            var params = params || {};
+            params.platform = platform || 'twitter';
+            params.topic = topic || 'azure';
+            params.msgType = msgType || 'all';
+            params.timestamp = timestamp || 7;
+            return baseSrv.get('GetVoCDetailsBySpikeDetected', params);
         },
         getUserLanguageDistribution: function (platform, topic, days) {
             var params = params || {};

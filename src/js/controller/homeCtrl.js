@@ -128,12 +128,13 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
     }
     $scope.showdetails = function (entity) {
         var param = {
-            platform: 'all',
-            topic: 'azure',
-            date: Math.floor(moment.utc($scope.search.date) / 1000)
+            platform: entity.forumName,
+            msgType: entity.msgType,
+            topic:entity.topic,
+            timestamp:entity.TimeStamp
         }
         $rootScope.popSubWin({
-            fn: 'getVoCDetailsByDate',
+            fn: 'getVoCDetailsBySpikeDetected',
             param: param
         });
     }

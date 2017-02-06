@@ -79,7 +79,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     $scope.listNotification = function () {
         var params = angular.copy($scope.search);
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
-        params.egTime = Math.floor(moment.utc(params.egTime).add(1,'days') / 1000);
+        params.egTime = Math.floor(moment.utc(params.egTime) / 1000);
         console.log(params)
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
@@ -95,12 +95,13 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     }
     $scope.showdetails = function (entity) {
         var param = {
-            platform: 'all',
-            topic: 'azure',
-            date: Math.floor(moment.utc($scope.search.bgTime) / 1000)
+            platform: entity.forumName,
+            msgType: entity.msgType,
+            topic:entity.topic,
+            timestamp:entity.TimeStamp
         }
         $rootScope.popSubWin({
-            fn: 'getVoCDetailsByDate',
+            fn: 'getVoCDetailsBySpikeDetected',
             param: param
         });
     }
