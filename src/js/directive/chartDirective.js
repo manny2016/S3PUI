@@ -14,7 +14,7 @@
 */
 // var moment = require('moment');
 
-module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, $timeout, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: 'public/template/chart.html',
@@ -509,11 +509,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'wordcloud':
                             var raw = arg.data.vocmentionedmost;
-                            _.validData(raw);
                             var seriesData = raw.map(function (item) {
-                                var tmp = {
-                                    name: item.attachedobject
-                                };
                                 switch (_.pnscope) {
                                     case 'posi':
                                         var value = item.vocinfluence.positivetotalvol
@@ -525,9 +521,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                         var value = item.vocinfluence.voctotalvol
                                         break;
                                 }
+                                if(!value) return false;
+                                var tmp = {
+                                    name: item.attachedobject
+                                };
                                 tmp.value = value;
                                 return tmp;
                             });
+                            _.validData(seriesData);
                             config = {
                                 series: {
                                     data: seriesData
@@ -544,14 +545,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 })
                 // watch window resize
             _.validData = function (data) {
-                _.hasData = !isEmpty(data);
-                // if (isEmpty(data)) {
-                //     _.chartObj.showLoading('default', {
-                //         text: 'No Data Available',
-                //         maskColor:'#fff'
-                //     })
-                // }
-
+                $timeout(function(){_.hasData = !isEmpty(data)},0)
             }
 
             _.clientWidth = element[0].clientWidth;
