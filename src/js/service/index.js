@@ -15,7 +15,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             path = CONST.SERVICE_INFO.ENDPOINT + api + qs;
             var deferred = $q.defer();
             $http.get(path, {
-                cache: true
+                // cache: true
             }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
@@ -52,7 +52,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             path = CONST.SERVICE_INFO.LOCAL_TEST_DATA + api + '.json' + qs;
             var deferred = $q.defer();
             $http.get(path, {
-                cache: true
+                // cache: true
             }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
