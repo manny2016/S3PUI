@@ -22,10 +22,10 @@
                         <b>Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
                     </div>
                     <div class="mete" ng-if="pnscope=='posi'">
-                        <b>Positive Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
+                        <b>Positive Post Vol</b>: {{u.vocinfluence.positivetotalvol|thousandsuffix}}
                     </div>
                     <div class="mete" ng-if="pnscope=='neg'">
-                        <b>Negative Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
+                        <b>Negative Post Vol</b>: {{u.vocinfluence.negativetotalvol|thousandsuffix}}
                     </div>
                     <div ng-if="($first)" class="mete">
                         <!--<span ng-if="pnscope!=='all'">
