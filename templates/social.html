@@ -245,7 +245,8 @@
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <!--large date range only-->
-                <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="platform !==('msdn'||'tn')"> <!-- ng-if="platform=='twitter'" -->
+                <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="platform !==('msdn'||'tn')">
+                    <!-- ng-if="platform=='twitter'" -->
                     <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
                         type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
                 </div>
@@ -274,6 +275,15 @@
                         <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
                             location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
                     </div>
+                </div>
+                <div class="two column row" ng-if="platform !==('msdn'||'tn')">
+                    <!-- ng-if="platform=='twitter'" -->
+                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
+                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
+                        property-select="positive"></ng-echart>
+                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
+                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
+                        property-select="negative"></ng-echart>
                 </div>
             </div>
         </div>
@@ -364,17 +374,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="two column row" ng-if="platform !==('msdn'||'tn')"> <!-- ng-if="platform=='twitter'" -->
-                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
-                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
-                        property-select="positive"></ng-echart>
-                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
-                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
-                        property-select="negative"></ng-echart>
-                </div>
             </div>
         </div>
-        <div id="userdistribution" class="ui violet segment" ng-if="platform !==('msdn'||'tn')"> <!-- ng-if="platform=='twitter'"-->
+        <div id="userdistribution" class="ui violet segment" ng-if="platform !==('msdn'||'tn')">
+            <!-- ng-if="platform=='twitter'"-->
             <h3 class="ui center aligned header title violet">
                 User Distribution
                 <i class="dropdown icon pull-left"></i>
