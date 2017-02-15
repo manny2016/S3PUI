@@ -506,6 +506,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 //     text: _.title || ''
                                 // }
                             };
+                            _.chartOpt = angular.merge(_.chartOpt, config);
                             break;
                         case 'wordcloud':
                             var raw = arg.data.vocmentionedmost;
@@ -537,9 +538,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 //     text: _.title || ''
                                 // }
                             }
+                            _.chartOpt.series.data = config.series.data;
                             break;
                     }
-                    _.chartOpt = angular.merge(_.chartOpt, config);
                     initChart(_.chartObj, _.chartOpt);
                     _.complete = true;
                 })
