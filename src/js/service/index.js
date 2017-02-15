@@ -475,7 +475,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
-            params.gays = days || 7;
+            params.days = days || 7;
             return baseSrv.get('GetUserLanguageDistribution', params);
         },
         getRegionDistribution: function (platform, topic, PNScope, days) {
@@ -492,7 +492,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.PNScope = PNScope || 'all';
-            params.gays = days || 7;
+            params.days = days || 7;
             return baseSrv.get('GetSentimentTrend', params);
         },
         saveForumServiceSetting: function (data) {
@@ -507,7 +507,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
-            params.gays = days || 7;
+            params.days = days || 7;
             return baseSrv.get('GetDownloadUrl', params);
         }
     }
