@@ -12,6 +12,7 @@
     <div class="ui segment blue form">
         <h5 class="ui header blue">
             Search
+            <i class="link search icon pull-right" ng-click="listNotification()"></i>
         </h5>
         <div class="fields">
             <div class="two wide field">
@@ -88,11 +89,14 @@
             </div>
         </div>
     </div>
-    <div class="ui basic segment" style="padding-left:0px;padding-right:0px;">
-        <table class="ui striped green table">
+    <div class="ui basic segment" id="nc-main" style="padding-left:0px;padding-right:0px;">
+        <div class="ui dimmer">
+            <div class="ui text loader">Loading</div>
+        </div>
+        <table st-table="stTable" st-safe-src="tabledata" class="ui striped green table">
             <thead>
                 <tr>
-                    <th>Date
+                    <th st-sort="createdTime">Date
                         <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
@@ -131,6 +135,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

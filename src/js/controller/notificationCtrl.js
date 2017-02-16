@@ -31,9 +31,9 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
             $scope.collections.push($scope.Notifications.collection.pop());
         }
     }, true)
-    $scope.$watch('search', function (newV, oldV) {
-        $scope.listNotification();
-    }, true)
+    // $scope.$watch('search', function (newV, oldV) {
+    //     $scope.listNotification();
+    // }, true)
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {
@@ -77,6 +77,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     // });
 
     $scope.listNotification = function () {
+        $('#nc-main').dimmer('show');
         var params = angular.copy($scope.search);
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
         params.egTime = Math.floor(moment.utc(params.egTime) / 1000);
@@ -84,11 +85,12 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
             // $scope.collections = angular.extend($scope.collections, data);
+            $('#nc-main').dimmer('hide');
             $scope.collections = data;
             // $scope.$digest();
         })
     }
-    // $scope.listNotification();
+    $scope.listNotification();
     $scope.generateDownloadUrl = function (entity) {
         var downloadTemplate = '<a href="' + entity.link + '" target="_blank">Download Data</a>';
         return entity.hasDownload ? $sce.trustAsHtml(downloadTemplate) : 'N/A';

@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="m in collections">
-                            <td>{{m.createdTime|timetostring}}</td>
+                            <td>{{m.createdTime|mankindTime2String}}</td>
                             <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
                             <td>
                                 <div ng-if="m.hasDetails">
