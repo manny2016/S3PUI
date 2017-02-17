@@ -10,12 +10,14 @@ app.factory('utilitySrv', require('./utility'));
 app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     return {
         get: function (api, params) {
+            params = params || {};
+            params['cachedtimestamp'] = Math.round(new Date() /1000);
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = CONST.SERVICE_INFO.ENDPOINT + api + qs;
             var deferred = $q.defer();
             $http.get(path, {
-                // cache: true
+                cache: true
             }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
@@ -468,7 +470,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.msgType = msgType || 'all';
-            params.timestamp = timestamp || 7;
+            params.timestamp = timestamp || 0;
             return baseSrv.get('GetVoCDetailsBySpikeDetected', params);
         },
         getUserLanguageDistribution: function (platform, topic, days) {

@@ -191,13 +191,20 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $('#progress').progress('reset');
             $('#progress').show();
             $scope.query.topic = $scope.topic;
-            $scope.getStatistic($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange)
-            $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic)
-            $scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
+            $scope.getStatistic($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
+            $scope.getUserDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
+            $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic);
+            //$scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
             $scope.$broadcast('start-get-data', 'home');
         }
         // initLineCharts('.hourly-charts.home');
         // echarts.connect('hourlyCharts');
+    $scope.getUserDistribution = function(platform, topic, pnscope, days){
+        $scope.service.getRegionDistribution(platform, topic, pnscope, days).then(function(data){
+            // console.log(data)
+            $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
+        })
+    }
     $scope.getStatistic = function (platform, topic, pnscope, days) {
         $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);

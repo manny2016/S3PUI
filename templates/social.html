@@ -390,29 +390,29 @@
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>
                                 <tr>
-                                    <th st-sort="attachedobject">Language</th>
-                                    <th st-sort="volume" st-sort-default="reverse" st-skip-natural="true">Volume</th>
-                                    <th st-sort="ratio" st-skip-natural="true">Ratio</th>
+                                    <th st-sort="name">Region</th>
+                                    <th st-sort="uniqueusers" st-sort-default="reverse" st-skip-natural="true">Unique Users</th>
+                                    <!--<th st-sort="ratio" st-skip-natural="true">Ratio</th>-->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td colspan="7">
-                                        <div class="ui icon input">
+                                        <div class="ui icon mini input">
                                             <input type="search" st-search placeholder="Search ...">
                                             <i class="search icon"></i>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr ng-repeat="item in stTable2">
-                                    <td>{{item.languagename}}</td>
-                                    <td width="100">{{item.volume|thousandsuffix}}</td>
-                                    <td width="100">{{item.ratio|percentage}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td width="200">{{item.uniqueusers|thousandsuffix}}</td>
+                                    <!--<td width="100">{{item.ratio|percentage}}</td>-->
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="3">
+                                    <td style="padding: 6px;" colspan="3">
                                         <div st-items-by-page="5" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
                                     </td>
                                 </tr>
