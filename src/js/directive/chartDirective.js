@@ -906,6 +906,12 @@ function customServicesDistributionData(fnPromise, scope) {
         // }
         return {
             series: [{
+                // avoidLabelOverlap: false,
+                // label: {
+                //     normal: {
+                //         position: 'inside'
+                //     }
+                // },
                 data: seriesData
             }],
             // legend: {
@@ -1470,7 +1476,7 @@ function initPieChartOpt(scope) {
         series: [{
             name: 'Tech Scope Distribution',
             type: 'pie',
-            radius: ['35%', '55%'],
+            radius: [0, '40%'],
             label: {
                 normal: {
                     label: {
