@@ -522,7 +522,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                         var value = item.vocinfluence.voctotalvol
                                         break;
                                 }
-                                if(!value) return false;
+                                if (!value) return false;
                                 var tmp = {
                                     name: item.attachedobject
                                 };
@@ -546,7 +546,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 })
                 // watch window resize
             _.validData = function (data) {
-                $timeout(function(){_.hasData = !isEmpty(data)},0)
+                $timeout(function () {
+                    _.hasData = !isEmpty(data)
+                }, 0)
             }
 
             _.clientWidth = element[0].clientWidth;
@@ -815,9 +817,9 @@ function customWordCloudData(fnPromise, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
         var seriesData = data.map(function (item) {
-            var tmp = {
-                name: item.attachedobject
-            };
+            // var tmp = {
+            //     name: item.attachedobject
+            // };
             switch (pnscope) {
                 case 'posi':
                     var value = item.vocinfluence.positivetotalvol
@@ -829,6 +831,10 @@ function customWordCloudData(fnPromise, scope) {
                     var value = item.vocinfluence.voctotalvol
                     break;
             }
+            if (!value) return false;
+            var tmp = {
+                name: item.attachedobject
+            };
             tmp.value = value;
             return tmp;
         })
@@ -851,7 +857,7 @@ function customServicesDistributionData(fnPromise, scope) {
         var seriesData = data.map(function (item) {
             var tmp = {
                 name: item.attachedobject,
-                url:item.url
+                url: item.url
             };
             switch (propertySelect) {
                 case 'messages':

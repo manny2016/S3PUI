@@ -471,14 +471,14 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a du-smooth-scroll="analytics" du-scrollspy offset="300">
+                    <a du-smooth-scroll="analytics" du-scrollspy offset="600">
                         <div class="ui label" set-color="green" data-content="Services Analytics" data-variation="mini inverted">
                             <i class="icon comments"></i> <span ng-hide="isSmall">Services Analytics</span>
                         </div>
                     </a>
                 </div>
-                <div class="item" ng-if="platform=='twitter'">
-                    <a du-smooth-scroll="userdistribution" du-scrollspy offset="300">
+                <div class="item" ng-if="platform !==('msdn'||'tn')">
+                    <a du-smooth-scroll="userdistribution" du-scrollspy offset="600">
                         <div class="ui label" set-color="violet" data-content="User Distribution" data-variation="mini inverted">
                             <i class="icon map"></i> <span ng-hide="isSmall">User Distribution</span>
                         </div>
