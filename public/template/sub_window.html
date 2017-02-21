@@ -65,10 +65,10 @@
                     </div>-->
                 </div>
             </div>
-            <div class="column">
+            <div class="column" ng-show="needMentioned">
                 <ng-echart title="Service: Positive - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="posi" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
             </div>
-            <div class="column">
+            <div class="column" ng-show="needMentioned">
                 <ng-echart title="Service: Negative - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <!--<div class="column">

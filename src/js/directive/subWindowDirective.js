@@ -18,6 +18,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
                 // console.log(params)
+                scope.needMentioned = true;
                 scope.platform = params.param.platform.toLowerCase()
                 var fnPromise,
                     fn = $rootScope.service[params.fn];
@@ -38,6 +39,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
                         )
                         break;
                     case 'getVoCDetailsByServiceName':
+                        scope.needMentioned=false;
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
                             params.param.service,
