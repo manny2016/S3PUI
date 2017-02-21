@@ -564,7 +564,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                     }
                     initChart(_.chartObj, _.chartOpt);
-                    _.chartObj.resize();
+                    // _.chartObj.resize();
                     _.complete = true;
                 })
                 // watch window resize
@@ -1545,13 +1545,11 @@ function initCloudWordChartOpt(scope) {
         series: {
             type: 'wordCloud',
             gridSize: 0,
-            sizeRange: [12, 35],
-            rotationRange: [-90, 90],
-            shape: 'pentagon',
-            left: 'center',
-            top: 'center',
-            width: '70%',
-            height: '70%',
+            sizeRange: [10, 20],
+            // rotationRange: [0, 0],
+            shape: 'circle',
+            width: '100%',
+            height: '100%',
             textStyle: {
                 normal: {
                     color: function () {
