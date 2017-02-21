@@ -273,7 +273,7 @@
                 <div class="row">
                     <div class="sixteen wide column">
                         <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
-                            location='home' pnscope="all" sub-fn="getSubPageVoCDetails" days="{{dateRange}}"></ng-echart>
+                            location='home' pnscope="all" days="{{dateRange}}" noPop="true" ></ng-echart>
                     </div>
                 </div>
                 <div class="two column row" ng-if="platform !==('msdn'||'tn')">

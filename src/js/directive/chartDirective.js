@@ -510,38 +510,61 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'wordcloud':
                             var raw = arg.data.vocmentionedmost;
-                            var seriesData = raw.map(function (item) {
+                            var seriesData = [];
+                            for(var i=0;i<raw.length;i++){
                                 switch (_.pnscope) {
                                     case 'posi':
-                                        var value = item.vocinfluence.positivetotalvol
+                                        var value = raw[i].vocinfluence.positivetotalvol
                                         break;
                                     case 'neg':
-                                        var value = item.vocinfluence.negativetotalvol
+                                        var value = raw[i].vocinfluence.negativetotalvol
                                         break;
                                     default:
-                                        var value = item.vocinfluence.voctotalvol
+                                        var value = raw[i].vocinfluence.voctotalvol
                                         break;
                                 }
-                                if (!value) return false;
-                                var tmp = {
-                                    name: item.attachedobject
-                                };
-                                tmp.value = value;
-                                return tmp;
-                            });
-                            _.validData(seriesData);
-                            config = {
-                                series: {
-                                    data: seriesData
-                                },
-                                // title: {
-                                //     text: _.title || ''
-                                // }
+                                if (value) {
+                                    var tmp = {
+                                        name: raw[i].attachedobject
+                                    };
+                                    tmp.value = value;
+                                    seriesData.push(tmp);
+                                }
                             }
-                            _.chartOpt.series.data = config.series.data;
+                            // var seriesData = raw.map(function (item) {
+                            //     switch (_.pnscope) {
+                            //         case 'posi':
+                            //             var value = item.vocinfluence.positivetotalvol
+                            //             break;
+                            //         case 'neg':
+                            //             var value = item.vocinfluence.negativetotalvol
+                            //             break;
+                            //         default:
+                            //             var value = item.vocinfluence.voctotalvol
+                            //             break;
+                            //     }
+                            //     if (value) {
+                            //         var tmp = {
+                            //             name: item.attachedobject
+                            //         };
+                            //         tmp.value = value;
+                            //         return tmp;
+                            //     }
+                            // });
+                            _.validData(seriesData);
+                            // config = {
+                            //     series: {
+                            //         data: seriesData
+                            //     },
+                            //     // title: {
+                            //     //     text: _.title || ''
+                            //     // }
+                            // }
+                            _.chartOpt.series.data = seriesData;
                             break;
                     }
                     initChart(_.chartObj, _.chartOpt);
+                    _.chartObj.resize();
                     _.complete = true;
                 })
                 // watch window resize
@@ -1261,12 +1284,22 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 areaStyle: {
                     normal: {}
                 },
+                label:{
+                    normal:{
+                        show:true
+                    }
+                },
                 data: seriesData.initPostive
             }, {
                 name: 'After Support Positive Volume',
                 type: 'line',
                 areaStyle: {
                     normal: {}
+                },
+                label:{
+                    normal:{
+                        show:true
+                    }
                 },
                 data: seriesData.afterSptPostive
             }],
@@ -1511,14 +1544,14 @@ function initCloudWordChartOpt(scope) {
         },
         series: {
             type: 'wordCloud',
-            gridSize: 1,
+            gridSize: 0,
             sizeRange: [12, 35],
             rotationRange: [-90, 90],
             shape: 'pentagon',
             left: 'center',
             top: 'center',
-            width: '90%',
-            height: '80%',
+            width: '70%',
+            height: '70%',
             textStyle: {
                 normal: {
                     color: function () {
