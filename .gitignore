@@ -11,3 +11,5 @@ Properties
 scripts
 S3PWebUI.*
 *.config
+*.cs
+*.aspx
