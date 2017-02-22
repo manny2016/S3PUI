@@ -257,12 +257,12 @@ module.exports = function ($parse, $filter, $timeout) {
             scope.isVolObj = function () {
                 return angular.isArray(scope.volume) || angular.isObject(scope.volume)
             }
-            scope.$watch('dayrange', function (newV, oldV) {
-                    console.log(newV)
-                        // $timeout(function () {
-                    scope.randerUI();
-                    // scope.$apply();
-                    // }, 0)
+            scope.$watch('data', function (newV, oldV) {
+                    // console.log(newV)
+                    $timeout(function () {
+                        scope.randerUI();
+                        // scope.$apply();
+                    }, 0)
                 })
                 // scope.labels = scope.data.labels;
         }

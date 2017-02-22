@@ -206,23 +206,25 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         })
     }
     $scope.getStatistic = function (platform, topic, pnscope, days) {
+        $('#summary div.content').dimmer('show');
         $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
             // console.log(data);
             var influenceData = data.vocinsights.objectcountthistime;
             $scope.serviceStatus = 'gery';
-            var flag_spike = influenceData.detectedspikesvol > 0;
-            var flag_health = influenceData.positivetotalvol < influenceData.negativetotalvol;
-            console.log(flag_spike, flag_health)
-            if (flag_spike && flag_health) {
-                $scope.serviceStatus = 'red';
-            }
-            if (flag_spike || flag_health) {
-                $scope.serviceStatus = 'yellow';
-            }
-            if (!flag_spike && !flag_health) {
-                $scope.serviceStatus = 'green';
-            }
+            // var flag_spike = influenceData.detectedspikesvol > 0;
+            // var flag_health = influenceData.positivetotalvol < influenceData.negativetotalvol;
+            // console.log(flag_spike, flag_health)
+            // if (flag_spike && flag_health) {
+            //     $scope.serviceStatus = 'red';
+            // }
+            // if (flag_spike || flag_health) {
+            //     $scope.serviceStatus = 'yellow';
+            // }
+            // if (!flag_spike && !flag_health) {
+            //     $scope.serviceStatus = 'green';
+            // }
             $scope.statistic = data;
+             $('#summary div.content').dimmer('hide');
             $scope.$broadcast('data-got');
         })
     };
