@@ -276,17 +276,35 @@
                 <div class="row">
                     <div class="sixteen wide column">
                         <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
-                            location='home' pnscope="all" days="{{dateRange}}" noPop="true" ></ng-echart>
+                            location='home' pnscope="all" days="{{dateRange}}" noPop="true"></ng-echart>
                     </div>
                 </div>
                 <div class="two column row" ng-if="platform !==('msdn'||'tn')">
                     <!-- ng-if="platform=='twitter'" -->
-                    <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
-                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
-                        property-select="positive"></ng-echart>
-                    <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
-                        api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}"
-                        property-select="negative"></ng-echart>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}"
+                                    property-select="positive" association="positive"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <region-table platform='{{path[2]}}' query=query association="positive" days="{{dateRange}}"></region-table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui shape column">
+                        <div class="sides">
+                            <div class="side active">
+                                <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}"
+                                    property-select="negative" association="negative"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <region-table platform='{{path[2]}}' query=query association="negative" days="{{dateRange}}"></region-table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

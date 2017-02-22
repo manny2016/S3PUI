@@ -166,6 +166,7 @@ app.directive('subWindow', require('./subWindowDirective'));
 app.directive('topicQuery', require('./topicQueryDirective'));
 app.directive('selectPage', require('./selectPageDirective'));
 app.directive('mentionedTable', require('./mentionedTableDirective'));
+app.directive('regionTable', require('./regionTableDirective'));
 
 app.directive('adminCard', require('./adminCardDirective'));
 app.directive('platformCardContent', require('./platformCardContentDirective'));

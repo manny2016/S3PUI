@@ -1,0 +1,34 @@
+<table st-table="stTable" st-safe-src="data" class="ui compact celled table stTable" style="min-width:100%;max-width:100%">
+    <thead>
+        <tr>
+            <th st-sort="name">Region</th>
+            <th st-sort="value" st-sort-default="reverse" st-skip-natural="true">Unique Users</th>
+            <th style="color: #000 !important;cursor: default !important;">Data Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <div class="ui icon min input">
+                    <input type="search" st-search placeholder="Search ...">
+                    <i class="search icon"></i>
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat="item in stTable">
+            <td>{{item.name}}</td>
+            <td width="100">{{item.value|thousandsuffix}}</td>
+            <td width="100">
+                <a ng-href="{{item.url}}" target="_blank"><i class="download icon"></i></a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <a title="back" alt="back" style="display: inline-block;float: left;cursor: pointer;" ng-click="swithside()"><i class="reply all icon"></i> Back</a>
+                <div st-items-by-page="6" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
