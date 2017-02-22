@@ -1,7 +1,6 @@
 moment = require('moment-timezone');
 var app = angular.module("app", [
-  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), 'duScroll', 'smart-table'
-  ,'toastr'
+  require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), 'duScroll', 'smart-table', 'toastr'
 ]);
 app
   .config(function (toastrConfig) {
@@ -76,32 +75,49 @@ app
         $('.fullscreen.modal').find('div.echart').map(function () {
           echarts.getInstanceByDom(this).clear();
         })
-        $('.fullscreen.modal').modal('show');
+        $('.fullscreen.modal').modal({
+          observeChanges: true,
+          onVisible: function (e) {
+            $('#sub_window').height($(window).height() * 0.72)
+            console.log($('#sub_window').height());
+            $(this).find('.echart').map(function (i) {
+              echarts.getInstanceByDom(this).clear();
+              echarts.getInstanceByDom(this).resize();
+            })
+          },
+          onHidden: function () {
+            $(this).find('.echart').map(function (i) {
+              echarts.getInstanceByDom(this).clear();
+            })
+          }
+        }).modal('show');
+        // $('.fullscreen.modal').modal('show');
       }
       // $(window).resize(function () {
       //   console.log(window.innerWidth);
       // })
     $rootScope.init = function () {
       // $('.menu').find('.ui.dropdown.item').dropdown();
-      $('.fullscreen.modal').modal({
-        observeChanges: true,
-        onVisible: function (e) {
-          $(this).find('.echart').map(function (i) {
-            echarts.getInstanceByDom(this).clear();
-            echarts.getInstanceByDom(this).resize();
-          })
-        },
-        onHidden: function () {
-          $(this).find('.echart').map(function (i) {
-            echarts.getInstanceByDom(this).clear();
-          })
-        }
-      });
+      // $('.fullscreen.modal').modal({
+      //   observeChanges: true,
+      //   onVisible: function (e) {
+      //     $(this).find('#sub_window').height($(window).height() * 0.7)
+      //     $(this).find('.echart').map(function (i) {
+      //       echarts.getInstanceByDom(this).clear();
+      //       echarts.getInstanceByDom(this).resize();
+      //     })
+      //   },
+      //   onHidden: function () {
+      //     $(this).find('.echart').map(function (i) {
+      //       echarts.getInstanceByDom(this).clear();
+      //     })
+      //   }
+      // });
     }
   });
 
-  Number.isInteger = Number.isInteger || function(value) {
-    return typeof value === "number" && 
-           isFinite(value) && 
-           Math.floor(value) === value;
+Number.isInteger = Number.isInteger || function (value) {
+  return typeof value === "number" &&
+    isFinite(value) &&
+    Math.floor(value) === value;
 };
