@@ -81,7 +81,7 @@ app
             $('#sub_window').height($(window).height() * 0.72)
             console.log($('#sub_window').height());
             $(this).find('.echart').map(function (i) {
-              echarts.getInstanceByDom(this).clear();
+              // echarts.getInstanceByDom(this).clear();
               echarts.getInstanceByDom(this).resize();
             })
           },
