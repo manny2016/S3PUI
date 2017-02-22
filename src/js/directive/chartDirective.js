@@ -1299,6 +1299,10 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 type: 'category',
                 data: xAxisDate
             }],
+            legend:{
+                data:['Init Positive Volume','After Support Positive Volume'],
+                show:true
+            },
             series: [{
                 name: 'Init Positive Volume',
                 type: 'line',
