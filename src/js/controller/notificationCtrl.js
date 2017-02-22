@@ -80,7 +80,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         $('#nc-main').dimmer('show');
         var params = angular.copy($scope.search);
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
-        params.egTime = Math.floor(moment.utc(params.egTime) / 1000);
+        params.egTime = Math.floor(moment.utc(params.egTime).endOf('day') / 1000);
         console.log(params)
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
