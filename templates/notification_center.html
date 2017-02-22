@@ -93,10 +93,10 @@
         <div class="ui dimmer">
             <div class="ui text loader">Loading</div>
         </div>
-        <table st-table="stTable" st-safe-src="tabledata" class="ui striped green table">
+        <table st-table="stTable" st-safe-src="collections" class="ui striped green table">
             <thead>
                 <tr>
-                    <th st-sort="createdTime">Date
+                    <th st-sort="createdTime" st-sort-default="reverse" st-skip-natural="true" style="color: blue !important;cursor: pointer !important;">Date
                         <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
@@ -119,7 +119,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="m in collections">
+                <tr ng-repeat="m in stTable">
                     <td>{{m.createdTime|mankindTime2String}}</td>
                     <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
                     <td>
