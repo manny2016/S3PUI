@@ -285,7 +285,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}"
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}" no-pop="true"
                                     property-select="positive" association="positive"></ng-echart>
                             </div>
                             <div class="side">
@@ -297,7 +297,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}"
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}" no-pop="true"
                                     property-select="negative" association="negative"></ng-echart>
                             </div>
                             <div class="side">
