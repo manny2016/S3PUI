@@ -43,6 +43,11 @@
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
                     </span>
                             </th>
+                            <th>Topic
+                                <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                            </th>
                             <th>Message Type
                                 <span class="label">
                         <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
@@ -59,6 +64,7 @@
                         <tr ng-repeat="m in collections">
                             <td>{{m.createdTime|mankindTime2String}}</td>
                             <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
+                            <td>{{m.topic}}</td>
                             <td>
                                 <div ng-if="m.hasDetails">
                                     <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
