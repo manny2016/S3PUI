@@ -44,6 +44,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             _.service = $rootScope.service;
             _.complete = false;
             _.query = _.query || {};
+            _.thousandsuffix = $filter('thousandsuffix');
             _.compile = function (chart, dom) {
                 // console.log(_.$parent)
                 var el = $compile(chart)(_.$parent);
@@ -222,6 +223,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             // })
                             if (_.platform) {
                                 // _.platform = _.platforms[0];
+                                // _.thousandsuffix = $filter('thousandsuffix');
                                 var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.days);
                                 // console.log(_);
                                 customInfluenceData(fnPromise, _).then(function (config) {
@@ -231,7 +233,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     afterInit($rootScope, _, _.chartObj);
                                 })
                             } else {
-                                _.thousandsuffix = $filter('thousandsuffix');
+                                // _.thousandsuffix = $filter('thousandsuffix');
                                 _.platforms = _.$parent.enabledPlatforms;
                                 // _.raw = [];
                                 _.raw = {};
@@ -325,7 +327,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             if (_.type === 'hori') {
-                                _.thousandsuffix = $filter('thousandsuffix');
+                                // _.thousandsuffix = $filter('thousandsuffix');
                                 fn = barNegativeData;
                             }
                             fn(fnPromise, _).then(function (config) {
@@ -381,6 +383,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getInfluenceVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
+                            
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
                                 // console.log('getInfluenceVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
@@ -1028,7 +1031,7 @@ function customWorldData(fnPromise, scope) {
                         }
                     }
                 },
-                show: (scope.noSwap!=='true')
+                show: (scope.noSwap !== 'true')
             },
             series: [{
                 name: scope.title,
@@ -1360,7 +1363,14 @@ function customHourlyData(fnPromise, key, utility, scope) {
                 name: 'Vol',
                 type: 'line',
                 showAllSymbol: true,
-                data: seriesData
+                data: seriesData,
+                label: {
+                    normal: {
+                        formatter: function (params) {
+                            return scope.thousandsuffix(params.value)
+                        }
+                    }
+                }
             }],
             xAxis: {
                 type: 'category',

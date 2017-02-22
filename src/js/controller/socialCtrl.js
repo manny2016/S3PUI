@@ -249,8 +249,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             return false;
         }
         $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function(url){
-            console.log(url)
-            window.location.assign(url);
+            window.open(url);
         })
     }
         // $scope.languageDistribution = [{
