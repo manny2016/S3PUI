@@ -109,7 +109,7 @@ app
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
         endpoints: endpoints,
-        redirectUri: window.location.origin+'/frameRedirect.html',
+        redirectUri: window.location.origin + '/frameRedirect.html',
         cacheLocation: 'localStorage',
         // extraQueryParameter: 'nux=1',
         // redirectUri: window.location.origin,
@@ -136,11 +136,16 @@ app
       },
       $httpProvider);
   })
-  .run(function ($rootScope, $state, adalAuthenticationService) {
+  .run(function ($rootScope, $state, $injector, adalAuthenticationService) {
     // if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
     //   // adalAuthenticationService.login();
     //   // window.location = '/';
     // }
-    
+    // if ($rootScope.userInfo.isAuthenticated) {
+    //   console.log($rootScope.userInfo.userName)
+    //   $injector.get('rawdataSrv').checkAdminAccessRights($rootScope.userInfo.userName).then(function (data) {
+    //     $rootScope.isAdmin = data;
+    //   })
+    // }
   })
 module.exports = 'app.Route';
