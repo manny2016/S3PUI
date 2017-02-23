@@ -11,7 +11,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     return {
         get: function (api, params) {
             params = params || {};
-            params['cachedtimestamp'] = Math.round(new Date() /1000);
+            params['cachedtimestamp'] = Math.round(new Date() / 1000);
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = CONST.SERVICE_INFO.ENDPOINT + api + qs;
@@ -511,6 +511,33 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'azure';
             params.days = days || 7;
             return baseSrv.get('GetDownloadUrl', params);
+        },
+        getSubscribeSettings: function (platform, topic, msgtype, servicename) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.msgtype = msgtype || 'all';
+            params.servicename = servicename || 'all';
+            return baseSrv.get('GetSubscribeSettings', params);
+        },
+        createSubscribe: function (params) {
+            var params = params || {};
+            params.email = params.email;
+            params.platform = params.platform || 'all';
+            params.topic = params.topic || 'all';
+            params.msgtype = params.msgtype || 'all';
+            params.servicename = params.servicename || 'all';
+            return baseSrv.get('CreateSubscribe', params);
+        },
+        deleteSubscribe:function(id){
+            var params = params || {};
+            params.id = id;
+            return baseSrv.get('DeleteSubscribe', params);
+        },
+        checkAdminAccessRights:function(email){
+            var params = params || {};
+            params.email =email;
+            return baseSrv.get('CheckAdminAccessRights', params);
         }
     }
 })

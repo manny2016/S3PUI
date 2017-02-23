@@ -27,6 +27,12 @@ app
     } else {
       $rootScope.service = $injector.get('rawdataSrv')
     }
+    if($rootScope.userInfo.isAuthenticated){
+      console.log($rootScope.userInfo.userName)
+      $rootScope.service.checkAdminAccessRights($rootScope.userInfo.userName).then(function(data){
+        $rootScope.isAdmin = data;
+      })
+    }
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 

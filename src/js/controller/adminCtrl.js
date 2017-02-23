@@ -1,6 +1,14 @@
-module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) {
+module.exports = function ($scope, $location, $state, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
+    if(!$scope.isAdmin){
+        $state.go('home.dashboard');
+    }
     $scope.platforms = [];
+    $scope.search = {
+        datasource: 'all',
+        messagetype: 'all',
+        topic:'all'
+    }
 
     function generateNewScopeObj(platform) {
         var newScope = {};
@@ -74,6 +82,9 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
         })
     }
     $scope.init = function () {
+        $timeout(function () {
+            $('.ui.fluid.dropdown').dropdown();
+        }, 50)
         $scope.getConfigData();
     }
 
@@ -146,7 +157,10 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
     }
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
-        $scope.service.saveForumServiceSetting({"MsdnTopicMapping":$scope.MsdnTopicMapping,"TopicWithForum":$scope.originData}).then(function (data) {
+        $scope.service.saveForumServiceSetting({
+                "MsdnTopicMapping": $scope.MsdnTopicMapping,
+                "TopicWithForum": $scope.originData
+            }).then(function (data) {
                 if (data == true) {
                     toastr.success('Success', 'Operation Success!');
                 } else {
@@ -215,6 +229,79 @@ module.exports = function ($scope, $location, $timeout, $http, $filter, toastr) 
 
     }
     $scope.init();
+
+    //subscription Operations
+    $scope.openAddModal = function () {
+        $('#newSubscription').modal({
+            onDeny: function () {
+                // return false;
+                $scope.initSubscription()
+                $('#newSubscription .ui.fluid.dropdown').dropdown('set selected', 'all');
+            },
+            onApprove: function () {
+                if ($scope.newSubscription.email.trim() === '') {
+                    toastr.error('Error', 'Email Required!');
+                    return false;
+                } else {
+                    $scope.service.createSubscribe($scope.newSubscription).then(function (data) {
+                        if (data == true) {
+                            // $scope.subscriptions.unshift($scope.newSubscription);
+                            $scope.listSubscriptions();
+                            $scope.initSubscription()
+                            toastr.success('Success', 'Operation Success!');
+                        } else {
+                            toastr.error('Error', 'Operation Failed!');
+                        }
+                    })
+                }
+            }
+        }).modal('show')
+    }
+    $scope.initSubscription = function () {
+        $scope.newSubscription = {
+            email: '',
+            platform: 'all',
+            topic: 'all',
+            msgtype: 'all',
+            servicename: 'all',
+        };
+    }
+    $scope.removeSubscription = function (entity) {
+        $scope.willDelEnt = entity;
+        // console.log($scope.subscriptions.indexOf(entity))
+        $('#subscriptionDelConfirm').modal({
+            onDeny: function () {
+                $scope.willDelEnt = undefined;
+            },
+            onApprove: function () {
+                if (entity !== undefined) {
+                    $scope.service.deleteSubscribe(entity.Id).then(function (data) {
+                        if (data == true) {
+                            $scope.subscriptions.splice($scope.subscriptions.indexOf(entity), 1);
+                            toastr.success('Success', 'Operation Success!');
+                        } else {
+                            toastr.error('Error', 'Operation Failed!');
+                        }
+                    })
+                }
+            }
+        }).modal('show')
+    }
+    $scope.initSubscription()
+    $scope.getTopics = function () {
+        $scope.service.getCate().then(function (data) {
+            $scope.enabledTopics = data;
+        })
+    }();
+    $scope.listSubscriptions = function (platform, topic, msgtype, servicename) {
+        platform = platform || $scope.search.datasource;
+        topic = topic || $scope.search.topic;
+        msgtype = msgtype || $scope.search.messagetype;
+        $scope.service.getSubscribeSettings(platform, topic, msgtype, servicename).then(function (data) {
+            $scope.subscriptions = data;
+        })
+    }
+    $scope.listSubscriptions();
     $scope.$watch("selectedPlatform", function (nv, ov) {
         switch ($scope.selectedPlatform) {
             case 'sf':

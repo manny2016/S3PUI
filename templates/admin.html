@@ -140,7 +140,7 @@
         </div>
     </div>
     <div data-tab="notification" class="ui tab bottom attached segment">
-        <div class="ui grid">
+        <!--<div class="ui grid">
             <div class="three wide column">
                 <div class="ui vertical fluid tabular menu">
                     <a data-tab="azure" class="active item" style="margin-top: 0em">
@@ -234,7 +234,89 @@
                 <div class="ui green basic button">Approve</div>
                 <div class="ui red basic button">Decline</div>
             </div>
+        </div>-->
+        <div class="ui segment blue form">
+            <h5 class="ui header blue">
+                Search
+                <i class="link search icon pull-right" ng-click="listSubscriptions()"></i>
+            </h5>
+            <div class="fields">
+                <div class="two wide field">
+                    <label>Platform</label>
+                    <select class="ui fluid dropdown" ng-model="search.datasource">
+                    <option value="all">All</option>
+                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
+                    </select>
+                </div>
+                <div class="five wide field">
+                    <label>Topic</label>
+                    <select class="ui fluid dropdown" ng-model="search.topic">
+                    <option value="all">All</option>
+                    <option value="{{t.TechCategoryName}}" ng-repeat="t in enabledTopics | filter:{isGA:true}">{{t.TechCategoryName}}</option>
+                    </select>
+                </div>
+                <div class="five wide field">
+                    <label>Message Type</label>
+                    <select class="ui fluid dropdown" ng-model="search.messagetype">
+                    <option value="all">All</option>
+                    <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
+        <table st-table="stTable" st-safe-src="subscriptions" class="ui striped green table">
+            <thead>
+                <tr>
+                    <th>Email
+                        <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                    </th>
+                    <th>Platform
+                        <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                    </th>
+                    <th>Topic
+                        <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                    </th>
+                    <th>Message Type
+                        <span class="label">
+                        <i class="popup small link info circle icon" data-content="info" data-variation="mini inverted"></i>
+                    </span>
+                    </th>
+                    <th>
+                        <button class="ui icon green button" ng-click="openAddModal()">
+                            <i class="plus icon"></i>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="m in stTable">
+                    <td>{{m.EMail}}</td>
+                    <td>{{CONST.ALL_ENABLED_PLARFORMS[m.Platform]||m.Platform}}</td>
+                    <td>{{m.Topic}}</td>
+                    <td>
+                        {{CONST.MESSAGE_TYPES[m.MsgType]||m.MsgType}}
+                    </td>
+                    <td width="100">
+                        <button class="ui icon red button" ng-click="removeSubscription(m)">
+                            <i class="minus icon"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
 <div id="removeConfirmModal" class="ui small modal">
@@ -249,5 +331,62 @@
     <div class="actions">
         <div class="ui cancel button">Cancel</div>
         <div class="ui approve button">OK</div>
+    </div>
+</div>
+<div id="newSubscription" class="ui small modal">
+    <div class="header">
+        New Notification Rule
+    </div>
+    <div class="content">
+        <div class="description">
+            <label>Email</label>
+            <div class="ui input">
+                <input type="text" placeholder="Email address..." ng-model="newSubscription.email">
+            </div>
+        </div>
+        <div class="description">
+            <label>Platform</label>
+            <select class="ui fluid dropdown" ng-model="newSubscription.platform">
+                    <option value="all">All</option>
+                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
+                    </select>
+        </div>
+        <div class="description">
+            <label>Topic</label>
+            <select class="ui fluid dropdown" ng-model="newSubscription.topic">
+                    <option value="all">All</option>
+                    <option value="{{t.TechCategoryName}}" ng-repeat="t in enabledTopics | filter:{isGA:true}">{{t.TechCategoryName}}</option>
+                    </select>
+        </div>
+        <div class="description">
+            <label>Message Type</label>
+            <select class="ui fluid dropdown" ng-model="newSubscription.msgtype">
+                    <option value="all">All</option>
+                    <option value="{{v}}" ng-repeat="(v,p) in CONST.MESSAGE_TYPES">{{p}}</option>
+                    </select>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button">Cancel</div>
+        <div class="ui approve button">OK</div>
+    </div>
+</div>
+<div id="subscriptionDelConfirm" class="ui basic modal">
+    <div class="ui icon header">
+        <i class="warning sign icon"></i> Are you sure to delete this rule
+    </div>
+    <div class="content">
+        <p style="text-align:center">
+            Email: {{willDelEnt.EMail}}<br /> Platform: {{CONST.ALL_ENABLED_PLARFORMS[willDelEnt.Platform]||willDelEnt.Platform}}<br /> Topic:
+            {{willDelEnt.Topic}}<br /> Message Type: {{CONST.MESSAGE_TYPES[willDelEnt.MsgType]||willDelEnt.MsgType}}<br />
+        </p>
+    </div>
+    <div class="actions">
+        <div class="ui red basic cancel inverted button">
+            <i class="remove icon"></i> No
+        </div>
+        <div class="ui green ok inverted button">
+            <i class="checkmark icon"></i> Yes
+        </div>
     </div>
 </div>
