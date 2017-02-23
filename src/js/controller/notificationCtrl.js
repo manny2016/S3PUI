@@ -56,14 +56,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
             //     key: 'tn',
             //     name: 'Telnet'
             // }];
-            $scope.platforms = {
-                'twitter': 'Twitter',
-                'so': 'Stackoverflow',
-                'sf': 'Serverfault',
-                'su': 'Superuser',
-                'msdn': 'MSDN',
-                'tn': 'Telnet'
-            };
+            $scope.platforms = CONST.ALL_ENABLED_PLARFORMS
             $('.ui.fluid.dropdown').dropdown({
                 // onChange: function (value, text, $choice) {
                 //     $scope.listNotification();

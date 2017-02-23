@@ -13,3 +13,4 @@ S3PWebUI.*
 *.config
 *.cs
 *.aspx
+bin

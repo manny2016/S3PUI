@@ -33,7 +33,8 @@ app.constant('CONST', {
         'sf': 'Serverfault',
         'su': 'Superuser',
         'msdn': 'MSDN',
-        'tn': 'TechNet'
+        'tn': 'TechNet',
+        'lithium':'Lithium'
     },
     WS_STATUS:{
         0 : 'connecting',
