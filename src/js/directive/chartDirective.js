@@ -106,7 +106,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                pnscope: pnscope
+                                pnscope: pnscope,
+                                days:_.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -118,7 +119,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 user: params.name,
-                                pnscope: _.pnscope
+                                pnscope: _.pnscope,
+                                days:_.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -130,7 +132,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 service: params.name,
-                                pnscope: _.pnscope
+                                pnscope: _.pnscope,
+                                days:_.days
                             }
                             if (params.name === 'Others') {
                                 _.swithside();
@@ -159,7 +162,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 keywords: params.name,
-                                pnscope: _.pnscope
+                                pnscope: _.pnscope,
+                                days:_.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
