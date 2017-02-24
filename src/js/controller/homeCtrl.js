@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $document, CONST) {
+module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document,$websocket, CONST) {
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -56,8 +56,7 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
         })
     }();
     // $scope.getTopics();
-
-
+    
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         $('.tabular.menu .item').tab({
@@ -145,4 +144,21 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
         }, 50)
     }
 
+    // service status web socket
+    var twitter_ws = $websocket(CONST.SERVICE_INFO.TWITTER_WS_STATUS)
+    twitter_ws.onMessage(function (event) {
+        $rootScope.twitter_status = JSON.parse(event.data);
+    });
+    twitter_ws.onError(function (event) {
+        console.log('connection Error', event);
+    });
+
+    var others_ws = $websocket(CONST.SERVICE_INFO.OTHERS_WS_STATUS)
+    others_ws.onMessage(function (event) {
+        $rootScope.others_status = JSON.parse(event.data);
+    });
+    others_ws.onError(function (event) {
+        console.log('connection Error', event);
+    });
+    
 }

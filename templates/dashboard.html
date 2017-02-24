@@ -12,6 +12,14 @@
                 {{dateList[0]}} - {{dateList.slice(-1)[0]}}
             </div>
         </h3>
+        <div class="one column ui grid">
+            <div class="row">
+                <div class="right floated right aligned column">
+                    Tiwtter Worker Role Last Update: {{twitter_status.LastUpdate|mankindTime2String}}<br />
+                    Other Platforms Worker Role Last Update: {{others_status.LastUpdate|mankindTime2String}}
+                </div>
+            </div>
+        </div>
         <div class="ui four cards">
             <topic-query ng-repeat="t in topics | filter:{isGA:true}"></topic-query>
         </div>

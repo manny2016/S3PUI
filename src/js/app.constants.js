@@ -25,7 +25,11 @@ app.constant('CONST', {
         // ENDPOINT: 'https://shpv1.azurewebsites.net/DataService/S3PDataService.svc/',
         WS:'ws://40.114.88.191/api/Notify/',
         // WS: 'ws://localhost:8889/',
-        LOCAL_TEST_DATA: '/data/'
+        LOCAL_TEST_DATA: '/data/',
+        TWITTER_SERVER_STATUS:'http://40.114.88.191/WebServices/S3PDataService/GetJobStatus',
+        OTHERS_SERVER_STATUS:'http://40.121.205.38/WebServices/S3PDataService/GetJobStatus',
+        TWITTER_WS_STATUS:'ws://40.114.88.191/api/SyncMontior/',
+        OTHERS_WS_STATUS:'ws://40.121.205.38/api/SyncMontior/'
     },
     ALL_ENABLED_PLARFORMS: {
         'twitter': 'Twitter',

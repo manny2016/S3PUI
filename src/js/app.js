@@ -15,7 +15,7 @@ app
       target: 'body'
     });
   })
-  .run(function ($rootScope, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications) {
+  .run(function ($rootScope, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications, $http) {
     // var config = require('../../public/config');
     // console.log(config);
     //check authentication
@@ -120,6 +120,16 @@ app
       //   }
       // });
     }
+
+    $rootScope.getServiceStatus = function(){
+        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function(data){
+            $rootScope.twitter_status = data.data
+        });
+        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function(data){
+            $rootScope.others_status = data.data
+        });
+    }
+    $rootScope.getServiceStatus();
   });
 
 Number.isInteger = Number.isInteger || function (value) {
