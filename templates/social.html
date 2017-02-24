@@ -243,12 +243,12 @@
                     <ng-echart title="Message Influence Vol {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
-                <div class="column" ng-if="platform !==('msdn'||'tn')">
+                <div class="column" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <ng-echart title="Poster's Regions # {{commonTrendTitle}}" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly" days="{{dateRange}}"></ng-echart>
                 </div>
                 <!--large date range only-->
-                <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="platform !==('msdn'||'tn')">
+                <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <!-- ng-if="platform=='twitter'" -->
                     <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
                         type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
@@ -279,7 +279,7 @@
                             location='home' pnscope="all" days="{{dateRange}}" noPop="true"></ng-echart>
                     </div>
                 </div>
-                <div class="two column row" ng-if="platform !==('msdn'||'tn')">
+                <div class="two column row" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <!-- ng-if="platform=='twitter'" -->
                     <div class="ui shape column">
                         <div class="sides">
@@ -296,7 +296,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Area Distribution for Nagetive Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
+                                <ng-echart title="Area Distribution for Negative Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
                                     api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}" no-pop="true"
                                     property-select="negative" association="negative"></ng-echart>
                             </div>
@@ -397,7 +397,7 @@
                 </div>
             </div>
         </div>
-        <div id="userdistribution" class="ui violet segment" ng-if="platform !==('msdn'||'tn')">
+        <div id="userdistribution" class="ui violet segment" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
             <!-- ng-if="platform=='twitter'"-->
             <h3 class="ui center aligned header title violet">
                 User Distribution
@@ -498,7 +498,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="item" ng-if="platform !==('msdn'||'tn')">
+                <div class="item" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <a du-smooth-scroll="userdistribution" du-scrollspy offset="600">
                         <div class="ui label" set-color="violet" data-content="User Distribution" data-variation="mini inverted">
                             <i class="icon map"></i> <span ng-hide="isSmall">User Distribution</span>
@@ -667,7 +667,7 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="barNagetive" platform='{{path[2]}}' query=query
+                        <ng-echart title="Most Like & Dislike Service In Last {{dateRange}} Days" type="barnegative" platform='{{path[2]}}' query=query
                             api-fn="getVoCDetailsByServiceName1" location='home' pnscope="all" sub-fn="getSubPageVoCDetails"></ng-echart>
                     </div>
                 </div>
