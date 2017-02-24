@@ -1127,7 +1127,7 @@ function stackAxisData(fnPromise, utility, scope) {
                 // console.log(xAxisDate)
             return {
                 legend: {
-                    data: ['Undefined', 'Positive', 'Negative', 'Nuetral']
+                    data: ['Undefined', 'Positive', 'Negative', 'Neutral']
                 },
                 series: [{
                     name: 'Undefined',
@@ -1157,7 +1157,7 @@ function stackAxisData(fnPromise, utility, scope) {
                     },
                     data: seriesData.neg
                 }, {
-                    name: 'Nuetral',
+                    name: 'Neutral',
                     type: 'line',
                     stack: 'total',
                     showAllSymbol: true,
@@ -1246,10 +1246,14 @@ function barNegativeData(fnPromise, scope) {
                 axisTick: {
                     show: false
                 },
+                // nameLocation:'start',
                 axisLabel: {
-                    interval: 0
+                    interval: 0,
+                    // rotate:45,
+                    inside:true
                 },
-                data: yAxisData
+                data: yAxisData,
+                z:10
             },
             grid: {},
             series: [{
@@ -1264,6 +1268,11 @@ function barNegativeData(fnPromise, scope) {
                 name: 'Dislike',
                 type: 'bar',
                 stack: 'volume',
+                itemStyle:{
+                    normal:{
+                        color:'#ffb980'
+                    }
+                },
                 areaStyle: {
                     normal: {
                         show: true,
@@ -1442,8 +1451,8 @@ function initHoriChartOpt(scope) {
         },
         grid: {
             // width:'85%'
-            left: '15%',
-            right: '3%'
+            left: '5%',
+            // right: '3%'
         },
         toolbox: {
             show: false,

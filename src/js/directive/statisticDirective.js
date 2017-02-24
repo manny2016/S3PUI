@@ -119,11 +119,6 @@ module.exports = function ($parse, $filter, $timeout) {
                             }]
                         } else {
                             scope.labels = [{
-                                text: label_type.compared,
-                                volume: scope.data.comparedratio,
-                                type: 'ratio',
-                                isCompared: true
-                            }, {
                                 text: "Spike Detected (Last " + scope.dayrange + " days)",
                                 volume: scope.data.detectedhourlyspikesvol,
                                 color: 'red'
@@ -132,16 +127,24 @@ module.exports = function ($parse, $filter, $timeout) {
                         break;
                     case 'mentionedservicecount':
                         scope.volume = numberFormat(scope.data.objectcountthistime)
-                        scope.labels = [{
-                            text: label_type.compared + dateRangeAppend(scope.dayrange),
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike + dateRangeAppend(scope.dayrange),
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }]
+                        if (scope.dayrange == '7') {
+                            scope.labels = [{
+                                text: label_type.compared + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.comparedratio,
+                                type: 'ratio',
+                                isCompared: true
+                            }, {
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        } else {
+                            scope.labels = [{
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        }
                         break;
                     case 'mostmentionedservice':
                         scope.volume = scope.data[0].attachedobject
@@ -176,16 +179,25 @@ module.exports = function ($parse, $filter, $timeout) {
                         break;
                     case 'vocinsightsVol':
                         scope.volume = numberFormat(scope.data.objectcountthistime.voctotalvol)
-                        scope.labels = [{
-                            text: label_type.compared + dateRangeAppend(scope.dayrange),
-                            volume: scope.data.comparedratio,
-                            type: 'ratio',
-                            isCompared: true
-                        }, {
-                            text: label_type.spike + dateRangeAppend(scope.dayrange),
-                            volume: scope.data.detectedhourlyspikesvol,
-                            color: 'red'
-                        }]
+                        if (scope.dayrange == '7') {
+                            scope.labels = [{
+                                text: label_type.compared + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.comparedratio,
+                                type: 'ratio',
+                                isCompared: true
+                            }, {
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        } else {
+                            scope.labels = [{
+                                text: label_type.spike + dateRangeAppend(scope.dayrange),
+                                volume: scope.data.detectedhourlyspikesvol,
+                                color: 'red'
+                            }]
+                        }
+
                         break;
                     case 'vocinsightsPN':
                         var originBoj = scope.data.objectcountthistime;
