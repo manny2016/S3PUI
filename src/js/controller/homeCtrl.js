@@ -116,10 +116,10 @@ module.exports = function ($scope, $rootScope, $timeout, $q, $sce, $compile, $do
 
     //list latest top {number} notifications
     $scope.listNotification = function (top) {
-        var date = Math.floor(moment.utc().startOf('day') / 1000);
+        var date = Math.floor(moment.utc().add(-1,"days").startOf('day') / 1000);
         $scope.service.getSysDetections(undefined, undefined, undefined, date).then(function (data) {
             // console.log(data);
-            $scope.collections = data.splice(0, top);
+            $scope.collections = data.reverse().splice(0, top);
         })
     }
     $scope.generateDownloadUrl = function (entity) {
