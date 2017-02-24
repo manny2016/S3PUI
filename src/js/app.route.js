@@ -12,10 +12,7 @@ app
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, adalAuthenticationServiceProvider, $httpProvider, CONST) {
 
     // configure html5 to get links working on jsfiddle
-    $locationProvider.html5Mode({
-      enabled: true,
-      // requireBase: false
-    }).hashPrefix('!');
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     // $urlRouterProvider.when("", "/home/dashboard");
     // $urlRouterProvider.when("/", "/home/dashboard");
@@ -101,14 +98,14 @@ app
         templateUrl: 'templates/notification_center.html',
         requireADLogin: true
       });
-    var endpoints = {
-      'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
-    }
+    // var endpoints = {
+    //   'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID
+    // }
     adalAuthenticationServiceProvider.init({
         // instance: 'https://login.microsoftonline.com/',
         tenant: CONST.AD_CONFIG.TENANT_ID,
         clientId: CONST.AD_CONFIG.CLIENT_ID,
-        endpoints: endpoints,
+        // endpoints: endpoints,
         redirectUri: window.location.origin + '/frameRedirect.html',
         cacheLocation: 'localStorage',
         // extraQueryParameter: 'nux=1',
@@ -137,8 +134,8 @@ app
       $httpProvider);
   })
   .run(function ($rootScope, $state, $injector, adalAuthenticationService) {
-    // if ((!$rootScope.userInfo.isAuthenticated) && (window.location.pathname !== "/")) {
-    //   // adalAuthenticationService.login();
+    // if ((!$rootScope.userInfo.isAuthenticated)) {
+    //   adalAuthenticationService.login();
     //   // window.location = '/';
     // }
     // if ($rootScope.userInfo.isAuthenticated) {

@@ -15,7 +15,7 @@ app
       target: 'body'
     });
   })
-  .run(function ($rootScope, $state, $stateParams, $injector, utilitySrv, CONST, Notifications) {
+  .run(function ($rootScope, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications) {
     // var config = require('../../public/config');
     // console.log(config);
     //check authentication
@@ -39,6 +39,9 @@ app
     }
     $rootScope.signOut = function () {
       adalAuthenticationService.logOut();
+    }
+    $rootScope.signIn = function () {
+      adalAuthenticationService.login();
     }
     $rootScope.timeRange = {
       'start': (function (d) {

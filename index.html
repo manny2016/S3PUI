@@ -78,14 +78,15 @@
                             </a>
                         <div class="item ui label simple dropdown" style="display: flex !important;">
                             <!--<%=UserAlias %>-->
-                            <span ng-if="userInfo">{{userInfo.userName}}</span>
+                            <span ng-if="userInfo">{{userInfo.userName||'Guest'}}</span>
                             <i class="dropdown icon"></i>
                             <div class="menu">
                                 <!--<a class="item" ui-sref="/">Profile</a>-->
                                 <!--<a class="item">Subscription</a>-->
                                 <a class="item" ui-sref="admin" ng-show="isAdmin">Administrator</a>
                                 <!--<a class="item" runat="server" id="btnSignOut" onserverclick="signoutBtn_Click">Sign Out</a>-->
-                                <a class="item" ng-click="signOut()">Sign Out</a>
+                                <a class="item" ng-show="!(userInfo.userName)" ng-click="signIn()">Sign In</a>
+                                <a class="item" ng-show="userInfo.userName" ng-click="signOut()">Sign Out</a>
                             </div>
                         </div>
                     </div>
