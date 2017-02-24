@@ -250,7 +250,7 @@
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <!-- ng-if="platform=='twitter'" -->
-                    <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                    <ng-echart title="Region of Users Volume In Last {{dateRange}} Days" platform='{{path[2]}}' query=query api-fn="getRegionDistribution" no-pop="true"
                         type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate" days="{{dateRange}}"></ng-echart>
                 </div>
             </div>
@@ -276,7 +276,7 @@
                 <div class="row" ng-if="platform !=='twitter'">
                     <div class="sixteen wide column">
                         <ng-echart title="Sentiment Conversion {{commonTrendTitle}}" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
-                            location='home' pnscope="all" days="{{dateRange}}" noPop="true"></ng-echart>
+                            location='home' pnscope="all" days="{{dateRange}}" no-pop="true"></ng-echart>
                     </div>
                 </div>
                 <div class="two column row" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
