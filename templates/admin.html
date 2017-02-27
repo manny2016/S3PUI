@@ -264,6 +264,9 @@
                 </div>
             </div>
         </div>
+        <button class="ui icon green button" ng-click="addNCRule($event)">
+                            <i class="plus icon"></i> Add Notification Rule
+                        </button>
         <table st-table="stTable" st-safe-src="subscriptions" class="ui striped green table">
             <thead>
                 <tr>
@@ -288,9 +291,6 @@
                     </span>
                     </th>
                     <th>
-                        <button class="ui icon green button" ng-keydown="($event.charCode==13)? return : return;"" ng-click="addNCRule($event)">
-                            <i class="plus icon"></i>
-                        </button>
                     </th>
                 </tr>
             </thead>
@@ -377,8 +377,9 @@
     </div>
     <div class="content">
         <p style="text-align:center">
-            Email: {{willDelEnt.EMail}}<br /> Platform: {{CONST.ALL_ENABLED_PLARFORMS[willDelEnt.Platform]||willDelEnt.Platform}}<br /> Topic:
-            {{willDelEnt.Topic}}<br /> Message Type: {{CONST.MESSAGE_TYPES[willDelEnt.MsgType]||willDelEnt.MsgType}}<br />
+            Email: {{willDelEnt.EMail}}<br /> Platform: {{CONST.ALL_ENABLED_PLARFORMS[willDelEnt.Platform]||willDelEnt.Platform}}<br
+            /> Topic: {{willDelEnt.Topic}}
+            <br /> Message Type: {{CONST.MESSAGE_TYPES[willDelEnt.MsgType]||willDelEnt.MsgType}}<br />
         </p>
     </div>
     <div class="actions">
