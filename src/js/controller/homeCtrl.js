@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document,$websocket, CONST) {
+module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, twitterServiceStatus, othersServiceStatus, CONST) {
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -13,7 +13,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     $('#scrollspy .list .item .label').popup();
     $('.ui.accordion').accordion({
             exclusive: false,
-            animateChildren:false,
+            animateChildren: false,
             selector: {
                 trigger: '.segment .title',
                 content: '.segment .content'
@@ -56,7 +56,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         })
     }();
     // $scope.getTopics();
-    
+
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         $('.tabular.menu .item').tab({
@@ -115,7 +115,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
 
     //list latest top {number} notifications
     $scope.listNotification = function (top) {
-        var date = Math.floor(moment.utc().add(-1,"days").startOf('day') / 1000);
+        var date = Math.floor(moment.utc().add(-1, "days").startOf('day') / 1000);
         $scope.service.getSysDetections(undefined, undefined, undefined, date).then(function (data) {
             // console.log(data);
             $scope.collections = data.reverse().splice(0, top);
@@ -129,8 +129,8 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         var param = {
             platform: entity.forumName,
             msgType: entity.msgType,
-            topic:entity.topic,
-            timestamp:entity.TimeStamp
+            topic: entity.topic,
+            timestamp: entity.TimeStamp
         }
         $rootScope.popSubWin({
             fn: 'getVoCDetailsBySpikeDetected',
@@ -145,20 +145,21 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     }
 
     // service status web socket
-    var twitter_ws = $websocket(CONST.SERVICE_INFO.TWITTER_WS_STATUS)
-    twitter_ws.onMessage(function (event) {
-        $rootScope.twitter_status = JSON.parse(event.data);
-    });
-    twitter_ws.onError(function (event) {
-        console.log('connection Error', event);
-    });
+    // var twitter_ws = $websocket(CONST.SERVICE_INFO.TWITTER_WS_STATUS)
+    // twitter_ws.onMessage(function (event) {
+    //     $rootScope.twitter_status = JSON.parse(event.data);
+    // });
+    // twitter_ws.onError(function (event) {
+    //     console.log('connection Error', event);
+    // });
 
-    var others_ws = $websocket(CONST.SERVICE_INFO.OTHERS_WS_STATUS)
-    others_ws.onMessage(function (event) {
-        $rootScope.others_status = JSON.parse(event.data);
-    });
-    others_ws.onError(function (event) {
-        console.log('connection Error', event);
-    });
-    
+    // var others_ws = $websocket(CONST.SERVICE_INFO.OTHERS_WS_STATUS)
+    // others_ws.onMessage(function (event) {
+    //     $rootScope.others_status = JSON.parse(event.data);
+    // });
+    // others_ws.onError(function (event) {
+    //     console.log('connection Error', event);
+    // });
+    $rootScope.twitter_status = twitterServiceStatus.status;
+    $rootScope.others_status = othersServiceStatus.status;
 }
