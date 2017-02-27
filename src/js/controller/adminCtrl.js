@@ -127,10 +127,11 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
         console.log(e)
     }
     $scope.addKwd = function (event) {
+            console.log(event)
             event.stopPropagation();
             var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
             var array = currentTopic[$scope.tagsCfg].Keywords;
-            var string = event.target.value.trim()
+            var string = (event.target.value||event.target.previousElementSibling.value).trim()
             if (string !== "" && array.indexOf(string) === -1) {
                 array.push(string);
             }
@@ -231,7 +232,10 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
     $scope.init();
 
     //subscription Operations
-    $scope.openAddModal = function () {
+    $scope.addNCRule = function ($event) {
+        if($event.offsetX === 0){
+            return false;
+        }
         $('#newSubscription').modal({
             onDeny: function () {
                 // return false;

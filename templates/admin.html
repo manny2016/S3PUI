@@ -288,7 +288,7 @@
                     </span>
                     </th>
                     <th>
-                        <button class="ui icon green button" ng-click="openAddModal()">
+                        <button class="ui icon green button" ng-keydown="($event.charCode==13)? return : return;"" ng-click="addNCRule($event)">
                             <i class="plus icon"></i>
                         </button>
                     </th>
