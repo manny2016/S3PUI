@@ -121,15 +121,7 @@ app
       // });
     }
 
-    $rootScope.getServiceStatus = function(){
-        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function(data){
-            $rootScope.twitter_status = data.data
-        });
-        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function(data){
-            $rootScope.others_status = data.data
-        });
-    }
-    $rootScope.getServiceStatus();
+    
   });
 
 Number.isInteger = Number.isInteger || function (value) {

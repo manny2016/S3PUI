@@ -160,6 +160,15 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     // others_ws.onError(function (event) {
     //     console.log('connection Error', event);
     // });
-    $rootScope.twitter_status = twitterServiceStatus.status;
-    $rootScope.others_status = othersServiceStatus.status;
+    $scope.getServiceStatus = function(){
+        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function(data){
+            $scope.twitter_status = data.data
+        });
+        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function(data){
+            $scope.others_status = data.data
+        });
+    }
+    $scope.getServiceStatus();
+    $scope.twitter_status = twitterServiceStatus.status;
+    $scope.others_status = othersServiceStatus.status;
 }
