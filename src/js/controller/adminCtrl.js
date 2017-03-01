@@ -130,6 +130,9 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
             console.log(event)
             event.stopPropagation();
             var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
+            // if(!currentTopic[$scope.tagsCfg].Keywords){
+            //     currentTopic[$scope.tagsCfg].Keywords = [];
+            // }
             var array = currentTopic[$scope.tagsCfg].Keywords;
             var string = (event.target.value||event.target.previousElementSibling.value).trim()
             if (string !== "" && array.indexOf(string) === -1) {
@@ -205,22 +208,21 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
                 if ($scope.newTopicName.trim() === '') {
 
                 } else {
-                    // switch ($scope.selectedPlatform) {
-                    //     case 'so':
-                    //     case 'sf':
-                    //     case 'su':
-                    //     case 'twitter':
-                    //         newScope = angular.copy(CONST_KWD_CFG);
-                    //         newScope.topic = $scope.newTopicName;
-                    //         break;
-                    //     case 'msdn':
-                    //     case 'tn':
-                    //         newScope = angular.copy(CONST_MSDN_CFG);
-                    //         newScope.topic = $scope.newTopicName;
-                    //         newScope.tagsCfg.topic = $scope.newTopicName;
-                    //         break;
-                    // }
                     newScope = generateNewScopeObj($scope.selectedPlatform);
+                    switch ($scope.selectedPlatform) {
+                        case 'so':
+                        case 'sf':
+                        case 'su':
+                            newScope.stackExchange.Keywords = [];
+                            break;
+                        case 'twitter':
+                            newScope.twitter.Keywords = [];
+                            break;
+                        case 'msdn':
+                        case 'tn':
+                            newScope.msdn.Keywords = [];
+                            break;
+                    }
                     $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.push(newScope)
                     $scope.newTopicName = '';
                     $scope.$digest();
