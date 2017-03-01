@@ -30,6 +30,11 @@ app.filter('timetostring', ['utilitySrv', function (utilitySrv) {
         return utilitySrv.timeToString(input,type);
     }
 }]);
+app.filter('timeToLocalString', ['utilitySrv', function (utilitySrv) {
+    return function (input,type) {
+        return utilitySrv.timeToLocalString(input,type);
+    }
+}]);
 app.filter('mankindTime2String', ['utilitySrv', function (utilitySrv) {
     return function (input) {
         return utilitySrv.mankindTime2String(input);

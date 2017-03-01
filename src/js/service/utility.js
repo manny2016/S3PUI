@@ -63,10 +63,27 @@ module.exports = function ($filter) {
             var timeString = '';
             switch (type) {
                 case 'hourly':
-                    timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
+                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
+                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD hh:mm");
                     break;
                 case 'daily':
-                    timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
+                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
+                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD");
+                    break;
+            }
+            return timeString;
+        },
+        timeToLocalString: function (timestamp, type) {
+            var type = type || 'hourly';
+            var timeString = '';
+            switch (type) {
+                case 'hourly':
+                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
+                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD hh:mm");
+                    break;
+                case 'daily':
+                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
+                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD");
                     break;
             }
             return timeString;

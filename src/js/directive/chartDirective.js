@@ -91,7 +91,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 // date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
-                                date: Math.floor(moment.utc(params.name) / 1000),
+                                // date: Math.floor(moment.utc(params.name) / 1000),
+                                date: Math.floor(moment(params.name) / 1000),
                                 // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope,
                                 days:_.days
@@ -150,7 +151,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor(moment.utc(params.name) / 1000),
+                                // date: Math.floor(moment.utc(params.name) / 1000),
+                                date: Math.floor(moment(params.name) / 1000),
                                 pnscope: _.pnscope,
                                 days:_.days
                             }
