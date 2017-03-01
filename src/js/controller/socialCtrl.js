@@ -85,17 +85,17 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.isLargeDateRange = false;
         }
         $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
-        var timeRange = {
-            'start': (function (d) {
-                d.setDate(d.getDate() - parseInt(newV));
-                return d.setHours(0, 0, 0, 0)
-            })(new Date),
-            'end': (function (d) {
-                d.setDate(d.getDate() - 1);
-                return d.setHours(0, 0, 0, 0)
-            })(new Date)
-        };
-        $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
+        // var timeRange = {
+        //     'start': (function (d) {
+        //         d.setDate(d.getDate() - parseInt(newV));
+        //         return d.setHours(0, 0, 0, 0)
+        //     })(new Date),
+        //     'end': (function (d) {
+        //         d.setDate(d.getDate() - 1);
+        //         return d.setHours(0, 0, 0, 0)
+        //     })(new Date)
+        // };
+        // $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
         if($scope.dateRange && $scope.topic){
             $scope.startGetData()
         }

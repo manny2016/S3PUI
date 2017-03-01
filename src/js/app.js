@@ -43,15 +43,19 @@ app
     $rootScope.signIn = function () {
       adalAuthenticationService.login();
     }
+    // $rootScope.timeRange = {
+    //   'start': (function (d) {
+    //     d.setDate(d.getDate() - 7);
+    //     return d.setHours(0, 0, 0, 0)
+    //   })(new Date),
+    //   'end': (function (d) {
+    //     d.setDate(d.getDate() - 1);
+    //     return d.setHours(0, 0, 0, 0)
+    //   })(new Date)
+    // };
     $rootScope.timeRange = {
-      'start': (function (d) {
-        d.setDate(d.getDate() - 7);
-        return d.setHours(0, 0, 0, 0)
-      })(new Date),
-      'end': (function (d) {
-        d.setDate(d.getDate() - 1);
-        return d.setHours(0, 0, 0, 0)
-      })(new Date)
+      'start': moment.utc().startOf('day').subtract(6,'days').valueOf(),
+      'end': moment.utc().startOf('day').valueOf()
     };
     $rootScope.dateList = utilitySrv.getTimeRange($rootScope.timeRange.start, $rootScope.timeRange.end)
     if (!window.history || !history.replaceState) {
