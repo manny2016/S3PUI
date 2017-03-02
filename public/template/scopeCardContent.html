@@ -110,19 +110,27 @@
     </div>
     <div class="content first" ng-show="selectedPlatform==='msdn'">
         <div class="ui sub header">MSDN Category Names</div>
-        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].msdn.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].msdn.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
+        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].topicsettings.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].topicsettings.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
             <option value="">Null</option>
             <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
         </select>
     </div>
     <div class="content first" ng-show="selectedPlatform==='tn'">
         <div class="ui sub header">TN Category Names</div>
-        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].msdn.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].msdn.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
+        <select class="ui fluid dropdown" ng-change="forumSelectChanged(TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].topicsettings.topic)" ng-model="TopicWithForum[selectedPlatformIndex].topics[selectedTopicIndex].topicsettings.topic" data-ng-options="topic.topic as topic.topic for topic in MsdnTopicMapping">
             <option value="">Null</option>
             <!--<option value="{{map.topic}}" ng-repeat="map in MsdnTopicMapping">{{map.topic}}</option>-->
         </select>
     </div>
-
+    <!--<div class="content first" ng-show="selectedPlatform==='lithium'">
+        <div class="ui sub header">Lithium Tags
+            <div class="ui small icon input">
+                <input type="text" placeholder="Lithium Tags..." ng-keypress="($event.charCode==13)? addKwd($event) : return">
+                <i class="plus green icon" ng-click="addKwd($event)" style="cursor: pointer;pointer-events: auto;"></i>
+            </div>
+        </div>
+        <scope-tags-editer></scope-tags-editer>
+    </div>-->
     <div id="newServiceModal" class="ui small modal">
         <div class="header">
             New Service/Product Name

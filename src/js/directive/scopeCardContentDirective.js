@@ -17,7 +17,6 @@ module.exports = function (CONST) {
                 scope.msdncategorys = [],
                     scope.tncategorys = [];
             })();
-            scope.twitterKeywords = ['Azure', 'Azure Support'];
             scope.decline = function(){
                 scope.init();
             }

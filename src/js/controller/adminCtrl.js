@@ -1,45 +1,33 @@
 module.exports = function ($scope, $location, $state, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
-    if(!$scope.isAdmin){
+    if (!$scope.isAdmin) {
         $state.go('home.dashboard');
     }
     $scope.platforms = [];
     $scope.search = {
         datasource: 'all',
         messagetype: 'all',
-        topic:'all'
+        topic: 'all'
     }
 
     function generateNewScopeObj(platform) {
-        var newScope = {};
+        var newScope = {
+            topic: $scope.newTopicName,
+            topicsettings: {
+                topic: $scope.newTopicName
+            }
+        };
         switch (platform) {
             case 'so':
             case 'sf':
             case 'su':
-                newScope = {
-                    topic: '',
-                    stackExchange: {}
-                };
-                newScope.topic = $scope.newTopicName;
-                break;
+            case 'lithium':
             case 'twitter':
-                newScope = {
-                    topic: '',
-                    twitter: {}
-                };
-                newScope.topic = $scope.newTopicName;
+                newScope.topicsettings.Keywords = [];
                 break;
             case 'msdn':
             case 'tn':
-                newScope = {
-                    topic: '',
-                    msdn: {
-                        topic: '',
-                        Keywords: []
-                    }
-                };
-                newScope.topic = $scope.newTopicName;
-                newScope.msdn.topic = $scope.newTopicName;
+                newScope.topicsettings.Tags = [];
                 break;
         }
         return newScope;
@@ -83,7 +71,7 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
     }
     $scope.init = function () {
         $timeout(function () {
-            $('.ui.fluid.dropdown').dropdown();
+            // $('.ui.fluid.dropdown').dropdown();
         }, 50)
         $scope.getConfigData();
     }
@@ -133,8 +121,8 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
             // if(!currentTopic[$scope.tagsCfg].Keywords){
             //     currentTopic[$scope.tagsCfg].Keywords = [];
             // }
-            var array = currentTopic[$scope.tagsCfg].Keywords;
-            var string = (event.target.value||event.target.previousElementSibling.value).trim()
+            var array = currentTopic.topicsettings.Keywords;
+            var string = (event.target.value || event.target.previousElementSibling.value).trim()
             if (string !== "" && array.indexOf(string) === -1) {
                 array.push(string);
             }
@@ -175,12 +163,12 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
     }
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
-            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex][$scope.tagsCfg] = {};
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].topicsettings = {};
         } else {
             console.log(index);
             var tagCfg = $filter('findObjectInArray')(angular.copy($scope.MsdnTopicMapping), 'topic', index);
             console.log(angular.copy(tagCfg));
-            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex][$scope.tagsCfg] = angular.copy(tagCfg);
+            $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex].topicsettings = angular.copy(tagCfg);
         }
     }
     $scope.isDirty = function () {
@@ -209,20 +197,21 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
 
                 } else {
                     newScope = generateNewScopeObj($scope.selectedPlatform);
-                    switch ($scope.selectedPlatform) {
-                        case 'so':
-                        case 'sf':
-                        case 'su':
-                            newScope.stackExchange.Keywords = [];
-                            break;
-                        case 'twitter':
-                            newScope.twitter.Keywords = [];
-                            break;
-                        case 'msdn':
-                        case 'tn':
-                            newScope.msdn.Keywords = [];
-                            break;
-                    }
+                    // switch ($scope.selectedPlatform) {
+                    //     case 'so':
+                    //     case 'sf':
+                    //     case 'su':
+                    //         // newScope.stackExchange.Keywords = [];
+                    //         // break;
+                    //     case 'lithium':
+                    //     case 'twitter':
+                    //         newScope.topicsettings.Keywords = [];
+                    //         break;
+                    //     case 'msdn':
+                    //     case 'tn':
+                    //         newScope.topicsettings.Tags = [];
+                    //         break;
+                    // }
                     $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.push(newScope)
                     $scope.newTopicName = '';
                     $scope.$digest();
@@ -235,7 +224,7 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
 
     //subscription Operations
     $scope.addNCRule = function ($event) {
-        if($event.offsetX === 0){
+        if ($event.offsetX === 0) {
             return false;
         }
         $('#newSubscription').modal({
