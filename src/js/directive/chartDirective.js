@@ -95,7 +95,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 date: Math.floor(moment(params.name) / 1000),
                                 // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -109,7 +109,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 pnscope: pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -122,7 +122,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 topic: _.query.topic,
                                 user: params.name,
                                 pnscope: _.pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -135,7 +135,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 topic: _.query.topic,
                                 service: params.name,
                                 pnscope: _.pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             if (params.name === 'Others') {
                                 _.swithside();
@@ -154,7 +154,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 // date: Math.floor(moment.utc(params.name) / 1000),
                                 date: Math.floor(moment(params.name) / 1000),
                                 pnscope: _.pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -167,7 +167,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 topic: _.query.topic,
                                 keywords: params.name,
                                 pnscope: _.pnscope,
-                                days:_.days
+                                days: _.days
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -391,7 +391,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getInfluenceVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
                             var fn = customHourlyData;
-                            
+
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
                                 // console.log('getInfluenceVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
@@ -666,6 +666,14 @@ function customInfluenceData(fnPromise, scope) {
                 break;
         }
         return {
+            yAxis: {
+                axisLabel: {
+                    // rotate:45,
+                    formatter: function (value) {
+                        return scope.thousandsuffix(value, 1)
+                    }
+                }
+            },
             xAxis: {
                 data: scope.$root.dateList
             },
@@ -982,11 +990,22 @@ function customServicesDistributionData(fnPromise, scope) {
 function customHoriBarData(scope) {
     return {
         yAxis: {
+            axisLabel: {
+                interval: 0,
+                // rotate:45,
+                inside: true
+            },
+            z: 10,
             data: Object.keys(scope.raw)
         },
         series: [{
             name: scope.pnscope + ' Vol',
             type: 'bar',
+            itemStyle: {
+                normal: {
+                    color: '#ffb980'
+                }
+            },
             data: Object.keys(scope.raw).map(function (key) {
                 return scope.raw[key];
             })
@@ -1254,10 +1273,10 @@ function barNegativeData(fnPromise, scope) {
                 axisLabel: {
                     interval: 0,
                     // rotate:45,
-                    inside:true
+                    inside: true
                 },
                 data: yAxisData,
-                z:10
+                z: 10
             },
             grid: {},
             series: [{
@@ -1272,9 +1291,9 @@ function barNegativeData(fnPromise, scope) {
                 name: 'Dislike',
                 type: 'bar',
                 stack: 'volume',
-                itemStyle:{
-                    normal:{
-                        color:'#ffb980'
+                itemStyle: {
+                    normal: {
+                        color: '#ffb980'
                     }
                 },
                 areaStyle: {
@@ -1316,9 +1335,9 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 type: 'category',
                 data: xAxisDate
             }],
-            legend:{
-                data:['Init Positive Volume','After Support Positive Volume'],
-                show:true
+            legend: {
+                data: ['Init Positive Volume', 'After Support Positive Volume'],
+                show: true
             },
             series: [{
                 name: 'Init Positive Volume',
