@@ -5,7 +5,7 @@
 module.exports = /*@ngInject*/function ($rootScope, $compile) {
     return {
         restrict: 'E',
-        templateUrl: ('public/template/region_table.html'),
+        templateUrl: ('public/template/region_table.html?time='+new Date().getTime()),
         replace: true,
         scope: {
             // users: "=",

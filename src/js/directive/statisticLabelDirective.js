@@ -23,7 +23,7 @@ module.exports = function () {
     ]
     return {
         restrict: 'AE',
-        templateUrl: ('public/template/statistic_label.html'),
+        templateUrl: ('public/template/statistic_label.html?time='+new Date().getTime()),
         // replace: true,
         scope: {
             label:"="

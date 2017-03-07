@@ -17,7 +17,7 @@
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, $timeout, utilitySrv) {
     return {
         restrict: 'E',
-        templateUrl: 'public/template/chart.html',
+        templateUrl: 'public/template/chart.html?time='+new Date().getTime(),
         replace: true,
         scope: {
             // config: "=",

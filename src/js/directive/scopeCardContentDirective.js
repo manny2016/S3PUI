@@ -1,7 +1,7 @@
 module.exports = function (CONST) {
     return {
         restrict: 'E',
-        templateUrl: 'public/template/scopeCardContent.html',
+        templateUrl: 'public/template/scopeCardContent.html?time='+new Date().getTime(),
         replace: true,
         transclude:true,
         // scope: {

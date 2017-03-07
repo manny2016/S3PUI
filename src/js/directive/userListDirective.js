@@ -5,7 +5,7 @@
 module.exports = function ($rootScope) {
     return {
         restrict: 'E',
-        templateUrl: ('public/template/user_list.html'),
+        templateUrl: ('public/template/user_list.html?time='+new Date().getTime()),
         replace: true,
         scope: {
             // users: "=",

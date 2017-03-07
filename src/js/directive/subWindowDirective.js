@@ -5,7 +5,7 @@
 module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilitySrv) {
     return {
         restrict: 'E',
-        templateUrl: ('public/template/sub_window.html'),
+        templateUrl: ('public/template/sub_window.html?time='+new Date().getTime()),
         replace: true,
         scope: {
             // users: "=",

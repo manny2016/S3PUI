@@ -1,7 +1,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl: 'public/template/scopeTagsEditer.html',
+        templateUrl: 'public/template/scopeTagsEditer.html?time='+new Date().getTime(),
         replace: true,
         link: function (scope, e, a) {
             scope.$watch("selectedTopicIndex", function (nv, ov) {

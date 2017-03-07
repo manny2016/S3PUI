@@ -1,7 +1,7 @@
 module.exports = function () {
     return {
         restrict: 'EA',
-        templateUrl: 'public/template/topicQuery.html',
+        templateUrl: 'public/template/topicQuery.html?time='+new Date().getTime(),
         replace:true,
         link: function (scope, e, a) {
             scope.isSmall = (window.innerWidth < 1510) ? 1 : 0;

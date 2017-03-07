@@ -41,7 +41,7 @@ module.exports = function ($parse, $filter, $timeout) {
     var colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'];
     return {
         restrict: 'E',
-        templateUrl: ('public/template/statistic.html'),
+        templateUrl: ('public/template/statistic.html?time='+new Date().getTime()),
         replace: true,
         scope: {
             data: "=",

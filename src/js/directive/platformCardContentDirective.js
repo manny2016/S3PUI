@@ -1,7 +1,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl: 'public/template/platformCardContent.html',
+        templateUrl: 'public/template/platformCardContent.html?time='+new Date().getTime(),
         replace:true,
         // require:'^adminCard',
         // scope:{

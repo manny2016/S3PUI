@@ -1,7 +1,7 @@
 module.exports = function () {
     return {
         restrict: 'E',
-        templateUrl: 'public/template/adminCard.html',
+        templateUrl: 'public/template/adminCard.html?time='+new Date().getTime(),
         replace: true,
         transclude: true,
         link: function (scope, e, a) {
