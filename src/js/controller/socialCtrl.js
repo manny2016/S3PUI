@@ -98,7 +98,11 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         //         return d.setHours(0, 0, 0, 0)
         //     })(new Date)
         // };
-        // $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
+        var timeRange = {
+            'start': moment.utc().startOf('day').subtract(newV-1, 'days').valueOf(),
+            'end': moment.utc().startOf('day').valueOf()
+        };
+        $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
         if ($scope.dateRange && $scope.topic) {
             $scope.startGetData()
         }
