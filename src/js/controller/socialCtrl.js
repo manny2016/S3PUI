@@ -6,6 +6,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.dateRange = '7';
     $scope.isLargeDateRange = false;
     $scope.commonTrendTitle = "Hourly Trend During a Week";
+    $scope.popInfoScope = "Hourly";
     var totalrequests = 0;
     // debugger;
     switch ($scope.platform) {
@@ -81,8 +82,10 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         $scope.dateRange = newV;
         if (newV !== '7') {
             $scope.isLargeDateRange = true;
+            $scope.popInfoScope = "Daily";
         } else {
             $scope.isLargeDateRange = false;
+            $scope.popInfoScope = "Hourly";
         }
         $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
         // var timeRange = {
@@ -96,7 +99,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         //     })(new Date)
         // };
         // $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
-        if($scope.dateRange && $scope.topic){
+        if ($scope.dateRange && $scope.topic) {
             $scope.startGetData()
         }
         $timeout(function () {
@@ -199,8 +202,8 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         }
         // initLineCharts('.hourly-charts.home');
         // echarts.connect('hourlyCharts');
-    $scope.getUserDistribution = function(platform, topic, pnscope, days){
-        $scope.service.getRegionDistribution(platform, topic, pnscope, days).then(function(data){
+    $scope.getUserDistribution = function (platform, topic, pnscope, days) {
+        $scope.service.getRegionDistribution(platform, topic, pnscope, days).then(function (data) {
             // console.log(data)
             $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
         })
@@ -224,34 +227,34 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             //     $scope.serviceStatus = 'green';
             // }
             $scope.statistic = data;
-             $('#summary div.content').dimmer('hide');
+            $('#summary div.content').dimmer('hide');
             $scope.$broadcast('data-got');
         })
     };
 
     $scope.getLanguageDistribution = function (platform, topic, days) {
-            $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
-                $scope.languageDistribution = $filter('orderBy')(data, '-volume');
-            })
-        }
-
-    $scope.getDownloadUrl = function(){
-        if(!$scope.$stateParams.platform){
-            toastr.error('Platform Required');
-            return false;
-        }
-        if(!$scope.topic){
-            toastr.error('Topic Select Required');
-            return false;
-        }
-        if(!$scope.dateRange){
-            toastr.error('Date Range Required');
-            return false;
-        }
-        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function(url){
-            window.open(url);
+        $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
+            $scope.languageDistribution = $filter('orderBy')(data, '-volume');
         })
     }
+
+    $scope.getDownloadUrl = function () {
+            if (!$scope.$stateParams.platform) {
+                toastr.error('Platform Required');
+                return false;
+            }
+            if (!$scope.topic) {
+                toastr.error('Topic Select Required');
+                return false;
+            }
+            if (!$scope.dateRange) {
+                toastr.error('Date Range Required');
+                return false;
+            }
+            $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function (url) {
+                window.open(url);
+            })
+        }
         // $scope.languageDistribution = [{
         //     attachedobject: 'Chinese',
         //     vocinfluence: {

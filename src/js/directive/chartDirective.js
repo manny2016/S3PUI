@@ -36,7 +36,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             association: "@",
             swithTool: "@",
             noSwap: "@",
-            stack: '@'
+            stack: '@',
+            info:'@'
         },
         link: function (scope, element, attrs) {
             var _ = scope;
