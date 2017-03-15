@@ -258,7 +258,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution"
                                     property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}" info="Detected Services Distribution by Post"></ng-echart>
                             </div>
                             <div class="side">
@@ -269,7 +269,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) Azure Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol"
                                     property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}" info="Detected Services Distribution by User"></ng-echart>
                             </div>
                             <div class="side">
