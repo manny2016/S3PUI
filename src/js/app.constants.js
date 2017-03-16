@@ -16,8 +16,8 @@ app.constant('CONST', {
         'NegativeVolumePostSpikeDetected': 'Negative volume post spike detected',
         'ServicesMentionedSpikeDetected': 'Services mentioned spike detected',
         'InfluenceVolumeSpikeDetected': 'Influence volume spike detected',
-        'ServiceOutageDetected': 'Support experience issues',
-        'SupportExperienceIssuesDetected': 'Possible service outage issues'
+        'ServiceOutageDetected': 'Possible service outage issues',
+        'SupportExperienceIssuesDetected': 'Support experience issues'
     },
     SERVICE_INFO: {
         ENDPOINT: 'http://52.168.10.62/WebServices/S3PDataService/',
