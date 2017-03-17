@@ -12,35 +12,35 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     $('.popup').popup();
     $('#scrollspy .list .item .label').popup();
     $('.ui.accordion').accordion({
-            exclusive: false,
-            animateChildren: false,
-            selector: {
-                trigger: '.segment .title',
-                content: '.segment .content'
-            },
-            // className:{
-            //     active:'content active'
-            // },
-            onOpen: function () {
-                // debugger;
-                console.log($(this).find('.ui.segment.visible'))
-                $(this).find('.ui.segment').removeClass('visible');
-                $(this).find('div.echart').map(function (index, currentObj, array) {
-                    echarts.getInstanceByDom(currentObj).resize();
-                })
-            }
-        })
-        //social Health section UI controller
-        // $scope.swapTab = function (platform) {
-        //     $scope.selected = platform;
-        //     $('.ui.tabular.menu').tab('change tab', platform);
-        //     // debugger;
-        //     var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
-        //     if (chartDom) {
-        //         echarts.getInstanceByDom(chartDom).resize();
-        //     }
-        // }
-        // $timeout(function(){$('.tabular.menu .item').tab()},50);
+        exclusive: false,
+        animateChildren: false,
+        selector: {
+            trigger: '.segment .title',
+            content: '.segment .content'
+        },
+        // className:{
+        //     active:'content active'
+        // },
+        onOpen: function () {
+            // debugger;
+            console.log($(this).find('.ui.segment.visible'))
+            $(this).find('.ui.segment').removeClass('visible');
+            $(this).find('div.echart').map(function (index, currentObj, array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })
+        }
+    })
+    //social Health section UI controller
+    // $scope.swapTab = function (platform) {
+    //     $scope.selected = platform;
+    //     $('.ui.tabular.menu').tab('change tab', platform);
+    //     // debugger;
+    //     var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
+    //     if (chartDom) {
+    //         echarts.getInstanceByDom(chartDom).resize();
+    //     }
+    // }
+    // $timeout(function(){$('.tabular.menu .item').tab()},50);
     $scope.isSelected = function (section) {
         return $scope.selected === section;
     }
@@ -60,15 +60,15 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         $('.tabular.menu .item').tab({
-                onVisible: function (tab) {
-                    console.log(tab);
-                    var chartDom = $('.ui.tab[data-tab="' + tab + '"]').find('div.echart').get(0);
-                    if (chartDom) {
-                        echarts.getInstanceByDom(chartDom).resize();
-                    }
+            onVisible: function (tab) {
+                console.log(tab);
+                var chartDom = $('.ui.tab[data-tab="' + tab + '"]').find('div.echart').get(0);
+                if (chartDom) {
+                    echarts.getInstanceByDom(chartDom).resize();
                 }
-            })
-            //$scope.$broadcast('on-show');
+            }
+        })
+        //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
         // console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value') === $scope.totalrequests) {
@@ -89,7 +89,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         if ($scope.query.topic !== topic) {
             $scope.enabledPlatforms = [];
             $scope.query.topic = topic
-                // console.log($scope);
+            // console.log($scope);
             $timeout(function () {
                 $scope.topics.forEach(function (item) {
                     if (item.TechCategoryName.toLowerCase() === topic.toLowerCase()) {
@@ -116,7 +116,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     //list latest top {number} notifications
     $scope.listNotification = function (top) {
         var date = Math.floor(moment.utc().add(-1, "days").startOf('day') / 1000);
-        $scope.service.getSysDetections(undefined, undefined, undefined, date).then(function (data) {
+        $scope.service.getSysDetections(undefined, undefined, $rootScope.global.topic, undefined, date).then(function (data) {
             // console.log(data);
             $scope.collections = data.reverse().splice(0, top);
         })
@@ -160,11 +160,11 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     // others_ws.onError(function (event) {
     //     console.log('connection Error', event);
     // });
-    $scope.getServiceStatus = function(){
-        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function(data){
+    $scope.getServiceStatus = function () {
+        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function (data) {
             $scope.twitter_status = data.data
         });
-        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function(data){
+        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function (data) {
             $scope.others_status = data.data
         });
     }

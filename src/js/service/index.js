@@ -58,7 +58,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             }).then(function (data) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
-                } else {}
+                } else { }
             }, function (err) {
                 deferred.reject(err);
             })
@@ -325,10 +325,11 @@ app.factory('testSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.devGet('subwindow' + '.' + params.platform, params);
         },
-        getSysDetections: function (forumName, msgType, downloadable, bgTime, egTime) {
+        getSysDetections: function (forumName, msgType, topic, downloadable, bgTime, egTime) {
             var params = params || {};
             params.forumName = forumName || 'all';
             params.msgType = msgType || 'all';
+            params.topic = topic || 'all';
             params.downloadable = downloadable || 'all';
             params.bgTime = bgTime || 0;
             params.egTime = egTime || 0;
@@ -507,10 +508,11 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
         },
-        getSysDetections: function (platform, msgType, downloadable, bgTime, egTime) {
+        getSysDetections: function (platform, msgType, topic, downloadable, bgTime, egTime) {
             var params = params || {};
             params.platform = platform || 'all';
             params.msgType = msgType || 'all';
+            params.topic = topic || 'all';
             params.downloadable = downloadable || 'all';
             params.bgTime = bgTime || 0;
             params.egTime = egTime || 0;

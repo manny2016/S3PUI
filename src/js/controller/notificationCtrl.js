@@ -9,16 +9,16 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     // })
     // console.log($scope.CONST.MESSAGE_TYPES);
     $scope.search = {
-            datasource: 'all',
-            messagetype: 'all',
-            bgTime: $filter('date')((function (d) {
-                d.setDate(d.getDate() - 1);
-                return d
-            })(new Date), 'yyyy-MM-dd'),
-            egTime: $filter('date')(new Date(), 'yyyy-MM-dd'),
-            downloadable: 'all'
-        }
-        // $scope.date = $filter('date')(new Date(), 'yyyy-MM-dd');
+        datasource: 'all',
+        messagetype: 'all',
+        bgTime: $filter('date')((function (d) {
+            d.setDate(d.getDate() - 1);
+            return d
+        })(new Date), 'yyyy-MM-dd'),
+        egTime: $filter('date')(new Date(), 'yyyy-MM-dd'),
+        downloadable: 'all'
+    }
+    // $scope.date = $filter('date')(new Date(), 'yyyy-MM-dd');
     $scope.selectPlatform = function (platform) {
         $scope.selectedPlatform = platform;
         $scope.$broadcast('admin-select-platform', platform)
@@ -75,7 +75,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
         params.egTime = Math.floor(moment.utc(params.egTime).endOf('day') / 1000);
         console.log(params)
-        $scope.service.getSysDetections(params.datasource, params.messagetype, params.downloadable, params.bgTime, params.egTime).then(function (data) {
+        $scope.service.getSysDetections(params.datasource, params.messagetype, undefined, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
             // $scope.collections = angular.extend($scope.collections, data);
             $('#nc-main').dimmer('hide');
@@ -92,13 +92,12 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         var param = {
             platform: entity.forumName,
             msgType: entity.msgType,
-            topic:entity.topic,
-            timestamp:entity.TimeStamp
+            topic: entity.topic,
+            timestamp: entity.TimeStamp
         }
         $rootScope.popSubWin({
             fn: 'getVoCDetailsBySpikeDetected',
             param: param
         });
     }
-
 }
