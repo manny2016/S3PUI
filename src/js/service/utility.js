@@ -64,7 +64,7 @@ module.exports = function ($filter) {
             switch (type) {
                 case 'hourly':
                     // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
-                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD hh:mm");
+                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD HH:mm");
                     break;
                 case 'daily':
                     // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
