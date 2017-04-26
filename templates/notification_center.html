@@ -15,40 +15,6 @@
             <i class="link search icon pull-right" ng-click="listNotification()"></i>
         </h5>
         <div class="fields">
-            <div class="two wide field">
-                <label>Data Source</label>
-                <!--<div class="ui fluid selection dropdown">
-                    <input name="datasource" type="hidden" ng-model="search.datasource" value="{{search.datasource}}">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Data Source</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">All</div>
-                        <div class="item" ng-repeat="(v,p) in platforms" data-value="{{v}}">{{p}}</div>
-                    </div>-->
-                <select class="ui fluid dropdown" ng-model="search.datasource">
-                    <option value="all">All</option>
-                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
-                    </select>
-                <!--</div>-->
-            </div>
-            <div class="five wide field">
-                <label>Message Type</label>
-                <!--<div class="ui fluid selection dropdown">
-                    <input name="messagetype" type="hidden" ng-model="search.messagetype" value="{{search.messagetype}}">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Message Type</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">All</div>
-                        <div class="item" ng-repeat="(k,v) in CONST.MESSAGE_TYPES" data-value="{{k}}">{{v}}</div>
-                    </div>-->
-                <!--<option value="0">all</option>-->
-                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
-                <!--</div>-->
-                <select class="ui fluid dropdown" ng-model="search.messagetype">
-                    <option value="all">All</option>
-                    <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
-                    </select>
-            </div>
             <div class="three wide field">
                 <label>Start Date</label>
                 <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
@@ -67,6 +33,49 @@
                     </div>
                 </datepicker>
             </div>
+        </div>
+        <div class="fields">
+            <div class="three wide field">
+                <label>Data Source</label>
+                <!--<div class="ui fluid selection dropdown">
+                    <input name="datasource" type="hidden" ng-model="search.datasource" value="{{search.datasource}}">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Data Source</div>
+                    <div class="menu">
+                        <div class="item" data-value="0">All</div>
+                        <div class="item" ng-repeat="(v,p) in platforms" data-value="{{v}}">{{p}}</div>
+                    </div>-->
+                <select class="ui fluid dropdown" ng-model="search.datasource">
+                    <option value="all">All</option>
+                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
+                    </select>
+                <!--</div>-->
+            </div>
+            <div class="three wide field">
+                <label>Service/Product</label>
+                <select class="ui fluid dropdown service" ng-model="search.topic">
+                    <option value="all">All</option>
+                    <option value="{{topic.TechCategoryName}}" ng-repeat="topic in topics | filter:{isGA:true}">{{topic.TechCategoryName}}</option>
+                </select>
+            </div>
+            <div class="five wide field">
+                <label>Message Type</label>
+                <!--<div class="ui fluid selection dropdown">
+                    <input name="messagetype" type="hidden" ng-model="search.messagetype" value="{{search.messagetype}}">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Message Type</div>
+                    <div class="menu">
+                        <div class="item" data-value="0">All</div>
+                        <div class="item" ng-repeat="(k,v) in CONST.MESSAGE_TYPES" data-value="{{k}}">{{v}}</div>
+                    </div>-->
+                <!--<option value="0">all</option>-->
+                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
+                <!--</div>-->
+                <select class="ui fluid dropdown" ng-model="search.messagetype">
+                    <option value="all">All</option>
+                    <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
+                </select>
+            </div>
             <div class="three wide field">
                 <label>Data Download Available</label>
                 <!--<div class="ui fluid selection dropdown">
@@ -83,9 +92,9 @@
                 <!--</div>-->
                 <select class="ui fluid dropdown" ng-model="search.downloadable">
                     <option value="all">All</option>
-                     <option value="1">Available</option>
-                     <option value="-1">Unavailable</option>
-                    </select>
+                    <option value="1">Available</option>
+                    <option value="-1">Unavailable</option>
+                </select>
             </div>
         </div>
     </div>

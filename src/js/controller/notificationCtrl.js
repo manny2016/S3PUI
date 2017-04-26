@@ -8,8 +8,15 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     //     $scope.$apply($scope.notifications.push(JSON.parse(m.data)));
     // })
     // console.log($scope.CONST.MESSAGE_TYPES);
+    $scope.getTopic = function () {
+        $scope.topic = $rootScope.global.topic;
+        if ($scope.topic.length === 0) {
+            $scope.topic = 'all';
+        }
+    }();
     $scope.search = {
         datasource: 'all',
+        topic: $scope.topic,
         messagetype: 'all',
         bgTime: $filter('date')((function (d) {
             d.setDate(d.getDate() - 1);
@@ -75,7 +82,7 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
         params.egTime = Math.floor(moment.utc(params.egTime).endOf('day') / 1000);
         console.log(params)
-        $scope.service.getSysDetections(params.datasource, params.messagetype, undefined, params.downloadable, params.bgTime, params.egTime).then(function (data) {
+        $scope.service.getSysDetections(params.datasource, params.messagetype, params.topic, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
             // $scope.collections = angular.extend($scope.collections, data);
             $('#nc-main').dimmer('hide');
@@ -100,4 +107,37 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
             param: param
         });
     }
+    $scope.getTopics = function () {
+        $scope.service.getCate().then(function (data) {
+            $scope.topics = data;
+            $scope.resolveTopics();
+            //if ($rootScope.global.topic) {
+            //    $scope.startGetData($rootScope.global.topic);
+            //}
+        })
+    };
+    $scope.resolveTopics = function () {
+        if ($scope.search.topic != 'all') {
+            if ($scope.topics) {
+                var found = false;
+                for (var i = 0; i < $scope.topics.length; i++) {
+                    if ($scope.topics[i].TechCategoryName === $scope.search.topic) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found === false) {
+                    $scope.search.topic = 'all';
+                }
+            }
+            else {
+                $scope.topics = [{
+                    TechCategoryName: $scope.search.topic,
+                    isGA: true
+                }];
+            }
+        }
+    };
+    $scope.getTopics();
+    $scope.resolveTopics();
 }
