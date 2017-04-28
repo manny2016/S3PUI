@@ -1,6 +1,3 @@
-var appInsights = require("applicationinsights");
-appInsights.setup("d46aafb9-7144-477d-b92d-cc00a9419e9e").start();
-
 moment = require('moment-timezone');
 var app = angular.module("app", [
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), 'duScroll', 'smart-table', 'toastr'
