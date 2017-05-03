@@ -1,4 +1,4 @@
-module.exports = function ($scope, $location, $state, $timeout, $http, $filter, toastr) {
+module.exports = function ($scope, $rootScope, $location, $state, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
     if (!$scope.isAdmin) {
         $state.go('home.dashboard');
@@ -293,7 +293,49 @@ module.exports = function ($scope, $location, $state, $timeout, $http, $filter, 
         topic = topic || $scope.search.topic;
         msgtype = msgtype || $scope.search.messagetype;
         $scope.service.getSubscribeSettings(platform, topic, msgtype, servicename).then(function (data) {
-            $scope.subscriptions = data;
+            //group data by groupId
+            var swap = data.reduce(function(array, item) {
+                if (array[item.GroupId]) {
+                    var e = array[item.GroupId];
+                    
+                    var platform = $rootScope.CONST.ALL_ENABLED_PLARFORMS[item.Platform] || item.Platform;
+                    if (e.Platforms.indexOf(platform) < 0) {
+                        e.Platforms.push(platform);
+                    }
+                    if (e.Topics.indexOf(item.Topic) < 0) {
+                        e.Topics.push(item.Topic);
+                    }
+                    var msgtype = $rootScope.CONST.MESSAGE_TYPES[item.MsgType] || item.MsgType;
+                    if (e.MsgTypes.indexOf(msgtype) < 0) {
+                        e.MsgTypes.push(msgtype);
+                    }
+                } else {
+                    array[item.GroupId] = {
+                        GroupId: item.GroupId,
+                        EMail: item.EMail,
+                        Platforms: [$rootScope.CONST.ALL_ENABLED_PLARFORMS[item.Platform] || item.Platform],
+                        Topics: [item.Topic],
+                        MsgTypes: [$rootScope.CONST.MESSAGE_TYPES[item.MsgType] || item.MsgType],
+                        ServiceName: item.ServiceName,
+                        IsEnabled: item.IsEnabled
+                    };
+                }
+                return array;
+            }, {});
+            swap = Object.keys(swap).map(function(groupId) {
+                var e = swap[groupId];
+                return {
+                    GroupId: e.GroupId,
+                    EMail: e.EMail,
+                    Platform: e.Platforms.join(', '),
+                    Topic: e.Topics.join(', '),
+                    MsgType: e.MsgTypes.join(', '),
+                    ServiceName: e.ServiceName,
+                    IsEnabled: e.IsEnabled
+                }
+            });
+            console.log(swap);
+            $scope.subscriptions = swap;
         })
     }
     $scope.listSubscriptions();
