@@ -1,5 +1,6 @@
 moment = require('moment-timezone');
 var app = angular.module("app", [
+  require('ui-select'),
   require('./controller'), require('./service'), require('./directive'), require('./filter'), require('./app.route.js'), require('./app.constants.js'), 'duScroll', 'smart-table', 'toastr'
 ]);
 app

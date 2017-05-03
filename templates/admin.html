@@ -347,23 +347,23 @@
         <div class="description">
             <label>Platform</label>
             <select class="ui fluid dropdown" ng-model="newSubscription.platform">
-                    <option value="all">All</option>
-                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
-                    </select>
+                <option value="all">All</option>
+                <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
+            </select>
         </div>
         <div class="description">
             <label>Topic</label>
-            <select class="ui fluid dropdown" ng-model="newSubscription.topic">
-                    <option value="all">All</option>
-                    <option value="{{t.TechCategoryName}}" ng-repeat="t in enabledTopics | filter:{isGA:true}">{{t.TechCategoryName}}</option>
-                    </select>
+            <ui-select multiple ng-model="newSubscription.topics" theme="bootstrap" close-on-select="false" style="width: 100%;" title="Select Topics...">
+                <ui-select-match placeholder="Select Topics...">{{$item}}</ui-select-match>
+                <ui-select-choices repeat="topic in multipleSelectedTopics | filter:$select.search">{{topic}}</ui-select-choices>
+            </ui-select>
         </div>
         <div class="description">
             <label>Message Type</label>
             <select class="ui fluid dropdown" ng-model="newSubscription.msgtype">
-                    <option value="all">All</option>
-                    <option value="{{v}}" ng-repeat="(v,p) in CONST.MESSAGE_TYPES">{{p}}</option>
-                    </select>
+                <option value="all">All</option>
+                <option value="{{v}}" ng-repeat="(v,p) in CONST.MESSAGE_TYPES">{{p}}</option>
+            </select>
         </div>
     </div>
     <div class="actions">

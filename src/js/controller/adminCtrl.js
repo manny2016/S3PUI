@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $location, $state, $timeout, $http, $filter, toastr) {
+module.exports = function ($scope, $rootScope, $window, $location, $state, $timeout, $http, $filter, toastr) {
     // console.log("this is admin");  
     if (!$scope.isAdmin) {
         $state.go('home.dashboard');
@@ -256,7 +256,7 @@ module.exports = function ($scope, $rootScope, $location, $state, $timeout, $htt
         $scope.newSubscription = {
             email: '',
             platform: 'all',
-            topic: 'all',
+            topics: [],
             msgtype: 'all',
             servicename: 'all',
         };
@@ -270,7 +270,7 @@ module.exports = function ($scope, $rootScope, $location, $state, $timeout, $htt
             },
             onApprove: function () {
                 if (entity !== undefined) {
-                    $scope.service.deleteSubscribe(entity.Id).then(function (data) {
+                    $scope.service.deleteSubscribe(entity.GroupId).then(function (data) {
                         if (data == true) {
                             $scope.subscriptions.splice($scope.subscriptions.indexOf(entity), 1);
                             toastr.success('Success', 'Operation Success!');
@@ -286,6 +286,13 @@ module.exports = function ($scope, $rootScope, $location, $state, $timeout, $htt
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
             $scope.enabledTopics = data;
+            var multipleSelectedTopics = [];
+            $.each(data, function (i, topic) {
+                if (topic.isGA === true) {
+                    multipleSelectedTopics.push(topic.TechCategoryName);
+                }
+            });
+            $scope.multipleSelectedTopics = multipleSelectedTopics;
         })
     }();
     $scope.listSubscriptions = function (platform, topic, msgtype, servicename) {
@@ -322,7 +329,7 @@ module.exports = function ($scope, $rootScope, $location, $state, $timeout, $htt
                 }
                 return array;
             }, {});
-            swap = Object.keys(swap).map(function(groupId) {
+            $scope.subscriptions = Object.keys(swap).map(function(groupId) {
                 var e = swap[groupId];
                 return {
                     GroupId: e.GroupId,
@@ -334,8 +341,6 @@ module.exports = function ($scope, $rootScope, $location, $state, $timeout, $htt
                     IsEnabled: e.IsEnabled
                 }
             });
-            console.log(swap);
-            $scope.subscriptions = swap;
         })
     }
     $scope.listSubscriptions();

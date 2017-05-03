@@ -42,6 +42,7 @@
     "moment-timezone": "^0.5.11",
     "ng-table": "^1.0.0",
     "ui-router": "^1.0.0-alpha.3",
+    "ui-select": "^0.19.8",
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
