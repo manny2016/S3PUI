@@ -583,17 +583,19 @@ app.factory('rawdataSrv', function (baseSrv) {
         },
         createSubscribe: function (params) {
             var params = params || {};
-            params.email = params.email;
-            params.platform = params.platform || 'all';
-            params.topic = params.topic || 'all';
-            params.msgtype = params.msgtype || 'all';
-            params.servicename = params.servicename || 'all';
-            return baseSrv.get('CreateSubscribe', params);
+            return baseSrv.get('CreateSubscribe', {
+                "email": params.email,
+                "platform": params.platform || 'all',
+                "topic": params.topics.join(','),
+                "msgtype": params.msgtype || 'all',
+                "servicename": params.servicename || 'all'
+            });
         },
         deleteSubscribe: function (id) {
             var params = params || {};
-            params.id = id;
-            return baseSrv.get('DeleteSubscribe', params);
+            return baseSrv.get('DeleteSubscribe', {
+                "groupid": id
+            });
         },
         checkAdminAccessRights: function (email) {
             var params = params || {};

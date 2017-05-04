@@ -237,6 +237,9 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
                 if ($scope.newSubscription.email.trim() === '') {
                     toastr.error('Error', 'Email Required!');
                     return false;
+                } else if ($scope.newSubscription.topics.length === 0) {
+                    toastr.error('Error', 'Need to select one Topic at least.');
+                    return false;
                 } else {
                     $scope.service.createSubscribe($scope.newSubscription).then(function (data) {
                         if (data == true) {

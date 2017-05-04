@@ -28575,6 +28575,8 @@ select.ui.dropdown {
   z-index: 1001;
   top: 50%;
   left: 50%;
+  right: auto;
+  bottom: auto;
   text-align: left;
   background: #ffffff;
   border: none;
