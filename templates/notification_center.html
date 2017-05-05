@@ -16,26 +16,6 @@
         </h5>
         <div class="fields">
             <div class="three wide field">
-                <label>Start Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
-                    <div class="ui left icon input">
-                        <input class="input-text" ng-model="search.bgTime" type="text" />
-                        <i class="calendar icon"></i>
-                    </div>
-                </datepicker>
-            </div>
-            <div class="three wide field">
-                <label>End Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="egTime" date-min-limit="{{search.bgTime}}" selector="input-text">
-                    <div class="ui left icon input">
-                        <input class="input-text" ng-model="search.egTime" type="text" />
-                        <i class="calendar icon"></i>
-                    </div>
-                </datepicker>
-            </div>
-        </div>
-        <div class="fields">
-            <div class="three wide field">
                 <label>Data Source</label>
                 <!--<div class="ui fluid selection dropdown">
                     <input name="datasource" type="hidden" ng-model="search.datasource" value="{{search.datasource}}">
@@ -95,6 +75,26 @@
                     <option value="1">Available</option>
                     <option value="-1">Unavailable</option>
                 </select>
+            </div>
+        </div>
+        <div class="fields">
+            <div class="three wide field">
+                <label>Start Date</label>
+                <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
+                    <div class="ui left icon input">
+                        <input class="input-text" ng-model="search.bgTime" type="text" />
+                        <i class="calendar icon"></i>
+                    </div>
+                </datepicker>
+            </div>
+            <div class="three wide field">
+                <label>End Date</label>
+                <datepicker date-format="yyyy-MM-dd" id="egTime" date-min-limit="{{search.bgTime}}" selector="input-text">
+                    <div class="ui left icon input">
+                        <input class="input-text" ng-model="search.egTime" type="text" />
+                        <i class="calendar icon"></i>
+                    </div>
+                </datepicker>
             </div>
         </div>
     </div>
