@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, twitterServiceStatus, othersServiceStatus, CONST) {
+module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, CONST) {
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -144,31 +144,21 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         }, 50)
     }
 
-    // service status web socket
-    // var twitter_ws = $websocket(CONST.SERVICE_INFO.TWITTER_WS_STATUS)
-    // twitter_ws.onMessage(function (event) {
-    //     $rootScope.twitter_status = JSON.parse(event.data);
-    // });
-    // twitter_ws.onError(function (event) {
-    //     console.log('connection Error', event);
-    // });
-
-    // var others_ws = $websocket(CONST.SERVICE_INFO.OTHERS_WS_STATUS)
-    // others_ws.onMessage(function (event) {
-    //     $rootScope.others_status = JSON.parse(event.data);
-    // });
-    // others_ws.onError(function (event) {
-    //     console.log('connection Error', event);
-    // });
     $scope.getServiceStatus = function () {
-        $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function (data) {
-            $scope.twitter_status = data.data
-        });
-        $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function (data) {
-            $scope.others_status = data.data
-        });
+        setInterval(function () {
+            try {
+                $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function (data) {
+                    $scope.twitter_status = data.data
+                });
+            }
+            catch (err) { console.log('connection Error', err); }
+            try {
+                $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function (data) {
+                    $scope.others_status = data.data
+                });
+            }
+            catch (err) { console.log('connection Error', err); }
+        }, 1000 * 30);
     }
     $scope.getServiceStatus();
-    $scope.twitter_status = twitterServiceStatus.status;
-    $scope.others_status = othersServiceStatus.status;
 }

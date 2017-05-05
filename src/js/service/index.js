@@ -110,59 +110,6 @@ app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
     }
 });
 
-app.factory('twitterServiceStatus', function ($websocket, $state, CONST) {
-    var ws = $websocket(CONST.SERVICE_INFO.TWITTER_WS_STATUS);
-    var status;
-    var retried = 0;
-    ws.onMessage(function (event) {
-        // console.log(event);
-        // console.log($state)
-        status = JSON.parse(event.data);
-        retried = 0;
-    });
-    ws.onError(function (event) {
-        console.log('connection Error', event);
-        ws.reconnect();
-        retried++;
-    });
-
-    ws.onClose(function (event) {
-        console.log('connection closed', event);
-        ws.reconnect();
-        retried++;
-    });
-
-    return {
-        status: status
-    }
-})
-
-app.factory('othersServiceStatus', function ($websocket, $state, CONST) {
-    var ws = $websocket(CONST.SERVICE_INFO.OTHERS_WS_STATUS);
-    var status;
-    var retried = 0;
-    ws.onMessage(function (event) {
-        // console.log(event);
-        // console.log($state)
-        status = JSON.parse(event.data);
-        retried = 0;
-    });
-    ws.onError(function (event) {
-        console.log('connection Error', event);
-        ws.reconnect();
-        retried++;
-    });
-
-    ws.onClose(function (event) {
-        console.log('connection closed', event);
-        ws.reconnect();
-        retried++;
-    });
-
-    return {
-        status: status
-    }
-})
 app.factory('testSrv', function (baseSrv) {
     return {
         test: function (params) {

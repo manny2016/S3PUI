@@ -27,9 +27,7 @@ app.constant('CONST', {
         // WS: 'ws://localhost:8889/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'http://40.114.88.191/WebServices/S3PDataService/GetJobStatus',
-        OTHERS_SERVER_STATUS:'http://40.121.205.38/WebServices/S3PDataService/GetJobStatus',
-        TWITTER_WS_STATUS:'ws://40.114.88.191/api/SyncMontior/',
-        OTHERS_WS_STATUS:'ws://40.121.205.38/api/SyncMontior/'
+        OTHERS_SERVER_STATUS:'http://40.121.205.38/WebServices/S3PDataService/GetJobStatus'
     },
     ALL_ENABLED_PLARFORMS: {
         'twitter': 'Twitter',
