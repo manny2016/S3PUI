@@ -20,10 +20,10 @@ app.constant('CONST', {
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
     SERVICE_INFO: {
-        ENDPOINT: 'http://52.168.10.62/WebServices/S3PDataService/',
+        ENDPOINT: 'https://shpv2-orchard-01.azurewebsites.net/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
-        TWITTER_SERVER_STATUS:'http://52.168.10.62/WebServices/S3PDataService/GetJobStatus',
-        OTHERS_SERVER_STATUS:'http://40.71.248.101/WebServices/S3PDataService/GetJobStatus'
+        TWITTER_SERVER_STATUS:'https://shpv2-orchard-01.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
+        OTHERS_SERVER_STATUS:'https://shpv2-orchard-01.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
     },
     ALL_ENABLED_PLARFORMS: {
         'twitter': 'Twitter',
