@@ -144,21 +144,23 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         }, 50)
     }
 
+    function listenServiceStatus() {
+        try {
+            $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function (data) {
+                $scope.twitter_status = data.data
+            });
+        }
+        catch (err) { console.log('connection Error', err); }
+        try {
+            $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function (data) {
+                $scope.others_status = data.data
+            });
+        }
+        catch (err) { console.log('connection Error', err); }
+    }
+    listenServiceStatus();
     $scope.getServiceStatus = function () {
-        setInterval(function () {
-            try {
-                $http.get(CONST.SERVICE_INFO.TWITTER_SERVER_STATUS).then(function (data) {
-                    $scope.twitter_status = data.data
-                });
-            }
-            catch (err) { console.log('connection Error', err); }
-            try {
-                $http.get(CONST.SERVICE_INFO.OTHERS_SERVER_STATUS).then(function (data) {
-                    $scope.others_status = data.data
-                });
-            }
-            catch (err) { console.log('connection Error', err); }
-        }, 1000 * 30);
+        setInterval(listenServiceStatus, 1000 * 30);
     }
     $scope.getServiceStatus();
 }

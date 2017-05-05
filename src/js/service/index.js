@@ -67,46 +67,36 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     }
 });
 
-app.factory('Notifications', function ($websocket, $state, baseSrv, CONST) {
-    var ws = $websocket(CONST.SERVICE_INFO.WS);
+app.factory('Notifications', function (baseSrv, CONST) {
+    var lastsynctime = (new Date()) / 1000 | 0;
     var collection = [];
-    var retried = 0;
-    ws.onMessage(function (event) {
-        // console.log(event);
-        // console.log($state)
-        collection.push(JSON.parse(event.data));
-        retried = 0;
-    });
-    ws.onError(function (event) {
-        console.log('connection Error', event);
-        ws.reconnect();
-        retried++;
-    });
-
-    ws.onClose(function (event) {
-        console.log('connection closed', event);
-        ws.reconnect();
-        retried++;
-    });
+    function listenNewDetection () {
+        try {
+            baseSrv.get("GetNewDetections", {
+                lastsynctime: lastsynctime || 0
+            }).then(function (notifications) {
+                if (notifications.length > 0) {
+                    $.each(notifications, function (i, notification) {
+                        collection.push(notification);
+                    });
+                    lastsynctime = (new Date()) / 1000 | 0;
+                }
+            });
+        }
+        catch (err) { console.log('connection Error', err); }
+    }
+    listenNewDetection();
+    var timer = setInterval(listenNewDetection, 1000 * 10);
     return {
         collection: collection,
         status: function () {
-            return ws.readyState;
+            if (timer) { return 1; }
+            return 3;
         },
         reconnect: function () {
-            ws.reconnect();
-        },
-        clearUnRead: function () {
-            unReadMessage = 0;
-        },
-        send: function (message) {
-            if (angular.isString(message)) {
-                ws.send(message);
-            } else if (angular.isObject(message)) {
-                ws.send(JSON.stringify(message));
-            }
+            if (timer) { clearInterval(timer); }
+            timer = setInterval(listenNewDetection, 1000 * 10);
         }
-
     }
 });
 
