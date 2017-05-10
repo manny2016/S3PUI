@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter, utilitySrv) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html?time='+new Date().getTime()),
@@ -17,6 +17,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $compile, $filter, utilityS
             // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
+                $window.threads = $window.threads || {};
+                $window.threads.platform = params.param.platform.toLowerCase();
+
                 // console.log(params)
                 scope.needMentioned = true;
                 scope.platform = params.param.platform.toLowerCase()
