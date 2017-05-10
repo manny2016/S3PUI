@@ -18,6 +18,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
                 if ($window.threadStore) {
+                    $window.threadStore.threads.data([]);
                     $window.threadStore.set("function", params.fn);
                     $window.threadStore.set("platform", params.param.platform.toLowerCase());
                     $window.threadStore.set("topic", params.param.topic);
