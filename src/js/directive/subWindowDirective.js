@@ -17,8 +17,38 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             // console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
-                $window.threads = $window.threads || {};
-                $window.threads.platform = params.param.platform.toLowerCase();
+                if (!$window.threadStore) {
+                    $window.threadStore = kendo.observable({
+                        threads: new kendo.data.DataSource({
+                            transport: {
+                                read: function(options) {
+                                    console.log($window.threadStore.platform, $window.threadStore.topic, $window.threadStore.pnscope, $window.threadStore.days, $window.threadStore.params);
+                                }
+                            }
+                        })
+                    });
+                    var fields = ["platform", "topic", "pnscope", "days", "params"];
+                    $window.threadStore.bind("change", function (option) {
+                        console.log(option.field, fields.indexOf(option.field));
+                        if (fields.indexOf(option.field) >= 0) {
+                            this.threads.read();
+                        }
+                    });
+                }
+                $window.threadStore.set("platform", params.param.platform.toLowerCase());
+                $window.threadStore.set("topic", params.param.topic);
+                $window.threadStore.set("pnscope", params.param.pnscope);
+                $window.threadStore.set("days", params.param.days);
+                $window.threadStore.set("params", {
+                    date: params.param.date,
+                    service: params.param.service,
+                    userid: params.param.userid,
+                    index: params.param.index,
+                    keywords: params.param.keywords,
+                    IsFuzzyQuery: params.param.IsFuzzyQuery,
+                    msgType: params.param.msgType,
+                    timestamp: params.param.timestamp,
+                });
 
                 // console.log(params)
                 scope.needMentioned = true;
