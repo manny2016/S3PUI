@@ -168,8 +168,65 @@
                 </tr>
             </tfoot>
         </table>
-        <div data-role="grid"
-             data-bind="source: threads"></div>
+        <div class="ui blue striped celled table stTable">
+            <div style="padding: 13px 10px; font-size:14px; font-weight: bold; color: #000000; background-color: #F9FAFB; cursor: default;">
+                Messages List
+            </div>
+            <div id="gridThreads"
+                data-role="grid"
+                data-pageable="true"
+                data-columns="[{
+                    title: 'Thread Name',
+                    field: 'title',
+                    template: '<a target=\'_blank\' href=\'#=webUrl#\' title=\'#=title#\'>#=title#</a>',
+                    filterable: {
+                        cell: {
+                            operator: 'contains',
+                            minLength: 3,
+                            showOperators: false,
+                            template: function (args) {
+                                args.element.kendoAutoComplete({
+                                    serverFiltering: false,
+                                    valuePrimitive: true,
+                                    noDataTemplate: '',
+                                    clearButton: false,
+                                    placeholder: 'Search title or content ...'
+                                });
+                            }
+                        }
+                    }
+                }, {
+                    title: 'Post By',
+                    field: 'createdby',
+                    width: '200px',
+                    filterable: false
+                }, {
+                    title: 'Influence Num',
+                    field: 'influencenum',
+                    width: '180px',
+                    filterable: false
+                }, {
+                    title: 'Time',
+                    field: 'created',
+                    format: '{0: yyyy-MM-dd HH:mm}',
+                    width: '180px',
+                    filterable: false
+                }, {
+                    title: 'Sentiment',
+                    field: 'sentimentscore',
+                    values: [
+                        { value: 0, text: 'Neutral' },
+                        { value: 2, text: 'Negative' },
+                        { value: 4, text: 'Positive' }
+                    ],
+                    width: '140px',
+                    filterable: false
+                }]"
+                data-filterable="{ mode: 'row' }"
+                data-sortable="true"
+                data-scrollable="false"
+                data-bind="source: threads"></div>
+        </div>
     </div>
     <div class="actions">
         <div class="ui blue deny button">

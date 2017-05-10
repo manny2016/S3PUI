@@ -14,41 +14,109 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             query: "="
         },
         link: function (scope, e, a) {
-            // console.log($(e).find('.hourly-charts'))
+            //console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
-                if (!$window.threadStore) {
+                if ($window.threadStore) {
+                    $window.threadStore.set("function", params.fn);
+                    $window.threadStore.set("platform", params.param.platform.toLowerCase());
+                    $window.threadStore.set("topic", params.param.topic);
+                    $window.threadStore.set("pnscope", params.param.pnscope);
+                    $window.threadStore.set("days", params.param.days);
+                    $window.threadStore.set("params", {
+                        date: params.param.date,
+                        service: params.param.service,
+                        userid: params.param.userid,
+                        index: params.param.index,
+                        keywords: params.param.keywords,
+                        IsFuzzyQuery: params.param.IsFuzzyQuery,
+                        msgType: params.param.msgType,
+                        timestamp: params.param.timestamp
+                    });
+                    $window.threadStore.set("RefreshTrigger", !$window.threadStore.RefreshTrigger);
+                }
+                else {
                     $window.threadStore = kendo.observable({
+                        function: params.fn,
+                        platform: params.param.platform.toLowerCase(),
+                        topic: params.param.topic,
+                        pnscope: params.param.pnscope,
+                        days: params.param.days,
+                        params: {
+                            date: params.param.date,
+                            service: params.param.service,
+                            userid: params.param.userid,
+                            index: params.param.index,
+                            keywords: params.param.keywords,
+                            IsFuzzyQuery: params.param.IsFuzzyQuery,
+                            msgType: params.param.msgType,
+                            timestamp: params.param.timestamp
+                        },
+                        RefreshTrigger: false,
                         threads: new kendo.data.DataSource({
                             transport: {
-                                read: function(options) {
-                                    console.log($window.threadStore.platform, $window.threadStore.topic, $window.threadStore.pnscope, $window.threadStore.days, $window.threadStore.params);
+                                read: {
+                                    url: "https://localhost:44300/WebServices/S3PDataService/GetDetailsByComplexFilter",
+                                    dataType: "json",
+                                    type: "POST",
+                                    contentType: "application/x-www-form-urlencoded"
+                                },
+                                parameterMap: function (data, operation)
+                                {
+                                    if (operation === "read") {
+                                        var search = "";
+                                        if (data.filter && data.filter.filters
+                                            && data.filter.filters.length > 0) {
+                                            search = data.filter.filters[0].value
+                                        }
+                                        var post = {
+                                            function: $window.threadStore.function,
+                                            platform: $window.threadStore.platform,
+                                            topic: $window.threadStore.topic,
+                                            pnscope: $window.threadStore.pnscope,
+                                            days: $window.threadStore.days,
+                                            params: {},
+                                            search: search,
+                                            page: data.page,
+                                            pagesize: data.pageSize,
+                                            sortby: data.sort[0].field,
+                                            sort: data.sort[0].dir,
+                                        };
+                                        if ($window.threadStore.params) {
+                                            $.each($window.threadStore.params.toJSON(), function (field, value) {
+                                                if (value) {
+                                                    post.params[field] = value;
+                                                }
+                                            });
+                                        }
+                                        return kendo.stringify(post);
+                                    }
+                                }
+                            },
+                            serverPaging: true,
+                            pageSize: 10,
+                            serverSorting: true,
+                            sort: { field: "created", dir: "desc" },
+                            serverFiltering: true,
+                            schema: {
+                                total: "count",
+                                data: function (response) {
+                                    var data = response.messagesorthreads;
+                                    $.each(data, function (pos, data) {
+                                        data.created = new Date(data.created * 1000);
+                                    });
+                                    return data;
                                 }
                             }
                         })
                     });
-                    var fields = ["platform", "topic", "pnscope", "days", "params"];
                     $window.threadStore.bind("change", function (option) {
-                        console.log(option.field, fields.indexOf(option.field));
-                        if (fields.indexOf(option.field) >= 0) {
-                            this.threads.read();
+                        if (option.field === "RefreshTrigger") {
+                            this.threads.read()
                         }
                     });
+                    kendo.bind($("#gridThreads"), $window.threadStore);
                 }
-                $window.threadStore.set("platform", params.param.platform.toLowerCase());
-                $window.threadStore.set("topic", params.param.topic);
-                $window.threadStore.set("pnscope", params.param.pnscope);
-                $window.threadStore.set("days", params.param.days);
-                $window.threadStore.set("params", {
-                    date: params.param.date,
-                    service: params.param.service,
-                    userid: params.param.userid,
-                    index: params.param.index,
-                    keywords: params.param.keywords,
-                    IsFuzzyQuery: params.param.IsFuzzyQuery,
-                    msgType: params.param.msgType,
-                    timestamp: params.param.timestamp,
-                });
 
                 // console.log(params)
                 scope.needMentioned = true;

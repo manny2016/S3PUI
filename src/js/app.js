@@ -90,7 +90,7 @@ app
           observeChanges: true,
           onVisible: function (e) {
             $('#sub_window').height($(window).height() * 0.72)
-            console.log($('#sub_window').height());
+            //console.log($('#sub_window').height());
             $(this).find('.echart').map(function (i) {
               // echarts.getInstanceByDom(this).clear();
               echarts.getInstanceByDom(this).resize();

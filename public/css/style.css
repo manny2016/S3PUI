@@ -283,6 +283,10 @@ body {
   color: blue !important;
   cursor: pointer !important;
 }
+.stTable thead tr th a {
+  color: blue !important;
+  cursor: pointer !important;
+}
 .admin.cards .card {
   max-width: 166px;
   width: 100%;
