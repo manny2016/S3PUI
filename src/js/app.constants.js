@@ -20,7 +20,7 @@ app.constant('CONST', {
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
     SERVICE_INFO: {
-        ENDPOINT: 'https://localhost:44300/WebServices/S3PDataService/',
+        ENDPOINT: 'http://52.168.10.62/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'http://52.168.10.62/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'http://40.71.248.101/WebServices/S3PDataService/GetJobStatus'

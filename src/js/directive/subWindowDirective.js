@@ -2,7 +2,7 @@
     ==========example====================
 
 */
-module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter, utilitySrv) {
+module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter, utilitySrv, CONST) {
     return {
         restrict: 'E',
         templateUrl: ('public/template/sub_window.html?time='+new Date().getTime()),
@@ -57,7 +57,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         threads: new kendo.data.DataSource({
                             transport: {
                                 read: {
-                                    url: "https://localhost:44300/WebServices/S3PDataService/GetDetailsByComplexFilter",
+                                    url: CONST.SERVICE_INFO.ENDPOINT + "GetDetailsByComplexFilter",
                                     dataType: "json",
                                     type: "POST",
                                     contentType: "application/x-www-form-urlencoded"
