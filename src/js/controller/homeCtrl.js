@@ -118,7 +118,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         var date = Math.floor(moment.utc().add(-1, "days").startOf('day') / 1000);
         $scope.service.getSysDetections(undefined, undefined, $rootScope.global.topic, undefined, date).then(function (data) {
             // console.log(data);
-            $scope.collections = data.reverse().splice(0, top);
+            $scope.collections = data.splice(0, top);
         })
     }
     $scope.generateDownloadUrl = function (entity) {
