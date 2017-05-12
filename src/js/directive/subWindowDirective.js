@@ -17,15 +17,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             //console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
-                if ($window.threadStore) {
-                    $window.threadStore.threads.data([]);
-                    $window.threadStore.threads.page(1);
-                    $window.threadStore.set("function", params.fn);
-                    $window.threadStore.set("platform", params.param.platform.toLowerCase());
-                    $window.threadStore.set("topic", params.param.topic);
-                    $window.threadStore.set("pnscope", params.param.pnscope);
-                    $window.threadStore.set("days", params.param.days);
-                    $window.threadStore.set("params", {
+                $window.threadOption = {
+                    function: params.fn,
+                    platform: params.param.platform.toLowerCase(),
+                    topic: params.param.topic,
+                    pnscope: params.param.pnscope,
+                    days: params.param.days,
+                    params: {
                         date: params.param.date,
                         service: params.param.service,
                         userid: params.param.userid,
@@ -34,26 +32,15 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         IsFuzzyQuery: params.param.IsFuzzyQuery,
                         msgType: params.param.msgType,
                         timestamp: params.param.timestamp
-                    });
+                    }
+                };
+                if ($window.threadStore) {
+                    $window.threadStore.threads.data([]);
+                    $window.threadStore.threads.page(1);
                     $window.threadStore.set("RefreshTrigger", !$window.threadStore.RefreshTrigger);
                 }
                 else {
                     $window.threadStore = kendo.observable({
-                        function: params.fn,
-                        platform: params.param.platform.toLowerCase(),
-                        topic: params.param.topic,
-                        pnscope: params.param.pnscope,
-                        days: params.param.days,
-                        params: {
-                            date: params.param.date,
-                            service: params.param.service,
-                            userid: params.param.userid,
-                            index: params.param.index,
-                            keywords: params.param.keywords,
-                            IsFuzzyQuery: params.param.IsFuzzyQuery,
-                            msgType: params.param.msgType,
-                            timestamp: params.param.timestamp
-                        },
                         RefreshTrigger: false,
                         threads: new kendo.data.DataSource({
                             transport: {
@@ -72,11 +59,11 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                             search = data.filter.filters[0].value
                                         }
                                         var post = {
-                                            function: $window.threadStore.function,
-                                            platform: $window.threadStore.platform,
-                                            topic: $window.threadStore.topic,
-                                            pnscope: $window.threadStore.pnscope,
-                                            days: $window.threadStore.days,
+                                            function: $window.threadOption.function,
+                                            platform: $window.threadOption.platform,
+                                            topic: $window.threadOption.topic,
+                                            pnscope: $window.threadOption.pnscope,
+                                            days: $window.threadOption.days,
                                             params: {},
                                             search: search,
                                             page: data.page,
@@ -84,8 +71,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                             sortby: data.sort[0].field,
                                             sort: data.sort[0].dir,
                                         };
-                                        if ($window.threadStore.params) {
-                                            $.each($window.threadStore.params.toJSON(), function (field, value) {
+                                        if ($window.threadOption.params) {
+                                            $.each($window.threadOption.params, function (field, value) {
                                                 if (value) {
                                                     post.params[field] = value;
                                                 }
@@ -111,11 +98,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                 }
                             }
                         })
-                    });
-                    $window.threadStore.bind("change", function (option) {
-                        if (option.field === "RefreshTrigger") {
-                            this.threads.read()
-                        }
                     });
                     kendo.bind($("#gridThreads"), $window.threadStore);
                 }
