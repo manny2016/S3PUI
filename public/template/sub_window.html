@@ -122,7 +122,10 @@
                                     noDataTemplate: '',
                                     clearButton: false,
                                     placeholder: 'Search title or content ...'
-                                });
+                                })
+                                .closest('.k-widget')
+                                .addClass('k-textbox k-space-right')
+                                .append('<span class=\'k-icon k-i-search\'></span>');;
                             }
                         }
                     }
