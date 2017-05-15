@@ -68,8 +68,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                             search: search,
                                             page: data.page,
                                             pagesize: data.pageSize,
-                                            sortby: data.sort[0].field,
-                                            sort: data.sort[0].dir,
+                                            sortby: data.sort[0] ? data.sort[0].field : 'created',
+                                            sort: data.sort[0] ? data.sort[0].dir : 'desc',
                                         };
                                         if ($window.threadOption.params) {
                                             $.each($window.threadOption.params, function (field, value) {
