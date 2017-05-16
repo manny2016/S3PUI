@@ -318,3 +318,12 @@ body {
   top: 0.5em;
   margin: 0em 0em 0em -2.5em !important;
 }
+.k-tabstrip.non-scrollable .k-content {
+  overflow: visible;
+}
+.k-tabstrip.non-border {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}

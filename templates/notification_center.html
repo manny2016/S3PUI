@@ -9,154 +9,172 @@
         </span>
         <!--<a class="" ng-click="Notifications.reconnect()" alt="reconnect to notification server"><i class="refresh icon"></i></a>-->
     </div>
-    <div class="ui segment blue form">
-        <h5 class="ui header blue">
-            Search
-            <i class="link search icon pull-right" ng-click="listNotification()"></i>
-        </h5>
-        <div class="fields">
-            <div class="three wide field">
-                <label>Data Source</label>
-                <!--<div class="ui fluid selection dropdown">
-                    <input name="datasource" type="hidden" ng-model="search.datasource" value="{{search.datasource}}">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Data Source</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">All</div>
-                        <div class="item" ng-repeat="(v,p) in platforms" data-value="{{v}}">{{p}}</div>
-                    </div>-->
-                <select class="ui fluid dropdown" ng-model="search.datasource">
-                    <option value="all">All</option>
-                    <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
-                    </select>
-                <!--</div>-->
+    <div id="tabstrip" class="non-scrollable non-border">
+        <ul>
+            <li class="k-state-active">Notification</li>
+            <li>Subscription</li>
+        </ul>
+        <div>
+            <div class="ui segment blue form">
+                <h5 class="ui header blue">
+                    Search
+                    <i class="link search icon pull-right" ng-click="listNotification()"></i>
+                </h5>
+                <div class="fields">
+                    <div class="three wide field">
+                        <label>Data Source</label>
+                        <!--<div class="ui fluid selection dropdown">
+                            <input name="datasource" type="hidden" ng-model="search.datasource" value="{{search.datasource}}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Data Source</div>
+                            <div class="menu">
+                                <div class="item" data-value="0">All</div>
+                                <div class="item" ng-repeat="(v,p) in platforms" data-value="{{v}}">{{p}}</div>
+                            </div>-->
+                        <select class="ui fluid dropdown" ng-model="search.datasource">
+                            <option value="all">All</option>
+                            <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
+                            </select>
+                        <!--</div>-->
+                    </div>
+                    <div class="three wide field">
+                        <label>Service/Product</label>
+                        <select class="ui fluid dropdown service" ng-model="search.topic">
+                            <option value="all">All</option>
+                            <option value="{{topic.TechCategoryName}}" ng-repeat="topic in topics | filter:{isGA:true}">{{topic.TechCategoryName}}</option>
+                        </select>
+                    </div>
+                    <div class="five wide field">
+                        <label>Message Type</label>
+                        <!--<div class="ui fluid selection dropdown">
+                            <input name="messagetype" type="hidden" ng-model="search.messagetype" value="{{search.messagetype}}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Message Type</div>
+                            <div class="menu">
+                                <div class="item" data-value="0">All</div>
+                                <div class="item" ng-repeat="(k,v) in CONST.MESSAGE_TYPES" data-value="{{k}}">{{v}}</div>
+                            </div>-->
+                        <!--<option value="0">all</option>-->
+                        <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
+                        <!--</div>-->
+                        <select class="ui fluid dropdown" ng-model="search.messagetype">
+                            <option value="all">All</option>
+                            <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
+                        </select>
+                    </div>
+                    <div class="three wide field">
+                        <label>Data Download Available</label>
+                        <!--<div class="ui fluid selection dropdown">
+                            <input name="downloadable" type="hidden" ng-model="search.downloadable" value="{{search.downloadable}}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Data Download Available</div>
+                            <div class="menu">
+                                <div class="item" data-value="0">All</div>
+                                <div class="item" data-value="1">Available</div>
+                                <div class="item" data-value="-1">Unavailable</div>
+                            </div>-->
+                        <!--<option value="0">all</option>-->
+                        <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
+                        <!--</div>-->
+                        <select class="ui fluid dropdown" ng-model="search.downloadable">
+                            <option value="all">All</option>
+                            <option value="1">Available</option>
+                            <option value="-1">Unavailable</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="three wide field">
+                        <label>Start Date</label>
+                        <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
+                            <div class="ui left icon input">
+                                <input class="input-text" ng-model="search.bgTime" type="text" />
+                                <i class="calendar icon"></i>
+                            </div>
+                        </datepicker>
+                    </div>
+                    <div class="three wide field">
+                        <label>End Date</label>
+                        <datepicker date-format="yyyy-MM-dd" id="egTime" date-min-limit="{{search.bgTime}}" selector="input-text">
+                            <div class="ui left icon input">
+                                <input class="input-text" ng-model="search.egTime" type="text" />
+                                <i class="calendar icon"></i>
+                            </div>
+                        </datepicker>
+                    </div>
+                </div>
             </div>
-            <div class="three wide field">
-                <label>Service/Product</label>
-                <select class="ui fluid dropdown service" ng-model="search.topic">
-                    <option value="all">All</option>
-                    <option value="{{topic.TechCategoryName}}" ng-repeat="topic in topics | filter:{isGA:true}">{{topic.TechCategoryName}}</option>
-                </select>
-            </div>
-            <div class="five wide field">
-                <label>Message Type</label>
-                <!--<div class="ui fluid selection dropdown">
-                    <input name="messagetype" type="hidden" ng-model="search.messagetype" value="{{search.messagetype}}">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Message Type</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">All</div>
-                        <div class="item" ng-repeat="(k,v) in CONST.MESSAGE_TYPES" data-value="{{k}}">{{v}}</div>
-                    </div>-->
-                <!--<option value="0">all</option>-->
-                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
-                <!--</div>-->
-                <select class="ui fluid dropdown" ng-model="search.messagetype">
-                    <option value="all">All</option>
-                    <option value="{{k}}" ng-repeat="(k,v) in CONST.MESSAGE_TYPES">{{v}}</option>
-                </select>
-            </div>
-            <div class="three wide field">
-                <label>Data Download Available</label>
-                <!--<div class="ui fluid selection dropdown">
-                    <input name="downloadable" type="hidden" ng-model="search.downloadable" value="{{search.downloadable}}">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Data Download Available</div>
-                    <div class="menu">
-                        <div class="item" data-value="0">All</div>
-                        <div class="item" data-value="1">Available</div>
-                        <div class="item" data-value="-1">Unavailable</div>
-                    </div>-->
-                <!--<option value="0">all</option>-->
-                <!--<option value="{{v}}" ng-repeat="(v,p) in platforms" ng-init="$last && finished()">{{p}}</option>-->
-                <!--</div>-->
-                <select class="ui fluid dropdown" ng-model="search.downloadable">
-                    <option value="all">All</option>
-                    <option value="1">Available</option>
-                    <option value="-1">Unavailable</option>
-                </select>
+            <div class="ui basic segment" id="nc-main" style="padding-left:0px;padding-right:0px;">
+                <div class="ui dimmer">
+                    <div class="ui text loader">Loading</div>
+                </div>
+                <table st-table="stTable" st-safe-src="collections" class="ui striped green table">
+                    <thead>
+                        <tr>
+                            <th st-sort="createdTime" st-sort-default="reverse" st-skip-natural="true" style="color: blue !important;cursor: pointer !important;">Date
+                                <span class="label">
+                                <i class="popup small link info circle icon" data-content="Notification Created Time" data-variation="mini inverted"></i>
+                            </span>
+                            </th>
+                            <th>Data Source
+                                <span class="label">
+                                <i class="popup small link info circle icon" data-content="Platform" data-variation="mini inverted"></i>
+                            </span>
+                            </th>
+                            <th>Service/Product
+                                <span class="label">
+                                <i class="popup small link info circle icon" data-content="Service or Product" data-variation="mini inverted"></i>
+                            </span>
+                            </th>
+                            <th>Message Type
+                                <span class="label">
+                                <i class="popup small link info circle icon" data-content="Notification Detected Issue Types" data-variation="mini inverted"></i>
+                            </span>
+                            </th>
+                            <th>Data Download
+                                <span class="label">
+                                <i class="popup small link info circle icon" data-content="Is Supported for Downloading Raw Data" data-variation="mini inverted"></i>
+                            </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in stTable">
+                            <td>{{m.createdTime|mankindTime2String}}</td>
+                            <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
+                            <td>{{m.topic}}</td>
+                            <td>
+                                <div ng-if="m.hasDetails">
+                                    <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
+                                </div>
+                                <div ng-if="!m.hasDetails">
+                                    {{CONST.MESSAGE_TYPES[m.msgType]}}
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-bind-html="generateDownloadUrl(m)"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
-        <div class="fields">
-            <div class="three wide field">
-                <label>Start Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="bgTime" date-max-limit="{{search.egTime}}" selector="input-text">
-                    <div class="ui left icon input">
-                        <input class="input-text" ng-model="search.bgTime" type="text" />
-                        <i class="calendar icon"></i>
-                    </div>
-                </datepicker>
-            </div>
-            <div class="three wide field">
-                <label>End Date</label>
-                <datepicker date-format="yyyy-MM-dd" id="egTime" date-min-limit="{{search.bgTime}}" selector="input-text">
-                    <div class="ui left icon input">
-                        <input class="input-text" ng-model="search.egTime" type="text" />
-                        <i class="calendar icon"></i>
-                    </div>
-                </datepicker>
-            </div>
+        <div>
+                
         </div>
     </div>
-    <div class="ui basic segment" id="nc-main" style="padding-left:0px;padding-right:0px;">
-        <div class="ui dimmer">
-            <div class="ui text loader">Loading</div>
-        </div>
-        <table st-table="stTable" st-safe-src="collections" class="ui striped green table">
-            <thead>
-                <tr>
-                    <th st-sort="createdTime" st-sort-default="reverse" st-skip-natural="true" style="color: blue !important;cursor: pointer !important;">Date
-                        <span class="label">
-                        <i class="popup small link info circle icon" data-content="Notification Created Time" data-variation="mini inverted"></i>
-                    </span>
-                    </th>
-                    <th>Data Source
-                        <span class="label">
-                        <i class="popup small link info circle icon" data-content="Platform" data-variation="mini inverted"></i>
-                    </span>
-                    </th>
-                    <th>Service/Product
-                        <span class="label">
-                        <i class="popup small link info circle icon" data-content="Service or Product" data-variation="mini inverted"></i>
-                    </span>
-                    </th>
-                    <th>Message Type
-                        <span class="label">
-                        <i class="popup small link info circle icon" data-content="Notification Detected Issue Types" data-variation="mini inverted"></i>
-                    </span>
-                    </th>
-                    <th>Data Download
-                        <span class="label">
-                        <i class="popup small link info circle icon" data-content="Is Supported for Downloading Raw Data" data-variation="mini inverted"></i>
-                    </span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="m in stTable">
-                    <td>{{m.createdTime|mankindTime2String}}</td>
-                    <td>{{CONST.ALL_ENABLED_PLARFORMS[m.forumName]}}</td>
-                    <td>{{m.topic}}</td>
-                    <td>
-                        <div ng-if="m.hasDetails">
-                            <a style="cursor:pointer" ng-click="showdetails(m)">{{CONST.MESSAGE_TYPES[m.msgType]}}</a>
-                        </div>
-                        <div ng-if="!m.hasDetails">
-                            {{CONST.MESSAGE_TYPES[m.msgType]}}
-                        </div>
-                    </td>
-                    <td>
-                        <div ng-bind-html="generateDownloadUrl(m)"></div>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <div st-items-by-page="10" st-pagination="" st-template="/public/template/pagination.custom.html"></div>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+    <script>
+        $(document).ready(function() {
+            $("#tabstrip").kendoTabStrip({
+                scrollable: false
+            });
+        });
+    </script>
 </div>

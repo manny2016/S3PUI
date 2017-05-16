@@ -28133,6 +28133,8 @@ select.ui.dropdown {
   display: block;
   width: 100%;
   min-width: 0em;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .ui.fluid.dropdown > .dropdown.icon {
