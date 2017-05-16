@@ -16,7 +16,7 @@ app
       target: 'body'
     });
   })
-  .run(function ($rootScope, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications, $http) {
+  .run(function ($rootScope, $window, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications, $http) {
     // var config = require('../../public/config');
     // console.log(config);
     //check authentication
@@ -30,6 +30,9 @@ app
     }
     $rootScope.service.checkAdminAccessRights($rootScope.userInfo.userName).then(function (data) {
       $rootScope.isAdmin = data;
+      if ($window.viewModel) {
+        //$window.viewModel.set('isAdmin', data);
+      }
     })
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;

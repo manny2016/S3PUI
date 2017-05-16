@@ -167,13 +167,133 @@
             </div>
         </div>
         <div>
-                
+            <div class="ui segment blue form" data-bind="visible: isAdmin">
+                <h5 class="ui header blue">
+                    Search
+                    <i class="link search icon pull-right" ng-click="listNotification()"></i>
+                </h5>
+                <div class="fields">
+                </div>
+            </div>
+            <button class="ui icon green button" data-bind="visible: isAdmin">
+                <i class="plus icon"></i> Add Notification Rule
+            </button>
+            <div class="ui striped green table stTable">
+                <div data-role="grid"
+                     data-scrollable="false"
+                     data-columns="[{
+                        field: 'email',
+                        groupHeaderTemplate: '#=value#<i class=\'icon remove subscription\' title=\'remove subscription\'></i><i class=\'icon write subscription\' title=\'edit subscription\'></i>',
+                        hidden: true
+                     },{
+                        title: 'Platform',
+                        field: 'platforms',
+                        template: '#=platforms#',
+                        width: '200px'
+                     }, {
+                        title: 'Topic',
+                        field: 'topics',
+                        template: '#=topics#'
+                     }, {
+                        title: 'Message Type',
+                        field: 'types',
+                        template: '#=types#',
+                        width: '300px'
+                     }]"
+                     data-bind="source: subscriptions"></div>
+            </div>
         </div>
     </div>
     <script>
+        var viewModel = kendo.observable({
+            isAdmin: false
+        });
+
         $(document).ready(function() {
             $("#tabstrip").kendoTabStrip({
                 scrollable: false
+            });
+
+            var datastore = [{
+                email: 'v1@com',
+                subscriptions: [{
+                    platforms: ["so"],
+                    topics: ["Azure", "UWP", "powerbi", "powerapp", "MS Flow", "EMS", "VS&VSTS"],
+                    types: ["InfluenceVolumeSpikeDetected"]
+                }, {
+                    platforms: ["tn"],
+                    topics: ["powerapp"],
+                    types: ["ServiceOutageDetected"]
+                }]
+            }, {
+                email: 'v2@com',
+                subscriptions: [{
+                    platforms: ["twitter"],
+                    topics: ["UWP"],
+                    types: ["UniqueUserSessionsSpikeDetected"]
+                }, {
+                    platforms: ["msdn"],
+                    topics: ["powerbi"],
+                    types: ["SupportExperienceIssuesDetected"]
+                }]
+            }];
+
+            angular.element("html").scope().service.getCate().then(function (topics) {
+                var scope = angular.element("html").scope();
+                var platdata = [];
+                $.each(datastore, function (i, data) {
+                    if ((data.subscriptions)
+                        && ((viewModel.isAdmin === true)
+                            || ((scope.userInfo) && (scope.userInfo.userName === data.email)))) {
+                        $.each(data.subscriptions, function (j, subscription) {
+                            var platformNames = []
+                            if (subscription.platforms) {
+                                $.each(subscription.platforms, function (k, platform) {
+                                    platformNames.push(scope.CONST.ALL_ENABLED_PLARFORMS[platform]);
+                                });
+                            }
+                            platdata.push({
+                                email: data.email,
+                                platforms: platformNames.join('<br />'),
+                                topics: subscription.topics
+                                    ? subscription.topics.join(', ')
+                                    : '',
+                                types: subscription.types
+                                    ? subscription.types.join('<br />')
+                                    : ''
+                            });
+                        });
+                    }
+                });
+                if ((platdata.length === 0)
+                    && (viewModel.isAdmin === false)) {
+                    platdata.push({
+                        email: scope.userInfo.userName,
+                        platforms: '',
+                        topics: '',
+                        types: ''
+                    });
+                }
+                viewModel.set('subscriptions', new kendo.data.DataSource({
+                    data: platdata,
+                    group: {
+                        field: 'email'
+                    }
+                }));
+                kendo.bind($('#tabstrip-2'), viewModel);
+
+                console.log(
+                    scope.CONST.ALL_ENABLED_PLARFORMS,
+                    topics,
+                    scope.CONST.MESSAGE_TYPES);
+                var demo = [{
+                    TechCategoryName: "powerbi",
+                    isGA: true,
+                    Platforms: [{
+                        PlatformName: "sf",
+                        isEnabled: true
+                    }]
+                }];
             });
         });
     </script>

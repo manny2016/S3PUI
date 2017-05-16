@@ -279,7 +279,7 @@ body {
 .ui.shape {
   width: 100%;
 }
-.stTable thead tr th {
+.stTable thead tr th[data-role=columnsorter] {
   color: blue !important;
   cursor: pointer !important;
 }
@@ -326,4 +326,19 @@ body {
   box-shadow: none;
   border: none;
   background-color: transparent;
+}
+p.k-reset {
+  width: 100%;
+}
+p.k-reset > i.icon {
+  float: right;
+  cursor: pointer;
+}
+p.k-reset > i.icon.remove {
+  font-size: 18px;
+  color: red;
+}
+p.k-reset > i.icon.write {
+  font-size: 16px;
+  color: #2185D0;
 }
