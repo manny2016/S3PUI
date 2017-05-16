@@ -165,7 +165,7 @@
                                                 sort: sortdir
                                             };
                                             //console.log('down data:', post);
-                                            window.open('https://localhost:44300/WebServices/S3PDataService/DownloadByComplexFilter?' + $.param(post), '_blank');
+                                            window.open(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'DownloadByComplexFilter?' + $.param(post), '_blank');
                                         }
                                     }
                                 });
