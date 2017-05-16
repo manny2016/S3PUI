@@ -103,7 +103,7 @@
             <div style="padding: 13px 10px; font-size:14px; font-weight: bold; color: #000000; background-color: #F9FAFB; cursor: default;">
                 Messages List
             </div>
-            <div id="gridThreads"
+            <div id="gridThreads" class="additional-icon-in-filter"
                 data-role="grid"
                 data-pageable="true"
                 data-columns="[{
@@ -116,7 +116,7 @@
                             minLength: 3,
                             showOperators: false,
                             template: function (args) {
-                                var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 9px; right: 4px; color: #000;\' title=\'export the search results to CSV\'></i>');
+                                var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 22px; right: 4px; color: #000;\' title=\'export the search results to CSV\'></i>');
                                 btnExportExcel.click(function (e) {
                                     var element = $(e.target);
                                     while (element) {
@@ -179,7 +179,7 @@
                                 .closest('.k-widget')
                                 .addClass('k-textbox k-space-right')
                                 .append('<span class=\'k-icon k-i-search\'></span>')
-                                .parent().parent()
+                                .parent().parent().parent()
                                 .append(btnExportExcel)
                                 .css('position', 'relative');
                             }
