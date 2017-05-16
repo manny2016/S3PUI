@@ -106,11 +106,6 @@
             <div id="gridThreads"
                 data-role="grid"
                 data-pageable="true"
-                data-excel="{
-                    allPages: true,
-                    fileName: 'SearchResults.xlsx',
-                    filterable: true
-                }"
                 data-columns="[{
                     title: 'Thread Name',
                     field: 'title',
@@ -121,9 +116,58 @@
                             minLength: 3,
                             showOperators: false,
                             template: function (args) {
-                                var btnExportExcel = $('<a class=\'k-icon k-i-excel\' style=\'position: absolute; top: 7px; right: 4px;\' title=\'export the search result to Excel\'></a>');
+                                var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 9px; right: 4px; color: #000;\' title=\'export the search results to CSV\'></i>');
                                 btnExportExcel.click(function (e) {
-                                    $('#gridThreads').data('kendoGrid').saveAsExcel();
+                                    var element = $(e.target);
+                                    while (element) {
+                                        if (element.is('table[role=grid]')) {
+                                            element = element.parent();
+                                            break;
+                                        }
+                                        element = element.parent();
+                                    }
+                                    if (element) {
+                                        var grid = element.data('kendoGrid');
+                                        if (grid) {
+                                            var datasource = grid.dataSource;
+
+                                            var search = '';
+                                            var sortby = 'created';
+                                            var sortdir = 'desc';
+                                            if (datasource) {
+                                                var filter = datasource.filter();
+                                                if (filter) { if (filter.filters) { if (filter.filters.length > 0) {
+                                                    search = filter.filters[0].value;
+                                                }}}
+                                                var sort = datasource.sort();
+                                                if (sort) { if (sort.length > 0) {
+                                                    sortby = sort[0].field;
+                                                    sortdir = sort[0].dir;
+                                                }}
+                                            }
+                                            var params = {};
+                                            if (threadOption.params) {
+                                                $.each(threadOption.params, function (field, value) {
+                                                    if (value) {
+                                                        params[field] = value;
+                                                    }
+                                                });
+                                            }
+                                            var post = {
+                                                function: threadOption.function,
+                                                platform: threadOption.platform,
+                                                topic: threadOption.topic,
+                                                pnscope: threadOption.pnscope,
+                                                days: threadOption.days,
+                                                params: kendo.stringify(params),
+                                                search: search,
+                                                sortby: sortby,
+                                                sort: sortdir
+                                            };
+                                            //console.log('down data:', post);
+                                            window.open('https://localhost:44300/WebServices/S3PDataService/DownloadByComplexFilter?' + $.param(post), '_blank');
+                                        }
+                                    }
                                 });
                                 args.element.kendoAutoComplete({
                                     serverFiltering: false,

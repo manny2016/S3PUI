@@ -78,6 +78,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                                 }
                                             });
                                         }
+                                        //console.log("get data:", post);
                                         return kendo.stringify(post);
                                     }
                                 }
