@@ -364,3 +364,6 @@ p.k-reset > i.icon.write {
   display: block;
   margin-left: 120px;
 }
+.additional-icon-in-filter .k-filtercell > .k-operator-hidden {
+  margin-right: 20px;
+}
