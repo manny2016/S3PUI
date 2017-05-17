@@ -346,6 +346,21 @@ p.k-reset > i.icon.write {
   font-size: 16px;
   color: #2185D0;
 }
+p.k-reset > i.icon.add {
+  font-size: 16px;
+}
+tr[role=row] > td[role=gridcell] > i.icon {
+  float: right;
+  cursor: pointer;
+}
+tr[role=row] > td[role=gridcell] > i.icon.remove {
+  font-size: 18px;
+  color: red;
+}
+tr[role=row] > td[role=gridcell] > i.icon.write {
+  font-size: 16px;
+  color: #2185D0;
+}
 .form {
   padding: 20px!important;
 }

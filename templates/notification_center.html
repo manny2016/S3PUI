@@ -181,22 +181,26 @@
             <div class="ui striped green table stTable">
                 <div data-role="grid" data-scrollable="false" data-columns="[{
                         field: 'email',
-                        groupHeaderTemplate: kendo.template($('#templateSubscriptionManagement').html()),
+                        groupHeaderTemplate: kendo.template($('#templateUserSubscriptionManagement').html()),
                         hidden: true
                      },{
                         title: 'Platform',
                         field: 'platforms',
-                        template: '#=platforms#',
+                        template: '#=platformsText#',
                         width: '200px'
                      }, {
                         title: 'Topic',
                         field: 'topics',
-                        template: '#=topics#'
+                        template: '#=topicsText#'
                      }, {
                         title: 'Message Type',
-                        field: 'types',
-                        template: '#=types#',
+                        field: 'typesText',
+                        template: '#=typesText#',
                         width: '300px'
+                     }, {
+                        title: ' ',
+                        template: kendo.template($('#templateSubscriptionManagement').html()),
+                        width: '70px'
                      }]" data-bind="
                         source: subscriptions,
                         events: {
@@ -206,7 +210,10 @@
             <div id="dialogSubscriptionEditor" class="form" style="display: none;">
                 <div class="field">
                     <div class="caption">Email</div>
-                    <input type="text" class="k-textbox" style="width: 300px;" data-bind="value: editSubscription.email, enabled: editSubscription.isEmailEditable, style: { border: editSubscription.emailFieldBorderStyle }" />
+                    <div class="value">
+                        <input type="text" class="k-textbox" style="width: 300px;" data-bind="value: editSubscription.email, enabled: editSubscription.isEmailEditable, style: { border: editSubscription.emailFieldBorderStyle }"
+                        />
+                    </div>
                 </div>
                 <div class="field">
                     <div class="caption">Platform</div>
@@ -233,35 +240,46 @@
                     <div class="ui approve button" data-bind="events: { click: onSubscriptionUpdate }">OK</div>
                 </div>
             </div>
-            <script id="templateSubscriptionManagement" type="text/x-kendo-template">
+            <script id="templateUserSubscriptionManagement" type="text/x-kendo-template">
                 #=value#
                 <i class="icon remove subscription" title="remove subscription"></i>
-                <i class="icon write subscription" title="edit subscription"></i>
+                <i class="icon add rule" title="create new rule"></i>
+            </script>
+            <script id="templateSubscriptionManagement" type="text/x-kendo-template">
+                <i class="icon remove rule" title="remove rule"></i>
+                <i class="icon write rule" title="edit rule"></i>
+            </script>
+            <script id="templateConfirmRemoveSubscription" type="text/x-kendo-template">
+                <div style="line-height: 40px;">
+                    <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
+                    <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete subscription(s) of #=email#?</span>
+                </div>
+            </script>
+            <script id="templateConfirmRemoveRule" type="text/x-kendo-template">
+                <div style="line-height: 40px;">
+                    <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
+                    <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete this rule?</span>
+                </div>
+                <div class="form">
+                    <div class="field">
+                        <div class="caption">Email</div>
+                        <div class="value" style="line-height: 30px;">#=email#</div>
+                    </div>
+                    <div class="field">
+                        <div class="caption">Platform</div>
+                        <div class="value" style="line-height: 30px;">#=platforms#</div>
+                    </div>
+                    <div class="field">
+                        <div class="caption">Topic</div>
+                        <div class="value" style="line-height: 30px;">#=topics#</div>
+                    </div>
+                    <div class="field">
+                        <div class="caption">Message Type</div>
+                        <div class="value" style="line-height: 30px;">#=types#</div>
+                    </div>
+                </div>
             </script>
             <script type="text/javascript">
-                var datastore = [{
-                    email: 'v1@com',
-                    subscriptions: [{
-                        platforms: ["so"],
-                        topics: ["Azure", "UWP", "powerbi", "powerapp", "MS Flow", "EMS", "VS&VSTS"],
-                        types: ["InfluenceVolumeSpikeDetected"]
-                    }, {
-                        platforms: ["tn"],
-                        topics: ["powerapp"],
-                        types: ["ServiceOutageDetected"]
-                    }]
-                }, {
-                    email: 'v2@com',
-                    subscriptions: [{
-                        platforms: ["twitter"],
-                        topics: ["UWP"],
-                        types: ["UniqueUserSessionsSpikeDetected"]
-                    }, {
-                        platforms: ["msdn"],
-                        topics: ["powerbi"],
-                        types: ["SupportExperienceIssuesDetected"]
-                    }]
-                }];
                 var editSubscription = kendo.data.Model.define({
                     fields: {
                         email: { type: "string" },
@@ -290,6 +308,26 @@
                     scrollable: false
                 });
 
+                //$(document).ready(function () {
+                var confirmContainer = $('#confirm');
+                if (confirmContainer.length === 0) {
+                    confirmContainer = $('<div id="confirm"></div>');
+                    confirmContainer.appendTo($("body"));
+                }
+                function confirm(html, onApprove, onDeny) {
+                    var confrimDialog = confirmContainer.kendoConfirm({
+                        title: false,
+                        content: html,
+                        visible: false,
+                        messages: {
+                            okText: "Yes",
+                            cancel: "No"
+                        }
+                    }).data("kendoConfirm");
+                    confrimDialog.result.done(onApprove || function () { }).fail(onDeny || function () { });
+                    confrimDialog.open();
+                }
+
                 var scope = angular.element("html").scope();
                 var flatforms = [{ value: "all", text: "All", }];
                 var topics = { all: [] };
@@ -300,6 +338,135 @@
                 $.each(scope.CONST.MESSAGE_TYPES, function (key, value) {
                     messagetypes.push({ value: key, text: value });
                 });
+
+                var viewModel = kendo.observable({
+                    isAdmin: true,
+                    subscriptions: new kendo.data.DataSource({
+                        transport: {
+                            url: scope.CONST.SERVICE_INFO.ENDPOINT + "GetSubscribeSettings?stamp" + (new Date()).getTime(),
+                            dataType: "json"
+                        },
+                        schema: {
+                            data: function (response) {
+                                var swap = {};
+                                $.each(response, function (i, item) {
+                                    if (item.IsEnabled === true) {
+                                        if (item.GroupId in swap) {
+                                            var entity = swap[item.GroupId];
+                                            if (entity.platforms.indexOf(item.Platform) < 0) {
+                                                entity.platforms.push(item.Platform);
+                                                entity.platformTextArray.push(flatforms[item.Platform]);
+                                            }
+                                            if (entity.topics.indexOf(item.Topic) < 0) {
+                                                entity.topics.push(item.Topic);
+                                            }
+                                            if (entity.types.indexOf(item.MsgType) < 0) {
+                                                entity.types.push(item.MsgType);
+                                                entity.typeTextArray.push(messagetypes[item.MsgType]);
+                                            }
+                                        } else {
+                                            swap[item.GroupId] = {
+                                                email: item.EMail,
+                                                platforms: [item.Platform],
+                                                platformTextArray: [flatforms[item.Platform]],
+                                                topics: [item.Topic],
+                                                types: [item.MsgType],
+                                                typeTextArray: [messagetypes[item.MsgType]]
+                                            };
+                                        }
+                                    }
+                                });
+                                $.each(swap, function (i, entity) {
+                                    entity.platformsText = entity.platformTextArray.join('<br />'),
+                                        entity.topicsText = entity.topics.join(', '),
+                                        entity.typesText = entity.typeTextArray.join('<br />')
+                                });
+                                if ((swap.length === 0)
+                                    && (viewModel.isAdmin === false)) {
+                                    swap.push({
+                                        email: scope.userInfo.userName,
+                                        platforms: ['all'],
+                                        platformTextArray: ['All'],
+                                        platformsText: '',
+                                        topics: [],
+                                        topicsText: '',
+                                        types: ['all'],
+                                        typeTextArray: ['All'],
+                                        typesText: ''
+                                    });
+                                }
+                                console.log("swap", swap);
+                                return swap;
+                            }
+                        },
+                        group: { field: 'email' }
+                    }),
+                    editSubscription: new editSubscription(),
+                    onSubscriptionBound: function (e) {
+                        var grid = e.sender;
+                        $.each(grid.tbody.children("tr"), function (i, row) {
+                            var data = grid.dataItem(row).toJSON();
+                            row = $(row);
+                            if (row.is("tr.k-grouping-row")) {
+                                row.find("i.add.rule").click(function (e) {
+                                    viewModel.set("editSubscription.email", data.email);
+                                    viewModel.set("editSubscription.platform", "all");
+                                    viewModel.set("editSubscription.topics", []);
+                                    viewModel.set("editSubscription.messagetype", "all");
+                                    subscriptionEditor.center().open();
+                                });
+                                row.find("i.remove.subscription").click(function (e) {
+                                    confirm(kendo.template($("#templateConfirmRemoveSubscription").html())({
+                                        email: data.email
+                                    }), function () {
+                                        alert('remove subscription ' + data.email);
+                                    });
+                                });
+                            } else {
+                                row.find("i.write.rule").click(function (e) {
+                                    viewModel.set("editSubscription.email", data.email);
+                                    viewModel.set("editSubscription.platform", data.platforms);
+                                    viewModel.set("editSubscription.topics", data.topics);
+                                    viewModel.set("editSubscription.messagetype", data.types);
+                                    subscriptionEditor.center().open();
+                                });
+                                row.find("i.remove.rule").click(function (e) {
+                                    confirm(kendo.template($("#templateConfirmRemoveRule").html())({
+                                        email: data.email,
+                                        platforms: data.platformsText,
+                                        topics: data.topicsText,
+                                        types: data.typesText
+                                    }), function () {
+                                        alert('remove rule ' + data.email);
+                                    });
+                                });
+                            }
+                        });
+                    },
+                    onCreateSubscription: function (e) {
+                        viewModel.set("editSubscription.email", null);
+                        viewModel.set("editSubscription.platform", "all");
+                        viewModel.set("editSubscription.topics", []);
+                        viewModel.set("editSubscription.messagetype", "all");
+                        subscriptionEditor.center().open();
+                    },
+                    onSubscriptionEditorClose: function (e) {
+                        subscriptionEditor.close();
+                    },
+                    onSubscriptionUpdate: function (e) {
+
+                        subscriptionEditor.close();
+                    },
+                    messagetypes: messagetypes,
+                    topics: topics,
+                    flatforms: flatforms
+                });
+                viewModel.bind("change", function (e) {
+                    if (e.field === "topics") {
+                        this.set("editSubscription.topicSource", topics);
+                    }
+                });
+
                 scope.service.getCate().then(function (categories) {
                     $.each(categories, function (i, category) {
                         if (category.isGA === true) {
@@ -324,93 +491,6 @@
                     viewModel.set("topics", topics);
                 });
 
-                var viewModel = kendo.observable({
-                    isAdmin: true,
-                    subscriptions: new kendo.data.DataSource({
-                        transport: {
-                            read: function (options) {
-                                var platdata = [];
-                                $.each(datastore, function (i, data) {
-                                    if ((data.subscriptions)
-                                        && ((viewModel.isAdmin === true)
-                                            || ((scope.userInfo) && (scope.userInfo.userName === data.email)))) {
-                                        $.each(data.subscriptions, function (j, subscription) {
-                                            var platformNames = []
-                                            if (subscription.platforms) {
-                                                $.each(subscription.platforms, function (k, platform) {
-                                                    platformNames.push(scope.CONST.ALL_ENABLED_PLARFORMS[platform]);
-                                                });
-                                            }
-                                            platdata.push({
-                                                email: data.email,
-                                                platforms: platformNames.join('<br />'),
-                                                topics: subscription.topics
-                                                    ? subscription.topics.join(', ')
-                                                    : '',
-                                                types: subscription.types
-                                                    ? subscription.types.join('<br />')
-                                                    : ''
-                                            });
-                                        });
-                                    }
-                                });
-                                if ((platdata.length === 0)
-                                    && (viewModel.isAdmin === false)) {
-                                    platdata.push({
-                                        email: scope.userInfo.userName,
-                                        platforms: '',
-                                        topics: '',
-                                        types: ''
-                                    });
-                                }
-                                options.success(platdata);
-                            }
-                        },
-                        group: { field: 'email' }
-                    }),
-                    editSubscription: new editSubscription(),
-                    onSubscriptionBound: function (e) {
-                        var grid = e.sender;
-                        $.each(grid.tbody.children("tr.k-grouping-row"), function (i, row) {
-                            var data = grid.dataItem(row);
-                            row = $(row);
-                            row.find("i.write.subscription").click(function (e) {
-                                viewModel.set("editSubscription.email", data.email);
-                                viewModel.set("editSubscription.platform", "all");
-                                viewModel.set("editSubscription.topics", []);
-                                viewModel.set("editSubscription.messagetype", "all");
-                                subscriptionEditor.center().open();
-                            });
-                            row.find("i.remove.subscription").click(function (e) {
-                                alert('remove ' + data.email);
-                            });
-                        });
-                    },
-                    onCreateSubscription: function (e) {
-                        viewModel.set("editSubscription.email", null);
-                        viewModel.set("editSubscription.platform", "all");
-                        viewModel.set("editSubscription.topics", []);
-                        viewModel.set("editSubscription.messagetype", "all");
-                        subscriptionEditor.center().open();
-                    },
-                    onSubscriptionEditorClose: function (e) {
-                        subscriptionEditor.close();
-                    },
-                    onSubscriptionUpdate: function (e) {
-                        subscriptionEditor.close();
-                    },
-                    messagetypes: messagetypes,
-                    topics: topics,
-                    flatforms: flatforms
-                });
-                viewModel.bind("change", function (e) {
-                    if (e.field === "topics") {
-                        this.set("editSubscription.topicSource", topics);
-                    }
-                });
-                //kendo.bind($('#tabstrip-2'), viewModel);
-                kendo.bind($('html'), viewModel);
-
                 var subscriptionEditor = $("#dialogSubscriptionEditor").kendoWindow({
                     animation: false,
                     modal: true,
@@ -427,6 +507,10 @@
                         fontSize: "18px",
                         fontWeight: "500"
                     });
+
+                //kendo.bind($('#tabstrip-2'), viewModel);
+                kendo.bind($('html'), viewModel);
+                //});
             </script>
         </div>
     </div>
