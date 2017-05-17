@@ -194,7 +194,7 @@
                         template: '#=topicsText#'
                      }, {
                         title: 'Message Type',
-                        field: 'typesText',
+                        field: 'types',
                         template: '#=typesText#',
                         width: '300px'
                      }, {
@@ -282,6 +282,7 @@
             <script type="text/javascript">
                 var editSubscription = kendo.data.Model.define({
                     fields: {
+                        id: { type: "string" },
                         email: { type: "string" },
                         platform: { type: "string" },
                         topics: { type: "object" },
@@ -289,7 +290,6 @@
                         topicSource: { type: "object" }
                     },
                     isEmailEditable: function () {
-                        var email = this.get("email");
                         return (this.get("email") || "").length === 0;
                     },
                     emailFieldBorderStyle: function () {
@@ -309,13 +309,39 @@
                 });
 
                 //$(document).ready(function () {
+                var notificationContainer = $('#notification');
+                if (notificationContainer.length === 0) {
+                    notificationContainer = $('<div id="notification"></div>');
+                    notificationContainer.appendTo($("body"));
+                }
+                var notification = notificationContainer.data("kendoNotification");
+                if (notification) {
+                    notification = notificationContainer.kendoNotification({
+                    }).data("kendoNotification");
+                }
+                function showNotification(html, level) {
+                    notification.showText(html, level)
+                }
+                function showNotificationInfo(html) {
+                    showNotification(html, "info")
+                }
+                function showNotificationSuccess(html) {
+                    showNotification(html, "success")
+                }
+                function showNotificationWarning(html) {
+                    showNotification(html, "warning")
+                }
+                function showNotificationError(html) {
+                    showNotification(html, "error")
+                }
+
                 var confirmContainer = $('#confirm');
                 if (confirmContainer.length === 0) {
                     confirmContainer = $('<div id="confirm"></div>');
                     confirmContainer.appendTo($("body"));
                 }
                 function confirm(html, onApprove, onDeny) {
-                    var confrimDialog = confirmContainer.kendoConfirm({
+                    var confirmDialog = confirmContainer.kendoConfirm({
                         title: false,
                         content: html,
                         visible: false,
@@ -324,8 +350,8 @@
                             cancel: "No"
                         }
                     }).data("kendoConfirm");
-                    confrimDialog.result.done(onApprove || function () { }).fail(onDeny || function () { });
-                    confrimDialog.open();
+                    confirmDialog.result.done(onApprove || function () { }).fail(onDeny || function () { });
+                    confirmDialog.open();
                 }
 
                 var scope = angular.element("html").scope();
@@ -343,47 +369,71 @@
                     isAdmin: true,
                     subscriptions: new kendo.data.DataSource({
                         transport: {
-                            url: scope.CONST.SERVICE_INFO.ENDPOINT + "GetSubscribeSettings?stamp" + (new Date()).getTime(),
-                            dataType: "json"
+                            read: function (options) {
+                                $.ajax({
+                                    url: scope.CONST.SERVICE_INFO.ENDPOINT + "GetSubscribeSettings?stamp" + (new Date()).getTime(),
+                                    dataType: "json",
+                                    success: function (result) {
+                                        options.success(result);
+                                    },
+                                    error: function (result) {
+                                        options.error(result);
+                                    }
+                                });
+                            }
                         },
                         schema: {
                             data: function (response) {
                                 var swap = {};
                                 $.each(response, function (i, item) {
                                     if (item.IsEnabled === true) {
+                                        var item_platform = item.Platform.trim();
+                                        var item_topic = item.Topic.trim();
+                                        var item_messagetype = item.MsgType.trim();
                                         if (item.GroupId in swap) {
                                             var entity = swap[item.GroupId];
-                                            if (entity.platforms.indexOf(item.Platform) < 0) {
-                                                entity.platforms.push(item.Platform);
-                                                entity.platformTextArray.push(flatforms[item.Platform]);
+                                            if (entity.platforms.indexOf(item_platform) < 0) {
+                                                entity.platforms.push(item_platform);
                                             }
-                                            if (entity.topics.indexOf(item.Topic) < 0) {
-                                                entity.topics.push(item.Topic);
+                                            if (entity.topics.indexOf(item_topic) < 0) {
+                                                entity.topics.push(item_topic);
                                             }
-                                            if (entity.types.indexOf(item.MsgType) < 0) {
-                                                entity.types.push(item.MsgType);
-                                                entity.typeTextArray.push(messagetypes[item.MsgType]);
+                                            if (entity.types.indexOf(item_messagetype) < 0) {
+                                                entity.types.push(item_messagetype);
                                             }
                                         } else {
                                             swap[item.GroupId] = {
                                                 email: item.EMail,
-                                                platforms: [item.Platform],
-                                                platformTextArray: [flatforms[item.Platform]],
-                                                topics: [item.Topic],
-                                                types: [item.MsgType],
-                                                typeTextArray: [messagetypes[item.MsgType]]
+                                                platforms: [item_platform],
+                                                topics: [item_topic],
+                                                types: [item_messagetype]
                                             };
                                         }
                                     }
                                 });
-                                $.each(swap, function (i, entity) {
-                                    entity.platformsText = entity.platformTextArray.join('<br />'),
-                                        entity.topicsText = entity.topics.join(', '),
-                                        entity.typesText = entity.typeTextArray.join('<br />')
+                                var subscriptions = [];
+                                $.each(swap, function (id, entity) {
+                                    entity.id = id;
+                                    entity.platformTextArray = [];
+                                    entity.topicsTextArray = [];
+                                    entity.typeTextArray = [];
+                                    $.each(entity.platforms, function (i, flatform) {
+                                        entity.platformTextArray.push(scope.CONST.ALL_ENABLED_PLARFORMS[flatform] || "All");
+                                    });
+                                    $.each(entity.topics, function (i, topic) {
+                                        entity.topicsTextArray.push(topic === "all" ? "All" : topic);
+                                    });
+                                    $.each(entity.types, function (i, messagetype) {
+                                        entity.typeTextArray.push(scope.CONST.MESSAGE_TYPES[messagetype] || "All");
+                                    });
+                                    entity.platformsText = entity.platformTextArray.join('<br />');
+                                    entity.topicsText = entity.topicsTextArray.join(', ');
+                                    entity.typesText = entity.typeTextArray.join('<br />');
+                                    subscriptions.push(entity);
                                 });
-                                if ((swap.length === 0)
+                                if ((subscriptions.length === 0)
                                     && (viewModel.isAdmin === false)) {
-                                    swap.push({
+                                    subscriptions.push({
                                         email: scope.userInfo.userName,
                                         platforms: ['all'],
                                         platformTextArray: ['All'],
@@ -395,8 +445,7 @@
                                         typesText: ''
                                     });
                                 }
-                                console.log("swap", swap);
-                                return swap;
+                                return subscriptions;
                             }
                         },
                         group: { field: 'email' }
@@ -409,6 +458,7 @@
                             row = $(row);
                             if (row.is("tr.k-grouping-row")) {
                                 row.find("i.add.rule").click(function (e) {
+                                    viewModel.set("editSubscription.email", null);
                                     viewModel.set("editSubscription.email", data.email);
                                     viewModel.set("editSubscription.platform", "all");
                                     viewModel.set("editSubscription.topics", []);
@@ -419,15 +469,18 @@
                                     confirm(kendo.template($("#templateConfirmRemoveSubscription").html())({
                                         email: data.email
                                     }), function () {
-                                        alert('remove subscription ' + data.email);
+                                        scope.service.removeSubscription(data.email).then(function () {
+                                            showNotificationSuccess("subscription removed");
+                                        });
                                     });
                                 });
                             } else {
                                 row.find("i.write.rule").click(function (e) {
+                                    viewModel.set("editSubscription.email", data.id);
                                     viewModel.set("editSubscription.email", data.email);
-                                    viewModel.set("editSubscription.platform", data.platforms);
+                                    viewModel.set("editSubscription.platform", data.platforms[0]);
                                     viewModel.set("editSubscription.topics", data.topics);
-                                    viewModel.set("editSubscription.messagetype", data.types);
+                                    viewModel.set("editSubscription.messagetype", data.types[0]);
                                     subscriptionEditor.center().open();
                                 });
                                 row.find("i.remove.rule").click(function (e) {
@@ -437,13 +490,17 @@
                                         topics: data.topicsText,
                                         types: data.typesText
                                     }), function () {
-                                        alert('remove rule ' + data.email);
+                                        scope.service.removeSubscriptionRule(data.id).then(function () {
+                                            showNotificationSuccess("subscription rule removed");
+                                            alert('removed rule (' + data.id + ') ' + data.email);
+                                        });
                                     });
                                 });
                             }
                         });
                     },
                     onCreateSubscription: function (e) {
+                        viewModel.set("editSubscription.id", null);
                         viewModel.set("editSubscription.email", null);
                         viewModel.set("editSubscription.platform", "all");
                         viewModel.set("editSubscription.topics", []);
@@ -454,7 +511,13 @@
                         subscriptionEditor.close();
                     },
                     onSubscriptionUpdate: function (e) {
-
+                        alert("update " + kendo.stringify({
+                            id: viewModel.editSubscription.id,
+                            email: viewModel.editSubscription.email,
+                            platform: [viewModel.editSubscription.platform],
+                            topics: viewModel.editSubscription.topics,
+                            messagetype: [viewModel.editSubscription.messagetype],
+                        }));
                         subscriptionEditor.close();
                     },
                     messagetypes: messagetypes,

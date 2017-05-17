@@ -70,7 +70,7 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
 app.factory('Notifications', function (baseSrv, CONST) {
     var lastsynctime = (new Date()) / 1000 | 0;
     var collection = [];
-    function listenNewDetection () {
+    function listenNewDetection() {
         try {
             baseSrv.get("GetNewDetections", {
                 lastsynctime: lastsynctime || 0
@@ -532,6 +532,16 @@ app.factory('rawdataSrv', function (baseSrv) {
             var params = params || {};
             return baseSrv.get('DeleteSubscribe', {
                 "groupid": id
+            });
+        },
+        removeSubscription: function (email) {
+            return baseSrv.get('DeleteSubscribeByEmail', {
+                "email": email
+            });
+        },
+        removeSubscriptionRule: function (id) {
+            return baseSrv.get('DeleteSubscribeByGroupId', {
+                "groupId": id
             });
         },
         checkAdminAccessRights: function (email) {
