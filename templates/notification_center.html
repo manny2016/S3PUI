@@ -14,7 +14,7 @@
             <li class="k-state-active">Notification</li>
             <li>Subscription</li>
         </ul>
-        <div>
+        <div data-tab="Notification">
             <div class="ui segment blue form">
                 <h5 class="ui header blue">
                     Search
@@ -166,7 +166,7 @@
                 </table>
             </div>
         </div>
-        <div>
+        <div data-tab="Subscription">
             <div class="ui segment blue form" data-bind="visible: isAdmin">
                 <h5 class="ui header blue">
                     Search
@@ -175,15 +175,13 @@
                 <div class="fields">
                 </div>
             </div>
-            <button class="ui icon green button" data-bind="visible: isAdmin">
-                <i class="plus icon"></i> Add Notification Rule
+            <button class="ui icon green button" data-bind="visible: isAdmin, events: { click: onCreateSubscription }">
+                <i class="plus icon"></i>Create Subscription
             </button>
             <div class="ui striped green table stTable">
-                <div data-role="grid"
-                     data-scrollable="false"
-                     data-columns="[{
+                <div data-role="grid" data-scrollable="false" data-columns="[{
                         field: 'email',
-                        groupHeaderTemplate: '#=value#<i class=\'icon remove subscription\' title=\'remove subscription\'></i><i class=\'icon write subscription\' title=\'edit subscription\'></i>',
+                        groupHeaderTemplate: kendo.template($('#templateSubscriptionManagement').html()),
                         hidden: true
                      },{
                         title: 'Platform',
@@ -199,103 +197,237 @@
                         field: 'types',
                         template: '#=types#',
                         width: '300px'
-                     }]"
-                     data-bind="source: subscriptions"></div>
+                     }]" data-bind="
+                        source: subscriptions,
+                        events: {
+                            dataBound: onSubscriptionBound
+                        }"></div>
             </div>
-        </div>
-    </div>
-    <script>
-        var viewModel = kendo.observable({
-            isAdmin: false
-        });
-
-        $(document).ready(function() {
-            $("#tabstrip").kendoTabStrip({
-                scrollable: false
-            });
-
-            var datastore = [{
-                email: 'v1@com',
-                subscriptions: [{
-                    platforms: ["so"],
-                    topics: ["Azure", "UWP", "powerbi", "powerapp", "MS Flow", "EMS", "VS&VSTS"],
-                    types: ["InfluenceVolumeSpikeDetected"]
+            <div id="dialogSubscriptionEditor" class="form" style="display: none;">
+                <div class="field">
+                    <div class="caption">Email</div>
+                    <input type="text" class="k-textbox" style="width: 300px;" data-bind="value: editSubscription.email, enabled: editSubscription.isEmailEditable, style: { border: editSubscription.emailFieldBorderStyle }" />
+                </div>
+                <div class="field">
+                    <div class="caption">Platform</div>
+                    <div class="value">
+                        <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscription.platform, source: flatforms"
+                            style="width: 300px;" />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="caption">Topic</div>
+                    <div class="value" style="width: 300px;">
+                        <select data-role="multiselect" data-placeholder="Select Topics ..." data-bind="value: editSubscription.topics, source: editSubscription.topicsInForum"></select>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="caption">Message Type</div>
+                    <div class="value">
+                        <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscription.messagetype, source: messagetypes"
+                            style="width: 300px;" />
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui cancel button" data-bind="events: { click: onSubscriptionEditorClose }">Cancel</div>
+                    <div class="ui approve button" data-bind="events: { click: onSubscriptionUpdate }">OK</div>
+                </div>
+            </div>
+            <script id="templateSubscriptionManagement" type="text/x-kendo-template">
+                #=value#
+                <i class="icon remove subscription" title="remove subscription"></i>
+                <i class="icon write subscription" title="edit subscription"></i>
+            </script>
+            <script type="text/javascript">
+                var datastore = [{
+                    email: 'v1@com',
+                    subscriptions: [{
+                        platforms: ["so"],
+                        topics: ["Azure", "UWP", "powerbi", "powerapp", "MS Flow", "EMS", "VS&VSTS"],
+                        types: ["InfluenceVolumeSpikeDetected"]
+                    }, {
+                        platforms: ["tn"],
+                        topics: ["powerapp"],
+                        types: ["ServiceOutageDetected"]
+                    }]
                 }, {
-                    platforms: ["tn"],
-                    topics: ["powerapp"],
-                    types: ["ServiceOutageDetected"]
-                }]
-            }, {
-                email: 'v2@com',
-                subscriptions: [{
-                    platforms: ["twitter"],
-                    topics: ["UWP"],
-                    types: ["UniqueUserSessionsSpikeDetected"]
-                }, {
-                    platforms: ["msdn"],
-                    topics: ["powerbi"],
-                    types: ["SupportExperienceIssuesDetected"]
-                }]
-            }];
-
-            angular.element("html").scope().service.getCate().then(function (topics) {
-                var scope = angular.element("html").scope();
-                var platdata = [];
-                $.each(datastore, function (i, data) {
-                    if ((data.subscriptions)
-                        && ((viewModel.isAdmin === true)
-                            || ((scope.userInfo) && (scope.userInfo.userName === data.email)))) {
-                        $.each(data.subscriptions, function (j, subscription) {
-                            var platformNames = []
-                            if (subscription.platforms) {
-                                $.each(subscription.platforms, function (k, platform) {
-                                    platformNames.push(scope.CONST.ALL_ENABLED_PLARFORMS[platform]);
-                                });
-                            }
-                            platdata.push({
-                                email: data.email,
-                                platforms: platformNames.join('<br />'),
-                                topics: subscription.topics
-                                    ? subscription.topics.join(', ')
-                                    : '',
-                                types: subscription.types
-                                    ? subscription.types.join('<br />')
-                                    : ''
-                            });
-                        });
-                    }
-                });
-                if ((platdata.length === 0)
-                    && (viewModel.isAdmin === false)) {
-                    platdata.push({
-                        email: scope.userInfo.userName,
-                        platforms: '',
-                        topics: '',
-                        types: ''
-                    });
-                }
-                viewModel.set('subscriptions', new kendo.data.DataSource({
-                    data: platdata,
-                    group: {
-                        field: 'email'
-                    }
-                }));
-                kendo.bind($('#tabstrip-2'), viewModel);
-
-                console.log(
-                    scope.CONST.ALL_ENABLED_PLARFORMS,
-                    topics,
-                    scope.CONST.MESSAGE_TYPES);
-                var demo = [{
-                    TechCategoryName: "powerbi",
-                    isGA: true,
-                    Platforms: [{
-                        PlatformName: "sf",
-                        isEnabled: true
+                    email: 'v2@com',
+                    subscriptions: [{
+                        platforms: ["twitter"],
+                        topics: ["UWP"],
+                        types: ["UniqueUserSessionsSpikeDetected"]
+                    }, {
+                        platforms: ["msdn"],
+                        topics: ["powerbi"],
+                        types: ["SupportExperienceIssuesDetected"]
                     }]
                 }];
-            });
-        });
-        //public/template/dialogSubscriptionEditor.html
-    </script>
+                var editSubscription = kendo.data.Model.define({
+                    fields: {
+                        email: { type: "string" },
+                        platform: { type: "string" },
+                        topics: { type: "object" },
+                        messagetype: { type: "string" },
+                        topicSource: { type: "object" }
+                    },
+                    isEmailEditable: function () {
+                        var email = this.get("email");
+                        return (this.get("email") || "").length === 0;
+                    },
+                    emailFieldBorderStyle: function () {
+                        if (this.get("isEmailEditable()") === false) {
+                            return "none";
+                        }
+                        return "";
+                    },
+                    topicsInForum: function () {
+                        var topicSource = this.get("topicSource") || {};
+                        var platform = this.get("platform") || "all";
+                        return topicSource[platform] || [];
+                    }
+                });
+                $("#tabstrip").kendoTabStrip({
+                    scrollable: false
+                });
+
+                var scope = angular.element("html").scope();
+                var flatforms = [{ value: "all", text: "All", }];
+                var topics = { all: [] };
+                var messagetypes = [{ value: "all", text: "All", }];
+                $.each(scope.CONST.ALL_ENABLED_PLARFORMS, function (key, value) {
+                    flatforms.push({ value: key, text: value });
+                });
+                $.each(scope.CONST.MESSAGE_TYPES, function (key, value) {
+                    messagetypes.push({ value: key, text: value });
+                });
+                scope.service.getCate().then(function (categories) {
+                    $.each(categories, function (i, category) {
+                        if (category.isGA === true) {
+                            var name = category.TechCategoryName;
+                            $.each(category.Platforms, function (j, platform) {
+                                if (platform.isEnabled === true) {
+                                    if (topics.all.indexOf(name) < 0) {
+                                        topics.all.push(name);
+                                    }
+                                    if (platform.PlatformName in topics) {
+                                        var array = topics[platform.PlatformName];
+                                        if (array.indexOf(name) < 0) {
+                                            array.push(name);
+                                        }
+                                    } else {
+                                        topics[platform.PlatformName] = [name];
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    viewModel.set("topics", topics);
+                });
+
+                var viewModel = kendo.observable({
+                    isAdmin: true,
+                    subscriptions: new kendo.data.DataSource({
+                        transport: {
+                            read: function (options) {
+                                var platdata = [];
+                                $.each(datastore, function (i, data) {
+                                    if ((data.subscriptions)
+                                        && ((viewModel.isAdmin === true)
+                                            || ((scope.userInfo) && (scope.userInfo.userName === data.email)))) {
+                                        $.each(data.subscriptions, function (j, subscription) {
+                                            var platformNames = []
+                                            if (subscription.platforms) {
+                                                $.each(subscription.platforms, function (k, platform) {
+                                                    platformNames.push(scope.CONST.ALL_ENABLED_PLARFORMS[platform]);
+                                                });
+                                            }
+                                            platdata.push({
+                                                email: data.email,
+                                                platforms: platformNames.join('<br />'),
+                                                topics: subscription.topics
+                                                    ? subscription.topics.join(', ')
+                                                    : '',
+                                                types: subscription.types
+                                                    ? subscription.types.join('<br />')
+                                                    : ''
+                                            });
+                                        });
+                                    }
+                                });
+                                if ((platdata.length === 0)
+                                    && (viewModel.isAdmin === false)) {
+                                    platdata.push({
+                                        email: scope.userInfo.userName,
+                                        platforms: '',
+                                        topics: '',
+                                        types: ''
+                                    });
+                                }
+                                options.success(platdata);
+                            }
+                        },
+                        group: { field: 'email' }
+                    }),
+                    editSubscription: new editSubscription(),
+                    onSubscriptionBound: function (e) {
+                        var grid = e.sender;
+                        $.each(grid.tbody.children("tr.k-grouping-row"), function (i, row) {
+                            var data = grid.dataItem(row);
+                            row = $(row);
+                            row.find("i.write.subscription").click(function (e) {
+                                viewModel.set("editSubscription.email", data.email);
+                                viewModel.set("editSubscription.platform", "all");
+                                viewModel.set("editSubscription.topics", []);
+                                viewModel.set("editSubscription.messagetype", "all");
+                                subscriptionEditor.center().open();
+                            });
+                            row.find("i.remove.subscription").click(function (e) {
+                                alert('remove ' + data.email);
+                            });
+                        });
+                    },
+                    onCreateSubscription: function (e) {
+                        viewModel.set("editSubscription.email", null);
+                        viewModel.set("editSubscription.platform", "all");
+                        viewModel.set("editSubscription.topics", []);
+                        viewModel.set("editSubscription.messagetype", "all");
+                        subscriptionEditor.center().open();
+                    },
+                    onSubscriptionEditorClose: function (e) {
+                        subscriptionEditor.close();
+                    },
+                    onSubscriptionUpdate: function (e) {
+                        subscriptionEditor.close();
+                    },
+                    messagetypes: messagetypes,
+                    topics: topics,
+                    flatforms: flatforms
+                });
+                viewModel.bind("change", function (e) {
+                    if (e.field === "topics") {
+                        this.set("editSubscription.topicSource", topics);
+                    }
+                });
+                //kendo.bind($('#tabstrip-2'), viewModel);
+                kendo.bind($('html'), viewModel);
+
+                var subscriptionEditor = $("#dialogSubscriptionEditor").kendoWindow({
+                    animation: false,
+                    modal: true,
+                    scrollable: false,
+                    resizable: false,
+                    title: "Edit Subscription",
+                    width: 464,
+                    visible: false
+                }).data("kendoWindow");
+                $("#dialogSubscriptionEditor")
+                    .parent()
+                    .find("span.k-window-title")
+                    .css({
+                        fontSize: "18px",
+                        fontWeight: "500"
+                    });
+            </script>
+        </div>
+    </div>
 </div>

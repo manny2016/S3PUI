@@ -327,6 +327,10 @@ body {
   border: none;
   background-color: transparent;
 }
+.k-window-content .actions {
+  padding-top: 16px;
+  text-align: right;
+}
 p.k-reset {
   width: 100%;
 }
@@ -341,4 +345,22 @@ p.k-reset > i.icon.remove {
 p.k-reset > i.icon.write {
   font-size: 16px;
   color: #2185D0;
+}
+.form {
+  padding: 20px!important;
+}
+.form .field {
+  padding: 4px 0;
+  clear: both;
+}
+.form .field .caption {
+  float: left;
+  width: 120px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 30px;
+}
+.form .field .value {
+  display: block;
+  margin-left: 120px;
 }

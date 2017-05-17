@@ -498,6 +498,11 @@ content: '\25BC';
     background-color: transparent;
 }
 
+.k-window-content .actions {
+    padding-top: 16px;
+    text-align: right;
+}
+
 p.k-reset {
     width: 100%;
     > i.icon {
@@ -511,5 +516,24 @@ p.k-reset {
     > i.icon.write {
         font-size: 16px;
         color: #2185D0;
+    }
+}
+
+.form {
+    padding: 20px!important;
+    .field {
+        padding: 4px 0;
+        clear: both;
+        .caption {
+            float: left;
+            width: 120px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        .value {
+            display: block;
+            margin-left: 120px;
+        }
     }
 }
