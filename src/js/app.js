@@ -30,9 +30,6 @@ app
     }
     $rootScope.service.checkAdminAccessRights($rootScope.userInfo.userName).then(function (data) {
       $rootScope.isAdmin = data;
-      if ($window.viewModel) {
-        //$window.viewModel.set('isAdmin', data);
-      }
     })
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;

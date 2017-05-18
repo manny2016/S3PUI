@@ -520,12 +520,18 @@ app.factory('rawdataSrv', function (baseSrv) {
         },
         createSubscribe: function (params) {
             var params = params || {};
-            return baseSrv.get('CreateSubscribe', {
-                "email": params.email,
-                "platform": params.platform || 'all',
-                "topic": params.topics.join(','),
-                "msgtype": params.msgtype || 'all',
-                "servicename": params.servicename || 'all'
+            return baseSrv.post('CreateSubscribe', {
+                groupid: params.id,
+                email: params.email,
+                subscription: {
+                    platforms: [params.platform || 'all'],
+                    topics: params.topics,
+                    messagetypes: [params.msgtype || 'all']
+                }
+            }, {
+                headers: {
+                    'Content-Type': 'text/plain'
+                }
             });
         },
         deleteSubscribe: function (id) {
