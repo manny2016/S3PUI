@@ -273,7 +273,7 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
             },
             onApprove: function () {
                 if (entity !== undefined) {
-                    $scope.service.deleteSubscribe(entity.GroupId).then(function (data) {
+                    $scope.service.removeSubscriptionRule(entity.GroupId).then(function (data) {
                         if (data == true) {
                             $scope.subscriptions.splice($scope.subscriptions.indexOf(entity), 1);
                             toastr.success('Success', 'Operation Success!');

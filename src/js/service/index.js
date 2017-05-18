@@ -534,12 +534,6 @@ app.factory('rawdataSrv', function (baseSrv) {
                 }
             });
         },
-        deleteSubscribe: function (id) {
-            var params = params || {};
-            return baseSrv.get('DeleteSubscribe', {
-                "groupid": id
-            });
-        },
         removeSubscription: function (email) {
             return baseSrv.get('DeleteSubscribeByEmail', {
                 "email": email
