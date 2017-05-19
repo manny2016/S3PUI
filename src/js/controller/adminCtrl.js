@@ -37,20 +37,20 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
         tagsCfg: {}
     };
     var CONST_KWD_CFG = {
+        topic: '',
+        tagsCfg: {
             topic: '',
-            tagsCfg: {
-                topic: '',
-                Keywords: []
-            }
+            Keywords: []
         }
-        // $scope.isAddNew = false;
-        // $scope.getTopics = function () {
-        //     $scope.service.getCate().then(function (data) {
-        //         console.log(data)
-        //         $scope.topics = data;
-        //     })
-        // }();
-        // $timeout(function(){$('.tabular.menu .item').tab()},0);
+    }
+    // $scope.isAddNew = false;
+    // $scope.getTopics = function () {
+    //     $scope.service.getCate().then(function (data) {
+    //         console.log(data)
+    //         $scope.topics = data;
+    //     })
+    // }();
+    // $timeout(function(){$('.tabular.menu .item').tab()},0);
     $('.tabular.menu .item').tab();
     $('.vertical.menu .item').tab();
     $('.ui.checkbox').checkbox();
@@ -115,22 +115,22 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
         console.log(e)
     }
     $scope.addKwd = function (event) {
-            console.log(event)
-            event.stopPropagation();
-            var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
-            // if(!currentTopic[$scope.tagsCfg].Keywords){
-            //     currentTopic[$scope.tagsCfg].Keywords = [];
-            // }
-            var array = currentTopic.topicsettings.Keywords;
-            var string = (event.target.value || event.target.previousElementSibling.value).trim()
-            if (string !== "" && array.indexOf(string) === -1) {
-                array.push(string);
-            }
-            event.target.value = "";
+        console.log(event)
+        event.stopPropagation();
+        var currentTopic = $scope.TopicWithForum[$scope.selectedPlatformIndex].topics[$scope.selectedTopicIndex];
+        // if(!currentTopic[$scope.tagsCfg].Keywords){
+        //     currentTopic[$scope.tagsCfg].Keywords = [];
+        // }
+        var array = currentTopic.topicsettings.Keywords;
+        var string = (event.target.value || event.target.previousElementSibling.value).trim()
+        if (string !== "" && array.indexOf(string) === -1) {
+            array.push(string);
         }
-        // $('.admin.cards .card').dimmer({
-        //     on: 'hover'
-        // });
+        event.target.value = "";
+    }
+    // $('.admin.cards .card').dimmer({
+    //     on: 'hover'
+    // });
     $scope.cancelUpdate = function () {
         var src = angular.copy($scope.originData);
         var dist = $scope.TopicWithForum;
@@ -150,16 +150,16 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
     $scope.approveUpdate = function () {
         $scope.originData = angular.copy($scope.TopicWithForum);
         $scope.service.saveForumServiceSetting({
-                "MsdnTopicMapping": $scope.MsdnTopicMapping,
-                "TopicWithForum": $scope.originData
-            }).then(function (data) {
-                if (data == true) {
-                    toastr.success('Success', 'Operation Success!');
-                } else {
-                    toastr.error('Error', 'Operation Failed!');
-                }
-            })
-            // $scope.$digest();
+            "MsdnTopicMapping": $scope.MsdnTopicMapping,
+            "TopicWithForum": $scope.originData
+        }).then(function (data) {
+            if (data == true) {
+                toastr.success('Success', 'Operation Success!');
+            } else {
+                toastr.error('Error', 'Operation Failed!');
+            }
+        })
+        // $scope.$digest();
     }
     $scope.forumSelectChanged = function (index) {
         if (index === null) {
@@ -176,7 +176,7 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
     }
     $scope.removeTopic = function (index) {
         $('#removeConfirmModal').modal({
-            onDeny: function () {},
+            onDeny: function () { },
             onApprove: function () {
                 $scope.TopicWithForum[$scope.selectedPlatformIndex].topics.splice(index, 1);
                 $scope.selectedTopic = undefined;
@@ -222,70 +222,6 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
     }
     $scope.init();
 
-    //subscription Operations
-    $scope.addNCRule = function ($event) {
-        if ($event.offsetX === 0) {
-            return false;
-        }
-        $('#newSubscription').modal({
-            onDeny: function () {
-                // return false;
-                $scope.initSubscription()
-                $('#newSubscription .ui.fluid.dropdown').dropdown('set selected', 'all');
-            },
-            onApprove: function () {
-                if ($scope.newSubscription.email.trim() === '') {
-                    toastr.error('Error', 'Email Required!');
-                    return false;
-                } else if ($scope.newSubscription.topics.length === 0) {
-                    toastr.error('Error', 'Need to select one Topic at least.');
-                    return false;
-                } else {
-                    $scope.service.createSubscribe($scope.newSubscription).then(function (data) {
-                        if (data == true) {
-                            // $scope.subscriptions.unshift($scope.newSubscription);
-                            $scope.listSubscriptions();
-                            $scope.initSubscription()
-                            toastr.success('Success', 'Operation Success!');
-                        } else {
-                            toastr.error('Error', 'Operation Failed!');
-                        }
-                    })
-                }
-            }
-        }).modal('show')
-    }
-    $scope.initSubscription = function () {
-        $scope.newSubscription = {
-            email: '',
-            platform: 'all',
-            topics: [],
-            msgtype: 'all',
-            servicename: 'all',
-        };
-    }
-    $scope.removeSubscription = function (entity) {
-        $scope.willDelEnt = entity;
-        // console.log($scope.subscriptions.indexOf(entity))
-        $('#subscriptionDelConfirm').modal({
-            onDeny: function () {
-                $scope.willDelEnt = undefined;
-            },
-            onApprove: function () {
-                if (entity !== undefined) {
-                    $scope.service.removeSubscriptionRule(entity.GroupId).then(function (data) {
-                        if (data == true) {
-                            $scope.subscriptions.splice($scope.subscriptions.indexOf(entity), 1);
-                            toastr.success('Success', 'Operation Success!');
-                        } else {
-                            toastr.error('Error', 'Operation Failed!');
-                        }
-                    })
-                }
-            }
-        }).modal('show')
-    }
-    $scope.initSubscription()
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
             $scope.enabledTopics = data;
@@ -304,42 +240,53 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
         msgtype = msgtype || $scope.search.messagetype;
         $scope.service.getSubscribeSettings(platform, topic, msgtype, servicename).then(function (data) {
             //group data by groupId
-            var swap = data.reduce(function(array, item) {
+            var swap = data.reduce(function (array, item) {
+                var platform = item.Platform.trim();
+                var topic = item.Topic.trim();
+                var msgtype = item.MsgType.trim();
+
                 if (array[item.GroupId]) {
                     var e = array[item.GroupId];
-                    
-                    var platform = $rootScope.CONST.ALL_ENABLED_PLARFORMS[item.Platform] || item.Platform;
+
                     if (e.Platforms.indexOf(platform) < 0) {
                         e.Platforms.push(platform);
+                        e.PlatformsText.push($rootScope.CONST.ALL_ENABLED_PLARFORMS[platform] || platform);
                     }
-                    if (e.Topics.indexOf(item.Topic) < 0) {
-                        e.Topics.push(item.Topic);
+                    if (e.Topics.indexOf(topic) < 0) {
+                        e.Topics.push(topic);
+                        e.TopicsText.push(topic);
                     }
-                    var msgtype = $rootScope.CONST.MESSAGE_TYPES[item.MsgType] || item.MsgType;
                     if (e.MsgTypes.indexOf(msgtype) < 0) {
                         e.MsgTypes.push(msgtype);
+                        e.MsgTypesText.push($rootScope.CONST.MESSAGE_TYPES[msgtype] || msgtype);
                     }
                 } else {
                     array[item.GroupId] = {
                         GroupId: item.GroupId,
                         EMail: item.EMail,
-                        Platforms: [$rootScope.CONST.ALL_ENABLED_PLARFORMS[item.Platform] || item.Platform],
-                        Topics: [item.Topic],
-                        MsgTypes: [$rootScope.CONST.MESSAGE_TYPES[item.MsgType] || item.MsgType],
+                        Platforms: [platform],
+                        PlatformsText: [$rootScope.CONST.ALL_ENABLED_PLARFORMS[platform] || platform],
+                        Topics: [topic],
+                        TopicsText: [topic],
+                        MsgTypes: [msgtype],
+                        MsgTypesText: [$rootScope.CONST.MESSAGE_TYPES[msgtype] || msgtype],
                         ServiceName: item.ServiceName,
                         IsEnabled: item.IsEnabled
                     };
                 }
                 return array;
             }, {});
-            $scope.subscriptions = Object.keys(swap).map(function(groupId) {
+            $scope.subscriptions = Object.keys(swap).map(function (groupId) {
                 var e = swap[groupId];
                 return {
                     GroupId: e.GroupId,
                     EMail: e.EMail,
-                    Platform: e.Platforms.join(', '),
-                    Topic: e.Topics.join(', '),
-                    MsgType: e.MsgTypes.join(', '),
+                    Platform: e.PlatformsText.join(', '),
+                    Topic: e.TopicsText.join(', '),
+                    MsgType: e.MsgTypesText.join(', '),
+                    PlatformArrayJson: JSON.stringify(e.Platforms),
+                    TopicArrayJson: JSON.stringify(e.Topics),
+                    MsgTypeArrayJson: JSON.stringify(e.MsgTypes),
                     ServiceName: e.ServiceName,
                     IsEnabled: e.IsEnabled
                 }

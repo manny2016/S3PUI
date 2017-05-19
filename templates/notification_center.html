@@ -203,122 +203,45 @@
                             dataBound: onSubscriptionBound
                         }"></div>
             </div>
-            <div id="dialogSubscriptionEditor" class="form" style="display: none;">
-                <div class="field">
-                    <div class="caption">Email</div>
-                    <div class="value">
-                        <input type="text" class="k-textbox" style="width: 300px;" data-bind="value: editSubscription.email, enabled: editSubscription.isEmailEditable, style: { border: editSubscription.emailFieldBorderStyle }"
-                        />
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="caption">Platform</div>
-                    <div class="value">
-                        <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscription.platform, source: flatforms"
-                            style="width: 300px;" />
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="caption">Topic</div>
-                    <div class="value" style="width: 300px;">
-                        <select data-role="multiselect" data-placeholder="Select Topics ..." data-bind="value: editSubscription.topics, source: editSubscription.topicsInForum"></select>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="caption">Message Type</div>
-                    <div class="value">
-                        <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscription.messagetype, source: messagetypes"
-                            style="width: 300px;" />
-                    </div>
-                </div>
-                <div class="actions">
-                    <div class="ui cancel button" data-bind="events: { click: onSubscriptionEditorClose }">Cancel</div>
-                    <div class="ui approve button" data-bind="events: { click: onSubscriptionUpdate }">OK</div>
-                </div>
-            </div>
-            <script id="templateSubscriptionManagement" type="text/x-kendo-template">
-                <i class="icon remove rule" title="Remove Subscription Rule"></i>
-                <i class="icon write rule" title="Update Subscription Rule"></i>
-            </script>
-            <script id="templateConfirmRemoveSubscription" type="text/x-kendo-template">
-                <div style="line-height: 40px;">
-                    <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
-                    <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete subscription(s) of #=email#?</span>
-                </div>
-            </script>
-            <script id="templateConfirmRemoveRule" type="text/x-kendo-template">
-                <div style="line-height: 40px;">
-                    <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
-                    <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete this rule?</span>
-                </div>
-                <div class="form">
-                    <div class="field">
-                        <div class="caption">Email</div>
-                        <div class="value" style="line-height: 30px;">#=email#</div>
-                    </div>
-                    <div class="field">
-                        <div class="caption">Platform</div>
-                        <div class="value" style="line-height: 30px;">#=platforms#</div>
-                    </div>
-                    <div class="field">
-                        <div class="caption">Topic</div>
-                        <div class="value" style="line-height: 30px;">#=topics#</div>
-                    </div>
-                    <div class="field">
-                        <div class="caption">Message Type</div>
-                        <div class="value" style="line-height: 30px;">#=types#</div>
-                    </div>
-                </div>
-            </script>
             <script type="text/javascript">
                 $("#tabstrip").kendoTabStrip({
                     scrollable: false
                 });
 
                 $(document).ready(function () {
-                    var notificationContainer = $('#notification');
-                    if (notificationContainer.length === 0) {
-                        notificationContainer = $('<div id="notification"></div>');
-                        notificationContainer.appendTo($("body"));
-                    }
-                    var notification = notificationContainer.data("kendoNotification");
-                    if (!notification) {
-                        notification = notificationContainer.kendoNotification({
-                        }).data("kendoNotification");
-                    }
-                    function showNotification(html, level) {
-                        notification.showText(html, level)
-                    }
-                    function showNotificationInfo(html) {
-                        showNotification(html, "info")
-                    }
-                    function showNotificationSuccess(html) {
-                        showNotification(html, "success")
-                    }
-                    function showNotificationWarning(html) {
-                        showNotification(html, "warning")
-                    }
-                    function showNotificationError(html) {
-                        showNotification(html, "error")
-                    }
-
-                    var confirmContainer = $('#confirm');
-                    if (confirmContainer.length === 0) {
-                        confirmContainer = $('<div id="confirm"></div>');
-                        confirmContainer.appendTo($("body"));
-                    }
-                    function confirm(html, onApprove, onDeny) {
-                        var confirmDialog = confirmContainer.kendoConfirm({
-                            title: false,
-                            content: html,
-                            visible: false,
-                            messages: {
-                                okText: "Yes",
-                                cancel: "No"
+                    var dialogSubscriptionRuleEditor;
+                    function getSubscriptionRuleEditor(viewModel, callback) {
+                        if (callback) {
+                            if (dialogSubscriptionRuleEditor) {
+                                callback();
+                            } else {
+                                $.get("../public/template/dialogSubscirptionRuleEditor.htm")
+                                    .done(function (response) {
+                                        var element = $(response);
+                                        kendo.bind(element, viewModel);
+                                        var editor = element.kendoWindow({
+                                            animation: false,
+                                            modal: true,
+                                            scrollable: false,
+                                            resizable: false,
+                                            title: "Edit Subscription",
+                                            width: 464,
+                                            visible: false
+                                        }).data("kendoWindow");
+                                        element.parent()
+                                            .find("span.k-window-title")
+                                            .css({
+                                                fontSize: "18px",
+                                                fontWeight: "500"
+                                            });
+                                        dialogSubscriptionRuleEditor = editor;
+                                        callback();
+                                    })
+                                    .fail(function () { showNotificationError("Load Subscription Rule Editor Fail.") });
                             }
-                        }).data("kendoConfirm");
-                        confirmDialog.result.done(onApprove || function () { }).fail(onDeny || function () { });
-                        confirmDialog.open();
+                        } else {
+                            return dialogSubscriptionRuleEditor;
+                        }
                     }
 
                     var scope = angular.element("html").scope();
@@ -332,7 +255,7 @@
                         messagetypes.push({ value: key, text: value });
                     });
 
-                    var editSubscription = kendo.data.Model.define({
+                    var editSubscriptionRule = kendo.data.Model.define({
                         fields: {
                             id: { type: "string" },
                             email: { type: "string" },
@@ -426,19 +349,25 @@
                                 }
                             }
                         }),
-                        editSubscription: new editSubscription(),
+                        editSubscriptionRule: new editSubscriptionRule(),
                         onSubscriptionBound: function (e) {
                             var grid = e.sender;
                             $.each(grid.tbody.children("tr"), function (i, row) {
                                 var data = grid.dataItem(row).toJSON();
                                 row = $(row);
                                 row.find("i.write.rule").click(function (e) {
-                                    viewModel.set("editSubscription.id", data.id);
-                                    viewModel.set("editSubscription.email", data.email);
-                                    viewModel.set("editSubscription.platform", data.platforms[0]);
-                                    viewModel.set("editSubscription.topics", data.topics);
-                                    viewModel.set("editSubscription.messagetype", data.types[0]);
-                                    subscriptionEditor.center().open();
+                                    var isSelectAllTopics = false;
+                                    if (data.topics.length === 0) { isSelectAllTopics = true; }
+                                    else if (data.topics[0] === "all") { isSelectAllTopics = true; }
+                                    viewModel.set("editSubscriptionRule.id", data.id);
+                                    viewModel.set("editSubscriptionRule.email", data.email);
+                                    viewModel.set("editSubscriptionRule.platform", data.platforms[0]);
+                                    viewModel.set("editSubscriptionRule.isSelectAllTopics", isSelectAllTopics);
+                                    viewModel.set("editSubscriptionRule.topics", data.topics);
+                                    viewModel.set("editSubscriptionRule.messagetype", data.types[0]);
+                                    getSubscriptionRuleEditor(viewModel, function () {
+                                        dialogSubscriptionRuleEditor.center().open();
+                                    });
                                 });
                                 row.find("i.remove.rule").click(function (e) {
                                     confirm(kendo.template($("#templateConfirmRemoveRule").html())({
@@ -460,25 +389,51 @@
                             });
                         },
                         onCreateSubscriptionRule: function (e) {
-                            viewModel.set("editSubscription.id", null);
-                            viewModel.set("editSubscription.email", scope.userInfo.userName);
-                            viewModel.set("editSubscription.platform", "all");
-                            viewModel.set("editSubscription.topics", []);
-                            viewModel.set("editSubscription.messagetype", "all");
-                            subscriptionEditor.center().open();
+                            viewModel.set("editSubscriptionRule.id", null);
+                            viewModel.set("editSubscriptionRule.email", scope.userInfo.userName);
+                            viewModel.set("editSubscriptionRule.platform", "all");
+                            viewModel.set("editSubscriptionRule.isSelectAllTopics", true);
+                            viewModel.set("editSubscriptionRule.topics", []);
+                            viewModel.set("editSubscriptionRule.messagetype", "all");
+                            getSubscriptionRuleEditor(viewModel, function () {
+                                dialogSubscriptionRuleEditor.center().open();
+                            });
                         },
-                        onSubscriptionEditorClose: function (e) {
-                            subscriptionEditor.close();
+                        onSubscriptionRuleEditorClose: function (e) {
+                            getSubscriptionRuleEditor(viewModel, function () {
+                                dialogSubscriptionRuleEditor.close();
+                            });
                         },
-                        onSubscriptionUpdate: function (e) {
+                        onSubscriptionRuleUpdate: function (e) {
+                            var topics = viewModel.editSubscriptionRule.topics;
+                            if (viewModel.editSubscriptionRule.isSelectAllTopics === true) {
+                                topics = ["all"];
+                            } else {
+                                var swap = [];
+                                var topicsInForum = viewModel.editSubscriptionRule.topicsInForum();
+                                $.each(topics, function (i, topic) {
+                                    if (topicsInForum.indexOf(topic) >= 0) {
+                                        swap.push(topic);
+                                    }
+                                });
+                                topics = swap;
+                            }
+                            if (viewModel.editSubscriptionRule.email.length === 0) {
+                                showNotificationWarning("Email is necessary.");
+                                return;
+                            }
+                            if (topics.length === 0) {
+                                showNotificationWarning("Please select one Topic at least.");
+                                return;
+                            }
                             scope.service.createSubscribe({
-                                id: viewModel.editSubscription.id,
-                                email: viewModel.editSubscription.email,
-                                platform: viewModel.editSubscription.platform,
-                                topics: viewModel.editSubscription.topics,
-                                msgtype: viewModel.editSubscription.messagetype,
+                                id: viewModel.editSubscriptionRule.id,
+                                email: viewModel.editSubscriptionRule.email,
+                                platform: viewModel.editSubscriptionRule.platform,
+                                topics: topics,
+                                msgtype: viewModel.editSubscriptionRule.messagetype,
                             }).then(function (response) {
-                                var action = viewModel.editSubscription.id
+                                var action = viewModel.editSubscriptionRule.id
                                     ? "Update" : "Create";
                                 if (response === true) {
                                     showNotificationSuccess(action + " Subscription Rule Success!");
@@ -486,7 +441,9 @@
                                 } else {
                                     showNotificationError(action + " Subscription Rule Fail.");
                                 }
-                                subscriptionEditor.close();
+                                getSubscriptionRuleEditor(viewModel, function () {
+                                    dialogSubscriptionRuleEditor.close();
+                                });
                             });
                         },
                         messagetypes: messagetypes,
@@ -495,7 +452,7 @@
                     });
                     viewModel.bind("change", function (e) {
                         if (e.field === "topics") {
-                            this.set("editSubscription.topicSource", topics);
+                            this.set("editSubscriptionRule.topicSource", topics);
                         }
                     });
 
@@ -523,24 +480,7 @@
                         viewModel.set("topics", topics);
                     });
 
-                    var subscriptionEditor = $("#dialogSubscriptionEditor").kendoWindow({
-                        animation: false,
-                        modal: true,
-                        scrollable: false,
-                        resizable: false,
-                        title: "Edit Subscription",
-                        width: 464,
-                        visible: false
-                    }).data("kendoWindow");
-                    $("#dialogSubscriptionEditor")
-                        .parent()
-                        .find("span.k-window-title")
-                        .css({
-                            fontSize: "18px",
-                            fontWeight: "500"
-                        });
-
-                    kendo.bind($('html'), viewModel);
+                    kendo.bind($('#tabstrip'), viewModel);
                 });
             </script>
         </div>

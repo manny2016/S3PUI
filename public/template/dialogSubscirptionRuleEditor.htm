@@ -1,0 +1,37 @@
+<div class="form" style="display: none;">
+    <div class="field">
+        <div class="caption">Email</div>
+        <div class="value">
+            <input type="text" class="k-textbox" style="width: 300px;" data-bind="value: editSubscriptionRule.email, enabled: editSubscriptionRule.isEmailEditable, style: { border: editSubscriptionRule.emailFieldBorderStyle }"
+            />
+        </div>
+    </div>
+    <div class="field">
+        <div class="caption">Platform</div>
+        <div class="value">
+            <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscriptionRule.platform, source: flatforms"
+                style="width: 300px;" />
+        </div>
+    </div>
+    <div class="field">
+        <div class="caption">
+            <span style="padding-right: 18px;">Topic</span>
+            <input type="checkbox" id="chkSubscriptionRuleSelectAllTopics" class="k-checkbox" data-bind="checked: editSubscriptionRule.isSelectAllTopics">
+            <label class="k-checkbox-label" for="chkSubscriptionRuleSelectAllTopics">All</label>
+        </div>
+        <div class="value" style="width: 300px;">
+            <select data-role="multiselect" data-placeholder="Select Topics ..." data-bind="value: editSubscriptionRule.topics, source: editSubscriptionRule.topicsInForum, disabled: editSubscriptionRule.isSelectAllTopics"></select>
+        </div>
+    </div>
+    <div class="field">
+        <div class="caption">Message Type</div>
+        <div class="value">
+            <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="value: editSubscriptionRule.messagetype, source: messagetypes"
+                style="width: 300px;" />
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button" data-bind="events: { click: onSubscriptionRuleEditorClose }">Cancel</div>
+        <div class="ui approve button" data-bind="events: { click: onSubscriptionRuleUpdate }">OK</div>
+    </div>
+</div>

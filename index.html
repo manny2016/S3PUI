@@ -26,6 +26,40 @@
 </head>
 
 <body>
+    <script id="templateSubscriptionManagement" type="text/x-kendo-template">
+        <i class="icon remove rule" title="Remove Subscription Rule"></i>
+        <i class="icon write rule" title="Update Subscription Rule"></i>
+    </script>
+    <script id="templateConfirmRemoveSubscription" type="text/x-kendo-template">
+        <div style="line-height: 40px;">
+            <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
+            <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete subscription(s) of #=email#?</span>
+        </div>
+    </script>
+    <script id="templateConfirmRemoveRule" type="text/x-kendo-template">
+        <div style="line-height: 40px;">
+            <i class="icon sign warning" style="float: left; font-size: 40px; color: \\#FF9800;"></i>
+            <span style="margin-left: 10px; font-size: 16px; font-weight: bold;">Are you sure to delete this rule?</span>
+        </div>
+        <div class="form">
+            <div class="field">
+                <div class="caption">Email</div>
+                <div class="value" style="line-height: 30px;">#=email#</div>
+            </div>
+            <div class="field">
+                <div class="caption">Platform</div>
+                <div class="value" style="line-height: 30px;">#=platforms#</div>
+            </div>
+            <div class="field">
+                <div class="caption">Topic</div>
+                <div class="value" style="line-height: 30px;">#=topics#</div>
+            </div>
+            <div class="field">
+                <div class="caption">Message Type</div>
+                <div class="value" style="line-height: 30px;">#=types#</div>
+            </div>
+        </div>
+    </script>
     <sub-window></sub-window>
     <form id="form1" runat="server">
         <div>
@@ -78,7 +112,7 @@
                         <a class="ui item teal" ui-sref="notification" ng-class="{select: $state.includes('notification')}">
                             <!--<i class="alarm outline icon"></i>-->
                             Notification Center
-                            <div class="mini floating circular ui red label" ng-show="Notifications.collection.length" >{{Notifications.collection.length}}</div>
+                            <div class="mini floating circular ui red label" ng-show="Notifications.collection.length">{{Notifications.collection.length}}</div>
                         </a>
                         <a class="green ui item" ui-sref="home.about" ng-class="{select: $state.includes('home.about')}">
                                 About
@@ -110,6 +144,7 @@
     <script type="text/javascript" src="/public/angular.min.js"></script>
     <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.13/js/adal.min.js"></script>
     <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.13/js/adal-angular.min.js"></script>
+    <script type="text/javascript" src="/public/global.js"></script>
     <script type="text/javascript" src="/public/main.min.js"></script>
     <script type="text/javascript" src="/public/angular-datepicker.min.js"></script>
     <script type="text/javascript" src="/public/angular-websocket.min.js"></script>
@@ -118,4 +153,5 @@
     <script type="text/javascript" src="/node_modules/angular-smart-table/dist/smart-table.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 </body>
+
 </html>

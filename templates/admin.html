@@ -138,6 +138,20 @@
                 <div class="ui red basic button" ng-click="cancelUpdate()">Decline</div>
             </div>
         </div>
+        <div id="removeConfirmModal" class="ui small modal">
+            <div class="header">
+                Attention !
+            </div>
+            <div class="content">
+                <div class="description text red">
+                    This operation will remove this topic!!!
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui cancel button">Cancel</div>
+                <div class="ui approve button">OK</div>
+            </div>
+        </div>
     </div>
     <div data-tab="notification" class="ui tab bottom attached segment">
         <!--<div class="ui grid">
@@ -264,10 +278,10 @@
                 </div>
             </div>
         </div>
-        <button class="ui icon green button" ng-click="addNCRule($event)">
+        <button class="ui icon green button" data-bind="events: { click: onCreateSubscriptionRule }">
             <i class="plus icon"></i> Add Notification Rule
         </button>
-        <table st-table="stTable" st-safe-src="subscriptions" class="ui striped green table">
+        <table id="gridSubscriptionRules" st-table="stTable" st-safe-src="subscriptions" class="ui striped green table">
             <thead>
                 <tr>
                     <th>Email
@@ -297,15 +311,14 @@
             <tbody>
                 <tr ng-repeat="m in stTable">
                     <td>{{m.EMail}}</td>
-                    <td>{{CONST.ALL_ENABLED_PLARFORMS[m.Platform]||m.Platform}}</td>
+                    <td>{{m.Platform}}</td>
                     <td>{{m.Topic}}</td>
-                    <td>
-                        {{CONST.MESSAGE_TYPES[m.MsgType]||m.MsgType}}
-                    </td>
+                    <td>{{m.MsgType}}</td>
                     <td width="100">
-                        <button class="ui icon red button" ng-click="removeSubscription(m)">
-                            <i class="minus icon"></i>
-                        </button>
+                        <i class="icon remove rule" title="Remove Subscription Rule" data-entity="{ 'id': '{{m.GroupId}}', 'email': '{{m.EMail}}', 'platforms': '{{m.Platform}}', 'topics': '{{m.Topic}}', 'types': '{{m.MsgType}}' }"
+                            onclick="onSubscriptionRuleRemove(this);"></i>
+                        <i class="icon write rule" title="Update Subscription Rule" data-entity="{ 'id': '{{m.GroupId}}', 'email': '{{m.EMail}}', 'platforms': {{m.PlatformArrayJson}}, 'topics': {{m.TopicArrayJson}}, 'types': {{m.MsgTypeArrayJson}} }"
+                            onclick="onSubscriptionRuleUpdate(this);"></i>
                     </td>
                 </tr>
             </tbody>
@@ -319,75 +332,200 @@
         </table>
     </div>
 </div>
-<div id="removeConfirmModal" class="ui small modal">
-    <div class="header">
-        Attention !
-    </div>
-    <div class="content">
-        <div class="description text red">
-            This operation will remove this topic!!!
-        </div>
-    </div>
-    <div class="actions">
-        <div class="ui cancel button">Cancel</div>
-        <div class="ui approve button">OK</div>
-    </div>
-</div>
-<div id="newSubscription" class="ui small modal">
-    <div class="header">
-        New Notification Rule
-    </div>
-    <div class="content">
-        <div class="description">
-            <label>Email</label>
-            <div class="ui input">
-                <input type="text" placeholder="Email address..." ng-model="newSubscription.email">
-            </div>
-        </div>
-        <div class="description">
-            <label>Platform</label>
-            <select class="ui fluid dropdown" ng-model="newSubscription.platform">
-                <option value="all">All</option>
-                <option value="{{v}}" ng-repeat="(v,p) in CONST.ALL_ENABLED_PLARFORMS">{{p}}</option>
-            </select>
-        </div>
-        <div class="description">
-            <label>Topic</label>
-            <ui-select multiple ng-model="newSubscription.topics" theme="bootstrap" close-on-select="false" style="width: 100%;" title="Select Topics...">
-                <ui-select-match placeholder="Select Topics...">{{$item}}</ui-select-match>
-                <ui-select-choices repeat="topic in multipleSelectedTopics | filter:$select.search">{{topic}}</ui-select-choices>
-            </ui-select>
-        </div>
-        <div class="description">
-            <label>Message Type</label>
-            <select class="ui fluid dropdown" ng-model="newSubscription.msgtype">
-                <option value="all">All</option>
-                <option value="{{v}}" ng-repeat="(v,p) in CONST.MESSAGE_TYPES">{{p}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="actions">
-        <div class="ui cancel button">Cancel</div>
-        <div class="ui approve button">OK</div>
-    </div>
-</div>
-<div id="subscriptionDelConfirm" class="ui basic modal">
-    <div class="ui icon header">
-        <i class="warning sign icon"></i> Are you sure to delete this rule
-    </div>
-    <div class="content">
-        <p style="text-align:center">
-            Email: {{willDelEnt.EMail}}<br /> Platform: {{CONST.ALL_ENABLED_PLARFORMS[willDelEnt.Platform]||willDelEnt.Platform}}<br
-            /> Topic: {{willDelEnt.Topic}}
-            <br /> Message Type: {{CONST.MESSAGE_TYPES[willDelEnt.MsgType]||willDelEnt.MsgType}}<br />
-        </p>
-    </div>
-    <div class="actions">
-        <div class="ui red basic cancel inverted button">
-            <i class="remove icon"></i> No
-        </div>
-        <div class="ui green ok inverted button">
-            <i class="checkmark icon"></i> Yes
-        </div>
-    </div>
-</div>
+<script type="text/javascript">
+    var dialogSubscriptionRuleEditor;
+    function getSubscriptionRuleEditor(viewModel, callback) {
+        if (callback) {
+            if (dialogSubscriptionRuleEditor) {
+                callback();
+            } else {
+                $.get("../public/template/dialogSubscirptionRuleEditor.htm")
+                    .done(function (response) {
+                        var element = $(response);
+                        kendo.bind(element, viewModel);
+                        var editor = element.kendoWindow({
+                            animation: false,
+                            modal: true,
+                            scrollable: false,
+                            resizable: false,
+                            title: "Edit Subscription",
+                            width: 464,
+                            visible: false
+                        }).data("kendoWindow");
+                        element.parent()
+                            .find("span.k-window-title")
+                            .css({
+                                fontSize: "18px",
+                                fontWeight: "500"
+                            });
+                        dialogSubscriptionRuleEditor = editor;
+                        callback();
+                    })
+                    .fail(function () { showNotificationError("Load Subscription Rule Editor Fail.") });
+            }
+        } else {
+            return dialogSubscriptionRuleEditor;
+        }
+    }
+
+    function onSubscriptionRuleUpdate(element) {
+        var data = JSON.parse($(element).data("entity").replace(/'/g, '"'));
+        var isSelectAllTopics = false;
+        if (data.topics.length === 0) { isSelectAllTopics = true; }
+        else if (data.topics[0] === "all") { isSelectAllTopics = true; }
+        viewModel.set("editSubscriptionRule.id", data.id);
+        viewModel.set("editSubscriptionRule.email", data.email);
+        viewModel.set("editSubscriptionRule.platform", data.platforms[0]);
+        viewModel.set("editSubscriptionRule.isSelectAllTopics", isSelectAllTopics);
+        viewModel.set("editSubscriptionRule.topics", data.topics);
+        viewModel.set("editSubscriptionRule.messagetype", data.types[0]);
+        getSubscriptionRuleEditor(viewModel, function () {
+            dialogSubscriptionRuleEditor.center().open();
+        });
+    }
+
+    function onSubscriptionRuleRemove(element) {
+        var data = JSON.parse($(element).data("entity").replace(/'/g, '"'));
+        confirm(kendo.template($("#templateConfirmRemoveRule").html())(data), function () {
+            scope.service.removeSubscriptionRule(data.id).then(function (response) {
+                if (response === true) {
+                    showNotificationSuccess("Remove Subscription Rule Success!");
+                    scope.listSubscriptions();
+                } else {
+                    showNotificationError("Remove Subscription Rule Fail.");
+                }
+            });
+        });
+    }
+
+    var scope = angular.element("#gridSubscriptionRules").scope();
+    var flatforms = [{ value: "all", text: "All", }];
+    var topics = { all: [] };
+    var messagetypes = [{ value: "all", text: "All", }];
+    $.each(scope.CONST.ALL_ENABLED_PLARFORMS, function (key, value) {
+        flatforms.push({ value: key, text: value });
+    });
+    $.each(scope.CONST.MESSAGE_TYPES, function (key, value) {
+        messagetypes.push({ value: key, text: value });
+    });
+
+    var editSubscriptionRule = kendo.data.Model.define({
+        fields: {
+            id: { type: "string" },
+            email: { type: "string" },
+            platform: { type: "string" },
+            topics: { type: "object" },
+            messagetype: { type: "string" },
+            topicSource: { type: "object" }
+        },
+        isEmailEditable: function () {
+            return (this.get("email") || "").length === 0;
+        },
+        emailFieldBorderStyle: function () {
+            if (this.get("isEmailEditable()") === false) {
+                return "none";
+            }
+            return "";
+        },
+        topicsInForum: function () {
+            var topicSource = this.get("topicSource") || {};
+            var platform = this.get("platform") || "all";
+            return topicSource[platform] || [];
+        }
+    });
+    var viewModel = kendo.observable({
+        editSubscriptionRule: new editSubscriptionRule(),
+        onCreateSubscriptionRule: function (e) {
+            viewModel.set("editSubscriptionRule.id", null);
+            viewModel.set("editSubscriptionRule.email", "");
+            viewModel.set("editSubscriptionRule.platform", "all");
+            viewModel.set("editSubscriptionRule.isSelectAllTopics", true);
+            viewModel.set("editSubscriptionRule.topics", []);
+            viewModel.set("editSubscriptionRule.messagetype", "all");
+            getSubscriptionRuleEditor(viewModel, function () {
+                dialogSubscriptionRuleEditor.center().open();
+            });
+        },
+        onSubscriptionRuleEditorClose: function (e) {
+            getSubscriptionRuleEditor(viewModel, function () {
+                dialogSubscriptionRuleEditor.close();
+            });
+        },
+        onSubscriptionRuleUpdate: function (e) {
+            var topics = viewModel.editSubscriptionRule.topics;
+            if (viewModel.editSubscriptionRule.isSelectAllTopics === true) {
+                topics = ["all"];
+            } else {
+                var swap = [];
+                var topicsInForum = viewModel.editSubscriptionRule.topicsInForum();
+                $.each(topics, function (i, topic) {
+                    if (topicsInForum.indexOf(topic) >= 0) {
+                        swap.push(topic);
+                    }
+                });
+                topics = swap;
+            }
+            if (viewModel.editSubscriptionRule.email.length === 0) {
+                showNotificationWarning("Email is necessary.");
+                return;
+            }
+            if (topics.length === 0) {
+                showNotificationWarning("Please select one Topic at least.");
+                return;
+            }
+            scope.service.createSubscribe({
+                id: viewModel.editSubscriptionRule.id,
+                email: viewModel.editSubscriptionRule.email,
+                platform: viewModel.editSubscriptionRule.platform,
+                topics: topics,
+                msgtype: viewModel.editSubscriptionRule.messagetype,
+            }).then(function (response) {
+                var action = viewModel.editSubscriptionRule.id
+                    ? "Update" : "Create";
+                if (response === true) {
+                    showNotificationSuccess(action + " Subscription Rule Success!");
+                    scope.listSubscriptions();
+                } else {
+                    showNotificationError(action + " Subscription Rule Fail.");
+                }
+                getSubscriptionRuleEditor(viewModel, function () {
+                    dialogSubscriptionRuleEditor.close();
+                });
+            });
+        },
+        messagetypes: messagetypes,
+        topics: topics,
+        flatforms: flatforms
+    });
+    viewModel.bind("change", function (e) {
+        if (e.field === "topics") {
+            this.set("editSubscriptionRule.topicSource", topics);
+        }
+    });
+
+    scope.service.getCate().then(function (categories) {
+        $.each(categories, function (i, category) {
+            if (category.isGA === true) {
+                var name = category.TechCategoryName;
+                $.each(category.Platforms, function (j, platform) {
+                    if (platform.isEnabled === true) {
+                        if (topics.all.indexOf(name) < 0) {
+                            topics.all.push(name);
+                        }
+                        if (platform.PlatformName in topics) {
+                            var array = topics[platform.PlatformName];
+                            if (array.indexOf(name) < 0) {
+                                array.push(name);
+                            }
+                        } else {
+                            topics[platform.PlatformName] = [name];
+                        }
+                    }
+                });
+            }
+        });
+        viewModel.set("topics", topics);
+    });
+    kendo.bind($("div[data-tab=notification]"), viewModel);
+
+</script>
