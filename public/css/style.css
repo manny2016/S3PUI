@@ -382,3 +382,134 @@ tr > td > i.icon.write {
 .additional-icon-in-filter .k-filtercell > .k-operator-hidden {
   margin-right: 20px;
 }
+.report {
+  cursor: default;
+  padding: 0 30px;
+}
+.report .icon {
+  background-repeat: no-repeat;
+}
+.report .title {
+  text-align: center;
+  line-height: 40px;
+  padding-bottom: 10px;
+  color: #009E11;
+  font-size: 30px;
+  font-weight: 700;
+}
+.report .sub-title {
+  line-height: 20px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.report .sub-title .icon {
+  padding-left: 20px;
+  background-size: 20px 20px;
+  background-position: 0 center;
+}
+.report .sub-title .data-source .caption {
+  float: left;
+  display: block;
+  width: 100px;
+}
+.report .sub-title .data-source .caption.forum {
+  width: 80px;
+}
+.report .sub-title .date-range {
+  float: right;
+}
+.report .section {
+  position: relative;
+  margin-top: 20px;
+  border: solid 1px rgba(34, 36, 38, 0.15);
+  border-radius: 4px 4px 0 0;
+}
+.report .section .brand {
+  height: 40px;
+  background-color: #F0F0F0;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+.report .section.flexible {
+  cursor: pointer;
+}
+.report .section.flexible .brand .arrow {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0;
+  line-height: 0;
+  color: inherit;
+  border-width: 6px;
+  border-style: dashed;
+}
+.report .section.flexible.expanded .brand .arrow {
+  border-bottom-width: 0;
+  border-top-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.report .section.flexible.collapsed .brand .arrow {
+  border-right-width: 0;
+  border-left-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.report .summary {
+  /*@render: `function () {
+            this.content = encodeURIComponent('<svg width="100%" height="40px" xmlns="http://www.w3.org/2000/svg"><foreignObject width="100%" height="100%" x="0" y="0"><div xmlns="http://www.w3.org/1999/xhtml" style="margin-top: 10px; background-color: #F0F0F0;">Summary</div></foreignObject></svg>');
+        }()`;
+        &:before {
+            content: url('data:image/svg+xml;charset=utf8,`content`')
+        }*/
+  border-top: solid 2px #2185D0;
+}
+.report .summary .brand {
+  color: #2185D0;
+}
+.report .summary .brand:before {
+  content: "Summary";
+}
+.report .summary table {
+  margin-top: 10px;
+  width: 100%;
+}
+.report .summary table tr td {
+  border-left: solid 1px rgba(34, 36, 38, 0.15);
+  width: 25%;
+}
+.report .summary table tr td .card {
+  position: relative;
+  margin: 20px 10px 0;
+  padding: 50px 0 30px;
+  border-top: solid 1px rgba(34, 36, 38, 0.15);
+  font-size: 42px;
+  text-align: center;
+}
+.report .summary table tr td .card .caption {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2185D0;
+  background-color: #FFFFFF;
+  white-space: nowrap;
+}
+.report .summary table tr td:first-child {
+  border-left: none;
+}
+.report .sentiment {
+  border-top: solid 2px #A333C8;
+}
+.report .sentiment .brand {
+  color: #A333C8;
+}
+.report .sentiment .brand:before {
+  content: "Sentiment";
+}

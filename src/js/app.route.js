@@ -97,6 +97,11 @@ app
         controller: 'notificationCtrl',
         templateUrl: 'templates/notification_center.html',
         requireADLogin: true
+      })
+      .state('report', {
+        url: '/report',
+        templateUrl: 'templates/report.html',
+        requireADLogin: true
       });
     // var endpoints = {
     //   'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID

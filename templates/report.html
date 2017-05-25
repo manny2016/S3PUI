@@ -1,0 +1,148 @@
+<style>
+
+</style>
+<div class="ui segment basic container report">
+    <div class="ui breadcrumb">
+        <a class="section">{{CONST.APP_NAME}}</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Report</div>
+    </div>
+    <div class="title" data-bind="html: ReportTitle"></div>
+    <div class="sub-title">
+        <div>
+            <span class="data-source">
+                <span class="caption forum">Data Source:</span>
+            <span class="icon" data-bind="html: ForumName, style: { backgroundImage: ForumIconUrl }"></span>
+            </span>
+            <span class="date-range" data-bind="html: DateRangeHtml"></span>
+        </div>
+        <div class="data-source">
+            <span class="caption">Search Phrase:</span>
+            <span data-bind="html: Search"></span>
+        </div>
+    </div>
+    <div class="section summary">
+        <div class="brand"></div>
+        <table>
+            <tr>
+                <td>
+                    <div class="card" style="color: #6435C9;">
+                        <div class="caption">Message Posts</div>
+                        <span data-bind="html: ThreadCountText"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="color: #FBBD08;">
+                        <div class="caption">
+                            Influence of Users
+                            <br />(Page View)
+                        </div>
+                        <span data-bind="html: TotalViewCountText"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="color: #F2711C;">
+                        <div class="caption">Unique Users of Posts</div>
+                        <span data-bind="html: UserCountText"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="card" style="color: #B5CC18;">
+                        <div class="caption">Regions of Users</div>
+                        <span data-bind="html: RegionCountText"></span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="section flexible sentiment collapsed">
+        <div class="brand">
+            <span class="arrow"></span>
+        </div>
+    </div>
+</div>
+<script>
+    var scope = angular.element("html").scope();
+    var model = kendo.data.Model.define({
+        fields: {
+            ReportTitle: { type: "string" },
+            Forum: { type: "string" },
+            StartTime: { type: "date" },
+            EndTime: { type: "date" },
+            Search: { type: "string", defaultValue: "N/A" },
+
+            ThreadCount: { type: "number" },
+            TotalViewCount: { type: "number" },
+            UserCount: { type: "number" },
+            RegionCount: { type: "number" }
+        }
+    });
+    var viewModel = kendo.observable(new model());
+    var formatOptions = {
+        Forum: function (model) {
+            model.set("ForumName", scope.CONST.ALL_ENABLED_PLARFORMS[model.Forum] || model.Forum);
+            model.set("ForumIconUrl", "url('public/images/" + model.Forum + ".png')");
+        },
+        _UpdateDateRageHtml: function (model) {
+            var html = "N/A";
+            if (model.StartTime) {
+                if (model.EndTime) {
+                    html = "Date Range: "
+                        + kendo.toString(model.StartTime, "M/d/yyyy h:mm:ss tt")
+                        + " to "
+                        + kendo.toString(model.EndTime, "M/d/yyyy h:mm:ss tt");
+                }
+                else {
+                    html = "Date: "
+                        + kendo.toString(model.StartTime, "M/d/yyyy h:mm:ss tt");
+                }
+            }
+            model.set("DateRangeHtml", html);
+        },
+        StartTime: function (model) {
+            this._UpdateDateRageHtml(model);
+        },
+        EndTime: function (model) {
+            this._UpdateDateRageHtml(model);
+        },
+        Search: function (model) {
+            if ((model.Search === null) || (model.Search.length === 0)) {
+                model.set("Search", "N/A");
+            }
+        },
+        _FormatNumber: function (number) {
+            if ($.isNumeric(number) === false) { return "N/A"; }
+            if (number < 1000) { return number; }
+            var suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
+            var exp = Math.floor(Math.log(number) / Math.log(1000));
+            return /(^.+\.((0*[1-9]+)|0))0*$/g.exec((number / Math.pow(1000, exp)).toFixed(3))[1] + suffixes[exp - 1];
+        },
+        ThreadCount: function (model) {
+            model.set("ThreadCountText", this._FormatNumber(model.ThreadCount));
+        },
+        TotalViewCount: function (model) {
+            model.set("TotalViewCountText", this._FormatNumber(model.TotalViewCount));
+        },
+        UserCount: function (model) {
+            model.set("UserCountText", this._FormatNumber(model.UserCount));
+        },
+        RegionCount: function (model) {
+            model.set("RegionCountText", this._FormatNumber(model.RegionCount));
+        }
+    };
+    viewModel.bind("change", function (e) {
+        if (e.field in formatOptions) {
+            formatOptions[e.field](this);
+        }
+    });
+    kendo.bind($(".ui.basic.container"), viewModel);
+
+    viewModel.set("ReportTitle", "Volumes and Spikes Report (Demo)");
+    viewModel.set("Forum", "so");
+    viewModel.set("StartTime", "2017-01-20 21:16:55");
+    viewModel.set("EndTime", "2017-02-11 08:50:23");
+    viewModel.set("ThreadCount", 1457800);
+    viewModel.set("TotalViewCount", 12300);
+    viewModel.set("UserCount", 581230);
+    viewModel.set("RegionCount", 989);
+</script>
