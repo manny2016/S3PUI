@@ -418,13 +418,13 @@ tr > td > i.icon.write {
 .report .sub-title .date-range {
   float: right;
 }
-.report .section {
+.report > .section {
   position: relative;
   margin-top: 20px;
   border: solid 1px rgba(34, 36, 38, 0.15);
   border-radius: 4px 4px 0 0;
 }
-.report .section .brand {
+.report > .section .brand {
   height: 40px;
   background-color: #F0F0F0;
   font-size: 18px;
@@ -432,14 +432,11 @@ tr > td > i.icon.write {
   line-height: 40px;
   text-align: center;
 }
-.report .section.flexible {
+.report .section.flexible .brand {
   cursor: pointer;
 }
 .report .section.flexible .brand .arrow {
   position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 0;
   line-height: 0;
   color: inherit;
@@ -447,16 +444,26 @@ tr > td > i.icon.write {
   border-style: dashed;
 }
 .report .section.flexible.expanded .brand .arrow {
+  left: 17px;
+  top: 17px;
   border-bottom-width: 0;
   border-top-style: solid;
   border-left-color: transparent;
   border-right-color: transparent;
 }
+.report .section.flexible.expanded > .content {
+  display: block;
+}
 .report .section.flexible.collapsed .brand .arrow {
+  left: 20px;
+  top: 14px;
   border-right-width: 0;
   border-left-style: solid;
   border-top-color: transparent;
   border-bottom-color: transparent;
+}
+.report .section.flexible.collapsed > .content {
+  display: none;
 }
 .report .summary {
   /*@render: `function () {
@@ -512,4 +519,31 @@ tr > td > i.icon.write {
 }
 .report .sentiment .brand:before {
   content: "Sentiment";
+}
+.report .services {
+  border-top: solid 2px #21BA45;
+}
+.report .services .brand {
+  color: #21BA45;
+}
+.report .services .brand:before {
+  content: "Mentioned Services";
+}
+.report .users {
+  border-top: solid 2px #F2711C;
+}
+.report .users .brand {
+  color: #F2711C;
+}
+.report .users .brand:before {
+  content: "Most VoC Post By";
+}
+.report .world {
+  border-top: solid 2px #6435C9;
+}
+.report .world .brand {
+  color: #6435C9;
+}
+.report .world .brand:before {
+  content: "User Distribution";
 }

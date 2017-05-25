@@ -1,5 +1,7 @@
 <style>
-
+    .placehodler {
+        height: 200px;
+    }
 </style>
 <div class="ui segment basic container report">
     <div class="ui breadcrumb">
@@ -56,12 +58,33 @@
         </table>
     </div>
     <div class="section flexible sentiment collapsed">
-        <div class="brand">
+        <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
+        <div class="content placehodler"></div>
+    </div>
+    <div class="section flexible services expanded">
+        <div class="brand" data-bind="events: { click: OnSectionStretch }">
+            <span class="arrow"></span>
+        </div>
+        <div class="content">
+            <div id="chartMentionedServices" style="width: 400px; height: 300px;"></div>
+        </div>
+    </div>
+    <div class="section flexible users collapsed">
+        <div class="brand" data-bind="events: { click: OnSectionStretch }">
+            <span class="arrow"></span>
+        </div>
+        <div class="content placehodler"></div>
+    </div>
+    <div class="section flexible world collapsed">
+        <div class="brand" data-bind="events: { click: OnSectionStretch }">
+            <span class="arrow"></span>
+        </div>
+        <div class="content placehodler"></div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     var scope = angular.element("html").scope();
     var model = kendo.data.Model.define({
         fields: {
@@ -75,6 +98,21 @@
             TotalViewCount: { type: "number" },
             UserCount: { type: "number" },
             RegionCount: { type: "number" }
+        },
+        OnSectionStretch: function (e) {
+            var section = $(e.target).parent();
+            while (section && (section.is(".section.flexible") == false)) {
+                section = section.parent();
+            }
+            if (section) {
+                if (section.is(".collapsed")) {
+                    section.addClass("expanded");
+                    section.removeClass("collapsed");
+                } else if (section.is(".expanded")) {
+                    section.addClass("collapsed");
+                    section.removeClass("expanded");
+                }
+            }
         }
     });
     var viewModel = kendo.observable(new model());
@@ -128,6 +166,82 @@
         },
         RegionCount: function (model) {
             model.set("RegionCountText", this._FormatNumber(model.RegionCount));
+        },
+        MentionedServices: function (model) {
+            var chart = echarts.init($("#chartMentionedServices")[0]);
+            chart.setOption({
+                title: {
+                    textStyle: {
+                        fontSize: 13
+                    },
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{b} : {c}"
+                },
+                series: {
+                    type: 'wordCloud',
+                    gridSize: 0,
+                    sizeRange: [12, 24],
+                    textStyle: {
+                        normal: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    data: [{
+                        name: "Azure Active Directory", value: 2000
+                    }, {
+                        name: "Virtual Machines", value: 1879
+                    }, {
+                        name: "Azure Function", value: 1788
+                    }, {
+                        name: "Storage", value: 1723
+                    }, {
+                        name: "Web Apps", value: 1654
+                    }, {
+                        name: "Service Fabric", value: 1598
+                    }, {
+                        name: "App Service", value: 1532
+                    }, {
+                        name: "Mobile Apps", value: 1484
+                    }, {
+                        name: "SQL Database", value: 1112
+                    }, {
+                        name: "Data Lake Store", value: 965
+                    }, {
+                        name: "Data Factory", value: 847
+                    }, {
+                        name: "Azure Cosmos DB", value: 582
+                    }, {
+                        name: "Application Insights", value: 555
+                    }, {
+                        name: "Service Bus", value: 550
+                    }, {
+                        name: "Visual Studio Team Services", value: 462
+                    }, {
+                        name: "Blob Storage", value: 366
+                    }, {
+                        name: "HDInsight", value: 360
+                    }, {
+                        name: "IoT Hub", value: 282
+                    }, {
+                        name: "Load Balancer", value: 273
+                    }, {
+                        name: "Event Hubs", value: 265
+                    }]
+                }
+            });
         }
     };
     viewModel.bind("change", function (e) {
@@ -145,4 +259,5 @@
     viewModel.set("TotalViewCount", 12300);
     viewModel.set("UserCount", 581230);
     viewModel.set("RegionCount", 989);
+    viewModel.set("MentionedServices", 0);
 </script>

@@ -597,7 +597,7 @@ tr > td {
         }
     }
     @border: solid 1px rgba(34, 36, 38, 0.15);
-    .section {
+    > .section {
         position: relative;
         margin-top: 20px;
         border: @border;
@@ -612,12 +612,11 @@ tr > td {
         }
     }
     .section.flexible {
-        cursor: pointer;
+        .brand {
+            cursor: pointer;
+        }
         .brand .arrow {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
             font-size: 0;
             line-height: 0;
             color: inherit;
@@ -627,18 +626,28 @@ tr > td {
     }
     .section.flexible.expanded {
         .brand .arrow {
+            left: 17px;
+            top: 17px;
             border-bottom-width: 0;
             border-top-style: solid;
             border-left-color: transparent;
             border-right-color: transparent;
         }
+        > .content {
+            display: block;
+        }
     }
     .section.flexible.collapsed {
         .brand .arrow {
+            left: 20px;
+            top: 14px;
             border-right-width: 0;
             border-left-style: solid;
             border-top-color: transparent;
             border-bottom-color: transparent;
+        }
+        > .content {
+            display: none;
         }
     }
     .summary {
@@ -696,6 +705,36 @@ tr > td {
         .brand {
             &:before {
                 content: "Sentiment";
+            }
+            color: @color;
+        }
+    }
+    .services {
+        @color: @green;
+        border-top: solid 2px @color;
+        .brand {
+            &:before {
+                content: "Mentioned Services";
+            }
+            color: @color;
+        }
+    }
+    .users {
+        @color: @orange;
+        border-top: solid 2px @color;
+        .brand {
+            &:before {
+                content: "Most VoC Post By";
+            }
+            color: @color;
+        }
+    }
+    .world {
+        @color: @violet;
+        border-top: solid 2px @color;
+        .brand {
+            &:before {
+                content: "User Distribution";
             }
             color: @color;
         }
