@@ -574,6 +574,65 @@ tr > td > i.icon.write {
 .report .users .brand:before {
   content: "Most VoC Post By";
 }
+.report .users > .content {
+  height: 320px;
+}
+.report .users > .content > .user.card {
+  float: left;
+  width: 25%;
+  height: 30px;
+  line-height: 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 60px center;
+}
+.report .users > .content > .user.card > span {
+  display: inline-block;
+  margin-left: 60px;
+  font-weight: bold;
+}
+.report .users > .content > .user.card > span.name {
+  display: block;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.report .users > .content > .user.card > span.caption {
+  float: left;
+}
+.report .users > .content > .user.card > span.value {
+  display: block;
+  margin-left: 200px;
+  color: #999999;
+}
+.report .users > .content > .user.card:first-child {
+  float: none;
+  margin: 20px 0 40px;
+  padding-left: 180px;
+  width: 100%;
+  height: 100px;
+  background-size: 100px 100px;
+  background-position: 60px center;
+  clear: both;
+}
+.report .users > .content > .user.card:first-child > span {
+  float: none;
+  display: inline-block;
+  margin-left: 0;
+  font-size: 20px;
+}
+.report .users > .content > .user.card:first-child > span.name {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  font-size: 32px;
+}
+.report .users > .content > .user.card:first-child > span.caption {
+  padding-right: 4px;
+}
+.report .users > .content > .user.card:first-child > span.value {
+  padding-right: 40px;
+}
 .report .world {
   border-top: solid 2px #6435C9;
 }
@@ -590,7 +649,6 @@ tr > td > i.icon.write {
   float: left;
   width: 650px;
   height: 300px;
-  border: none;
 }
 .report .world > .content > div[data-role=grid] {
   float: right;
