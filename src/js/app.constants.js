@@ -29,7 +29,12 @@ app.constant('CONST', {
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv2-rawdata-proccess.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
-        
+
+        ENDPOINT: 'https://shpv2exchange.azurewebsites.net/WebServices/S3PDataService/',
+        LOCAL_TEST_DATA: '/data/',
+        TWITTER_SERVER_STATUS:'https://shpv2exchange.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
+        OTHERS_SERVER_STATUS:'https://shpv2exchange.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
+
         ENDPOINT: 'https://shpv2-uat-slicing.azurewebsites.net/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv2-uat-slicing.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
