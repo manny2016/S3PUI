@@ -57,18 +57,54 @@
             </tr>
         </table>
     </div>
-    <div class="section flexible sentiment collapsed">
-        <div class="brand" data-bind="events: { click: OnSectionStretch }">
-            <span class="arrow"></span>
-        </div>
-        <div class="content placehodler"></div>
-    </div>
-    <div class="section flexible services expanded">
+    <div class="section flexible sentiment expanded">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
         <div class="content">
-            <div id="chartMentionedServices" style="width: 400px; height: 300px;"></div>
+            <div id="chartSentiments"></div>
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
+                    field: 'Title',
+                    attributes: {
+                        style: 'max-width: 450px; white-space: nowrap; overflow: hidden;'
+                    },
+                    template: '<a target=\'_blank\' href=\'#=Link#\' title=\'#=User.Name#\' style=\'white-space: nowrap; overflow: hidden;\'>#=Title#</a>'
+                 }, {
+                    title: 'Post By',
+                    field: 'User.Name',
+                    attributes: {
+                        style: 'max-width: 100px; white-space: nowrap; overflow: hidden;'
+                    },
+                    template: '<span title=\'#=User.Name#\'>#=User.Name#</span>'
+                 }, {
+                    field: 'Sentiment',
+                    values: sentimentValues
+                 }]" data-bind="source: ThreadsInSelectedSentiments"></div>
+        </div>
+    </div>
+    <div class="section flexible services collapsed">
+        <div class="brand" data-bind="events: { click: OnSectionStretch }">
+            <span class="arrow"></span>
+        </div>
+        <div class="content">
+            <div id="chartMentionedServices"></div>
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="{ pageSize: 6 }" data-columns="[{
+                    title: 'Service Name',
+                    field: 'name'
+                 }, {
+                    title: 'Post Vol',
+                    field: 'value',
+                    width: '100px'
+                 }, {
+                    title: 'Post Ratio',
+                    field: 'ratio',
+                    format: '{0:p2}',
+                    width: '100px'
+                 }, {
+                    title: ' ',
+                    template: '<i class=\'icon download\'></i>',
+                    width: '40px'
+                 }]" data-bind="source: MentionedServices"></div>
         </div>
     </div>
     <div class="section flexible users collapsed">
@@ -85,6 +121,12 @@
     </div>
 </div>
 <script type="text/javascript">
+    var sentimentAliases = { 0: "NEG", 2: "NEU", 4: "POS" };
+    var sentimentValues = [
+        { value: 0, text: 'Negative' },
+        { value: 2, text: 'Neutral' },
+        { value: 4, text: 'Positive' }
+    ];
     var scope = angular.element("html").scope();
     var model = kendo.data.Model.define({
         fields: {
@@ -93,11 +135,38 @@
             StartTime: { type: "date" },
             EndTime: { type: "date" },
             Search: { type: "string", defaultValue: "N/A" },
+            Threads: { type: "object", defaultValue: [] },
 
-            ThreadCount: { type: "number" },
-            TotalViewCount: { type: "number" },
-            UserCount: { type: "number" },
-            RegionCount: { type: "number" }
+            SelectedSentiments: { type: "object", defaultValue: [0, 2, 4] },
+
+            ThreadCount: { type: "number", defaultValue: 0 },
+            ThreadCountText: { type: "string", defaultValue: "N/A" },
+            TotalViewCount: { type: "number", defaultValue: 0 },
+            TotalViewCountText: { type: "string", defaultValue: "N/A" },
+            UserCount: { type: "number", defaultValue: 0 },
+            UserCountText: { type: "string", defaultValue: "N/A" },
+            RegionCount: { type: "number", defaultValue: 0 },
+            RegionCountText: { type: "string", defaultValue: "N/A" },
+            MentionedServices: { type: "object", defaultValue: [] },
+            Sentiments: { type: "object", defaultValue: [] },
+        },
+        ThreadsInSelectedSentiments: function() {
+            var filters = [];
+            $.each(this.get("SelectedSentiments"), function (i, sentiment) {
+                filters.push({ field: "Sentiment", operator: "eq", value: parseInt(sentiment) });
+            });
+            if (filters.length === 0) {
+                return [];
+            } else {
+                return new kendo.data.DataSource({
+                    data: this.get("Threads"),
+                    filter: {
+                        logic: "or",
+                        filters: filters
+                    },
+                    pageSize: 7
+                });
+            }
         },
         OnSectionStretch: function (e) {
             var section = $(e.target).parent();
@@ -117,6 +186,34 @@
     });
     var viewModel = kendo.observable(new model());
     var formatOptions = {
+        Threads: function (model) {
+            var datasource = new kendo.data.DataSource({ data: model.Threads });
+            datasource.fetch().then(function () {
+                model.set("ThreadCount", datasource.total());
+
+                datasource.group({ field: "Sentiment" });
+                var sentiments = [];
+                $.each(datasource.view().toJSON(), function (i, sentiment) {
+                    sentiments.push({
+                        name: sentimentAliases[sentiment.value] || "N/A",
+                        value: sentiment.items.length,
+                        ratio: sentiment.items.length / datasource.total()
+                    });
+                });
+                model.set("Sentiments", sentiments);
+
+                datasource.group({ field: "Service" });
+                var services = [];
+                $.each(datasource.view().toJSON(), function (i, service) {
+                    services.push({
+                        name: service.value,
+                        value: service.items.length,
+                        ratio: service.items.length / datasource.total()
+                    });
+                });
+                model.set("MentionedServices", services);
+            });
+        },
         Forum: function (model) {
             model.set("ForumName", scope.CONST.ALL_ENABLED_PLARFORMS[model.Forum] || model.Forum);
             model.set("ForumIconUrl", "url('public/images/" + model.Forum + ".png')");
@@ -199,48 +296,60 @@
                             shadowColor: '#333'
                         }
                     },
-                    data: [{
-                        name: "Azure Active Directory", value: 2000
-                    }, {
-                        name: "Virtual Machines", value: 1879
-                    }, {
-                        name: "Azure Function", value: 1788
-                    }, {
-                        name: "Storage", value: 1723
-                    }, {
-                        name: "Web Apps", value: 1654
-                    }, {
-                        name: "Service Fabric", value: 1598
-                    }, {
-                        name: "App Service", value: 1532
-                    }, {
-                        name: "Mobile Apps", value: 1484
-                    }, {
-                        name: "SQL Database", value: 1112
-                    }, {
-                        name: "Data Lake Store", value: 965
-                    }, {
-                        name: "Data Factory", value: 847
-                    }, {
-                        name: "Azure Cosmos DB", value: 582
-                    }, {
-                        name: "Application Insights", value: 555
-                    }, {
-                        name: "Service Bus", value: 550
-                    }, {
-                        name: "Visual Studio Team Services", value: 462
-                    }, {
-                        name: "Blob Storage", value: 366
-                    }, {
-                        name: "HDInsight", value: 360
-                    }, {
-                        name: "IoT Hub", value: 282
-                    }, {
-                        name: "Load Balancer", value: 273
-                    }, {
-                        name: "Event Hubs", value: 265
-                    }]
+                    data: model.MentionedServices
                 }
+            });
+        },
+        Sentiments: function (model) {
+            var chart = echarts.init($("#chartSentiments")[0]);
+            chart.setOption({
+                title: {
+                    textStyle: {
+                        fontSize: 13
+                    }
+                },
+                grid: {
+                    bottom: 0
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data: model.Sentiments
+                },
+                series: {
+                    type: 'pie',
+                    size: ['80%', '80%'],
+                    radius: ['30%', '70%'],
+                    label: {
+                        normal: {
+                            label: {
+                                show: true
+                            },
+                            labelLine: {
+                                show: true
+                            },
+                            formatter: '{b}\n ({d}%)'
+                        }
+                    },
+                    data: model.Sentiments
+                }
+            })
+            chart.on("legendselectchanged", function (e) {
+                var selectedSentiments = [];
+                $.each(e.selected, function (key, selected) {
+                    if (selected === true) {
+                        $.each(sentimentAliases, function (value, alias) {
+                            if (key === alias) {
+                                selectedSentiments.push(value);
+                            }
+                        });
+                    }
+                });
+                viewModel.set("SelectedSentiments", selectedSentiments);
             });
         }
     };
@@ -255,9 +364,10 @@
     viewModel.set("Forum", "so");
     viewModel.set("StartTime", "2017-01-20 21:16:55");
     viewModel.set("EndTime", "2017-02-11 08:50:23");
-    viewModel.set("ThreadCount", 1457800);
     viewModel.set("TotalViewCount", 12300);
     viewModel.set("UserCount", 581230);
     viewModel.set("RegionCount", 989);
-    viewModel.set("MentionedServices", 0);
+    $.get("data/reportthreads.json").done(function (threads) {
+        viewModel.set("Threads", threads);
+    });
 </script>

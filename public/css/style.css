@@ -261,6 +261,7 @@
 }
 body {
   overflow: auto;
+  overflow-y: scroll;
 }
 .echart {
   width: 100%;
@@ -520,6 +521,22 @@ tr > td > i.icon.write {
 .report .sentiment .brand:before {
   content: "Sentiment";
 }
+.report .sentiment > .content {
+  height: 300px;
+}
+.report .sentiment > .content > div#chartSentiments {
+  float: left;
+  margin: 20px 0 0 20px;
+  width: 380px;
+  height: 280px;
+}
+.report .sentiment > .content > div[data-role=grid] {
+  float: right;
+  margin: 2px 20px 0 0;
+  width: 650px;
+  border-radius: 0;
+  border: none;
+}
 .report .services {
   border-top: solid 2px #21BA45;
 }
@@ -528,6 +545,21 @@ tr > td > i.icon.write {
 }
 .report .services .brand:before {
   content: "Mentioned Services";
+}
+.report .services > .content {
+  height: 300px;
+}
+.report .services > .content > div#chartMentionedServices {
+  float: left;
+  width: 400px;
+  height: 300px;
+}
+.report .services > .content > div[data-role=grid] {
+  float: right;
+  margin: 20px 20px 0 0;
+  width: 650px;
+  border-radius: 0;
+  border: none;
 }
 .report .users {
   border-top: solid 2px #F2711C;

@@ -393,6 +393,7 @@
 }
 body{
     overflow: auto;
+    overflow-y: scroll;
 }
 
 .echart{
@@ -708,6 +709,22 @@ tr > td {
             }
             color: @color;
         }
+        > .content {
+            height: 300px;
+            > div#chartSentiments {
+                float: left;
+                margin: 20px 0 0 20px;
+                width: 380px;
+                height: 280px;
+            }
+            > div[data-role=grid] {
+                float: right;
+                margin: 2px 20px 0 0;
+                width: 650px;
+                border-radius: 0;
+                border: none;
+            }
+        }
     }
     .services {
         @color: @green;
@@ -717,6 +734,21 @@ tr > td {
                 content: "Mentioned Services";
             }
             color: @color;
+        }
+        > .content {
+            height: 300px;
+            > div#chartMentionedServices {
+                float: left;
+                width: 400px;
+                height: 300px;
+            }
+            > div[data-role=grid] {
+                float: right;
+                margin: 20px 20px 0 0;
+                width: 650px;
+                border-radius: 0;
+                border: none;
+            }
         }
     }
     .users {
