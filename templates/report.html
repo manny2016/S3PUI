@@ -61,7 +61,7 @@
             <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
                     field: 'Title',
                     attributes: {
-                        style: 'max-width: 430px; white-space: nowrap; overflow: hidden;'
+                        style: 'max-width: 400px; white-space: nowrap; overflow: hidden;'
                     },
                     template: '<a target=\'_blank\' href=\'#=Link#\' title=\'#=User.Name#\' style=\'white-space: nowrap; overflow: hidden;\'>#=Title#</a>'
                  }, {
@@ -73,7 +73,8 @@
                     template: '<span title=\'#=User.Name#\'>#=User.Name#</span>'
                  }, {
                     field: 'Sentiment',
-                    values: sentimentValues
+                    values: sentimentValues,
+                    width: '100px'
                  }]" data-bind="source: ThreadsInSelectedSentiments"></div>
         </div>
     </div>
