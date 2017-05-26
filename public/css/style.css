@@ -627,7 +627,7 @@ tr > td > i.icon.write {
   display: block;
   padding-top: 10px;
   width: auto;
-  line-height: 50px;
+  line-height: 60px;
   font-size: 32px;
 }
 .report .users > .content > .user.card:first-child > span.caption {
