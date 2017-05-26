@@ -57,7 +57,7 @@
             </tr>
         </table>
     </div>
-    <div class="section flexible sentiment expanded">
+    <div class="section flexible sentiment collapsed">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="content">
             <div id="chartMentionedServices"></div>
-            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="{ pageSize: 6 }" data-columns="[{
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
                     title: 'Service Name',
                     field: 'name'
                  }, {
@@ -111,13 +111,30 @@
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
-        <div class="content placehodler"></div>
+        <div class="content placehodler">
+
+        </div>
     </div>
-    <div class="section flexible world collapsed">
+    <div class="section flexible world expanded">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
-        <div class="content placehodler"></div>
+        <div class="content">
+            <div id="chartUserRegions"></div>
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="{ buttonCount: 3 }" data-columns="[{
+                    title: 'Region',
+                    field: 'name'
+                 }, {
+                    title: 'User Vol',
+                    field: 'value',
+                    width: '80px'
+                 }, {
+                    title: 'Ratio',
+                    field: 'ratio',
+                    format: '{0:p2}',
+                    width: '80px'
+                 }]" data-bind="source: UserDistributionsInSelectedRegions"></div>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -136,19 +153,57 @@
             EndTime: { type: "date" },
             Search: { type: "string", defaultValue: "N/A" },
             Threads: { type: "object", defaultValue: [] },
-
+            MentionedServices: { type: "object" },
+            UserDistributions: { type: "object", defaultValue: [] },
             SelectedSentiments: { type: "object", defaultValue: [0, 2, 4] },
-
-            ThreadCount: { type: "number", defaultValue: 0 },
-            ThreadCountText: { type: "string", defaultValue: "N/A" },
-            TotalViewCount: { type: "number", defaultValue: 0 },
-            TotalViewCountText: { type: "string", defaultValue: "N/A" },
-            UserCount: { type: "number", defaultValue: 0 },
-            UserCountText: { type: "string", defaultValue: "N/A" },
-            RegionCount: { type: "number", defaultValue: 0 },
-            RegionCountText: { type: "string", defaultValue: "N/A" },
-            MentionedServices: { type: "object", defaultValue: [] },
-            Sentiments: { type: "object", defaultValue: [] },
+            SelectedRegions: { type: "object", defaultValue: [] }
+        },
+        _FormatNumber: function (number) {
+            if ($.isNumeric(number) === false) { return "N/A"; }
+            if (number < 1000) { return number; }
+            var suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
+            var exp = Math.floor(Math.log(number) / Math.log(1000));
+            return /(^.+\.((0*[1-9]+)|0))0*$/g.exec((number / Math.pow(1000, exp)).toFixed(3))[1] + suffixes[exp - 1];
+        },
+        ThreadCount: function () {
+            return (this.get("Threads") || []).length;
+        },
+        ThreadCountText: function () {
+            return viewModel._FormatNumber(this.get("ThreadCount()"));
+        },
+        TotalViewCount: function () {
+            var count = 0;
+            $.each(this.get("Threads"), function (i, thread) {
+                count += thread.ViewCount;
+            });
+            return count;
+        },
+        TotalViewCountText: function () {
+            return viewModel._FormatNumber(this.get("TotalViewCount()"));
+        },
+        UserCount: function () {
+            var users = [];
+            $.each(this.get("Threads"), function (i, thread) {
+                if (users.indexOf(thread.User.Id) < 0) {
+                    users.push(thread.User.Id);
+                }
+            });
+            return users.length;
+        },
+        UserCountText: function () {
+            return viewModel._FormatNumber(this.get("UserCount()"));
+        },
+        RegionCount: function () {
+            var regions = [];
+            $.each(this.get("Threads"), function (i, thread) {
+                if (regions.indexOf(thread.User.Region) < 0) {
+                    regions.push(thread.User.Region);
+                }
+            });
+            return regions.length;
+        },
+        RegionCountText: function () {
+            return viewModel._FormatNumber(this.get("RegionCount()"));
         },
         ThreadsInSelectedSentiments: function() {
             var filters = [];
@@ -165,6 +220,29 @@
                         filters: filters
                     },
                     pageSize: 7
+                });
+            }
+        },
+        UserDistributionsInSelectedRegions: function() {
+            var data = this.get("UserDistributions");
+            var regions = this.get("SelectedRegions");
+            if (regions.length === 0) {
+                return new kendo.data.DataSource({
+                    data: data,
+                    pageSize: 6
+                });
+            } else {
+                var filters = [];
+                $.each(regions, function (i, region) {
+                    filters.push({ field: "name", operator: "eq", value: region });
+                });
+                return new kendo.data.DataSource({
+                    data: data,
+                    filter: {
+                        logic: "or",
+                        filters: filters
+                    },
+                    pageSize: 6
                 });
             }
         },
@@ -189,29 +267,6 @@
         Threads: function (model) {
             var datasource = new kendo.data.DataSource({ data: model.Threads });
             datasource.fetch().then(function () {
-                model.set("ThreadCount", datasource.total());
-
-                datasource.group({ field: "Sentiment" });
-                var sentiments = [];
-                $.each(datasource.view().toJSON(), function (i, sentiment) {
-                    sentiments.push({
-                        name: sentimentAliases[sentiment.value] || "N/A",
-                        value: sentiment.items.length,
-                        ratio: sentiment.items.length / datasource.total()
-                    });
-                });
-                model.set("Sentiments", sentiments);
-
-                datasource.group({ field: "Service" });
-                var services = [];
-                $.each(datasource.view().toJSON(), function (i, service) {
-                    services.push({
-                        name: service.value,
-                        value: service.items.length,
-                        ratio: service.items.length / datasource.total()
-                    });
-                });
-                model.set("MentionedServices", services);
             });
         },
         Forum: function (model) {
@@ -244,38 +299,126 @@
             if ((model.Search === null) || (model.Search.length === 0)) {
                 model.set("Search", "N/A");
             }
-        },
-        _FormatNumber: function (number) {
-            if ($.isNumeric(number) === false) { return "N/A"; }
-            if (number < 1000) { return number; }
-            var suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
-            var exp = Math.floor(Math.log(number) / Math.log(1000));
-            return /(^.+\.((0*[1-9]+)|0))0*$/g.exec((number / Math.pow(1000, exp)).toFixed(3))[1] + suffixes[exp - 1];
-        },
-        ThreadCount: function (model) {
-            model.set("ThreadCountText", this._FormatNumber(model.ThreadCount));
-        },
-        TotalViewCount: function (model) {
-            model.set("TotalViewCountText", this._FormatNumber(model.TotalViewCount));
-        },
-        UserCount: function (model) {
-            model.set("UserCountText", this._FormatNumber(model.UserCount));
-        },
-        RegionCount: function (model) {
-            model.set("RegionCountText", this._FormatNumber(model.RegionCount));
-        },
-        MentionedServices: function (model) {
-            var chart = echarts.init($("#chartMentionedServices")[0]);
-            chart.setOption({
+        }
+    };
+    viewModel.bind("change", function (e) {
+        if (e.field in formatOptions) {
+            formatOptions[e.field](this);
+        }
+    });
+    kendo.bind($(".ui.basic.container"), viewModel);
+
+    viewModel.set("ReportTitle", "Volumes and Spikes Report (Demo)");
+    viewModel.set("Forum", "so");
+    viewModel.set("StartTime", "2017-01-20 21:16:55");
+    viewModel.set("EndTime", "2017-02-11 08:50:23");
+    function refreshThread() {
+        kendo.ui.progress($("body"), true);
+        //$.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", "json").done(function (response) {
+        $.get("data/reportthreads.data").done(function (response) {
+            var threads = JSON.parse(response);
+            viewModel.set("Threads", threads);
+
+            var statics_sentiment = {};
+            var statics_service = {};
+            var statics_userRegions = {};
+            $.each (threads, function (i, thread) {
+                if (thread.Sentiment in statics_sentiment) {
+                    statics_sentiment[thread.Sentiment] += 1;
+                } else {
+                    statics_sentiment[thread.Sentiment] = 1;
+                }
+
+                if (thread.Service in statics_service) {
+                    statics_service[thread.Service] += 1;
+                } else {
+                    statics_service[thread.Service] = 1;
+                }
+
+                if (thread.User.Region in statics_userRegions) {
+                    statics_userRegions[thread.User.Region] += 1;
+                } else {
+                    statics_userRegions[thread.User.Region] = 1;
+                }
+            });
+
+            var sentiments = [];
+            $.each(statics_sentiment, function (sentiment, count) {
+                sentiments.push({
+                    name: sentimentAliases[sentiment] || "N/A",
+                    value: count,
+                    ratio: count / threads.length
+                });
+            });
+            var chart_sentiments = echarts.init($("#chartSentiments")[0]);
+            chart_sentiments.setOption({
                 title: {
                     textStyle: {
                         fontSize: 13
-                    },
-                    x: 'center'
+                    }
+                },
+                grid: {
+                    bottom: 0
                 },
                 tooltip: {
                     trigger: 'item',
-                    formatter: "{b} : {c}"
+                    formatter: "{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data: sentiments
+                },
+                series: {
+                    type: 'pie',
+                    size: ['80%', '80%'],
+                    radius: ['30%', '70%'],
+                    label: {
+                        normal: {
+                            label: {
+                                show: true
+                            },
+                            labelLine: {
+                                show: true
+                            },
+                            formatter: '{b}\n ({d}%)'
+                        }
+                    },
+                    data: sentiments
+                }
+            })
+            chart_sentiments.on("legendselectchanged", function (e) {
+                var selectedSentiments = [];
+                $.each(e.selected, function (key, selected) {
+                    if (selected === true) {
+                        $.each(sentimentAliases, function (value, alias) {
+                            if (key === alias) {
+                                selectedSentiments.push(value);
+                            }
+                        });
+                    }
+                });
+                viewModel.set("SelectedSentiments", selectedSentiments);
+            });
+
+            var services = [];
+            $.each(statics_service, function (service, count) {
+                services.push({
+                    name: service,
+                    value: count,
+                    ratio: count / threads.length
+                });
+            });
+            services.sort(function(a, b) { return b.value - a.value; });
+            viewModel.set("MentionedServices", new kendo.data.DataSource({
+                data: services,
+                pageSize: 6
+            }));
+            var chart_services = echarts.init($("#chartMentionedServices")[0]);
+            chart_services.setOption({
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{b}: {c}"
                 },
                 series: {
                     type: 'wordCloud',
@@ -296,78 +439,64 @@
                             shadowColor: '#333'
                         }
                     },
-                    data: model.MentionedServices
+                    data: services
                 }
             });
-        },
-        Sentiments: function (model) {
-            var chart = echarts.init($("#chartSentiments")[0]);
-            chart.setOption({
-                title: {
-                    textStyle: {
-                        fontSize: 13
-                    }
-                },
-                grid: {
-                    bottom: 0
-                },
+
+            var userRegions = [];
+            var regionMaxCount = 0;
+            $.each(statics_userRegions, function (region, count) {
+                userRegions.push({
+                    name: region,
+                    value: count,
+                    ratio: count / threads.length
+                });
+                regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
+            });
+            userRegions.sort(function(a, b) { return b.value - a.value; });
+            regionMaxCount = Math.ceil(regionMaxCount / 100) * 100;
+            viewModel.set("UserDistributions", userRegions);
+            var chart_userRegions = echarts.init($("#chartUserRegions")[0]);
+            chart_userRegions.setOption({
                 tooltip: {
                     trigger: 'item',
-                    formatter: "{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient : 'vertical',
-                    x : 'left',
-                    data: model.Sentiments
-                },
-                series: {
-                    type: 'pie',
-                    size: ['80%', '80%'],
-                    radius: ['30%', '70%'],
-                    label: {
-                        normal: {
-                            label: {
-                                show: true
-                            },
-                            labelLine: {
-                                show: true
-                            },
-                            formatter: '{b}\n ({d}%)'
+                    formatter: function(e) {
+                        if (isNaN(e.value) === false) {
+                            return e.name + ": " + e.value;
                         }
+                    }
+                },
+                dataRange: {
+                    min: 0,
+                    max: regionMaxCount,
+                    text:[regionMaxCount,0],
+                    realtime: false,
+                    color: ['orangered','yellow','lightskyblue']
+                },
+                series: [{
+                    type: 'map',
+                    mapType: 'world',
+                    roam: true,
+                    selectedMode: "multiple",
+                    itemStyle:{
+                        emphasis:{ label: { show:true } }
                     },
-                    data: model.Sentiments
-                }
-            })
-            chart.on("legendselectchanged", function (e) {
-                var selectedSentiments = [];
+                    data: userRegions
+                }]
+            });
+            chart_userRegions.on("mapselectchanged", function (e) {
+                console.log(e);
+                var selectedRegions = [];
                 $.each(e.selected, function (key, selected) {
                     if (selected === true) {
-                        $.each(sentimentAliases, function (value, alias) {
-                            if (key === alias) {
-                                selectedSentiments.push(value);
-                            }
-                        });
+                        selectedRegions.push(key);
                     }
                 });
-                viewModel.set("SelectedSentiments", selectedSentiments);
+                viewModel.set("SelectedRegions", selectedRegions);
             });
-        }
-    };
-    viewModel.bind("change", function (e) {
-        if (e.field in formatOptions) {
-            formatOptions[e.field](this);
-        }
-    });
-    kendo.bind($(".ui.basic.container"), viewModel);
 
-    viewModel.set("ReportTitle", "Volumes and Spikes Report (Demo)");
-    viewModel.set("Forum", "so");
-    viewModel.set("StartTime", "2017-01-20 21:16:55");
-    viewModel.set("EndTime", "2017-02-11 08:50:23");
-    viewModel.set("TotalViewCount", 12300);
-    viewModel.set("UserCount", 581230);
-    viewModel.set("RegionCount", 989);
-    $.get("data/reportthreads.json").done(function (threads) {
-        viewModel.set("Threads", threads);
-    });
+            kendo.ui.progress($("body"), false);
+        });
+    };
+    refreshThread();
 </script>

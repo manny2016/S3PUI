@@ -486,6 +486,11 @@ content: '\25BC';
     }
 }
 
+.k-loading-mask {
+    background-color: #000;
+    opacity: 0.9;
+}
+
 .k-tabstrip.non-scrollable {
     .k-content {
         overflow: visible;
@@ -769,6 +774,21 @@ tr > td {
                 content: "User Distribution";
             }
             color: @color;
+        }
+        > .content {
+            height: 300px;
+            > div#chartUserRegions {
+                float: left;
+                width: 650px;
+                height: 300px;
+            }
+            > div[data-role=grid] {
+                float: right;
+                margin: 20px 20px 0 0;
+                width: 400px;
+                border-radius: 0;
+                border: none;
+            }
         }
     }
 }
