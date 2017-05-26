@@ -536,7 +536,7 @@ tr > td > i.icon.write {
 }
 .report .sentiment > .content > div[data-role=grid] {
   float: right;
-  margin: 2px 20px 0 0;
+  margin: 2px 10px 0 0;
   width: 650px;
   border-radius: 0;
   border: none;
@@ -560,7 +560,7 @@ tr > td > i.icon.write {
 }
 .report .services > .content > div[data-role=grid] {
   float: right;
-  margin: 20px 20px 0 0;
+  margin: 2px 10px 0 0;
   width: 650px;
   border-radius: 0;
   border: none;
@@ -579,41 +579,43 @@ tr > td > i.icon.write {
 }
 .report .users > .content > .user.card {
   float: left;
+  padding-left: 50px;
   width: 25%;
   height: 30px;
   line-height: 30px;
   background-size: 30px 30px;
   background-repeat: no-repeat;
-  background-position: 60px center;
+  background-position: 50px center;
 }
 .report .users > .content > .user.card > span {
   display: inline-block;
-  margin-left: 60px;
   font-weight: bold;
 }
 .report .users > .content > .user.card > span.name {
   display: block;
-  margin-left: 100px;
+  margin-left: 40px;
   margin-bottom: 10px;
+  width: 130px;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .report .users > .content > .user.card > span.caption {
   float: left;
 }
 .report .users > .content > .user.card > span.value {
   display: block;
-  margin-left: 200px;
+  margin-left: 140px;
   color: #999999;
 }
 .report .users > .content > .user.card:first-child {
   float: none;
-  margin: 20px 0 40px;
-  padding-left: 180px;
-  width: 100%;
-  height: 100px;
+  margin: 20px 50px;
+  padding: 0 0 130px 130px;
+  width: auto;
   background-size: 100px 100px;
-  background-position: 60px center;
-  clear: both;
+  background-position: 0 center;
+  border-bottom: solid 1px rgba(34, 36, 38, 0.15);
 }
 .report .users > .content > .user.card:first-child > span {
   float: none;
@@ -623,15 +625,19 @@ tr > td > i.icon.write {
 }
 .report .users > .content > .user.card:first-child > span.name {
   display: block;
-  height: 60px;
-  line-height: 60px;
+  padding-top: 10px;
+  width: auto;
+  line-height: 50px;
   font-size: 32px;
 }
 .report .users > .content > .user.card:first-child > span.caption {
   padding-right: 4px;
 }
 .report .users > .content > .user.card:first-child > span.value {
-  padding-right: 40px;
+  padding-right: 30px;
+}
+.report .users > .content > .user.card:first-child > span.value:last-child {
+  padding-right: 0;
 }
 .report .world {
   border-top: solid 2px #6435C9;
@@ -652,7 +658,7 @@ tr > td > i.icon.write {
 }
 .report .world > .content > div[data-role=grid] {
   float: right;
-  margin: 20px 20px 0 0;
+  margin: 2px 10px 0 0;
   width: 400px;
   border-radius: 0;
   border: none;

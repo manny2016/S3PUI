@@ -61,7 +61,7 @@
             <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
                     field: 'Title',
                     attributes: {
-                        style: 'max-width: 450px; white-space: nowrap; overflow: hidden;'
+                        style: 'max-width: 440px; white-space: nowrap; overflow: hidden;'
                     },
                     template: '<a target=\'_blank\' href=\'#=Link#\' title=\'#=User.Name#\' style=\'white-space: nowrap; overflow: hidden;\'>#=Title#</a>'
                  }, {
@@ -91,10 +91,10 @@
                     field: 'value',
                     width: '100px'
                  }, {
-                    title: 'Post Ratio',
+                    title: 'Ratio',
                     field: 'ratio',
                     format: '{0:p2}',
-                    width: '100px'
+                    width: '80px'
                  }, {
                     title: ' ',
                     template: '<i class=\'icon download\'></i>',
@@ -102,67 +102,24 @@
                  }]" data-bind="source: MentionedServices"></div>
         </div>
     </div>
-    <div class="section flexible users expanded">
+    <div class="section flexible users collapsed">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
-        <div class="content">
-            <div class="user card" style="background-image: url('https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge');">
-                <span class="name">ABCD</span>
+        <div class="content" data-template="templateUserCard" data-bind="source: Top5VoCUser"></div>
+        <script id="templateUserCard" type="text/x-kendo-template">
+            <div class="user card" style="background-image: url('#=ProfilePicUrl#');">
+                <span class="name" title="#=Name#">#=Name#</span>
                 <span class="caption">Post Vol: </span>
-                <span class="value">100</span>
+                <span class="value">#=PostCount#</span>
                 <span class="caption">Influence Vol: </span>
-                <span class="value">100</span>
+                <span class="value">#=ViewCount#</span>
                 <span class="caption">Positive Post Vol: </span>
-                <span class="value">100</span>
+                <span class="value">#=PositivePostCount#</span>
                 <span class="caption">Negative Post Vol: </span>
-                <span class="value">100</span>
+                <span class="value">#=NegativePostCount#</span>
             </div>
-            <div class="user card" style="background-image: url('https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge');">
-                <span class="name">ABCD</span>
-                <span class="caption">Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Influence Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Positive Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Negative Post Vol: </span>
-                <span class="value">100</span>
-            </div>
-            <div class="user card" style="background-image: url('https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge');">
-                <span class="name">ABCD</span>
-                <span class="caption">Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Influence Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Positive Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Negative Post Vol: </span>
-                <span class="value">100</span>
-            </div>
-            <div class="user card" style="background-image: url('https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge');">
-                <span class="name">ABCD</span>
-                <span class="caption">Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Influence Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Positive Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Negative Post Vol: </span>
-                <span class="value">100</span>
-            </div>
-            <div class="user card" style="background-image: url('https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge');">
-                <span class="name">ABCD</span>
-                <span class="caption">Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Influence Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Positive Post Vol: </span>
-                <span class="value">100</span>
-                <span class="caption">Negative Post Vol: </span>
-                <span class="value">100</span>
-            </div>
-        </div>
+        </script>
     </div>
     <div class="section flexible world collapsed">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
@@ -202,7 +159,8 @@
             EndTime: { type: "date" },
             Search: { type: "string", defaultValue: "N/A" },
             Threads: { type: "object", defaultValue: [] },
-            MentionedServices: { type: "object" },
+            MentionedServices: { type: "object", defaultValue: [] },
+            Top5VoCUser: { type: "object", defaultValue: [] },
             UserDistributions: { type: "object", defaultValue: [] },
             SelectedSentiments: { type: "object", defaultValue: [0, 2, 4] },
             SelectedRegions: { type: "object", defaultValue: [] }
@@ -254,7 +212,7 @@
         RegionCountText: function () {
             return viewModel._FormatNumber(this.get("RegionCount()"));
         },
-        ThreadsInSelectedSentiments: function() {
+        ThreadsInSelectedSentiments: function () {
             var filters = [];
             $.each(this.get("SelectedSentiments"), function (i, sentiment) {
                 filters.push({ field: "Sentiment", operator: "eq", value: parseInt(sentiment) });
@@ -272,13 +230,13 @@
                 });
             }
         },
-        UserDistributionsInSelectedRegions: function() {
+        UserDistributionsInSelectedRegions: function () {
             var data = this.get("UserDistributions");
             var regions = this.get("SelectedRegions");
             if (regions.length === 0) {
                 return new kendo.data.DataSource({
                     data: data,
-                    pageSize: 6
+                    pageSize: 7
                 });
             } else {
                 var filters = [];
@@ -291,7 +249,7 @@
                         logic: "or",
                         filters: filters
                     },
-                    pageSize: 6
+                    pageSize: 7
                 });
             }
         },
@@ -302,11 +260,9 @@
             }
             if (section) {
                 if (section.is(".collapsed")) {
-                    section.addClass("expanded");
-                    section.removeClass("collapsed");
+                    section.addClass("expanded").removeClass("collapsed");
                 } else if (section.is(".expanded")) {
-                    section.addClass("collapsed");
-                    section.removeClass("expanded");
+                    section.addClass("collapsed").removeClass("expanded");
                 }
             }
         }
@@ -363,15 +319,16 @@
     viewModel.set("EndTime", "2017-02-11 08:50:23");
     function refreshThread() {
         kendo.ui.progress($("body"), true);
-        //$.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", "json").done(function (response) {
-        $.get("data/reportthreads.data").done(function (response) {
+        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", "json").done(function (response) {
+        //$.get("data/reportthreads.data").done(function (response) {
             var threads = JSON.parse(response);
             viewModel.set("Threads", threads);
 
             var statics_sentiment = {};
             var statics_service = {};
+            var statics_users = {};
             var statics_userRegions = {};
-            $.each (threads, function (i, thread) {
+            $.each(threads, function (i, thread) {
                 if (thread.Sentiment in statics_sentiment) {
                     statics_sentiment[thread.Sentiment] += 1;
                 } else {
@@ -382,6 +339,23 @@
                     statics_service[thread.Service] += 1;
                 } else {
                     statics_service[thread.Service] = 1;
+                }
+
+                if (thread.User.Id in statics_users) {
+                    statics_users[thread.User.Id].PostCount += 1;
+                    statics_users[thread.User.Id].ViewCount += thread.ViewCount;
+                    statics_users[thread.User.Id].PositivePostCount += thread.Sentiment === 4 ? 1 : 0;
+                    statics_users[thread.User.Id].NegativePostCount += thread.Sentiment === 0 ? 1 : 0;
+                } else {
+                    statics_users[thread.User.Id] = {
+                        Id: thread.User.Id,
+                        Name: thread.User.Name,
+                        ProfilePicUrl: "https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge",
+                        PostCount: 1,
+                        ViewCount: thread.ViewCount,
+                        PositivePostCount: thread.Sentiment === 4 ? 1 : 0,
+                        NegativePostCount: thread.Sentiment === 0 ? 1 : 0
+                    };
                 }
 
                 if (thread.User.Region in statics_userRegions) {
@@ -414,8 +388,8 @@
                     formatter: "{b} : {c} ({d}%)"
                 },
                 legend: {
-                    orient : 'vertical',
-                    x : 'left',
+                    orient: 'vertical',
+                    x: 'left',
                     data: sentiments
                 },
                 series: {
@@ -458,10 +432,10 @@
                     ratio: count / threads.length
                 });
             });
-            services.sort(function(a, b) { return b.value - a.value; });
+            services.sort(function (a, b) { return b.value - a.value; });
             viewModel.set("MentionedServices", new kendo.data.DataSource({
                 data: services,
-                pageSize: 6
+                pageSize: 7
             }));
             var chart_services = echarts.init($("#chartMentionedServices")[0]);
             chart_services.setOption({
@@ -492,6 +466,14 @@
                 }
             });
 
+            var users = [];
+            $.each(statics_users, function (id, user) {
+                users.push(user);
+            });
+            users.sort(function (a, b) { return b.ViewCount - a.ViewCount });
+            users = users.slice(0, 5);
+            viewModel.set("Top5VoCUser", users);
+
             var userRegions = [];
             var regionMaxCount = 0;
             $.each(statics_userRegions, function (region, count) {
@@ -502,14 +484,14 @@
                 });
                 regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
             });
-            userRegions.sort(function(a, b) { return b.value - a.value; });
+            userRegions.sort(function (a, b) { return b.value - a.value; });
             regionMaxCount = Math.ceil(regionMaxCount / 100) * 100;
             viewModel.set("UserDistributions", userRegions);
-            var chart_userRegions = echarts.init($("#chartUserRegions")[0]);
+            var chart_userRegions = echarts.init($("#chartUserRegions")[0], "macarons");
             chart_userRegions.setOption({
                 tooltip: {
                     trigger: 'item',
-                    formatter: function(e) {
+                    formatter: function (e) {
                         if (isNaN(e.value) === false) {
                             return e.name + ": " + e.value;
                         }
@@ -518,17 +500,17 @@
                 dataRange: {
                     min: 0,
                     max: regionMaxCount,
-                    text:[regionMaxCount,0],
+                    text: [regionMaxCount, 0],
                     realtime: false,
-                    color: ['orangered','yellow','lightskyblue']
+                    color: ['orangered', 'yellow', 'lightskyblue']
                 },
                 series: [{
                     type: 'map',
                     mapType: 'world',
                     roam: true,
                     selectedMode: "multiple",
-                    itemStyle:{
-                        emphasis:{ label: { show:true } }
+                    itemStyle: {
+                        emphasis: { label: { show: true } }
                     },
                     data: userRegions
                 }]
@@ -544,8 +526,10 @@
                 viewModel.set("SelectedRegions", selectedRegions);
             });
 
+            $(".report .section.flexible.collapsed").addClass("expanded").removeClass("collapsed");
             kendo.ui.progress($("body"), false);
         });
     };
     refreshThread();
+
 </script>
