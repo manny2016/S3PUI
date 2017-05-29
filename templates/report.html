@@ -320,9 +320,18 @@
     viewModel.set("EndTime", "2017-02-11 08:50:23");
     function refreshThread() {
         kendo.ui.progress($("body"), true);
-        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", "json").done(function (response) {
+        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", {
+            condition: JSON.stringify({
+                function: "getSubPageVoCDetails",
+                forum: "so",
+                topic: "Azure",
+                date: 1495706400,
+                days: 2,
+                search: "Azure"
+            })
+        }).done(function (response) {
         //$.get("data/reportthreads.data").done(function (response) {
-            var threads = JSON.parse(response);
+            var threads = JSON.parse(response).Threads;
             viewModel.set("Threads", threads);
 
             var statics_sentiment = {};
@@ -350,8 +359,8 @@
                 } else {
                     statics_users[thread.User.Id] = {
                         Id: thread.User.Id,
-                        Name: thread.User.Name,
-                        ProfilePicUrl: "https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge",
+                        Name: thread.User.Name || " ",
+                        ProfilePicUrl: thread.User.ProfilePicUrl || ('public/images/' + viewModel.Forum.toLowerCase() + '.png'),
                         PostCount: 1,
                         ViewCount: thread.ViewCount,
                         PositivePostCount: thread.Sentiment === 4 ? 1 : 0,
