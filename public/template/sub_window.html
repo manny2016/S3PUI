@@ -116,7 +116,40 @@
                             minLength: 3,
                             showOperators: false,
                             template: function (args) {
-                                var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 22px; right: 4px; color: #000;\' title=\'export the search results to CSV\'></i>');
+                                var btnOpenReport = $('<i class=\'icon add\' style=\'position: absolute; top: 22px; right: 24px; color: #000; cursor: pointer;\' title=\'open report\'></i>');
+                                var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 22px; right: 4px; color: #000; cursor: pointer;\' title=\'export the search results to CSV\'></i>');
+                                btnOpenReport.click(function (e) {
+                                    var params = {};
+                                    if (threadOption.params) {
+                                        $.each(threadOption.params, function (field, value) {
+                                            if (value) {
+                                                params[field] = value;
+                                            }
+                                        });
+                                    }
+                                    if (threadOption.pnscope) {
+                                        if (threadOption.pnscope === 'posi') {
+                                            params.pnscope = 4;
+                                        } else if (threadOption.pnscope === 'neg') {
+                                            params.pnscope = 0;
+                                        } else if (threadOption.pnscope === 'neu') {
+                                            params.pnscope = 2;
+                                        }
+                                    }
+                                    var condition = {
+                                        function: threadOption.function,
+                                        forum: threadOption.platform,
+                                        topic: threadOption.topic,};
+                                    if (threadOption.date) { condition.date = threadOption.date; }
+                                    if (threadOption.days) { condition.days = threadOption.days; }
+                                    $.get(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'GetReportIdentity', {
+                                        condition: JSON.stringify(condition)
+                                    }).done(function (id) {
+                                        window.open('report?' + id, '_blank');
+                                    }).fail(function () {
+
+                                    });
+                                });
                                 btnExportExcel.click(function (e) {
                                     var element = $(e.target);
                                     while (element) {
@@ -180,6 +213,7 @@
                                 .addClass('k-textbox k-space-right')
                                 .append('<span class=\'k-icon k-i-search\'></span>')
                                 .parent().parent().parent()
+                                .append(btnOpenReport)
                                 .append(btnExportExcel)
                                 .css('position', 'relative');
                             }

@@ -18,7 +18,7 @@
             <span data-bind="html: Search"></span>
         </div>
     </div>
-    <div class="section summary">
+    <div class="section summary" data-bind="css: { no-data: IsNoThread }">
         <div class="brand"></div>
         <table>
             <tr>
@@ -52,13 +52,13 @@
             </tr>
         </table>
     </div>
-    <div class="section flexible sentiment collapsed">
+    <div class="section flexible sentiment collapsed" data-bind="css: { no-data: IsNoThread }">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
         <div class="content">
             <div id="chartSentiments"></div>
-            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-noRecords="true" data-columns="[{
                     field: 'Title',
                     attributes: {
                         style: 'max-width: 400px; white-space: nowrap; overflow: hidden;'
@@ -78,13 +78,13 @@
                  }]" data-bind="source: ThreadsInSelectedSentiments"></div>
         </div>
     </div>
-    <div class="section flexible services collapsed">
+    <div class="section flexible services collapsed" data-bind="css: { no-data: IsNoThread }">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
         <div class="content">
             <div id="chartMentionedServices"></div>
-            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-columns="[{
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="true" data-noRecords="true" data-columns="[{
                     title: 'Service Name',
                     field: 'name'
                  }, {
@@ -103,11 +103,11 @@
                  }]" data-bind="source: MentionedServices"></div>
         </div>
     </div>
-    <div class="section flexible users collapsed">
+    <div class="section flexible users collapsed" data-bind="css: { no-data: IsNoThread }">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
-        <div class="content" data-template="templateUserCard" data-bind="source: Top5VoCUser"></div>
+        <div class="content" data-template="templateUserCard" data-bind="source: Top5VoCUser, css: { only-one: Top5VoCUserIsOnlyOne }"></div>
         <script id="templateUserCard" type="text/x-kendo-template">
             <div class="user card" style="background-image: url('#=ProfilePicUrl#');">
                 <span class="name" title="#=Name#">#=Name#</span>
@@ -122,13 +122,14 @@
             </div>
         </script>
     </div>
-    <div class="section flexible world collapsed">
+    <div class="section flexible world collapsed" data-bind="css: { no-data: IsNoThread }">
         <div class="brand" data-bind="events: { click: OnSectionStretch }">
             <span class="arrow"></span>
         </div>
         <div class="content">
             <div id="chartUserRegions"></div>
-            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="{ buttonCount: 3 }" data-columns="[{
+            <div data-role="grid" data-scrollable="false" data-sortable="true" data-pageable="{ buttonCount: 3 }" data-noRecords="true"
+                data-columns="[{
                     title: 'Region',
                     field: 'name'
                  }, {
@@ -143,8 +144,12 @@
                  }]" data-bind="source: UserDistributionsInSelectedRegions"></div>
         </div>
     </div>
+    <div class="message-no-records" data-bind="css: { no-data: IsNoThread }">
+        No Data Available
+    </div>
 </div>
 <script type="text/javascript">
+    var debug;
     var sentimentAliases = { 0: "NEG", 2: "NEU", 4: "POS" };
     var sentimentValues = [
         { value: 0, text: 'Negative' },
@@ -154,7 +159,7 @@
     var scope = angular.element("html").scope();
     var model = kendo.data.Model.define({
         fields: {
-            ReportTitle: { type: "string" },
+            ReportTitle: { type: "string", defaultValue: "Report" },
             Forum: { type: "string" },
             StartTime: { type: "date" },
             EndTime: { type: "date" },
@@ -175,6 +180,9 @@
         },
         ThreadCount: function () {
             return (this.get("Threads") || []).length;
+        },
+        IsNoThread: function () {
+            return this.get("ThreadCount()") === 0;
         },
         ThreadCountText: function () {
             return viewModel._FormatNumber(this.get("ThreadCount()"));
@@ -254,6 +262,9 @@
                 });
             }
         },
+        Top5VoCUserIsOnlyOne: function () {
+            return this.get("Top5VoCUser").length <= 1;
+        },
         OnSectionStretch: function (e) {
             var section = $(e.target).parent();
             while (section && (section.is(".section.flexible") == false)) {
@@ -314,223 +325,255 @@
     });
     kendo.bind($(".ui.basic.container"), viewModel);
 
-    viewModel.set("ReportTitle", "Volumes and Spikes Report (Demo)");
-    viewModel.set("Forum", "so");
-    viewModel.set("StartTime", "2017-01-20 21:16:55");
-    viewModel.set("EndTime", "2017-02-11 08:50:23");
-    function refreshThread() {
-        kendo.ui.progress($("body"), true);
-        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", "json").done(function (response) {
-        //$.get("data/reportthreads.data").done(function (response) {
-            var threads = JSON.parse(response);
-            viewModel.set("Threads", threads);
+    function refreshThread(response) {
+        var data = JSON.parse(response);
+        viewModel.set("ReportTitle", data.Title || "Report");
+        viewModel.set("Forum", data.Forum);
+        viewModel.set("Search", data.Search || "");
+        viewModel.set("StartTime", data.StartTime);
+        viewModel.set("EndTime", data.EndTime);
+        var threads = data.Threads;
+        viewModel.set("Threads", threads);
 
-            var statics_sentiment = {};
-            var statics_service = {};
-            var statics_users = {};
-            var statics_userRegions = {};
-            $.each(threads, function (i, thread) {
-                if (thread.Sentiment in statics_sentiment) {
-                    statics_sentiment[thread.Sentiment] += 1;
-                } else {
-                    statics_sentiment[thread.Sentiment] = 1;
-                }
+        var statics_sentiment = {};
+        var statics_service = {};
+        var statics_users = {};
+        var statics_userRegions = {};
+        $.each(threads, function (i, thread) {
+            if (thread.Sentiment in statics_sentiment) {
+                statics_sentiment[thread.Sentiment] += 1;
+            } else {
+                statics_sentiment[thread.Sentiment] = 1;
+            }
 
-                if (thread.Service in statics_service) {
-                    statics_service[thread.Service] += 1;
-                } else {
-                    statics_service[thread.Service] = 1;
-                }
+            if (thread.Service in statics_service) {
+                statics_service[thread.Service] += 1;
+            } else {
+                statics_service[thread.Service] = 1;
+            }
 
-                if (thread.User.Id in statics_users) {
-                    statics_users[thread.User.Id].PostCount += 1;
-                    statics_users[thread.User.Id].ViewCount += thread.ViewCount;
-                    statics_users[thread.User.Id].PositivePostCount += thread.Sentiment === 4 ? 1 : 0;
-                    statics_users[thread.User.Id].NegativePostCount += thread.Sentiment === 0 ? 1 : 0;
-                } else {
-                    statics_users[thread.User.Id] = {
-                        Id: thread.User.Id,
-                        Name: thread.User.Name,
-                        ProfilePicUrl: "https://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=Kenny_I&size=extralarge",
-                        PostCount: 1,
-                        ViewCount: thread.ViewCount,
-                        PositivePostCount: thread.Sentiment === 4 ? 1 : 0,
-                        NegativePostCount: thread.Sentiment === 0 ? 1 : 0
-                    };
-                }
+            if (thread.User.Id in statics_users) {
+                statics_users[thread.User.Id].PostCount += 1;
+                statics_users[thread.User.Id].ViewCount += thread.ViewCount;
+                statics_users[thread.User.Id].PositivePostCount += thread.Sentiment === 4 ? 1 : 0;
+                statics_users[thread.User.Id].NegativePostCount += thread.Sentiment === 0 ? 1 : 0;
+            } else {
+                statics_users[thread.User.Id] = {
+                    Id: thread.User.Id,
+                    Name: thread.User.Name || "&nbsp;",
+                    ProfilePicUrl: thread.User.ProfilePicUrl || ('public/images/' + viewModel.Forum.toLowerCase() + '.png'),
+                    PostCount: 1,
+                    ViewCount: thread.ViewCount,
+                    PositivePostCount: thread.Sentiment === 4 ? 1 : 0,
+                    NegativePostCount: thread.Sentiment === 0 ? 1 : 0
+                };
+            }
 
-                if (thread.User.Region in statics_userRegions) {
-                    statics_userRegions[thread.User.Region] += 1;
-                } else {
-                    statics_userRegions[thread.User.Region] = 1;
-                }
+            var region = thread.User.Region;
+            if (region === "United States") { region = "United States of America"; }
+            if (region in statics_userRegions) {
+                statics_userRegions[region] += 1;
+            } else {
+                statics_userRegions[region] = 1;
+            }
+        });
+
+        var sentiments = [];
+        $.each(statics_sentiment, function (sentiment, count) {
+            sentiments.push({
+                name: sentimentAliases[sentiment] || "N/A",
+                value: count,
+                ratio: count / threads.length
             });
-
-            var sentiments = [];
-            $.each(statics_sentiment, function (sentiment, count) {
-                sentiments.push({
-                    name: sentimentAliases[sentiment] || "N/A",
-                    value: count,
-                    ratio: count / threads.length
-                });
-            });
-            var chart_sentiments = echarts.init($("#chartSentiments")[0]);
-            chart_sentiments.setOption({
-                title: {
-                    textStyle: {
-                        fontSize: 13
-                    }
-                },
-                grid: {
-                    bottom: 0
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient: 'vertical',
-                    x: 'left',
-                    data: sentiments
-                },
-                series: {
-                    type: 'pie',
-                    size: ['80%', '80%'],
-                    radius: ['30%', '70%'],
-                    label: {
-                        normal: {
-                            label: {
-                                show: true
-                            },
-                            labelLine: {
-                                show: true
-                            },
-                            formatter: '{b}\n ({d}%)'
-                        }
-                    },
-                    data: sentiments
+        });
+        var chart_sentiments = echarts.init($("#chartSentiments")[0]);
+        chart_sentiments.setOption({
+            title: {
+                textStyle: {
+                    fontSize: 13
                 }
-            })
-            chart_sentiments.on("legendselectchanged", function (e) {
-                var selectedSentiments = [];
-                $.each(e.selected, function (key, selected) {
-                    if (selected === true) {
-                        $.each(sentimentAliases, function (value, alias) {
-                            if (key === alias) {
-                                selectedSentiments.push(value);
-                            }
-                        });
-                    }
-                });
-                viewModel.set("SelectedSentiments", selectedSentiments);
-            });
-
-            var services = [];
-            $.each(statics_service, function (service, count) {
-                services.push({
-                    name: service,
-                    value: count,
-                    ratio: count / threads.length
-                });
-            });
-            services.sort(function (a, b) { return b.value - a.value; });
-            viewModel.set("MentionedServices", new kendo.data.DataSource({
-                data: services,
-                pageSize: 7
-            }));
-            var chart_services = echarts.init($("#chartMentionedServices")[0]);
-            chart_services.setOption({
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{b}: {c}"
-                },
-                series: {
-                    type: 'wordCloud',
-                    gridSize: 0,
-                    sizeRange: [12, 24],
-                    textStyle: {
-                        normal: {
-                            color: function () {
-                                return 'rgb(' + [
-                                    Math.round(Math.random() * 160),
-                                    Math.round(Math.random() * 160),
-                                    Math.round(Math.random() * 160)
-                                ].join(',') + ')';
-                            }
+            },
+            grid: {
+                bottom: 0
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: sentiments
+            },
+            series: {
+                type: 'pie',
+                size: ['80%', '80%'],
+                radius: ['30%', '70%'],
+                label: {
+                    normal: {
+                        label: {
+                            show: true
                         },
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowColor: '#333'
+                        labelLine: {
+                            show: true
+                        },
+                        formatter: '{b}\n ({d}%)'
+                    }
+                },
+                data: sentiments
+            }
+        })
+        chart_sentiments.on("legendselectchanged", function (e) {
+            var selectedSentiments = [];
+            $.each(e.selected, function (key, selected) {
+                if (selected === true) {
+                    $.each(sentimentAliases, function (value, alias) {
+                        if (key === alias) {
+                            selectedSentiments.push(value);
                         }
-                    },
-                    data: services
+                    });
                 }
             });
+            viewModel.set("SelectedSentiments", selectedSentiments);
+        });
 
-            var users = [];
-            $.each(statics_users, function (id, user) {
-                users.push(user);
+        var services = [];
+        $.each(statics_service, function (service, count) {
+            services.push({
+                name: service,
+                value: count,
+                ratio: count / threads.length
             });
-            users.sort(function (a, b) { return b.ViewCount - a.ViewCount });
-            users = users.slice(0, 5);
-            viewModel.set("Top5VoCUser", users);
-
-            var userRegions = [];
-            var regionMaxCount = 0;
-            $.each(statics_userRegions, function (region, count) {
-                userRegions.push({
-                    name: region,
-                    value: count,
-                    ratio: count / threads.length
-                });
-                regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
-            });
-            userRegions.sort(function (a, b) { return b.value - a.value; });
-            regionMaxCount = Math.ceil(regionMaxCount / 100) * 100;
-            viewModel.set("UserDistributions", userRegions);
-            var chart_userRegions = echarts.init($("#chartUserRegions")[0], "macarons");
-            chart_userRegions.setOption({
-                tooltip: {
-                    trigger: 'item',
-                    formatter: function (e) {
-                        if (isNaN(e.value) === false) {
-                            return e.name + ": " + e.value;
+        });
+        services.sort(function (a, b) { return b.value - a.value; });
+        viewModel.set("MentionedServices", new kendo.data.DataSource({
+            data: services,
+            pageSize: 7
+        }));
+        var chart_services = echarts.init($("#chartMentionedServices")[0]);
+        chart_services.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: "{b}: {c}"
+            },
+            series: {
+                type: 'wordCloud',
+                gridSize: 0,
+                sizeRange: [12, 24],
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
                         }
-                    }
-                },
-                dataRange: {
-                    min: 0,
-                    max: regionMaxCount,
-                    text: [regionMaxCount, 0],
-                    realtime: false,
-                    color: ['orangered', 'yellow', 'lightskyblue']
-                },
-                series: [{
-                    type: 'map',
-                    mapType: 'world',
-                    roam: true,
-                    selectedMode: "multiple",
-                    itemStyle: {
-                        emphasis: { label: { show: true } }
                     },
-                    data: userRegions
-                }]
-            });
-            chart_userRegions.on("mapselectchanged", function (e) {
-                console.log(e);
-                var selectedRegions = [];
-                $.each(e.selected, function (key, selected) {
-                    if (selected === true) {
-                        selectedRegions.push(key);
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
                     }
-                });
-                viewModel.set("SelectedRegions", selectedRegions);
-            });
+                },
+                data: services
+            }
+        });
 
-            $(".report .section.flexible.collapsed").addClass("expanded").removeClass("collapsed");
+        var users = [];
+        $.each(statics_users, function (id, user) {
+            users.push(user);
+        });
+        users.sort(function (a, b) { return b.ViewCount - a.ViewCount });
+        users = users.slice(0, 5);
+        viewModel.set("Top5VoCUser", users);
+
+        var userRegions = [];
+        var regionMaxCount = 0;
+        $.each(statics_userRegions, function (region, count) {
+            userRegions.push({
+                name: region,
+                value: count,
+                ratio: count / threads.length
+            });
+            regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
+        });
+        userRegions.sort(function (a, b) { return b.value - a.value; });
+        if (regionMaxCount > 100) {
+            regionMaxCount = Math.ceil(regionMaxCount / 100) * 100;
+        } else if (regionMaxCount > 10) {
+            regionMaxCount = Math.ceil(regionMaxCount / 10) * 10;
+        }
+        viewModel.set("UserDistributions", userRegions);
+        var chart_userRegions = echarts.init($("#chartUserRegions")[0], "macarons");
+        chart_userRegions.setOption({
+            tooltip: {
+                trigger: 'item',
+                formatter: function (e) {
+                    if (isNaN(e.value) === false) {
+                        return e.name + ": " + e.value;
+                    }
+                }
+            },
+            dataRange: {
+                min: 0,
+                max: regionMaxCount,
+                text: [regionMaxCount, 0],
+                realtime: false,
+                color: ['orangered', 'yellow', 'lightskyblue']
+            },
+            series: [{
+                type: 'map',
+                mapType: 'world',
+                roam: true,
+                selectedMode: "multiple",
+                itemStyle: {
+                    emphasis: { label: { show: true } }
+                },
+                data: userRegions
+            }]
+        });
+        chart_userRegions.on("mapselectchanged", function (e) {
+            console.log(e);
+            var selectedRegions = [];
+            $.each(e.selected, function (key, selected) {
+                if (selected === true) {
+                    selectedRegions.push(key);
+                }
+            });
+            viewModel.set("SelectedRegions", selectedRegions);
+        });
+
+        $(".report .section.flexible.collapsed").addClass("expanded").removeClass("collapsed");
+        kendo.ui.progress($("body"), false);
+    }
+
+    kendo.ui.progress($("body"), true);
+    var reportIdentity = /[\\?&]([^&#]*)/g.exec(window.location.href);
+    if ((reportIdentity) && (reportIdentity.length > 1)) {
+        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", {
+            id: reportIdentity[1],
+        }).done(refreshThread).fail(function () {
+            viewModel.set("Threads", []);
             kendo.ui.progress($("body"), false);
         });
-    };
-    refreshThread();
+    }
+    else if (debug) {
+        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", {
+            //$.get("data/reportthreads.data").done(function (response) {
+            condition: JSON.stringify({
+                function: "getVoCDetailsByUser",
+                forum: "sf",
+                topic: "Azure",
+                conditions: {
+                }
+            })
+        }).done(refreshThread).fail(function () {
+            viewModel.set("Threads", []);
+            kendo.ui.progress($("body"), false);
+        });
+    }
+    else {
+        kendo.ui.progress($("body"), false);
+    }
 
 </script>

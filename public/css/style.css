@@ -423,11 +423,24 @@ tr > td > i.icon.write {
 .report .sub-title .date-range {
   float: right;
 }
+.report .message-no-records {
+  display: none;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 80px;
+  text-align: center;
+}
+.report .message-no-records.no-data {
+  display: inherit;
+}
 .report > .section {
   position: relative;
   margin-top: 20px;
   border: solid 1px rgba(34, 36, 38, 0.15);
   border-radius: 4px 4px 0 0;
+}
+.report > .section.no-data {
+  display: none;
 }
 .report > .section .brand {
   height: 40px;
@@ -638,6 +651,12 @@ tr > td > i.icon.write {
 }
 .report .users > .content > .user.card:first-child > span.value:last-child {
   padding-right: 0;
+}
+.report .users > .content.only-one {
+  height: 150px;
+}
+.report .users > .content.only-one > .user.card {
+  border-bottom: none;
 }
 .report .world {
   border-top: solid 2px #6435C9;
