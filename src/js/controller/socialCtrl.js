@@ -104,10 +104,10 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         };
         var timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
         $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
-        $scope.startUTCDateLocalsString = (new Date(timeRange.start + timezoneOffset)).toLocaleString();
-        $scope.endUTCDateLocalsString = (new Date(timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000)).toLocaleString();
-        $scope.startDateLocalsString = (new Date(timeRange.start)).toLocaleString();
-        $scope.endDateLocalsString = (new Date(timeRange.end + 24 * 60 * 60 * 1000)).toLocaleString();
+        $scope.startUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.start + timezoneOffset);
+        $scope.endUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000);
+        $scope.startDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.start);
+        $scope.endDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + 24 * 60 * 60 * 1000);
         if ($scope.dateRange && $scope.topic) {
             $scope.startGetData()
         }
