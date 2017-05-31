@@ -99,10 +99,15 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         //     })(new Date)
         // };
         var timeRange = {
-            'start': moment.utc().startOf('day').subtract(newV-1, 'days').valueOf(),
-            'end': moment.utc().startOf('day').valueOf()
+            'start': moment.utc().startOf('day').subtract(newV, 'days').valueOf(),
+            'end': moment.utc().startOf('day').subtract(1, 'days').valueOf()
         };
+        var timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
         $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
+        $scope.startUTCDateLocalsString = (new Date(timeRange.start + timezoneOffset)).toLocaleString();
+        $scope.endUTCDateLocalsString = (new Date(timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000)).toLocaleString();
+        $scope.startDateLocalsString = (new Date(timeRange.start)).toLocaleString();
+        $scope.endDateLocalsString = (new Date(timeRange.end + 24 * 60 * 60 * 1000)).toLocaleString();
         if ($scope.dateRange && $scope.topic) {
             $scope.startGetData()
         }
@@ -132,27 +137,27 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
                 // add GA decision
                 // if (item.isGA) {
                 item.Platforms.map(function (obj) {
-                        if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
-                            flage = obj.isEnabled;
-                        }
-                    })
-                    // console.log(item.TechCategoryName,flage)
+                    if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
+                        flage = obj.isEnabled;
+                    }
+                })
+                // console.log(item.TechCategoryName,flage)
                 if (flage) $scope.topics.push(item.TechCategoryName)
-                    // }
+                // }
 
             })
             $('#topic_select').dimmer('hide');
             if ($scope.topics.indexOf($rootScope.global.topic) !== -1) {
                 $scope.topic = $rootScope.global.topic;
                 $scope.startGetData()
-                    // $('#topicSelection').dropdown('set text', $rootScope.global.topic)
+                // $('#topicSelection').dropdown('set text', $rootScope.global.topic)
             }
         })
     }
     $timeout(function () {
-            $scope.getTopics();
-        }, 0)
-        // var count = 0;
+        $scope.getTopics();
+    }, 0)
+    // var count = 0;
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
         // console.log(++count);
@@ -162,9 +167,9 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         if ($('#progress').progress('get value') === totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
-                    // $('#summary').dimmer('hide');
-                    // var firstSection = angular.element(document.getElementById('summary'));
-                    // $document.scrollToElementAnimated(firstSection);
+                // $('#summary').dimmer('hide');
+                // var firstSection = angular.element(document.getElementById('summary'));
+                // $document.scrollToElementAnimated(firstSection);
             }, 1000)
         }
         //$timeout(function () {
@@ -183,29 +188,29 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     }
 
     $scope.startGetData = function () {
-            // $event.stopPropagation();
-            // $event.preventDefault();
-            // console.log($scope.topic)
-            if (!$scope.topic) {
-                alert('Need to select a topic!');
-                return false;
-            }
-            $rootScope.global.topic = $scope.topic;
-            $scope.flags.m = false;
-            $('div.echart').map(function () {
-                echarts.getInstanceByDom(this).clear();
-            })
-            $('#progress').progress('reset');
-            $('#progress').show();
-            $scope.query.topic = $scope.topic;
-            $scope.getStatistic($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
-            $scope.getUserDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
-            $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic);
-            //$scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
-            $scope.$broadcast('start-get-data', 'home');
+        // $event.stopPropagation();
+        // $event.preventDefault();
+        // console.log($scope.topic)
+        if (!$scope.topic) {
+            alert('Need to select a topic!');
+            return false;
         }
-        // initLineCharts('.hourly-charts.home');
-        // echarts.connect('hourlyCharts');
+        $rootScope.global.topic = $scope.topic;
+        $scope.flags.m = false;
+        $('div.echart').map(function () {
+            echarts.getInstanceByDom(this).clear();
+        })
+        $('#progress').progress('reset');
+        $('#progress').show();
+        $scope.query.topic = $scope.topic;
+        $scope.getStatistic($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
+        $scope.getUserDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
+        $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic);
+        //$scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
+        $scope.$broadcast('start-get-data', 'home');
+    }
+    // initLineCharts('.hourly-charts.home');
+    // echarts.connect('hourlyCharts');
     $scope.getUserDistribution = function (platform, topic, pnscope, days) {
         $scope.service.getRegionDistribution(platform, topic, pnscope, days).then(function (data) {
             // console.log(data)
@@ -243,47 +248,47 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     }
 
     $scope.getDownloadUrl = function () {
-            if (!$scope.$stateParams.platform) {
-                toastr.error('Platform Required');
-                return false;
-            }
-            if (!$scope.topic) {
-                toastr.error('Topic Select Required');
-                return false;
-            }
-            if (!$scope.dateRange) {
-                toastr.error('Date Range Required');
-                return false;
-            }
-            $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function (url) {
-                window.open(url);
-            })
+        if (!$scope.$stateParams.platform) {
+            toastr.error('Platform Required');
+            return false;
         }
-        // $scope.languageDistribution = [{
-        //     attachedobject: 'Chinese',
-        //     vocinfluence: {
-        //         voctotalvol: 95502120230,
-        //         ratio: 0.331
-        //     }
-        // }, {
-        //     attachedobject: 'English',
-        //     vocinfluence: {
-        //         voctotalvol: 33502120230,
-        //         ratio: 0.111
-        //     }
-        // }, {
-        //     attachedobject: 'Arabic',
-        //     vocinfluence: {
-        //         voctotalvol: 30002120230,
-        //         ratio: 0.101
-        //     }
-        // }, {
-        //     attachedobject: 'Portuguese',
-        //     vocinfluence: {
-        //         voctotalvol: 22002120230,
-        //         ratio: 0.091
-        //     }
-        // }]
+        if (!$scope.topic) {
+            toastr.error('Topic Select Required');
+            return false;
+        }
+        if (!$scope.dateRange) {
+            toastr.error('Date Range Required');
+            return false;
+        }
+        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function (url) {
+            window.open(url);
+        })
+    }
+    // $scope.languageDistribution = [{
+    //     attachedobject: 'Chinese',
+    //     vocinfluence: {
+    //         voctotalvol: 95502120230,
+    //         ratio: 0.331
+    //     }
+    // }, {
+    //     attachedobject: 'English',
+    //     vocinfluence: {
+    //         voctotalvol: 33502120230,
+    //         ratio: 0.111
+    //     }
+    // }, {
+    //     attachedobject: 'Arabic',
+    //     vocinfluence: {
+    //         voctotalvol: 30002120230,
+    //         ratio: 0.101
+    //     }
+    // }, {
+    //     attachedobject: 'Portuguese',
+    //     vocinfluence: {
+    //         voctotalvol: 22002120230,
+    //         ratio: 0.091
+    //     }
+    // }]
 
 }
 

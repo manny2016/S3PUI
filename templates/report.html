@@ -149,7 +149,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    var debug;
+    var debug = true;
     var sentimentAliases = { 0: "NEG", 2: "NEU", 4: "POS" };
     var sentimentValues = [
         { value: 0, text: 'Negative' },
@@ -327,6 +327,7 @@
 
     function refreshThread(response) {
         var data = JSON.parse(response);
+        console.log(data);
         viewModel.set("ReportTitle", data.Title || "Report");
         viewModel.set("Forum", data.Forum);
         viewModel.set("Search", data.Search || "");
@@ -558,16 +559,7 @@
         });
     }
     else if (debug) {
-        $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", {
-            //$.get("data/reportthreads.data").done(function (response) {
-            condition: JSON.stringify({
-                function: "getVoCDetailsByUser",
-                forum: "sf",
-                topic: "Azure",
-                conditions: {
-                }
-            })
-        }).done(refreshThread).fail(function () {
+        $.get("data/reportthreads.data").done(refreshThread).fail(function () {
             viewModel.set("Threads", []);
             kendo.ui.progress($("body"), false);
         });
@@ -575,5 +567,4 @@
     else {
         kendo.ui.progress($("body"), false);
     }
-
 </script>

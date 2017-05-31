@@ -92,8 +92,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 // date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
-                                // date: Math.floor(moment.utc(params.name) / 1000),
-                                date: Math.floor(moment(params.name) / 1000),
+                                date: Math.floor(moment.utc(params.name) / 1000),
+                                //date: Math.floor(moment(params.name) / 1000),
                                 // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope,
                                 days: _.days
@@ -112,6 +112,25 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 pnscope: pnscope,
                                 days: _.days
                             }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getVoCDetailsByCountry':
+                            var pnscope = _.pnscope;
+                            if (pnscope == 'positive') pnscope = 'posi';
+                            else if (pnscope == 'negative') pnscope = 'neg';
+                            else if (pnscope == 'neutral') pnscope = 'neu';
+                            else pnscope = null;
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                pnscope: pnscope,
+                                country: params.name.toLowerCase(),
+                                days: _.days
+                            }
+                            console.log(param);
                             $rootScope.popSubWin({
                                 fn: _.subFn,
                                 param: param
@@ -666,6 +685,7 @@ function customInfluenceData(fnPromise, scope) {
                 seriesData = influenceData;
                 break;
         }
+        var xaxis = [];
         return {
             yAxis: {
                 axisLabel: {
@@ -676,7 +696,10 @@ function customInfluenceData(fnPromise, scope) {
                 }
             },
             xAxis: {
-                data: scope.$root.dateList
+                data: scope.$root.dateList.map(function (dt) {
+                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+                    return udt.toLocaleDateString();
+                })
             },
             series: [{
                 name: 'Influence Vol',
@@ -710,7 +733,10 @@ function customSpikesData(fnPromise, scope) {
         })
         return {
             xAxis: {
-                data: scope.$root.dateList
+                data: scope.$root.dateList.map(function (dt) {
+                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+                    return udt.toLocaleDateString();
+                })
             },
             series: [{
                 name: 'Spikes',
@@ -732,7 +758,10 @@ function customSpikesData(fnPromise, scope) {
 
         return {
             xAxis: {
-                data: scope.$root.dateList
+                data: scope.$root.dateList.map(function (dt) {
+                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+                    return udt.toLocaleDateString();
+                })
             },
             grid: {
                 width: '75%'
@@ -789,7 +818,10 @@ function customSpikesData(fnPromise, scope) {
         }
         return {
             xAxis: {
-                data: scope.$root.dateList
+                data: scope.$root.dateList.map(function (dt) {
+                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+                    return udt.toLocaleDateString();
+                })
             },
             series: [{
                 name: 'Influence Vol',
@@ -1207,7 +1239,10 @@ function stackAxisData(fnPromise, utility, scope) {
         //         xAxis: [{
         //             type: 'category',
         //             boundaryGap: false,
-        //             data: scope.dateList
+        //             data: scope.dateList.map(function (dt) {
+        //                 var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
+        //                 return udt.toLocaleDateString();
+        //             })
         //         }],
         //         series: [{
         //             name: 'Undefined',

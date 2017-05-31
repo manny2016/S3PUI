@@ -116,14 +116,26 @@
                             minLength: 3,
                             showOperators: false,
                             template: function (args) {
-                                var btnOpenReport = $('<i class=\'icon add\' style=\'position: absolute; top: 22px; right: 24px; color: #000; cursor: pointer;\' title=\'open report\'></i>');
+                                var btnOpenReport = $('<i class=\'icon bar chart\' style=\'position: absolute; top: 22px; right: 24px; color: #000; cursor: pointer;\' title=\'open report\'></i>');
                                 var btnExportExcel = $('<i class=\'icon download\' style=\'position: absolute; top: 22px; right: 4px; color: #000; cursor: pointer;\' title=\'export the search results to CSV\'></i>');
                                 btnOpenReport.click(function (e) {
+                                    var condition = {
+                                        function: threadOption.function,
+                                        forum: threadOption.platform,
+                                        topic: threadOption.topic,
+                                        search: threadOption.search
+                                    };
+                                    if (threadOption.days) { condition.days = threadOption.days; }
+
                                     var params = {};
                                     if (threadOption.params) {
                                         $.each(threadOption.params, function (field, value) {
                                             if (value) {
-                                                params[field] = value;
+                                                if (field === 'date') {
+                                                    condition.date = value;
+                                                } else {
+                                                    params[field] = value;
+                                                }
                                             }
                                         });
                                     }
@@ -136,18 +148,16 @@
                                             params.pnscope = 2;
                                         }
                                     }
-                                    var condition = {
-                                        function: threadOption.function,
-                                        forum: threadOption.platform,
-                                        topic: threadOption.topic,};
-                                    if (threadOption.date) { condition.date = threadOption.date; }
-                                    if (threadOption.days) { condition.days = threadOption.days; }
+                                    condition.conditions = params;
+
+                                    kendo.ui.progress($('body'), true);
                                     $.get(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'GetReportIdentity', {
                                         condition: JSON.stringify(condition)
                                     }).done(function (id) {
+                                        kendo.ui.progress($('body'), false);
                                         window.open('report?' + id, '_blank');
                                     }).fail(function () {
-
+                                        kendo.ui.progress($('body'), false);
                                     });
                                 });
                                 btnExportExcel.click(function (e) {
@@ -197,7 +207,6 @@
                                                 sortby: sortby,
                                                 sort: sortdir
                                             };
-                                            //console.log('down data:', post);
                                             window.open(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'DownloadByComplexFilter?' + $.param(post), '_blank');
                                         }
                                     }

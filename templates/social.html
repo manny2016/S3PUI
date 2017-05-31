@@ -43,8 +43,8 @@
                 </dropdown>
             </div>
             <div class="inline field">
-                <label>Date Range ({{TZ}}): 
-                </label> [{{dateList[0]}} - {{dateList.slice(-1)[0]}}]
+                <label>Date Range ({{TZ}}):</label>
+                {{startDateLocalsString}} - {{endDateLocalsString}}
                 <!--<div class="ui horizontal label">{{TZ}}</div>-->
                 <dropdown title="date range" ng-model="dateRange" style="min-width:100px;width:120px !important">
                     <dropdown-group value="7">7 Days</dropdown-group>
@@ -285,7 +285,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}" no-pop="true"
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry" days="{{dateRange}}" no-pop="true"
                                     property-select="positive" association="positive" info="Positive Feedback Vol from Detected Regions"></ng-echart>
                             </div>
                             <div class="side">
@@ -297,7 +297,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart title="Area Distribution for Negative Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByPN" days="{{dateRange}}" no-pop="true"
+                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry" days="{{dateRange}}" no-pop="true"
                                     property-select="negative" association="negative"  info="Negative Feedback Vol from Detected Regions"></ng-echart>
                             </div>
                             <div class="side">
@@ -406,7 +406,7 @@
             <div class="ui grid content">
                 <div class="two column row">
                     <ng-echart title="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
-                        location='home' sub-fn="getVoCDetailsByPN" no-swap="true" days="{{dateRange}}" property-select="users" info="Detected User Region Distribution"></ng-echart>
+                        location='home' sub-fn="getVoCDetailsByCountry" no-swap="true" days="{{dateRange}}" property-select="users" info="Detected User Region Distribution"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>

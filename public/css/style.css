@@ -385,7 +385,10 @@ tr > td > i.icon.write {
   margin-left: 120px;
 }
 .additional-icon-in-filter .k-filtercell > .k-operator-hidden {
-  margin-right: 20px;
+  margin-right: 40px;
+}
+.k-loading-mask {
+  z-index: 2000;
 }
 .report {
   cursor: default;

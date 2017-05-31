@@ -25,6 +25,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                     days: params.param.days,
                     params: {
                         date: params.param.date,
+                        country: params.param.country,
                         service: params.param.service,
                         userid: params.param.userid,
                         index: params.param.index,
@@ -53,11 +54,12 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                 parameterMap: function (data, operation)
                                 {
                                     if (operation === "read") {
-                                        var search = "";
+                                        var search;
                                         if (data.filter && data.filter.filters
                                             && data.filter.filters.length > 0) {
                                             search = data.filter.filters[0].value
                                         }
+                                        $window.threadOption.search = search;
                                         var post = {
                                             function: $window.threadOption.function,
                                             platform: $window.threadOption.platform,
@@ -139,6 +141,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.userid,
                             params.param.index,
                             params.param.pnscope,
+                            params.param.days
+                        )
+                        break;
+                    case 'getVoCDetailsByCountry':
+                        fn = $rootScope.service['getVoCDetailsByPN'];
+                        fnPromise = fn(params.param.platform,
+                            params.param.topic,
+                            params.param.country,
                             params.param.days
                         )
                         break;

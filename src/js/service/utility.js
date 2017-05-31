@@ -36,10 +36,19 @@ module.exports = function ($filter) {
             m.setUTCMonth(m.getUTCMonth() - parseInt(x) - 1);
             return m.getUTCFullYear() + "/" + (m.getUTCMonth() + 1) + "/" + m.getUTCDate();
         },
+        getDateTimeLocaleStringInMinute: function (date) {
+            var string = (new Date(date)).toLocaleString();
+            var match = /(^[^:]*(:\d+)?)(:\d+)?$/g.exec(string);
+            if (match && match.length > 1) {
+                return match[1];
+            } else {
+                return string;
+            }
+        },
         getTimeRange: function (startDate, endDate, interval, needFormat, format) {
             interval = interval || 1;
             needFormat = needFormat || true,
-                format = format || 'yyyy-MM-dd';
+                format = format || 'yyyy-MM-dd HH:mm';
 
             var retVal = [];
             var current = new Date(startDate);
@@ -48,14 +57,14 @@ module.exports = function ($filter) {
                 retVal.push(new Date(current));
                 current = (function (d) {
                     d.setDate(d.getDate() + interval);
-                    return d.setHours(0, 0, 0, 0)
+                    return d;//.setHours(0, 0, 0, 0)
                 })(new Date(current));
             }
-            if (needFormat) {
+            /*if (needFormat) {
                 retVal = retVal.map(function (date) {
-                    return $filter('date')(new Date(date), 'yyyy-MM-dd')
+                    return $filter('date')(new Date(date), format)
                 })
-            }
+            }*/
             return retVal;
         },
         timeToString: function (timestamp, type) {
