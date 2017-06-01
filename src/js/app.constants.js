@@ -20,10 +20,10 @@ app.constant('CONST', {
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
     SERVICE_INFO: {
-        ENDPOINT: 'https://shpv2-exchange-dataslice.azurewebsites.net/WebServices/S3PDataService/',
+        ENDPOINT: 'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
-        TWITTER_SERVER_STATUS:'https://shpv2-exchange-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
-        OTHERS_SERVER_STATUS:'https://shpv2exchange.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
+        TWITTER_SERVER_STATUS:'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
+        OTHERS_SERVER_STATUS:'https://shpv2-rawdata-proccess.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
         /*
         ENDPOINT: 'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
