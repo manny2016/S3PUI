@@ -151,13 +151,19 @@
                                     condition.conditions = params;
 
                                     kendo.ui.progress($('body'), true);
-                                    $.get(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'GetReportIdentity', {
-                                        condition: JSON.stringify(condition)
-                                    }).done(function (id) {
-                                        kendo.ui.progress($('body'), false);
-                                        window.open('report?' + id, '_blank');
-                                    }).fail(function () {
-                                        kendo.ui.progress($('body'), false);
+                                    $.ajax({
+                                        url: angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'GetReportIdentity',
+                                        async: false,
+                                        data: {
+                                            condition: JSON.stringify(condition)
+                                        },
+                                        success: function (result, status, xhr) {
+                                            kendo.ui.progress($('body'), false);
+                                            window.open('report?' + result, '_blank');
+                                        },
+                                        error: function (xhr, status, error) {
+                                            kendo.ui.progress($('body'), false);
+                                        }
                                     });
                                 });
                                 btnExportExcel.click(function (e) {
