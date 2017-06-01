@@ -17,7 +17,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             //console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
-                var country = params.param.country.toLowerCase();
+                var country = (params.param.country || '').toLowerCase();
                 if (country === "united states of america") { country = "united states"; }
                 $window.threadOption = {
                     function: params.fn,
