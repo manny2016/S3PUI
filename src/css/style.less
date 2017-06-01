@@ -572,20 +572,33 @@ tr > td {
 .report {
     cursor: default;
     padding: 0 30px;
+    a:focus {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .k-grid-header {
+        font-weight: bold;
+        .k-link:link {
+            color: #428BCA;
+            font-weight: bold;
+        }
+    }
     .icon {
         background-repeat: no-repeat;
     }
     .title {
         text-align: center;
-        line-height: 40px;
-        padding-bottom: 10px;
+        line-height: 60px;
+        padding-bottom: 20px;
         color: #009E11;
         font-size: 30px;
         font-weight: 700;
     }
     .sub-title {
         line-height: 20px;
-        font-size: 10px;
+        font-size: 14px;
         font-weight: 600;
         .icon {
             padding-left: 20px;
@@ -596,10 +609,10 @@ tr > td {
             .caption {
                 float: left;
                 display: block;
-                width: 100px;
+                width: 120px;
             }
             .caption.forum {
-                width: 80px;
+                width: 100px;
             }
         }
         .date-range {
@@ -618,13 +631,13 @@ tr > td {
         }
     }
     > .section {
-        &.no-data {
-            display: none;
-        }
         position: relative;
         margin-top: 20px;
         border: @border;
         border-radius: 4px 4px 0 0;
+        &.no-data {
+            display: none;
+        }
         .brand {
             height: 40px;
             background-color: #F0F0F0;
@@ -680,6 +693,7 @@ tr > td {
         &:before {
             content: url('data:image/svg+xml;charset=utf8,`content`')
         }*/
+        margin-top: 10px;
         @color: @blue;
         border-top: solid 2px @color;
         .brand {

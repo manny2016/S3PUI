@@ -141,6 +141,11 @@
             <!--contain body-->
         </div>
     </form>
+    <script type="text/javascript">
+        if (window.location.pathname === "/report") {
+            $('.ui.top.inverted.menu').css("display", "none");
+        }
+    </script>
     <script type="text/javascript" src="/public/angular.min.js"></script>
     <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.13/js/adal.min.js"></script>
     <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.13/js/adal-angular.min.js"></script>
@@ -153,5 +158,4 @@
     <script type="text/javascript" src="/node_modules/angular-smart-table/dist/smart-table.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 </body>
-
 </html>

@@ -1,9 +1,4 @@
-<div class="ui segment basic container report">
-    <div class="ui breadcrumb">
-        <a class="section">{{CONST.APP_NAME}}</a>
-        <i class="right angle icon divider"></i>
-        <div class="active section">Report</div>
-    </div>
+<div class="ui segment basic container report" ng-non-bindable>
     <div class="title" data-bind="html: ReportTitle"></div>
     <div class="sub-title">
         <div>
@@ -90,16 +85,12 @@
                  }, {
                     title: 'Post Vol',
                     field: 'value',
-                    width: '100px'
+                    width: '120px'
                  }, {
                     title: 'Ratio',
                     field: 'ratio',
                     format: '{0:p2}',
-                    width: '80px'
-                 }, {
-                    title: ' ',
-                    template: '<i class=\'icon download\'></i>',
-                    width: '40px'
+                    width: '100px'
                  }]" data-bind="source: MentionedServices"></div>
         </div>
     </div>
@@ -135,12 +126,12 @@
                  }, {
                     title: 'User Vol',
                     field: 'value',
-                    width: '80px'
+                    width: '120px'
                  }, {
                     title: 'Ratio',
                     field: 'ratio',
                     format: '{0:p2}',
-                    width: '80px'
+                    width: '100px'
                  }]" data-bind="source: UserDistributionsInSelectedRegions"></div>
         </div>
     </div>
@@ -567,4 +558,5 @@
     else {
         kendo.ui.progress($("body"), false);
     }
+
 </script>

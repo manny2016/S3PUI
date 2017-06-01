@@ -101,7 +101,7 @@ app
       .state('report', {
         url: '/report',
         templateUrl: 'templates/report.html',
-        requireADLogin: true
+        requireADLogin: false
       });
     // var endpoints = {
     //   'https://garyphp.azurewebsites.net': CONST.AD_CONFIG.CLIENT_ID

@@ -394,20 +394,33 @@ tr > td > i.icon.write {
   cursor: default;
   padding: 0 30px;
 }
+.report a:focus {
+  text-decoration: none;
+}
+.report a:hover {
+  text-decoration: underline;
+}
+.report .k-grid-header {
+  font-weight: bold;
+}
+.report .k-grid-header .k-link:link {
+  color: #428BCA;
+  font-weight: bold;
+}
 .report .icon {
   background-repeat: no-repeat;
 }
 .report .title {
   text-align: center;
-  line-height: 40px;
-  padding-bottom: 10px;
+  line-height: 60px;
+  padding-bottom: 20px;
   color: #009E11;
   font-size: 30px;
   font-weight: 700;
 }
 .report .sub-title {
   line-height: 20px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 .report .sub-title .icon {
@@ -418,10 +431,10 @@ tr > td > i.icon.write {
 .report .sub-title .data-source .caption {
   float: left;
   display: block;
-  width: 100px;
+  width: 120px;
 }
 .report .sub-title .data-source .caption.forum {
-  width: 80px;
+  width: 100px;
 }
 .report .sub-title .date-range {
   float: right;
@@ -493,6 +506,7 @@ tr > td > i.icon.write {
         &:before {
             content: url('data:image/svg+xml;charset=utf8,`content`')
         }*/
+  margin-top: 10px;
   border-top: solid 2px #2185D0;
 }
 .report .summary .brand {
