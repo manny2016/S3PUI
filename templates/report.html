@@ -171,7 +171,7 @@
             if (matches && matches.length > 1) {
                 return matches[1] + suffixes[exp - 1];
             } else {
-                console.warn("Cannot format number", number, (number / Math.pow(1000, exp), matches);
+                console.warn("Cannot format number", number, (number / Math.pow(1000, exp)), matches);
                 return number;
             }
         },
@@ -344,10 +344,12 @@
                 statics_sentiment[thread.Sentiment] = 1;
             }
 
-            if (thread.Service in statics_service) {
-                statics_service[thread.Service] += 1;
+            var service = thread.Service || "N/A";
+            if (service.toLowerCase() === 'others') { service = "N/A"; }
+            if (service in statics_service) {
+                statics_service[service] += 1;
             } else {
-                statics_service[thread.Service] = 1;
+                statics_service[service] = 1;
             }
 
             if (thread.User.Id in statics_users) {
@@ -367,7 +369,7 @@
                 };
             }
 
-            var region = thread.User.Region;
+            var region = thread.User.Region || "N/A";
             if (region === "United States") { region = "United States of America"; }
             if (region in statics_userRegions) {
                 statics_userRegions[region] += 1;
@@ -473,7 +475,7 @@
                         shadowColor: '#333'
                     }
                 },
-                data: services
+                data: services.filter(function (e) { return e.name !== 'N/A'; })
             }
         });
 
@@ -493,13 +495,17 @@
                 value: count,
                 ratio: count / threads.length
             });
-            regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
+            if (region !== 'N/A') {
+                regionMaxCount = count > regionMaxCount ? count : regionMaxCount;
+            }
         });
         userRegions.sort(function (a, b) { return b.value - a.value; });
         if (regionMaxCount > 100) {
             regionMaxCount = Math.ceil(regionMaxCount / 100) * 100;
         } else if (regionMaxCount > 10) {
             regionMaxCount = Math.ceil(regionMaxCount / 10) * 10;
+        } else {
+            regionMaxCount = 10;
         }
         viewModel.set("UserDistributions", userRegions);
         var chart_userRegions = echarts.init($("#chartUserRegions")[0], "macarons");
@@ -527,7 +533,7 @@
                 itemStyle: {
                     emphasis: { label: { show: true } }
                 },
-                data: userRegions
+                data: userRegions.filter(function (e) { return e.name !== 'N/A'; })
             }]
         });
         chart_userRegions.on("mapselectchanged", function (e) {
