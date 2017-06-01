@@ -167,7 +167,13 @@
             if (number < 1000) { return number; }
             var suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
             var exp = Math.floor(Math.log(number) / Math.log(1000));
-            return /(^.+\.((0*[1-9]+)|0))0*$/g.exec((number / Math.pow(1000, exp)).toFixed(3))[1] + suffixes[exp - 1];
+            var matches = /(^.+\.(\d*[1-9])?)\.?0*$/g.exec((number / Math.pow(1000, exp)).toFixed(3));
+            if (matches && matches.length > 1) {
+                return matches[1] + suffixes[exp - 1];
+            } else {
+                console.warn("Cannot format number", number, (number / Math.pow(1000, exp), matches);
+                return number;
+            }
         },
         ThreadCount: function () {
             return (this.get("Threads") || []).length;
@@ -475,7 +481,7 @@
         $.each(statics_users, function (id, user) {
             users.push(user);
         });
-        users.sort(function (a, b) { return b.ViewCount - a.ViewCount });
+        users.sort(function (a, b) { return b.PostCount - a.PostCount; });
         users = users.slice(0, 5);
         viewModel.set("Top5VoCUser", users);
 
