@@ -1292,12 +1292,12 @@ function barNegativeData(fnPromise, scope) {
         var usedData = scope.order(data, '-(vocinfluence.positivetotalvol+vocinfluence.negativetotalvol)').splice(0, 10);
         var likeData = [],
             dislikeData = [],
-            yAxisData = []
+            yAxisData = [];
         usedData.map(function (item) {
             yAxisData.push(item.attachedobject)
             likeData.push(item.vocinfluence.positivetotalvol)
             dislikeData.push(-1 * item.vocinfluence.negativetotalvol)
-        })
+        });
         return {
             xAxis: [{
                 type: 'value'
@@ -1309,14 +1309,18 @@ function barNegativeData(fnPromise, scope) {
                 },
                 // nameLocation:'start',
                 axisLabel: {
-                    interval: 0,
-                    // rotate:45,
-                    inside: true
+                    interval: 0
                 },
                 data: yAxisData,
                 z: 10
             },
-            grid: {},
+            grid: {
+                top: 30,
+                left: 20,
+                right: 20,
+                bottom: 0,
+                containLabel: true
+            },
             series: [{
                 name: 'Like',
                 type: 'bar',
