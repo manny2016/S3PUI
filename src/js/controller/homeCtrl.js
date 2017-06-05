@@ -160,7 +160,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
     }
     listenServiceStatus();
     $scope.getServiceStatus = function () {
-        setInterval(listenServiceStatus, 1000 * 30);
+        setInterval(listenServiceStatus, 1000 * 60);
     }
     $scope.getServiceStatus();
 }

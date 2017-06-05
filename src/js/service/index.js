@@ -86,7 +86,7 @@ app.factory('Notifications', function (baseSrv, CONST) {
         catch (err) { console.log('connection Error', err); }
     }
     listenNewDetection();
-    var timer = setInterval(listenNewDetection, 1000 * 10);
+    var timer = setInterval(listenNewDetection, 1000 * 60);
     return {
         collection: collection,
         status: function () {

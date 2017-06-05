@@ -75,40 +75,20 @@
                                 Service Status and Sentiment Predictor
                             </div>-->
                     </div>
+                    <div class="menu right forums" data-template="templateMenuGroupForums" data-bind="source: MenuGroups">
+                    </div>
+                    <script id="templateMenuGroupForums" type="text/x-kendo-template">
+                        <div class="ui dropdown simple item #=color# #=select#">
+                            #=name# <i class="dropdown icon"></i>
+                            <div class="menu">
+                                #=kendo.render(kendo.template($("\\#templateMenuForum").html()), forums)#
+                            </div>
+                        </div>
+                    </script>
+                    <script id="templateMenuForum" type="text/x-kendo-template">
+                        <a class="item" href="#=url#">#=name#</a>
+                    </script>
                     <div class="menu right">
-                        <!--<a href="/" ng-class="{ active: isActive('/')}" class="item">S3P Dashboard</a>
-                    <a href="/social" ng-class="{ active: isActive('/social')}"class="item">Social Media</a>
-                    <a href="/stackexchange" ng-class="{ active: isActive('/stackexchange')}" class="item">StackExchange</a>
-                    <a href="/msdn" ng-class="{ active: isActive('/msdn')}" class="item">MSDN/TN Fourms</a>-->
-                        <!--<div class="green ui dropdown simple item" ng-class="{select: $state.includes('home')}">
-                                Social Health Platform <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <a class="item" ui-sref="home.dashboard">Dashboard</a>
-                                    <a class="item" ui-sref="home.about">What's Social Health Platform</a>
-                                </div>
-                            </div>-->
-                        <div class="olive ui dropdown simple item" ng-class="{select: $state.includes('social')}">
-                            Social Media <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <a class="item" ui-sref="social.platform({platform:'twitter'})">Twitter</a>
-                            </div>
-                        </div>
-                        <div class="blue ui dropdown simple item" ng-class="{select: $state.includes('thirdParty')}">
-                            Third Party Forums <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <a class="item" ui-sref="thirdParty.platform({platform:'so'})">Stackoverflow</a>
-                                <a class="item" ui-sref="thirdParty.platform({platform:'su'})">SuperUser</a>
-                                <a class="item" ui-sref="thirdParty.platform({platform:'sf'})">ServerFault</a>
-                                <a class="item" ui-sref="thirdParty.platform({platform:'lithium'})">Lithium</a>
-                            </div>
-                        </div>
-                        <div class="yellow ui dropdown simple item" ng-class="{select: $state.includes('msPlatform')}">
-                            MS Platforms <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <a class="item" ui-sref="msPlatform.platform({platform:'msdn'})">MSDN Forums</a>
-                                <a class="item" ui-sref="msPlatform.platform({platform:'tn'})">Technet Forums</a>
-                            </div>
-                        </div>
                         <a class="ui item teal" ui-sref="notification" ng-class="{select: $state.includes('notification')}">
                             <!--<i class="alarm outline icon"></i>-->
                             Notification Center
@@ -157,5 +137,94 @@
     <script type="text/javascript" src="/node_modules/angular-scroll/angular-scroll.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-smart-table/dist/smart-table.min.js"></script>
     <script type="text/javascript" src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript">
+        var allForumCategories = {
+            social: { name: 'Social Media', color: 'olive' },
+            thirdParty: { name: 'Third Party Forums', color: 'blue' },
+            msPlatform: { name: 'MS Platforms', color: 'yellow' }
+        };
+        var allForums = {
+            twitter: { name: 'Twitter', category: 'social' },
+            so: { name: 'Stack Overflow', category: 'thirdParty' },
+            su: { name: 'Super User', category: 'thirdParty' },
+            sf: { name: 'Server Fault', category: 'thirdParty' },
+            lithium: { name: 'Lithium', category: 'thirdParty' },
+            msdn: { name: 'MSDN Forums', category: 'msPlatform' },
+            tn: { name: 'Technet Forums', category: 'msPlatform' }
+        };
+
+        var menuModel = kendo.observable({
+            Forums: ['twitter', 'so', 'su', 'sf', 'lithium', 'msdn', 'tn'],
+            Location: window.location.href,
+            MenuGroups: function () {
+                var swap = {
+                    social: [],
+                    thirdParty: [],
+                    msPlatform: []
+                };
+                $.each(this.get('Forums'), function (i, forum) {
+                    var menu = allForums[forum];
+                    if (menu) {
+                        if (menu.category in swap) {
+                            swap[menu.category].push({
+                                key: forum,
+                                name: menu.name,
+                                url: menu.category + '/' + forum
+                            });
+                        } else {
+                            swap[menu.category] = [{
+                                key: forum,
+                                name: menu.name,
+                                url: menu.category + '/' + forum
+                            }];
+                        }
+                    }
+                });
+                var groups = [];
+                var location = this.get('Location');
+                $.each(swap, function (category, forums) {
+                    var categoryInfo = allForumCategories[category];
+                    groups.push({
+                        name: categoryInfo.name,
+                        color: categoryInfo.color,
+                        select: location.match(new RegExp(category, 'gi')) ? 'select' : '',
+                        forums: forums
+                    })
+                });
+                return groups;
+            }
+        });
+        kendo.bind($('.menu.forums'), menuModel);
+
+        $(document).ready(function () {
+            var endpoint = angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT;
+            $.ajax({
+                url: endpoint + 'GetAllEnabledTopicsByPlatform',
+                data: {
+                    platform: 'all',
+                    stamp: (new Date()).getTime()
+                },
+                success: function (result, status, xhr) {
+                    var forums = [];
+                    $.each(result, function (i, g1) {
+                        if (g1.isGA === true) {
+                            $.each(g1.Platforms, function (j, g2) {
+                                if (g2.isEnabled === true) {
+                                    if (forums.indexOf(g2.PlatformName) < 0) {
+                                        forums.push(g2.PlatformName);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    menuModel.set('Forums', forums);
+                }
+            });
+            setInterval(function () {
+                menuModel.set('Location', window.location.href);
+            }, 200)
+        });
+    </script>
 </body>
+
 </html>

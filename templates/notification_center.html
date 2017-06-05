@@ -284,7 +284,7 @@
                             transport: {
                                 read: function (options) {
                                     $.ajax({
-                                        url: scope.CONST.SERVICE_INFO.ENDPOINT + "GetSubscribeSettings?stamp" + (new Date()).getTime(),
+                                        url: scope.CONST.SERVICE_INFO.ENDPOINT + "GetSubscribeSettings?stamp=" + (new Date()).getTime(),
                                         dataType: "json",
                                         success: function (result) {
                                             options.success(result);
