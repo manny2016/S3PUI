@@ -325,7 +325,7 @@
     function refreshThread(response) {
         var data = JSON.parse(response);
         console.log(data);
-        viewModel.set("ReportTitle", data.Title || "Report");
+        viewModel.set("ReportTitle", (data.Title === "Report" ? "Volumes and Spikes Report" : data.Title) || "Report");
         viewModel.set("Forum", data.Forum);
         viewModel.set("Search", data.Search || "");
         viewModel.set("StartTime", data.StartTime);

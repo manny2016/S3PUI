@@ -131,8 +131,14 @@
                                     if (threadOption.params) {
                                         $.each(threadOption.params, function (field, value) {
                                             if (value) {
-                                                if (field === 'date') {
+                                                if ((field === 'date') || (field === 'timestamp')) {
                                                     condition.date = value;
+                                                } else if (field === 'msgType') {
+                                                    if (value === 'PositiveVolumePostSpikeDetected') {
+                                                        params.pnscope = 4;
+                                                    } else if (value === 'NegativeVolumePostSpikeDetected') {
+                                                        params.pnscope = 0;
+                                                    }
                                                 } else {
                                                     params[field] = value;
                                                 }
