@@ -152,6 +152,7 @@
                                 </div>
                             </td>
                             <td>
+                                <a ng-if="m.reportid" style="float: right; margin-right: 20px;" title="open report" href="report?{{m.reportid}}" target="_blank"><i class="icon bar chart"></i></a>
                                 <div ng-bind-html="generateDownloadUrl(m)"></div>
                             </td>
                         </tr>

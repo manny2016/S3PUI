@@ -35,7 +35,15 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     }();
     $scope.$watch('Notifications.collection', function (newV, oldV) {
         if (newV.length) {
-            $scope.collections.push($scope.Notifications.collection.pop());
+            var notification = $scope.Notifications.collection.pop();
+            if (((($scope.search.datasource || 'all') === 'all') || (notification.forumName === $scope.search.datasource))
+                && ((($scope.search.topic || 'all') === 'all') || (notification.topic === $scope.search.topic))
+                && ((($scope.search.messagetype || 'all') === 'all') || (notification.msgType === $scope.search.messagetype))
+                && ((($scope.search.downloadable || 'all') === 'all') || (notification.hasDownload === ($scope.search.downloadable === 1 ? true : $scope.search.downloadable === -1 ? false : null)))
+                ////&& (($scope.search.bgTime <= notification.createdTime) && (notification.createdTime < $scope.search.egTime))
+            ) {
+                $scope.collections.push(notification);
+            }
         }
     }, true)
     // $scope.$watch('search', function (newV, oldV) {
@@ -81,7 +89,6 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         var params = angular.copy($scope.search);
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
         params.egTime = Math.floor(moment.utc(params.egTime).endOf('day') / 1000);
-        console.log(params)
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.topic, params.downloadable, params.bgTime, params.egTime).then(function (data) {
             // console.log(data);
             // $scope.collections = angular.extend($scope.collections, data);
