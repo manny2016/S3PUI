@@ -981,22 +981,9 @@ function customServicesDistributionData(fnPromise, scope) {
         // console.log(scope);
 
         // }
-        return {
-            series: [{
-                // avoidLabelOverlap: false,
-                // label: {
-                //     normal: {
-                //         position: 'inside'
-                //     }
-                // },
-                data: seriesData
-            }],
-            // legend: {
-            //     orient: 'vertical',
-            //     x: 'left',
-            //     data:legendData
-            // },
-            toolbox: {
+        var toolbox = null;
+        if (scope.platform !== 'all') {
+            toolbox = {
                 feature: {
                     myTool1: {
                         show: true, //true
@@ -1014,7 +1001,24 @@ function customServicesDistributionData(fnPromise, scope) {
                     }
                 },
                 show: true
-            },
+            };
+        }
+        return {
+            series: [{
+                // avoidLabelOverlap: false,
+                // label: {
+                //     normal: {
+                //         position: 'inside'
+                //     }
+                // },
+                data: seriesData
+            }],
+            // legend: {
+            //     orient: 'vertical',
+            //     x: 'left',
+            //     data:legendData
+            // },
+            toolbox: toolbox,
             // title: {
             //     text: scope.title || ''
             // }
