@@ -92,7 +92,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 // date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
-                                date: Math.floor(moment.utc(params.name) / 1000),
+                                date: Math.floor(moment.utc(params.name, 'L') / 1000),
                                 //date: Math.floor(moment(params.name) / 1000),
                                 // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope,
@@ -171,8 +171,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                // date: Math.floor(moment.utc(params.name) / 1000),
-                                date: Math.floor(moment(params.name) / 1000),
+                                date: Math.floor(moment.utc(params.name, 'L') / 1000),
+                                //date: Math.floor(moment(params.name) / 1000),
                                 pnscope: _.pnscope,
                                 days: _.days
                             }
@@ -699,8 +699,7 @@ function customInfluenceData(fnPromise, scope) {
             },
             xAxis: {
                 data: scope.$root.dateList.map(function (dt) {
-                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
-                    return udt.toLocaleDateString();
+                    return moment(dt).utc().format('L');
                 })
             },
             series: [{
@@ -736,8 +735,7 @@ function customSpikesData(fnPromise, scope) {
         return {
             xAxis: {
                 data: scope.$root.dateList.map(function (dt) {
-                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
-                    return udt.toLocaleDateString();
+                    return moment(dt).utc().format('L');
                 })
             },
             series: [{
@@ -761,8 +759,7 @@ function customSpikesData(fnPromise, scope) {
         return {
             xAxis: {
                 data: scope.$root.dateList.map(function (dt) {
-                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
-                    return udt.toLocaleDateString();
+                    return moment(dt).utc().format('L');
                 })
             },
             grid: {
@@ -821,8 +818,7 @@ function customSpikesData(fnPromise, scope) {
         return {
             xAxis: {
                 data: scope.$root.dateList.map(function (dt) {
-                    var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
-                    return udt.toLocaleDateString();
+                    return moment(dt).utc().format('L');
                 })
             },
             series: [{
@@ -1246,8 +1242,7 @@ function stackAxisData(fnPromise, utility, scope) {
     //             type: 'category',
     //             boundaryGap: false,
     //             data: scope.dateList.map(function (dt) {
-    //                 var udt = new Date(dt.valueOf() + dt.getTimezoneOffset() * 60 * 1000);
-    //                 return udt.toLocaleDateString();
+    //                 return moment(dt).utc().format('L');
     //             })
     //         }],
     //         series: [{
