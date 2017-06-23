@@ -894,3 +894,40 @@ tr > td {
         }
     }
 }
+
+.k-loading-image {
+    background-image: none;
+    background-color: rgba(0, 0, 0, 0.85);
+    content: 'Loading';
+    color: rgba(255, 255, 255, 0.9);
+    &:before {
+        position: absolute;
+        content: '';
+        top: 30%;
+        left: 50%;
+        width: 26px;
+        height: 26px;
+        margin: 0 0 0 -13px;
+        border-radius: 500rem;
+        border: 0.2em solid rgba(0, 0, 0, 0.1);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+    &:after {
+        position: absolute;
+        content: '';
+        top: 30%;
+        left: 50%;
+        width: 26px;
+        height: 26px;
+        margin: 0 0 0 -13px;
+        -webkit-animation: loader 0.6s linear;
+        animation: loader 0.6s linear;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        border-radius: 500rem;
+        border-color: #FFFFFF transparent transparent;
+        border-style: solid;
+        border-width: 0.2em;
+        box-shadow: 0px 0px 0px 1px transparent;
+    }
+}

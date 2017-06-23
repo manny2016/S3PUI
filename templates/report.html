@@ -284,7 +284,7 @@
             });
         },
         Forum: function (model) {
-            model.set("ForumName", scope.CONST.ALL_ENABLED_PLARFORMS[model.Forum] || model.Forum);
+            model.set("ForumName", scope.CONST.ALL_ENABLED_PLARFORMS[model.Forum] || (model.Forum || 'All Data Source'));
             model.set("ForumIconUrl", "url('public/images/" + model.Forum + ".png')");
         },
         _UpdateDateRageHtml: function (model) {
@@ -324,9 +324,8 @@
 
     function refreshThread(response) {
         var data = JSON.parse(response);
-        console.log(data);
         viewModel.set("ReportTitle", (data.Title === "Report" ? "Volumes and Spikes Report" : data.Title) || "Report");
-        viewModel.set("Forum", data.Forum);
+        viewModel.set("Forum", data.Forum || 'All Data Source');
         viewModel.set("Search", data.Search || "");
         viewModel.set("StartTime", data.StartTime);
         viewModel.set("EndTime", data.EndTime);
@@ -369,7 +368,7 @@
                 };
             }
 
-            var region = thread.User.Region || "N/A";
+            var region = thread.User.Region || "United States of America";
             if (region === "United States") { region = "United States of America"; }
             if (region in statics_userRegions) {
                 statics_userRegions[region] += 1;

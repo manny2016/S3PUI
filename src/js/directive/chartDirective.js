@@ -168,10 +168,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
 
                             break;
                         case 'getSubPageVoCDetails':
+                            var date = _.days === '7'
+                                ? moment(params.name).utc()
+                                : moment.utc(params.name);
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor(moment.utc(params.name, 'L') / 1000),
+                                date: Math.floor(date / 1000),
                                 //date: Math.floor(moment(params.name) / 1000),
                                 pnscope: _.pnscope,
                                 days: _.days

@@ -1,4 +1,4 @@
-<div id="subWindow" class="ui fullscreen modal" query=query>
+<div id="subWindow" class="ui fullscreen modal" style="overflow: visible;" query=query>
     <div class="header">Details : {{platform}}</div>
     <div id="sub_window" class="ui segment content" style="overflow:auto;padding-top:0;padding-bottom:0">
         <div class="ui active dimmer" ng-show="!complete">
@@ -108,7 +108,7 @@
                 data-pageable="true"
                 data-columns="[{
                     title: 'Thread Name',
-                    field: 'title',
+                    field: 'Title',
                     template: '<a target=\'_blank\' href=\'#=webUrl#\' title=\'#=title#\'>#=title#</a>',
                     filterable: {
                         cell: {
@@ -242,23 +242,23 @@
                     }
                 }, {
                     title: 'Post By',
-                    field: 'createdby',
+                    field: 'UserId',
                     width: '200px',
                     filterable: false
                 }, {
                     title: 'Influence Num',
-                    field: 'influencenum',
+                    field: 'ViewCount',
                     width: '180px',
                     filterable: false
                 }, {
                     title: 'Time',
-                    field: 'created',
+                    field: 'CreatedTime',
                     format: '{0: M/d/yyyy h:mm tt}',
                     width: '180px',
                     filterable: false
                 }, {
                     title: 'Sentiment',
-                    field: 'sentimentscore',
+                    field: 'Sentiment',
                     values: [
                         { value: 0, text: 'Negative' },
                         { value: 2, text: 'Neutral' },

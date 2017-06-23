@@ -72,7 +72,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                             search: search,
                                             page: data.page,
                                             pagesize: data.pageSize,
-                                            sortby: data.sort[0] ? data.sort[0].field : 'created',
+                                            sortby: data.sort[0] ? data.sort[0].field : 'CreatedTime',
                                             sort: data.sort[0] ? data.sort[0].dir : 'desc',
                                         };
                                         if ($window.threadOption.params) {
@@ -82,7 +82,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                                 }
                                             });
                                         }
-                                        //console.log("get data:", post);
                                         return kendo.stringify(post);
                                     }
                                 }
@@ -90,14 +89,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             serverPaging: true,
                             pageSize: 10,
                             serverSorting: true,
-                            sort: { field: "created", dir: "desc" },
+                            sort: { field: "CreatedTime", dir: "desc" },
                             serverFiltering: true,
                             schema: {
                                 total: "count",
                                 data: function (response) {
                                     var data = response.messagesorthreads;
                                     $.each(data, function (pos, data) {
-                                        data.created = new Date(data.created * 1000);
+                                        data.CreatedTime = new Date(data.CreatedTime * 1000);
                                     });
                                     return data;
                                 }
