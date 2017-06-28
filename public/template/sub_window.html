@@ -219,6 +219,7 @@
                                                 sortby: sortby,
                                                 sort: sortdir
                                             };
+                                            console.log(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'DownloadByComplexFilter?' + $.param(post));
                                             window.open(angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT + 'DownloadByComplexFilter?' + $.param(post), '_blank');
                                         }
                                     }
@@ -240,6 +241,11 @@
                             }
                         }
                     }
+                }, {
+                    title: 'Data Source',
+                    field: 'Forum',
+                    width: '120px',
+                    filterable: false
                 }, {
                     title: 'Post By',
                     field: 'UserId',

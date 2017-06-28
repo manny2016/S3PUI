@@ -411,12 +411,18 @@ tr > td > i.icon.write {
   background-repeat: no-repeat;
 }
 .report .title {
-  text-align: center;
+  padding: 0 10px 20px 10px;
+  text-align: left;
   line-height: 60px;
-  padding-bottom: 20px;
   color: #009E11;
   font-size: 30px;
   font-weight: 700;
+}
+.report .title i.icon {
+  float: right;
+  padding-right: 10px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
 }
 .report .sub-title {
   line-height: 20px;

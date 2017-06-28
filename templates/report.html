@@ -1,5 +1,9 @@
 <div class="ui segment basic container report" ng-non-bindable>
-    <div class="title" data-bind="html: ReportTitle"></div>
+    <div class="title">
+        <span data-bind="html: ReportTitle"></span>
+        <i class="icon download" title="export the threads to CSV" data-bind="events: { click: DownloadThreads }"></i>
+        <i class="icon share" title="share report (copy url)" data-bind="events: { click: CopyPageUrl }"></i>
+    </div>
     <div class="sub-title">
         <div>
             <span class="data-source">
@@ -150,6 +154,7 @@
     var scope = angular.element("html").scope();
     var model = kendo.data.Model.define({
         fields: {
+            DownloadUrl: { type: "string" },
             ReportTitle: { type: "string", defaultValue: "Report" },
             Forum: { type: "string" },
             StartTime: { type: "date" },
@@ -274,6 +279,14 @@
                     section.addClass("collapsed").removeClass("expanded");
                 }
             }
+        },
+        CopyPageUrl: function (e) {
+            copyTextToClipboard(window.location.href);
+            showNotificationSuccess("already copied report url to clipboard");
+        },
+        DownloadThreads: function (e) {
+            console.log(viewModel.get('DownloadUrl'));
+            window.open(viewModel.get('DownloadUrl'), '_blank');
         }
     });
     var viewModel = kendo.observable(new model());
@@ -324,6 +337,7 @@
 
     function refreshThread(response) {
         var data = JSON.parse(response);
+        viewModel.set("DownloadUrl", scope.CONST.SERVICE_INFO.ENDPOINT + "DownloadByComplexFilter?" + data.DownloadQuery);
         viewModel.set("ReportTitle", (data.Title === "Report" ? "Volumes and Spikes Report" : data.Title) || "Report");
         viewModel.set("Forum", data.Forum || 'All Data Source');
         viewModel.set("Search", data.Search || "");
