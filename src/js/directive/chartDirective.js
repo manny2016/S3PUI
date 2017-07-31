@@ -1380,11 +1380,11 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 data: xAxisDate
             }],
             legend: {
-                data: ['Init Positive Volume', 'After Support Positive Volume'],
+                data: ['Init Negative Volume', 'After Support Negative Volume'],
                 show: true
             },
             series: [{
-                name: 'Init Positive Volume',
+                name: 'Init Negative Volume',
                 type: 'line',
                 areaStyle: {
                     normal: {}
@@ -1394,9 +1394,9 @@ function sentimentconversionData(fnPromise, utility, scope) {
                         show: true
                     }
                 },
-                data: seriesData.initPostive
+                data: seriesData.initNegative
             }, {
-                name: 'After Support Positive Volume',
+                name: 'After Support Negative Volume',
                 type: 'line',
                 areaStyle: {
                     normal: {}
@@ -1406,7 +1406,7 @@ function sentimentconversionData(fnPromise, utility, scope) {
                         show: true
                     }
                 },
-                data: seriesData.afterSptPostive
+                data: seriesData.afterSptNegative
             }],
         }
     });
