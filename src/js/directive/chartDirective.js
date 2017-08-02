@@ -1193,7 +1193,7 @@ function stackAxisData(fnPromise, utility, scope) {
             series: [{
                 name: 'Undefined',
                 type: 'line',
-                stack: 'total',
+                //stack: 'total',
                 showAllSymbol: true,
                 areaStyle: {
                     normal: {}
@@ -1202,7 +1202,7 @@ function stackAxisData(fnPromise, utility, scope) {
             }, {
                 name: 'Positive',
                 type: 'line',
-                stack: 'total',
+                //stack: 'total',
                 showAllSymbol: true,
                 areaStyle: {
                     normal: {}
@@ -1211,7 +1211,7 @@ function stackAxisData(fnPromise, utility, scope) {
             }, {
                 name: 'Negative',
                 type: 'line',
-                stack: 'total',
+                //stack: 'total',
                 showAllSymbol: true,
                 areaStyle: {
                     normal: {}
@@ -1220,7 +1220,7 @@ function stackAxisData(fnPromise, utility, scope) {
             }, {
                 name: 'Neutral',
                 type: 'line',
-                stack: 'total',
+                //stack: 'total',
                 showAllSymbol: true,
                 areaStyle: {
                     normal: {}
