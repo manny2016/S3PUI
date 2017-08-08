@@ -213,7 +213,7 @@
                     groups.push({
                         name: categoryInfo.name,
                         color: categoryInfo.color,
-                        select: location.match(new RegExp('/' + category, 'gi')) ? 'select' : '',
+                        select: location.match(new RegExp('[^/]/' + category, 'gi')) ? 'select' : '',
                         forums: forums
                     })
                 });
