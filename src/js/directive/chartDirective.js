@@ -237,9 +237,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.query.days);
-                            customSpikesData(fnPromise, _).then(function (config) {
-                                // console.log('getSpikes')
+                            var fnPromise = apiFn(_.platform, _.query.topic, 3, _.query.start, _.query.end + 3600000 * 24);
+                            customSpikesData(fnPromise, _, utilitySrv).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -730,17 +729,23 @@ function customInfluenceData(fnPromise, scope) {
     })
 }
 
-function customSpikesData(fnPromise, scope) {
+function customSpikesData(fnPromise, scope, utilitySrv) {
+    var start = scope.query.start;
+    var end = scope.query.end;
+    console.log(start, end);
+    var xAxis = {
+        data: utilitySrv.getTimeRange(scope.query.start, scope.query.end).map(function (dt) {
+            //data: scope.$root.dateList.map(function (dt) {
+            return moment(dt).utc().format('L');
+        })
+    };
+
     var simpleSeries = function (raw) {
         var seriesData = raw.map(function (item) {
             return item.dailyspikevol
-        })
+        });
         return {
-            xAxis: {
-                data: scope.$root.dateList.map(function (dt) {
-                    return moment(dt).utc().format('L');
-                })
-            },
+            xAxis: xAxis,
             series: [{
                 name: 'Spikes',
                 type: 'bar',
@@ -760,11 +765,7 @@ function customSpikesData(fnPromise, scope) {
         })
 
         return {
-            xAxis: {
-                data: scope.$root.dateList.map(function (dt) {
-                    return moment(dt).utc().format('L');
-                })
-            },
+            xAxis: xAxis,
             grid: {
                 width: '75%'
             },
@@ -819,11 +820,7 @@ function customSpikesData(fnPromise, scope) {
                 break;
         }
         return {
-            xAxis: {
-                data: scope.$root.dateList.map(function (dt) {
-                    return moment(dt).utc().format('L');
-                })
-            },
+            xAxis: xAxis,
             series: [{
                 name: 'Influence Vol',
                 type: 'line',

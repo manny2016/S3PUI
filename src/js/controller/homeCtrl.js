@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, CONST) {
+module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, CONST, utilitySrv) {
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -88,7 +88,12 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         $('#progress').show();
         if ($scope.query.topic !== topic) {
             $scope.enabledPlatforms = [];
-            $scope.query.topic = topic
+            $scope.query.topic = topic;
+            var days = 30;
+            var start = moment.utc().startOf('day').subtract(days, 'days').valueOf();
+            var end = moment.utc().startOf('day').subtract(1, 'days').valueOf();
+            $scope.query.start = start;
+            $scope.query.end = end;
             // console.log($scope);
             $timeout(function () {
                 $scope.topics.forEach(function (item) {

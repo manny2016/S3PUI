@@ -100,186 +100,6 @@ app.factory('Notifications', function (baseSrv, CONST) {
     }
 });
 
-app.factory('testSrv', function (baseSrv) {
-    return {
-        test: function (params) {
-            return baseSrv.devGet('GetMentionedServiceList')
-        },
-        getCate: function (platform) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            return baseSrv.devGet('GetAllEnabledTopicsByPlatform', params);
-        },
-        getUser: function (platform, topNum, topic, PNScope) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topNum = topNum || 5;
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetTopUsers', params);
-        },
-        getSpikes: function (platform, topic, days) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.days = days || 7;
-            params.topic = topic || 'all';
-            return baseSrv.devGet('GetDailyVolSpikes', params);
-        },
-        getDistribution: function (platform, topic) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            return baseSrv.devGet('GetPNDistribution', params);
-        },
-        getMentionedMostServiceList: function (platform, topic, PNScope) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetMentionedMostServiceList', params);
-        },
-        getMentionedMostServiceListByUserVol: function (platform, topic, PNScope) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetMentionedMostServiceListByUserVol', params);
-        },
-        getMentionedMostServiceDistribution: function (platform, topic, PNScope) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            return baseSrv.devGet('GetMentionedMostServiceList', params);
-        },
-        getInfluence: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetDailyInfluence', params);
-        },
-        getVoCDetailsByDate: function (platform, topic, date, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.date = date || Math.floor(new Date().getTime() / 1000);
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow', params);
-        },
-        getVoCDetailsByUser: function (platform, topic, user, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.user = user || 1234;
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
-        },
-        getVoCDetailsByPN: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
-        },
-        getVoCDetailsByServiceName: function (platform, topic, service, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.servicename = service || 'webapp';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
-        },
-        getImpactSummary: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetImpactSummary', params);
-        },
-        getUserVolSpikes: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetUserVolSpikes', params);
-        },
-        getMessageVolSpikes: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetMessageVolSpikes', params);
-        },
-        getInfluenceVolSpikes: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetInfluenceVolSpikes', params);
-        },
-        getUserRegionVolSpikes: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetUserRegionVolSpikes', params);
-        },
-        getKeywordsMentionedMostMapping: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('GetKeywordsMentionedMostMapping', params);
-        },
-        getSubPageVoCDetails: function (platform, topic, date, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.date = date || Math.floor(new Date().getTime() / 1000);
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
-        },
-        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'all';
-            params.keywords = keywords || 'notworking';
-            params.PNScope = PNScope || 'all';
-            params.IsFuzzyQuery = IsFuzzyQuery || 'true';
-            params.days = days || 7;
-            return baseSrv.devGet('subwindow' + '.' + params.platform, params);
-        },
-        getSysDetections: function (forumName, msgType, topic, downloadable, bgTime, egTime) {
-            var params = params || {};
-            params.forumName = forumName || 'all';
-            params.msgType = msgType || 'all';
-            params.topic = topic || 'all';
-            params.downloadable = downloadable || 'all';
-            params.bgTime = bgTime || 0;
-            params.egTime = egTime || 0;
-            return baseSrv.devGet('GetSysDetections', params);
-        },
-        getPlatformSyncSetting: function (platform) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            return baseSrv.devGet('GetPlatformSyncSetting', params);
-        }
-    }
-})
-
 app.factory('rawdataSrv', function (baseSrv) {
     return {
         getCate: function (platform) {
@@ -296,11 +116,13 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetTopUsers', params);
         },
-        getSpikes: function (platform, topic, days) {
+        getSpikes: function (platform, topic, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
-            params.days = days || 7;
             params.topic = topic || 'all';
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetDailyVolSpikes', params);
         },
         getDistribution: function (platform, topic, days) {
