@@ -152,6 +152,26 @@
             msdn: { name: 'MSDN Forums', category: 'msPlatform' },
             tn: { name: 'Technet Forums', category: 'msPlatform' }
         };
+
+        function getDateTimeFormat(datestring) {
+            return (datestring || '')
+                .replace(/AM|PM|am|pm/, "tt")
+                .replace(/2345/, "yyyy")
+                .replace(/45/, "yy")
+                .replace(/06/, "MM")
+                .replace(/6/, "M")
+                .replace(/07/, "dd")
+                .replace(/7/, "d")
+                .replace(/08/, "hh")
+                .replace(/8/, "h")
+                .replace(/09/, "mm")
+                .replace(/9/, "m")
+                .replace(/01/, "ss")
+                .replace(/1/, "s");
+        }
+        var localeDateTimeFormatString = getDateTimeFormat((new Date(2345,5,7,8,9,1)).toLocaleString());
+        var localeDateFormatString = getDateTimeFormat((new Date(2345,5,7,8,9,1)).toLocaleDateString());
+        var localeTimeFormatString = getDateTimeFormat((new Date(2345,5,7,8,9,1)).toLocaleTimeString());
         function copyTextToClipboard(text) {
             var textArea = document.createElement("textarea");
             textArea.style.position = 'fixed';

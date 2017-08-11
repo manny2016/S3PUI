@@ -50,6 +50,8 @@ app
     //     return d.setHours(0, 0, 0, 0)
     //   })(new Date)
     // };
+
+    ////TODO P0: need to remove
     var timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
     $rootScope.timeRange = {
       'start': moment.utc().startOf('day').subtract(7, 'days').valueOf(),

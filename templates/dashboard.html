@@ -8,8 +8,9 @@
         <h3 class="ui header orange">
             Services and Products
             <div class="sub pull-right header">
-                <div class="ui orange horizontal label">{{TZ}}</div>
-                {{startDateLocalsString}} - {{endDateLocalsString}}
+                <div class="ui orange horizontal label">UTC</div>
+                <input id="DateTimePickerStart" style="width: 120px;" />
+                <input id="DateTimePickerEnd" style="width: 120px;" />
             </div>
         </h3>
 
@@ -94,19 +95,6 @@
                 </table>
             </div>
         </div>
-        <!--<div id="health" class="ui segment blue">
-            <h3 class="ui center aligned title header blue active">Social Health Summary
-                <i class="dropdown icon pull-left"></i>
-            </h3>
-            <div class="ui one column grid content active">
-                <div class="ui top attached tabular menu">
-                    <a class="item" ng-class="{active:$first}" data-tab="{{p}}" ng-repeat="p in enabledPlatforms">{{p}}</a>
-                </div>
-                <div class="ui bottom attached tab segment" ng-class="{active:$first}" ng-repeat="p in enabledPlatforms" data-tab="{{p}}">
-                    <ng-radar-echart title='{{p}} - Social Health' query=query platform='{{p}}' location='home'></ng-radar-echart>
-                </div>
-            </div>
-        </div>-->
         <!--spikes charts-->
         <div id="volumes" class="ui segment teal">
             <h3 class="ui center aligned header title teal">
@@ -119,8 +107,9 @@
                         api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
                 </div>
                 <div class="ui three column grid">
-                <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
-                    info="Daily Post Vol and Spike vol in {{p}}" api-fn="getSpikes" location='home' ng-init="$last && finished()" sub-fn="getVoCDetailsByDate"></ng-echart>
+                    <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' type="barLine" platform='{{p}}' query=query
+                        info="Daily Post Vol and Spike vol in {{p}}" api-fn="getSpikes" location='home' ng-init="$last && finished()"
+                        sub-fn="getVoCDetailsByDate"></ng-echart>
                 </div>
             </div>
         </div>
@@ -271,14 +260,18 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" info="Detected Services Distribution by Post"></ng-echart>
+                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query
+                                    api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"
+                                    info="Detected Services Distribution by Post"></ng-echart>
                             </div>
                         </div>
                     </div>
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" info="Detected Services Distribution by User"></ng-echart>
+                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query
+                                    api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName"
+                                    info="Detected Services Distribution by User"></ng-echart>
                             </div>
                         </div>
                     </div>
@@ -287,7 +280,9 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}" info="Detected Services Distribution by Post"></ng-echart>
+                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}"
+                                    info="Detected Services Distribution by Post"></ng-echart>
                             </div>
                             <div class="side">
                                 <mentioned-table platform='{{p}}' query=query association="message_{{p}}"></mentioned-table>
@@ -297,7 +292,9 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}" info="Detected Services Distribution by User"></ng-echart>
+                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform='{{p}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                    property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"
+                                    info="Detected Services Distribution by User"></ng-echart>
                             </div>
                             <div class="side">
                                 <mentioned-table platform='{{p}}' query=query association="user_{{p}}"></mentioned-table>
@@ -325,13 +322,6 @@
                         </div>
                     </a>
                 </div>
-                <!--<div class="item">
-                    <a du-smooth-scroll="health" du-scrollspy offset="50">
-                        <div class="ui label" set-color="blue" data-content="Health Summary" data-variation="mini inverted">
-                            <i class="icon dashboard"></i><span ng-hide="isSmall">Health Summary</span>
-                        </div>
-                    </a>
-                </div>-->
                 <div class="item">
                     <a du-smooth-scroll="volumes" du-scrollspy offset="200">
                         <div class="ui label" set-color="teal" data-content="Volumes" data-variation="mini inverted">

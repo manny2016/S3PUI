@@ -1,4 +1,36 @@
-module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compile, $document, $websocket, CONST, utilitySrv) {
+module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sce, $compile, $document, $websocket, CONST, utilitySrv) {
+    //// the time is UTC date time value in locale timezone in here.
+    //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
+    var today = parseInt((new Date()).valueOf() / 3600000 / 24) * 24 * 3600000 + (new Date()).getTimezoneOffset() * 60000;
+    var start = new Date(today - 3600000 * 24 * 7), end = new Date(today - 3600000 * 24), outset = new Date(today - 3600000 * 24 * 30);
+    function datetimeChanged() {
+        var dtStart = dtpStart.value();
+        var dtEnd = dtpEnd.value();
+
+        if (dtStart) {
+            dtpEnd.min(new Date(dtStart));
+        }
+        if (dtEnd) {
+            dtpStart.max(new Date(dtEnd));
+        }
+    }
+    var dtpStart = $('#DateTimePickerStart').kendoDatePicker({
+        value: start,
+        format: localeDateFormatString,
+        change: datetimeChanged,
+        min: outset,
+        max: end
+    }).data("kendoDatePicker");
+    var dtpEnd = $('#DateTimePickerEnd').kendoDatePicker({
+        value: end,
+        format: localeDateFormatString,
+        change: datetimeChanged,
+        min: start,
+        max: end
+    }).data("kendoDatePicker");
+
+
+
     $scope.query = {};
     // var totalrequests = 28+12;
     var sections = 8,
@@ -30,17 +62,7 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
             })
         }
     })
-    //social Health section UI controller
-    // $scope.swapTab = function (platform) {
-    //     $scope.selected = platform;
-    //     $('.ui.tabular.menu').tab('change tab', platform);
-    //     // debugger;
-    //     var chartDom = $('.ui.tab[data-tab="' + platform + '"]').find('div.echart').get(0);
-    //     if (chartDom) {
-    //         echarts.getInstanceByDom(chartDom).resize();
-    //     }
-    // }
-    // $timeout(function(){$('.tabular.menu .item').tab()},50);
+
     $scope.isSelected = function (section) {
         return $scope.selected === section;
     }
@@ -86,15 +108,16 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
         })
         $('#progress').progress('reset');
         $('#progress').show();
+
+        var dtStart = dtpStart.value(), dtEnd = dtpEnd.value();
+        dtStart = dtStart.valueOf() - dtStart.getTimezoneOffset() * 60000;
+        dtEnd = dtEnd.valueOf() - dtEnd.getTimezoneOffset() * 60000;
+        $scope.query.start = dtStart;
+        $scope.query.end = dtEnd;
+
         if ($scope.query.topic !== topic) {
             $scope.enabledPlatforms = [];
             $scope.query.topic = topic;
-            var days = 30;
-            var start = moment.utc().startOf('day').subtract(days, 'days').valueOf();
-            var end = moment.utc().startOf('day').subtract(1, 'days').valueOf();
-            $scope.query.start = start;
-            $scope.query.end = end;
-            // console.log($scope);
             $timeout(function () {
                 $scope.topics.forEach(function (item) {
                     if (item.TechCategoryName.toLowerCase() === topic.toLowerCase()) {
@@ -111,8 +134,6 @@ module.exports = function ($scope, $rootScope, $timeout, $http, $q, $sce, $compi
                 $scope.listNotification(5);
             }, 50)
         } else {
-            // $scope.enabledPlatforms=[];
-            // $rootScope.$broadcast('destory-charts', 'home');
             $scope.$broadcast('start-get-data', 'home');
             $scope.selected = $scope.enabledPlatforms[0];
         }
