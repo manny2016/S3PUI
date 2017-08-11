@@ -23,11 +23,7 @@ app
     $rootScope.CONST = CONST;
     $rootScope.TZ = moment.tz(moment.tz.guess()).format('z');
     $rootScope.Notifications = Notifications;
-    if (CONST.DEV_MODE === true) {
-      $rootScope.service = $injector.get('testSrv')
-    } else {
-      $rootScope.service = $injector.get('rawdataSrv')
-    }
+    $rootScope.service = $injector.get('rawdataSrv');
     $rootScope.service.checkAdminAccessRights($rootScope.userInfo.userName).then(function (data) {
       $rootScope.isAdmin = data;
     })

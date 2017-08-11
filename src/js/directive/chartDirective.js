@@ -730,9 +730,6 @@ function customInfluenceData(fnPromise, scope) {
 }
 
 function customSpikesData(fnPromise, scope, utilitySrv) {
-    var start = scope.query.start;
-    var end = scope.query.end;
-    console.log(start, end);
     var xAxis = {
         data: utilitySrv.getTimeRange(scope.query.start, scope.query.end).map(function (dt) {
             //data: scope.$root.dateList.map(function (dt) {
