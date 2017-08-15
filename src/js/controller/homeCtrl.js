@@ -15,10 +15,10 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         }
     }
     var dtpStart = $('#DateTimePickerStart').kendoDatePicker({
-        value: start,
+        value: outset,//start,
         format: localeDateFormatString,
         change: datetimeChanged,
-        min: outset,
+        min: new Date(2017,0,1),//outset,
         max: end
     }).data("kendoDatePicker");
     var dtpEnd = $('#DateTimePickerEnd').kendoDatePicker({
@@ -31,7 +31,9 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
 
 
 
-    $scope.query = {};
+    $scope.query = {
+        granularity: 3 //// daily
+    };
     // var totalrequests = 28+12;
     var sections = 8,
         totalrequests = 0;

@@ -107,13 +107,15 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'all';
             return baseSrv.get('GetAllEnabledTopicsByPlatform', params);
         },
-        getUser: function (platform, topNum, topic, PNScope, days) {
+        getUser: function (platform, topNum, topic, PNScope, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topNum = topNum || 5;
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetTopUsers', params);
         },
         getSpikes: function (platform, topic, granularity, start, end) {
@@ -125,44 +127,54 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.end = end / 1000;
             return baseSrv.get('GetDailyVolSpikes', params);
         },
-        getDistribution: function (platform, topic, days) {
+        getDistribution: function (platform, topic, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
-            params.days = days || 7;
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetPNDistribution', params);
         },
-        getMentionedMostServiceList: function (platform, topic, PNScope, days) {
+        getInfluence: function (platform, topic, PNScope, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
+            return baseSrv.get('GetDailyInfluence', params);
+        },
+        getMentionedMostServiceList: function (platform, topic, PNScope, granularity, start, end) {
+            var params = params || {};
+            params.platform = platform || 'all';
+            params.topic = topic || 'all';
+            params.PNScope = PNScope || 'all';
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetMentionedMostServiceList', params);
         },
-        getMentionedMostServiceListByUserVol: function (platform, topic, PNScope, days) {
+        getMentionedMostServiceListByUserVol: function (platform, topic, PNScope, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetMentionedMostServiceListByUserVol', params);
         },
-        getMentionedMostServiceDistribution: function (platform, topic, PNScope, days) {
+        getMentionedMostServiceDistribution: function (platform, topic, PNScope, granularity, start, end) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            params.fromcycle = granularity || 3;
+            params.start = start / 1000;
+            params.end = end / 1000;
             return baseSrv.get('GetMentionedMostServiceList', params);
-        },
-        getInfluence: function (platform, topic, PNScope, days) {
-            var params = params || {};
-            params.platform = platform || 'all';
-            params.topic = topic || 'all';
-            params.PNScope = PNScope || 'all';
-            params.days = days || 7;
-            return baseSrv.get('GetDailyInfluence', params);
         },
         getVoCDetailsByDate: function (platform, topic, date, PNScope, days) {
             var params = params || {};

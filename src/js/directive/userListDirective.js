@@ -41,15 +41,14 @@ module.exports = function ($rootScope) {
             }
             scope.getData = function (location, force) {
                     if (a.location === location) {
-                        $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope, scope.days).then(function (data) {
+                        console.log(scope);
+                        $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope, scope.query.granularity, scope.query.start, scope.query.end + 3600000 * 24).then(function (data) {
                             scope.users = data.slice(0, 5);
-                            // console.log(scope.users)
                             scope.complete = true;
                             $rootScope.$broadcast('data-got');
                         })
                     }
                 }
-                // scope.getData('', true);
             scope.$on('start-get-data', function (event, arg) {
                 scope.complete = false;
                 scope.getData(arg);
