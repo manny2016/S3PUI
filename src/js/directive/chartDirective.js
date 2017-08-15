@@ -81,22 +81,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             _.chartObj.on('click', function (params) {
                 if (params.value === 0) return;
                 if (attrs.noPop === undefined) {
-                    // $rootScope.popSubWin();
-                    // console.log(params)
-                    // console.log(_)
-                    // console.log(_.subFn);
-                    // debugger;
                     switch (_.subFn) {
                         case 'getVoCDetailsByDate':
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                // date: Math.floor((function (d) { d.setUTCDate(d.getUTCDate()); return d.setUTCMinutes(0) })(new Date(params.name + " GMT")) / 1000),
-                                date: Math.floor(moment.utc(params.name, 'L') / 1000),
-                                //date: Math.floor(moment(params.name) / 1000),
-                                // Math.floor((function (d) { d.setDate(d.getDate()); return d.setHours(0, 0, 0, 0) })(new Date(params.name)) / 1000),
                                 pnscope: _.pnscope,
-                                days: _.days
+                                date: Math.floor(moment.utc(params.name, 'L') / 1000),
+                                granularity: _.query.granularity
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -110,7 +102,43 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 pnscope: pnscope,
-                                days: _.days
+                                granularity: _.query.granularity,
+                                start: _.query.start,
+                                end: _.query.end
+                            }
+                            $rootScope.popSubWin({
+                                fn: _.subFn,
+                                param: param
+                            });
+                            break;
+                        case 'getVoCDetailsByServiceName':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                service: params.name,
+                                pnscope: _.pnscope,
+                                granularity: _.query.granularity,
+                                start: _.query.start,
+                                end: _.query.end
+                            }
+                            if (params.name === 'Others') {
+                                _.swithside();
+                            } else {
+                                $rootScope.popSubWin({
+                                    fn: _.subFn,
+                                    param: param
+                                });
+                            }
+                            break;
+                        case 'getVoCDetailsByUser':
+                            var param = {
+                                platform: _.platform,
+                                topic: _.query.topic,
+                                user: params.name,
+                                pnscope: _.pnscope,
+                                granularity: _.query.granularity,
+                                start: _.query.start,
+                                end: _.query.end
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -135,37 +163,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 fn: _.subFn,
                                 param: param
                             });
-                            break;
-                        case 'getVoCDetailsByUser':
-                            var param = {
-                                platform: _.platform,
-                                topic: _.query.topic,
-                                user: params.name,
-                                pnscope: _.pnscope,
-                                days: _.days
-                            }
-                            $rootScope.popSubWin({
-                                fn: _.subFn,
-                                param: param
-                            });
-                            break;
-                        case 'getVoCDetailsByServiceName':
-                            var param = {
-                                platform: _.platform,
-                                topic: _.query.topic,
-                                service: params.name,
-                                pnscope: _.pnscope,
-                                days: _.days
-                            }
-                            if (params.name === 'Others') {
-                                _.swithside();
-                            } else {
-                                $rootScope.popSubWin({
-                                    fn: _.subFn,
-                                    param: param
-                                });
-                            }
-
                             break;
                         case 'getSubPageVoCDetails':
                             var date = _.days === '7'
@@ -237,7 +234,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     var apiFn = _.service[_.apiFn];
                     switch (_.apiFn) {
                         case 'getSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.query);
                             customSpikesData(fnPromise, _, utilitySrv).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
@@ -246,7 +243,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getInfluence':
                             if (_.platform) {
-                                var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                                var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                                 customInfluenceData(fnPromise, _).then(function (config) {
                                     _.chartOpt = angular.extend(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt, _.group);
@@ -259,7 +256,11 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     _.raw[element] = 0;
                                 }, this);
                                 var fnPromises = _.platforms.map(function (item) {
-                                    return apiFn(item, _.query.topic, _.pnscope, 3, _.query.start, _.query.end + 3600000 * 24).then(function (data) {
+                                    return apiFn(item, _.query.topic, _.pnscope, {
+                                        granularity: 3,
+                                        start: _.query.start,
+                                        end: _.query.end
+                                    }).then(function (data) {
                                         var seriesData = data.map(function (raw) {
                                             switch (_.pnscope) {
                                                 case 'posi':
@@ -295,16 +296,15 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             }
                             break;
                         case 'getDistribution':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.query);
                             customDistributionData(fnPromise, _).then(function (config) {
-                                // console.log('getDistribution')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getMentionedMostServiceList':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
@@ -313,7 +313,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             switch (_.type) {
@@ -331,7 +331,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMentionedMostServiceDistribution':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query.granularity, _.query.start, _.query.end + 3600000 * 24);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             _.order = $filter('orderBy');
                             var fn = customServicesDistributionData;
                             if (_.type === 'hori') {
@@ -469,7 +469,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         _.platform = arg.platform ? arg.platform : _.platform;
                         _.pnscope = arg.pnscope ? arg.pnscope : _.pnscope;
                         _.topic = arg.topic ? arg.topic : _.topic;
-                        var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope);
+                        var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                         var fn = customWordCloudData;
                         _.chartOpt = initCloudWordChartOpt(_);
                         fn(fnPromise, _).then(function (config) {
@@ -625,7 +625,6 @@ function initChart(echartObj, chartOpt, groupName) {
 function afterInit(rootscope, scope, echartObj) {
     scope.complete = true;
     if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
-        //console.log(scope);
         setTimeout(function () {
             echartObj.resize();
         }, 150)
@@ -916,12 +915,6 @@ function customServicesDistributionData(fnPromise, scope) {
                         icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
                         onclick: function () {
                             scope.swithside()
-                            // var chart = '<ng-echart title="Mentioned (Messages Vol) Azure Services" type="pie" platform="'+scope.platform+'" query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"></ng-echart>';
-                            // // scope.compile(chart);
-                            // var dom = "<div class='ui fullscreen modal'>"+chart+"</div>";
-                            // scope.compile(chart,dom);
-                            // $(dom).modal('show')
-
                         }
                     }
                 },

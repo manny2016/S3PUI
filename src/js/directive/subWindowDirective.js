@@ -106,7 +106,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                     kendo.bind($("#gridThreads"), $window.threadStore);
                 }
 
-                // console.log(params)
                 scope.needMentioned = true;
                 scope.platform = params.param.platform.toLowerCase()
                 var fnPromise,
@@ -117,14 +116,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.topic,
                             params.param.date,
                             params.param.pnscope,
-                            params.param.days
+                            params.param.granularity
                         )
                         break;
                     case 'getVoCDetailsByPN':
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
                             params.param.pnscope,
-                            params.param.days
+                            params.param
                         )
                         break;
                     case 'getVoCDetailsByServiceName':
@@ -133,7 +132,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.topic,
                             params.param.service,
                             params.param.pnscope,
-                            params.param.days
+                            params.param
                         )
                         break;
                     case 'getVoCDetailsByUser':
@@ -142,7 +141,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.userid,
                             params.param.index,
                             params.param.pnscope,
-                            params.param.days
+                            params.param
                         )
                         break;
                     case 'getVoCDetailsByCountry':
@@ -181,11 +180,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                 fnPromise.then(function (data) {
                     scope.raw = data;
                     scope.tabledata = data.messagesorthreads
-                        // console.log(scope.tabledata);
-                        // if(!scope.table){
-                        //     scope.table = $compile($(e).find('#thread-table').get(0))(scope)
-                        // }else{
-                        // }
 
                     // scope.users = data.topusers 
                     scope.$broadcast('set-user-data', data.topusers);

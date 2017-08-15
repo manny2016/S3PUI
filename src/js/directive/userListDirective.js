@@ -5,7 +5,7 @@
 module.exports = function ($rootScope) {
     return {
         restrict: 'E',
-        templateUrl: ('public/template/user_list.html?time='+new Date().getTime()),
+        templateUrl: ('public/template/user_list.html?time=' + new Date().getTime()),
         replace: true,
         scope: {
             // users: "=",
@@ -31,7 +31,9 @@ module.exports = function ($rootScope) {
                         userid: user.attachedobject.userId,
                         index: index,
                         pnscope: scope.pnscope,
-                        days: scope.days
+                        granularity: scope.query.granularity,
+                        start: scope.query.start,
+                        end: scope.query.end
                     }
                     $rootScope.popSubWin({
                         fn: 'getVoCDetailsByUser',
@@ -40,15 +42,14 @@ module.exports = function ($rootScope) {
                 }
             }
             scope.getData = function (location, force) {
-                    if (a.location === location) {
-                        console.log(scope);
-                        $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope, scope.query.granularity, scope.query.start, scope.query.end + 3600000 * 24).then(function (data) {
-                            scope.users = data.slice(0, 5);
-                            scope.complete = true;
-                            $rootScope.$broadcast('data-got');
-                        })
-                    }
+                if (a.location === location) {
+                    $rootScope.service.getUser(scope.platform, 5, scope.query.topic, scope.pnscope, scope.query).then(function (data) {
+                        scope.users = data.slice(0, 5);
+                        scope.complete = true;
+                        $rootScope.$broadcast('data-got');
+                    })
                 }
+            }
             scope.$on('start-get-data', function (event, arg) {
                 scope.complete = false;
                 scope.getData(arg);
