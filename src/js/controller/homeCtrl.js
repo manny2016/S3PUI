@@ -13,12 +13,13 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         if (dtEnd) {
             dtpStart.max(new Date(dtEnd));
         }
+        $scope.startGetData($rootScope.global.topic);
     }
     var dtpStart = $('#DateTimePickerStart').kendoDatePicker({
         value: outset,//start,
         format: localeDateFormatString,
         change: datetimeChanged,
-        min: new Date(2017,0,1),//outset,
+        min: new Date(2017, 0, 1),//outset,
         max: end
     }).data("kendoDatePicker");
     var dtpEnd = $('#DateTimePickerEnd').kendoDatePicker({
@@ -79,7 +80,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
             }
         })
     }();
-    // $scope.getTopics();
 
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
@@ -116,6 +116,9 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         dtEnd = dtEnd.valueOf() - dtEnd.getTimezoneOffset() * 60000;
         $scope.query.start = dtStart;
         $scope.query.end = dtEnd;
+        var offsetDays = (dtEnd - dtStart) / 3600 / 24 / 1000;
+        $('#volumes > div.content > div:nth-child(2)')
+            .attr('class', 'ui ' + (offsetDays <= 30 ? 'three' : (offsetDays <= 60 ? 'two' : 'one')) + ' column grid');
 
         if ($scope.query.topic !== topic) {
             $scope.enabledPlatforms = [];
