@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $location, utilitySrv, toastr) {
+module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $document, $location, utilitySrv, toastr) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
@@ -8,6 +8,59 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
     $scope.commonTrendTitle = "Hourly Trend During a Week";
     $scope.popInfoScope = "Hourly";
     var totalrequests = 0;
+
+    //// the time is UTC date time value in locale timezone in here.
+    //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
+    var settings = {};
+    settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
+    settings.now = (parseInt((new Date()).valueOf() / 3600000) * 3600000);
+    settings.today = parseInt(settings.now / 3600000 / 24) * 24 * 3600000;
+    settings.start = settings.today - 3600000 * 24 * 7;
+    settings.end = settings.today - 3600000 * 24;
+    $scope.query.granularity = 3;
+    $scope.query.start = settings.start;
+    $scope.query.end = settings.end;
+
+    var dailyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[0]);
+    var hourlyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[1]);
+    dailyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.end)).toISOString());
+    hourlyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.now + settings.timezoneOffset)).toISOString());
+    var selectedDateRange = kendo.observable({
+        granularity: $scope.query.granularity,
+        start: new Date($scope.query.start + settings.timezoneOffset),
+        end: new Date($scope.query.end + settings.timezoneOffset),
+
+        granularities: [{ text: "Daily", value: 3 }, { text: "Hourly", value: 2 }],
+        visibleDateTimePicker: function () { return this.get('granularity') === 2; },
+        visibleDatePicker: function () { return this.get('granularity') !== 2; }
+    });
+    selectedDateRange.bind('change', function (e) {
+        if (e.field === 'granularity') {
+            var granularity = this.get('granularity');
+            $scope.query.granularity = granularity;
+            if (granularity === 3) {
+                var start = this.get('start');
+                var end = this.get('end');
+                if (start > settings.end) {
+                    this.set('start', new Date(settings.start + settings.timezoneOffset));
+                }
+                if (end > settings.end) {
+                    this.set('end', new Date(settings.end + settings.timezoneOffset))
+                }
+            }
+            $scope.startGetData();
+        } else if (e.field === 'start') {
+            var start = this.get('start').valueOf() - settings.timezoneOffset;
+            $scope.query.start = start;
+            CheckDateRangeSize();
+        } else if (e.field === 'end') {
+            var start = this.get('start').valueOf() - settings.timezoneOffset;
+            $scope.query.end = end;
+            CheckDateRangeSize();
+        }
+    });
+    kendo.bind($("#topic_select > div:nth-child(1) > div:nth-child(2)"), selectedDateRange);
+
     // debugger;
     switch ($scope.platform) {
         case 'twitter':
@@ -45,33 +98,6 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         g: false,
         r: false
     };
-    // $('#topicSelection').dropdown({
-    //     onChange: function (value, text, $selectedItem) {
-    //         // console.log(value)
-    //         $scope.topic = value;
-    //         $scope.startGetData()
-    //     }
-    // });
-    $('#dataRangeSelection').dropdown('set selected', '7').dropdown({
-        onChange: function (value, text, $selectedItem) {
-            $scope.dateRange = value;
-            if (value !== '7') {
-                $scope.isLargeDateRange = true;
-            } else {
-                $scope.isLargeDateRange = false;
-            }
-            $timeout(function () {
-                // $('div.echart').map(function () {
-                //     echarts.getInstanceByDom(this).clear();
-                // })
-                $scope.startGetData()
-                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
-                    echarts.getInstanceByDom(currentObj).resize();
-                })
-                $scope.$apply()
-            }, 0)
-        }
-    });
 
     $scope.$watch('topic', function (nv, ov) {
         if (nv) {
@@ -88,16 +114,6 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             $scope.popInfoScope = "Hourly";
         }
         $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
-        // var timeRange = {
-        //     'start': (function (d) {
-        //         d.setDate(d.getDate() - parseInt(newV));
-        //         return d.setHours(0, 0, 0, 0)
-        //     })(new Date),
-        //     'end': (function (d) {
-        //         d.setDate(d.getDate() - 1);
-        //         return d.setHours(0, 0, 0, 0)
-        //     })(new Date)
-        // };
         var timeRange = {
             'start': moment.utc().startOf('day').subtract(newV, 'days').valueOf(),
             'end': moment.utc().startOf('day').subtract(1, 'days').valueOf()
@@ -108,22 +124,7 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         $scope.endUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000);
         $scope.startDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.start);
         $scope.endDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + 24 * 60 * 60 * 1000);
-        if ($scope.dateRange && $scope.topic) {
-            $scope.startGetData()
-        }
-        $timeout(function () {
-            $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
-                echarts.getInstanceByDom(currentObj).resize();
-            })
-            $scope.$apply()
-        }, 0)
-        if (newV !== '7') {
-            $timeout(function () {
-                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
-                    echarts.getInstanceByDom(currentObj).resize();
-                })
-            }, 0)
-        }
+        RefreshCharts();
     })
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
@@ -177,22 +178,12 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         //    arg.resize();
         //},500)
     });
-    $scope.getMentionedServiceTable = function (platform, topic) {
-        $scope.service.getMentionedMostServiceList(platform, topic, undefined, $scope.dateRange).then(function (data) {
-            // detect server status
-
-            // $scope.mostMentionedService = $scope.order(data,'-vocinfluence.voctotalvol');
-            $scope.mostMentionedService = data
-            $scope.$broadcast('data-got');
-        })
-    }
 
     $scope.startGetData = function () {
         // $event.stopPropagation();
         // $event.preventDefault();
-        // console.log($scope.topic)
         if (!$scope.topic) {
-            alert('Need to select a topic!');
+            //alert('Need to select a topic!');
             return false;
         }
         $rootScope.global.topic = $scope.topic;
@@ -203,49 +194,40 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
         $('#progress').progress('reset');
         $('#progress').show();
         $scope.query.topic = $scope.topic;
-        $scope.getStatistic($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
-        $scope.getUserDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.dateRange);
-        $scope.getMentionedServiceTable($scope.$stateParams.platform, $scope.topic);
-        //$scope.getLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.dateRange);
+        getStatistic();
+        getUserDistribution();
+        getMentionedServiceTable();
+        //getLanguageDistribution();
         $scope.$broadcast('start-get-data', 'home');
     }
     // initLineCharts('.hourly-charts.home');
     // echarts.connect('hourlyCharts');
-    $scope.getUserDistribution = function (platform, topic, pnscope, days) {
-        $scope.service.getRegionDistribution(platform, topic, pnscope, days).then(function (data) {
-            // console.log(data)
-            $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
-        })
-    }
-    $scope.getStatistic = function (platform, topic, pnscope, days) {
+    function getStatistic() {
         $('#summary div.content').dimmer('show');
-        $scope.service.getImpactSummary(platform, topic, pnscope, days).then(function (data) {
-            // console.log(data);
+        $scope.service.getImpactSummary($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
             var influenceData = data.vocinsights.objectcountthistime;
             $scope.serviceStatus = 'gery';
-            // var flag_spike = influenceData.detectedspikesvol > 0;
-            // var flag_health = influenceData.positivetotalvol < influenceData.negativetotalvol;
-            // console.log(flag_spike, flag_health)
-            // if (flag_spike && flag_health) {
-            //     $scope.serviceStatus = 'red';
-            // }
-            // if (flag_spike || flag_health) {
-            //     $scope.serviceStatus = 'yellow';
-            // }
-            // if (!flag_spike && !flag_health) {
-            //     $scope.serviceStatus = 'green';
-            // }
             $scope.statistic = data;
             $('#summary div.content').dimmer('hide');
             $scope.$broadcast('data-got');
         })
-    };
-
-    $scope.getLanguageDistribution = function (platform, topic, days) {
-        $scope.service.getUserLanguageDistribution(platform, topic, days).then(function (data) {
-            $scope.languageDistribution = $filter('orderBy')(data, '-volume');
+    }
+    function getUserDistribution() {
+        $scope.service.getRegionDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
+            $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
         })
     }
+    function getMentionedServiceTable () {
+        $scope.service.getMentionedMostServiceList($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
+            $scope.mostMentionedService = data
+            $scope.$broadcast('data-got');
+        })
+    }
+    /*function getLanguageDistribution () {
+        $scope.service.getUserLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.query).then(function (data) {
+            $scope.languageDistribution = $filter('orderBy')(data, '-volume');
+        })
+    }*/
 
     $scope.getDownloadUrl = function () {
         if (!$scope.$stateParams.platform) {
@@ -264,108 +246,27 @@ module.exports = function ($scope, $rootScope, $timeout, $filter, $document, $lo
             window.open(url);
         })
     }
-    // $scope.languageDistribution = [{
-    //     attachedobject: 'Chinese',
-    //     vocinfluence: {
-    //         voctotalvol: 95502120230,
-    //         ratio: 0.331
-    //     }
-    // }, {
-    //     attachedobject: 'English',
-    //     vocinfluence: {
-    //         voctotalvol: 33502120230,
-    //         ratio: 0.111
-    //     }
-    // }, {
-    //     attachedobject: 'Arabic',
-    //     vocinfluence: {
-    //         voctotalvol: 30002120230,
-    //         ratio: 0.101
-    //     }
-    // }, {
-    //     attachedobject: 'Portuguese',
-    //     vocinfluence: {
-    //         voctotalvol: 22002120230,
-    //         ratio: 0.091
-    //     }
-    // }]
 
+    function CheckDateRangeSize() {
+        var diff = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;
+        $scope.isLargeDateRange = (diff > 7);
+        $timeout(function () {
+            $scope.startGetData();
+            if ($scope.isLargeDateRange) {
+                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
+                    echarts.getInstanceByDom(currentObj).resize();
+                })
+            }
+            $scope.$apply();
+        }, 0);
+    }
+    function RefreshCharts() {
+        $timeout(function () {
+            $scope.startGetData()
+            $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
+                echarts.getInstanceByDom(currentObj).resize();
+            })
+            $scope.$apply()
+        }, 0);
+    }
 }
-
-// function initLineCharts(className) {
-//     var doms = $(className);
-//     var title = 'Hourly trend';
-//     var titles = [
-//         'Users\' Vol Hourly Trend During a Week',
-//         'Message Posts\' Vol Hourly Trend During a Week',
-//         'Positive Posts\' Vol Hourly Trend During a Week',
-//         'Negative Posts\' Vol Hourly Trend During a Week',
-//         'Message Influence Vol Hourly Trend During a Week',
-//         'Poster\'s Regions # Hourly Trend During a Week'
-//     ];
-//     for (var i = 0; i < doms.length; i++) {
-//         var myChart = echarts.init(doms.get(i));
-//         // 绘制图表
-//         myChart.setOption({
-//             title: {
-//                 text: titles[i],
-//                 textStyle: {
-//                     fontSize: 12
-//                 },
-//                 x: 'center'
-//             },
-//             tooltip: {
-//                 trigger: 'axis',
-//                 axisPointer: { // 坐标轴指示器，坐标轴触发有效
-//                     type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-//                 }
-//             },
-//             dataZoom: [{
-//                 show: true,
-//                 realtime: true,
-//                 start: 0,
-//                 end: 100
-//             }, {
-//                 type: 'inside',
-//                 realtime: true,
-//                 start: 0,
-//                 end: 100
-//             }],
-//             xAxis: {
-//                 type: 'category',
-//                 boundaryGap: false,
-//                 axisLine: {
-//                     onZero: false
-//                 },
-//                 data: ['2009/7/1 0:00', '2009/7/1 1:00', '2009/7/1 2:00', '2009/7/1 3:00', '2009/7/1 4:00', '2009/7/1 5:00', '2009/7/1 6:00', '2009/7/1 7:00', '2009/7/1 8:00', '2009/7/1 9:00', '2009/7/1 10:00', '2009/7/1 11:00', '2009/7/1 12:00', '2009/7/1 13:00', '2009/7/1 14:00', '2009/7/1 15:00', '2009/7/1 16:00', '2009/7/1 17:00', '2009/7/1 18:00', '2009/7/1 19:00', '2009/7/1 20:00', '2009/7/1 21:00', '2009/7/1 22:00', '2009/7/1 23:00',
-//                     '2009/7/2 0:00', '2009/7/2 1:00', '2009/7/2 2:00', '2009/7/2 3:00', '2009/7/2 4:00', '2009/7/2 5:00', '2009/7/2 6:00', '2009/7/2 7:00', '2009/7/2 8:00', '2009/7/2 9:00', '2009/7/2 10:00', '2009/7/2 11:00', '2009/7/2 12:00', '2009/7/2 13:00', '2009/7/2 14:00', '2009/7/2 15:00', '2009/7/2 16:00', '2009/7/2 17:00', '2009/7/2 18:00', '2009/7/2 19:00', '2009/7/2 20:00', '2009/7/2 21:00', '2009/7/2 22:00', '2009/7/2 23:00',
-//                     '2009/7/3 0:00', '2009/7/3 1:00', '2009/7/3 2:00', '2009/7/3 3:00', '2009/7/3 4:00', '2009/7/3 5:00', '2009/7/3 6:00', '2009/7/3 7:00', '2009/7/3 8:00', '2009/7/3 9:00', '2009/7/3 10:00', '2009/7/3 11:00', '2009/7/3 12:00', '2009/7/3 13:00', '2009/7/3 14:00', '2009/7/3 15:00', '2009/7/3 16:00', '2009/7/3 17:00', '2009/7/3 18:00', '2009/7/3 19:00', '2009/7/3 20:00', '2009/7/3 21:00', '2009/7/3 22:00', '2009/7/3 23:00',
-//                     '2009/7/4 0:00', '2009/7/4 1:00', '2009/7/4 2:00', '2009/7/4 3:00', '2009/7/4 4:00', '2009/7/4 5:00', '2009/7/4 6:00', '2009/7/4 7:00', '2009/7/4 8:00', '2009/7/4 9:00', '2009/7/4 10:00', '2009/7/4 11:00', '2009/7/4 12:00', '2009/7/4 13:00', '2009/7/4 14:00', '2009/7/4 15:00', '2009/7/4 16:00', '2009/7/4 17:00', '2009/7/4 18:00', '2009/7/4 19:00', '2009/7/4 20:00', '2009/7/4 21:00', '2009/7/4 22:00', '2009/7/4 23:00',
-//                     '2009/7/5 0:00', '2009/7/5 1:00', '2009/7/5 2:00', '2009/7/5 3:00', '2009/7/5 4:00', '2009/7/5 5:00', '2009/7/5 6:00', '2009/7/5 7:00', '2009/7/5 8:00', '2009/7/5 9:00', '2009/7/5 10:00', '2009/7/5 11:00', '2009/7/5 12:00', '2009/7/5 13:00', '2009/7/5 14:00', '2009/7/5 15:00', '2009/7/5 16:00', '2009/7/5 17:00', '2009/7/5 18:00', '2009/7/5 19:00', '2009/7/5 20:00', '2009/7/5 21:00', '2009/7/5 22:00', '2009/7/5 23:00',
-//                     '2009/7/6 0:00', '2009/7/6 1:00', '2009/7/6 2:00', '2009/7/6 3:00', '2009/7/6 4:00', '2009/7/6 5:00', '2009/7/6 6:00', '2009/7/6 7:00', '2009/7/6 8:00', '2009/7/6 9:00', '2009/7/6 10:00', '2009/7/6 11:00', '2009/7/6 12:00', '2009/7/6 13:00', '2009/7/6 14:00', '2009/7/6 15:00', '2009/7/6 16:00', '2009/7/6 17:00', '2009/7/6 18:00', '2009/7/6 19:00', '2009/7/6 20:00', '2009/7/6 21:00', '2009/7/6 22:00', '2009/7/6 23:00', '2009/7/7 0:00', '2009/7/7 1:00', '2009/7/7 2:00', '2009/7/7 3:00', '2009/7/7 4:00', '2009/7/7 5:00', '2009/7/7 6:00', '2009/7/7 7:00', '2009/7/7 8:00', '2009/7/7 9:00', '2009/7/7 10:00', '2009/7/7 11:00', '2009/7/7 12:00', '2009/7/7 13:00', '2009/7/7 14:00', '2009/7/7 15:00', '2009/7/7 16:00', '2009/7/7 17:00', '2009/7/7 18:00', '2009/7/7 19:00', '2009/7/7 20:00', '2009/7/7 21:00', '2009/7/7 22:00', '2009/7/7 23:00'
-//                 ]
-//             },
-//             yAxis: {},
-//             series: [{
-//                 name: 'Vol',
-//                 type: 'line',
-//                 data: rangeData(168, 10)
-//             }]
-//         });
-
-//         myChart.group = 'hourlyCharts';
-//     }
-// }
-
-// function rangeData(num, radix) {
-//     var radix = radix || 10;
-//     if (parseInt(num) == 1) {
-//         return parseInt(Math.random() * radix)
-//     } else {
-//         var tmp = [];
-//         for (var i = 0; i < num; i++) {
-//             tmp.push(parseInt(Math.random() * radix))
-//         }
-//         return tmp;
-//     }
-// }

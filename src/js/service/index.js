@@ -209,52 +209,52 @@ app.factory('rawdataSrv', function (baseSrv) {
             setDateTimeRange(params, source);
             return baseSrv.get('GetVoCDetailsByUser', params);
         },
-        getImpactSummary: function (platform, topic, PNScope, days) {
+        getImpactSummary: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetImpactSummary', params);
         },
-        getUserVolSpikes: function (platform, topic, PNScope, days) {
+        getUserVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetUserVolSpikes', params);
         },
-        getMessageVolSpikes: function (platform, topic, PNScope, days) {
+        getMessageVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetMessageVolSpikes', params);
         },
-        getInfluenceVolSpikes: function (platform, topic, PNScope, days) {
+        getInfluenceVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetInfluenceVolSpikes', params);
         },
-        getUserRegionVolSpikes: function (platform, topic, PNScope, days) {
+        getUserRegionVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetUserRegionVolSpikes', params);
         },
-        getKeywordsMentionedMostMapping: function (platform, topic, PNScope, days) {
+        getKeywordsMentionedMostMapping: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetKeywordsMentionedMostMapping', params);
         },
         getSubPageVoCDetails: function (platform, topic, date, PNScope, days) {
@@ -309,12 +309,12 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.days = days || 7;
             return baseSrv.get('GetUserLanguageDistribution', params);
         },
-        getRegionDistribution: function (platform, topic, PNScope, days) {
+        getRegionDistribution: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetRegionDistribution', params);
         },
         //sentimentconversion

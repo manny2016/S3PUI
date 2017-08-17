@@ -344,27 +344,26 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getKeywordsMentionedMostMapping':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                // console.log('getKeywordsMentionedMostMapping')
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getUserVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
-                                // console.log('getUserVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getMessageVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            console.log(_);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customHourlyData,
                                 key = '';
                             switch (_.pnscope) {
@@ -379,35 +378,41 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, key, utilitySrv, _).then(function (config) {
-                                // console.log('getMessageVolSpikes')
+                                _.chartOpt = angular.extend(_.chartOpt, config);
+                                initChart(_.chartObj, _.chartOpt, _.group);
+                                afterInit($rootScope, _, _.chartObj);
+                            })
+                            break;
+                        case 'getStackMessageVol':
+                            var fnPromise = _.service['getMessageVolSpikes'](_.platform, _.query.topic, _.pnscope, _.query);
+                            var fn = stackAxisData;
+                            // _.hasData = true;
+                            fn(fnPromise, utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getInfluenceVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customHourlyData;
-
                             fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
-                                // console.log('getInfluenceVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getUserRegionVolSpikes':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customHourlyData;
                             fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
-                                // console.log('getUserRegionVolSpikes')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getRegionDistribution':
-                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.days);
+                            var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             // var fnPromise = $q.resolve(true);
                             if (_.type === 'world') {
                                 var fn = customWorldData;
@@ -416,20 +421,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             }
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                // console.log('getRegionDistribution')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope, _, _.chartObj);
-                            })
-                            break;
-                        case 'getStackMessageVol':
-                            var fnPromise = _.service['getMessageVolSpikes'](_.platform, _.query.topic, _.pnscope, _.days);
-                            var fn = stackAxisData;
-                            // _.hasData = true;
-                            fn(fnPromise, utilitySrv, _).then(function (config) {
-                                // console.log('getStackMessageVol')
-                                _.chartOpt = angular.extend(_.chartOpt, config);
-                                initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;

@@ -155,7 +155,7 @@ angular.module('angularify.semantic.dropdown', [])
 var app = angular.module('app.Directive', ['ngSanitize','angularify.semantic.dropdown']);
 
 app.directive('ngEchart', require('./chartDirective'));
-app.directive('ngRadarEchart', require('./chartRadarDirective'));
+//app.directive('ngRadarEchart', require('./chartRadarDirective'));
 app.directive('ngStatistic', require('./statisticDirective'));
 app.directive('ngStatisticLabel', require('./statisticLabelDirective'));
 app.directive('ngScrollSpy', require('./scrollspyDirective'));
