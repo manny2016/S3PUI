@@ -15,7 +15,7 @@
                     <div class="ui shape">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;" location='sub' no-pop="true" swith-tool="true"></ng-echart>
+                                <ng-echart caption="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;" location='sub' no-pop="true" swith-tool="true"></ng-echart>
                             </div>
                             <div class="side">
                                 <table class="ui definition celled table" style="height:300px;margin-bottom:0px !important">
@@ -65,10 +65,10 @@
                 </div>
             </div>
             <div class="column" ng-show="needMentioned">
-                <ng-echart title="Service: Positive - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="posi" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
+                <ng-echart caption="Service: Positive - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="posi" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <div class="column" ng-show="needMentioned">
-                <ng-echart title="Service: Negative - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
+                <ng-echart caption="Service: Negative - Most mentioned" type="wordcloud" platform='{{platform}}' api-fn="getMentionedMostServiceList" query=query pnscope="neg" style="width:100%;height:306px;" location='sub' no-pop="true"></ng-echart>
             </div>
             <!--<div class="column">
                 <table class="ui definition celled table">

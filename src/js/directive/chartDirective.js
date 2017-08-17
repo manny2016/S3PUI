@@ -21,7 +21,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
         replace: true,
         scope: {
             // config: "=",
-            title: "@",
+            caption: "@",
             type: "@",
             platform: "@",
             //topic: "@",
@@ -501,10 +501,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     value: raw.vocnegativecount,
                                     name: 'NEG'
                                 }]
-                            }],
-                            // title: {
-                            //     text: _.title || ''
-                            // }
+                            }]
                         };
                         _.chartOpt = angular.merge(_.chartOpt, config);
                         break;
@@ -558,9 +555,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         //     series: {
                         //         data: seriesData
                         //     },
-                        //     // title: {
-                        //     //     text: _.title || ''
-                        //     // }
                         // }
                         _.chartOpt.series.data = seriesData;
                         break;
@@ -674,10 +668,7 @@ function customInfluenceData(fnPromise, scope) {
                 name: 'Influence Vol',
                 type: 'line',
                 data: seriesData
-            }],
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }]
         }
     }
     var fn = influenceSeries;
@@ -797,10 +788,7 @@ function customDistributionData(fnPromise, scope) {
                     value: data.negativetotalvol,
                     name: 'NEG'
                 }]
-            }],
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }]
         };
     })
 }
@@ -834,10 +822,7 @@ function customWordCloudData(fnPromise, scope) {
         return {
             series: {
                 data: seriesData
-            },
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }
         }
     })
 }
@@ -928,10 +913,7 @@ function customServicesDistributionData(fnPromise, scope) {
             //     x: 'left',
             //     data:legendData
             // },
-            toolbox: toolbox,
-            // title: {
-            //     text: scope.title || ''
-            // }
+            toolbox: toolbox
         }
     })
 }
@@ -958,10 +940,7 @@ function customHoriBarData(scope) {
             data: Object.keys(scope.raw).map(function (key) {
                 return scope.raw[key];
             })
-        }],
-        // title: {
-        //     text: scope.title || ''
-        // }
+        }]
     };
 }
 
@@ -1010,7 +989,7 @@ function customWorldData(fnPromise, scope) {
                 show: (scope.noSwap !== 'true')
             },
             series: [{
-                name: scope.title,
+                name: scope.caption,
                 type: 'map',
                 mapType: 'world',
                 roam: true,
@@ -1022,10 +1001,7 @@ function customWorldData(fnPromise, scope) {
                     }
                 },
                 data: seriesData
-            }],
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }]
         }
     });
 }
@@ -1052,10 +1028,7 @@ function customRegionData(fnPromise, scope) {
                 name: 'Volume',
                 type: 'bar',
                 data: seriesData
-            }],
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }]
         }
     });
 }
@@ -1145,10 +1118,7 @@ function stackAxisData(fnPromise, utility, scope) {
                     onZero: false
                 },
                 data: xAxisDate
-            },
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }
         }
     })
     //     return {
@@ -1191,10 +1161,7 @@ function stackAxisData(fnPromise, utility, scope) {
     //                 normal: {}
     //             },
     //             data: [320, 332, 301, 334, 390, 330, 320]
-    //         }],
-    //         // title: {
-    //         //     text: scope.title || ''
-    //         // }
+    //         }]
     //     }
     // });
 }
@@ -1374,10 +1341,7 @@ function customHourlyData(fnPromise, key, utility, scope) {
                     onZero: false
                 },
                 data: xAxisDate
-            },
-            // title: {
-            //     text: scope.title || ''
-            // }
+            }
         }
     })
 }

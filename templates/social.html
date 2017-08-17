@@ -66,32 +66,32 @@
                     <div class="column collection">
                         <div class="ui horizontal top divider">Users</div>
                         <div>
-                            <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers" query=query></ng-statistic>
+                            <ng-statistic caption="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers" query=query></ng-statistic>
+                            <ng-statistic caption="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers" query=query></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" query=query></ng-statistic>
+                            <ng-statistic caption="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" query=query></ng-statistic>
                         </div>
                     </div>
                     <div class="column collection">
                         <div class="ui horizontal top divider">Services & Products</div>
                         <div>
-                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" query=query></ng-statistic>
+                            <ng-statistic caption="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
                         <div style="max-height:129px;">
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice" query=query></ng-statistic>-->
+                            <!--<ng-statistic caption="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice" query=query></ng-statistic>-->
                             <div class="ui column grid">
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
                                     <div class="ui relaxed divided list">
-                                        <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.attachedobject}}" title="{{s.attachedobject}}">
+                                        <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.attachedobject}}" caption="{{s.attachedobject}}">
                                             <span ng-if="s">
                                             {{s.attachedobject | limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
                                             </span>
@@ -102,11 +102,11 @@
                                     </div>
                                 </div>
                                 <!--<div class="column">
-                                <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
+                                <h6 style="margin:0;font-size:13px" caption="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
-                                        title="{{s.mentionedmostservice.attachedobject}}">
+                                        caption="{{s.mentionedmostservice.attachedobject}}">
                                         <span ng-if="s">
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio===0" class="icon minus blue pull-left"></i>
                                             <i ng-if="s.mentionedmostservice.vocinfluence.vocvolgrowthratio>0" class="icon long arrow up green pull-left"></i>
@@ -122,12 +122,12 @@
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice" query=query></ng-statistic>-->
+                            <!--<ng-statistic caption="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice" query=query></ng-statistic>-->
                             <div class="ui two column grid">
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
                                     <div class="ui relaxed divided list">
-                                        <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}" title="{{s.attachedobject}}">
+                                        <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}" caption="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
                                             {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
@@ -142,7 +142,7 @@
                                     <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
                                     <div class="ui relaxed divided list">
                                         <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}"
-                                            title="{{s.attachedobject}}">
+                                            caption="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
                                             {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
@@ -159,18 +159,18 @@
                     <div class="column collection">
                         <div class="ui horizontal top divider">VoC</div>
                         <div>
-                            <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol" query=query></ng-statistic>
+                            <ng-statistic caption="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol" query=query></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" query=query></ng-statistic>
+                            <ng-statistic caption="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
-                            <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
-                            <!--<ng-statistic ng-hide="isLargeDateRange" title="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
+                            <!--<ng-statistic caption="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
+                            <!--<ng-statistic caption="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
+                            <!--<ng-statistic ng-hide="isLargeDateRange" caption="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
                                 type="mostposifrom" query=query></ng-statistic>-->
                         </div>
                     </div>
@@ -185,40 +185,40 @@
             <div class="ui one column grid content">
                 <!--Users' Vol Trend-->
                 <div class="column">
-                    <ng-echart title="User Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes"
+                    <ng-echart caption="User Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column">
-                    <ng-echart title="Message Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                    <ng-echart caption="Message Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <!--Message Posts' Vol By Sentiment Daily Trend-->
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange">
-                    <ng-echart title="Message Posts' Vol By Sentiment {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}'
+                    <ng-echart caption="Message Posts' Vol By Sentiment {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}'
                         query=query api-fn="getStackMessageVol" location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"
                         stack="volume"></ng-echart>
                 </div>
                 <div class="column">
-                    <ng-echart title="Positive Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                    <ng-echart caption="Positive Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
                         location='home' pnscope="posi" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column">
-                    <ng-echart title="Negative Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
+                    <ng-echart caption="Negative Posts' Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getMessageVolSpikes"
                         location='home' pnscope="neg" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column">
-                    <ng-echart title="Message Influence Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
+                    <ng-echart caption="Message Influence Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <div class="column" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
-                    <ng-echart title="User Regions Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
+                    <ng-echart caption="User Regions Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
                 <!--large date range only-->
                 <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
                     <!-- ng-if="platform=='twitter'" -->
-                    <ng-echart title="User Volume in Each Detected Region" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                    <ng-echart caption="User Volume in Each Detected Region" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
                         no-pop="true" type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate"
                        ></ng-echart>
                 </div>
@@ -231,16 +231,16 @@
             </h3>
             <div class="ui three column grid content">
                 <div class="row">
-                    <ng-echart title="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
+                    <ng-echart caption="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
                         location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
-                    <ng-echart title="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                    <ng-echart caption="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
                         pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
-                    <ng-echart title="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
+                    <ng-echart caption="Most NEGATIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
                         pnscope="neg" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>
                 </div>
                 <div class="row" ng-if="platform !=='twitter'">
                     <div class="sixteen wide column">
-                        <ng-echart title="Sentiment Conversion {{popInfoScope}} Trend" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
+                        <ng-echart caption="Sentiment Conversion {{popInfoScope}} Trend" type="bar" platform='{{path[2]}}' query=query api-fn="sentimentconversion"
                             location='home' pnscope="all" no-pop="true"></ng-echart>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
+                                <ng-echart caption="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
                                     api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry"
                                     no-pop="true" property-select="positive" association="positive"></ng-echart>
                             </div>
@@ -261,7 +261,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Area Distribution for Negative Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
+                                <ng-echart caption="Area Distribution for Negative Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
                                     api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry"
                                     no-pop="true" property-select="negative" association="negative"></ng-echart>
                             </div>
@@ -283,7 +283,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
+                                <ng-echart caption="Mentioned (Messages Vol) {{global.topic}} Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceDistribution"
                                     property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message"></ng-echart>
                             </div>
                             <div class="side">
@@ -294,7 +294,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
+                                <ng-echart caption="Mentioned (Users Vol) {{global.topic}} Services" type="pie" platform='{{path[2]}}' query=query api-fn="getMentionedMostServiceListByUserVol"
                                     property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user"></ng-echart>
                             </div>
                             <div class="side">
@@ -306,7 +306,7 @@
                 <!--large date range only-->
                 <div class="row" ng-show="isLargeDateRange">
                     <div class="column large-date-range">
-                        <ng-echart title="Most Like & Dislike Services" type="hori" platform='{{path[2]}}' query=query
+                        <ng-echart caption="Most Like & Dislike Services" type="hori" platform='{{path[2]}}' query=query
                             api-fn="getMentionedMostServiceDistribution" location='home' pnscope="all" sub-fn="getVoCDetailsByServiceName"></ng-echart>
                     </div>
                 </div>
@@ -367,7 +367,7 @@
             </h3>
             <div class="ui grid content">
                 <div class="two column row">
-                    <ng-echart title="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
+                    <ng-echart caption="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
                         location='home' sub-fn="getVoCDetailsByCountry" no-swap="true" property-select="users"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">

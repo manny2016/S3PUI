@@ -103,11 +103,11 @@
             </h3>
             <div class="content">
                 <div class="ui one column grid">
-                    <ng-echart title='Volume all data sources' info="Daily Post Vol of all data sources" api-fn="getSpikes" sub-fn="getVoCDetailsByDate"
+                    <ng-echart caption="Volume all data sources" info="Daily Post Vol of all data sources" api-fn="getSpikes" sub-fn="getVoCDetailsByDate"
                         type="volume" platform="all" query=query location="home" ng-init="$last && finished()"></ng-echart>
                 </div>
                 <div class="ui three column grid">
-                    <ng-echart ng-repeat="p in enabledPlatforms" title='Volume & Spikes in {{p}}' info="Daily Post Vol and Spike vol in {{p}}"
+                    <ng-echart caption="Volume & Spikes in {{p}}" ng-repeat="p in enabledPlatforms" info="Daily Post Vol and Spike vol in {{p}}"
                         api-fn="getSpikes" sub-fn="getVoCDetailsByDate" platform="{{p}}" query=query location="home" ng-init="$last && finished()"></ng-echart>
                 </div>
             </div>
@@ -119,12 +119,12 @@
             </h3>
             <div class="content">
                 <div class="ui one column grid">
-                    <ng-echart title="Volume Sentiment Distribution all data sources" info="Detected Posts' Sentiment Distribution of all data sources"
+                    <ng-echart caption="Volume Sentiment Distribution all data sources" info="Detected Posts' Sentiment Distribution of all data sources"
                         api-fn="getDistribution" sub-fn="getVoCDetailsByPN" type="pie" platform="all" query=query location="home"
                         no-swap="true"></ng-echart>
                 </div>
                 <div class="ui three column grid">
-                    <ng-echart ng-repeat="p in enabledPlatforms" title="Volume Sentiment Distribution in {{p}}" info="Detected Posts' Sentiment Distribution in {{p}}"
+                    <ng-echart caption="Volume Sentiment Distribution in {{p}}" ng-repeat="p in enabledPlatforms" info="Detected Posts' Sentiment Distribution in {{p}}"
                         api-fn="getDistribution" sub-fn="getVoCDetailsByPN" type="pie" platform="{{p}}" query=query location="home"
                         no-swap="true"></ng-echart>
                 </div>
@@ -135,7 +135,7 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                            <ng-echart title="Positive Influence in {{p}}" info="Daily Positive Posts' Influence Vol Trend" api-fn="getInfluence" sub-fn="getVoCDetailsByDate"
+                                            <ng-echart caption="Positive Influence in {{p}}" info="Daily Positive Posts' Influence Vol Trend" api-fn="getInfluence" sub-fn="getVoCDetailsByDate"
                                                 type="influence" platform="{{p}}" pnscope="posi" query=query location="home"
                                                 style="height:306px;"></ng-echart>
                                         </div>
@@ -160,12 +160,12 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="active side" page="Message">
-                                            <ng-echart title="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
+                                            <ng-echart caption="Positive Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
                                                 query=query pnscope="posi" location="home" style="height:306px;" sub-fn="getVoCDetailsByServiceName"
                                                 info="Detected Service Vol from Positive Posts"></ng-echart>
                                         </div>
                                         <div class="side" page="User">
-                                            <ng-echart title="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
+                                            <ng-echart caption="Positive Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
                                                 platform='{{enabledPlatforms[0]}}' query=query pnscope="posi" location="home"
                                                 style="height:306px;" sub-fn="getVoCDetailsByServiceName" info="Detected Service Vol from Positive Users"></ng-echart>
                                         </div>
@@ -186,7 +186,7 @@
                                 </div>
                             </div>
                         </div>
-                        <ng-echart title="Positive Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="posi" location="home"
+                        <ng-echart caption="Positive Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="posi" location="home"
                             no-pop="true" redirect='true' info="Total Positive Posts' Influence"></ng-echart>
                     </div>
                     <div class="row">
@@ -195,8 +195,8 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                            <ng-echart title="Negative Influence in {{p}}" platform="{{p}}" query=query api-fn="getInfluence" style="height:306px;" type="influence"
-                                                location="home" pnscope="neg" sub-fn="getVoCDetailsByDate" info="Daily Negative Posts' Influence Vol Trend"></ng-echart>
+                                            <ng-echart caption="Negative Influence in {{p}}" platform="{{p}}" query=query api-fn="getInfluence" style="height:306px;"
+                                                type="influence" location="home" pnscope="neg" sub-fn="getVoCDetailsByDate" info="Daily Negative Posts' Influence Vol Trend"></ng-echart>
                                         </div>
                                     </div>
                                 </div>
@@ -219,12 +219,12 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="active side" page="Message">
-                                            <ng-echart title="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
+                                            <ng-echart caption="Negative Most Mentioned Services by Message" type="wordcloud" api-fn="getMentionedMostServiceList" platform='{{enabledPlatforms[0]}}'
                                                 query=query pnscope="neg" location="home" style="height:306px;" sub-fn="getVoCDetailsByServiceName"
                                                 info="Detected Service Vol from Negative Posts"></ng-echart>
                                         </div>
                                         <div class="side" page="User">
-                                            <ng-echart title="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
+                                            <ng-echart caption="Negative Most Mentioned Services by User" type="wordcloud" api-fn="getMentionedMostServiceListByUserVol"
                                                 platform='{{enabledPlatforms[0]}}' query=query pnscope="neg" location="home"
                                                 style="height:306px;" sub-fn="getVoCDetailsByServiceName" info="Detected Service Vol form Negative Users"></ng-echart>
                                         </div>
@@ -245,7 +245,7 @@
                                 </div>
                             </div>
                         </div>
-                        <ng-echart title="Negative Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="neg" location="home"
+                        <ng-echart caption="Negative Influence - Platform" query=query type="hori" api-fn="getInfluence" pnscope="neg" location="home"
                             no-pop="true" redirect='true' info="Total Negative Posts' Influence"></ng-echart>
                     </div>
                 </div>
@@ -261,7 +261,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform="all" query=query
+                                <ng-echart caption="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform="all" query=query
                                     api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"
                                     info="Detected Services Distribution by Post"></ng-echart>
                             </div>
@@ -270,7 +270,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform="all" query=query
+                                <ng-echart caption="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform="all" query=query
                                     api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName"
                                     info="Detected Services Distribution by User"></ng-echart>
                             </div>
@@ -281,9 +281,9 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query api-fn="getMentionedMostServiceDistribution"
-                                    property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_{{p}}"
-                                    info="Detected Services Distribution by Post"></ng-echart>
+                                <ng-echart caption="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query
+                                    api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"
+                                    association="message_{{p}}" info="Detected Services Distribution by Post"></ng-echart>
                             </div>
                             <div class="side">
                                 <mentioned-table platform="{{p}}" query=query association="message_{{p}}"></mentioned-table>
@@ -293,7 +293,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query api-fn="getMentionedMostServiceListByUserVol"
+                                <ng-echart caption="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query api-fn="getMentionedMostServiceListByUserVol"
                                     property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"
                                     info="Detected Services Distribution by User"></ng-echart>
                             </div>
@@ -311,7 +311,7 @@
                 <i class="dropdown icon pull-left"></i>
             </h3>
             <div class="ui three column grid content">
-                <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform="{{p}}" query=query location="home"></user-list>
+                <user-list ng-repeat="p in enabledPlatforms" caption='Top Users in {{p}}' users=topUsers platform="{{p}}" query=query location="home"></user-list>
             </div>
         </div>
         <div id="scrollspy" ng-scroll-spy class="">
