@@ -362,7 +362,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             })
                             break;
                         case 'getMessageVolSpikes':
-                            console.log(_);
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customHourlyData,
                                 key = '';

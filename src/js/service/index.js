@@ -334,11 +334,11 @@ app.factory('rawdataSrv', function (baseSrv) {
             });
 
         },
-        getDownloadUrl: function (platform, topic, days) {
+        getDownloadUrl: function (platform, topic, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetDownloadUrl', params);
         },
         getSubscribeSettings: function (platform, topic, msgtype, servicename) {

@@ -3,9 +3,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     $scope.order = $filter('orderBy');
     $scope.query = {};
     $scope.path = $location.path().split("/");
-    $scope.dateRange = '7';
     $scope.isLargeDateRange = false;
-    $scope.commonTrendTitle = "Hourly Trend During a Week";
     $scope.popInfoScope = "Hourly";
     var totalrequests = 0;
 
@@ -20,6 +18,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     $scope.query.granularity = 3;
     $scope.query.start = settings.start;
     $scope.query.end = settings.end;
+    $scope.query.days = 7;
 
     var dailyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[0]);
     var hourlyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[1]);
@@ -38,7 +37,10 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         if (e.field === 'granularity') {
             var granularity = this.get('granularity');
             $scope.query.granularity = granularity;
-            if (granularity === 3) {
+            if (granularity === 2) {
+                $scope.popInfoScope = "Hourly";
+            } else {
+                $scope.popInfoScope = "Daily";
                 var start = this.get('start');
                 var end = this.get('end');
                 if (start > settings.end) {
@@ -103,28 +105,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         if (nv) {
             $scope.startGetData()
         }
-    })
-    $scope.$watch('dateRange', function (newV, oldV) {
-        $scope.dateRange = newV;
-        if (newV !== '7') {
-            $scope.isLargeDateRange = true;
-            $scope.popInfoScope = "Daily";
-        } else {
-            $scope.isLargeDateRange = false;
-            $scope.popInfoScope = "Hourly";
-        }
-        $scope.commonTrendTitle = "Daily Trend In Last " + newV + " Days";
-        var timeRange = {
-            'start': moment.utc().startOf('day').subtract(newV, 'days').valueOf(),
-            'end': moment.utc().startOf('day').subtract(1, 'days').valueOf()
-        };
-        var timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
-        $scope.dateList = utilitySrv.getTimeRange(timeRange.start, timeRange.end);
-        $scope.startUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.start + timezoneOffset);
-        $scope.endUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000);
-        $scope.startDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.start);
-        $scope.endDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute(timeRange.end + 24 * 60 * 60 * 1000);
-        RefreshCharts();
     })
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
@@ -200,6 +180,19 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         //getLanguageDistribution();
         $scope.$broadcast('start-get-data', 'home');
     }
+    $scope.getDownloadUrl = function () {
+        if (!$scope.$stateParams.platform) {
+            toastr.error('Platform Required');
+            return false;
+        }
+        if (!$scope.topic) {
+            toastr.error('Topic Select Required');
+            return false;
+        }
+        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.query.start, $scope.query.end).then(function (url) {
+            window.open(url);
+        })
+    }
     // initLineCharts('.hourly-charts.home');
     // echarts.connect('hourlyCharts');
     function getStatistic() {
@@ -217,7 +210,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
         })
     }
-    function getMentionedServiceTable () {
+    function getMentionedServiceTable() {
         $scope.service.getMentionedMostServiceList($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
             $scope.mostMentionedService = data
             $scope.$broadcast('data-got');
@@ -229,27 +222,9 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         })
     }*/
 
-    $scope.getDownloadUrl = function () {
-        if (!$scope.$stateParams.platform) {
-            toastr.error('Platform Required');
-            return false;
-        }
-        if (!$scope.topic) {
-            toastr.error('Topic Select Required');
-            return false;
-        }
-        if (!$scope.dateRange) {
-            toastr.error('Date Range Required');
-            return false;
-        }
-        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.dateRange).then(function (url) {
-            window.open(url);
-        })
-    }
-
     function CheckDateRangeSize() {
-        var diff = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;
-        $scope.isLargeDateRange = (diff > 7);
+        $scope.query.days = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;
+        $scope.isLargeDateRange = ($scope.query.days > 7);
         $timeout(function () {
             $scope.startGetData();
             if ($scope.isLargeDateRange) {

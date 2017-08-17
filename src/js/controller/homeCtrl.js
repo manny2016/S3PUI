@@ -58,7 +58,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         // },
         onOpen: function () {
             // debugger;
-            console.log($(this).find('.ui.segment.visible'))
             $(this).find('.ui.segment').removeClass('visible');
             $(this).find('div.echart').map(function (index, currentObj, array) {
                 echarts.getInstanceByDom(currentObj).resize();
