@@ -12,7 +12,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     //// the time is UTC date time value in locale timezone in here.
     //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
     var settings = {};
-    settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
+    settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
     settings.now = (parseInt((new Date()).valueOf() / 3600000) * 3600000);
     settings.today = parseInt(settings.now / 3600000 / 24) * 24 * 3600000;
     settings.start = settings.today - 3600000 * 24 * 7;
@@ -24,7 +24,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     var dailyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[0]);
     var hourlyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[1]);
     dailyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.end)).toISOString());
-    hourlyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.now + settings.timezoneOffset)).toISOString());
+    hourlyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.now - 3600000 + settings.timezoneOffset)).toISOString());
     var selectedDateRange = kendo.observable({
         granularity: $scope.query.granularity,
         start: new Date($scope.query.start + settings.timezoneOffset),
@@ -54,7 +54,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             $scope.query.start = start;
             CheckDateRangeSize();
         } else if (e.field === 'end') {
-            var start = this.get('start').valueOf() - settings.timezoneOffset;
+            var end = this.get('end').valueOf() - settings.timezoneOffset;
             $scope.query.end = end;
             CheckDateRangeSize();
         }
