@@ -108,11 +108,19 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             });
                             break;
                         case 'getVoCDetailsByServiceName':
+                            var pnscope = _.pnscope;
+                            //// params.seriesName: Dislike, Like
+                            //// params.seriesIndex:      1, 0
+                            if (params.seriesName === 'Dislike') {
+                                pnscope = 'neg';
+                            } else if (params.seriesName === 'Like') {
+                                pnscope = 'posi';
+                            }
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
                                 service: params.name,
-                                pnscope: _.pnscope,
+                                pnscope: pnscope,
                                 granularity: _.query.granularity,
                                 start: _.query.start,
                                 end: _.query.end
