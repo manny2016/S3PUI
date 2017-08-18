@@ -15,11 +15,21 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         }
         $scope.startGetData($rootScope.global.topic);
     }
+    $("#ddlQuicklyTest").kendoDropDownList({
+        change: function (e) {
+            var value = this.value();
+            var dtStart = new Date(today - 3600000 * 24 * value);
+            var dtEnd = new Date(today - 3600000 * 24);
+            dtpStart.value(dtStart);
+            dtpEnd.value(dtEnd);
+            $scope.startGetData($rootScope.global.topic);
+        }
+    });
     var dtpStart = $('#DateTimePickerStart').kendoDatePicker({
         value: outset,//start,
         format: localeDateFormatString,
         change: datetimeChanged,
-        min: new Date(2017, 0, 1),//outset,
+        min: new Date(2016, 7, 1),//outset,
         max: end
     }).data("kendoDatePicker");
     var dtpEnd = $('#DateTimePickerEnd').kendoDatePicker({
@@ -102,44 +112,46 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     });
 
     $scope.startGetData = function (topic) {
-        $rootScope.global.topic = topic;
-        $scope.flags.m = false;
-        $('div.echart').map(function () {
-            echarts.getInstanceByDom(this).clear();
-        })
-        $('#progress').progress('reset');
-        $('#progress').show();
+        if (topic) {
+            $rootScope.global.topic = topic;
+            $scope.flags.m = false;
+            $('div.echart').map(function () {
+                echarts.getInstanceByDom(this).clear();
+            })
+            $('#progress').progress('reset');
+            $('#progress').show();
 
-        var dtStart = dtpStart.value(), dtEnd = dtpEnd.value();
-        dtStart = dtStart.valueOf() - dtStart.getTimezoneOffset() * 60000;
-        dtEnd = dtEnd.valueOf() - dtEnd.getTimezoneOffset() * 60000;
-        $scope.query.start = dtStart;
-        $scope.query.end = dtEnd;
-        var offsetDays = (dtEnd - dtStart) / 3600 / 24 / 1000;
-        $('#volumes > div.content > div:nth-child(2)')
-            .attr('class', 'ui ' + (offsetDays <= 30 ? 'three' : (offsetDays <= 60 ? 'two' : 'one')) + ' column grid');
+            var dtStart = dtpStart.value(), dtEnd = dtpEnd.value();
+            dtStart = dtStart.valueOf() - dtStart.getTimezoneOffset() * 60000;
+            dtEnd = dtEnd.valueOf() - dtEnd.getTimezoneOffset() * 60000;
+            $scope.query.start = dtStart;
+            $scope.query.end = dtEnd;
+            var offsetDays = (dtEnd - dtStart) / 3600 / 24 / 1000;
+            $('#volumes > div.content > div:nth-child(2)')
+                .attr('class', 'ui ' + (offsetDays <= 30 ? 'three' : (offsetDays <= 60 ? 'two' : 'one')) + ' column grid');
 
-        if ($scope.query.topic !== topic) {
-            $scope.enabledPlatforms = [];
-            $scope.query.topic = topic;
-            $timeout(function () {
-                $scope.topics.forEach(function (item) {
-                    if (item.TechCategoryName.toLowerCase() === topic.toLowerCase()) {
-                        item.Platforms.forEach(function (p) {
-                            if (p.isEnabled) $scope.enabledPlatforms.push(p.PlatformName)
-                        })
-                    }
-                })
-                $scope.totalrequests = sections * $scope.enabledPlatforms.length + totalrequests;
-                $('#progress').progress({
-                    total: $scope.totalrequests
-                });
+            if ($scope.query.topic !== topic) {
+                $scope.enabledPlatforms = [];
+                $scope.query.topic = topic;
+                $timeout(function () {
+                    $scope.topics.forEach(function (item) {
+                        if (item.TechCategoryName.toLowerCase() === topic.toLowerCase()) {
+                            item.Platforms.forEach(function (p) {
+                                if (p.isEnabled) $scope.enabledPlatforms.push(p.PlatformName)
+                            })
+                        }
+                    })
+                    $scope.totalrequests = sections * $scope.enabledPlatforms.length + totalrequests;
+                    $('#progress').progress({
+                        total: $scope.totalrequests
+                    });
+                    $scope.selected = $scope.enabledPlatforms[0];
+                    $scope.listNotification(5);
+                }, 50)
+            } else {
+                $scope.$broadcast('start-get-data', 'home');
                 $scope.selected = $scope.enabledPlatforms[0];
-                $scope.listNotification(5);
-            }, 50)
-        } else {
-            $scope.$broadcast('start-get-data', 'home');
-            $scope.selected = $scope.enabledPlatforms[0];
+            }
         }
     }
 

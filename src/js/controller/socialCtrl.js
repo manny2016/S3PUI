@@ -22,6 +22,8 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
 
     var dailyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[0]);
     var hourlyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[1]);
+    dailyContainer.children("input:nth-child(1)").attr('min', '2016-08-01');
+    hourlyContainer.children("input:nth-child(1)").attr('min', '2016-08-01');
     dailyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.end)).toISOString());
     hourlyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.now - 3600000 + settings.timezoneOffset)).toISOString());
     var selectedDateRange = kendo.observable({
