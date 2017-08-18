@@ -14,7 +14,7 @@ module.exports = function ($filter) {
             "q+": Math.floor((this.getUTCMonth() + 3) / 3),
             // quarter
             "S": this.getUTCMilliseconds()
-                // millisecond
+            // millisecond
         };
         if (/(y+)/.test(format) || /(Y+)/.test(format)) {
             format = format.replace(RegExp.$1, (this.getUTCFullYear() + "").substr(4 - RegExp.$1.length));
@@ -45,60 +45,19 @@ module.exports = function ($filter) {
                 return string;
             }
         },
-        getTimeRange: function (startDate, endDate, interval, needFormat, format) {
-            interval = interval || 1;
-            needFormat = needFormat || true,
-                format = format || 'yyyy-MM-dd HH:mm';
-
+        getTimeRange: function (startDate, endDate, granularity) {
+            granularity = granularity || 3;
             var retVal = [];
             var current = new Date(startDate);
-
-            while (current <= endDate) {
-                retVal.push(new Date(current));
-                current = (function (d) {
-                    d.setDate(d.getDate() + interval);
-                    return d;//.setHours(0, 0, 0, 0)
-                })(new Date(current));
+            var end = new Date(endDate);
+            while (current <= end) {
+                retVal.push(current);
+                current = new Date(current.valueOf()
+                    + (granularity == 2 ? 3600000 : 3600000 * 24));
             }
-            /*if (needFormat) {
-                retVal = retVal.map(function (date) {
-                    return $filter('date')(new Date(date), format)
-                })
-            }*/
             return retVal;
         },
-        timeToString: function (timestamp, type) {
-            var type = type || 'hourly';
-            var timeString = '';
-            switch (type) {
-                case 'hourly':
-                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
-                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD HH:mm");
-                    break;
-                case 'daily':
-                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
-                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD");
-                    break;
-            }
-            return timeString;
-        },
-        timeToLocalString: function (timestamp, type) {
-            var type = type || 'hourly';
-            var timeString = '';
-            switch (type) {
-                case 'hourly':
-                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd hh:mm");
-                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD hh:mm");
-                    break;
-                case 'daily':
-                    // timeString = (new Date(timestamp * 1000)).format("yyyy-MM-dd");
-                    timeString = (moment(timestamp * 1000)).format("YYYY-MM-DD");
-                    break;
-            }
-            return timeString;
-        },
         mankindTime2String: function (timestamp) {
-            // return (new Date(timestamp * 1000)).format("yyyy/MM/dd hh:mm A");
             return moment(timestamp * 1000).format("YYYY-MM-DD hh:mm A");
         }
     }

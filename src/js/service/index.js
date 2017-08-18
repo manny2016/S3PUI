@@ -173,12 +173,12 @@ app.factory('rawdataSrv', function (baseSrv) {
             setDateTimeRange(params, source);
             return baseSrv.get('GetMentionedMostServiceList', params);
         },
-        getVoCDetailsByDate: function (platform, topic, date, PNScope, granularity) {
+        getVoCDetailsByDate: function (platform, topic, PNScope, date, granularity) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
-            params.date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
+            params.date = date || Math.floor(new Date().getTime() / 1000);
             params.fromcycle = granularity || 3;
             return baseSrv.get('GetVoCDetailsByDate', params);
         },
@@ -257,23 +257,26 @@ app.factory('rawdataSrv', function (baseSrv) {
             setDateTimeRange(params, source);
             return baseSrv.get('GetKeywordsMentionedMostMapping', params);
         },
-        getSubPageVoCDetails: function (platform, topic, date, PNScope, days) {
+        getSubPageVoCDetails: function (platform, topic, PNScope, date, granularity) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
-            params.Date = date || Math.floor(new Date().getTime() / 1000);
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, {
+                granularity: granularity,
+                start: date * 1000,
+                end: date * 1000
+            });
             return baseSrv.get('GetSubPageVoCDetails', params);
         },
-        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, days) {
+        getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'all';
             params.keywords = keywords || 'notworking';
             params.PNScope = PNScope || 'all';
             params.IsFuzzyQuery = IsFuzzyQuery || 'false';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
         },
         getSysDetections: function (platform, msgType, topic, downloadable, bgTime, egTime) {
@@ -318,12 +321,12 @@ app.factory('rawdataSrv', function (baseSrv) {
             return baseSrv.get('GetRegionDistribution', params);
         },
         //sentimentconversion
-        getSentimentTrend: function (platform, topic, PNScope, days) {
+        getSentimentTrend: function (platform, topic, PNScope, source) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.PNScope = PNScope || 'all';
-            params.days = days || 7;
+            setDateTimeRange(params, source);
             return baseSrv.get('GetSentimentTrend', params);
         },
         saveForumServiceSetting: function (data) {

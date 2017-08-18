@@ -24,7 +24,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                     platform: params.param.platform.toLowerCase(),
                     topic: params.param.topic,
                     pnscope: params.param.pnscope,
-                    days: params.param.days,
+                    //// note: this is a hack action to adapt to the API interface, days (7) means hourly, and days (30+) means daily
+                    days: params.param.granularity === 2 ? 7 : 30,
                     params: {
                         date: params.param.date,
                         country: country,
@@ -114,8 +115,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                     case 'getVoCDetailsByDate':
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
-                            params.param.date,
                             params.param.pnscope,
+                            params.param.date,
                             params.param.granularity
                         )
                         break;
@@ -155,9 +156,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                     case 'getSubPageVoCDetails':
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
-                            params.param.date,
                             params.param.pnscope,
-                            params.param.days
+                            params.param.date,
+                            params.param.granularity
                         )
                         break;
                     case 'getSubPageVoCDetailsbyKeywords':
@@ -166,7 +167,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.keywords,
                             params.param.pnscope,
                             params.param.IsFuzzyQuery,
-                            params.param.days
+                            params.param
                         )
                         break;
                     case 'getVoCDetailsBySpikeDetected':
@@ -220,7 +221,7 @@ function initHourlyChartData(raw, utility) {
         xAxisDate = [];
     raw.map(function (item) {
         var tmp = {};
-        xAxisDate.push(utility.timeToString(item.attachedobject));
+        xAxisDate.push((new Date(item.attachedobject * 1000)).toLocaleString());
         if (item.vocinfluence.detectedspikesvol) {
             var entity = {
                 value: item.vocinfluence.voctotalvol,

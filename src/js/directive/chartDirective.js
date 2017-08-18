@@ -1,5 +1,4 @@
 /*
-
  @parameters:
     platform string
         all,twitter,so,sf,su,msdn,tn
@@ -9,10 +8,7 @@
         all,posi,neg
     days number
         7,14
-    
-
 */
-// var moment = require('moment');
 
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, $timeout, utilitySrv) {
     return {
@@ -165,16 +161,16 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             });
                             break;
                         case 'getSubPageVoCDetails':
-                            var date = _.days === '7'
-                                ? moment(params.name).utc()
-                                : moment.utc(params.name);
+                            var date = Math.floor((new Date(params.name)).valueOf() / 1000);
+                            if (_.query.granularity != 2) {
+                                date -= (new Date()).getTimezoneOffset() * 60;
+                            }
                             var param = {
                                 platform: _.platform,
                                 topic: _.query.topic,
-                                date: Math.floor(date / 1000),
-                                //date: Math.floor(moment(params.name) / 1000),
                                 pnscope: _.pnscope,
-                                days: _.days
+                                date: date,
+                                granularity: _.query.granularity,
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -187,7 +183,9 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 topic: _.query.topic,
                                 keywords: params.name,
                                 pnscope: _.pnscope,
-                                days: _.days
+                                granularity: _.query.granularity,
+                                start: _.query.start,
+                                end: _.query.end
                             }
                             $rootScope.popSubWin({
                                 fn: _.subFn,
@@ -244,7 +242,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getInfluence':
                             if (_.platform) {
                                 var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                                customInfluenceData(fnPromise, _).then(function (config) {
+                                customInfluenceData(fnPromise, _, utilitySrv).then(function (config) {
                                     _.chartOpt = angular.extend(_.chartOpt, config);
                                     initChart(_.chartObj, _.chartOpt, _.group);
                                     afterInit($rootScope, _, _.chartObj);
@@ -354,8 +352,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getUserVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                            var fn = customHourlyData;
-                            fn(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
+                            customHourlyData(fnPromise, 'uniqueusers', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -363,7 +360,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getMessageVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                            var fn = customHourlyData,
                                 key = '';
                             switch (_.pnscope) {
                                 case 'posi':
@@ -376,7 +372,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     key = 'voctotalvol';
                                     break;
                             }
-                            fn(fnPromise, key, utilitySrv, _).then(function (config) {
+                            customHourlyData(fnPromise, key, utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -384,9 +380,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getStackMessageVol':
                             var fnPromise = _.service['getMessageVolSpikes'](_.platform, _.query.topic, _.pnscope, _.query);
-                            var fn = stackAxisData;
                             // _.hasData = true;
-                            fn(fnPromise, utilitySrv, _).then(function (config) {
+                            stackAxisData(fnPromise, utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -394,8 +389,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getInfluenceVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                            var fn = customHourlyData;
-                            fn(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
+                            customHourlyData(fnPromise, 'vocinfluencedvol', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -403,8 +397,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getUserRegionVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                            var fn = customHourlyData;
-                            fn(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
+                            customHourlyData(fnPromise, 'uniqueuserregion', utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt, _.group);
                                 afterInit($rootScope, _, _.chartObj);
@@ -430,18 +423,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fn = barNegativeData;
                             _.hasData = true;
                             fn(fnPromise, _).then(function (config) {
-                                // console.log('getVoCDetailsByServiceName1')
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'sentimentconversion':
-                            var fnPromise = _.service['getSentimentTrend'](_.platform, _.query.topic, _.pnscope, _.days);
-                            // var fnPromise = $q.resolve(true);
-                            var fn = sentimentconversionData;
-                            fn(fnPromise, utilitySrv, _).then(function (config) {
-                                // console.log('sentimentconversion')
+                            var fnPromise = _.service['getSentimentTrend'](_.platform, _.query.topic, _.pnscope, _.query);
+                            sentimentconversionData(fnPromise, utilitySrv, _).then(function (config) {
                                 _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
@@ -626,7 +615,7 @@ function afterInit(rootscope, scope, echartObj) {
     rootscope.$broadcast('data-got', echartObj);
 }
 
-function customInfluenceData(fnPromise, scope) {
+function customInfluenceData(fnPromise, scope, utilitySrv) {
     var influenceSeries = function (raw) {
         var influenceData = raw.map(function (item) {
             return item.vocinfluence.voctotalvol
@@ -660,7 +649,7 @@ function customInfluenceData(fnPromise, scope) {
                 }
             },
             xAxis: {
-                data: scope.$root.dateList.map(function (dt) {
+                data: utilitySrv.getTimeRange(scope.query.start, scope.query.end).map(function (dt) {
                     return moment(dt).utc().format('L');
                 })
             },
@@ -671,18 +660,9 @@ function customInfluenceData(fnPromise, scope) {
             }]
         }
     }
-    var fn = influenceSeries;
-    // switch (scope.type) {
-    //     case 'influence':
-    //         fn = influenceSeries;
-    //         break;
-    //     default:
-    //         break;
-    // }
-    // console.log(scope.$root.dateList);
     return fnPromise.then(function (data) {
         scope.validData(data);
-        return fn(data);
+        return influenceSeries(data);
     })
 }
 
@@ -1044,10 +1024,13 @@ function stackAxisData(fnPromise, utility, scope) {
     return fnPromise.then(function (data) {
         // console.log(scope);
         scope.validData(data);
-        var timeFormatType = scope.days === '7' ? 'hourly' : 'daily';
         data.map(function (item) {
             var tmp = {};
-            xAxisDate.push(utility.timeToString(item.attachedobject.timeslot, timeFormatType));
+            if (scope.query.granularity === 2) {
+                xAxisDate.push((new Date(item.attachedobject.timeslot * 1000)).toLocaleString());
+            } else {
+                xAxisDate.push((new Date(item.attachedobject.timeslot * 1000)).toLocaleDateString());
+            }
             var entity = {
                 value: item.vocinfluence['undefinedtotalvol'],
                 symbolSize: 4
@@ -1121,49 +1104,6 @@ function stackAxisData(fnPromise, utility, scope) {
             }
         }
     })
-    //     return {
-    //         xAxis: [{
-    //             type: 'category',
-    //             boundaryGap: false,
-    //             data: scope.dateList.map(function (dt) {
-    //                 return moment(dt).utc().format('L');
-    //             })
-    //         }],
-    //         series: [{
-    //             name: 'Undefined',
-    //             type: 'line',
-    //             stack: 'volume',
-    //             areaStyle: {
-    //                 normal: {}
-    //             },
-    //             data: [120, 132, 101, 134, 90, 230, 210]
-    //         }, {
-    //             name: 'Positive',
-    //             type: 'line',
-    //             stack: 'volume',
-    //             areaStyle: {
-    //                 normal: {}
-    //             },
-    //             data: [220, 182, 191, 234, 290, 330, 310]
-    //         }, {
-    //             name: 'Negative',
-    //             type: 'line',
-    //             stack: 'volume',
-    //             areaStyle: {
-    //                 normal: {}
-    //             },
-    //             data: [150, 232, 201, 154, 190, 330, 410]
-    //         }, {
-    //             name: 'Neutral',
-    //             type: 'line',
-    //             stack: 'volume',
-    //             areaStyle: {
-    //                 normal: {}
-    //             },
-    //             data: [320, 332, 301, 334, 390, 330, 320]
-    //         }]
-    //     }
-    // });
 }
 
 function barNegativeData(fnPromise, scope) {
@@ -1242,7 +1182,7 @@ function sentimentconversionData(fnPromise, utility, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
         data.map(function (item) {
-            xAxisDate.push(utility.timeToString(item.SclingTime, 'daily'));
+            xAxisDate.push((new Date(item.SclingTime * 1000)).toLocaleDateString());
             seriesData.totalVol.push(item.TotalVolume);
             seriesData.initPostive.push(item.InitialPostiveVolume);
             seriesData.afterSptPostive.push(item.AfterSupportPostiveVolume);
@@ -1293,12 +1233,15 @@ function sentimentconversionData(fnPromise, utility, scope) {
 function customHourlyData(fnPromise, key, utility, scope) {
     var seriesData = [],
         xAxisDate = [];
-    var timeFormatType = scope.days === '7' ? 'hourly' : 'daily';
     return fnPromise.then(function (data) {
         scope.validData(data);
         data.map(function (item) {
             var tmp = {};
-            xAxisDate.push(utility.timeToString(item.attachedobject.timeslot, timeFormatType));
+            if (scope.query.granularity === 2) {
+                xAxisDate.push((new Date(item.attachedobject.timeslot * 1000)).toLocaleString());
+            } else {
+                xAxisDate.push((new Date(item.attachedobject.timeslot * 1000)).toLocaleDateString());
+            }
             if (item.attachedobject.isspike) {
                 var entity = {
                     value: item.vocinfluence[key],
@@ -1316,10 +1259,8 @@ function customHourlyData(fnPromise, key, utility, scope) {
                     symbolSize: 4
                 };
             }
-            // console.log(entity)
             seriesData.push(entity);
         })
-        // console.log(xAxisDate)
         return {
             series: [{
                 name: 'Vol',

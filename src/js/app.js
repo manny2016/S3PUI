@@ -51,17 +51,6 @@ app
     //   })(new Date)
     // };
 
-    ////TODO P0: need to remove
-    var timezoneOffset = (new Date()).getTimezoneOffset() * 60 * 1000;
-    $rootScope.timeRange = {
-      'start': moment.utc().startOf('day').subtract(7, 'days').valueOf(),
-      'end': moment.utc().startOf('day').subtract(1, 'days').valueOf()
-    };
-    $rootScope.dateList = utilitySrv.getTimeRange($rootScope.timeRange.start, $rootScope.timeRange.end);
-    $rootScope.startUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute($rootScope.timeRange.start + timezoneOffset);
-    $rootScope.endUTCDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute($rootScope.timeRange.end + timezoneOffset + 24 * 60 * 60 * 1000);
-    $rootScope.startDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute($rootScope.timeRange.start);
-    $rootScope.endDateLocalsString = utilitySrv.getDateTimeLocaleStringInMinute($rootScope.timeRange.end + 24 * 60 * 60 * 1000);
     if (!window.history || !history.replaceState) {
       return;
     };

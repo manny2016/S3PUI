@@ -189,7 +189,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             toastr.error('Topic Select Required');
             return false;
         }
-        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.query.start, $scope.query.end).then(function (url) {
+        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.query).then(function (url) {
             window.open(url);
         })
     }
