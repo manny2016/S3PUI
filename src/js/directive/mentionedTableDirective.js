@@ -11,8 +11,7 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
             // users: "=",
             platform: "@",
             query: "=",
-            association: "@",
-            days:"@"
+            association: "@"
         },
         link: function (scope, e, a) {
             $rootScope.$on('set-mentioned-table-data', function (evt, arg) {
@@ -22,12 +21,15 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
                 }
             });
             scope.popDetail = function (serverName) {
+                console.log(',emtioned table', scope);
                 var param = {
                     platform: scope.platform,
                     topic: scope.query.topic,
                     service: serverName,
                     PNScope:'all',
-                    days:scope.days
+                    granularity: scope.query.granularity,
+                    start: scope.query.start,
+                    end: scope.query.end
                 }
                 $rootScope.popSubWin({
                     fn: 'getVoCDetailsByServiceName',

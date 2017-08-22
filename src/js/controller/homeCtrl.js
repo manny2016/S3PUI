@@ -181,7 +181,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
             platform: entity.forumName,
             msgType: entity.msgType,
             topic: entity.topic,
-            timestamp: entity.TimeStamp
+            date: entity.TimeStamp
         }
         $rootScope.popSubWin({
             fn: 'getVoCDetailsBySpikeDetected',

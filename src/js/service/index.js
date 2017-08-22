@@ -297,20 +297,13 @@ app.factory('rawdataSrv', function (baseSrv) {
             return baseSrv.get('GetPlatformSyncSetting', params);
         },
         //NC detailed page
-        getVoCDetailsBySpikeDetected: function (platform, msgType, topic, timestamp) {
+        getVoCDetailsBySpikeDetected: function (platform, msgType, topic, datetime) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.msgType = msgType || 'all';
-            params.timestamp = timestamp || 0;
+            params.datetime = datetime || 0;
             return baseSrv.get('GetVoCDetailsBySpikeDetected', params);
-        },
-        getUserLanguageDistribution: function (platform, topic, days) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'azure';
-            params.days = days || 7;
-            return baseSrv.get('GetUserLanguageDistribution', params);
         },
         getRegionDistribution: function (platform, topic, PNScope, source) {
             var params = params || {};

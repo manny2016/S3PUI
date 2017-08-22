@@ -11,8 +11,7 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
             // users: "=",
             platform: "@",
             query: "=",
-            association: "@",
-            days:"@"
+            association: "@"
         },
         link: function (scope, e, a) {
             $rootScope.$on('set-region-table-data', function (evt, arg) {

@@ -250,7 +250,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart caption="Area Distribution for Positive Feedback" pnscope="posi" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry"
+                                    api-fn="getRegionDistribution" location='home'
                                     no-pop="true" property-select="positive" association="positive"></ng-echart>
                             </div>
                             <div class="side">
@@ -262,7 +262,7 @@
                         <div class="sides">
                             <div class="side active">
                                 <ng-echart caption="Area Distribution for Negative Feedback" pnscope="neg" type="world" platform='{{path[2]}}' query=query
-                                    api-fn="getRegionDistribution" location='home' sub-fn="getVoCDetailsByCountry"
+                                    api-fn="getRegionDistribution" location='home'
                                     no-pop="true" property-select="negative" association="negative"></ng-echart>
                             </div>
                             <div class="side">
@@ -368,7 +368,7 @@
             <div class="ui grid content">
                 <div class="two column row">
                     <ng-echart caption="User Distribution" pnscope="all" type="world" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
-                        location='home' sub-fn="getVoCDetailsByCountry" no-swap="true" property-select="users"></ng-echart>
+                        location='home' no-swap="true" property-select="users"></ng-echart>
                     <div class="column">
                         <table id="language-table" st-table="stTable2" st-safe-src="languageDistribution" class="ui blue striped celled table stTable">
                             <thead>

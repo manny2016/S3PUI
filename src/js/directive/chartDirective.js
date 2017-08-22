@@ -6,8 +6,6 @@
         all,azure,...
     pnscope string
         all,posi,neg
-    days number
-        7,14
 */
 
 module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $compile, $timeout, utilitySrv) {
@@ -23,7 +21,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             //topic: "@",
             pnscope: "@",
             propertySelect: "@",
-            days: "@",
             apiFn: "@",
             subFn: '@',
             group: "@",
@@ -144,25 +141,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 start: _.query.start,
                                 end: _.query.end
                             }
-                            $rootScope.popSubWin({
-                                fn: _.subFn,
-                                param: param
-                            });
-                            break;
-                        case 'getVoCDetailsByCountry':
-                            var pnscope = _.pnscope;
-                            if (pnscope == 'positive') pnscope = 'posi';
-                            else if (pnscope == 'negative') pnscope = 'neg';
-                            else if (pnscope == 'neutral') pnscope = 'neu';
-                            else pnscope = null;
-                            var param = {
-                                platform: _.platform,
-                                topic: _.query.topic,
-                                pnscope: pnscope,
-                                country: params.name.toLowerCase(),
-                                days: _.days
-                            }
-                            console.log(param);
                             $rootScope.popSubWin({
                                 fn: _.subFn,
                                 param: param

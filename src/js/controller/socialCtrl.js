@@ -218,11 +218,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             $scope.$broadcast('data-got');
         })
     }
-    /*function getLanguageDistribution () {
-        $scope.service.getUserLanguageDistribution($scope.$stateParams.platform, $scope.topic, $scope.query).then(function (data) {
-            $scope.languageDistribution = $filter('orderBy')(data, '-volume');
-        })
-    }*/
 
     function CheckDateRangeSize() {
         $scope.query.days = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;

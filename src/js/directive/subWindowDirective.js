@@ -5,7 +5,7 @@
 module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter, utilitySrv, CONST) {
     return {
         restrict: 'E',
-        templateUrl: ('public/template/sub_window.html?time='+new Date().getTime()),
+        templateUrl: ('public/template/sub_window.html?time=' + new Date().getTime()),
         replace: true,
         scope: {
             // users: "=",
@@ -14,28 +14,35 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
             query: "="
         },
         link: function (scope, e, a) {
-            //console.log($(e).find('.hourly-charts'))
             scope.myChart = echarts.init($(e).find('.hourly-charts').get(0));
             scope.getData = function (params) {
                 var country = (params.param.country || '').toLowerCase();
                 if (country === "united states of america") { country = "united states"; }
+                var start = params.param.start / 1000;
+                var end = params.param.end / 1000 + (params.param.granularity === 2 ? 3600 : 86400);
+                if (params.param.date) {
+                    start = params.param.date;
+                    if ((params.param.msgType) || (params.param.granularity === 2)) {
+                        end = start + 3600;
+                    } else {
+                        end = start + 86400;
+                    }
+                }
                 $window.threadOption = {
                     function: params.fn,
                     platform: params.param.platform.toLowerCase(),
                     topic: params.param.topic,
                     pnscope: params.param.pnscope,
-                    //// note: this is a hack action to adapt to the API interface, days (7) means hourly, and days (30+) means daily
-                    days: params.param.granularity === 2 ? 7 : 30,
+                    start: start,
+                    end: end,
                     params: {
-                        date: params.param.date,
                         country: country,
                         service: params.param.service,
                         userid: params.param.userid,
                         index: params.param.index,
                         keywords: params.param.keywords,
                         IsFuzzyQuery: params.param.IsFuzzyQuery,
-                        msgType: params.param.msgType,
-                        timestamp: params.param.timestamp
+                        msgType: params.param.msgType
                     }
                 };
                 if ($window.threadStore) {
@@ -54,8 +61,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                     type: "POST",
                                     contentType: "application/x-www-form-urlencoded"
                                 },
-                                parameterMap: function (data, operation)
-                                {
+                                parameterMap: function (data, operation) {
                                     if (operation === "read") {
                                         var search;
                                         if (data.filter && data.filter.filters
@@ -64,22 +70,33 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                         }
                                         $window.threadOption.search = search;
                                         var post = {
-                                            function: $window.threadOption.function,
-                                            platform: $window.threadOption.platform,
+                                            forum: $window.threadOption.platform,
                                             topic: $window.threadOption.topic,
-                                            pnscope: $window.threadOption.pnscope,
-                                            days: $window.threadOption.days,
-                                            params: {},
+                                            function: $window.threadOption.function,
+                                            start: $window.threadOption.start,
+                                            end: $window.threadOption.end,
+                                            conditions: {},
                                             search: search,
                                             page: data.page,
                                             pagesize: data.pageSize,
-                                            sortby: data.sort[0] ? data.sort[0].field : 'CreatedTime',
-                                            sort: data.sort[0] ? data.sort[0].dir : 'desc',
+                                            sort: [{
+                                                field: data.sort[0] ? data.sort[0].field : 'CreatedTime',
+                                                dir: data.sort[0] ? data.sort[0].dir : 'desc'
+                                            }]
                                         };
+                                        if (($window.threadOption.pnscope || 'all') !== 'all') {
+                                            post.conditions.pnscope = $window.threadOption.pnscope === 'neg'
+                                                ? 0
+                                                : $window.threadOption.pnscope === 'neu'
+                                                    ? 2
+                                                    : $window.threadOption.pnscope === 'posi'
+                                                        ? 4
+                                                        : -1;
+                                        }
                                         if ($window.threadOption.params) {
                                             $.each($window.threadOption.params, function (field, value) {
                                                 if (value) {
-                                                    post.params[field] = value;
+                                                    post.conditions[field] = value;
                                                 }
                                             });
                                         }
@@ -128,7 +145,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         )
                         break;
                     case 'getVoCDetailsByServiceName':
-                        scope.needMentioned=false;
+                        scope.needMentioned = false;
                         fnPromise = fn(params.param.platform,
                             params.param.topic,
                             params.param.service,
@@ -143,14 +160,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                             params.param.index,
                             params.param.pnscope,
                             params.param
-                        )
-                        break;
-                    case 'getVoCDetailsByCountry':
-                        fn = $rootScope.service['getVoCDetailsByPN'];
-                        fnPromise = fn(params.param.platform,
-                            params.param.topic,
-                            params.param.country,
-                            params.param.days
                         )
                         break;
                     case 'getSubPageVoCDetails':
@@ -174,7 +183,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         fnPromise = fn(params.param.platform,
                             params.param.msgType,
                             params.param.topic,
-                            params.param.timestamp
+                            params.param.date
                         )
                         break;
                 }

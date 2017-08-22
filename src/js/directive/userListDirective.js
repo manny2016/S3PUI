@@ -13,8 +13,7 @@ module.exports = function ($rootScope) {
             platform: "@",
             query: "=",
             pnscope: "@",
-            noPop: "@",
-            days: "@"
+            noPop: "@"
         },
         link: function (scope, e, a) {
             scope.pnscope = scope.pnscope || 'all';
