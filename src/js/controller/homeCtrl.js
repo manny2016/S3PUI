@@ -43,7 +43,11 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
 
 
     $scope.query = {
-        granularity: 3 //// daily
+        granularity: 3, //// daily
+        start: outset,
+        end: end,
+        StartDate: (new Date(outset)).toLocaleString(),
+        EndDate: (new Date(end)).toLocaleString(),
     };
     // var totalrequests = 28+12;
     var sections = 8,
@@ -126,6 +130,8 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
             dtEnd = dtEnd.valueOf() - dtEnd.getTimezoneOffset() * 60000;
             $scope.query.start = dtStart;
             $scope.query.end = dtEnd;
+            $scope.StartDate = (new Date(dtStart)).toLocaleString();
+            $scope.EndDate = (new Date(dtEnd)).toLocaleString();
             var offsetDays = (dtEnd - dtStart) / 3600 / 24 / 1000;
             $('#volumes > div.content > div:nth-child(2)')
                 .attr('class', 'ui ' + (offsetDays <= 30 ? 'three' : (offsetDays <= 60 ? 'two' : 'one')) + ' column grid');
