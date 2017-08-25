@@ -13,19 +13,120 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
     settings.now = (parseInt((new Date()).valueOf() / 3600000) * 3600000);
     settings.today = parseInt(settings.now / 3600000 / 24) * 24 * 3600000;
+    settings.outset = (new Date(2016, 7, 1)).valueOf();
     settings.start = settings.today - 3600000 * 24 * 7;
     settings.end = settings.today - 3600000 * 24;
-    $scope.query.granularity = 3;
-    $scope.query.start = settings.start;
-    $scope.query.end = settings.end;
+    var options = kendo.observable({
+        granularity: 3,
+        start: settings.start,
+        end: settings.end
+    });
+    options.bind('change', function (e) {
+        if (e.field === 'granularity') {
+
+        } else if (e.field === 'start') {
+            var start = this.get('start') + settings.timezoneOffset;
+            {
+                var min = dailyPickerStart.min().valueOf();
+                var max = dailyPickerStart.max().valueOf();
+                dailyPickerStart.value(new Date(Math.max(min, Math.min(start, max))));
+            }
+            {
+                var min = hourlyPickerStart.min().valueOf();
+                var max = hourlyPickerStart.max().valueOf();
+                hourlyPickerStart.value(new Date(Math.max(min, Math.min(start, max))));
+            }
+            setDateTimePickerEndLimitation();
+        } else if (e.field === 'end') {
+            var end = this.get('end') + settings.timezoneOffset;
+            {
+                var min = dailyPickerEnd.min().valueOf();
+                var max = dailyPickerEnd.max().valueOf();
+                dailyPickerEnd.value(new Date(Math.max(min, Math.min(start, max))));
+            }
+            {
+                var min = hourlyPickerEnd.min().valueOf();
+                var max = hourlyPickerEnd.max().valueOf();
+                hourlyPickerEnd.value(new Date(Math.max(min, Math.min(start, max))));
+            }
+            setDateTimePickerStartLimitation();
+        }
+    });
+    $scope.query.granularity = options.get('granularity');
+    $scope.query.start = options.get('start');
+    $scope.query.end = options.get('end');
     $scope.query.days = 7;
 
-    var dailyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[0]);
-    var hourlyContainer = $($("#topic_select > div:nth-child(1) > div:nth-child(2) > span.daterange")[1]);
-    dailyContainer.children("input:nth-child(1)").attr('min', '2016-08-01');
-    hourlyContainer.children("input:nth-child(1)").attr('min', '2016-08-01');
-    dailyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.end)).toISOString());
-    hourlyContainer.children("input:nth-child(2)").attr('max', (new Date(settings.now - 3600000 + settings.timezoneOffset)).toISOString());
+    function setDateTimePickerStartLimitation() {
+        var endtime = options.get('end') + settings.timezoneOffset;
+        var starttime0 = Math.max(settings.outset, endtime - 86400000 * 364);
+        var starttime1 = Math.max(settings.outset, endtime - 86400000 * 6);
+        dailyPickerStart.min(new Date(starttime0));
+        dailyPickerStart.max(new Date(endtime));
+        hourlyPickerStart.min(new Date(starttime1));
+        hourlyPickerStart.max(new Date(endtime));
+    }
+    function setDateTimePickerEndLimitation() {
+        var starttime = options.get('start') + settings.timezoneOffset;
+        var endtime0 = Math.min(settings.end, starttime + 86400000 * 364);
+        var endtime1 = Math.min(settings.now, starttime + 86400000 * 6);
+        dailyPickerEnd.min(new Date(starttime));
+        dailyPickerEnd.max(new Date(endtime0));
+        hourlyPickerEnd.min(new Date(starttime));
+        hourlyPickerEnd.max(new Date(endtime1));
+    }
+    function setDateRangeSectionVisible() {
+        if (options.get('granularity') === 2) {
+            $('.daterange-daily').hide();
+            $('.daterange-hourly').show();
+        } else {
+            $('.daterange-daily').show();
+            $('.daterange-hourly').hide();
+        }
+    }
+    function datetimeChanged() {
+        if (options.get('granularity') === 2) {
+            options.set('start', hourlyPickerStart.value().valueOf() - settings.timezoneOffset);
+            options.set('end', hourlyPickerEnd.value().valueOf() - settings.timezoneOffset);
+        } else {
+            options.set('start', dailyPickerStart.value().valueOf() - settings.timezoneOffset);
+            options.set('end', dailyPickerEnd.value().valueOf() - settings.timezoneOffset);
+        }
+    }
+
+    $("#ddlGranularities").kendoDropDownList({
+        value: options.get('granularity'),
+        change: function (e) {
+            var granularity = parseInt(this.value());
+            options.set('granularity', granularity);
+            setDateRangeSectionVisible();
+        }
+    });
+    var dailyPickerStart = $('#DailyPickerStart').kendoDatePicker({
+        value: new Date(options.get('start') + settings.timezoneOffset),
+        format: localeDateFormatString,
+        change: datetimeChanged
+    }).data("kendoDatePicker");
+    var dailyPickerEnd = $('#DailyPickerEnd').kendoDatePicker({
+        value: new Date(options.get('end') + settings.timezoneOffset),
+        format: localeDateFormatString,
+        change: datetimeChanged
+    }).data("kendoDatePicker");
+    var hourlyPickerStart = $('#HourlyPickerStart').kendoDateTimePicker({
+        value: new Date(options.get('start') + settings.timezoneOffset),
+        format: localeDateTimeFormatString,
+        change: datetimeChanged
+    }).data("kendoDateTimePicker");
+    var hourlyPickerEnd = $('#HourlyPickerEnd').kendoDateTimePicker({
+        value: new Date(options.get('end') + settings.timezoneOffset),
+        format: localeDateTimeFormatString,
+        change: datetimeChanged
+    }).data("kendoDateTimePicker");
+    setDateRangeSectionVisible();
+    setDateTimePickerStartLimitation();
+    setDateTimePickerEndLimitation();
+
+    /*
     var selectedDateRange = kendo.observable({
         granularity: $scope.query.granularity,
         start: new Date($scope.query.start + settings.timezoneOffset),
@@ -56,14 +157,17 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         } else if (e.field === 'start') {
             var start = this.get('start').valueOf() - settings.timezoneOffset;
             $scope.query.start = start;
+            setDateTimePickerEndLimitation();
             CheckDateRangeSize();
         } else if (e.field === 'end') {
             var end = this.get('end').valueOf() - settings.timezoneOffset;
             $scope.query.end = end;
+            setDateTimePickerStartLimitation();
             CheckDateRangeSize();
         }
     });
     kendo.bind($("#topic_select > div:nth-child(1) > div:nth-child(2)"), selectedDateRange);
+    */
 
     // debugger;
     switch ($scope.platform) {

@@ -2,16 +2,19 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     //// the time is UTC date time value in locale timezone in here.
     //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
     var timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-    var today = parseInt((new Date()).valueOf() / 3600000 / 24) * 24 * 3600000 + timezoneOffset;
-    var start = new Date(today - 3600000 * 24 * 7), end = new Date(today - 3600000 * 24), outset = new Date(today - 3600000 * 24 * 30);
+    var today = parseInt((new Date()).valueOf() / 86400000) * 86400000 + timezoneOffset;
+    var start = new Date(today - 86400000 * 7), end = new Date(today - 86400000);
+    var outset = new Date(2016, 7, 1);
     function datetimeChanged() {
         var dtStart = dtpStart.value();
         var dtEnd = dtpEnd.value();
 
         if (dtStart) {
             dtpEnd.min(dtStart);
+            dtpEnd.max(new Date(Math.min(end, dtStart.valueOf() + 86400000 * 364)));
         }
         if (dtEnd) {
+            dtpStart.min(new Date(Math.max(outset, dtEnd.valueOf() - 86400000 * 364)));
             dtpStart.max(dtEnd);
         }
 
@@ -26,7 +29,11 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
             var dtStart = new Date(today - 3600000 * 24 * value);
             var dtEnd = new Date(today - 3600000 * 24);
             dtpStart.value(dtStart);
+            dtpEnd.min(dtStart);
+            dtpEnd.max(new Date(Math.min(end, dtStart.valueOf() + 86400000 * 364)));
             dtpEnd.value(dtEnd);
+            dtpStart.min(new Date(Math.max(outset, dtEnd.valueOf() - 86400000 * 364)));
+            dtpStart.max(dtEnd);
             $scope.startGetData($rootScope.global.topic);
         }
     });
@@ -34,7 +41,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         value: start,
         format: localeDateFormatString,
         change: datetimeChanged,
-        min: new Date(2016, 7, 1),//outset,
+        min: new Date(Math.max(outset, end.valueOf() - 86400000 * 364)),
         max: end
     }).data("kendoDatePicker");
     var dtpEnd = $('#DateTimePickerEnd').kendoDatePicker({

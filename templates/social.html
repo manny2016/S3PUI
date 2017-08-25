@@ -17,25 +17,17 @@
             </div>
             <div class="inline field">
                 <label>Date Range:</label>
-                <input data-role="dropdownlist" data-text-field="text" data-value-field="value" data-bind="source: granularities, value: granularity"
-                />
-                <span class="daterange" data-bind="visible: visibleDatePicker">
-                    <input data-role="datepicker"
-                        data-bind="value: start"
-                        style="padding: 0; border: 0 none; width: 210px;" />
-                    <input data-role="datepicker"
-                        data-bind="value: end"
-                        style="padding: 0; border: 0 none; width: 210px;" />
+                <select id="ddlGranularities" style="width: 100px;">
+                    <option value="3">Daily</option>
+                    <option value="2">Hourly</option>
+                </select>
+                <span class="daterange-daily">
+                    <input id="DailyPickerStart" style="padding: 0; border: 0 none; width: 230px;" />
+                    <input id="DailyPickerEnd" style="padding: 0; border: 0 none; width: 230px;" />
                 </span>
-                <span class="daterange" data-bind="visible: visibleDateTimePicker">
-                    <input data-role="datetimepicker"
-                        data-interval="60"
-                        data-bind="value: start"
-                        style="padding: 0; border: 0 none; width: 210px;" />
-                    <input data-role="datetimepicker"
-                        data-interval="60"
-                        data-bind="value: end"
-                        style="padding: 0; border: 0 none; width: 210px;" />
+                <span class="daterange-hourly">
+                    <input id="HourlyPickerStart" style="padding: 0; border: 0 none; width: 230px;" />
+                    <input id="HourlyPickerEnd" style="padding: 0; border: 0 none; width: 230px;" />
                 </span>
             </div>
         </div>
