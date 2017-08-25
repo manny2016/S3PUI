@@ -1,4 +1,4 @@
-module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $document, $location, utilitySrv, toastr) {
+module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $document, $location, CONST, utilitySrv, toastr) {
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
@@ -191,9 +191,19 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             toastr.error('Topic Select Required');
             return false;
         }
-        $scope.service.getDownloadUrl($scope.$stateParams.platform, $scope.topic, $scope.query).then(function (url) {
-            window.open(url);
-        })
+
+        var granularity = $scope.query.granularity || 3;
+        var start = $scope.query.start / 1000;
+        var end = ($scope.query.end + (granularity == 2 ? 3600000 : 3600000 * 24)) / 1000;
+        var url = CONST.SERVICE_INFO.ENDPOINT
+            + 'DownloadSummary'
+            + '?stamp=' + (new Date()).valueOf()
+            + '&platform=' + escape($scope.$stateParams.platform || 'twitter')
+            + '&topic=' + escape($scope.topic || 'azure')
+            + '&fromcycle=' + granularity
+            + '&start=' + start
+            + '&end=' + end;
+        window.open(url);
     }
     // initLineCharts('.hourly-charts.home');
     // echarts.connect('hourlyCharts');

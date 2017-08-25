@@ -328,14 +328,6 @@ app.factory('rawdataSrv', function (baseSrv) {
                     'Content-Type': 'text/plain'
                 }
             });
-
-        },
-        getDownloadUrl: function (platform, topic, source) {
-            var params = params || {};
-            params.platform = platform || 'twitter';
-            params.topic = topic || 'azure';
-            setDateTimeRange(params, source);
-            return baseSrv.get('GetDownloadUrl', params);
         },
         getSubscribeSettings: function (platform, topic, msgtype, servicename) {
             var params = params || {};

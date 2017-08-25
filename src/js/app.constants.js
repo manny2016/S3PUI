@@ -47,6 +47,7 @@ app.constant('CONST', {
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
 
         ENDPOINT: 'https://localhost:44300/WebServices/S3PDataService/',
+        ENDPOINT: 'http://localhost:30322/WebServices/SHPDateUnlimitedDataService/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'http://52.168.10.62/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'http://40.71.248.101/WebServices/S3PDataService/GetJobStatus'
