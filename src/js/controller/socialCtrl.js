@@ -165,7 +165,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
                         }
                     })
                     $scope.topics = topics;
-                    $('#topic_select').dimmer('hide');
                     return topics;
                 }
             }
@@ -270,7 +269,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     };
 
     $('#scrollspy .list .item .label').popup();
-    $('#topic_select').dimmer('show');
     // var count = 0;
 
     $scope.$on('data-got', function (event, arg) {
@@ -283,7 +281,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         }
     });
 
-    $scope.doQuery = function (e) {
+    function updateQueryConditions() {
         var topic = options.get('topic');
         if (!topic) {
             topic = dropdownlistProducts.value();
@@ -295,8 +293,36 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         $scope.query.end = options.get('end()');
         $scope.startDateLocalsString = (new Date($scope.query.start)).toLocaleString();
         $scope.endDateLocalsString = (new Date($scope.query.end)).toLocaleString();
+    }
+    $scope.doQuery = function (e) {
+        updateQueryConditions();
         $scope.queried = true;
         $scope.startGetData();
+    }
+    $scope.doDownload = function () {
+        updateQueryConditions();
+        
+        if (!$scope.$stateParams.platform) {
+            toastr.error('Platform Required');
+            return false;
+        }
+        if (!$scope.query.topic) {
+            toastr.error('Topic Select Required');
+            return false;
+        }
+
+        var granularity = $scope.query.granularity || 3;
+        var start = $scope.query.start / 1000;
+        var end = ($scope.query.end + (granularity == 2 ? 3600000 : 3600000 * 24)) / 1000;
+        var url = CONST.SERVICE_INFO.ENDPOINT
+            + 'DownloadSummary'
+            + '?stamp=' + (new Date()).valueOf()
+            + '&platform=' + escape($scope.$stateParams.platform || 'twitter')
+            + '&topic=' + escape($scope.query.topic || 'azure')
+            + '&fromcycle=' + granularity
+            + '&start=' + start
+            + '&end=' + end;
+        window.open(url);
     }
     $scope.startGetData = function () {
         // $event.stopPropagation();
@@ -320,31 +346,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         //getLanguageDistribution();
         $scope.$broadcast('start-get-data', 'home');
     }
-    $scope.getDownloadUrl = function () {
-        if (!$scope.$stateParams.platform) {
-            toastr.error('Platform Required');
-            return false;
-        }
-        if (!$scope.query.topic) {
-            toastr.error('Topic Select Required');
-            return false;
-        }
-
-        var granularity = $scope.query.granularity || 3;
-        var start = $scope.query.start / 1000;
-        var end = ($scope.query.end + (granularity == 2 ? 3600000 : 3600000 * 24)) / 1000;
-        var url = CONST.SERVICE_INFO.ENDPOINT
-            + 'DownloadSummary'
-            + '?stamp=' + (new Date()).valueOf()
-            + '&platform=' + escape($scope.$stateParams.platform || 'twitter')
-            + '&topic=' + escape($scope.query.topic || 'azure')
-            + '&fromcycle=' + granularity
-            + '&start=' + start
-            + '&end=' + end;
-        window.open(url);
-    }
-    // initLineCharts('.hourly-charts.home');
-    // echarts.connect('hourlyCharts');
     function getStatistic() {
         $('#summary div.content').dimmer('show');
         $scope.service.getImpactSummary($scope.$stateParams.platform, $scope.query.topic, 'all', $scope.query).then(function (data) {

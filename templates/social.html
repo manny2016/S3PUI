@@ -17,7 +17,7 @@
             <div class="inline field">
                 <label style="display: inline-block; width: 120px;">Service/Product: </label>
                 <input id="ddlProducts" style="width: 200px;" />
-                <button class="circular ui icon inverted blue button" ng-click="doQuery()" style="margin-left:20px">
+                <button class="k-button k-primary" ng-click="doQuery()" style="float: right; padding: 0 14px; line-height: 30px;">
                     <i class="icon search"></i>
                     Query
                 </button>
@@ -36,7 +36,7 @@
                     <input id="HourlyPickerStart" style="padding: 0; border: 0 none; width: 230px;" />
                     <input id="HourlyPickerEnd" style="padding: 0; border: 0 none; width: 230px;" />
                 </span>
-                <button class="k-button" style="float: right;" ng-click="getDownloadUrl()">
+                <button class="k-button" ng-show="queried" ng-click="doDownload()" style="float: right; margin-left: 10px;">
                     <i class="icon download"></i>
                     Download ZIP file
                 </button>
@@ -62,27 +62,27 @@
                     <div class="column collection">
                         <div class="ui horizontal top divider">Users</div>
                         <div>
-                            <ng-statistic caption="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers" query=query></ng-statistic>
+                            <ng-statistic title="Unique Users Posts" color="orange" data="statistic.joinedusers" type="joinedusers" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic caption="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers" query=query></ng-statistic>
+                            <ng-statistic title="Regions of Users" color="olive" data="statistic.regionofusers" type="regionofusers" query=query></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic caption="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" query=query></ng-statistic>
+                            <ng-statistic title="Influence of Users(page Views)" color="yellow" data="statistic.influenceofusers" type="influenceofusers" query=query></ng-statistic>
                         </div>
                     </div>
                     <div class="column collection">
                         <div class="ui horizontal top divider">Services & Products</div>
                         <div>
-                            <ng-statistic caption="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" query=query></ng-statistic>
+                            <ng-statistic title="Services & Products being Discussed" color="green" data="statistic.mentionedservicecount" type="mentionedservicecount" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'" style="max-height:129px;">-->
                         <div style="max-height:129px;">
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic caption="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice" query=query></ng-statistic>-->
+                            <!--<ng-statistic title="Most Mentioned Service" data="statistic.mostmentionedservice" type="mostmentionedservice" query=query></ng-statistic>-->
                             <div class="ui column grid">
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Mentioned Service</h6>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <!--<div class="column">
-                                <h6 style="margin:0;font-size:13px" caption="since last seven days">Growth Ranking
+                                <h6 style="margin:0;font-size:13px" title="since last seven days">Growth Ranking
                                 </h6>
                                 <div class="ui relaxed divided list">
                                     <div ng-repeat="s in statistic.rankingservice" class="item text tiny blue" alt="{{s.mentionedmostservice.attachedobject}}"
@@ -118,7 +118,7 @@
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic caption="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice" query=query></ng-statistic>-->
+                            <!--<ng-statistic title="Most Liked Service : Most Disliked Service" comment="Receievd hightest Ratio of positive posts" data="{mostlikedservice:statistic.mostlikedservice,mostdislikedservice:statistic.mostdislikedservice}" type="mostlikedservice" query=query></ng-statistic>-->
                             <div class="ui two column grid">
                                 <div class="column">
                                     <h6 style="margin:0;font-size:13px">Most Liked Service</h6>
@@ -138,7 +138,7 @@
                                     <h6 style="margin:0;font-size:13px">Most Disliked Service</h6>
                                     <div class="ui relaxed divided list">
                                         <div ng-repeat="s in statistic.mostdislikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}"
-                                            caption="{{s.attachedobject}}">
+                                            title="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
                                             {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
@@ -155,18 +155,18 @@
                     <div class="column collection">
                         <div class="ui horizontal top divider">VoC</div>
                         <div>
-                            <ng-statistic caption="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol" query=query></ng-statistic>
+                            <ng-statistic title="Message Posts" color="violet" data="statistic.vocinsights" type="vocinsightsVol" query=query></ng-statistic>
                         </div>
                         <div>
                             <div class="ui inverted divider"></div>
-                            <ng-statistic caption="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" query=query></ng-statistic>
+                            <ng-statistic title="Sentiment of Messages (POS:NEG:NEU)" color="teal" data="statistic.vocinsights" type="vocinsightsPN" query=query></ng-statistic>
                         </div>
                         <!--<div ng-if="platform=='twitter'">-->
                         <div>
                             <div class="ui inverted divider"></div>
-                            <!--<ng-statistic caption="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
-                            <!--<ng-statistic caption="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
-                            <!--<ng-statistic ng-hide="isLargeDateRange" caption="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
+                            <!--<ng-statistic title="Influence of Sentiment" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
+                            <!--<ng-statistic title="Influence of Sentiment (POS:NEG)" color="purple" comment="Page Views - POS : NEG" data="{mostposifrom:statistic.mostposifrom,mostnegfrom:statistic.mostnegfrom}" type="mostposifrom" query=query></ng-statistic>-->
+                            <!--<ng-statistic ng-hide="isLargeDateRange" title="Sentiment of Influence (POS:NEG)" color="purple" data="statistic.vocinsights"
                                 type="mostposifrom" query=query></ng-statistic>-->
                         </div>
                     </div>
@@ -473,7 +473,7 @@
             </div>
         </div>
     </div>
-    <button class="ui basic button mini pull-right" ng-show="query.topic !== undefined" ng-click="getDownloadUrl()">
+    <button class="ui basic button mini pull-right" ng-show="queried" ng-click="doDownload()">
             <i class="icon download"></i>
             Download ZIP file
         </button>
