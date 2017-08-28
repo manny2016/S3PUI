@@ -271,14 +271,20 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" info="Detected Services Distribution by Post"></ng-echart>
+                                <ng-echart title="Mentioned (Messages Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName" association="message_all" info="Detected Services Distribution by Post"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform="all" query=query association="message_all"></mentioned-table>
                             </div>
                         </div>
                     </div>
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" info="Detected Services Distribution by User"></ng-echart>
+                                <ng-echart title="Mentioned (Users Vol) {{global.topic}} Services all data sources" type="pie" platform='all' query=query api-fn="getMentionedMostServiceListByUserVol" property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_all" info="Detected Services Distribution by User"></ng-echart>
+                            </div>
+                            <div class="side">
+                                <mentioned-table platform="all" query=query association="user_all"></mentioned-table>
                             </div>
                         </div>
                     </div>
