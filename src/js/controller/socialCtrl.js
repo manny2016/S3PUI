@@ -2,6 +2,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     $scope.platform = $scope.$stateParams.platform.toLowerCase();
     $scope.order = $filter('orderBy');
     $scope.query = {};
+    $scope.queried = false;
     $scope.path = $location.path().split("/");
     $scope.isLargeDateRange = false;
     $scope.popInfoScope = "Hourly";
@@ -10,71 +11,45 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     //// the time is UTC date time value in locale timezone in here.
     //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
     var settings = {};
-    settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
-    settings.now = (parseInt((new Date()).valueOf() / 3600000) * 3600000);
-    settings.today = parseInt(settings.now / 3600000 / 24) * 24 * 3600000;
-    settings.outset = (new Date(2016, 7, 1)).valueOf();
-    settings.start = settings.today - 3600000 * 24 * 7;
-    settings.end = settings.today - 3600000 * 24;
-    var options = kendo.observable({
-        granularity: 3,
-        start: settings.start,
-        end: settings.end
-    });
-    options.bind('change', function (e) {
-        if (e.field === 'granularity') {
-
-        } else if (e.field === 'start') {
-            var start = this.get('start') + settings.timezoneOffset;
-            {
-                var min = dailyPickerStart.min().valueOf();
-                var max = dailyPickerStart.max().valueOf();
-                dailyPickerStart.value(new Date(Math.max(min, Math.min(start, max))));
-            }
-            {
-                var min = hourlyPickerStart.min().valueOf();
-                var max = hourlyPickerStart.max().valueOf();
-                hourlyPickerStart.value(new Date(Math.max(min, Math.min(start, max))));
-            }
-            setDateTimePickerEndLimitation();
-        } else if (e.field === 'end') {
-            var end = this.get('end') + settings.timezoneOffset;
-            {
-                var min = dailyPickerEnd.min().valueOf();
-                var max = dailyPickerEnd.max().valueOf();
-                dailyPickerEnd.value(new Date(Math.max(min, Math.min(start, max))));
-            }
-            {
-                var min = hourlyPickerEnd.min().valueOf();
-                var max = hourlyPickerEnd.max().valueOf();
-                hourlyPickerEnd.value(new Date(Math.max(min, Math.min(start, max))));
-            }
-            setDateTimePickerStartLimitation();
+    {
+        settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
+        var now = (new Date()).valueOf() - settings.timezoneOffset;
+        settings.today = parseInt(now / 3600000 / 24) * 3600000 * 24;
+        settings.start = settings.today - 3600000 * 24 * 7;
+        settings.daily_outset = (new Date(2016, 7, 1)).valueOf() - settings.timezoneOffset;
+        settings.daily_end = settings.today - 3600000 * 24;
+        settings.hourly_outset = (new Date(2016, 7, 1)).valueOf();
+        settings.hourly_end = (parseInt(now / 3600000) * 3600000) + settings.timezoneOffset;
+    }
+    var optionsViewModel = kendo.data.Model.define({
+        fields: {
+            topic: { defaultValue: $rootScope.global.topic },
+            granularity: { type: "number", defaultValue: 3 },
+            startForDaily: { type: "number", defaultValue: settings.start },
+            endForDaily: { type: "number", defaultValue: settings.daily_end },
+            startForHourly: { type: "number", defaultValue: settings.start },
+            endForHourly: { type: "number", defaultValue: settings.hourly_end }
+        },
+        start: function () {
+            var granularity = this.get('granularity');
+            return granularity === 2
+                ? this.get('startForHourly')
+                : this.get('startForDaily');
+        },
+        end: function () {
+            var granularity = this.get('granularity');
+            return granularity === 2
+                ? this.get('endForHourly')
+                : this.get('endForDaily') + 86400000;
         }
     });
+    var options = kendo.observable(new optionsViewModel());
+    $scope.query.topic = options.get('topic');
     $scope.query.granularity = options.get('granularity');
-    $scope.query.start = options.get('start');
-    $scope.query.end = options.get('end');
+    $scope.query.start = options.get('start()');
+    $scope.query.end = options.get('end()');
     $scope.query.days = 7;
 
-    function setDateTimePickerStartLimitation() {
-        var endtime = options.get('end') + settings.timezoneOffset;
-        var starttime0 = Math.max(settings.outset, endtime - 86400000 * 364);
-        var starttime1 = Math.max(settings.outset, endtime - 86400000 * 6);
-        dailyPickerStart.min(new Date(starttime0));
-        dailyPickerStart.max(new Date(endtime));
-        hourlyPickerStart.min(new Date(starttime1));
-        hourlyPickerStart.max(new Date(endtime));
-    }
-    function setDateTimePickerEndLimitation() {
-        var starttime = options.get('start') + settings.timezoneOffset;
-        var endtime0 = Math.min(settings.end, starttime + 86400000 * 364);
-        var endtime1 = Math.min(settings.now, starttime + 86400000 * 6);
-        dailyPickerEnd.min(new Date(starttime));
-        dailyPickerEnd.max(new Date(endtime0));
-        hourlyPickerEnd.min(new Date(starttime));
-        hourlyPickerEnd.max(new Date(endtime1));
-    }
     function setDateRangeSectionVisible() {
         if (options.get('granularity') === 2) {
             $('.daterange-daily').hide();
@@ -84,16 +59,122 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             $('.daterange-hourly').hide();
         }
     }
-    function datetimeChanged() {
-        if (options.get('granularity') === 2) {
-            options.set('start', hourlyPickerStart.value().valueOf() - settings.timezoneOffset);
-            options.set('end', hourlyPickerEnd.value().valueOf() - settings.timezoneOffset);
-        } else {
-            options.set('start', dailyPickerStart.value().valueOf() - settings.timezoneOffset);
-            options.set('end', dailyPickerEnd.value().valueOf() - settings.timezoneOffset);
-        }
+    function datetimeChanged(start, end, base) {
+        //// base
+        ////    2x: hourly,        3x: daily
+        ////    x0: base on start, x1: base on end
+        (function hourly(start, end) { //// hourly
+            start = Math.max(start, settings.hourly_outset);
+            end = Math.min(end, settings.hourly_end);
+            var start_min = Math.max(end - 86400000 * 6, settings.hourly_outset);
+            var start_max = end - 3600000;
+            var end_min = start + 3600000;
+            var end_max = Math.min(start + 86400000 * 6, settings.hourly_end);
+            switch (base) {
+                case 0: //// base on start
+                    end = Math.min(Math.max(end_min, end), end_max);
+                    start_min = Math.max(end - 86400000 * 6, settings.hourly_outset);
+                    start_max = end - 3600000;
+                    break;
+                case 1: //// base on end
+                    start = Math.min(Math.max(start_min, start), start_max);
+                    end_min = start + 3600000;
+                    end_max = Math.min(start + 86400000 * 6, settings.hourly_end);
+                    break;
+            }
+            // console.log('hourly start min:', start_min, new Date(start_min));
+            // console.log('hourly start    :', start, new Date(start));
+            // console.log('hourly start max:', start_max, new Date(start_max));
+            // console.log('hourly   end min:', end_min, new Date(end_min));
+            // console.log('hourly   end    :', end, new Date(end));
+            // console.log('hourly   end max:', end_max, new Date(end_max));
+
+            options.set('startForHourly', start);
+            options.set('endForHourly', end);
+            hourlyPickerStart.min(new Date(start_min));
+            hourlyPickerStart.max(new Date(start_max));
+            hourlyPickerStart.value(new Date(start));
+            hourlyPickerEnd.min(new Date(end_min));
+            hourlyPickerEnd.max(new Date(end_max));
+            hourlyPickerEnd.value(new Date(end));
+        })(start, end);
+        (function daily(start, end) { //// daily
+            start = Math.max(start, settings.daily_outset);
+            end = Math.min(end, settings.daily_end);
+            var start_min = Math.max(end - 86400000 * 364, settings.daily_outset);
+            var start_max = end;
+            var end_min = start;
+            var end_max = Math.min(start + 86400000 * 364, settings.daily_end);
+            switch (base) {
+                case 0: //// base on start
+                    end = Math.min(Math.max(end_min, end), end_max);
+                    start_min = Math.max(end - 86400000 * 364, settings.daily_outset);
+                    start_max = end;
+                    break;
+                case 1: //// base on end
+                    start = Math.min(Math.max(start_min, start), start_max);
+                    end_min = start;
+                    end_max = Math.min(start + 86400000 * 364, settings.daily_end);
+                    break;
+            }
+            // console.log('daily  start min:', start_min, new Date(start_min), new Date(start_min + settings.timezoneOffset));
+            // console.log('daily  start    :', start, new Date(start), new Date(start + settings.timezoneOffset));
+            // console.log('daily  start max:', start_max, new Date(start_max), new Date(start_max + settings.timezoneOffset));
+            // console.log('daily    end min:', end_min, new Date(end_min), new Date(end_min + settings.timezoneOffset));
+            // console.log('daily    end    :', end, new Date(end), new Date(end + settings.timezoneOffset));
+            // console.log('daily    end max:', end_max, new Date(end_max), new Date(end_max + settings.timezoneOffset));
+
+            options.set('startForDaily', start);
+            options.set('endForDaily', end);
+            dailyPickerStart.min(new Date(start_min + settings.timezoneOffset));
+            dailyPickerStart.max(new Date(start_max + settings.timezoneOffset));
+            dailyPickerStart.value(new Date(start + settings.timezoneOffset));
+            dailyPickerEnd.min(new Date(end_min + settings.timezoneOffset));
+            dailyPickerEnd.max(new Date(end_max + settings.timezoneOffset));
+            dailyPickerEnd.value(new Date(end + settings.timezoneOffset));
+        })(start, end);
     }
 
+
+    var dropdownlistProducts = $("#ddlProducts").kendoDropDownList({
+        dataSource: {
+            transport: {
+                read: {
+                    url: CONST.SERVICE_INFO.ENDPOINT + 'GetAllEnabledTopicsByPlatform',
+                    dataType: "json",
+                    data: {
+                        platform: $scope.$stateParams.platform,
+                        cachedtimestamp: (new Date()).getTime()
+                    }
+                }
+            },
+            schema: {
+                data: function (response) {
+                    var topics = []
+                    response.map(function (item) {
+                        if (item.isGA) {
+                            var flag = false;
+                            item.Platforms.map(function (obj) {
+                                if (obj.PlatformName.toLowerCase() === $scope.$stateParams.platform) {
+                                    flag = obj.isEnabled;
+                                }
+                            })
+                            if (flag) {
+                                topics.push(item.TechCategoryName);
+                            }
+                        }
+                    })
+                    $scope.topics = topics;
+                    $('#topic_select').dimmer('hide');
+                    return topics;
+                }
+            }
+        },
+        change: function (e) {
+            var topic = this.value();
+            options.set('topic', topic);
+        }
+    }).data("kendoDropDownList");
     $("#ddlGranularities").kendoDropDownList({
         value: options.get('granularity'),
         change: function (e) {
@@ -103,71 +184,52 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         }
     });
     var dailyPickerStart = $('#DailyPickerStart').kendoDatePicker({
-        value: new Date(options.get('start') + settings.timezoneOffset),
+        min: new Date(settings.daily_outset + settings.timezoneOffset),
+        max: new Date(settings.daily_end + settings.timezoneOffset),
+        value: new Date(options.get('startForDaily') + settings.timezoneOffset),
         format: localeDateFormatString,
-        change: datetimeChanged
+        change: function () {
+            var start = dailyPickerStart.value().valueOf() - settings.timezoneOffset;
+            var end = dailyPickerEnd.value().valueOf() - settings.timezoneOffset;
+            datetimeChanged(start, end, 0);
+        }
     }).data("kendoDatePicker");
     var dailyPickerEnd = $('#DailyPickerEnd').kendoDatePicker({
-        value: new Date(options.get('end') + settings.timezoneOffset),
+        min: new Date(options.get('startForDaily') + settings.timezoneOffset),
+        max: new Date(settings.daily_end + settings.timezoneOffset),
+        value: new Date(options.get('endForDaily') + settings.timezoneOffset),
         format: localeDateFormatString,
-        change: datetimeChanged
+        change: function () {
+            var start = dailyPickerStart.value().valueOf() - settings.timezoneOffset;
+            var end = dailyPickerEnd.value().valueOf() - settings.timezoneOffset;
+            datetimeChanged(start, end, 1);
+        }
     }).data("kendoDatePicker");
     var hourlyPickerStart = $('#HourlyPickerStart').kendoDateTimePicker({
-        value: new Date(options.get('start') + settings.timezoneOffset),
+        min: new Date(settings.hourly_outset),
+        max: new Date(settings.hourly_end),
+        value: new Date(options.get('startForHourly')),
+        interval: 60,
         format: localeDateTimeFormatString,
-        change: datetimeChanged
+        change: function () {
+            var start = hourlyPickerStart.value().valueOf();
+            var end = hourlyPickerEnd.value().valueOf();
+            datetimeChanged(start, end, 0);
+        }
     }).data("kendoDateTimePicker");
     var hourlyPickerEnd = $('#HourlyPickerEnd').kendoDateTimePicker({
-        value: new Date(options.get('end') + settings.timezoneOffset),
+        min: new Date(options.get('startForHourly')),
+        max: new Date(settings.hourly_end),
+        value: new Date(options.get('endForHourly')),
         format: localeDateTimeFormatString,
-        change: datetimeChanged
+        interval: 60,
+        change: function () {
+            var start = hourlyPickerStart.value().valueOf();
+            var end = hourlyPickerEnd.value().valueOf();
+            datetimeChanged(start, end, 1);
+        }
     }).data("kendoDateTimePicker");
     setDateRangeSectionVisible();
-    setDateTimePickerStartLimitation();
-    setDateTimePickerEndLimitation();
-
-    /*
-    var selectedDateRange = kendo.observable({
-        granularity: $scope.query.granularity,
-        start: new Date($scope.query.start + settings.timezoneOffset),
-        end: new Date($scope.query.end + settings.timezoneOffset),
-
-        granularities: [{ text: "Daily", value: 3 }, { text: "Hourly", value: 2 }],
-        visibleDateTimePicker: function () { return this.get('granularity') === 2; },
-        visibleDatePicker: function () { return this.get('granularity') !== 2; }
-    });
-    selectedDateRange.bind('change', function (e) {
-        if (e.field === 'granularity') {
-            var granularity = this.get('granularity');
-            $scope.query.granularity = granularity;
-            if (granularity === 2) {
-                $scope.popInfoScope = "Hourly";
-            } else {
-                $scope.popInfoScope = "Daily";
-                var start = this.get('start');
-                var end = this.get('end');
-                if (start > settings.end) {
-                    this.set('start', new Date(settings.start + settings.timezoneOffset));
-                }
-                if (end > settings.end) {
-                    this.set('end', new Date(settings.end + settings.timezoneOffset))
-                }
-            }
-            $scope.startGetData();
-        } else if (e.field === 'start') {
-            var start = this.get('start').valueOf() - settings.timezoneOffset;
-            $scope.query.start = start;
-            setDateTimePickerEndLimitation();
-            CheckDateRangeSize();
-        } else if (e.field === 'end') {
-            var end = this.get('end').valueOf() - settings.timezoneOffset;
-            $scope.query.end = end;
-            setDateTimePickerStartLimitation();
-            CheckDateRangeSize();
-        }
-    });
-    kendo.bind($("#topic_select > div:nth-child(1) > div:nth-child(2)"), selectedDateRange);
-    */
 
     // debugger;
     switch ($scope.platform) {
@@ -207,79 +269,51 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         r: false
     };
 
-    $scope.$watch('topic', function (nv, ov) {
-        if (nv) {
-            $scope.startGetData()
-        }
-    })
     $('#scrollspy .list .item .label').popup();
     $('#topic_select').dimmer('show');
-    $scope.getTopics = function () {
-        $scope.service.getCate($scope.$stateParams.platform).then(function (data) {
-            $scope.topics = []
-            data.map(function (item) {
-                // console.log(item.Platforms)
-                var flage = false;
-
-                // add GA decision
-                // if (item.isGA) {
-                item.Platforms.map(function (obj) {
-                    if (obj.PlatformName.toLowerCase() == $scope.$stateParams.platform) {
-                        flage = obj.isEnabled;
-                    }
-                })
-                // console.log(item.TechCategoryName,flage)
-                if (flage) $scope.topics.push(item.TechCategoryName)
-                // }
-
-            })
-            $('#topic_select').dimmer('hide');
-            if ($scope.topics.indexOf($rootScope.global.topic) !== -1) {
-                $scope.topic = $rootScope.global.topic;
-                $scope.startGetData()
-                // $('#topicSelection').dropdown('set text', $rootScope.global.topic)
-            }
-        })
-    }
-    $timeout(function () {
-        $scope.getTopics();
-    }, 0)
     // var count = 0;
+
     $scope.$on('data-got', function (event, arg) {
         $scope.flags.m = true;
-        // console.log(++count);
-        //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
-        //console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value') === totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
-                // $('#summary').dimmer('hide');
-                // var firstSection = angular.element(document.getElementById('summary'));
-                // $document.scrollToElementAnimated(firstSection);
             }, 1000)
         }
-        //$timeout(function () {
-        //    //console.log(arg)
-        //    arg.resize();
-        //},500)
     });
 
+    $scope.doQuery = function (e) {
+        var topic = options.get('topic');
+        if (!topic) {
+            topic = dropdownlistProducts.value();
+            options.set('topic', topic);
+        }
+        $scope.query.topic = topic;
+        $scope.query.granularity = options.get('granularity');
+        $scope.query.start = options.get('start()');
+        $scope.query.end = options.get('end()');
+        $scope.startDateLocalsString = (new Date($scope.query.start)).toLocaleString();
+        $scope.endDateLocalsString = (new Date($scope.query.end)).toLocaleString();
+        $scope.queried = true;
+        $scope.startGetData();
+    }
     $scope.startGetData = function () {
         // $event.stopPropagation();
         // $event.preventDefault();
-        if (!$scope.topic) {
+        if (!$scope.query.topic) {
             //alert('Need to select a topic!');
             return false;
         }
-        $rootScope.global.topic = $scope.topic;
+        $rootScope.global.topic = $scope.query.topic;
         $scope.flags.m = false;
+        $scope.query.days = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;
+        $scope.isLargeDateRange = ($scope.query.days > 7);
         $('div.echart').map(function () {
             echarts.getInstanceByDom(this).clear();
         })
         $('#progress').progress('reset');
         $('#progress').show();
-        $scope.query.topic = $scope.topic;
         getStatistic();
         getUserDistribution();
         getMentionedServiceTable();
@@ -291,7 +325,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             toastr.error('Platform Required');
             return false;
         }
-        if (!$scope.topic) {
+        if (!$scope.query.topic) {
             toastr.error('Topic Select Required');
             return false;
         }
@@ -303,7 +337,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             + 'DownloadSummary'
             + '?stamp=' + (new Date()).valueOf()
             + '&platform=' + escape($scope.$stateParams.platform || 'twitter')
-            + '&topic=' + escape($scope.topic || 'azure')
+            + '&topic=' + escape($scope.query.topic || 'azure')
             + '&fromcycle=' + granularity
             + '&start=' + start
             + '&end=' + end;
@@ -313,7 +347,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     // echarts.connect('hourlyCharts');
     function getStatistic() {
         $('#summary div.content').dimmer('show');
-        $scope.service.getImpactSummary($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
+        $scope.service.getImpactSummary($scope.$stateParams.platform, $scope.query.topic, 'all', $scope.query).then(function (data) {
             var influenceData = data.vocinsights.objectcountthistime;
             $scope.serviceStatus = 'gery';
             $scope.statistic = data;
@@ -322,30 +356,17 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         })
     }
     function getUserDistribution() {
-        $scope.service.getRegionDistribution($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
+        $scope.service.getRegionDistribution($scope.$stateParams.platform, $scope.query.topic, 'all', $scope.query).then(function (data) {
             $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
         })
     }
     function getMentionedServiceTable() {
-        $scope.service.getMentionedMostServiceList($scope.$stateParams.platform, $scope.topic, 'all', $scope.query).then(function (data) {
+        $scope.service.getMentionedMostServiceList($scope.$stateParams.platform, $scope.query.topic, 'all', $scope.query).then(function (data) {
             $scope.mostMentionedService = data
             $scope.$broadcast('data-got');
         })
     }
 
-    function CheckDateRangeSize() {
-        $scope.query.days = ($scope.query.end - $scope.query.start) / 1000 / 3600 / 24;
-        $scope.isLargeDateRange = ($scope.query.days > 7);
-        $timeout(function () {
-            $scope.startGetData();
-            if ($scope.isLargeDateRange) {
-                $('.large-date-range').find('div.echart').map(function (index, currentObj, array) {
-                    echarts.getInstanceByDom(currentObj).resize();
-                })
-            }
-            $scope.$apply();
-        }, 0);
-    }
     function RefreshCharts() {
         $timeout(function () {
             $scope.startGetData()

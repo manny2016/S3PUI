@@ -1,23 +1,30 @@
 <div class="ui segment basic container">
-    <div class="ui breadcrumb">
+    <div class="ui breadcrumb" style="margin-bottom: 0!important;">
         <a class="section">{{path[1]}}</a>
         <i class="right angle icon divider"></i>
         <div class="active section">{{path[2]}}</div>
     </div>
-    <div class="ui label blue pull-right" ng-show="global.topic">
+    <div class="ui label blue pull-right" ng-show="queried">
         <i class="server icon"></i> Current Service/Product: {{global.topic}}
     </div>
-    <div id="topic_select" class="ui segment clearing">
-        <div class="ui form pull-left">
+    <br />
+    <div class="ui label blue pull-right" style="clear: both;" ng-show="queried">
+        <i class="server icon"></i> Current Date Range ({{query.granularity === 2 ? 'hourly' : 'daily'}}):
+        ({{TZ}}) {{startDateLocalsString}} - {{endDateLocalsString}}
+    </div>
+    <div id="topic_select" class="ui segment clearing" style="margin: 36px 0 1em 0;">
+        <div class="ui form" style="margin: 0!important; padding: 0!important;">
             <div class="inline field">
-                <label>Selected Service/Product: </label>
-                <dropdown title="category" ng-model="topic">
-                    <dropdown-group value="t" title="t" ng-repeat="t in topics">{{t}}</dropdown-group>
-                </dropdown>
+                <label style="display: inline-block; width: 120px;">Service/Product: </label>
+                <input id="ddlProducts" style="width: 200px;" />
+                <button class="circular ui icon inverted blue button" ng-click="doQuery()" style="margin-left:20px">
+                    <i class="icon search"></i>
+                    Query
+                </button>
             </div>
             <div class="inline field">
-                <label>Date Range:</label>
-                <select id="ddlGranularities" style="width: 100px;">
+                <label style="display: inline-block; width: 120px;">Date Range:</label>
+                <select id="ddlGranularities" style="width: 200px;">
                     <option value="3">Daily</option>
                     <option value="2">Hourly</option>
                 </select>
@@ -29,15 +36,12 @@
                     <input id="HourlyPickerStart" style="padding: 0; border: 0 none; width: 230px;" />
                     <input id="HourlyPickerEnd" style="padding: 0; border: 0 none; width: 230px;" />
                 </span>
+                <button class="k-button" style="float: right;" ng-click="getDownloadUrl()">
+                    <i class="icon download"></i>
+                    Download ZIP file
+                </button>
             </div>
         </div>
-        <button class="ui basic button mini" style="position: absolute;bottom: 3px;right: 0px;" ng-click="getDownloadUrl()">
-            <i class="icon download"></i>
-            Download ZIP file
-        </button>
-        <!--<button class="circular ui icon inverted blue button" ng-click="startGetData($event)" style="margin-left:20px">
-            <i class="icon search"></i>
-        </button>-->
     </div>
     <div class="ui indicating progress" id="progress" ng-show="flags.m">
         <div class="bar"></div>
@@ -469,7 +473,7 @@
             </div>
         </div>
     </div>
-    <button class="ui basic button mini pull-right" ng-show="topic !== undefined" ng-click="getDownloadUrl()">
+    <button class="ui basic button mini pull-right" ng-show="query.topic !== undefined" ng-click="getDownloadUrl()">
             <i class="icon download"></i>
             Download ZIP file
         </button>
