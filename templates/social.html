@@ -211,13 +211,6 @@
                     <ng-echart caption="User Regions Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <!--large date range only-->
-                <div class="column large-date-range" ng-show="isLargeDateRange" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
-                    <!-- ng-if="platform=='twitter'" -->
-                    <ng-echart caption="User Volume in Each Detected Region" platform='{{path[2]}}' query=query api-fn="getRegionDistribution"
-                        no-pop="true" type="bar" location='home' pnscope="all" sub-fn="getVoCDetailsByDate"
-                       ></ng-echart>
-                </div>
             </div>
         </div>
         <div id="sentiment" class="ui purple segment">
