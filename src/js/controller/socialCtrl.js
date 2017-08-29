@@ -14,20 +14,21 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     {
         settings.timezoneOffset = (new Date()).getTimezoneOffset() * 60000;
         var now = (new Date()).valueOf() - settings.timezoneOffset;
-        settings.today = parseInt(now / 3600000 / 24) * 3600000 * 24;
-        settings.start = settings.today - 3600000 * 24 * 7;
+        settings.today = parseInt(now / 86400000) * 86400000;
         settings.daily_outset = (new Date(2016, 7, 1)).valueOf() - settings.timezoneOffset;
-        settings.daily_end = settings.today - 3600000 * 24;
+        settings.daily_start = settings.today - 86400000 * 7;
+        settings.daily_end = settings.today - 86400000;
         settings.hourly_outset = (new Date(2016, 7, 1)).valueOf();
         settings.hourly_end = (parseInt(now / 3600000) * 3600000) + settings.timezoneOffset;
+        settings.hourly_start = settings.hourly_end - 86400000 * 7;
     }
     var optionsViewModel = kendo.data.Model.define({
         fields: {
             topic: { defaultValue: $rootScope.global.topic },
             granularity: { type: "number", defaultValue: 3 },
-            startForDaily: { type: "number", defaultValue: settings.start },
+            startForDaily: { type: "number", defaultValue: settings.daily_start },
             endForDaily: { type: "number", defaultValue: settings.daily_end },
-            startForHourly: { type: "number", defaultValue: settings.start },
+            startForHourly: { type: "number", defaultValue: settings.hourly_start },
             endForHourly: { type: "number", defaultValue: settings.hourly_end }
         },
         start: function () {
@@ -66,20 +67,20 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         (function hourly(start, end) { //// hourly
             start = Math.max(start, settings.hourly_outset);
             end = Math.min(end, settings.hourly_end);
-            var start_min = Math.max(end - 86400000 * 6, settings.hourly_outset);
+            var start_min = Math.max(end - 86400000 * 7, settings.hourly_outset);
             var start_max = end - 3600000;
             var end_min = start + 3600000;
-            var end_max = Math.min(start + 86400000 * 6, settings.hourly_end);
+            var end_max = Math.min(start + 86400000 * 7, settings.hourly_end);
             switch (base) {
                 case 0: //// base on start
                     end = Math.min(Math.max(end_min, end), end_max);
-                    start_min = Math.max(end - 86400000 * 6, settings.hourly_outset);
+                    start_min = Math.max(end - 86400000 * 7, settings.hourly_outset);
                     start_max = end - 3600000;
                     break;
                 case 1: //// base on end
                     start = Math.min(Math.max(start_min, start), start_max);
                     end_min = start + 3600000;
-                    end_max = Math.min(start + 86400000 * 6, settings.hourly_end);
+                    end_max = Math.min(start + 86400000 * 7, settings.hourly_end);
                     break;
             }
             // console.log('hourly start min:', start_min, new Date(start_min));
@@ -99,6 +100,8 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             hourlyPickerEnd.value(new Date(end));
         })(start, end);
         (function daily(start, end) { //// daily
+            start = parseInt(start / 86400000) * 86400000;
+            end = parseInt(end / 86400000) * 86400000;
             start = Math.max(start, settings.daily_outset);
             end = Math.min(end, settings.daily_end);
             var start_min = Math.max(end - 86400000 * 364, settings.daily_outset);
@@ -117,12 +120,12 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
                     end_max = Math.min(start + 86400000 * 364, settings.daily_end);
                     break;
             }
-            // console.log('daily  start min:', start_min, new Date(start_min), new Date(start_min + settings.timezoneOffset));
-            // console.log('daily  start    :', start, new Date(start), new Date(start + settings.timezoneOffset));
-            // console.log('daily  start max:', start_max, new Date(start_max), new Date(start_max + settings.timezoneOffset));
-            // console.log('daily    end min:', end_min, new Date(end_min), new Date(end_min + settings.timezoneOffset));
-            // console.log('daily    end    :', end, new Date(end), new Date(end + settings.timezoneOffset));
-            // console.log('daily    end max:', end_max, new Date(end_max), new Date(end_max + settings.timezoneOffset));
+            console.log('daily  start min:', start_min, new Date(start_min), new Date(start_min + settings.timezoneOffset));
+            console.log('daily  start    :', start, new Date(start), new Date(start + settings.timezoneOffset));
+            console.log('daily  start max:', start_max, new Date(start_max), new Date(start_max + settings.timezoneOffset));
+            console.log('daily    end min:', end_min, new Date(end_min), new Date(end_min + settings.timezoneOffset));
+            console.log('daily    end    :', end, new Date(end), new Date(end + settings.timezoneOffset));
+            console.log('daily    end max:', end_max, new Date(end_max), new Date(end_max + settings.timezoneOffset));
 
             options.set('startForDaily', start);
             options.set('endForDaily', end);
@@ -205,7 +208,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         }
     }).data("kendoDatePicker");
     var hourlyPickerStart = $('#HourlyPickerStart').kendoDateTimePicker({
-        min: new Date(settings.hourly_outset),
+        min: new Date(settings.hourly_start),
         max: new Date(settings.hourly_end),
         value: new Date(options.get('startForHourly')),
         interval: 60,

@@ -52,6 +52,7 @@ module.exports = function ($parse, $filter, $timeout) {
                 $($(e).find('.popup').get(0)).popup();
             }
             scope.randerUI = function () {
+                scope.query.days = parseFloat(scope.query.days.toFixed(2));
                 switch (a.type) {
                     case 'joinedusers':
                         scope.volume = numberFormat(scope.data.objectcountthistime)
