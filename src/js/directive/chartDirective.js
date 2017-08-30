@@ -40,9 +40,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             _.query = _.query || {};
             _.thousandsuffix = $filter('thousandsuffix');
             _.compile = function (chart, dom) {
-                // console.log(_.$parent)
                 var el = $compile(chart)(_.$parent);
-                // console.log(el);
                 $(dom).append(el);
             }
             _.swithside = function () {
@@ -212,7 +210,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                 }
             });
             _.getData = function (location) {
-                // console.log(attrs.location, location)
                 if (attrs.location === location) {
                     _.complete = false;
                     var apiFn = _.service[_.apiFn];
@@ -441,7 +438,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         _.chartOpt = initCloudWordChartOpt(_);
                         fn(fnPromise, _).then(function (config) {
                             _.chartOpt = angular.merge(_.chartOpt, config);
-                            // console.log(_.chartOpt)
                             // initChart(_.chartObj, _.chartOpt);
                             // debugger;
                             var clientWidth = element.parents('.sides').width();
@@ -458,7 +454,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                     case 'pie':
                         var raw = arg.data;
                         _.validData(raw);
-                        // console.log(raw);
                         config = {
                             series: [{
                                 data: [{
@@ -564,7 +559,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
 
 function initChart(echartObj, chartOpt, groupName) {
     // debugger;
-    // console.log(echartObj)
     //var echartsWidth = echartObj.getWidth();
     //var domWidth = echartObj.getDom().offsetWidth;
     //if (echartsWidth !== domWidth) {
@@ -574,7 +568,6 @@ function initChart(echartObj, chartOpt, groupName) {
         echartObj.resize();
         echartObj.setOption(chartOpt);
         if (groupName) {
-            // console.log(groupName)
             echartObj.group = groupName
         }
     }, 100)
@@ -1003,7 +996,6 @@ function stackAxisData(fnPromise, utility, scope) {
     },
         xAxisDate = [];
     return fnPromise.then(function (data) {
-        // console.log(scope);
         scope.validData(data);
         data.map(function (item) {
             var tmp = {};
@@ -1033,7 +1025,6 @@ function stackAxisData(fnPromise, utility, scope) {
             };
             seriesData.neu.push(entity);
         })
-        // console.log(xAxisDate)
         return {
             legend: {
                 data: ['Undefined', 'Positive', 'Negative', 'Neutral']

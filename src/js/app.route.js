@@ -144,7 +144,6 @@ app
     //   // window.location = '/';
     // }
     // if ($rootScope.userInfo.isAuthenticated) {
-    //   console.log($rootScope.userInfo.userName)
     //   $injector.get('rawdataSrv').checkAdminAccessRights($rootScope.userInfo.userName).then(function (data) {
     //     $rootScope.isAdmin = data;
     //   })

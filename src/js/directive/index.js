@@ -189,7 +189,6 @@ app.directive('fittext', function ($timeout) {
                     element.css('font-size',fontSize[0] - 1);
                 }
                 element.height(scope.height);
-                // console.log(element.height());
             },0);
         }
     }
@@ -202,7 +201,6 @@ app.directive('fittext', function ($timeout) {
 //             scope.$watch(function (scope) {
 //                 return scope.$eval(attrs.compile);
 //             }, function (html) {
-//                 console.log(html)
 //                 element.html(html);
 //                 $compile(element.contents())(scope);
 //             });

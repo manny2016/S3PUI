@@ -15,7 +15,6 @@ module.exports = function () {
             //         }
             //     });
             // });
-            console.log(scope.CONST.APP_NAME);
             // $(e).dimmer({
             //     on: 'hover'
             // });

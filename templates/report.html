@@ -302,6 +302,7 @@
         },
         _UpdateDateRageHtml: function (model) {
             var html = "N/A";
+            console.log(model);
             if (model.StartTime) {
                 if (model.EndTime) {
                     html = "Date Range: "
@@ -550,7 +551,6 @@
             }]
         });
         chart_userRegions.on("mapselectchanged", function (e) {
-            console.log(e);
             var selectedRegions = [];
             $.each(e.selected, function (key, selected) {
                 if (selected === true) {

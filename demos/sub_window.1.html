@@ -194,9 +194,7 @@
         }
 
         function chartResize(shapeId) {
-            // console.log($("#"+shapeId+" div.active").next().find('.bar1>div'))
             // $($("#"+shapeId+" div.active").next().find('.bar1>div').get(0)).width('100%')
-            // console.log($("#"+shapeId+" div.active").next().find('.bar1>div').get(0))
             var doms = $($("#" + shapeId + " div.active").next().find('.bar1'));
             echarts.getInstanceByDom(doms.get(0)).resize();
         }

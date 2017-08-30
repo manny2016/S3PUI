@@ -261,7 +261,6 @@ module.exports = function ($parse, $filter, $timeout) {
                 return angular.isArray(scope.volume) || angular.isObject(scope.volume)
             }
             scope.$watch('data', function (newV, oldV) {
-                    // console.log(newV)
                     $timeout(function () {
                         scope.randerUI();
                         // scope.$apply();

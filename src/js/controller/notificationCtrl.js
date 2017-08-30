@@ -4,10 +4,8 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
     // $scope.Notifications = Notifications; //{date: "12/01/2016", dataSource: "su", messageType: 4, link: "somelink"}
     // $scope.Notifications.clearUnRead();
     // socket.addEventListener('message',function(m){
-    //     // console.log(JSON.parse(m.data))
     //     $scope.$apply($scope.notifications.push(JSON.parse(m.data)));
     // })
-    // console.log($scope.CONST.MESSAGE_TYPES);
     $scope.getTopic = function () {
         $scope.topic = $rootScope.global.topic;
         if ($scope.topic.length === 0) {
@@ -90,7 +88,6 @@ module.exports = function ($scope, $location, $timeout, $filter, $http, $sce, $r
         params.bgTime = Math.floor(moment.utc(params.bgTime) / 1000);
         params.egTime = Math.floor(moment.utc(params.egTime).endOf('day') / 1000);
         $scope.service.getSysDetections(params.datasource, params.messagetype, params.topic, params.downloadable, params.bgTime, params.egTime).then(function (data) {
-            // console.log(data);
             // $scope.collections = angular.extend($scope.collections, data);
             $('#nc-main').dimmer('hide');
             $scope.collections = data;

@@ -98,7 +98,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     // Top Seclectors data
     $scope.getTopics = function () {
         $scope.service.getCate().then(function (data) {
-            // console.log(data)
             $scope.topics = data;
             if ($rootScope.global.topic) {
                 $scope.startGetData($rootScope.global.topic);
@@ -110,7 +109,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         $scope.flags.m = true;
         $('.tabular.menu .item').tab({
             onVisible: function (tab) {
-                console.log(tab);
                 var chartDom = $('.ui.tab[data-tab="' + tab + '"]').find('div.echart').get(0);
                 if (chartDom) {
                     echarts.getInstanceByDom(chartDom).resize();
@@ -119,7 +117,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         })
         //$scope.$broadcast('on-show');
         $('#progress').progress('increment');
-        // console.log($('#progress').progress('get value'))
         if ($('#progress').progress('get value') === $scope.totalrequests) {
             $timeout(function () {
                 $('#progress').hide()
@@ -175,7 +172,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     $scope.listNotification = function (top) {
         var date = Math.floor(moment.utc().add(-1, "days").startOf('day') / 1000);
         $scope.service.getSysDetections(undefined, undefined, $rootScope.global.topic, undefined, date).then(function (data) {
-            // console.log(data);
             $scope.collections = data.splice(0, top);
         })
     }

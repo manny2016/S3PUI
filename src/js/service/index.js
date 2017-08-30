@@ -22,7 +22,6 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {
-                    console.log(data);
                     deferred.reject(data);
                 }
             }, function (err) {
@@ -39,7 +38,6 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
                 if (data.status == 200) {
                     deferred.resolve(data.data)
                 } else {
-                    console.log(data);
                     deferred.reject(data);
                 }
             }, function (err) {

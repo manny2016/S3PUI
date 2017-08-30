@@ -9,7 +9,6 @@ module.exports = function (CONST) {
         //     platforms: "="
         // },
         link: function (scope, e, a ,adminCardCtrl) {
-            console.log(adminCardCtrl);
             scope.CONST = CONST;
             (scope.init = function () {
                 scope.twitterKeywords = [];

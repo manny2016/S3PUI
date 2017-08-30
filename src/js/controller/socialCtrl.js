@@ -129,12 +129,12 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
                     end_max = Math.min(start + 86400000 * 364, settings.daily_end);
                     break;
             }
-            console.log('daily  start min:', start_min, new Date(start_min), new Date(start_min + settings.timezoneOffset));
-            console.log('daily  start    :', start, new Date(start), new Date(start + settings.timezoneOffset));
-            console.log('daily  start max:', start_max, new Date(start_max), new Date(start_max + settings.timezoneOffset));
-            console.log('daily    end min:', end_min, new Date(end_min), new Date(end_min + settings.timezoneOffset));
-            console.log('daily    end    :', end, new Date(end), new Date(end + settings.timezoneOffset));
-            console.log('daily    end max:', end_max, new Date(end_max), new Date(end_max + settings.timezoneOffset));
+            // console.log('daily  start min:', start_min, new Date(start_min), new Date(start_min + settings.timezoneOffset));
+            // console.log('daily  start    :', start, new Date(start), new Date(start + settings.timezoneOffset));
+            // console.log('daily  start max:', start_max, new Date(start_max), new Date(start_max + settings.timezoneOffset));
+            // console.log('daily    end min:', end_min, new Date(end_min), new Date(end_min + settings.timezoneOffset));
+            // console.log('daily    end    :', end, new Date(end), new Date(end + settings.timezoneOffset));
+            // console.log('daily    end max:', end_max, new Date(end_max), new Date(end_max + settings.timezoneOffset));
 
             options.set('startForDaily', start);
             options.set('endForDaily', end);

@@ -31,7 +31,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
             _.chartOpt = initRadarChartOpt(_);
             _.chartObj = echarts.init(echartDom[0], 'macarons');
             _.getData = function (location) {
-                // console.log(attrs.location, location)
                 if (attrs.location === location) {
                     _.complete = false;
                     var apiFn = _.service['getImpactSummary'];

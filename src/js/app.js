@@ -18,7 +18,6 @@ app
   })
   .run(function ($rootScope, $window, $state, $stateParams, $injector, adalAuthenticationService, utilitySrv, CONST, Notifications, $http) {
     // var config = require('../../public/config');
-    // console.log(config);
     //check authentication
     $rootScope.CONST = CONST;
     $rootScope.TZ = moment.tz(moment.tz.guess()).format('z');
@@ -57,7 +56,6 @@ app
     $rootScope.$on('duScrollspy:becameActive', function ($event, $element, $target) {
       //Automaticly update location 
       // debugger;
-      // console.log($($target).siblings('.segment'))
       // $($target).siblings('.segment').dimmer('show')
       // $($target).dimmer('hide');
       var color = $element.find("div").attr('set-color');
@@ -82,9 +80,7 @@ app
         observeChanges: true,
         onVisible: function (e) {
           $('#sub_window').height($(window).height() * 0.72)
-          //console.log($('#sub_window').height());
           $(this).find('.echart').map(function (i) {
-            // echarts.getInstanceByDom(this).clear();
             echarts.getInstanceByDom(this).resize();
           })
         },
@@ -96,9 +92,6 @@ app
       }).modal('show');
       // $('.fullscreen.modal').modal('show');
     }
-    // $(window).resize(function () {
-    //   console.log(window.innerWidth);
-    // })
     $rootScope.init = function () {
       // $('.menu').find('.ui.dropdown.item').dropdown();
       // $('.fullscreen.modal').modal({

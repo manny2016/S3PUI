@@ -21,7 +21,6 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
                 }
             });
             scope.popDetail = function (serverName) {
-                console.log(',emtioned table', scope);
                 var param = {
                     platform: scope.platform,
                     topic: scope.query.topic,

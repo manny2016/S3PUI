@@ -23,8 +23,6 @@ module.exports = function ($rootScope) {
                     var root = e.find('div.side.root').not('.active');
                     var leaf = $(root).find('.sides>.side').get(0);
                     $("#nested_" + scope.platform).shape('flip left');
-                            // console.log(root)
-                            // console.log(leaf)
                     $(root).find('.ui.shape').shape('set next side', $(leaf)).shape('flip left');
                     // $(leaf).addClass('active');
                     resizeNestChart(leaf);
@@ -74,7 +72,6 @@ module.exports = function ($rootScope) {
             function resizeNestChart(leaf) {
                 // debugger; 
                 var dom = $(leaf).find("div.echart");
-                console.log(dom)
                 if (!dom.get(0)) {
                     dom = e.find('div.side.root.active').siblings();
                     dom = $(dom[0]).find('.echart');

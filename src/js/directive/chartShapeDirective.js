@@ -10,7 +10,6 @@ module.exports = function ($rootScope) {
             var id = a.id;
             // e.find("div.shape").shape({
             //     onChange:function(s){
-            //         console.log(s);
             //     }
             // })
             var lastTime = new Date();
@@ -39,12 +38,9 @@ module.exports = function ($rootScope) {
                 // if (e.find('.nested')) {
                 //     var root = e.find('div.side.root').not('.active');
                 //     var leaf = root.find('.sides>.side').get(0);
-                //     console.log(root.find('.sides>.side.active'))
                 //     $(e.find(".nested").get(0)).shape({
                 //         onChange: function () {
                 //             // debugger;
-                //             console.log(root)
-                //             console.log(leaf) 
                 //             $(root).find('.ui.shape').shape('set next side', $(leaf)).shape('flip left');
                 //             // $(leaf).removeClass('hidden').addClass('active');
                 //             resizeNestChart(leaf);
@@ -110,7 +106,6 @@ module.exports = function ($rootScope) {
             function resizeNestChart(leaf) {
                 // debugger; 
                 var dom = $(leaf).find("div.echart");
-                console.log(dom)
                 if (!dom.get(0)) {
                     dom = e.find('div.side.root.active').siblings();
                     dom = $(dom[0]).find('.echart');
@@ -121,8 +116,6 @@ module.exports = function ($rootScope) {
             }
             function callMentionedService() {
                 if (a.linkage !== 'true') return;
-                // console.log(scope.category); // platform
-                // console.log(a);
                 $rootScope.$broadcast('fresh-most-mentioned', {
                     platform: scope.category,
                     pnscope: a.pnscope
