@@ -8,6 +8,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     $scope.popInfoScope = "Hourly";
     var totalrequests = 0;
 
+    var params = $location.search();
     //// the time is UTC date time value in locale timezone in here.
     //// example: CST (GMT+8), now is 2017-01-01 09:00:00 in locale, it should be "2017-01-01 01:00:00 GMT+0800 (China Standard Time)"
     var settings = {};
@@ -16,16 +17,24 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         var now = (new Date()).valueOf() - settings.timezoneOffset;
         settings.today = parseInt(now / 86400000) * 86400000;
         settings.daily_outset = (new Date(2016, 7, 1)).valueOf() - settings.timezoneOffset;
-        settings.daily_start = settings.today - 86400000 * 7;
-        settings.daily_end = settings.today - 86400000;
+        settings.daily_end = params.end
+            ? parseInt(params.end * 1000)
+            : (settings.today - 86400000);
+        settings.daily_start = params.start
+            ? parseInt(params.start * 1000)
+            : (settings.daily_end - 86400000 * 6);
         settings.hourly_outset = (new Date(2016, 7, 1)).valueOf();
-        settings.hourly_end = (parseInt(now / 3600000) * 3600000) + settings.timezoneOffset;
-        settings.hourly_start = settings.hourly_end - 86400000 * 7;
+        settings.hourly_end = params.end
+            ? parseInt(params.end * 1000)
+            : ((parseInt(now / 3600000) * 3600000) + settings.timezoneOffset);
+        settings.hourly_start = params.start
+            ? parseInt(params.start * 1000)
+            : (settings.hourly_end - 86400000 * 7);
     }
     var optionsViewModel = kendo.data.Model.define({
         fields: {
-            topic: { defaultValue: $rootScope.global.topic },
-            granularity: { type: "number", defaultValue: 3 },
+            topic: { defaultValue: params.topic || $rootScope.global.topic },
+            granularity: { type: "number", defaultValue: params.granularity ? parseInt(params.granularity) : 3 },
             startForDaily: { type: "number", defaultValue: settings.daily_start },
             endForDaily: { type: "number", defaultValue: settings.daily_end },
             startForHourly: { type: "number", defaultValue: settings.hourly_start },
@@ -34,14 +43,14 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         start: function () {
             var granularity = this.get('granularity');
             return granularity === 2
-                ? this.get('startForHourly')
-                : this.get('startForDaily');
+                ? parseInt(this.get('startForHourly') / 3600000) * 3600000
+                : parseInt(this.get('startForDaily') / 86400000) * 86400000;
         },
         end: function () {
             var granularity = this.get('granularity');
             return granularity === 2
-                ? this.get('endForHourly')
-                : this.get('endForDaily') + 86400000;
+                ? parseInt(this.get('endForHourly') / 3600000) * 3600000
+                : parseInt(this.get('endForDaily') / 86400000) * 86400000;
         }
     });
     var options = kendo.observable(new optionsViewModel());
@@ -172,6 +181,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
                 }
             }
         },
+        value: options.get('topic'),
         change: function (e) {
             var topic = this.value();
             options.set('topic', topic);
@@ -231,7 +241,6 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             datetimeChanged(start, end, 1);
         }
     }).data("kendoDateTimePicker");
-    setDateRangeSectionVisible();
 
     // debugger;
     switch ($scope.platform) {
@@ -295,7 +304,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         $scope.query.start = options.get('start()');
         $scope.query.end = options.get('end()');
         $scope.startDateLocalsString = (new Date($scope.query.start)).toLocaleString();
-        $scope.endDateLocalsString = (new Date($scope.query.end)).toLocaleString();
+        $scope.endDateLocalsString = (new Date($scope.query.end + ($scope.query.granularity === 2 ? 3600000 : 86400000))).toLocaleString();
     }
     $scope.doQuery = function (e) {
         updateQueryConditions();
@@ -379,5 +388,10 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             })
             $scope.$apply()
         }, 0);
+    }
+
+    setDateRangeSectionVisible();
+    if (params.topic && params.granularity && (params.start || params.end)) {
+        setTimeout($scope.doQuery, 1000);
     }
 }
