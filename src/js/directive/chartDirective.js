@@ -1154,7 +1154,11 @@ function sentimentconversionData(fnPromise, utility, scope) {
     return fnPromise.then(function (data) {
         scope.validData(data);
         data.map(function (item) {
-            xAxisDate.push((new Date(item.SclingTime * 1000)).toLocaleDateString());
+            if (scope.query.granularity === 2) {
+                xAxisDate.push((new Date(item.SclingTime * 1000)).toLocaleString());
+            } else {
+                xAxisDate.push((new Date(item.SclingTime * 1000)).toLocaleDateString());
+            }
             seriesData.totalVol.push(item.TotalVolume);
             seriesData.initPostive.push(item.InitialPostiveVolume);
             seriesData.afterSptPostive.push(item.AfterSupportPostiveVolume);

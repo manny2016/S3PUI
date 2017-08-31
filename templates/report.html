@@ -152,6 +152,11 @@
         { value: 4, text: 'Positive' }
     ];
     var scope = angular.element("html").scope();
+    function fixUserRegion(region) {
+        var fixed = region || "United States of America";
+        if (fixed === "United States") { fixed = "United States of America"; }
+        return fixed;
+    }
     var model = kendo.data.Model.define({
         fields: {
             DownloadUrl: { type: "string" },
@@ -214,8 +219,9 @@
         RegionCount: function () {
             var regions = [];
             $.each(this.get("Threads"), function (i, thread) {
-                if (regions.indexOf(thread.User.Region) < 0) {
-                    regions.push(thread.User.Region);
+                var region = fixUserRegion(thread.User.Region);
+                if (regions.indexOf(region) < 0) {
+                    regions.push(region);
                 }
             });
             return regions.length;
@@ -383,8 +389,7 @@
                 };
             }
 
-            var region = thread.User.Region || "United States of America";
-            if (region === "United States") { region = "United States of America"; }
+            var region = fixUserRegion(thread.User.Region);
             if (region in statics_userRegions) {
                 statics_userRegions[region] += 1;
             } else {
