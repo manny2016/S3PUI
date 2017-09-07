@@ -89,7 +89,7 @@
                                     <div class="ui relaxed divided list">
                                         <div ng-repeat="s in statistic.mostmentionedservice" class="item text tiny blue" alt="{{s.attachedobject}}" caption="{{s.attachedobject}}">
                                             <span ng-if="s">
-                                            {{s.attachedobject | limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
+                                            {{s.attachedobject | limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2:false:'%':'100%'}})
                                             </span>
                                             <span ng-if="!s">
                                             No Data Available
@@ -126,7 +126,7 @@
                                         <div ng-repeat="s in statistic.mostlikedservice track by $index" class="item text tiny blue" alt="{{s.attachedobject}}" caption="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
-                                            {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
+                                            {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2:false:'%':'100%'}})
                                             </span>
                                             <span ng-if="!s">
                                             No Data Available
@@ -141,7 +141,7 @@
                                             title="{{s.attachedobject}}">
                                             <!--  ng-class="{0:'red',1:'green',2:'blue'}[$index]" -->
                                             <span ng-if="s">
-                                            {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2}})
+                                            {{s.attachedobject| limitTo: 15 }}<span ng-if="s.attachedobject.length > 15">&hellip;</span>({{s.occupyratio|percentage:2:false:'%':'100%'}})
                                             </span>
                                             <span ng-if="!s">
                                             No Data Available

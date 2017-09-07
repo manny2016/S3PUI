@@ -1,10 +1,10 @@
 var app = angular.module('app.Filter', ['app.Srv']);
 app.filter('percentage', ['$window', function ($window) {
-    return function (input, decimals, notAbsolute, suffix) {
+    return function (input, decimals, notAbsolute, suffix, defaultvalue) {
         var decimals = angular.isNumber(decimals) ? decimals : 3;
         var suffix = suffix || '%';
         if ($window.isNaN(input)) {
-            return '';
+            return defaultvalue || '';
         }
         if(!notAbsolute){
             input = Math.abs(input);

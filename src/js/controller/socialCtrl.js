@@ -305,6 +305,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         $scope.query.end = options.get('end()');
         $scope.startDateLocalsString = (new Date($scope.query.start)).toLocaleString();
         $scope.endDateLocalsString = (new Date($scope.query.end + ($scope.query.granularity === 2 ? 3600000 : 86400000))).toLocaleString();
+        $scope.popInfoScope = $scope.query.granularity === 2 ? "Hourly" : "Daily";
     }
     $scope.doQuery = function (e) {
         updateQueryConditions();
@@ -370,6 +371,28 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     }
     function getUserDistribution() {
         $scope.service.getRegionDistribution($scope.$stateParams.platform, $scope.query.topic, 'all', $scope.query).then(function (data) {
+            data = data.reduce(function(agg, item) {
+                var region = fixUserRegion(item.name);
+                var swap = agg.find(function (e) {
+                    return e.name === region;
+                });
+        
+                if (swap) {
+                    swap.positivetotalvol += item.positivetotalvol;
+                    swap.negativetotalvol += item.negativetotalvol;
+                    swap.uniqueusers += item.uniqueusers;
+                } else {
+                    agg.push({
+                        name: region,
+                        positivetotalvol: item.positivetotalvol,
+                        negativetotalvol: item.negativetotalvol,
+                        uniqueusers: item.uniqueusers,
+                        url: item.url
+                    });
+                }
+    
+                return agg;
+            }, []);
             $scope.languageDistribution = $filter('orderBy')(data, '-uniqueusers');
         })
     }
@@ -378,6 +401,11 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
             $scope.mostMentionedService = data
             $scope.$broadcast('data-got');
         })
+    }
+    function fixUserRegion(region) {
+        var fixed = region || "United States of America";
+        if (fixed === "United States") { fixed = "United States of America"; }
+        return fixed;
     }
 
     function RefreshCharts() {

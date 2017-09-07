@@ -898,32 +898,46 @@ function customHoriBarData(scope) {
     };
 }
 
+function fixUserRegion(region) {
+    var fixed = region || "United States of America";
+    if (fixed === "United States") { fixed = "United States of America"; }
+    return fixed;
+}
 function customWorldData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var seriesData = data.map(function (item) {
-            var tmp = {
-                name: item.name
-            };
+        var seriesData = data.reduce(function(agg, item) {
+            var region = fixUserRegion(item.name);
+            var swap = agg.find(function (e) {
+                return e.name === region;
+            });
+
+            var value = 0;
             switch (propertySelect) {
                 case 'positive':
-                    var value = item.positivetotalvol
+                    value = item.positivetotalvol
                     break;
                 case 'negative':
-                    var value = item.negativetotalvol
+                    value = item.negativetotalvol
                     break;
                 case 'users':
-                    var value = item.uniqueusers
-                    break;
-                default:
+                    value = item.uniqueusers
                     break;
             }
-            tmp.url = item.url;
-            tmp.value = value;
-            // legendData.push(item.attachedobject)
-            return tmp;
-        })
+
+            if (swap) {
+                swap.value += value;
+            } else {
+                agg.push({
+                    name: region,
+                    url: item.url,
+                    value: value
+                });
+            }
+
+            return agg;
+        }, []);
         scope.$root.$broadcast('set-region-table-data', {
             data: seriesData,
             association: scope.association
@@ -964,10 +978,17 @@ function customRegionData(fnPromise, scope) {
     var xData = [];
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var seriesData = data.map(function (item) {
-            xData.push(item.name)
-            return item.uniqueusers
-        })
+        var seriesData = data.reduce(function(agg, item) {
+            var region = fixUserRegion(item.name);
+            var index = xData.indexOf(region);
+            if (index >= 0) {
+                agg[index] += item.uniqueusers;
+            } else {
+                xData.push(region);
+                agg.push(item.uniqueusers);
+            }
+        }, []);
+
         return {
             dataZoom: [{
                 show: true,
