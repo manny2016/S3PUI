@@ -3,7 +3,7 @@
 
 */
 module.exports = function ($rootScope) {
-    return { 
+    return {
         restrict: 'A',
         scope: false,
         link: function (scope, e, a) {
@@ -47,20 +47,20 @@ module.exports = function ($rootScope) {
                 //         }
                 //     }).shape('set next side', $(root)).shape('flip left');
                 // } else {
-                    $(e.find("div.shape").get(0)).shape({
-                        onChange:function(){
-                            resizeChart();
-                        }
-                    }).shape('flip left');
-                    var cate = e.find("div.side.active").next().attr("page");
-                    if (!cate) {
-                        var dom = e.find(".side.active").siblings();
-                        cate = $(dom[0]).attr("page");
+                $(e.find("div.shape").get(0)).shape({
+                    onChange: function () {
+                        resizeChart();
                     }
-                    scope.category = cate;
-                    $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
-                    callMentionedService();
-                    // resizeChart();
+                }).shape('flip left');
+                var cate = e.find("div.side.active").next().attr("page");
+                if (!cate) {
+                    var dom = e.find(".side.active").siblings();
+                    cate = $(dom[0]).attr("page");
+                }
+                scope.category = cate;
+                $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
+                callMentionedService();
+                // resizeChart();
                 // }
             }
             var flipRight = function () {
@@ -70,10 +70,10 @@ module.exports = function ($rootScope) {
                 }
                 lastTime = current;
                 e.find("div.shape").shape({
-                        onChange:function(){
-                            resizeChart();
-                        }
-                    }).shape('flip right');
+                    onChange: function () {
+                        resizeChart();
+                    }
+                }).shape('flip right');
                 var cate = e.find("div.side.active").next().attr("page");
                 if (!cate) {
                     var dom = e.find(".side.active").siblings();

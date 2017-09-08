@@ -160,6 +160,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
                     });
                     $scope.selected = $scope.enabledPlatforms[0];
                     $scope.listNotification(5);
+                    $scope.$apply();
                 }, 50)
             } else {
                 $scope.$broadcast('start-get-data', 'home');

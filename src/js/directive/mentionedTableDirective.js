@@ -18,6 +18,13 @@ module.exports = /*@ngInject*/function ($rootScope, $compile) {
                 if (scope.association === arg.association) {
                     scope.total = arg.total;
                     scope.mostMentionedService = arg.data
+
+                    var x = arg.association.substring(0, 4);
+                    scope.volcolumnName = (x === 'mess'
+                        ? 'Post Vol'
+                        : (x === 'user'
+                            ? 'User Vol'
+                            : 'Volume'));
                 }
             });
             scope.popDetail = function (serverName) {

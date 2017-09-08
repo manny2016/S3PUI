@@ -45,6 +45,42 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
             })
             return deferred.promise;
         },
+        get2: function (api, params) {
+            params = params || {};
+            params['cachedtimestamp'] = Math.round(new Date() / 1000);
+            var path = '',
+                qs = params ? "?" + $httpParamSerializer(params) : '';
+            path = CONST.SERVICE_INFO.ENDPOINT2 + api + qs;
+            var deferred = $q.defer();
+            $http.get(path, {
+                cache: true
+            }).then(function (data) {
+                if (data.status == 200) {
+                    deferred.resolve(data.data)
+                } else {
+                    deferred.reject(data);
+                }
+            }, function (err) {
+                deferred.reject(err);
+            })
+            return deferred.promise;
+        },
+        post2: function (api, data, config) {
+            var path = '';
+            var config = config || {};
+            path = CONST.SERVICE_INFO.ENDPOINT2 + api;
+            var deferred = $q.defer();
+            $http.post(path, data, config).then(function (data) {
+                if (data.status == 200) {
+                    deferred.resolve(data.data)
+                } else {
+                    deferred.reject(data);
+                }
+            }, function (err) {
+                deferred.reject(err);
+            })
+            return deferred.promise;
+        },
         devGet: function (api, params) {
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
@@ -114,7 +150,7 @@ app.factory('rawdataSrv', function (baseSrv) {
         getCate: function (platform) {
             var params = params || {};
             params.platform = platform || 'all';
-            return baseSrv.get('GetAllEnabledTopicsByPlatform', params);
+            return baseSrv.get2('GetAllEnabledTopicsByPlatform', params);
         },
         getUser: function (platform, topNum, topic, PNScope, source) {
             var params = params || {};
@@ -130,14 +166,14 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetDailyVolSpikes', params);
+            return baseSrv.get2('GetDailyVolSpikes', params);
         },
         getDistribution: function (platform, topic, source) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetPNDistribution', params);
+            return baseSrv.get2('GetPNDistribution', params);
         },
         getInfluence: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -145,7 +181,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetDailyInfluence', params);
+            return baseSrv.get2('GetDailyInfluence', params);
         },
         getMentionedMostServiceList: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -153,7 +189,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetMentionedMostServiceList', params);
+            return baseSrv.get2('GetMentionedMostServiceList', params);
         },
         getMentionedMostServiceListByUserVol: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -161,7 +197,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetMentionedMostServiceListByUserVol', params);
+            return baseSrv.get2('GetMentionedMostServiceListByUserVol', params);
         },
         getMentionedMostServiceDistribution: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -169,7 +205,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetMentionedMostServiceList', params);
+            return baseSrv.get2('GetMentionedMostServiceList', params);
         },
         getVoCDetailsByDate: function (platform, topic, PNScope, date, granularity) {
             var params = params || {};
@@ -364,7 +400,7 @@ app.factory('rawdataSrv', function (baseSrv) {
         checkAdminAccessRights: function (email) {
             var params = params || {};
             params.email = email;
-            return baseSrv.get('CheckAdminAccessRights', params);
+            return baseSrv.post2('CheckAdminAccessRights', params);
         }
     }
 })

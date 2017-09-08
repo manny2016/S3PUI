@@ -21,12 +21,14 @@ app.constant('CONST', {
     },
     SERVICE_INFO: {
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT2: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         LOCAL_TEST_DATA: '/data/',
-        TWITTER_SERVER_STATUS:'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
-        OTHERS_SERVER_STATUS:'https://shpv2-rawdata-proccess.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
+        TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
+        OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
         /*
         ENDPOINT: 'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv2-rawdata-proccess.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'

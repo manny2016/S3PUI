@@ -597,7 +597,7 @@ function afterInit(rootscope, scope, echartObj) {
 function customInfluenceData(fnPromise, scope, utilitySrv) {
     var influenceSeries = function (raw) {
         var influenceData = raw.map(function (item) {
-            return item.vocinfluence.voctotalvol
+            return item.vocinfluence.vocinfluencedvol
         })
         var influencePOSIData = raw.map(function (item) {
             return item.vocinfluence.positiveinfluencedvol
