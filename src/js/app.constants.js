@@ -19,9 +19,10 @@ app.constant('CONST', {
         'ServiceOutageDetected': 'Possible service outage issues',
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
+    TOPICS_V3: ["Windows Client", "Exchange", "Skype for Business", "HoloLens"],
     SERVICE_INFO: {
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
-        ENDPOINT2: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
@@ -29,6 +30,7 @@ app.constant('CONST', {
         ENDPOINT: 'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
+        ENDPOINT2: 'http://localhost:64815/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv2-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv2-rawdata-proccess.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'

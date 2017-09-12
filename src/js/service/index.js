@@ -134,7 +134,7 @@ app.factory('Notifications', function (baseSrv, CONST) {
     }
 });
 
-app.factory('rawdataSrv', function (baseSrv) {
+app.factory('rawdataSrv', function (baseSrv, CONST) {
     function setDateTimeRange(p, s) {
         if (s) {
             var granularity = s.granularity || 3;
@@ -144,6 +144,20 @@ app.factory('rawdataSrv', function (baseSrv) {
             p.fromcycle = granularity;
             p.start = start;
             p.end = end;
+        }
+    }
+    function httpGet(topic, api, params) {
+        if (CONST.TOPICS_V3.indexOf(topic) >= 0) {
+            return baseSrv.get2(api, params);
+        } else {
+            return baseSrv.get(api, params);
+        }
+    }
+    function httpPost(topic, api, data, config) {
+        if (CONST.TOPICS_V3.indexOf(topic) >= 0) {
+            return baseSrv.post2(api, data, config);
+        } else {
+            return baseSrv.post(api, data, config);
         }
     }
     return {
@@ -159,21 +173,21 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetTopUsers', params);
+            return httpGet(topic, 'GetTopUsers', params);
         },
         getSpikes: function (platform, topic, source) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetDailyVolSpikes', params);
+            return httpGet(topic, 'GetDailyVolSpikes', params);
         },
         getDistribution: function (platform, topic, source) {
             var params = params || {};
             params.platform = platform || 'all';
             params.topic = topic || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetPNDistribution', params);
+            return httpGet(topic, 'GetPNDistribution', params);
         },
         getInfluence: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -181,7 +195,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetDailyInfluence', params);
+            return httpGet(topic, 'GetDailyInfluence', params);
         },
         getMentionedMostServiceList: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -189,7 +203,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetMentionedMostServiceList', params);
+            return httpGet(topic, 'GetMentionedMostServiceList', params);
         },
         getMentionedMostServiceListByUserVol: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -197,7 +211,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetMentionedMostServiceListByUserVol', params);
+            return httpGet(topic, 'GetMentionedMostServiceListByUserVol', params);
         },
         getMentionedMostServiceDistribution: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -205,7 +219,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get2('GetMentionedMostServiceList', params);
+            return httpGet(topic, 'GetMentionedMostServiceList', params);
         },
         getVoCDetailsByDate: function (platform, topic, PNScope, date, granularity) {
             var params = params || {};
@@ -214,7 +228,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.date = date || Math.floor(new Date().getTime() / 1000);
             params.fromcycle = granularity || 3;
-            return baseSrv.get('GetVoCDetailsByDate', params);
+            return httpGet(topic, 'GetVoCDetailsByDate', params);
         },
         getVoCDetailsByPN: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -222,7 +236,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetVoCDetailsByPN', params);
+            return httpGet(topic, 'GetVoCDetailsByPN', params);
         },
         getVoCDetailsByServiceName: function (platform, topic, service, PNScope, source) {
             var params = params || {};
@@ -231,7 +245,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.servicename = service || 'webapp';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetVoCDetailsByServiceName', params);
+            return httpGet(topic, 'GetVoCDetailsByServiceName', params);
         },
         getVoCDetailsByUser: function (platform, topic, user, index, PNScope, source) {
             var params = params || {};
@@ -241,7 +255,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.index = (index !== undefined) ? index : -1;
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetVoCDetailsByUser', params);
+            return httpGet(topic, 'GetVoCDetailsByUser', params);
         },
         getImpactSummary: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -249,7 +263,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetImpactSummary', params);
+            return httpGet(topic, 'GetImpactSummary', params);
         },
         getUserVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -257,7 +271,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetUserVolSpikes', params);
+            return httpGet(topic, 'GetUserVolSpikes', params);
         },
         getMessageVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -265,7 +279,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetMessageVolSpikes', params);
+            return httpGet(topic, 'GetMessageVolSpikes', params);
         },
         getInfluenceVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -273,7 +287,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetInfluenceVolSpikes', params);
+            return httpGet(topic, 'GetInfluenceVolSpikes', params);
         },
         getUserRegionVolSpikes: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -281,7 +295,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetUserRegionVolSpikes', params);
+            return httpGet(topic, 'GetUserRegionVolSpikes', params);
         },
         getKeywordsMentionedMostMapping: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -289,7 +303,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetKeywordsMentionedMostMapping', params);
+            return httpGet(topic, 'GetKeywordsMentionedMostMapping', params);
         },
         getSubPageVoCDetails: function (platform, topic, PNScope, date, granularity) {
             var params = params || {};
@@ -301,7 +315,7 @@ app.factory('rawdataSrv', function (baseSrv) {
                 start: date * 1000,
                 end: date * 1000
             });
-            return baseSrv.get('GetSubPageVoCDetails', params);
+            return httpGet(topic, 'GetSubPageVoCDetails', params);
         },
         getSubPageVoCDetailsbyKeywords: function (platform, topic, keywords, PNScope, IsFuzzyQuery, source) {
             var params = params || {};
@@ -311,7 +325,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.PNScope = PNScope || 'all';
             params.IsFuzzyQuery = IsFuzzyQuery || 'false';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetSubPageVoCDetailsbyKeywords', params);
+            return httpGet(topic, 'GetSubPageVoCDetailsbyKeywords', params);
         },
         getSysDetections: function (platform, msgType, topic, downloadable, bgTime, egTime) {
             var params = params || {};
@@ -321,7 +335,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.downloadable = downloadable || 'all';
             params.bgTime = bgTime || 0;
             params.egTime = egTime || 0;
-            return baseSrv.get('GetSysDetections', params);
+            return httpGet(topic, 'GetSysDetections', params);
         },
 
         //NC query
@@ -337,7 +351,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'azure';
             params.msgType = msgType || 'all';
             params.datetime = datetime || 0;
-            return baseSrv.get('GetVoCDetailsBySpikeDetected', params);
+            return httpGet(topic, 'GetVoCDetailsBySpikeDetected', params);
         },
         getRegionDistribution: function (platform, topic, PNScope, source) {
             var params = params || {};
@@ -345,7 +359,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'azure';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetRegionDistribution', params);
+            return httpGet(topic, 'GetRegionDistribution', params);
         },
         //sentimentconversion
         getSentimentTrend: function (platform, topic, PNScope, source) {
@@ -354,7 +368,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'azure';
             params.PNScope = PNScope || 'all';
             setDateTimeRange(params, source);
-            return baseSrv.get('GetSentimentTrend', params);
+            return httpGet(topic, 'GetSentimentTrend', params);
         },
         saveForumServiceSetting: function (data) {
             return baseSrv.post('SaveForumServiceSetting', data, {
@@ -369,7 +383,7 @@ app.factory('rawdataSrv', function (baseSrv) {
             params.topic = topic || 'all';
             params.msgtype = msgtype || 'all';
             params.servicename = servicename || 'all';
-            return baseSrv.get('GetSubscribeSettings', params);
+            return httpGet(topic, 'GetSubscribeSettings', params);
         },
         createSubscribe: function (params) {
             var params = params || {};
@@ -400,7 +414,7 @@ app.factory('rawdataSrv', function (baseSrv) {
         checkAdminAccessRights: function (email) {
             var params = params || {};
             params.email = email;
-            return baseSrv.post2('CheckAdminAccessRights', params);
+            return baseSrv.get('CheckAdminAccessRights', params);
         }
     }
 })

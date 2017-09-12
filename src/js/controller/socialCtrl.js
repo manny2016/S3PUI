@@ -152,7 +152,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
         dataSource: {
             transport: {
                 read: {
-                    url: CONST.SERVICE_INFO.ENDPOINT + 'GetAllEnabledTopicsByPlatform',
+                    url: CONST.SERVICE_INFO.ENDPOINT2 + 'GetAllEnabledTopicsByPlatform',
                     dataType: "json",
                     data: {
                         platform: $scope.$stateParams.platform,

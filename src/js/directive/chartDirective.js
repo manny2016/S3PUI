@@ -654,7 +654,7 @@ function customSpikesData(fnPromise, scope, utilitySrv) {
 
     var seriesVolume = function (source) {
         var volumes = source.map(function (entity) {
-            return entity.dailytotalvol
+            return entity.dailytotalvol;
         });
         return {
             xAxis: xAxis,
