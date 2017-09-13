@@ -21,36 +21,41 @@ app.constant('CONST', {
     },
     TOPICS_V3: ["Windows Client", "Exchange", "Skype for Business", "HoloLens"],
     SERVICE_INFO: {
-        ENDPOINT: 'http://shpv2-api.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
         /*
-        ENDPOINT: 'http://shpv2-api.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
-        ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
+        PROD
+        ENDPOINT: 'https://shpv2-api.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT: 'https://shpv2-api.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
 
+        UAT
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
 
+        Exchange
         ENDPOINT: 'https://shpv2-exchange-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         ENDPOINT2: 'https://shpv2-exchange-dataslice.azurewebsites.net/WebServices/S3PDataService/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv2-exchange-dataslice.azurewebsites.net/WebServices/S3PDataService/GetJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv2exchange.azurewebsites.net/WebServices/S3PDataService/GetJobStatus'
 
+        V3
         ENDPOINT: 'https://shpv3-api.azurewebsites.net/api/v2/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
         OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
 
+        Local
         ENDPOINT: 'http://localhost:30322/WebServices/SHPDateUnlimitedDataService/',
         ENDPOINT2: 'http://localhost:64815/api/v2/',
         LOCAL_TEST_DATA: '/data/',
