@@ -17,7 +17,7 @@
                     ng-src="{{avator}}" onerror="this.src=$(this).attr('default-avator');" default-avator="{{defaultAvatorUrl}}">
                 <!--</div>-->
                 <div class="content">
-                    <div class="header" ng-bind-html="u.attachedobject.displayName"></div>
+                    <div class="header" ng-bind-html="u.attachedobject.displayName" style="max-width: 220px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></div>
                     <div class="mete" ng-if="pnscope=='all'">
                         <b>Post Vol</b>: {{u.vocinfluence.voctotalvol|thousandsuffix}}
                     </div>
