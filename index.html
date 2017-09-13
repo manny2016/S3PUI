@@ -242,7 +242,7 @@
         kendo.bind($('.menu.forums'), menuModel);
 
         $(document).ready(function () {
-            var endpoint = angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT;
+            var endpoint = angular.element('html').scope().CONST.SERVICE_INFO.ENDPOINT2;
             $.ajax({
                 url: endpoint + 'GetAllEnabledTopicsByPlatform',
                 data: {
