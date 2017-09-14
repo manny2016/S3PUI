@@ -343,7 +343,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             break;
                         case 'getMessageVolSpikes':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
-                                key = '';
+                            key = '';
                             switch (_.pnscope) {
                                 case 'posi':
                                     key = 'positivetotalvol';
@@ -694,22 +694,29 @@ function customSpikesData(fnPromise, scope, utilitySrv) {
                 nameTextStyle: {
                     color: '#2EC7C9'
                 }
-            }, {
-                name: 'Spike',
-                type: 'value',
-                nameTextStyle: {
-                    color: '#BAA7E0'
-                }
             }],
+            tooltip: {
+                formatter: function (params, ticket, callback) {
+                    return params.name
+                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#2EC7C9"></span>VoC: ' + params.value
+                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#F2711C"></span>Is Spike: ' + (spikes[params.dataIndex] === 0 ? 'false' : 'true');
+                }
+            },
             series: [{
                 name: 'VoC',
                 type: 'bar',
-                data: volumes
-            }, {
-                name: 'Spikes',
-                type: 'line',
-                yAxisIndex: 1,
-                data: spikes
+                data: volumes,
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            if (spikes[params.dataIndex] === 0) {
+                                return '#2EC7C9';
+                            } else {
+                                return '#F2711C';
+                            }
+                        }
+                    }
+                }
             }]
         }
     }
@@ -907,7 +914,7 @@ function customWorldData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var seriesData = data.reduce(function(agg, item) {
+        var seriesData = data.reduce(function (agg, item) {
             var region = fixUserRegion(item.name);
             var swap = agg.find(function (e) {
                 return e.name === region;
@@ -978,7 +985,7 @@ function customRegionData(fnPromise, scope) {
     var xData = [];
     return fnPromise.then(function (data) {
         scope.validData(data);
-        var seriesData = data.reduce(function(agg, item) {
+        var seriesData = data.reduce(function (agg, item) {
             var region = fixUserRegion(item.name);
             var index = xData.indexOf(region);
             if (index >= 0) {
