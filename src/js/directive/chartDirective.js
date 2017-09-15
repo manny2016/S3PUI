@@ -694,31 +694,24 @@ function customSpikesData(fnPromise, scope, utilitySrv) {
                 nameTextStyle: {
                     color: '#2EC7C9'
                 }
-            }],
-            tooltip: {
-                formatter: function (params, ticket, callback) {
-                    return params.name
-                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#2EC7C9"></span>VoC: ' + params.value
-                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#F2711C"></span>Is Spike: ' + (spikes[params.dataIndex] === 0 ? 'false' : 'true');
+            }, {
+                name: 'Spike',
+                type: 'value',
+                nameTextStyle: {
+                    color: '#BAA7E0'
                 }
-            },
+            }],
             series: [{
                 name: 'VoC',
                 type: 'bar',
-                data: volumes,
-                itemStyle: {
-                    normal: {
-                        color: function (params) {
-                            if (spikes[params.dataIndex] === 0) {
-                                return '#2EC7C9';
-                            } else {
-                                return '#F2711C';
-                            }
-                        }
-                    }
-                }
+                data: volumes
+            }, {
+                name: 'Spikes',
+                type: 'line',
+                yAxisIndex: 1,
+                data: spikes
             }]
-        }
+        };
     }
     return fnPromise.then(function (data) {
         scope.validData(data);
