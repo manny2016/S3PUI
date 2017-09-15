@@ -17,9 +17,14 @@ module.exports = function ($rootScope) {
         },
         link: function (scope, e, a) {
             scope.pnscope = scope.pnscope || 'all';
-            scope.defaultAvatorUrl = 'public/images/' + scope.platform.toLowerCase() + '.png';
+            scope.defaultAvatorUrl = function () {
+                return 'public/images/' + scope.platform.toLowerCase() + '.png';
+            }
             scope.getAvatorUrl = function (user) {
-                return user.attachedobject.url || scope.defaultAvatorUrl
+                return user.attachedobject.url || scope.defaultAvatorUrl();
+            }
+            scope.imgError = function (element) {
+                element.src = scope.defaultAvatorUrl();
             }
             scope.onClick = function (user, index) {
                 if (a.noPop === undefined) {

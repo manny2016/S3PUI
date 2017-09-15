@@ -56,7 +56,13 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         threads: new kendo.data.DataSource({
                             transport: {
                                 read: {
-                                    url: CONST.SERVICE_INFO.ENDPOINT + "GetDetailsByComplexFilter",
+                                    url: function (options) {
+                                        if (CONST.TOPICS_V3.indexOf($window.threadOption.topic) >= 0) {
+                                            return CONST.SERVICE_INFO.ENDPOINT2 + "GetDetailsByComplexFilter";
+                                        } else {
+                                            return CONST.SERVICE_INFO.ENDPOINT + "GetDetailsByComplexFilter";
+                                        }
+                                    },
                                     dataType: "json",
                                     type: "POST",
                                     contentType: "application/x-www-form-urlencoded"
@@ -204,6 +210,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                 })
             }
             scope.$on('start-get-data-in-window', function (event, arg) {
+                scope.platform = arg.param.platform;
                 scope.raw = [];
                 scope.tabledata = [];
                 scope.chartOpt = {};

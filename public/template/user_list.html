@@ -14,7 +14,7 @@
             <div class="item" ng-repeat="u in users" ng-click="onClick(u,$index)">
                 <!--<div class="image">-->
                 <img ng-class="{'ui avatar':(!$first),'ui fluid bordered rounded':$first}" class="image" ng-init="avator = getAvatorUrl(u)"
-                    ng-src="{{avator}}" onerror="this.src=$(this).attr('default-avator');" default-avator="{{defaultAvatorUrl}}">
+                    ng-src="{{avator}}" onerror="angular.element(this).scope().imgError(this)">
                 <!--</div>-->
                 <div class="content">
                     <div class="header" ng-bind-html="u.attachedobject.displayName" style="max-width: 220px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"></div>
