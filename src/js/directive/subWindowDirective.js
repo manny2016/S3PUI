@@ -55,17 +55,75 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         RefreshTrigger: false,
                         threads: new kendo.data.DataSource({
                             transport: {
-                                read: {
+                                read: function (options) {
+                                    var data = options.data;
+                                    var search;
+                                    if (data.filter && data.filter.filters
+                                        && data.filter.filters.length > 0) {
+                                        search = data.filter.filters[0].value
+                                    }
+                                    $window.threadOption.search = search;
+                                    var post = {
+                                        forum: $window.threadOption.platform,
+                                        topic: $window.threadOption.topic,
+                                        function: $window.threadOption.function,
+                                        start: $window.threadOption.start,
+                                        end: $window.threadOption.end,
+                                        conditions: {},
+                                        search: search,
+                                        page: data.page,
+                                        pagesize: data.pageSize,
+                                        sort: [{
+                                            field: data.sort[0] ? data.sort[0].field : 'CreatedTime',
+                                            dir: data.sort[0] ? data.sort[0].dir : 'desc'
+                                        }]
+                                    };
+                                    if (($window.threadOption.pnscope || 'all') !== 'all') {
+                                        post.conditions.pnscope = $window.threadOption.pnscope === 'neg'
+                                            ? 0
+                                            : $window.threadOption.pnscope === 'neu'
+                                                ? 2
+                                                : $window.threadOption.pnscope === 'posi'
+                                                    ? 4
+                                                    : -1;
+                                    }
+                                    if ($window.threadOption.params) {
+                                        $.each($window.threadOption.params, function (field, value) {
+                                            if (value) {
+                                                post.conditions[field] = value;
+                                            }
+                                        });
+                                    }
+
+                                    var isV3 = (CONST.TOPICS_V3.indexOf($window.threadOption.topic) >= 0);
+                                    console.log('sub windows (' + $window.threadOption.topic + '):', isV3 ? 'V3' : 'V2');
+                                    var endpoint = isV3 ? CONST.SERVICE_INFO.ENDPOINT2 : CONST.SERVICE_INFO.ENDPOINT;
+                                    var request_contentType = isV3 ? 'application/json' : 'application/x-www-form-urlencoded';
+                                    $.ajax({
+                                        url: endpoint + 'GetDetailsByComplexFilter',
+                                        type: 'POST',
+                                        contentType: request_contentType,
+                                        data: kendo.stringify(post),
+                                        dataType: 'json',
+                                        success: function(result) {
+                                            options.success(result);
+                                        },
+                                        error: function(result) {
+                                            options.error(result);
+                                        }
+                                    });
+                                }
+                                /*read: {
                                     url: function (options) {
                                         if (CONST.TOPICS_V3.indexOf($window.threadOption.topic) >= 0) {
-                                            return CONST.SERVICE_INFO.ENDPOINT2 + "GetDetailsByComplexFilter";
+                                            return CONST.SERVICE_INFO.ENDPOINT2 + 'GetDetailsByComplexFilter';
                                         } else {
-                                            return CONST.SERVICE_INFO.ENDPOINT + "GetDetailsByComplexFilter";
+                                            return CONST.SERVICE_INFO.ENDPOINT + 'GetDetailsByComplexFilter';
                                         }
                                     },
-                                    dataType: "json",
-                                    type: "POST",
-                                    contentType: "application/x-www-form-urlencoded"
+                                    type: 'POST',
+                                    contentType: 'application/json'
+                                    dataType: 'json',
                                 },
                                 parameterMap: function (data, operation) {
                                     if (operation === "read") {
@@ -108,7 +166,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                         }
                                         return kendo.stringify(post);
                                     }
-                                }
+                                }*/
                             },
                             serverPaging: true,
                             pageSize: 10,
