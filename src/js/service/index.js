@@ -401,11 +401,6 @@ app.factory('rawdataSrv', function (baseSrv, CONST) {
                     }
                 });
         },
-        removeSubscription: function (email) {
-            return baseSrv.get('DeleteSubscribeByEmail', {
-                "email": email
-            });
-        },
         removeSubscriptionRule: function (id) {
             return baseSrv.get('DeleteSubscribeByGroupId', {
                 "groupId": id

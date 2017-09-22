@@ -19,7 +19,7 @@ app.constant('CONST', {
         'ServiceOutageDetected': 'Possible service outage issues',
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
-    TOPICS_V3: ["VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "Skype for Business", "HoloLens"],
+    TOPICS_V3: ["Azure", "UWP", "PowerBI", "PowerApp", "MS Flow", "EMS", "VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "Skype for Business", "HoloLens"],
     SERVICE_INFO: {
         ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',

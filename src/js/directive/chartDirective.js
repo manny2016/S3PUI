@@ -694,22 +694,37 @@ function customSpikesData(fnPromise, scope, utilitySrv) {
                 nameTextStyle: {
                     color: '#2EC7C9'
                 }
-            }, {
-                name: 'Spike',
-                type: 'value',
-                nameTextStyle: {
-                    color: '#BAA7E0'
-                }
             }],
+            tooltip: {
+                formatter: function (params, ticket, callback) {
+                    var value = spikes[params.dataIndex];
+                    return params.name
+                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#2EC7C9"></span>VoC: ' + params.value
+                        + (value > 0
+                            ? '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#F2711C"></span>Spike'
+                            : (value < 0
+                                ? '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#42453B"></span>Dip'
+                                : ''));
+                }
+            },
             series: [{
                 name: 'VoC',
                 type: 'bar',
-                data: volumes
-            }, {
-                name: 'Spikes',
-                type: 'line',
-                yAxisIndex: 1,
-                data: spikes
+                data: volumes,
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            var value = spikes[params.dataIndex];
+                            if (value > 0) {
+                                return '#F2711C';
+                            } else if (value < 0) {
+                                return '#42453B';
+                            } else {
+                                return '#2EC7C9';
+                            }
+                        }
+                    }
+                }
             }]
         };
     }
