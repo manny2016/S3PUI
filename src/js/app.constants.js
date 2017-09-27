@@ -21,7 +21,7 @@ app.constant('CONST', {
     },
     TOPICS_V3: ["Azure", "UWP", "PowerBI", "PowerApp", "MS Flow", "EMS", "VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "Skype for Business", "HoloLens"],
     SERVICE_INFO: {
-        ENDPOINT: 'https://shpv2-uat.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
+        ENDPOINT: 'https://shpv3-api.azurewebsites.net/api/v2/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
         TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',

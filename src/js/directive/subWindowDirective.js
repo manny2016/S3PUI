@@ -96,7 +96,6 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                                     }
 
                                     var isV3 = (CONST.TOPICS_V3.indexOf($window.threadOption.topic) >= 0);
-                                    console.log('sub windows (' + $window.threadOption.topic + '):', isV3 ? 'V3' : 'V2');
                                     var endpoint = isV3 ? CONST.SERVICE_INFO.ENDPOINT2 : CONST.SERVICE_INFO.ENDPOINT;
                                     var request_contentType = isV3 ? 'application/json' : 'application/x-www-form-urlencoded';
                                     $.ajax({
@@ -247,7 +246,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         fnPromise = fn(params.param.platform,
                             params.param.msgType,
                             params.param.topic,
-                            params.param.date
+                            params.param.date,
+                            params.param.id
                         )
                         break;
                 }

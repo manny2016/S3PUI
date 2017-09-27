@@ -182,6 +182,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     }
     $scope.showdetails = function (entity) {
         var param = {
+            id: entity.id,
             platform: entity.forumName,
             msgType: entity.msgType,
             topic: entity.topic,

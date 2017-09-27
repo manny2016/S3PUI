@@ -345,12 +345,13 @@ app.factory('rawdataSrv', function (baseSrv, CONST) {
             return baseSrv.get('GetPlatformSyncSetting', params);
         },
         //NC detailed page
-        getVoCDetailsBySpikeDetected: function (platform, msgType, topic, datetime) {
+        getVoCDetailsBySpikeDetected: function (platform, msgType, topic, datetime, id) {
             var params = params || {};
             params.platform = platform || 'twitter';
             params.topic = topic || 'azure';
             params.msgType = msgType || 'all';
             params.datetime = datetime || 0;
+            params.notificationid = id || '00000000-0000-0000-0000-000000000000';
             return httpGet(topic, 'GetVoCDetailsBySpikeDetected', params);
         },
         getRegionDistribution: function (platform, topic, PNScope, source) {
