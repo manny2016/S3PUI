@@ -42,7 +42,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                         index: params.param.index,
                         keywords: params.param.keywords,
                         IsFuzzyQuery: params.param.IsFuzzyQuery,
-                        msgType: params.param.msgType
+                        msgType: params.param.msgType,
+                        notification: params.param.id
                     }
                 };
                 if ($window.threadStore) {

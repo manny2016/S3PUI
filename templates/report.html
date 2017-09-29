@@ -574,6 +574,7 @@
     if ((reportIdentity) && (reportIdentity.length > 1)) {
         $.get(scope.CONST.SERVICE_INFO.ENDPOINT + "getReportThreads", {
             id: reportIdentity[1],
+            condition: null
         }).done(refreshThread).fail(function () {
             viewModel.set("Threads", []);
             kendo.ui.progress($("body"), false);

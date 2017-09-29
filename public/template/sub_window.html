@@ -124,8 +124,8 @@
                                         forum: threadOption.platform,
                                         topic: threadOption.topic,
                                         search: threadOption.search,
-                                        start: threadOption.start,
-                                        end: threadOption.end
+                                        start: threadOption.start || 0,
+                                        end: threadOption.end || 0
                                     };
 
                                     var params = {};
