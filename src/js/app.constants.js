@@ -21,11 +21,11 @@ app.constant('CONST', {
     },
     TOPICS_V3: ["Azure", "UWP", "PowerBI", "PowerApp", "MS Flow", "EMS", "VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "SharePoint", "Office", "SQL Server", "Skype for Business", "HoloLens", "Dynamics 365"],
     SERVICE_INFO: {
-        ENDPOINT: 'http://localhost:64820/api/v2/',
-        ENDPOINT2: 'http://localhost:64820/api/v2/',
+        ENDPOINT: 'https://shpv3-api.azurewebsites.net/api/v2/',
+        ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
         LOCAL_TEST_DATA: '/data/',
-        TWITTER_SERVER_STATUS: 'http://localhost:64820/api/v2/GetTwitterJobStatus',
-        OTHERS_SERVER_STATUS: 'http://localhost:64820/api/v2/GetOtherJobStatus'
+        TWITTER_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetTwitterJobStatus',
+        OTHERS_SERVER_STATUS:'https://shpv3-api.azurewebsites.net/api/v2/GetOtherJobStatus'
         /*
         PROD
         ENDPOINT: 'https://shpv2-api.azurewebsites.net/WebServices/SHPDateUnlimitedDataService/',
