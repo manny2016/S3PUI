@@ -70,7 +70,8 @@ app.constant('CONST', {
         'su': 'Superuser',
         'msdn': 'MSDN',
         'tn': 'TechNet',
-        'lithium':'Lithium'
+        'lithium': 'Lithium',
+        'dyn': 'DynamicsCommunity'
     },
     WS_STATUS:{
         0 : 'connecting',
