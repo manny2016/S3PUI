@@ -207,7 +207,7 @@
                     <ng-echart caption="Message Influence Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getInfluenceVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
-                <div class="column" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
+                <div class="column" ng-if="['msdn','tn','lithium','dyn'].indexOf(platform)==-1">
                     <ng-echart caption="User Regions Vol {{popInfoScope}} Trend" type="hourly" platform='{{path[2]}}' query=query api-fn="getUserRegionVolSpikes"
                         location='home' pnscope="all" sub-fn="getSubPageVoCDetails" group="hourly"></ng-echart>
                 </div>
@@ -233,7 +233,7 @@
                             location='home' pnscope="all" no-pop="true"></ng-echart>
                     </div>
                 </div>
-                <div class="two column row" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
+                <div class="two column row" ng-if="['msdn','tn','lithium','dyn'].indexOf(platform)==-1">
                     <!-- ng-if="platform=='twitter'" -->
                     <div class="ui shape column">
                         <div class="sides">
@@ -348,7 +348,7 @@
                 </div>
             </div>
         </div>
-        <div id="userdistribution" class="ui violet segment" ng-if="['msdn','tn','lithium'].indexOf(platform)==-1">
+        <div id="userdistribution" class="ui violet segment" ng-if="['msdn','tn','lithium','dyn'].indexOf(platform)==-1">
             <!-- ng-if="platform=='twitter'"-->
             <h3 class="ui center aligned header title violet">
                 User Distribution
