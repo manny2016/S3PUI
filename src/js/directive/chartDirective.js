@@ -279,7 +279,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                         case 'getDistribution':
                             var fnPromise = apiFn(_.platform, _.query.topic, _.query);
                             customDistributionData(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -288,9 +288,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
+                                alert("ok");
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
@@ -319,7 +320,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                 fn = barNegativeData;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt = angular.extend(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
