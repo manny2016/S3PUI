@@ -47,7 +47,8 @@ app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
         },
         get2: function (api, params) {
             params = params || {};
-            params['cachedtimestamp'] = Math.round(new Date() / 1000);
+            //params['cachedtimestamp'] = Math.round(new Date() / 1000);
+            params['cachetimestamp'] = Number(Math.round(1.005 + 'e' + 2) + 'e-' + 2)
             var path = '',
                 qs = params ? "?" + $httpParamSerializer(params) : '';
             path = CONST.SERVICE_INFO.ENDPOINT2 + api + qs;

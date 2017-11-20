@@ -578,11 +578,11 @@ function initChart(echartObj, chartOpt, groupName) {
 
 function afterInit(rootscope, scope, echartObj) {
     scope.complete = true;
-    //if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
+    if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
         setTimeout(function () {
             echartObj.resize();
         }, 150)
-    //}
+    }
     if (scope.group) {
         echarts.connect(scope.group);
     }
