@@ -9,7 +9,7 @@ app.factory('utilitySrv', require('./utility'));
 
 app.factory('baseSrv', function ($http, $q, $httpParamSerializer, CONST) {
     return {
-        get: function (api, params) {
+        get: function (api, params) {        
             params = params || {};
             params['cachedtimestamp'] = Math.round(new Date() / 1000);
             var path = '',

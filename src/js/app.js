@@ -94,28 +94,7 @@ app
       }).modal('show');
       // $('.fullscreen.modal').modal('show');
     }
-    $rootScope.init = function () {
-        $(this).find('.echart').map(function (i) {
-            alert('cleae');
-               echarts.getInstanceByDom(this).clear();
-       })
-      // $('.menu').find('.ui.dropdown.item').dropdown();
-      // $('.fullscreen.modal').modal({
-      //   observeChanges: true,
-      //   onVisible: function (e) {
-      //     $(this).find('#sub_window').height($(window).height() * 0.7)
-      //     $(this).find('.echart').map(function (i) {
-      //       echarts.getInstanceByDom(this).clear();
-      //       echarts.getInstanceByDom(this).resize();
-      //     })
-      //   },
-      //   onHidden: function () {
-      //     $(this).find('.echart').map(function (i) {
-      //       echarts.getInstanceByDom(this).clear();
-      //     })
-      //   }
-      // });
-    }
+    
  
 
   });
