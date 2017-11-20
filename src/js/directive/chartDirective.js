@@ -290,8 +290,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope, _, _.chartObj);
-                                alert("ok");
+                                afterInit($rootScope, _, _.chartObj);                                
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
@@ -579,11 +578,11 @@ function initChart(echartObj, chartOpt, groupName) {
 
 function afterInit(rootscope, scope, echartObj) {
     scope.complete = true;
-    if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
+    //if (scope.apiFn !== 'getMentionedMostServiceList' && scope.apiFn !== 'getKeywordsMentionedMostMapping') {
         setTimeout(function () {
             echartObj.resize();
         }, 150)
-    }
+    //}
     if (scope.group) {
         echarts.connect(scope.group);
     }
