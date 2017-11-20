@@ -129,8 +129,9 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
             $rootScope.global.topic = topic;
             $scope.flags.m = false;
             $('div.echart').map(function () {
-                alert("ok");
-                echarts.getInstanceByDom(this).clear();
+                alert('o');
+                $scope.getInstanceByDom(this).clear();
+                alert('e');
             })
             $('#progress').progress('reset');
             $('#progress').show();
