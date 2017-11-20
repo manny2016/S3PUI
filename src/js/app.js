@@ -39,6 +39,12 @@ app
     $rootScope.signIn = function () {
       adalAuthenticationService.login();
     }
+
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        if (typeof (current) !== 'undefined') {
+            $templateCache.remove(current.templateUrl);
+        }
+    });
     // $rootScope.timeRange = {
     //   'start': (function (d) {
     //     d.setDate(d.getDate() - 7);
@@ -110,7 +116,7 @@ app
       //   }
       // });
     }
-
+ 
 
   });
 
