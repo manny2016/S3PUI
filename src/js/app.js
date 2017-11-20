@@ -95,6 +95,10 @@ app
       // $('.fullscreen.modal').modal('show');
     }
     $rootScope.init = function () {
+        $(this).find('.echart').map(function (i) {
+            alert('cleae');
+               echarts.getInstanceByDom(this).clear();
+       })
       // $('.menu').find('.ui.dropdown.item').dropdown();
       // $('.fullscreen.modal').modal({
       //   observeChanges: true,
