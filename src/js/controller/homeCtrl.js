@@ -128,8 +128,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
         if (topic) {
             $rootScope.global.topic = topic;
             $scope.flags.m = false;
-            $('div.echart').map(function () {
-               
+            $('div.echart').map(function () {               
                 echarts.getInstanceByDom(this).clear();
             })
             $('#progress').progress('reset');
