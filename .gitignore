@@ -15,3 +15,5 @@ S3PWebUI.*
 *.cs
 *.aspx
 bin
+/website.publishproj
+*.json
