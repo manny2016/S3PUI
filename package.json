@@ -38,6 +38,7 @@
     "gulp-less": "^3.3.0",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^2.0.0",
+    "http-server": "^0.10.0",
     "moment": "^2.16.0",
     "moment-timezone": "^0.5.11",
     "ng-table": "^1.0.0",

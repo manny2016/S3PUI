@@ -290,7 +290,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             fn(fnPromise, _).then(function (config) {
                                 _.chartOpt = angular.merge(_.chartOpt, config);
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope, _, _.chartObj);
+                                afterInit($rootScope, _, _.chartObj);                                
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
