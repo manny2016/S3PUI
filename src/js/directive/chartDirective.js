@@ -288,7 +288,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                // _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt.series.data = config.series.data;
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);                                
                             })
@@ -306,7 +307,8 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                // _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt.series.data = config.series.data;
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
