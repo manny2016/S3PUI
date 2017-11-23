@@ -288,9 +288,10 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                             var fnPromise = apiFn(_.platform, _.query.topic, _.pnscope, _.query);
                             var fn = customWordCloudData;
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                // _.chartOpt = angular.merge(_.chartOpt, config);
+                                _.chartOpt.series.data = config.series.data;
                                 initChart(_.chartObj, _.chartOpt);
-                                afterInit($rootScope, _, _.chartObj);                                
+                                afterInit($rootScope, _, _.chartObj);
                             })
                             break;
                         case 'getMentionedMostServiceListByUserVol':
@@ -306,7 +307,14 @@ module.exports = /*@ngInject*/ function ($rootScope, $filter, $q, $location, $co
                                     break;
                             }
                             fn(fnPromise, _).then(function (config) {
-                                _.chartOpt = angular.merge(_.chartOpt, config);
+                                switch (_.type) {
+                                    case 'pie':
+                                        _.chartOpt = angular.merge(_.chartOpt, config);
+                                        break;
+                                    case 'wordcloud':
+                                        _.chartOpt.series.data = config.series.data;
+                                        break;
+                                }
                                 initChart(_.chartObj, _.chartOpt);
                                 afterInit($rootScope, _, _.chartObj);
                             })
@@ -698,13 +706,13 @@ function customSpikesData(fnPromise, scope, utilitySrv) {
             tooltip: {
                 formatter: function (params, ticket, callback) {
                     var value = spikes[params.dataIndex];
-                    return params.name
-                        + '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#2EC7C9"></span>VoC: ' + params.value
-                        + (value > 0
-                            ? '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#F2711C"></span>Spike'
-                            : (value < 0
-                                ? '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#42453B"></span>Dip'
-                                : ''));
+                    return params.name +
+                        '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#2EC7C9"></span>VoC: ' + params.value +
+                        (value > 0 ?
+                            '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#F2711C"></span>Spike' :
+                            (value < 0 ?
+                                '<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#42453B"></span>Dip' :
+                                ''));
                 }
             },
             series: [{
@@ -915,9 +923,12 @@ function customHoriBarData(scope) {
 
 function fixUserRegion(region) {
     var fixed = region || "United States of America";
-    if (fixed === "United States") { fixed = "United States of America"; }
+    if (fixed === "United States") {
+        fixed = "United States of America";
+    }
     return fixed;
 }
+
 function customWorldData(fnPromise, scope) {
     var propertySelect = scope.propertySelect;
     return fnPromise.then(function (data) {
@@ -1025,11 +1036,11 @@ function customRegionData(fnPromise, scope) {
 
 function stackAxisData(fnPromise, utility, scope) {
     var seriesData = {
-        'undif': [],
-        'posi': [],
-        'neg': [],
-        'neu': []
-    },
+            'undif': [],
+            'posi': [],
+            'neg': [],
+            'neu': []
+        },
         xAxisDate = [];
     return fnPromise.then(function (data) {
         scope.validData(data);
@@ -1180,12 +1191,12 @@ function barNegativeData(fnPromise, scope) {
 
 function sentimentconversionData(fnPromise, utility, scope) {
     var seriesData = {
-        totalVol: [],
-        initPostive: [],
-        afterSptPostive: [],
-        initNegative: [],
-        afterSptNegative: [],
-    },
+            totalVol: [],
+            initPostive: [],
+            afterSptPostive: [],
+            initNegative: [],
+            afterSptNegative: [],
+        },
         xAxisDate = [];
     return fnPromise.then(function (data) {
         scope.validData(data);

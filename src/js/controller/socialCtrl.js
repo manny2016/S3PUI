@@ -296,11 +296,11 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $filter, $docu
     function updateQueryConditions() {
         topic = dropdownlistProducts.value();
         options.set('topic', topic);
-        //var topic = options.get('topic');
-        //if (!topic) {
-        //    topic = dropdownlistProducts.value();
-        //    options.set('topic', topic);
-        //}
+        // var topic = options.get('topic');
+        // if (!topic) {
+        //     topic = dropdownlistProducts.value();
+        //     options.set('topic', topic);
+        // }
         $scope.query.topic = topic;
         $scope.query.granularity = options.get('granularity');
         $scope.query.start = options.get('start()');
