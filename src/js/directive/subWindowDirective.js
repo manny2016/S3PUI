@@ -98,7 +98,7 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
 
                                     var isV3 = (CONST.TOPICS_V3.indexOf($window.threadOption.topic) >= 0);
                                     var endpoint = isV3 ? CONST.SERVICE_INFO.ENDPOINT2 : CONST.SERVICE_INFO.ENDPOINT;
-                                    var request_contentType = isV3 ? 'application/json' : 'application/x-www-form-urlencoded';
+                                    var request_contentType ='application/json'; //isV3 ? 'application/json' : 'application/x-www-form-urlencoded';
                                     $.ajax({
                                         url: endpoint + 'GetDetailsByComplexFilter',
                                         type: 'POST',
