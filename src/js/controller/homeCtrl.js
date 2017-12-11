@@ -125,7 +125,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
     });
 
     $scope.startGetData = function (topic) {
-        if (topic) {
+        if (topic) {            
             $rootScope.global.topic = topic;
             $scope.flags.m = false;
             $('div.echart').map(function () {
@@ -145,13 +145,13 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
                 .attr('class', 'ui ' + (offsetDays <= 30 ? 'three' : (offsetDays <= 60 ? 'two' : 'one')) + ' column grid');
 
             if ($scope.query.topic !== topic) {
-                $scope.enabledPlatforms = [];
+                $scope.enabledPlatforms = [];                
                 $scope.query.topic = topic;
                 $timeout(function () {
                     $scope.topics.forEach(function (item) {
                         if (item.TechCategoryName.toLowerCase() === topic.toLowerCase()) {
                             item.Platforms.forEach(function (p) {
-                                if (p.isEnabled) $scope.enabledPlatforms.push(p.PlatformName)
+                                if (p.isEnabled) $scope.enabledPlatforms.push(p.PlatformName)                                
                             })
                         }
                     })
@@ -161,7 +161,7 @@ module.exports = function ($scope, $rootScope, $window, $timeout, $http, $q, $sc
                     });
                     $scope.selected = $scope.enabledPlatforms[0];
                     $scope.listNotification(5);
-                    $scope.$apply();
+                    $scope.$apply();                    
                 }, 50)
             } else {
                 $scope.$broadcast('start-get-data', 'home');

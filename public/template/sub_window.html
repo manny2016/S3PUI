@@ -1,5 +1,5 @@
 <div id="subWindow" class="ui fullscreen modal" style="overflow: visible;" query=query>
-    <div class="header">Details : {{platform}}</div>
+    <div class="header">Details : {{PlatformName}}</div>
     <div id="sub_window" class="ui segment content" style="overflow:auto;padding-top:0;padding-bottom:0">
         <div class="ui active dimmer" ng-show="!complete">
             <div class="ui text loader">Loading</div>
@@ -8,14 +8,14 @@
         <div class="ui divider"></div>
         <div class="ui four column grid">
             <div class="column" style="margin-top: -1em;">
-                <user-list title='Users in {{platform}}' users=topUsers platform='{{platform}}' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
+                <user-list title='Users in {{PlatformName}}' users=topUsers platform='{{platform}}' query=query style="width:100%;height:300px;" location='sub' no-pop="true"></user-list>
             </div>
             <div class="column" style="min-height:369px">
                 <div id="shape-pup" class="ui fluid card" ng-chart-shape>
                     <div class="ui shape">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart caption="Volume Sentiment Distribution in {{platform}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;" location='sub' no-pop="true" swith-tool="true"></ng-echart>
+                                <ng-echart caption="Volume Sentiment Distribution in {{PlatformName}}" type="pie" platform='{{platform}}' query=query api-fn="getDistribution" style="width:100%;" location='sub' no-pop="true" swith-tool="true"></ng-echart>
                             </div>
                             <div class="side">
                                 <table class="ui definition celled table" style="height:300px;margin-bottom:0px !important">

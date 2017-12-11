@@ -90,7 +90,7 @@ app
                   })
               }
           }).modal('show');
-          // $('.fullscreen.modal').modal('show');
+          // $('.fullscreen.modal').modal('show');          
       }
       $rootScope.init = function () {
           // $('.menu').find('.ui.dropdown.item').dropdown();

@@ -118,7 +118,7 @@
                         type="volume" platform="all" query=query location="home" ng-init="$last && finished()"></ng-echart>
                 </div>
                 <div class="ui three column grid">
-                    <ng-echart caption="Volume & Spikes in {{p}}" ng-repeat="p in enabledPlatforms" info="Daily Post Vol and Spike vol in {{p}}"
+                    <ng-echart caption="Volume & Spikes in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" ng-repeat="p in enabledPlatforms" info="Daily Post Vol and Spike vol in {{p}}"
                         api-fn="getSpikes" sub-fn="getVoCDetailsByDate" platform="{{p}}" query=query location="home" ng-init="$last && finished()"></ng-echart>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                         no-swap="true"></ng-echart>
                 </div>
                 <div class="ui three column grid">
-                    <ng-echart caption="Volume Sentiment Distribution in {{p}}" ng-repeat="p in enabledPlatforms" info="Detected Posts' Sentiment Distribution in {{p}}"
+                    <ng-echart caption="Volume Sentiment Distribution in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" ng-repeat="p in enabledPlatforms" info="Detected Posts' Sentiment Distribution in {{p}}"
                         api-fn="getDistribution" sub-fn="getVoCDetailsByPN" type="pie" platform="{{p}}" query=query location="home"
                         no-swap="true"></ng-echart>
                 </div>
@@ -146,7 +146,7 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                            <ng-echart caption="Positive Influence in {{p}}" info="Daily Positive Posts' Influence Vol Trend" api-fn="getInfluence" sub-fn="getVoCDetailsByDate"
+                                            <ng-echart caption="Positive Influence in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" info="Daily Positive Posts' Influence Vol Trend" api-fn="getInfluence" sub-fn="getVoCDetailsByDate"
                                                 type="influence" platform="{{p}}" pnscope="posi" query=query location="home"
                                                 style="height:306px;"></ng-echart>
                                         </div>
@@ -157,9 +157,9 @@
                                     <div class="ui left label icon dropdown button">
                                         <i class="dropdown icon"></i>
                                         <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
-                                        <span class="text">{{enabledPlatforms[0]}}</span>
+                                        <span class="text">{{CONST.ALL_ENABLED_PLARFORMS[enabledPlatforms[0]]}}</span>
                                         <div class="menu">
-                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
+                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{CONST.ALL_ENABLED_PLARFORMS[p]}}</div>
                                         </div>
                                     </div>
                                     <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
@@ -206,7 +206,7 @@
                                 <div class="ui shape">
                                     <div class="sides">
                                         <div class="side" ng-class="{active:$first}" page="{{p}}" ng-repeat="p in enabledPlatforms">
-                                            <ng-echart caption="Negative Influence in {{p}}" platform="{{p}}" query=query api-fn="getInfluence" style="height:306px;"
+                                            <ng-echart caption="Negative Influence in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" platform="{{p}}" query=query api-fn="getInfluence" style="height:306px;"
                                                 type="influence" location="home" pnscope="neg" sub-fn="getVoCDetailsByDate" info="Daily Negative Posts' Influence Vol Trend"></ng-echart>
                                         </div>
                                     </div>
@@ -216,9 +216,9 @@
                                     <div class="ui left label icon dropdown button">
                                         <i class="dropdown icon"></i>
                                         <input type="hidden" name="category" value="{{enabledPlatforms[0]}}">
-                                        <span class="text">{{enabledPlatforms[0]}}</span>
+                                        <span class="text">{{CONST.ALL_ENABLED_PLARFORMS[enabledPlatforms[0]]}}</span>
                                         <div class="menu">
-                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{p}}</div>
+                                            <div ng-repeat="p in enabledPlatforms" class="item" data-value="{{p}}">{{CONST.ALL_ENABLED_PLARFORMS[p]}}</div>
                                         </div>
                                     </div>
                                     <div class="ui right icon button" data-animation="flip" data-direction="right" title="Next"><i class="right long arrow icon"></i></div>
@@ -294,7 +294,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart caption="Mentioned (Messages Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query
+                                <ng-echart caption="Mentioned (Messages Vol) {{global.topic}} Services in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" type="pie" platform="{{p}}" query=query
                                     api-fn="getMentionedMostServiceDistribution" property-select="messages" location="home" sub-fn="getVoCDetailsByServiceName"
                                     association="message_{{p}}" info="Detected Services Distribution by Post"></ng-echart>
                             </div>
@@ -306,7 +306,7 @@
                     <div class="ui shape column">
                         <div class="sides">
                             <div class="side active">
-                                <ng-echart caption="Mentioned (Users Vol) {{global.topic}} Services in {{p}}" type="pie" platform="{{p}}" query=query api-fn="getMentionedMostServiceListByUserVol"
+                                <ng-echart caption="Mentioned (Users Vol) {{global.topic}} Services in {{CONST.ALL_ENABLED_PLARFORMS[p]}}" type="pie" platform="{{p}}" query=query api-fn="getMentionedMostServiceListByUserVol"
                                     property-select="users" location="home" sub-fn="getVoCDetailsByServiceName" association="user_{{p}}"
                                     info="Detected Services Distribution by User"></ng-echart>
                             </div>
@@ -324,7 +324,7 @@
                 <i class="dropdown icon pull-left"></i>
             </h3>
             <div class="ui three column grid content">
-                <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{p}}' users=topUsers platform="{{p}}" query=query location="home"></user-list>
+                <user-list ng-repeat="p in enabledPlatforms" title='Top Users in {{CONST.ALL_ENABLED_PLARFORMS[p]}}' users=topUsers platform="{{p}}" query=query location="home"></user-list>
             </div>
         </div>
         <div id="scrollspy" ng-scroll-spy class="">

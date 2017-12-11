@@ -2,7 +2,7 @@
     <div class="ui breadcrumb" style="margin-bottom: 0!important;">
         <a class="section">{{path[1]}}</a>
         <i class="right angle icon divider"></i>
-        <div class="active section">{{path[2]}}</div>
+        <div class="active section">{{CONST.ALL_ENABLED_PLARFORMS[path[2]]}}</div>
     </div>
     <div class="ui label blue pull-right" ng-show="queried">
         <i class="server icon"></i> Current Service/Product: {{global.topic}}
@@ -220,7 +220,7 @@
             </h3>
             <div class="ui three column grid content">
                 <div class="row">
-                    <ng-echart caption="Volume Sentiment Distribution in {{path[2]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
+                    <ng-echart caption="Volume Sentiment Distribution in {{CONST.ALL_ENABLED_PLARFORMS[path[2]]}}" type="pie" platform='{{path[2]}}' query=query api-fn="getDistribution"
                         location='home' sub-fn="getVoCDetailsByPN" no-swap="true"></ng-echart>
                     <ng-echart caption="Most POSITIVE Feedback Mentioned" type="wordcloud" platform='{{path[2]}}' query=query api-fn="getKeywordsMentionedMostMapping"
                         pnscope="posi" location="home" sub-fn="getSubPageVoCDetailsbyKeywords"></ng-echart>

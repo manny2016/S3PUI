@@ -32,7 +32,8 @@ app.constant('CONST', {
         'su': 'Superuser',
         'msdn': 'MSDN',
         'tn': 'TechNet',
-        'lithium':'Lithium'
+        'lithium':'Lithium',
+        'dyn': 'Dynamics Community'
     },
     WS_STATUS:{
         0 : 'connecting',

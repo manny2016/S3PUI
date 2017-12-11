@@ -58,7 +58,8 @@ module.exports = function ($rootScope) {
                     cate = $(dom[0]).attr("page");
                 }
                 scope.category = cate;
-                $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
+                var cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
+                $('#' + id + ' .ui.dropdown').dropdown("set text", cateDisplay);
                 callMentionedService();
                 // resizeChart();
                 // }
@@ -80,7 +81,9 @@ module.exports = function ($rootScope) {
                     cate = $(dom[0]).attr("page");
                 }
                 scope.category = cate;
-                $('#' + id + ' .ui.dropdown').dropdown("set text", cate);
+                var cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
+               
+                $('#' + id + ' .ui.dropdown').dropdown("set text", cateDisplay);
                 callMentionedService();
                 // resizeChart();
             }
@@ -89,7 +92,7 @@ module.exports = function ($rootScope) {
                 flipLeft()
             });
             rightButton.bind("click", function (e) {
-                e.stopPropagation();
+                e.stopPropagation();               
                 flipRight()
             });
             function resizeChart() {

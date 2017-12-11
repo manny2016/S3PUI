@@ -71,7 +71,7 @@ app.constant('CONST', {
         'msdn': 'MSDN',
         'tn': 'TechNet',
         'lithium': 'Lithium',
-        'dyn': 'DynamicsCommunity'
+        'dyn': 'Dynamics Community'
     },
     WS_STATUS:{
         0 : 'connecting',

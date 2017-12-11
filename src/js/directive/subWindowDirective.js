@@ -189,7 +189,11 @@ module.exports = /*@ngInject*/ function ($rootScope, $window, $compile, $filter,
                 }
 
                 scope.needMentioned = true;
-                scope.platform = params.param.platform.toLowerCase()
+                scope.platform = params.param.platform.toLowerCase();
+                scope.PlatformName ="all";
+                if(scope.platform!="all"){
+                    scope.PlatformName = CONST.ALL_ENABLED_PLARFORMS[scope.platform];
+                };
                 var fnPromise,
                     fn = $rootScope.service[params.fn];
                 switch (params.fn) {
