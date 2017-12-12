@@ -58,7 +58,10 @@ module.exports = function ($rootScope) {
                     cate = $(dom[0]).attr("page");
                 }
                 scope.category = cate;
-                var cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
+                var cateDisplay=cate;
+                if(cate != "Message" && cate != "User"){
+                    cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
+                }
                 $('#' + id + ' .ui.dropdown').dropdown("set text", cateDisplay);
                 callMentionedService();
                 // resizeChart();
@@ -81,8 +84,10 @@ module.exports = function ($rootScope) {
                     cate = $(dom[0]).attr("page");
                 }
                 scope.category = cate;
-                var cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
-               
+                var cateDisplay=cate;
+                if(cate != "Message" && cate != "User"){
+                    cateDisplay = $rootScope.CONST.ALL_ENABLED_PLARFORMS[cate];
+                }
                 $('#' + id + ' .ui.dropdown').dropdown("set text", cateDisplay);
                 callMentionedService();
                 // resizeChart();
