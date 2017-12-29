@@ -10,4 +10,7 @@ app.controller('notificationCtrl',require('./notificationCtrl'));
 // app.controller('scrollCtrl',require('./scrollCtrl'));
 // app.controller('msPlatformCtrl',require('./msPlatformCtrl'));
 // app.controller('thirdPartyCtrl',require('./thirdPartyCtrl'));
+
+
+
 module.exports = 'app.Ctrl';
