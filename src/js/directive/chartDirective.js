@@ -1221,11 +1221,11 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 data: xAxisDate
             }],
             legend: {
-                data: ['Init Negative Volume', 'After Support Negative Volume'],
+                data: ['Init Un-Positive Volume', 'After Support Un-Positive Volume'],
                 show: true
             },
             series: [{
-                name: 'Init Negative Volume',
+                name: 'Init Un-Positive Volume',
                 type: 'line',
                 areaStyle: {
                     normal: {}
@@ -1237,7 +1237,7 @@ function sentimentconversionData(fnPromise, utility, scope) {
                 },
                 data: seriesData.initNegative
             }, {
-                name: 'After Support Negative Volume',
+                name: 'After Support Un-Positive Volume',
                 type: 'line',
                 areaStyle: {
                     normal: {}
