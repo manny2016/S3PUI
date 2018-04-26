@@ -156,7 +156,9 @@
             lithium: { name: 'Lithium', category: 'thirdParty' },
             msdn: { name: 'MSDN Forums', category: 'msPlatform' },
             tn: { name: 'Technet Forums', category: 'msPlatform' },
-            dyn: { name: 'Community Dynamics', category: 'msPlatform' }
+            dyn: { name: 'Community Dynamics', category: 'msPlatform' },
+            gith: { name: 'GitHub', category: 'thirdParty' }
+
         };
 
         function getDateTimeFormat(datestring) {
@@ -205,7 +207,7 @@
         }
 
         var menuModel = kendo.observable({
-            Forums: ['twitter', 'so', 'su', 'sf', 'lithium', 'msdn', 'tn','dyn'],
+            Forums: ['twitter', 'so', 'su', 'sf', 'lithium', 'msdn', 'tn','dyn','gith'],
             Location: window.location.href,
             MenuGroups: function () {
                 var swap = {
