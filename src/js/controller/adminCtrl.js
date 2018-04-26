@@ -55,7 +55,7 @@ module.exports = function ($scope, $rootScope, $window, $location, $state, $time
     $scope.getPlatforms = function () {
         //simulate api calling
         $timeout(function () {
-            $scope.platforms = ['twitter', 'so', 'sf', 'su', 'msdn', 'tn']
+            $scope.platforms = ['twitter', 'so', 'sf', 'su', 'msdn', 'tn','gith','dyn']
         }, 500)
     }();
     // $scope.topics = ['Azure', 'Office365', 'CRM Online', 'Intune'];

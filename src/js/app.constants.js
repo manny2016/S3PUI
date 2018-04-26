@@ -19,7 +19,7 @@ app.constant('CONST', {
         'ServiceOutageDetected': 'Possible service outage issues',
         'SupportExperienceIssuesDetected': 'Support experience issues'
     },
-    TOPICS_V3: ["Azure", "UWP", "PowerBI", "PowerApp", "MS Flow", "EMS", "VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "SharePoint", "Office", "SQL Server", "Skype for Business", "HoloLens", "Dynamics 365"],
+    TOPICS_V3: ["Azure", "UWP", "PowerBI", "PowerApp", "MS Flow", "EMS", "VS", "VSTS", "Windows Client", "Windows Server", "Exchange", "SharePoint", "Office", "SQL Server", "Skype for Business", "HoloLens", "Dynamics 365","IoT"],
     SERVICE_INFO: {
         ENDPOINT: 'https://shpv3-api.azurewebsites.net/api/v2/',
         ENDPOINT2: 'https://shpv3-api.azurewebsites.net/api/v2/',
@@ -71,7 +71,8 @@ app.constant('CONST', {
         'msdn': 'MSDN',
         'tn': 'TechNet',
         'lithium': 'Lithium',
-        'dyn': 'Dynamics Community'
+        'dyn': 'Dynamics Community',
+        'gith': 'GitHub'
     },
     WS_STATUS:{
         0 : 'connecting',
